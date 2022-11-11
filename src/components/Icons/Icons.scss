@@ -1,0 +1,204 @@
+@import "./../../base/base.scss";
+@import "./../../base/storybook.scss";
+
+.svg-category-container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 40px;
+  border: 0.8px solid $Whisper;
+  padding: 26px 12px;
+  background: $Snow;
+  border-radius: 6px;
+}
+
+.storybook-svg-container {
+  margin-inline: auto;
+  max-width: 700px;
+  min-height: 70vh;
+  @include d-flex-center;
+}
+.category-heading {
+  font-size: $BaseFontSize + 12;
+  font-family: $PrimaryFont;
+  text-transform: capitalize;
+  color: $TypographyPrimaryColor;
+  font-weight: 600;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.demo-container {
+  width: 100%;
+  @include d-flex-center;
+  flex-direction: column;
+  padding-bottom: 36px;
+  border-radius: 6px;
+  background: linear-gradient(90deg, $Spray, $PurpleTaupe);
+  font-family: $PrimaryFont;
+
+  h1 {
+    font-size: $BaseFontSize + 20;
+    margin-block: 26px;
+    color: $WhiteColor;
+    text-align: center;
+  }
+
+  img {
+    max-width: 520px;
+    width: 95%;
+    display: block;
+    border-radius: 6px;
+  }
+
+  .demo-description {
+    color: white;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    font-size: $BaseFontSize + 3;
+    gap: 4px;
+    margin-top: 20px;
+  }
+}
+
+.filters-section {
+  padding-block: 26px;
+  display: flex;
+  gap: 20px;
+  background: linear-gradient(to bottom, $WhiteColor 90%, transparent);
+  z-index: 1;
+  position: sticky;
+  top: 0;
+
+  .nitrozen-form-input {
+    flex-grow: 1;
+
+    input,
+    input::-webkit-input-placeholder {
+      font-size: $BaseFontSize + 2;
+    }
+  }
+
+  .filters-cta {
+    display: flex;
+    align-items: center;
+    padding-inline: 20px;
+    font-size: $PrimaryFont + 3;
+    cursor: pointer;
+    border: none;
+    border-radius: 6px;
+    gap: 6px;
+    font-weight: 600;
+    color: $TypographySecondaryColor;
+    border: 2px solid transparent;
+    transition: 0.1s ease;
+
+    &:active {
+      background: $Whisper2;
+      border-color: $SecondaryHoverColor;
+    }
+  }
+}
+
+.icons-list-grid {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.svg-btn {
+  background: white;
+  border: 1px solid $Whisper;
+  padding: 20px 6px 30px 6px;
+  box-shadow: none;
+  border-radius: 6px;
+  transition: 0.1s ease;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  font-size: $BaseFontSize - 2;
+  align-items: center;
+  gap: 12px;
+  width: 100px;
+  position: relative;
+  overflow: hidden;
+  font-family: $PrimaryFont;
+
+  .copy-alert {
+    opacity: 0;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: $TypographyTertiaryColor;
+    padding-block: 2px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    justify-content: center;
+    transition: 0.1s ease;
+    font-weight: 600;
+    font-size: $BaseFontSize - 1;
+
+    * {
+      color: $WhiteColor;
+    }
+  }
+
+  &:hover .copy-alert {
+    opacity: 1;
+  }
+
+  &:active .copy-alert {
+    background: $TypographySecondaryColor;
+  }
+
+  .copy-alert.copied {
+    transition: 0.1s ease;
+    background: $Pelorous;
+  }
+
+  .component-name {
+    color: $TypographyPrimaryColor;
+    white-space: nowrap;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+    max-width: 80px;
+    font-size: $BaseFontSize - 2;
+  }
+
+  .svg-edit-cta {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 14px;
+    border: none;
+    border-radius: 6px;
+    border-top-left-radius: 0;
+    border-bottom-right-radius: 0;
+    cursor: pointer;
+    background: none;
+    padding: 8px;
+    transition: 0.2s ease;
+    opacity: 0;
+    @include d-flex-center;
+
+    &:hover {
+      opacity: 1 !important;
+      background: $Grey;
+    }
+  }
+
+  &:hover {
+    box-shadow: 0px 0px 2px $Spray;
+
+    .svg-edit-cta {
+      opacity: 0.5;
+    }
+  }
+}
+
+.nitrozen-svg-icon {
+  color: $SvgColor;
+}

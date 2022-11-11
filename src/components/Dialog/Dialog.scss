@@ -1,0 +1,97 @@
+@import "./../../base/base.scss";
+
+.nitrozen-dialog-backdrop {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: $BgColor;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+
+  .nitrozen-dialog {
+    font-family: $PrimaryFont;
+    background: $WhiteColor;
+    width: 24rem;
+    height: 20rem;
+    border: 1px solid $SecondaryDisabledColor;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .nitrozen-dialog-header,
+  .nitrozen-dialog-footer {
+    display: flex;
+  }
+
+  .nitrozen-dialog-header {
+    padding: 10px 24px;
+    line-height: 24px;
+    font-size: 16px;
+    font-weight: bold;
+    color: $TypographyPrimaryColor;
+    justify-content: space-between;
+
+    .nitrozen-inline-svg {
+      width: 14px;
+      height: 14px;
+      cursor: pointer;
+    }
+  }
+
+  .nitrozen-dialog-footer {
+    margin: 24px 0 24px;
+    height: 36px;
+    justify-content: flex-end;
+
+    .nitrozen-dialog-negative-button {
+      color: $DialogNegativeColor;
+    }
+
+    .nitrozen-dialog-footer-button-margin {
+      margin: 16px;
+      min-width: 10vw;
+    }
+  }
+
+  .nitrozen-dialog-body {
+    position: relative;
+    width: 19rem;
+    height: 3.2rem;
+    font-size: 12px;
+    line-height: 1rem;
+    text-align: center;
+    color: $TypographySecondaryColor;
+    @extend .nitrozen-scrollbar;
+
+    @media screen and (max-width: 768px) {
+      width: 50vw;
+    }
+  }
+}
+
+.nitrozen-dialog-fade-enter,
+.nitrozen-dialog-fade-leave-active {
+  opacity: 0;
+}
+
+.nitrozen-dialog-fade-enter-active,
+.nitrozen-dialog-fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.nitrozen-dialog-icon {
+  height: 50px;
+  width: 50px;
+}
+
+.nitrozen-dialog-footer-container {
+  display: flex;
+  justify-content: center;
+}

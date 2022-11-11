@@ -1,0 +1,48 @@
+@import "base.scss";
+
+* {
+  font-family: $PrimaryFont;
+}
+
+$blueViolet: #9747ff;
+$Whisper2: #e5e5e5;
+$Snow: #fafafa;
+$Grey: #7f7f7f;
+$PurpleTaupe: #5d4157;
+$Perano: #a9b1ea;
+$Pelorous: #1c8eab;
+$Spray: #8ac5d4;
+
+.nitrozen-badge-story-collection {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  gap: 1rem;
+}
+
+.nitrozen-badge-collection {
+  border: 2px solid $blueViolet;
+  padding: 20px;
+  border-style: dashed;
+  height: 100%;
+}
+
+.nitrozen-badge-story-row {
+  display: flex;
+  gap: 5px;
+}
+
+.nitrozen-badge-story-icon-collection {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 1rem;
+}
+
+.theme-container {
+  color: $TypographyPrimaryColor;
+
+  p {
+    margin: 0.5rem 0;
+    padding: 0;
+    font-size: $BaseFontSize + 2;
+  }
+}

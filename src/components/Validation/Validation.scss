@@ -1,0 +1,21 @@
+@import "./../../base/base.scss";
+
+.nitrozen-error-visible,
+.nitrozen-approval-visible {
+  width: 100%;
+  font-family: $PrimaryFont;
+  font-size: $BaseFontSize;
+}
+.nitrozen-error-visible {
+  color: $ErrorColor;
+}
+
+.nitrozen-approval-visible {
+  color: $SuccessColor;
+}
+
+.badge-description-container {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}

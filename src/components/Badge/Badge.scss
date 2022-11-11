@@ -1,0 +1,93 @@
+@import "./../../base/base.scss";
+.nitrozen-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 16px;
+  padding: 1px 4px;
+  cursor: default;
+  border-radius: 4px;
+  border: 1px solid $Zambezi;
+  color: $WhiteColor;
+  font-size: $BaseFontSize;
+  white-space: nowrap;
+  font-family: $PrimaryFont;
+  line-height: 18px;
+  text-transform: uppercase;
+  max-width: 79px;
+  text-align: center;
+  &:focus {
+    outline: none;
+  }
+  &.nitrozen-badge-default {
+    border: 1px solid $Zambezi;
+    color: $Zambezi;
+  }
+  &.nitrozen-badge-info {
+    border: 1px solid $PrimaryColor;
+    color: $PrimaryColor;
+  }
+  &.nitrozen-badge-success {
+    border: 1px solid $SuccessColor;
+    color: $SuccessColor;
+  }
+  &.nitrozen-badge-warn {
+    border: 1px solid $OrangeColor;
+    color: $OrangeColor;
+  }
+  &.nitrozen-badge-error {
+    border: 1px solid $FreeSpeechRed;
+    color: $FreeSpeechRed;
+  }
+  &.nitrozen-badge-disable {
+    border: 1px solid $NobelColor;
+    color: $NobelColor;
+  }
+  &.nitrozen-badge-default-fill {
+    background: $Zambezi;
+    border: 1px solid $Zambezi;
+  }
+  &.nitrozen-badge-info-fill {
+    background: $PrimaryColor;
+    border: 1px solid $PrimaryColor;
+  }
+  &.nitrozen-badge-success-fill {
+    background: $SuccessColor;
+    border: 1px solid $SuccessColor;
+  }
+  &.nitrozen-badge-warn-fill {
+    background: $OrangeColor;
+    border: 1px solid $OrangeColor;
+  }
+  &.nitrozen-badge-error-fill {
+    background: $FreeSpeechRed;
+    border: 1px solid $FreeSpeechRed;
+  }
+  &.nitrozen-badge-disable-fill {
+    background: $NobelColor;
+    border: 1px solid $NobelColor;
+  }
+}
+.nitrozen-badge-story-table {
+  font-family: "Inter";
+  font-weight: 500;
+  gap: 1rem;
+  border: 1px solid $SecondaryDisabledColor;
+}
+.nitrozen-badge-story-table-row {
+  display: grid;
+  grid-template-columns: 3fr 1fr 1fr 1fr 1fr;
+  gap: 2rem;
+  border: 1px solid $SecondaryDisabledColor;
+  border-radius: 4px;
+  padding: 10px;
+  width: 80vw;
+}
+.nitrozen-badge-story-table-row-header {
+  display: grid;
+  grid-template-columns: 3fr 1fr 1fr 1fr 1fr;
+  gap: 2rem;
+  border-bottom: 1px solid black;
+  padding: 10px;
+  width: 80vw;
+}

@@ -1,0 +1,19 @@
+@import "./../../base/base.scss";
+
+.nitrozen-tab-container {
+  display: flex;
+  width: 100%;
+  .nitrozen-tab {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    box-sizing: border-box;
+    list-style: none;
+    justify-content: flex-start;
+    padding: 0;
+    margin: 0;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+}
