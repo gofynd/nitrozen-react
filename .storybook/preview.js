@@ -9,8 +9,8 @@ export const parameters = {
   options: {
     storySort: {
       order: [
-        "Introduction",
         "Welcome",
+        "Introduction",
         "Getting Started",
         "Pages",
         "Nitrozen",
