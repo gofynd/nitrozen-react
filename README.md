@@ -1,6 +1,6 @@
 # @gofynd/nitrozen-react
 
-![storybook](https://img.shields.io/badge/nitrozen-0.1.0-brightgreen)
+![storybook](https://img.shields.io/badge/nitrozen-1.0.0-brightgreen)
 [![](https://img.shields.io/badge/Storybook-documentation-brightgreen)](https://fyndreact.github.io/nitrozen/)
 
 > React components for the Nitrozen Design System
