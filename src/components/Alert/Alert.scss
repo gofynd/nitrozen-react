@@ -1,0 +1,134 @@
+@import "./../../base/base.scss";
+
+.nitrozen-alert {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 12px;
+  gap: 8px;
+  cursor: default;
+  border-radius: 4px;
+  border: 1px solid $NobelColor;
+  color: $TypographyPrimaryColor;
+  font-size: $BaseFontSize;
+  font-family: $PrimaryFont;
+
+  &:focus {
+    outline: none;
+  }
+
+  &.nitrozen-alert-info {
+    background: $Solitude;
+    border: 1px solid $PrimaryColor;
+  }
+
+  &.nitrozen-alert-success {
+    background: $Bubbles;
+    border: 1px solid $SuccessColor;
+  }
+
+  &.nitrozen-alert-warn {
+    background: $chinaIvory;
+    border: 1px solid $OrangeColor;
+  }
+
+  &.nitrozen-alert-error {
+    background: $WhiteSmoke2;
+    border: 1px solid $FreeSpeechRed;
+  }
+}
+
+.nitrozen-alert-text-icon-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nitrozen-alert-icon {
+  font-size: $BaseFontSize + 16.8px;
+
+  &.nitrozen-alert-icon-info {
+    color: $PrimaryColor;
+  }
+
+  &.nitrozen-alert-icon-success {
+    background-color: $SeaGreen;
+    color: $WhiteColor;
+    border-radius: 100%;
+    font-size: medium;
+    padding: 5px;
+  }
+
+  &.nitrozen-alert-icon-warn {
+    color: $OrangeColor;
+  }
+
+  &.nitrozen-alert-icon-error {
+    color: $FreeSpeechRed;
+  }
+}
+
+.nitrozen-alert-button {
+  padding: 5px;
+
+  &.nitrozen-alert-button-success {
+    background-color: $SuccessColor;
+  }
+
+  &.nitrozen-alert-button-warn {
+    background-color: $OrangeColor;
+  }
+
+  &.nitrozen-alert-button-error {
+    background-color: $FreeSpeechRed;
+  }
+}
+
+.nitrozen-alert-cta {
+  cursor: pointer;
+  font-weight: 700;
+  text-decoration: none;
+
+  &.nitrozen-alert-cta-info {
+    color: $PrimaryColor;
+  }
+
+  &.nitrozen-alert-cta-success {
+    color: $SeaGreen;
+  }
+
+  &.nitrozen-alert-cta-warn {
+    color: $TypographyPrimaryColor;
+  }
+
+  &.nitrozen-alert-cta-error {
+    color: $FreeSpeechRed;
+  }
+}
+
+.nitrozen-alert-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nitrozen-extended-alert {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.nitrozen-extended-alert-body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  color: $Zambezi;
+}
+
+.nitrozen-extended-alert-reasons {
+  padding: 5px;
+}
+
+.nitrozen-extended-alert-description {
+  padding: 5px;
+}

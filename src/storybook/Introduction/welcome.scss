@@ -1,0 +1,63 @@
+@import "./../../base/base.scss";
+
+$whiteColor: #fff;
+$offWhiteColor: #eee;
+$offWhiteSecondaryColor: #ddd;
+
+html,
+body,
+#root {
+  height: 100vh;
+}
+
+.intro-body {
+  font-family: Inter;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  // background-image: url('../../assets/bg.svg');
+  // min-height: 600px;
+  background-image: url("../../assets/Cover.svg");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  height: 100vh;
+}
+
+.intro-head {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-left: 2px solid $whiteColor;
+}
+
+.title {
+  color: $whiteColor !important;
+  font-weight: 400;
+  font-size: 1.5rem;
+  padding: 1rem 1.5rem;
+  border: 2px solid $whiteColor;
+  border-right: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.2rem;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  font-weight: 200;
+  padding: 1rem;
+  text-transform: uppercase;
+  color: $offWhiteColor;
+  letter-spacing: 0.1rem;
+}
+
+.info {
+  padding: 1rem;
+  font-size: 0.8rem;
+  font-weight: 100;
+  color: $offWhiteSecondaryColor;
+  max-width: 500px;
+  text-align: justify;
+  text-justify: inter-word;
+  line-height: 1.75rem;
+}

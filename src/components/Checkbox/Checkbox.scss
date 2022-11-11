@@ -1,0 +1,93 @@
+@import "./../../base/base.scss";
+
+.nitrozen-checkbox-container {
+  position: relative;
+  padding-left: 30px;
+  cursor: pointer;
+  font-size: 15px;
+  line-height: 15px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  font-family: $PrimaryFont;
+  color: $TypographyPrimaryColor;
+  font-weight: 400;
+  min-width: 6rem;
+  display: flex;
+  align-items: center;
+  padding: 2px;
+  justify-content: center;
+  gap: 8px;
+}
+
+/* Hide the browser's default checkbox */
+.nitrozen-checkbox-container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.nitrozen-checkbox {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 16px;
+  width: 16px;
+  background-color: $WhiteColor;
+  border: 1px solid $Gray;
+  border-radius: 3px;
+}
+
+.nitrozen-checkbox-container:hover input ~ .nitrozen-checkbox {
+  background-color: $WhiteColor;
+}
+
+/* When the checkbox is checked, add a blue background */
+.nitrozen-checkbox-container input:checked ~ .nitrozen-checkbox {
+  background-color: $PrimaryColor;
+  border: 2px solid $PrimaryColor;
+}
+
+/* Create the nitrozen-checkbox/indicator (hidden when not checked) */
+.nitrozen-checkbox:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the nitrozen-checkbox when checked */
+.nitrozen-checkbox-container input:checked ~ .nitrozen-checkbox:after {
+  display: block;
+}
+
+/* Style the nitrozen-checkbox/indicator */
+.nitrozen-checkbox-container .nitrozen-checkbox:after {
+  left: 5px;
+  top: 0px;
+  width: 4px;
+  height: 10px;
+  border: 1px solid $WhiteColor;
+  border-width: 0 2px 2px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+}
+
+input[type="checkbox"]:disabled + .nitrozen-checkbox {
+  opacity: 0.5;
+  pointer-events: none;
+
+  &::after {
+    border-width: 0 2px 2px 0;
+  }
+}
+
+.nitrozen-checkbox-container-disabled {
+  color: $CheckboxDisableColor;
+}

@@ -1,0 +1,92 @@
+@import "./../../base/base.scss";
+
+.menu-story-container {
+  min-height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $StorybookBGColor;
+}
+.nitrozen-menu-content {
+  height: 30px;
+  width: 30px;
+  display: flex;
+  justify-content: space-between;
+  color: $TypographyPrimaryColor;
+  position: relative;
+  cursor: pointer;
+  .nitrozen-menu-dots {
+    height: 30px;
+    width: 30px;
+  }
+  .nitrozen-menu-vertical-dots {
+    transform: rotate(90deg);
+  }
+  .nitrozen-menu-vertical-dropdown {
+    z-index: 2;
+    position: absolute;
+    right: 20px;
+  }
+  ul {
+    width: 200px;
+    height: auto;
+    max-height: 150px;
+    overflow-y: auto;
+    background-color: $WhiteColor;
+    font-family: $PrimaryFont;
+    list-style: none;
+    box-shadow: 0 2px 16px 0 rgba(0, 0, 0, 0.1);
+    position: absolute;
+    padding-left: 0px;
+    margin-top: 2em;
+    border-radius: 2px;
+
+    &::-webkit-scrollbar {
+      width: 10px;
+    }
+    /* Track */
+    &::-webkit-scrollbar-track {
+      border: 1px solid $SecondaryDisabledColor;
+      background-color: $BackgroundColor;
+    }
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+      border: 3px solid $BackgroundColor;
+      background-clip: padding-box;
+      background: $ScrollBarThumbColor;
+      width: 4px;
+      border-radius: 5px;
+      animation: fadeIn ease 0.3s;
+    }
+  }
+  .nitrozen-menu-top {
+    bottom: 100%;
+  }
+}
+.nitrozen-default-menu {
+  &:hover {
+    background-color: $HoverColor;
+    border-radius: 50%;
+  }
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.nitrozen-menu-icon {
+  height: 30px;
+  width: 30px;
+}
+.inverted {
+  stroke: transparent;
+  color: $WhiteColor;
+}
+
+.error-icon {
+  color: $ErrorColor;
+}

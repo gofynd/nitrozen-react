@@ -1,0 +1,60 @@
+@import "./../../base/base.scss";
+
+.nitrozen-chip {
+  background-color: $WhiteColor;
+  @include d-flex-center;
+  padding: 8px;
+  cursor: default;
+  border-radius: 4px;
+  border: 1px solid $SecondaryDisabledColor;
+  color: $TypographyPrimaryColor;
+  font-size: $BaseFontSize;
+  vertical-align: middle;
+  white-space: nowrap;
+  font-family: $PrimaryFont;
+  cursor: pointer;
+  box-sizing: border-box;
+  user-select: none;
+
+  &:focus {
+    outline: none;
+  }
+  &:hover {
+    box-shadow: 0px 0px 5px $Whisper;
+  }
+  &.nitrozen-disabled {
+    cursor: default;
+    background: $Whisper3;
+    color: $SantasGrey;
+    pointer-events: none;
+    &:hover {
+      box-shadow: none;
+    }
+
+    svg {
+      opacity: 0.5;
+      filter: saturate(0);
+    }
+  }
+  &.nitrozen-chip-secondary {
+    color: $PrimaryColor;
+    border-color: $PrimaryColor;
+    font-weight: 700;
+  }
+  &.rounded {
+    border-radius: 39px;
+  }
+  .nitrozen-icon {
+    @include d-flex-center;
+    margin-left: 4px;
+  }
+}
+
+//DEMO
+.chip-demo-section {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 500px;
+}

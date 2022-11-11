@@ -1,0 +1,182 @@
+@import "./../../base/base.scss";
+.n-input {
+  // margin: 4px 0px 0px 0px;
+  padding: 0 12px;
+  height: 40px;
+  color: $TypographyPrimaryColor;
+  border: 1px solid $SecondaryDisabledColor;
+  border-radius: 3px;
+  width: 100%;
+  background: $WhiteColor;
+  font-family: $PrimaryFont;
+  position: relative;
+  outline: none;
+  box-sizing: border-box;
+  font-size: $BaseFontSize + 2;
+  -webkit-appearance: none;
+  &:focus {
+    border: 1px solid $PrimaryColor;
+  }
+}
+
+.n-input-textarea {
+  height: 96px;
+  line-height: 21px;
+  padding-top: 6px;
+}
+
+.n-input:disabled {
+  background: $HoverColor;
+  pointer-events: none;
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.n-input:disabled + .n-input-label {
+  opacity: 0.5;
+}
+
+.nitrozen-form-input {
+  outline: none;
+  // &:focus {
+  //     label{
+  //         color: $SecondaryColor;
+  //         font-weight: 600;
+  //     }
+  // }
+}
+
+.n-input-label {
+  color: $NobelColor;
+  font-family: $PrimaryFont;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 21px;
+  display: flex;
+  flex: 1;
+}
+
+.n-input-maxLength {
+  // display: block;
+  // float: right;
+  display: flex;
+  justify-content: flex-end;
+  position: relative;
+}
+
+.nitrozen-input-grp:focus-within + .n-input-label-container > .n-input-label {
+  color: $PrimaryColor !important;
+}
+
+::-webkit-input-placeholder {
+  /* Edge */
+  color: $PlaceholderColor;
+  font-size: 12px;
+  font-family: $PrimaryFont;
+}
+
+:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: $PlaceholderColor;
+  font-size: 12px;
+  font-family: $PrimaryFont;
+}
+
+::placeholder {
+  color: $PlaceholderColor;
+  font-size: 12px;
+  font-family: $PrimaryFont;
+}
+
+input[type="search"]::-webkit-search-cancel-button {
+  position: relative;
+  right: 10px;
+  font-size: $BaseFontSize + 4px;
+  cursor: pointer;
+}
+
+.nitrozen-loader-div {
+  float: right;
+  position: relative;
+  bottom: 52px;
+  left: 20px;
+  img {
+    width: 65px;
+  }
+}
+
+.nitrozen-search-icon {
+  z-index: 2;
+  position: absolute;
+  left: 6px;
+  top: 8px;
+}
+
+.nitrozen-tooltip-icon {
+  margin-left: 5px;
+}
+
+.nitrozen-search-input-padding {
+  padding-left: 35px;
+}
+
+.nitrozen-input-label-div {
+  display: flex;
+  justify-content: space-between;
+}
+
+.n-input-label-container {
+  display: flex;
+}
+
+.nitrozen-input-prefix,
+.nitrozen-input-suffix {
+  height: 40px;
+  margin: auto;
+  box-sizing: border-box;
+  color: $TypographyPrimaryColor;
+  border-radius: 3px;
+  background-color: $PrefixSuffixBackground;
+}
+
+.nitrozen-remove-left-border {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-left-color: $WhiteColor;
+}
+
+.nitrozen-remove-right-border {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-right-color: $WhiteColor;
+}
+
+.nitrozen-input-grp {
+  display: flex;
+  position: relative;
+}
+
+.nitrozen-prefix-padding,
+.nitrozen-suffix-padding {
+  padding: 10px;
+  border: 1px solid $SecondaryDisabledColor;
+}
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+textarea {
+  resize: vertical;
+}
+.search-icon {
+  font-size: 24px;
+  color: $Gray;
+}
