@@ -8,17 +8,17 @@
     display: inline-block;
 
     &.small {
-      height: 10px;
-      width: 20px;
+      height: 1rem;
+      width: 2rem;
     }
     &.medium {
-      height: 12px;
-      width: 24px;
+      height: 1.2rem;
+      width: 2.4rem;
     }
     //DEFAULT
     &.large {
-      height: 16px;
-      width: 36px;
+      height: 1.6rem;
+      width: 3.6rem;
     }
 
     .nitrozen-disabled {
@@ -56,28 +56,32 @@
       transition: 0.4s;
     }
     &.small .slider-ball {
-      height: 12px;
-      width: 12px;
+      height: 1.2rem;
+      width: 1.2rem;
     }
     &.medium .slider-ball {
-      height: 16px;
-      width: 16px;
+      height: 1.6rem;
+      width: 1.6rem;
     }
     &.large .slider-ball {
-      height: 20px;
-      width: 20px;
+      height: 2rem;
+      width: 2rem;
     }
     .nitrozen-disable .slider-ball {
       background: $SecondaryDisabledColor;
     }
     .nitrozen-slider.checked {
-      background-color: $Perano;
+      background-color: change-color(
+        $DefaultColor,
+        $lightness: 79%
+      ); // change-color to make lighter color from the primary color.
+
       &.nitrozen-disabled {
-        background: $Solitude;
+        background: change-color($Portage, $lightness: 94%);
       }
     }
     input:focus + .nitrozen-slider {
-      box-shadow: 0 0 1px $SecondaryColor;
+      box-shadow: 0 0 0.1rem $SecondaryColor;
     }
     .nitrozen-slider.checked .slider-ball {
       right: 0%;
@@ -92,7 +96,7 @@
   }
 }
 .nitrozen-slider.nitrozen-round {
-  border-radius: 30px;
+  border-radius: 3rem;
 }
 .nitrozen-round .slider-ball {
   border-radius: 50%;
@@ -102,16 +106,16 @@
 .all-togglebtn-sections {
   @include d-flex-center;
   align-items: flex-start;
-  gap: 34px;
+  gap: 3.4rem;
 
   .section {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 2rem;
 
     span {
       font-family: $PrimaryFont;
-      font-size: $BaseFontSize;
+      font-size: $BaseFontSize + 2;
     }
   }
 }

@@ -49,7 +49,7 @@ export const demo = () => {
   return (
     <div className="main-div all-togglebtn-sections">
       {sizes.map((size) => (
-        <div className="section">
+        <div className="section" key={size}>
           <span>{size}</span>
           <ToggleButton size={size} />
           <ToggleButton size={size} value={true} />

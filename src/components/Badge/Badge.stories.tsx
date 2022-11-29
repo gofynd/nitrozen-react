@@ -1,4 +1,3 @@
-// @ts-ignore
 import React, { useState } from "react";
 import "../../base/storybook.scss";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
@@ -138,7 +137,7 @@ export const text_badges = (args: any) => {
           </span>
           <Badge labelText="SUPPRESSED" state="disable" {...args} />
           <Badge labelText="INCOMPLETE" state="disable" {...args} />
-          {/*  Row 2*/}
+          {/*  Row 2 */}
           <span className="nitrozen-badge-story-row">
             <Badge labelText="CORRECTION" state="error" {...args} />
             <Badge
@@ -194,7 +193,7 @@ export const icon_badges = (args: any) => {
   return (
     <div className="main-div space-between">
       <div className="nitrozen-badge-collection">
-        <span className="nitrozen-badge-story-row" style={{ gap: "1rem" }}>
+        <span className="nitrozen-badge-story-row" style={{ gap: "1.6rem" }}>
           <Badge
             labelText={<SvgGppGood size={19} color="#0A5F23" />}
             style={{ padding: "4px", width: "20px", height: "20px" }}

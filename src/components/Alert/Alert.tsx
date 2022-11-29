@@ -15,7 +15,7 @@ export interface AlertProps {
   onClick?: React.MouseEventHandler<HTMLButtonElement | HTMLAnchorElement>;
   extendedAlert?: boolean;
   extendedAlertBodyText?: string;
-  reasonArray?: Array<string>;
+  reasonArray?: string[];
   alertWidth?: string;
 }
 
@@ -37,7 +37,7 @@ const Alert = (props: AlertProps) => {
     alertWidth,
     ...restProps
   } = props;
-  const [classes, setClasses] = useState({ c1: "", c2: "", c3: "", c4: "" }); //c1 => container ,c2 => icon ,c3 : => button , c4: => ctaLabel
+  const [classes, setClasses] = useState({ c1: "", c2: "", c3: "", c4: "" }); // c1 => container ,c2 => icon ,c3 : => button , c4: => ctaLabel
 
   useEffect(() => {
     switch (state) {
@@ -81,7 +81,7 @@ const Alert = (props: AlertProps) => {
       style={
         {
           ...style,
-          width: alertWidth ? alertWidth : "100%",
+          width: alertWidth || "100%",
           height: extendedAlert ? "auto" : "48px",
         } ?? {}
       }
@@ -90,13 +90,12 @@ const Alert = (props: AlertProps) => {
     >
       <div className="nitrozen-alert-flex">
         <div className="nitrozen-alert-text-icon-wrapper">
-          {Icon ? (
-            Icon
-          ) : state == "success" ? (
-            <SvgCheck className={`nitrozen-alert-icon  ${classes.c2}`} />
-          ) : (
-            <SvgError className={`nitrozen-alert-icon  ${classes.c2}`} />
-          )}
+          {Icon ||
+            (state === "success" ? (
+              <SvgCheck className={`nitrozen-alert-icon  ${classes.c2}`} />
+            ) : (
+              <SvgError className={`nitrozen-alert-icon  ${classes.c2}`} />
+            ))}
           <div
             className={
               extendedAlert
@@ -130,7 +129,7 @@ const Alert = (props: AlertProps) => {
           <div className="nitrozen-extended-alert-reasons">
             {reasonArray?.map((reason, i, arr) => {
               return (
-                <span>
+                <span key={i}>
                   {reason}
                   {i !== arr.length - 1 ? " | " : " "}{" "}
                 </span>

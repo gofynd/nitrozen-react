@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import React, { useState } from "react";
+import { ComponentMeta } from "@storybook/react";
 import Dialog from "./Dialog";
 import Button from "../Button";
 import Radio from "../Radio";
@@ -31,8 +31,6 @@ export default {
     className: { control: "text" },
   },
 } as ComponentMeta<typeof Dialog>;
-
-const Template: ComponentStory<typeof Dialog> = (args) => <Dialog {...args} />;
 
 export const confirm_dialog = (args: any) => {
   const [open, setOpen] = useState(false);
@@ -97,7 +95,9 @@ export const choose_dialog = (args: any) => {
         {...args}
         closeHandle={() => setOpen(false)}
       >
-        <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+        <div
+          style={{ display: "flex", flexDirection: "column", gap: "1.6rem" }}
+        >
           <Radio
             labelText="Male"
             value="male"

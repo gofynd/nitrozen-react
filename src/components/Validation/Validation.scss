@@ -4,7 +4,7 @@
 .nitrozen-approval-visible {
   width: 100%;
   font-family: $PrimaryFont;
-  font-size: $BaseFontSize;
+  font-size: $BaseFontSize + 2;
 }
 .nitrozen-error-visible {
   color: $ErrorColor;
@@ -17,5 +17,5 @@
 .badge-description-container {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 0.4rem;
 }

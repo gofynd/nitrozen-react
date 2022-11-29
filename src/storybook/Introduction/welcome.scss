@@ -1,4 +1,5 @@
 @import "./../../base/base.scss";
+@import "./../../base/common.scss";
 
 $whiteColor: #fff;
 $offWhiteColor: #eee;
@@ -28,7 +29,7 @@ body,
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border-left: 2px solid $whiteColor;
+  border-left: 0.2rem solid $whiteColor;
 }
 
 .title {
@@ -36,7 +37,7 @@ body,
   font-weight: 400;
   font-size: 1.5rem;
   padding: 1rem 1.5rem;
-  border: 2px solid $whiteColor;
+  border: 0.2rem solid $whiteColor;
   border-right: 0;
   text-transform: uppercase;
   letter-spacing: 0.2rem;
@@ -56,7 +57,7 @@ body,
   font-size: 0.8rem;
   font-weight: 100;
   color: $offWhiteSecondaryColor;
-  max-width: 500px;
+  max-width: 50rem;
   text-align: justify;
   text-justify: inter-word;
   line-height: 1.75rem;

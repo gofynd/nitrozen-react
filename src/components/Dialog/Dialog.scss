@@ -10,19 +10,18 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 999;
+  z-index: $ZIndex3;
 
   .nitrozen-dialog {
     font-family: $PrimaryFont;
     background: $WhiteColor;
-    width: 24rem;
-    height: 20rem;
-    border: 1px solid $SecondaryDisabledColor;
-    border-radius: 10px;
+    border: 0.1rem solid $SecondaryDisabledColor;
+    border-radius: 1rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding: 2.5rem;
   }
 
   .nitrozen-dialog-header,
@@ -31,47 +30,55 @@
   }
 
   .nitrozen-dialog-header {
-    padding: 10px 24px;
-    line-height: 24px;
-    font-size: 16px;
+    padding: 1rem 2.4rem;
+    line-height: 2.4rem;
+    font-size: 1.6rem;
     font-weight: bold;
     color: $TypographyPrimaryColor;
     justify-content: space-between;
 
     .nitrozen-inline-svg {
-      width: 14px;
-      height: 14px;
+      width: 1.4rem;
+      height: 1.4rem;
       cursor: pointer;
     }
   }
 
   .nitrozen-dialog-footer {
-    margin: 24px 0 24px;
-    height: 36px;
+    margin: 2.4rem 0 0;
     justify-content: flex-end;
+    width: 100%;
 
     .nitrozen-dialog-negative-button {
       color: $DialogNegativeColor;
     }
 
     .nitrozen-dialog-footer-button-margin {
-      margin: 16px;
-      min-width: 10vw;
+      width: 100%;
+      margin: 1rem;
+      max-width: 60%;
+      margin-bottom: 0;
+      &:first-child {
+        margin-left: 0;
+      }
+      &:last-child {
+        margin-right: 0;
+      }
     }
   }
 
   .nitrozen-dialog-body {
     position: relative;
-    width: 19rem;
-    height: 3.2rem;
-    font-size: 12px;
-    line-height: 1rem;
+    font-size: 1.2rem;
+    line-height: 1.6rem;
     text-align: center;
     color: $TypographySecondaryColor;
-    @extend .nitrozen-scrollbar;
+    word-break: break-word;
+
+    @include nitrozen-scrollbar;
 
     @media screen and (max-width: 768px) {
-      width: 50vw;
+      width: 70vw;
     }
   }
 }
@@ -87,11 +94,12 @@
 }
 
 .nitrozen-dialog-icon {
-  height: 50px;
-  width: 50px;
+  height: 5rem;
+  width: 5rem;
 }
 
 .nitrozen-dialog-footer-container {
   display: flex;
   justify-content: center;
+  width: 100%;
 }

@@ -1,10 +1,10 @@
 import React from "react";
 
-export interface InputPrefix {
+export interface InputPrefixProps {
   prefix?: string | JSX.Element;
 }
 
-const InputPrefix = (props: InputPrefix) => {
+const InputPrefix = (props: InputPrefixProps) => {
   return (
     <span
       className={`nitrozen-input-prefix nitrozen-remove-right-border ${

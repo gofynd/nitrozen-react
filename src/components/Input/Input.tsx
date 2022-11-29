@@ -4,11 +4,7 @@ import InputPrefix from "./InputPrefix";
 import InputSuffix from "./InputSuffix";
 import NitrozenId from "../../utils/uuids";
 import Tooltip from "../Tooltip";
-import {
-  SvgHelp,
-  SvgHelpOutline,
-  SvgSearch,
-} from "../../assets/svg-components/Action";
+import { SvgHelpOutline, SvgSearch } from "../../assets/svg-components/Action";
 export interface InputProps {
   autoComplete?: string;
   type: string;
@@ -23,6 +19,7 @@ export interface InputProps {
   tooltipText?: string;
   tooltipIcon?: React.ReactNode;
   id?: Number | string;
+  name?: string;
   maxLength?: Number;
   showPrefix?: Boolean;
   showSuffix?: Boolean;
@@ -44,8 +41,41 @@ export interface InputProps {
 }
 
 const Input = (props: InputProps) => {
+  const {
+    autoComplete,
+    type,
+    label,
+    placeholder,
+    disabled,
+    required,
+    value: propValue,
+    search,
+    showSearchIcon,
+    showTooltip,
+    tooltipText,
+    tooltipIcon,
+    id,
+    name,
+    maxLength,
+    showPrefix,
+    showSuffix,
+    prefix,
+    suffix,
+    autofocus,
+    min,
+    max,
+    onKeyUp,
+    onKeyPress,
+    onChange,
+    onBlur,
+    onFocus,
+    onClick,
+    className,
+    style,
+    ...restProps
+  } = props;
   const [loaderShow, setLoaderShow] = useState(false);
-  const [value, setValue] = useState(props?.value || "");
+  const [value, setValue] = useState(propValue || "");
   const inputRef = useRef<HTMLInputElement | HTMLTextAreaElement>(null);
   useEffect(() => {
     function autoFocus() {
@@ -57,72 +87,64 @@ const Input = (props: InputProps) => {
   }, []);
 
   useEffect(() => {
-    setValue(props?.value || "");
-  }, [props.value]);
+    setValue(propValue || "");
+  }, [propValue]);
 
   function onInputChange(
     event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
   ) {
-    if (props.type === "search") {
+    if (type === "search") {
       setLoaderShow(true);
     }
     setValue(event.target.value);
-    props.onChange && props.onChange(event);
+    onChange?.(event);
   }
   function generateClassesForInput() {
     let classes = "";
     classes = `${classes} ${
-      props.showSearchIcon ? "nitrozen-search-input-padding" : ""
+      showSearchIcon ? "nitrozen-search-input-padding" : ""
     }`;
-    classes = `${classes} ${
-      props.showPrefix ? "nitrozen-remove-left-border" : ""
-    }`;
-    classes = `${classes} ${
-      props.showSuffix ? "nitrozen-remove-right-border" : ""
-    }`;
-    classes = `${classes} ${props.className ? props.className : ""}`;
+    classes = `${classes} ${showPrefix ? "nitrozen-remove-left-border" : ""}`;
+    classes = `${classes} ${showSuffix ? "nitrozen-remove-right-border" : ""}`;
+    classes = `${classes} ${className || ""}`;
     return classes;
   }
   function generateAttributesForInput() {
-    let attrs: any = {};
-    props.min && (attrs.min = props.min);
-    props.max && (attrs.max = props.max);
-    typeof props.maxLength !== "undefined" &&
-      (attrs.maxLength = props.maxLength);
-    props.type && (attrs.type = props.type);
-    props.placeholder && (attrs.placeholder = props.placeholder);
-    props.autoComplete && (attrs.autoComplete = props.autoComplete);
-    props.id && (attrs.id = props.id);
-    props.disabled && (attrs.disabled = props.disabled);
-    props.style && (attrs.style = props.style);
+    const attrs: any = {};
+    min && (attrs.min = min);
+    max && (attrs.max = max);
+    typeof maxLength !== "undefined" && (attrs.maxLength = maxLength);
+    type && (attrs.type = type);
+    placeholder && (attrs.placeholder = placeholder);
+    autoComplete && (attrs.autoComplete = autoComplete);
+    id && (attrs.id = id);
+    disabled && (attrs.disabled = disabled);
+    style && (attrs.style = style);
     return attrs;
   }
   function generateAttributesForTextarea() {
-    let attrs: any = {};
-    typeof props.maxLength !== "undefined" &&
-      (attrs.maxLength = props.maxLength);
-    props.disabled && (attrs.disabled = props.disabled);
-    props.placeholder && (attrs.placeholder = props.placeholder);
-    props.style && (attrs.style = props.style);
+    const attrs: any = {};
+    typeof maxLength !== "undefined" && (attrs.maxLength = maxLength);
+    disabled && (attrs.disabled = disabled);
+    placeholder && (attrs.placeholder = placeholder);
+    style && (attrs.style = style);
     return attrs;
   }
   return (
     <>
       <div className="nitrozen-form-input">
         <div className="n-input-label-container">
-          {props.label && (
+          {label && (
             <label className="n-input-label">
               <>
-                {props.label} {props.required ? " *" : ""}
-                {props.showTooltip && (
+                {label} {required ? " *" : ""}
+                {showTooltip && (
                   <span className="nitrozen-tooltip-icon">
-                    {props.tooltipText && (
+                    {tooltipText && (
                       <Tooltip
-                        tooltipContent={props.tooltipText}
+                        tooltipContent={tooltipText}
                         icon={
-                          props.tooltipIcon ? (
-                            props.tooltipIcon
-                          ) : (
+                          tooltipIcon || (
                             <SvgHelpOutline style={{ fontSize: "14px" }} />
                           )
                         }
@@ -134,65 +156,67 @@ const Input = (props: InputProps) => {
               </>
             </label>
           )}
-          {props.maxLength && (
+          {maxLength && (
             <label className="n-input-label n-input-maxLength">
               <>
-                {length}/{props.maxLength}
+                {length}/{maxLength}
               </>
             </label>
           )}
         </div>
 
-        {loaderShow && props.search && (
+        {loaderShow && search && (
           <span className="nitrozen-loader-div">
             <img src="./../../assets/loader.gif" />
           </span>
         )}
 
         <div className="nitrozen-input-grp">
-          {props.showSearchIcon && (
+          {showSearchIcon && (
             <span className="nitrozen-search-icon">
               <SvgSearch className="search-icon" />
             </span>
           )}
           {/* <!-- Prefix --> */}
-          {props.showPrefix && <InputPrefix prefix={props.prefix} />}
+          {showPrefix && <InputPrefix prefix={prefix} />}
           {/* <!-- Input --> */}
-          {props.type != "textarea" && (
+          {type !== "textarea" && (
             <input
               ref={inputRef}
               className={`n-input input-text ${generateClassesForInput()}`}
-              onKeyUp={props.onKeyUp}
-              onChange={props.onChange}
-              onBlur={props.onBlur}
-              onFocus={props.onFocus}
-              onClick={props.onClick}
-              onKeyPress={props.onKeyPress}
+              onKeyUp={onKeyUp}
+              onChange={onChange}
+              onBlur={onBlur}
+              onFocus={onFocus}
+              onClick={onClick}
+              onKeyPress={onKeyPress}
               value={value}
               {...generateAttributesForInput()}
               onInput={onInputChange}
+              {...restProps}
             />
           )}
 
           {/* <!-- Textarea --> */}
-          {props.type === "textarea" && (
+          {type === "textarea" && (
             <textarea
               ref={inputRef}
-              onKeyUp={props.onKeyUp}
-              onChange={props.onChange}
-              onBlur={props.onBlur}
-              onFocus={props.onFocus}
-              onClick={props.onClick}
-              onKeyPress={props.onKeyPress}
+              onKeyUp={onKeyUp}
+              onChange={onChange}
+              onBlur={onBlur}
+              onFocus={onFocus}
+              onClick={onClick}
+              onKeyPress={onKeyPress}
               className={`n-input input-text ${
-                props.type == "textarea" && "n-input-textarea"
+                type === "textarea" && "n-input-textarea"
               }`}
               {...generateAttributesForTextarea()}
               onInput={onInputChange}
+              {...restProps}
             ></textarea>
           )}
           {/* <!-- Suffix --> */}
-          {props.showSuffix && <InputSuffix suffix={props.suffix} />}
+          {showSuffix && <InputSuffix suffix={suffix} />}
         </div>
       </div>
     </>

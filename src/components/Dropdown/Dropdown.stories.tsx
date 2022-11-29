@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import Dropdown from "./Dropdown";
-import { useEffect } from "@storybook/addons";
 
 export default {
   title: "Components/Input/Dropdown",

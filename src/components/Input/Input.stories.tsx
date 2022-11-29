@@ -1,4 +1,3 @@
-// @ts-ignore
 import React, { useState } from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import Input from "./Input";
@@ -63,7 +62,7 @@ export default {
 const Template: ComponentStory<typeof Input> = (args) => (
   <div className="main-div">
     {" "}
-    <Input {...args} />
+    <Input {...args} data-testid="input-test-id" />
   </div>
 );
 

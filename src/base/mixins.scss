@@ -1,0 +1,55 @@
+@import "./variable.scss";
+
+@mixin absolute-position-center($extraTransformProperties: null) {
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%) $extraTransformProperties;
+  transform: translate(-50%, -50%) $extraTransformProperties;
+}
+
+@mixin d-flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@mixin nitrozen-menu-scrollbar {
+  /* scrollbar */
+  &::-webkit-scrollbar {
+    width: 1rem;
+  }
+
+  /* Track */
+  &::-webkit-scrollbar-track {
+    border: 0.1rem solid $SecondaryDisabledColor;
+    background-color: $BackgroundColor;
+  }
+
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    border: 0.3rem solid $BackgroundColor;
+    background-clip: padding-box;
+    background: $ScrollBarThumbColor;
+    width: 0.4rem;
+    border-radius: 0.5rem;
+  }
+}
+
+@mixin nitrozen-scrollbar {
+  /* scrollbar */
+  &::-webkit-scrollbar {
+    width: 0.5rem;
+    background-color: $WhiteColor;
+  }
+
+  /* Track */
+  &::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 0.6rem rgba(0, 0, 0, 0.4);
+    background-color: $WhiteColor;
+  }
+
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    border-radius: 0.25rem;
+    background-color: $ScrollBarThumbColorWebKit;
+  }
+}

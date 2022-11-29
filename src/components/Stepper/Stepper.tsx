@@ -7,7 +7,7 @@ import {
   SvgCircleDisabled,
 } from "../../assets/svg-components";
 
-type ItemsType = {
+type ItemsType = Array<{
   name: string | number;
   description?: string | number;
   isInactive?: boolean;
@@ -18,7 +18,7 @@ type ItemsType = {
   extraIconProps?: object;
   buttonText?: string;
   buttonStyles?: object;
-}[];
+}>;
 
 export interface StepperProps {
   activeIndex?: number;
@@ -79,25 +79,26 @@ const Stepper = (props: StepperProps) => {
       !item.isCompleted && (item.isCompleted = false);
       !item.isInactive && (item.isInactive = false);
       !item.buttonStyles && (item.buttonStyles = {});
+      return item;
     });
   }, [items]);
 
   const stepClick = useCallback(
     (index: number, item?: object) => {
       if (isVertical) {
-        onClick && onClick({ index, item });
+        onClick?.({ index, item });
         return;
       }
       if (index <= maxActiveIndex) {
         setActiveIndex(index);
-        onClick && onClick({ index, item });
+        onClick?.({ index, item });
       }
     },
     [isVertical, onClick, maxActiveIndex]
   );
 
   const encodeDescription = useCallback((description: string) => {
-    const lines: Array<string> = description.split("\n");
+    const lines: string[] = description.split("\n");
     if (lines.length === 1) {
       return description;
     }
@@ -121,7 +122,7 @@ const Stepper = (props: StepperProps) => {
         ...extraIconProps,
       };
 
-      const Icon = icon as React.ElementType;
+      const Icon = icon;
       return <Icon {...iconProps} />;
     },
     []
@@ -292,6 +293,7 @@ function ProgressCircle(props: ProgressCircleProps) {
       if (!items) return completed;
       items?.map((item) => {
         item.isCompleted && completed++;
+        return item;
       });
       if (arg === "get-steps-completed") return `${completed}/${itemsLength}`;
       const percentage: number = Math.floor((completed / itemsLength) * 100);
@@ -305,9 +307,18 @@ function ProgressCircle(props: ProgressCircleProps) {
     <div className="progress-circle">
       <div className="svg-circle-container">
         <svg>
-          <circle cx="25" cy="25" r="20"></circle>
           <circle
-            style={{ strokeDashoffset: getProgress(), stroke: color }}
+            cx="25"
+            cy="25"
+            r="20"
+            style={{ strokeWidth: "3px" }}
+          ></circle>
+          <circle
+            style={{
+              strokeDashoffset: getProgress(),
+              stroke: color,
+              strokeWidth: "3px",
+            }}
             cx="25"
             cy="25"
             r="20"

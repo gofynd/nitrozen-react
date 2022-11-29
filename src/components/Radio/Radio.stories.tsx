@@ -1,4 +1,3 @@
-// @ts-ignore
 import React, { useState } from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import Radio, { RadioProps } from "./Radio";
@@ -98,8 +97,10 @@ export const radioVariants = (args: RadioProps) => {
   return (
     <div className="main-div space-between">
       <div className="nitrozen-badge-collection">
-        <div style={{ display: "flex", flexDirection: "column", gap: "2rem" }}>
-          <div style={{ display: "flex", gap: "2rem" }}>
+        <div
+          style={{ display: "flex", flexDirection: "column", gap: "3.2rem" }}
+        >
+          <div style={{ display: "flex", gap: "3.2rem" }}>
             <Radio labelText="Text" value="random1" id="random1" />
 
             <Radio
@@ -110,7 +111,7 @@ export const radioVariants = (args: RadioProps) => {
             />
           </div>
 
-          <div style={{ display: "flex", gap: "2rem" }}>
+          <div style={{ display: "flex", gap: "3.2rem" }}>
             <Radio
               labelText="Text"
               value="randomValue1"
@@ -136,8 +137,10 @@ export const radioSelectors = (args: RadioProps) => {
   return (
     <div className="main-div space-between">
       <div className="nitrozen-badge-collection">
-        <div style={{ display: "flex", flexDirection: "column", gap: "2rem" }}>
-          <div style={{ display: "flex", gap: "2rem" }}>
+        <div
+          style={{ display: "flex", flexDirection: "column", gap: "3.2rem" }}
+        >
+          <div style={{ display: "flex", gap: "3.2rem" }}>
             <Radio
               labelText="Add text here"
               value="random1"
@@ -156,7 +159,7 @@ export const radioSelectors = (args: RadioProps) => {
             />
           </div>
 
-          <div style={{ display: "flex", gap: "2rem" }}>
+          <div style={{ display: "flex", gap: "3.2rem" }}>
             <Radio
               labelText="Add text here"
               value="randomValue1"

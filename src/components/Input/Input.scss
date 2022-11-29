@@ -1,28 +1,27 @@
 @import "./../../base/base.scss";
 .n-input {
-  // margin: 4px 0px 0px 0px;
-  padding: 0 12px;
-  height: 40px;
+  padding: 0 1.2rem;
+  height: 4rem;
   color: $TypographyPrimaryColor;
-  border: 1px solid $SecondaryDisabledColor;
-  border-radius: 3px;
+  border: 0.1rem solid $SecondaryDisabledColor;
+  border-radius: 0.3rem;
   width: 100%;
   background: $WhiteColor;
   font-family: $PrimaryFont;
   position: relative;
   outline: none;
   box-sizing: border-box;
-  font-size: $BaseFontSize + 2;
+  font-size: $BaseFontSize + 4;
   -webkit-appearance: none;
   &:focus {
-    border: 1px solid $PrimaryColor;
+    border: 0.1rem solid $PrimaryColor;
   }
 }
 
 .n-input-textarea {
-  height: 96px;
-  line-height: 21px;
-  padding-top: 6px;
+  height: 9.6rem;
+  line-height: 2.1rem;
+  padding-top: 0.6rem;
 }
 
 .n-input:disabled {
@@ -47,11 +46,11 @@
 }
 
 .n-input-label {
-  color: $NobelColor;
+  color: $LabelColor;
   font-family: $PrimaryFont;
-  font-size: 12px;
+  font-size: 1.2rem;
   font-weight: 500;
-  line-height: 21px;
+  line-height: 2.1rem;
   display: flex;
   flex: 1;
 }
@@ -71,53 +70,53 @@
 ::-webkit-input-placeholder {
   /* Edge */
   color: $PlaceholderColor;
-  font-size: 12px;
+  font-size: 1.2rem;
   font-family: $PrimaryFont;
 }
 
 :-ms-input-placeholder {
   /* Internet Explorer 10-11 */
   color: $PlaceholderColor;
-  font-size: 12px;
+  font-size: 1.2rem;
   font-family: $PrimaryFont;
 }
 
 ::placeholder {
   color: $PlaceholderColor;
-  font-size: 12px;
+  font-size: 1.2rem;
   font-family: $PrimaryFont;
 }
 
 input[type="search"]::-webkit-search-cancel-button {
   position: relative;
-  right: 10px;
-  font-size: $BaseFontSize + 4px;
+  right: 1rem;
+  font-size: $BaseFontSize + 0.4;
   cursor: pointer;
 }
 
 .nitrozen-loader-div {
   float: right;
   position: relative;
-  bottom: 52px;
-  left: 20px;
+  bottom: 5.2rem;
+  left: 2rem;
   img {
-    width: 65px;
+    width: 6.5rem;
   }
 }
 
 .nitrozen-search-icon {
-  z-index: 2;
+  z-index: $ZIndex1;
   position: absolute;
-  left: 6px;
-  top: 8px;
+  left: 0.6rem;
+  top: 0.8rem;
 }
 
 .nitrozen-tooltip-icon {
-  margin-left: 5px;
+  margin-left: 0.5rem;
 }
 
 .nitrozen-search-input-padding {
-  padding-left: 35px;
+  padding-left: 3.5rem;
 }
 
 .nitrozen-input-label-div {
@@ -131,11 +130,11 @@ input[type="search"]::-webkit-search-cancel-button {
 
 .nitrozen-input-prefix,
 .nitrozen-input-suffix {
-  height: 40px;
+  height: 4rem;
   margin: auto;
   box-sizing: border-box;
   color: $TypographyPrimaryColor;
-  border-radius: 3px;
+  border-radius: 0.3rem;
   background-color: $PrefixSuffixBackground;
 }
 
@@ -158,8 +157,8 @@ input[type="search"]::-webkit-search-cancel-button {
 
 .nitrozen-prefix-padding,
 .nitrozen-suffix-padding {
-  padding: 10px;
-  border: 1px solid $SecondaryDisabledColor;
+  padding: 1rem;
+  border: 0.1rem solid $SecondaryDisabledColor;
 }
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
@@ -177,6 +176,6 @@ textarea {
   resize: vertical;
 }
 .search-icon {
-  font-size: 24px;
+  font-size: 2.4rem;
   color: $Gray;
 }

@@ -1,7 +1,7 @@
 @import "./../../base/base.scss";
 
 .nitrozen-radio-group {
-  height: 21px;
+  height: 2.1rem;
   input[type="radio"]:checked,
   input[type="radio"]:not(:checked) {
     position: absolute;
@@ -10,12 +10,12 @@
   input[type="radio"]:checked + label,
   input[type="radio"]:not(:checked) + label {
     position: relative;
-    padding-left: 30px;
+    padding-left: 3rem;
     cursor: pointer;
-    line-height: 15px;
+    line-height: 1.5rem;
     color: $TypographyPrimaryColor;
     font-family: $PrimaryFont;
-    font-size: $BaseFontSize + 3;
+    font-size: $BaseFontSize + 5;
     font-weight: 400;
     display: flex;
     height: 100%;
@@ -27,29 +27,29 @@
     position: absolute;
     left: 0;
     top: 0;
-    width: 16px;
-    height: 16px;
-    border: 2px solid $PinkSwan;
+    width: 1.6rem;
+    height: 1.6rem;
+    border: 0.2rem solid $PinkSwan;
     border-radius: 100%;
     background: $WhiteColor;
   }
   input[type="radio"]:checked + label:after,
   input[type="radio"]:not(:checked) + label:after {
     content: "";
-    width: 10px;
-    height: 10px;
+    width: 1rem;
+    height: 1rem;
     background: $PrimaryColor;
     position: absolute;
-    top: 5px;
-    left: 5px;
+    top: 0.5rem;
+    left: 0.5rem;
     border-radius: 100%;
   }
 
   input[type="radio"]:not(:checked) + label:before {
-    border: 2px solid $PinkSwan;
+    border: 0.2rem solid $PinkSwan;
   }
   input[type="radio"]:checked + label:before {
-    border: 2px solid $PrimaryColor;
+    border: 0.2rem solid $PrimaryColor;
   }
 
   input[type="radio"]:not(:checked) + label:after {
@@ -74,12 +74,12 @@
 
 .radio-story {
   box-sizing: border-box;
-  border-radius: 4px;
+  border-radius: 0.4rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 8px;
-  gap: 10px;
-  width: 146px;
-  height: 40px;
+  padding: 0.8rem;
+  gap: 1rem;
+  width: 14.6rem;
+  height: 4rem;
 }

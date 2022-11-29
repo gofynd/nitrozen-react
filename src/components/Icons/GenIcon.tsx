@@ -41,34 +41,31 @@ function IconBase(props: IconBaseProps & { attr?: Record<string, string> }) {
 function Tree2Element(
   tree: IconTree[] | undefined
 ): React.ReactElement[] | undefined {
-  return (
-    tree &&
-    tree.map((node: IconTree, i: number) => {
-      const keys = Object.keys(node.attr);
-      let attrTemp = {} as any;
-      keys.forEach((attrKey) => {
-        if (attrKey === "style") {
-          const temp = node.attr?.style.split(",");
+  return tree?.map((node: IconTree, i: number) => {
+    const keys = Object.keys(node.attr);
+    const attrTemp = {} as any;
+    keys.forEach((attrKey) => {
+      if (attrKey === "style") {
+        const temp = node.attr?.style.split(",");
 
-          let obj = {} as any;
-          temp.forEach((item: string) => {
-            let [key, val] = item.split(":");
+        const obj = {} as any;
+        temp.forEach((item: string) => {
+          const [key, val] = item.split(":");
 
-            obj[key] = val;
-          });
-          attrTemp.style = obj;
-        } else {
-          attrTemp[attrKey] = node.attr[attrKey];
-        }
-      });
-      node.attr = attrTemp;
-      return React.createElement(
-        node.tag,
-        { key: i, ...node.attr },
-        Tree2Element(node.child)
-      );
-    })
-  );
+          obj[key] = val;
+        });
+        attrTemp.style = obj;
+      } else {
+        attrTemp[attrKey] = node.attr[attrKey];
+      }
+    });
+    node.attr = attrTemp;
+    return React.createElement(
+      node.tag,
+      { key: i, ...node.attr },
+      Tree2Element(node.child)
+    );
+  });
 }
 export function GenIcon(data: IconTree) {
   // eslint-disable-next-line react/display-name

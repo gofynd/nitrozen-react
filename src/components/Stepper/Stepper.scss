@@ -2,7 +2,7 @@
 
 .storybook-stepper-container {
   margin-inline: auto;
-  max-width: 700px;
+  max-width: 70rem;
   min-height: 70vh;
   @include d-flex-center;
 }
@@ -10,7 +10,7 @@
 .nitrozen-stepper {
   margin: 0 auto;
   width: 100%;
-
+  font-size: $BaseFontSize + 6;
   .nitrozen-stepper-group {
     display: flex;
     flex-grow: 10;
@@ -20,6 +20,7 @@
     display: inline-block;
     position: absolute;
     @include absolute-position-center(rotate(45deg));
+    top: calc(50% - 0.2rem);
   }
   .stepper-description {
     color: $LabelColor;
@@ -64,7 +65,7 @@
     display: none;
   }
   .nitrozen-circle-outer-container {
-    z-index: 1;
+    z-index: $ZIndex1;
     display: flex;
     position: relative;
   }
@@ -74,11 +75,11 @@
     .nitrozen-stepper-container {
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 1.2rem;
     }
 
     .nitrozen-stepper-group {
-      column-gap: 16px;
+      column-gap: 1.6rem;
 
       &.inactive-stepper {
         opacity: 0.3;
@@ -86,15 +87,15 @@
         filter: saturate(0.1);
       }
       .bar-ball-container {
-        gap: 8px;
+        gap: 0.8rem;
         flex-direction: column;
         justify-content: center;
       }
       .nitrozen-bar {
-        width: 2px;
+        width: 0.1rem;
         background: $SecondaryDisabledColor;
-        min-height: 20px;
-        border-radius: 10px;
+        min-height: 2rem;
+        border-radius: 1rem;
 
         &.completed-bar {
           background: $Bubbles;
@@ -102,10 +103,10 @@
       }
       .index-number {
         position: absolute;
-        top: 1px;
-        bottom: 1px;
-        left: 1px;
-        right: 1px;
+        top: 0.1rem;
+        bottom: 0.1rem;
+        left: 0.1rem;
+        right: 0.1rem;
         background: $Bubbles;
         border-radius: 100%;
         @include d-flex-center;
@@ -128,54 +129,66 @@
         }
       }
       .active-stepper {
-        top: 1px;
-        bottom: 1px;
-        left: 1px;
-        right: 1px;
+        top: 0.1rem;
+        bottom: 0.1rem;
+        left: 0.1rem;
+        right: 0.1rem;
         background: $Bubbles;
       }
       .nitrozen-text {
-        font-size: $BaseFontSize + 2;
+        font-size: $BaseFontSize + 4;
         font-weight: 600;
       }
       .stepper-description {
-        font-size: $BaseFontSize;
-        margin-top: 4px;
-        line-height: 18px;
+        font-size: $BaseFontSize + 2;
+        margin-top: 0.4rem;
+        line-height: 1.8rem;
       }
       .nitrozen-circle-outer {
-        height: 40px;
-        width: 40px;
-        border: 1px solid $SeaGreen;
+        height: 4rem;
+        width: 4rem;
+        border: 0.1rem solid $SeaGreen;
       }
       .nitrozen-cirle-check-container .nitrozen-circle-outer {
-        border: 1px solid $Bubbles;
+        border: 0.1rem solid $Bubbles;
       }
       .nitrozen-checkmark {
-        height: 14px;
-        width: 6px;
-        border-bottom: 2px solid $SeaGreen;
-        border-right: 2px solid $SeaGreen;
+        height: 1.4rem;
+        width: 0.6rem;
+        border-bottom: 0.2rem solid $SeaGreen;
+        border-right: 0.2rem solid $SeaGreen;
       }
       .stepper-header-description {
         flex-grow: 1;
         display: flex;
         justify-content: space-between;
         position: relative;
-        padding-bottom: 12px;
+        padding-bottom: 1.2rem;
 
         & .header-description {
-          max-width: 78%;
+          max-width: 88%;
         }
 
         & .heading-center {
-          margin-top: 12px;
+          margin-top: 1.2rem;
+        }
+        @media screen and (max-width: 768px) {
+          flex-direction: column;
+          justify-content: flex-start;
+          gap: 1rem;
+
+          & .heading-center {
+            margin-top: 0.2rem;
+          }
         }
       }
       .stepper-header-description button {
         align-self: center;
-        min-width: 120px;
+        min-width: 12rem;
         cursor: pointer;
+        @media screen and (max-width: 768px) {
+          align-self: flex-start;
+        }
       }
     }
   }
@@ -184,20 +197,20 @@
   &.horizontal {
     .nitrozen-stepper-container {
       display: flex;
-      gap: 8px;
+      gap: 0.8rem;
     }
     .nitrozen-stepper-group {
       flex-direction: column;
-      row-gap: 7px;
+      row-gap: 0.7rem;
       .nitrozen-circle-outer {
-        height: 14px;
-        width: 14px;
-        border: 1px solid $SuccessColor;
+        height: 1.4rem;
+        width: 1.4rem;
+        border: 0.1rem solid $SuccessColor;
         transition: 0.2s ease;
       }
       .nitrozen-circle-inner {
-        height: 12px;
-        width: 12px;
+        height: 1.2rem;
+        width: 1.2rem;
         background-color: $SuccessColor;
         border-radius: 50%;
         display: inline-block;
@@ -208,17 +221,17 @@
         transform: scale(1.08);
       }
       .bar-ball-container {
-        gap: 8px;
+        gap: 0.8rem;
       }
       .nitrozen-checkmark {
-        height: 6px;
-        width: 3px;
-        border-bottom: 1.5px solid $SuccessColor;
-        border-right: 1.5px solid $SuccessColor;
+        height: 0.6rem;
+        width: 0.3rem;
+        border-bottom: 0.15rem solid $SuccessColor;
+        border-right: 0.15rem solid $SuccessColor;
       }
       .nitrozen-bar {
         flex-grow: 1;
-        height: 1px;
+        height: 0.1rem;
       }
       .nitrozen-active {
         background-color: $SuccessColor;
@@ -231,13 +244,13 @@
         }
       }
       .nitrozen-text {
-        font-size: $BaseFontSize;
+        font-size: $BaseFontSize + 2;
         font-weight: 400;
       }
       .stepper-description {
-        font-size: $BaseFontSize - 2;
-        line-height: 16px;
-        margin-top: 2px;
+        font-size: $BaseFontSize;
+        line-height: 1.6rem;
+        margin-top: 0.2rem;
         max-width: 85%;
         word-wrap: break-word;
       }
@@ -251,16 +264,16 @@
 .heading-progress {
   display: flex;
   align-items: center;
-  margin-bottom: 26px;
-  gap: 20px;
-  line-height: 26px;
+  margin-bottom: 2.6rem;
+  gap: 2rem;
+  line-height: 2.6rem;
 
   .stepper-heading {
     display: inline-block;
     flex-grow: 1;
     font-family: $PrimaryFont;
     font-weight: 600;
-    font-size: $BaseFontSize + 6;
+    font-size: $BaseFontSize + 8;
     color: $TypographyPrimaryColor;
   }
 }
@@ -269,13 +282,13 @@
   margin-left: auto;
 
   .svg-circle-container {
-    height: 60px;
-    width: 60px;
+    height: 6rem;
+    width: 6rem;
     position: relative;
   }
 
   span {
-    font-size: $BaseFontSize;
+    font-size: $BaseFontSize + 2;
     font-family: $PrimaryFont;
     color: $TypographyPrimaryColor;
   }
@@ -287,8 +300,8 @@
     @include d-flex-center;
   }
   svg {
-    height: 50px;
-    width: 50px;
+    height: 5rem;
+    width: 5rem;
     fill: none;
     margin-left: auto;
     display: block;

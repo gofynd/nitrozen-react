@@ -2,11 +2,13 @@ import React from "react";
 import loaderWhite from "./../../assets/loader-white.gif";
 import classnames from "classnames";
 import "./Button.scss";
+// import '../../base/base.scss';
 export interface ButtonProps {
   href?: string;
   type?: "button" | "submit" | "reset";
   disabled?: boolean;
   rounded?: boolean;
+  link?: boolean;
   theme?: string;
   size?: string;
   focused?: boolean;
@@ -39,10 +41,11 @@ const Button = (props: ButtonProps) => {
         !props.stroke && props.theme === "primary",
       "n-flat-button n-flat-button-secondary":
         !props.stroke && props.theme === "secondary",
+      "n-button-link": props.link,
     });
   const generateAttributes = () => {
     if (props.href) {
-      let {
+      const {
         rounded,
         theme,
         stroke,
@@ -57,7 +60,7 @@ const Button = (props: ButtonProps) => {
       } = props;
       return { ...rest };
     } else {
-      let {
+      const {
         rounded,
         theme,
         stroke,

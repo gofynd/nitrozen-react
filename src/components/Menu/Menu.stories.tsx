@@ -20,7 +20,6 @@ export default {
 } as ComponentMeta<typeof Menu>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof Menu> = (args) => <Menu {...args} />;
 
 export const PrimaryMenu: ComponentStory<typeof Menu> = (args) => (
   <div className="menu-story-container">

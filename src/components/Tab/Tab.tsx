@@ -1,4 +1,4 @@
-import React, { memo, useState } from "react";
+import React, { memo, useEffect, useState } from "react";
 import uuid from "../../utils/uuids";
 import TabItem from "../TabItem";
 import classnames from "classnames";
@@ -27,6 +27,10 @@ const Tab = (props: TabProps) => {
   } = props;
   const [activeTab, setActiveTab] = useState<number>(activeIndex);
 
+  useEffect(() => {
+    setActiveTab(activeIndex);
+  }, [activeIndex]);
+
   if (activeTab > tabItem?.length) {
     throw new Error(
       "Active Tab index cannot be greater than TabItem array length !"
@@ -35,7 +39,7 @@ const Tab = (props: TabProps) => {
 
   const selectTab = (index: number, item: {} | string | number) => () => {
     setActiveTab(index);
-    onTabChange && onTabChange(item);
+    onTabChange?.(item);
   };
 
   return (
@@ -50,7 +54,7 @@ const Tab = (props: TabProps) => {
           <TabItem
             onClick={selectTab(index, item)}
             className={classnames({
-              "nitrozen-tab-active": activeTab == index,
+              "nitrozen-tab-active": activeTab === index,
             })}
             key={getItem(item, label) + index + uuid()}
             icon={getIcon(item, "icon")}
@@ -74,7 +78,6 @@ const getItem = (item: Object | string | any, label?: string) => {
 
 const getIcon = (item: Object | string | any, prop: string) => {
   if (item[prop]) return item[prop];
-  return;
 };
 
 Tab.defaultProps = {

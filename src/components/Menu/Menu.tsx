@@ -37,7 +37,7 @@ const Menu = (props: MenuProps) => {
 
   const getSelectedMenuItem = useCallback(
     (e: any) => {
-      onChangeMenuItem && onChangeMenuItem(e.target.innerHTML);
+      onChangeMenuItem?.(e.target.innerHTML);
     },
     [onChangeMenuItem]
   );
@@ -69,7 +69,7 @@ const Menu = (props: MenuProps) => {
       {toggleMenu && (
         <ul
           className={classnames({
-            "nitrozen-menu-vertical-dropdown": mode == "vertical",
+            "nitrozen-menu-vertical-dropdown": mode === "vertical",
             "nitrozen-menu-top": position === "top",
           })}
           onClick={getSelectedMenuItem}

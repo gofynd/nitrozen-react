@@ -69,7 +69,7 @@ const Checkbox = (props: CheckboxProps) => {
     if (Array.isArray(checked)) {
       return checked?.includes(checkboxValue);
     } else {
-      return checked ? true : false;
+      return !!checked;
     }
   };
 

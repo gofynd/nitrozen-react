@@ -1,55 +1,29 @@
+@import "./mixins.scss";
 @import "./variable.scss";
+@import "./waves.scss";
+@import "./typography.scss";
+
+html,
+body {
+  font-size: $BaseFontSize;
+}
 
 .nitrozen-scrollbar {
-  /* scrollbar */
-  &::-webkit-scrollbar {
-    width: 5px;
-    background-color: $WhiteColor;
-  }
-
-  /* Track */
-  &::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.4);
-    background-color: $WhiteColor;
-  }
-
-  /* Handle */
-  &::-webkit-scrollbar-thumb {
-    border-radius: 2.5px;
-    background-color: $ScrollBarThumbColorWebKit;
-  }
+  @include nitrozen-scrollbar;
 }
 
 .nitrozen-menu-scrollbar {
-  /* scrollbar */
-  &::-webkit-scrollbar {
-    width: 10px;
-  }
-
-  /* Track */
-  &::-webkit-scrollbar-track {
-    border: 1px solid $SecondaryDisabledColor;
-    background-color: $BackgroundColor;
-  }
-
-  /* Handle */
-  &::-webkit-scrollbar-thumb {
-    border: 3px solid $BackgroundColor;
-    background-clip: padding-box;
-    background: $ScrollBarThumbColor;
-    width: 4px;
-    border-radius: 5px;
-  }
+  @include nitrozen-menu-scrollbar;
 }
 
 /* Components Group div styling*/
 .main-div {
   margin-top: 2%;
-  padding: 40px;
+  padding: 4rem;
   background: $GreyColor;
 
   &.pad {
-    padding: 24px;
+    padding: 2.4rem;
   }
 
   &.bg-white {
@@ -63,19 +37,6 @@
   flex-wrap: wrap;
 
   .box {
-    margin: 20px;
+    margin: 2rem;
   }
-}
-
-@mixin absolute-position-center($extraTransformProperties: null) {
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%) $extraTransformProperties;
-  transform: translate(-50%, -50%) $extraTransformProperties;
-}
-
-@mixin d-flex-center {
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
