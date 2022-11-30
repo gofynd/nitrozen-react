@@ -3,12 +3,12 @@
 .nitrozen-chip {
   background-color: $WhiteColor;
   @include d-flex-center;
-  padding: 8px;
+  padding: 0.8rem;
   cursor: default;
-  border-radius: 4px;
-  border: 1px solid $SecondaryDisabledColor;
+  border-radius: 0.4rem;
+  border: 0.1rem solid $SecondaryDisabledColor;
   color: $TypographyPrimaryColor;
-  font-size: $BaseFontSize;
+  font-size: $BaseFontSize + 2;
   vertical-align: middle;
   white-space: nowrap;
   font-family: $PrimaryFont;
@@ -20,7 +20,7 @@
     outline: none;
   }
   &:hover {
-    box-shadow: 0px 0px 5px $Whisper;
+    box-shadow: 0rem 0rem 0.5rem $Whisper;
   }
   &.nitrozen-disabled {
     cursor: default;
@@ -42,19 +42,19 @@
     font-weight: 700;
   }
   &.rounded {
-    border-radius: 39px;
+    border-radius: 3.9rem;
   }
   .nitrozen-icon {
     @include d-flex-center;
-    margin-left: 4px;
+    margin-left: 0.4rem;
   }
 }
 
 //DEMO
 .chip-demo-section {
   display: flex;
-  gap: 10px;
+  gap: 1rem;
   flex-wrap: wrap;
   justify-content: center;
-  max-width: 500px;
+  max-width: 50rem;
 }

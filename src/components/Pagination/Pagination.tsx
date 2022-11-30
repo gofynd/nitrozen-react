@@ -21,7 +21,7 @@ export interface PaginationProps {
   id?: string;
   name?: string;
   mode?: ModeEnum;
-  pageSizeOptions?: Array<number>;
+  pageSizeOptions?: number[];
   value: ConfigProps;
   onChange?: Function;
   onPreviousClick?: Function;
@@ -68,7 +68,7 @@ const Pagination = (props: PaginationProps) => {
       setValue({ ...value, nextPage: "", currentPage: value.prevPage });
     }
     change();
-    onPreviousClick && onPreviousClick();
+    onPreviousClick?.();
   }
   function next() {
     if (value.total) {
@@ -89,7 +89,7 @@ const Pagination = (props: PaginationProps) => {
       setValue({ ...value, prevPage: "", currentPage: value.nextPage });
     }
     change();
-    onNextClick && onNextClick();
+    onNextClick?.();
   }
   function pageSizeChange(size: number) {
     if (mode === ModeEnum.MODE_CURSOR) {
@@ -104,10 +104,11 @@ const Pagination = (props: PaginationProps) => {
     } else {
       setValue({ ...value, current: 1, limit: size });
     }
+    setSelectedPageSize(size);
     change();
   }
   function change() {
-    onChange && onChange(value);
+    onChange?.(value);
   }
   function pages() {
     if (value.limit && value.limit > 0) {

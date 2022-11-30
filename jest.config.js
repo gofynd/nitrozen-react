@@ -12,5 +12,8 @@ module.exports = {
   transformIgnorePatterns: ["node_modules/(?!camelcase)"],
   setupFilesAfterEnv: ["<rootDir>/setupTests.ts"],
   silent: true,
-  coveragePathIgnorePatterns: ["<rootDir>/src/assets/svg-components"],
+  coveragePathIgnorePatterns: [
+    "<rootDir>/src/assets/svg-components",
+    "<rootDir>/src/components/Icons/GenIcon.tsx",
+  ],
 };

@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useMemo } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import NitrozenId from "../../utils/uuids";
 import Tooltip from "../Tooltip";
 import Checkbox from "../Checkbox";
@@ -17,7 +17,7 @@ interface ItemProps {
 }
 export interface DropdownProps {
   id?: string;
-  items?: Array<ItemProps>;
+  items?: ItemProps[];
   disabled?: boolean;
   label?: string;
   multiple?: Boolean;
@@ -25,7 +25,7 @@ export interface DropdownProps {
   required?: Boolean;
   searchable?: Boolean;
   tooltip?: string;
-  value?: string | number | boolean | Array<any>;
+  value?: string | number | boolean | any[];
   addOption?: Boolean;
   addOptionHandler?: Function;
   enableSelectAll?: Boolean;
@@ -50,7 +50,7 @@ const Dropdown = (props: DropdownProps) => {
   const [dropUp, setDropUp] = useState<Boolean>(false);
   const [searchInput, setSearchInput] = useState<string>("");
   const [selectedText, setSelectedText] = useState<string>();
-  const [selectedItems, setSelectedItems] = useState<Array<any>>([]);
+  const [selectedItems, setSelectedItems] = useState<any[]>([]);
   const [allOptionsSelected, setAllOptionsSelected] = useState<Boolean>();
   const [allSelected, setAllSelected] = useState<any>();
   const [selected, setSelected] = useState<any>();
@@ -71,9 +71,9 @@ const Dropdown = (props: DropdownProps) => {
     if (!props.multiple) {
       setEnableSelectAll(false);
       if (props.value) {
-        const selected =
-          props.items &&
-          props.items.find((i: ItemProps) => i.value == props.value);
+        const selected = props.items?.find(
+          (i: ItemProps) => i.value === props.value
+        );
         setSearchInput(selected?.text ? selected.text : "");
         setSelectedItems([props.value]);
       }
@@ -101,7 +101,7 @@ const Dropdown = (props: DropdownProps) => {
     }
   }
   function handleTABKey(event: any) {
-    if (event.keyCode == 9 && showOptions) {
+    if (event.keyCode === 9 && showOptions) {
       event.preventDefault();
       event.stopPropagation();
       setShowOptions(false);
@@ -117,13 +117,16 @@ const Dropdown = (props: DropdownProps) => {
   function generateSelectedText() {
     if (!props.multiple) {
       if (props.value) {
-        if (props.items && props.items.length) {
-          let currentSelected = props.items.find((i) => i.value == props.value);
+        if (props.items?.length) {
+          // eslint-disable-next-line eqeqeq
+          const currentSelected = props.items.find(
+            (i) => i.value == props.value
+          );
           setSelected(currentSelected);
-          setSearchInput(selected && selected?.text ? selected.text : "");
+          setSearchInput(selected?.text ? selected.text : "");
         }
       }
-      if (selected && selected.text) {
+      if (selected?.text) {
         return selected.text;
       } else if (props.label) {
         return props.placeholder || `Choose ${props.label}`;
@@ -135,8 +138,8 @@ const Dropdown = (props: DropdownProps) => {
       if (allOptionsSelected) {
         return `All ${selectedItems.length} ${props.label} selected`;
       }
-      let tmp: Array<any> = [];
-      let selectedTmp: any = {};
+      let tmp: any[] = [];
+      const selectedTmp: any = {};
       if (props.value) {
         setSearchInput("");
       }
@@ -146,12 +149,11 @@ const Dropdown = (props: DropdownProps) => {
             selectedTmp[ele] = true;
           }
         });
-        props.items &&
-          props.items.forEach((ele: any) => {
-            if (selectedTmp[ele.value]) {
-              tmp.push(ele.text);
-            }
-          });
+        props.items?.forEach((ele: any) => {
+          if (selectedTmp[ele.value]) {
+            tmp.push(ele.text);
+          }
+        });
         tmp = [...new Set(tmp)];
         return `${tmp.join(", ")}`;
       } else if (props.label) {
@@ -173,7 +175,6 @@ const Dropdown = (props: DropdownProps) => {
     const dropdown = dropdownRef?.current;
     if (!dropdown) return;
     const dropdownRect = dropdown.getBoundingClientRect();
-    const topSpace = dropdownRect.top;
     const bottomSpace =
       (viewport.height ? viewport.height : 0) -
       dropdownRect.top -
@@ -188,26 +189,26 @@ const Dropdown = (props: DropdownProps) => {
   function searchInputChange(e: React.KeyboardEvent | any) {
     setShowOptions(true);
     setSearchInput(e.target.value);
-    let obj = {
+    const obj = {
       id: props.id,
       text: e.target.value,
     };
     if (!searchInput) {
       setAllOptions();
     }
-    props.onSearchInputChange && props.onSearchInputChange(obj);
+    props.onSearchInputChange?.(obj);
     calculateViewport();
   }
   function setAllOptions(mounted = false) {
-    let items = props.items ? [...props.items] : [];
+    const items = props.items ? [...props.items] : [];
     if (props.multiple && enableSelectAll) {
-      let allSelectedOptions =
+      const allSelectedOptions =
         selectedItems.length === getItems(items).length && enableSelectAll;
       setAllOptionsSelected(allSelectedOptions);
       setAllSelected(allSelectedOptions);
     }
   }
-  function getItems(items: Array<ItemProps> | any) {
+  function getItems(items: ItemProps[] | any) {
     return items
       .filter(function (item: ItemProps) {
         return !item.isGroupLabel;
@@ -226,8 +227,8 @@ const Dropdown = (props: DropdownProps) => {
     setViewport({ width: vw, height: vh });
   }
   function handleScroll(event: React.UIEvent<HTMLDivElement>) {
-    let elem = nitrozenSelectOptionRef?.current;
-    props.onScroll && props.onScroll(elem);
+    const elem = nitrozenSelectOptionRef?.current;
+    props.onScroll?.(elem);
   }
   function selectItem(
     index: string | number,
@@ -243,7 +244,7 @@ const Dropdown = (props: DropdownProps) => {
       if (item.text) {
         setSearchInput(item.text);
       }
-      props.onChange && props.onChange(item.value);
+      props.onChange?.(item.value);
     } else {
       if (index === "all") {
         if (!allSelected) {
@@ -256,8 +257,8 @@ const Dropdown = (props: DropdownProps) => {
       } else {
         if (selectedItems.includes(item.value)) {
           setSelectedItems((selectedItems: Array<string | number>) => {
-            let data = selectedItems.filter(
-              (value: string | number) => value != item.value
+            const data = selectedItems.filter(
+              (value: string | number) => value !== item.value
             );
             return data;
           });
@@ -270,13 +271,13 @@ const Dropdown = (props: DropdownProps) => {
     }
   }
   function setCheckedItem() {
-    props.onChange && props.onChange(selectedItems);
+    props.onChange?.(selectedItems);
     setSelectedText(generateSelectedText());
   }
   function addOption() {
-    let value = searchInput;
+    const value = searchInput;
     setSearchInput("");
-    props.addOptionHandler && props.addOptionHandler(value);
+    props.addOptionHandler?.(value);
     calculateViewport();
   }
   return (
@@ -366,7 +367,7 @@ const Dropdown = (props: DropdownProps) => {
                   key={index}
                   data-value={item.value}
                   className={`nitrozen-option ripple ${
-                    item == selected && "selected"
+                    item === selected && "selected"
                   } ${item?.isGroupLabel && "nitrozen-option-group-label"}`}
                   onClick={(event) => selectItem(index, item, event)}
                 >
@@ -397,9 +398,9 @@ const Dropdown = (props: DropdownProps) => {
                     ) : (
                       <span
                         className={`nitrozen-option-image ${
-                          props.items &&
-                          props.items.find((i: ItemProps) => i?.isGroupLabel) &&
-                          !item?.isGroupLabel
+                          props.items?.find(
+                            (i: ItemProps) => i?.isGroupLabel
+                          ) && !item?.isGroupLabel
                             ? "nitrozen-option-child-label"
                             : ""
                         }`}
@@ -417,7 +418,7 @@ const Dropdown = (props: DropdownProps) => {
                   </div>
                 </span>
               ))}
-            {props.searchable && props.items && props.items.length == 0 && (
+            {props.searchable && props.items && props.items.length === 0 && (
               <span className="nitrozen-option">
                 {props.addOption && (
                   <div className="nitrozen-option-container">

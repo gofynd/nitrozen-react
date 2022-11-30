@@ -2,29 +2,29 @@
 
 .nitrozen-autocomplete-items {
   position: absolute;
-  border: 1px solid $SecondaryDisabledColor;
+  border: 0.1rem solid $SecondaryDisabledColor;
   font-family: $PrimaryFont;
   border-bottom: none;
   border-top: none;
-  z-index: 99;
+  z-index: $ZIndex3;
   top: 100%;
   left: 0;
   right: 0;
-  border-radius: 3px;
+  border-radius: 0.3rem;
   width: 100%;
-  font-size: $BaseFontSize;
-  margin-bottom: 20px;
-  box-shadow: 0px 2px 10px $Shadow;
-  max-height: 300px;
+  font-size: $BaseFontSize + 2;
+  margin-bottom: 2rem;
+  box-shadow: 0rem 0.2rem 1rem $Shadow;
+  max-height: 30rem;
   overflow-y: auto;
-  @extend .nitrozen-menu-scrollbar;
+  @include nitrozen-menu-scrollbar;
 }
 
 .nitrozen-autocomplete-items div {
-  padding: 16px;
+  padding: 1.6rem;
   cursor: pointer;
   background-color: $WhiteColor;
-  border-bottom: 1px solid $SecondaryDisabledColor;
+  border-bottom: 0.1rem solid $SecondaryDisabledColor;
   &:hover,
   &.selection-active {
     background-color: $HoverColor;

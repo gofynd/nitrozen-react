@@ -48,7 +48,7 @@ describe("Dropdown", () => {
     const inputElem = document.querySelector(
       ".nitrozen-option.ripple"
     ) as HTMLSpanElement;
-    fireEvent.click(inputElem), { target: { value: 1 } };
+    fireEvent.click(inputElem);
     const checkbox = document.querySelectorAll("input:checked");
     expect(checkbox.length > 0).toBe(true);
   });
@@ -71,10 +71,10 @@ describe("Dropdown", () => {
     const inputElem = document.querySelector(
       ".nitrozen-option.ripple"
     ) as HTMLSpanElement;
-    fireEvent.click(inputElem), { target: { value: 1 } };
+    fireEvent.click(inputElem);
   });
   test("renders the Dropdown component and checks for groupLabel", () => {
-    const { getByTestId } = render(
+    render(
       <Dropdown
         id="ddlStates"
         items={[
@@ -95,10 +95,8 @@ describe("Dropdown", () => {
       />
     );
 
-    const inputElem = document.querySelectorAll(
-      ".nitrozen-option.ripple"
-    ) as NodeListOf<Element>;
-    fireEvent.click(inputElem[inputElem.length - 1]), { target: { value: 10 } };
+    const inputElem = document.querySelectorAll(".nitrozen-option.ripple");
+    fireEvent.click(inputElem[inputElem.length - 1]);
   });
   test("if custom scroll events are executed, also addOptions functionality", () => {
     const { getByTestId } = render(

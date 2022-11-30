@@ -1,11 +1,5 @@
 import React from "react";
-import {
-  render,
-  cleanup,
-  fireEvent,
-  within,
-  screen,
-} from "@testing-library/react";
+import { render, cleanup, fireEvent, screen } from "@testing-library/react";
 import Tooltip from "./Tooltip";
 import { SvgInfo } from "../../assets/svg-components/Action";
 afterEach(cleanup);

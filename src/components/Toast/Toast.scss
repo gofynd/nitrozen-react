@@ -2,21 +2,22 @@
 
 .toast-container-main {
   position: fixed;
-  z-index: 9999999;
+  z-index: $ZIndex3;
   display: flex;
   flex-direction: column;
+  font-size: $BaseFontSize + 6;
 
   .toast-wrapper {
     background-color: $BlackColor;
-    border-radius: 4px;
+    border-radius: 0.4rem;
     color: $WhiteColor;
-    width: 250px;
-    margin-bottom: 10px;
-    min-height: 25px;
+    width: 25rem;
+    margin-bottom: 1rem;
+    min-height: 2.5rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 12px;
+    padding: 1.2rem;
     font-family: $PrimaryFont;
 
     .toast-header {
@@ -24,7 +25,7 @@
       flex-direction: row;
     }
     .toast-body {
-      font-size: 14px;
+      font-size: 1.4rem;
     }
     .center {
       justify-content: center;
@@ -44,21 +45,21 @@
     }
   }
   .vertical-line {
-    height: 12px;
-    width: 1px;
+    height: 1.2rem;
+    width: 0.1rem;
     background-color: $GreyColor;
   }
   .cross-btn {
     border: none;
     // border-left: 1px solid $GreyColor;
-    border-top-left-radius: 0px;
-    border-bottom-left-radius: 0px;
+    border-top-left-radius: 0rem;
+    border-bottom-left-radius: 0rem;
     background: none;
     color: $WhiteColor;
     font-weight: 700;
     outline: none;
     cursor: pointer;
-    padding-left: 16px;
+    padding-left: 1.6rem;
     display: flex;
     align-items: center;
   }
@@ -76,20 +77,20 @@
   }
 
   .warning {
-    background-color: $OrangeColor;
+    background-color: $WarningColor;
   }
 }
 
 .top-right {
-  top: 50px;
-  right: 50px;
+  top: 5rem;
+  right: 5rem;
   transition: transform 0.6s ease-in-out;
   animation: toast-in-right 0.7s;
 }
 
 .bottom-right {
-  bottom: 50px;
-  right: 50px;
+  bottom: 5rem;
+  right: 5rem;
   transition: transform 0.6s ease-in-out;
   animation: toast-in-right 0.7s;
 }
@@ -102,15 +103,15 @@
 }
 
 .top-left {
-  top: 50px;
-  left: 50px;
+  top: 5rem;
+  left: 5rem;
   transition: transform 0.6s ease-in;
   animation: toast-in-left 0.7s;
 }
 
 .bottom-left {
-  bottom: 50px;
-  left: 50px;
+  bottom: 5rem;
+  left: 5rem;
   transition: transform 0.6s ease-in;
   animation: toast-in-left 0.7s;
 }

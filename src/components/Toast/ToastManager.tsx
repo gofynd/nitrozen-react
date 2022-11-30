@@ -15,14 +15,14 @@ interface ToastOptions {
 }
 
 export class ToastManager {
-  private containerRef?: HTMLDivElement;
+  private readonly containerRef?: HTMLDivElement;
   private toasts: ToastProps[] = [];
   public root: any;
 
   constructor(position: string) {
     if (typeof window !== "undefined") {
-      const body = document.getElementsByTagName("body")[0] as HTMLBodyElement;
-      const toastContainer = document.createElement("div") as HTMLDivElement;
+      const body = document.getElementsByTagName("body")[0];
+      const toastContainer = document.createElement("div");
       toastContainer.className = "toast-container-main " + position;
       body.insertAdjacentElement("beforeend", toastContainer);
       this.containerRef = toastContainer;

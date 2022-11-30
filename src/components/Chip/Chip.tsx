@@ -47,7 +47,7 @@ const Chip = (props: ChipProps) => {
     (e: React.MouseEvent<HTMLButtonElement>) => {
       if (props.disabled) return;
       e.stopPropagation();
-      onIconClick && onIconClick({ event: e, chipProps: props });
+      onIconClick?.({ event: e, chipProps: props });
       if (deletable && onDelete) {
         deleteChip(!chipDeleted);
         onDelete({ event: e, chipProps: props });
@@ -58,7 +58,7 @@ const Chip = (props: ChipProps) => {
 
   const handleChipClick = useCallback(
     (e: React.MouseEvent<HTMLElement>) => {
-      onClick && onClick({ event: e, chipProps: props });
+      onClick?.({ event: e, chipProps: props });
     },
     [props]
   );
@@ -68,7 +68,7 @@ const Chip = (props: ChipProps) => {
       if (props.disabled) return;
       e.stopPropagation();
       deleteChip(!chipDeleted);
-      onDelete && onDelete({ event: e, chipProps: props });
+      onDelete?.({ event: e, chipProps: props });
     },
     [props]
   );
@@ -109,7 +109,7 @@ const Chip = (props: ChipProps) => {
     let classes: String = "";
     if (disabled) classes += "nitrozen-disabled ";
     if (isRounded) classes += "rounded ";
-    if (state == "secondary") classes += "nitrozen-chip-secondary ";
+    if (state === "secondary") classes += "nitrozen-chip-secondary ";
     if (className) classes += className + " ";
 
     return classes;

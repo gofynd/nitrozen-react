@@ -1,14 +1,14 @@
 import React, { useState, useMemo, useCallback } from "react";
 import "./Icons.scss";
 import Input from "../Input";
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { ComponentStory } from "@storybook/react";
 import {
   SvgDone,
   SvgContentCopy,
   SvgAdsClick,
 } from "../../assets/svg-components";
 import SvgComponentDemo from "../../assets/svg-component-demo.png";
-//All Icon modules
+// All Icon modules
 import * as ActionComponents from "../../assets/svg-components/Action";
 import * as AlertComponents from "../../assets/svg-components/Alert";
 import * as ToggleComponents from "../../assets/svg-components/Toggle";
@@ -28,7 +28,7 @@ import * as PhotographyComponents from "../../assets/svg-components/Photography"
 import * as PlacesComponents from "../../assets/svg-components/Places";
 import * as SocialComponents from "../../assets/svg-components/Social";
 
-type IconsListType = Array<Function>;
+type IconsListType = Function[];
 
 interface IconProp {
   className?: string;
@@ -37,23 +37,25 @@ interface IconProp {
   size?: number;
 }
 
-type ItemsType = {
+interface ItemsType {
   categoryName: string;
   items: IconsListType;
   module: object;
   iconProp?: IconProp;
-};
-type CategoryListType = { [key: string]: ItemsType };
+}
+interface CategoryListType {
+  [key: string]: ItemsType;
+}
 
-type IconButtonType = {
+interface IconButtonType {
   component: Function;
   module: object;
   key?: number;
   iconProp?: IconProp;
-};
+}
 
 const IconsList = (props: IconProp) => {
-  const categories: Array<string> = [
+  const categories: string[] = [
     "action",
     "alert",
     "toggle",
@@ -95,7 +97,7 @@ const IconsList = (props: IconProp) => {
   };
 
   const getRefactoredArray = useCallback((module, filterQuery: string = "") => {
-    const componentsArray: Array<Function> = [];
+    const componentsArray: Function[] = [];
     Object.keys(module).forEach((moduleName: string) => {
       if (filterQuery !== "") {
         if (moduleName.toLowerCase().includes(filterQuery.toLowerCase()))
@@ -191,7 +193,7 @@ const IconsList = (props: IconProp) => {
     </>
   );
 
-  //Component
+  // Component
   function IconsCategory(props: ItemsType) {
     const { categoryName, items: icons = [], module } = props;
 
@@ -214,7 +216,7 @@ const IconsList = (props: IconProp) => {
     );
   }
 
-  //Component
+  // Component
   function IconButton(props: IconButtonType): JSX.Element {
     const [copied, setCopied] = useState(false);
     const { component, module }: { component: Function; module: object } =
@@ -226,7 +228,7 @@ const IconsList = (props: IconProp) => {
       if (copied) return;
       return function () {
         const componentText: string = `<${name} />`;
-        navigator.clipboard.writeText(componentText);
+        void navigator.clipboard.writeText(componentText);
         setCopied(true);
         setTimeout(() => {
           setCopied(false);

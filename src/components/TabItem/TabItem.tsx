@@ -35,17 +35,17 @@ const TabItem = (props: TabItemProps) => {
       {...restProps}
     >
       <span>{children}</span>
-      <span className="tab-item-icon">
-        {tooltipIcon && tooltipIconHoverText ? (
+      {tooltipIcon && tooltipIconHoverText ? (
+        <span className="tab-item-icon">
           <Tooltip
             position="bottom"
             icon={tooltipIcon}
             tooltipContent={tooltipIconHoverText}
           />
-        ) : icon ? (
-          icon
-        ) : null}
-      </span>
+        </span>
+      ) : (
+        icon || null
+      )}
     </li>
   );
 };

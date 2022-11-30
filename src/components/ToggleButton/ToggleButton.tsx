@@ -27,7 +27,7 @@ const ToggleButton = (props: ToggleButtonProps) => {
 
   return (
     <div
-      style={style ? style : {}}
+      style={style || {}}
       className={`nitrozen-toggle-container ${className ?? ""}`}
       {...restProps}
     >

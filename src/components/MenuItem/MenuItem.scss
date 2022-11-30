@@ -1,11 +1,11 @@
 @import "./../../base/base.scss";
 
 .nitrozen-menu-item {
-  font-size: $BaseFontSize + 2;
+  font-size: $BaseFontSize + 4;
   color: $TypographyPrimaryColor;
-  padding: 12px;
+  padding: 1.2rem;
   word-break: break-all;
-  line-height: 21px;
+  line-height: 2.1rem;
   &:hover {
     background-color: $PrimaryColor;
     color: $WhiteColor;

@@ -1,61 +1,61 @@
 @import "./../../base/base.scss";
 
 .menu-story-container {
-  min-height: 300px;
+  min-height: 30rem;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: $StorybookBGColor;
 }
 .nitrozen-menu-content {
-  height: 30px;
-  width: 30px;
+  height: 3rem;
+  width: 3rem;
   display: flex;
   justify-content: space-between;
   color: $TypographyPrimaryColor;
   position: relative;
   cursor: pointer;
   .nitrozen-menu-dots {
-    height: 30px;
-    width: 30px;
+    height: 3rem;
+    width: 3rem;
   }
   .nitrozen-menu-vertical-dots {
     transform: rotate(90deg);
   }
   .nitrozen-menu-vertical-dropdown {
-    z-index: 2;
+    z-index: $ZIndex1;
     position: absolute;
-    right: 20px;
+    right: 2rem;
   }
   ul {
-    width: 200px;
+    width: 20rem;
     height: auto;
-    max-height: 150px;
+    max-height: 15rem;
     overflow-y: auto;
     background-color: $WhiteColor;
     font-family: $PrimaryFont;
     list-style: none;
-    box-shadow: 0 2px 16px 0 rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0.2rem 1.6rem 0 rgba(0, 0, 0, 0.1);
     position: absolute;
-    padding-left: 0px;
+    padding-left: 0rem;
     margin-top: 2em;
-    border-radius: 2px;
+    border-radius: 0.2rem;
 
     &::-webkit-scrollbar {
-      width: 10px;
+      width: 1rem;
     }
     /* Track */
     &::-webkit-scrollbar-track {
-      border: 1px solid $SecondaryDisabledColor;
+      border: 0.1rem solid $SecondaryDisabledColor;
       background-color: $BackgroundColor;
     }
     /* Handle */
     &::-webkit-scrollbar-thumb {
-      border: 3px solid $BackgroundColor;
+      border: 0.3rem solid $BackgroundColor;
       background-clip: padding-box;
       background: $ScrollBarThumbColor;
-      width: 4px;
-      border-radius: 5px;
+      width: 0.4rem;
+      border-radius: 0.5rem;
       animation: fadeIn ease 0.3s;
     }
   }
@@ -79,8 +79,8 @@
 }
 
 .nitrozen-menu-icon {
-  height: 30px;
-  width: 30px;
+  height: 3rem;
+  width: 3rem;
 }
 .inverted {
   stroke: transparent;

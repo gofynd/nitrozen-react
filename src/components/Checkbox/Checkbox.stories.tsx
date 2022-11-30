@@ -1,4 +1,3 @@
-// @ts-ignore
 import React, { useState } from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import Checkbox from "./Checkbox";
@@ -40,7 +39,7 @@ SingleCheckbox.args = {
 };
 
 export const Multiple_checkbox = (args: any) => {
-  const [CheckArray, setCheckArray] = useState<Array<string>>(["React"]);
+  const [CheckArray, setCheckArray] = useState<string[]>(["React"]);
   return (
     <div className="main-div space-between">
       <Checkbox
@@ -81,8 +80,10 @@ export const checkboxVariant = () => {
   return (
     <div className="main-div space-between">
       <div className="nitrozen-badge-collection">
-        <div style={{ display: "flex", flexDirection: "column", gap: "2rem" }}>
-          <div style={{ display: "flex", gap: "2rem" }}>
+        <div
+          style={{ display: "flex", flexDirection: "column", gap: "3.2rem" }}
+        >
+          <div style={{ display: "flex", gap: "3.2rem" }}>
             <Checkbox labelText="Text" value="random1" id="random1" />
 
             <Checkbox
@@ -93,7 +94,7 @@ export const checkboxVariant = () => {
             />
           </div>
 
-          <div style={{ display: "flex", gap: "2rem" }}>
+          <div style={{ display: "flex", gap: "3.2rem" }}>
             <Checkbox
               labelText="Text"
               value="randomValue1"

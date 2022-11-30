@@ -1,10 +1,10 @@
 @import "./../../base/base.scss";
 
 .nitrozen-card-container {
-  min-width: 252px;
-  min-height: 108px;
-  padding: 16px;
-  border-radius: 8px;
+  min-width: 25.2rem;
+  min-height: 10.8rem;
+  padding: 1.6rem;
+  border-radius: 0.8rem;
   font-family: $PrimaryFont;
   font-style: normal;
   color: $TypographyPrimaryColor;
@@ -12,29 +12,29 @@
 }
 
 .nitrozen-card-container-border {
-  border: 1px solid $SecondaryDisabledColor;
+  border: 0.1rem solid $SecondaryDisabledColor;
 }
 
 .nitrozen-card-header {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 1.2rem;
   font-weight: 600;
-  padding: 5px;
-  font-size: 14px;
+  padding: 0.5rem;
+  font-size: 1.4rem;
   line-height: 130%;
 }
 
 .nitrozen-card-icon {
-  width: 30px;
-  height: 30px;
+  width: 3rem;
+  height: 3rem;
   border-radius: 50%;
 }
 
 .nitrozen-card-description {
   color: $Zambezi;
-  padding: 5px;
+  padding: 0.5rem;
   font-weight: 400;
-  font-size: 12px;
+  font-size: 1.2rem;
   line-height: 160%;
 }

@@ -26,7 +26,7 @@ const Radio = (props: RadioProps) => {
     ...restProps
   } = props;
   const ComponentChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    onChange && onChange(e.target.value);
+    onChange?.(e.target.value);
   };
   return (
     <div

@@ -1,4 +1,3 @@
-// @ts-ignore
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import Button from "./Button";
@@ -44,6 +43,10 @@ export default {
     focused: {
       control: { type: "boolean" },
       description: "This property sets focus on the button.",
+    },
+    link: {
+      control: { type: "boolean" },
+      description: "This property makes button look like link",
     },
     showProgress: {
       control: { type: "boolean" },
@@ -119,6 +122,32 @@ export const PrimaryAndOutline = () => (
   </div>
 );
 
+export const LinkButton = () => (
+  <div className="main-div">
+    <div className="sb-display-grid">
+      <Button size="large" link>
+        Button
+      </Button>
+      <Button size="medium" link>
+        Button
+      </Button>
+      <Button size="small" link>
+        Button
+      </Button>
+    </div>
+    <div className="sb-display-grid">
+      <Button theme="secondary" size="large" link>
+        Button
+      </Button>
+      <Button theme="secondary" size="medium" link>
+        Button
+      </Button>
+      <Button theme="secondary" size="small" link>
+        Button
+      </Button>
+    </div>
+  </div>
+);
 export const IconButton = () => (
   <div className="main-div">
     <div className="sb-display-grid">

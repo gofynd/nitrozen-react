@@ -1,10 +1,10 @@
 import React from "react";
 
-export interface InputSuffix {
+export interface InputSuffixProps {
   suffix?: string | JSX.Element;
 }
 
-const InputSuffix = (props: InputSuffix) => {
+const InputSuffix = (props: InputSuffixProps) => {
   return (
     <span
       className={`nitrozen-input-suffix nitrozen-remove-left-border ${

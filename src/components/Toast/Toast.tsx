@@ -1,6 +1,5 @@
 import React, { memo, useEffect } from "react";
 import { SvgUndo } from "../../assets/svg-components";
-import uuid from "../../utils/uuids";
 import "./Toast.scss";
 
 export interface ToastProps {
@@ -25,7 +24,7 @@ const Toast: React.FC<ToastProps> = (props) => {
     id,
     shouldClose,
     toastHeaderAlign,
-    toastWidth = "250px",
+    toastWidth = "25rem",
     type,
     position,
   } = props;
@@ -73,7 +72,7 @@ const shouldRerender = (prevProps: ToastProps, nextProps: ToastProps) => {
 Toast.defaultProps = {
   title: "Title",
   toastHeaderAlign: "center",
-  toastWidth: "250px",
+  toastWidth: "25rem",
   duration: 2500,
 };
 

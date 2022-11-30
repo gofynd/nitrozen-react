@@ -3,91 +3,92 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 16px;
-  padding: 1px 4px;
+  height: 1.6rem;
+  padding: 0.1rem 0.4rem;
   cursor: default;
-  border-radius: 4px;
-  border: 1px solid $Zambezi;
+  border-radius: 0.4rem;
+  border: 0.1rem solid $Zambezi;
   color: $WhiteColor;
-  font-size: $BaseFontSize;
+  font-size: $BaseFontSize + 2;
   white-space: nowrap;
   font-family: $PrimaryFont;
-  line-height: 18px;
+  line-height: 1.8rem;
   text-transform: uppercase;
-  max-width: 79px;
+  max-width: 7.9rem;
   text-align: center;
   &:focus {
     outline: none;
   }
   &.nitrozen-badge-default {
-    border: 1px solid $Zambezi;
+    border: 0.1rem solid $Zambezi;
     color: $Zambezi;
   }
   &.nitrozen-badge-info {
-    border: 1px solid $PrimaryColor;
+    border: 0.1rem solid $PrimaryColor;
     color: $PrimaryColor;
   }
   &.nitrozen-badge-success {
-    border: 1px solid $SuccessColor;
+    border: 0.1rem solid $SuccessColor;
     color: $SuccessColor;
   }
   &.nitrozen-badge-warn {
-    border: 1px solid $OrangeColor;
-    color: $OrangeColor;
+    border: 0.1rem solid $WarningColor;
+    color: $WarningColor;
   }
   &.nitrozen-badge-error {
-    border: 1px solid $FreeSpeechRed;
-    color: $FreeSpeechRed;
+    border: 0.1rem solid $ErrorColor;
+    color: $ErrorColor;
   }
   &.nitrozen-badge-disable {
-    border: 1px solid $NobelColor;
-    color: $NobelColor;
+    border: 0.1rem solid $LabelColor;
+    color: $LabelColor;
   }
   &.nitrozen-badge-default-fill {
     background: $Zambezi;
-    border: 1px solid $Zambezi;
+    border: 0.1rem solid $Zambezi;
   }
   &.nitrozen-badge-info-fill {
     background: $PrimaryColor;
-    border: 1px solid $PrimaryColor;
+    border: 0.1rem solid $PrimaryColor;
   }
   &.nitrozen-badge-success-fill {
     background: $SuccessColor;
-    border: 1px solid $SuccessColor;
+    border: 0.1rem solid $SuccessColor;
   }
   &.nitrozen-badge-warn-fill {
-    background: $OrangeColor;
-    border: 1px solid $OrangeColor;
+    background: $WarningColor;
+    border: 0.1rem solid $WarningColor;
   }
   &.nitrozen-badge-error-fill {
-    background: $FreeSpeechRed;
-    border: 1px solid $FreeSpeechRed;
+    background: $ErrorColor;
+    border: 0.1rem solid $ErrorColor;
   }
   &.nitrozen-badge-disable-fill {
-    background: $NobelColor;
-    border: 1px solid $NobelColor;
+    background: $LabelColor;
+    border: 0.1rem solid $LabelColor;
   }
 }
 .nitrozen-badge-story-table {
   font-family: "Inter";
   font-weight: 500;
-  gap: 1rem;
-  border: 1px solid $SecondaryDisabledColor;
+  gap: 1.6rem;
+  border: 0.1rem solid $SecondaryDisabledColor;
+  font-size: $BaseFontSize + 6;
 }
 .nitrozen-badge-story-table-row {
   display: grid;
   grid-template-columns: 3fr 1fr 1fr 1fr 1fr;
-  gap: 2rem;
-  border: 1px solid $SecondaryDisabledColor;
-  border-radius: 4px;
-  padding: 10px;
+  gap: 3.2rem;
+  border: 0.1rem solid $SecondaryDisabledColor;
+  border-radius: 0.4rem;
+  padding: 1rem;
   width: 80vw;
 }
 .nitrozen-badge-story-table-row-header {
   display: grid;
   grid-template-columns: 3fr 1fr 1fr 1fr 1fr;
-  gap: 2rem;
-  border-bottom: 1px solid black;
-  padding: 10px;
+  gap: 3.2rem;
+  border-bottom: 0.1rem solid black;
+  padding: 1rem;
   width: 80vw;
 }

@@ -23,11 +23,15 @@ export const Theming = () => {
           $TypographySecondaryColor: #666666;
           $TypographyTertiaryColor: #999999;
           $PrimaryFont: 'Inter', sans-serif;
+          $ZIndexNe: -1;
+          $ZIndex1:  1;
+          $ZIndex2:  99;
+          $ZIndex3:  999;
         `}
       />
       <p>
-        It's possible to override the default values by using css variables in
-        your project like this:
+        It&apos;s possible to override the default values by using css variables
+        in your project like this:
       </p>
       <Source
         language="css"
@@ -46,12 +50,16 @@ export const Theming = () => {
           --TypographySecondaryColor: #123456;
           --TypographyTertiaryColor: #999999;
           --PrimaryFont: Helvetica, sans-serif;
+          --ZIndexNe: -1;
+          --ZIndex1:  1;
+          --ZIndex2:  99;
+          --ZIndex3:  999;
         }
         `}
       />
       <p>
-        Inorder to override css, simply add the above code snippet in your App's
-        root css file(global.css / styles.css)
+        Inorder to override css, simply add the above code snippet in your
+        App&apos;s root css file(global.css / styles.css)
       </p>
       <p>
         Once overriden, the styles will be applicable across all components.

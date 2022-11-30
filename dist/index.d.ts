@@ -48,6 +48,7 @@ interface ButtonProps {
   type?: "button" | "submit" | "reset";
   disabled?: boolean;
   rounded?: boolean;
+  link?: boolean;
   theme?: string;
   size?: string;
   focused?: boolean;
@@ -169,7 +170,7 @@ interface ItemProps {
 }
 interface DropdownProps {
   id?: string;
-  items?: Array<ItemProps>;
+  items?: ItemProps[];
   disabled?: boolean;
   label?: string;
   multiple?: Boolean;
@@ -177,7 +178,7 @@ interface DropdownProps {
   required?: Boolean;
   searchable?: Boolean;
   tooltip?: string;
-  value?: string | number | boolean | Array<any>;
+  value?: string | number | boolean | any[];
   addOption?: Boolean;
   addOptionHandler?: Function;
   enableSelectAll?: Boolean;
@@ -235,6 +236,7 @@ interface InputProps {
   tooltipText?: string;
   tooltipIcon?: React.ReactNode;
   id?: Number | string;
+  name?: string;
   maxLength?: Number;
   showPrefix?: Boolean;
   showSuffix?: Boolean;
@@ -331,7 +333,7 @@ interface PaginationProps {
   id?: string;
   name?: string;
   mode?: ModeEnum;
-  pageSizeOptions?: Array<number>;
+  pageSizeOptions?: number[];
   value: ConfigProps;
   onChange?: Function;
   onPreviousClick?: Function;
@@ -383,7 +385,7 @@ declare const Radio: {
   };
 };
 
-declare type ItemsType = {
+type ItemsType = Array<{
   name: string | number;
   description?: string | number;
   isInactive?: boolean;
@@ -394,7 +396,7 @@ declare type ItemsType = {
   extraIconProps?: object;
   buttonText?: string;
   buttonStyles?: object;
-}[];
+}>;
 interface StepperProps {
   activeIndex?: number;
   maxActiveIndex?: number;
@@ -418,7 +420,7 @@ declare const _default$4: React.MemoExoticComponent<{
   };
 }>;
 
-declare type Position = "top" | "bottom" | "left" | "right";
+type Position = "top" | "bottom" | "left" | "right";
 interface TooltipProps {
   children?: React.ReactNode;
   className?: string;
@@ -536,7 +538,7 @@ interface ToastOptions {
   position: string;
 }
 declare class ToastManager {
-  private containerRef?;
+  private readonly containerRef?;
   private toasts;
   root: any;
   constructor(position: string);

@@ -10,7 +10,7 @@ import whiteDots from "../assets/white-dots.svg";
 import plusBtn from "../assets/plus-btn.svg";
 import help from "../assets/help.svg";
 
-var __SVG: any = {};
+const __SVG: any = {};
 __SVG["cross"] = cross;
 __SVG["cross-filled"] = crossFilled;
 __SVG["search"] = search;

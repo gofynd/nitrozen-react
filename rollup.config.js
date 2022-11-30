@@ -4,6 +4,7 @@ import typescript from "@rollup/plugin-typescript";
 import postcss from "rollup-plugin-postcss";
 import dts from "rollup-plugin-dts";
 import image from "@rollup/plugin-image";
+import { terser } from "rollup-plugin-terser";
 const packageJson = require("./package.json");
 
 export default [
@@ -11,13 +12,10 @@ export default [
     input: "src/index.ts",
     output: [
       {
-        file: packageJson.main,
+        dir: "dist/cjs",
         format: "cjs",
-        sourcemap: true,
-      },
-      {
-        file: packageJson.module,
-        format: "esm",
+        preserveModules: true,
+        exports: "auto",
         sourcemap: true,
       },
     ],
@@ -29,13 +27,50 @@ export default [
       }),
       resolve(),
       commonjs(),
-      typescript({ tsconfig: "./tsconfig.json" }),
-      postcss(),
+      typescript({
+        tsconfig: "./tsconfig.json",
+        outDir: "dist/cjs",
+        declarationDir: "dist/cjs/types",
+      }),
+      postcss({
+        modules: true,
+        minimize: true,
+        inject: false,
+      }),
+      terser(),
     ],
     external: ["react", "react-dom"],
   },
   {
-    input: "dist/esm/src/index.d.ts",
+    input: "src/index.ts",
+    output: [
+      {
+        dir: "dist/esm",
+        format: "esm",
+        preserveModules: true,
+        sourcemap: true,
+      },
+    ],
+    plugins: [
+      image({
+        output: "dist/assets",
+        extensions: /\.(png|jpg|jpeg|gif|svg)$/,
+        limit: 10000,
+      }),
+      resolve(),
+      commonjs(),
+      typescript({
+        tsconfig: "./tsconfig.json",
+        outDir: "dist/esm",
+        declarationDir: "dist/esm/types",
+      }),
+      postcss(),
+      terser(),
+    ],
+    external: ["react", "react-dom"],
+  },
+  {
+    input: "dist/esm/types/src/index.d.ts",
     output: [{ file: "dist/index.d.ts", format: "esm", sourcemap: true }],
     plugins: [dts()],
     external: [/\.(css|less|scss)$/],

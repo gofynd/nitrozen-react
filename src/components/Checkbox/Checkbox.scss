@@ -2,10 +2,10 @@
 
 .nitrozen-checkbox-container {
   position: relative;
-  padding-left: 30px;
+  padding-left: 3rem;
   cursor: pointer;
-  font-size: 15px;
-  line-height: 15px;
+  font-size: 1.5rem;
+  line-height: 1.5rem;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -13,12 +13,12 @@
   font-family: $PrimaryFont;
   color: $TypographyPrimaryColor;
   font-weight: 400;
-  min-width: 6rem;
+  min-width: 9.6rem;
   display: flex;
   align-items: center;
-  padding: 2px;
+  padding: 0.2rem;
   justify-content: center;
-  gap: 8px;
+  gap: 0.8rem;
 }
 
 /* Hide the browser's default checkbox */
@@ -35,11 +35,11 @@
   position: absolute;
   top: 0;
   left: 0;
-  height: 16px;
-  width: 16px;
+  height: 1.6rem;
+  width: 1.6rem;
   background-color: $WhiteColor;
-  border: 1px solid $Gray;
-  border-radius: 3px;
+  border: 0.1rem solid $Gray;
+  border-radius: 0.3rem;
 }
 
 .nitrozen-checkbox-container:hover input ~ .nitrozen-checkbox {
@@ -49,7 +49,7 @@
 /* When the checkbox is checked, add a blue background */
 .nitrozen-checkbox-container input:checked ~ .nitrozen-checkbox {
   background-color: $PrimaryColor;
-  border: 2px solid $PrimaryColor;
+  border: 0.2rem solid $PrimaryColor;
 }
 
 /* Create the nitrozen-checkbox/indicator (hidden when not checked) */
@@ -66,12 +66,12 @@
 
 /* Style the nitrozen-checkbox/indicator */
 .nitrozen-checkbox-container .nitrozen-checkbox:after {
-  left: 5px;
-  top: 0px;
-  width: 4px;
-  height: 10px;
-  border: 1px solid $WhiteColor;
-  border-width: 0 2px 2px 0;
+  left: 0.5rem;
+  top: 0rem;
+  width: 0.4rem;
+  height: 1rem;
+  border: 0.1rem solid $WhiteColor;
+  border-width: 0 0.2rem 0.2rem 0;
   -webkit-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
@@ -84,7 +84,7 @@ input[type="checkbox"]:disabled + .nitrozen-checkbox {
   pointer-events: none;
 
   &::after {
-    border-width: 0 2px 2px 0;
+    border-width: 0 0.2rem 0.2rem 0;
   }
 }
 

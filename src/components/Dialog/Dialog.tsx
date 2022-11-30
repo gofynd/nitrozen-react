@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Button from "../Button";
 import NitrozenId from "../../utils/uuids";
 import "./Dialog.scss";
@@ -42,20 +42,13 @@ const Dialog = (props: DialogProps) => {
     ...restProps
   } = props;
 
-  const [isModalVisible, setIsModalVisible] = useState(isVisible);
   const positiveButtonLabelText = positiveButtonLabel || false;
   const neutralButtonLabelText = neutralButtonLabel ?? "";
   const negativeButtonLabelText = negativeButtonLabel || false;
 
-  useEffect(() => {
-    setIsModalVisible(isVisible);
-    return () => setIsModalVisible(false);
-  }, [isVisible]);
-
   // Methods
   const close = () => {
-    setIsModalVisible(false); //comp
-    closeHandle ? closeHandle() : ""; //user
+    closeHandle?.(); // user
   };
 
   const handlePositiveButtonClick = () => {
@@ -83,7 +76,7 @@ const Dialog = (props: DialogProps) => {
 
   return (
     <>
-      {isModalVisible && (
+      {isVisible && (
         <div id={id}>
           <div className="nitrozen-dialog-backdrop">
             <div
