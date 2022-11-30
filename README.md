@@ -1,9 +1,9 @@
 # @gofynd/nitrozen-react
 
-![storybook](https://img.shields.io/badge/nitrozen-1.1.0-brightgreen)
-[![](https://img.shields.io/badge/Storybook-documentation-brightgreen)](https://fyndreact.github.io/nitrozen/)
+[![npm version](https://badge.fury.io/js/@gofynd%2Fnitrozen-react.svg)](https://www.npmjs.com/package/@gofynd/nitrozen-react)
+[![](https://img.shields.io/badge/Storybook-documentation-brightgreen)](https://gofynd.io/nitrozen-react)
 
-> React components for the Nitrozen Design System
+> A React component library inspired from Nitrozen design system
 
 ## Getting started
 
@@ -40,8 +40,8 @@ function MyComponent() {
 
 ### Example:
 
-![button](./src/assets/sb-buttons.png)
-![radio](./src/assets/sb-radiobutton.png)
+![button](https://github.com/gofynd/nitrozen-react/blob/main/src/assets/sb-buttons.png)
+![radio](https://github.com/gofynd/nitrozen-react/blob/main/src/assets/sb-radiobutton.png)
 
 ## Components List:
 
