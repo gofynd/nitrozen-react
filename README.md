@@ -68,13 +68,13 @@ function MyComponent() {
 - [x] Tooltip
 
 > For a full list of components available & it's detailed documentation, checkout our
-> [Storybook](https://fyndreact.github.io/nitrozen/).
+> [Storybook](https://gofynd.io/nitrozen-react/?path=/story/introduction-welcome--welcome).
 
 ## 📖 API Documentation
 
 If you're looking for `@gofynd/nitrozen-react` API documentation, check out:
 
-- [Storybook](https://fyndreact.github.io/nitrozen/)
+- [Storybook](https://gofynd.io/nitrozen-react/?path=/story/introduction-welcome--welcome)
 
 ## 🙌 Contributors:
 
