@@ -3,7 +3,7 @@ import { Source } from "@storybook/components";
 import dedent from "dedent";
 import "../../base/storybook.scss";
 
-const PACKAGE_NAME = "@fyndreact/nitrozen";
+const PACKAGE_NAME = "@gofynd/nitrozen-react";
 export const Installation = () => {
   return (
     <div className="theme-container">
