@@ -1,0 +1,280 @@
+.markdown-body {
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  margin: 0;
+  color: #24292f;
+  background-color: #ffffff;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial,
+    sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  font-size: 16px;
+  line-height: 1.5;
+  word-wrap: break-word;
+
+  a {
+    background-color: transparent;
+    color: #0969da;
+    text-decoration: none;
+
+    &:active,
+    &:hover {
+      outline-width: 0;
+    }
+  }
+
+  abbr[title] {
+    border-bottom: none;
+    text-decoration: underline dotted;
+  }
+
+  b,
+  strong {
+    font-weight: 600;
+  }
+
+  dfn {
+    font-style: italic;
+  }
+
+  h1 {
+    margin: 0.67em 0;
+    font-weight: 600;
+    padding-bottom: 0.3em;
+    font-size: 2em;
+    border-bottom: 1px solid hsla(210, 18%, 87%, 1);
+  }
+
+  hr {
+    box-sizing: content-box;
+    overflow: hidden;
+    background: transparent;
+    border-bottom: 1px solid hsla(210, 18%, 87%, 1);
+    height: 0.25em;
+    padding: 0;
+    margin: 24px 0;
+    background-color: #d0d7de;
+    border: 0;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  hr::before {
+    display: table;
+    content: "";
+  }
+
+  hr::after {
+    display: table;
+    clear: both;
+    content: "";
+  }
+
+  table {
+    border-spacing: 0;
+    border-collapse: collapse;
+    display: block;
+    width: max-content;
+    max-width: 100%;
+    overflow: auto;
+  }
+
+  td,
+  th {
+    padding: 0;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin-top: 24px;
+    margin-bottom: 16px;
+    font-weight: 600;
+    line-height: 1.25;
+  }
+
+  h2 {
+    font-weight: 600;
+    padding-bottom: 0.3em;
+    font-size: 1.5em;
+    border-bottom: 1px solid hsla(210, 18%, 87%, 1);
+  }
+
+  h3 {
+    font-weight: 600;
+    font-size: 1.25em;
+  }
+
+  h4 {
+    font-weight: 600;
+    font-size: 1em;
+  }
+
+  h5 {
+    font-weight: 600;
+    font-size: 0.875em;
+  }
+
+  h6 {
+    font-weight: 600;
+    font-size: 0.85em;
+    color: #57606a;
+  }
+
+  p {
+    margin-top: 0;
+    margin-bottom: 10px;
+  }
+
+  blockquote {
+    margin: 0;
+    padding: 0 1em;
+    color: #57606a;
+    border-left: 0.25em solid #d0d7de;
+  }
+
+  ul,
+  ol {
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-left: 2em;
+  }
+
+  ol ol,
+  ul ol {
+    list-style-type: lower-roman;
+  }
+
+  ul ul ol,
+  ul ol ol,
+  ol ul ol,
+  ol ol ol {
+    list-style-type: lower-alpha;
+  }
+
+  dd {
+    margin-left: 0;
+  }
+
+  tt,
+  code {
+    font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas,
+      Liberation Mono, monospace;
+    font-size: 12px;
+  }
+
+  pre {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas,
+      Liberation Mono, monospace;
+    font-size: 12px;
+    word-wrap: normal;
+  }
+
+  ::placeholder {
+    color: #6e7781;
+    opacity: 1;
+  }
+
+  .markdown-body::before {
+    display: table;
+    content: "";
+  }
+
+  .markdown-body ::after {
+    display: table;
+    clear: both;
+    content: "";
+  }
+
+  .markdown-body > *:first-child {
+    margin-top: 0 !important;
+  }
+
+  .markdown-body > *:last-child {
+    margin-bottom: 0 !important;
+  }
+
+  a:not([href]) {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .absent {
+    color: #cf222e;
+  }
+
+  .anchor {
+    float: left;
+    padding-right: 4px;
+    margin-left: -20px;
+    line-height: 1;
+  }
+
+  .anchor:focus {
+    outline: none;
+  }
+
+  p,
+  blockquote,
+  ul,
+  ol,
+  dl,
+  table,
+  pre,
+  details {
+    margin-top: 0;
+    margin-bottom: 16px;
+  }
+
+  blockquote > :first-child {
+    margin-top: 0;
+  }
+
+  blockquote > :last-child {
+    margin-bottom: 0;
+  }
+
+  sup > a::before {
+    content: "[";
+  }
+
+  sup > a::after {
+    content: "]";
+  }
+
+  code,
+  tt {
+    padding: 0.2em 0.4em;
+    margin: 0;
+    font-size: 85%;
+    background-color: rgba(175, 184, 193, 0.2);
+    border-radius: 6px;
+  }
+
+  code br,
+  tt br {
+    display: none;
+  }
+
+  del code {
+    text-decoration: inherit;
+  }
+
+  pre code {
+    font-size: 100%;
+  }
+
+  pre > code {
+    padding: 0;
+    margin: 0;
+    word-break: normal;
+    white-space: pre;
+    background: transparent;
+    border: 0;
+  }
+}
