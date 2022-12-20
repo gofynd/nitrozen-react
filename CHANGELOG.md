@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 1.1.1 (2022-12-20)
+
+### Features
+
+- feat: added changelog page in storybook([ff2e7cc](https://github.com/gofynd/nitrozen-react/pull/4/commits/ff2e7cca321eb84551a1a0ca43b6eaafa42abdea))
+
+### Bug Fixes
+
+- fix: styling loading issue fix in drogon ([4bd6a61](https://github.com/gofynd/nitrozen-react/pull/4/commits/4bd6a6140c18dbc41e34803b4a2cc033a131b312))
+
 ## 1.1.0 (2022-11-29)
 
 ### Features
