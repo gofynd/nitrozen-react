@@ -35,7 +35,7 @@ export default [
       postcss({
         modules: true,
         minimize: true,
-        inject: false,
+        inject: true,
       }),
       terser(),
     ],
