@@ -59,3 +59,131 @@ $Perano: #a9b1ea;
 $Whisper3: #ededed;
 $Gray: #8f8f8f;
 $PinkSwan: #b8b8b8;
+
+////////////////////////////////////Light Theme////////////////////////////////////
+////////////////////////////////////Color////////////////////////////////////
+$color-primary-20: #e8e8fc;
+$color-primary-30: #9999ff;
+$color-primary-40: #6464ff;
+$color-primary-50: #3535f3;
+$color-primary-60: #000093;
+$color-primary-70: #00004c;
+$color-primary-80: #010029;
+$color-primary-inverse: #ffffff;
+$color-primary-background: #ffffff;
+$color-primary-grey-100: #141414;
+$color-primary-grey-80: rgba(0, 0, 0, 0.65);
+$color-primary-grey-60: #b5b5b5;
+$color-primary-grey-40: #e0e0e0;
+$color-primary-grey-20: #f5f5f5;
+$color-secondary-20: #fef7e9;
+$color-secondary-30: #ffe3ae;
+$color-secondary-40: #ffd947;
+$color-secondary-50: #f7ab20;
+$color-secondary-60: #ac660c;
+$color-secondary-70: #7f4b10;
+$color-secondary-80: #401d0c;
+$color-secondary-inverse: #401d0c;
+$color-secondary-background: #ffffff;
+$color-secondary-grey-100: #141414;
+$color-secondary-grey-80: rgba(0, 0, 0, 0.65);
+$color-secondary-grey-60: #b5b5b5;
+$color-secondary-grey-40: #e0e0e0;
+$color-secondary-grey-20: #f5f5f5;
+$color-sparkle-20: #e8faf7;
+$color-sparkle-30: #a7f6e9;
+$color-sparkle-40: #7aebd9;
+$color-sparkle-50: #1eccb0;
+$color-sparkle-60: #1e7b74;
+$color-sparkle-70: #0e5c4f;
+$color-sparkle-80: #08332c;
+$color-sparkle-inverse: #08332c;
+$color-sparkle-background: #ffffff;
+$color-sparkle-grey-100: #141414;
+$color-sparkle-grey-80: rgba(0, 0, 0, 0.65);
+$color-sparkle-grey-60: #b5b5b5;
+$color-sparkle-grey-40: #e0e0e0;
+$color-sparkle-grey-20: #f5f5f5;
+$color-white: #ffffff;
+$color-black: #141414;
+$color-feedback-error-80: #660014;
+$color-feedback-error-50: #f50031;
+$color-feedback-error-20: #fee6ea;
+$color-feedback-warning-80: #7d2f08;
+$color-feedback-warning-50: #f06d0f;
+$color-feedback-warning-20: #fef0e7;
+$color-feedback-success-80: #135610;
+$color-feedback-success-50: #25ab21;
+$color-feedback-success-20: #e9f7e9;
+
+////////////////////////////////////Shadow////////////////////////////////////
+$shadow-s: 0px 4px 16px rgba(0, 0, 0, 0.08);
+$shadow-m: 0px 4px 16px rgba(0, 0, 0, 0.16);
+$shadow-l: 0px 4px 16px rgba(0, 0, 0, 0.24);
+
+////////////////////////////////////Elevation////////////////////////////////////
+$elevation-10: 10;
+$elevation-20: 20;
+$elevation-30: 30;
+$elevation-40: 40;
+$elevation-50: 50;
+$elevation-60: 60;
+$elevation-70: 70;
+
+////////////////////////////////////Surfaces////////////////////////////////////
+$surfaces-soft--bg: rgba(89, 89, 89, 0.5);
+$surfaces-soft--filter: blur(24px);
+$surfaces-heavy--bg: rgba(89, 89, 89, 0.5);
+$surfaces-heavy--filter: blur(64px);
+$surfaces-overlay--bg: rgba(20, 20, 20, 0.4);
+$surfaces-overlay--filter: none;
+$surfaces-blurred-bg--bg: rgba(20, 20, 20, 0.8);
+$surfaces-blurred-bg--filter: blur(24px);
+
+////////////////////////////////////Rransitions////////////////////////////////////
+$transitions-duration-rapid: 300ms;
+$transitions-duration-medium: 500ms;
+$transitions-duration-slow: 1000ms;
+$transitions-ease-rapid: cubic-bezier(0.35, 0, 0.5, 1);
+$transitions-ease-quick: cubic-bezier(0.35, 0, 0.25, 1);
+$transitions-ease-joyful: cubic-bezier(0.35, 1.3, 0.3, 1);
+$transitions-ease-entrance: cubic-bezier(0, 0, 0.1, 1);
+$transitions-ease-exit: cubic-bezier(0.35, 0, 0.8, 1);
+$transitions-ease-joyfulentrance: cubic-bezier(0.15, 1.3, 0.3, 1);
+$transitions-ease-joyfulexit: cubic-bezier(0.7, -0.1, 0.6, 0.1);
+
+//////////////////////////////////// spacing and aspect ratio ////////////////////////////////////
+$val-max-width: 1184px;
+$val-max-width-narrow: 784px;
+$opacity-disabled: 0.4;
+$spacing-layout: var(--spacing-xxl);
+$spacing-layout-maxWidth-margin: var(--spacing-layout);
+$backdrop-filter: blur(5px) contrast(0.8);
+$aspect-ratio-wide: 16/9;
+$aspect-ratio-landscape: 4/3;
+$aspect-ratio-square: 1;
+$aspect-ratio-portrait: 4/5;
+$spacing-xxs: calc(var(--spacing-base) * 0.25);
+$spacing-xs: calc(var(--spacing-base) * 0.5);
+$spacing-s: calc(var(--spacing-base) * 0.75);
+$spacing-base: 1rem;
+$spacing-m: calc(var(--spacing-base) * 1.5);
+$spacing-l: calc(var(--spacing-base) * 2);
+$spacing-xl: calc(var(--spacing-base) * 2.5);
+$spacing-xxl: calc(var(--spacing-base) * 3);
+$spacing-huge: calc(var(--spacing-base) * 4);
+$spacing-massive: calc(var(--spacing-base) * 5);
+
+//////////////////////////////////// Radius ////////////////////////////////////
+$radius-small: 4px;
+$radius-medium: 8px;
+$radius-large: 16px;
+$radius-xl: 24px;
+$radius-xxl: 32px;
+$radius-pill: 250px;
+
+//////////////////////////////////// Logo watermark ////////////////////////////////////
+$logo-size: var(--spacing-xl);
+$logo-wordmark-spacing: 5px;
+$wordmark-size-conjested: 25px;
+$wordmark-size: calc(1rem * 1.875);
