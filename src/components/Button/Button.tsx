@@ -8,8 +8,9 @@ export interface ButtonProps {
   type?: "button" | "submit" | "reset";
   disabled?: boolean;
   rounded?: boolean;
-  link?: boolean;
+  state?: "positive" | "destructive" | "default";
   theme?: string;
+  as?: "div" | "span" | "default";
   size?: string;
   focused?: boolean;
   showProgress?: boolean;
@@ -19,6 +20,7 @@ export interface ButtonProps {
   className?: string;
   id?: string;
   icon?: React.ReactNode;
+  iconRight?: React.ReactNode;
   name?: string;
   style?: React.CSSProperties;
 }
@@ -27,10 +29,26 @@ const Button = (props: ButtonProps) => {
     classnames({
       "n-button-rounded": props.rounded,
       "n-button-primary": props.theme === "primary",
+      "n-button-primary-positive":
+        props.theme === "primary" && props.state === "positive",
+      "n-button-primary-destructive":
+        props.theme === "primary" && props.state === "destructive",
       "n-button-secondary": props.theme === "secondary",
+      "n-button-secondary-positive":
+        props.theme === "secondary" && props.state === "positive",
+      "n-button-secondary-destructive":
+        props.theme === "secondary" && props.state === "destructive",
+      "n-button-tertiary": props.theme === "tertiary",
+      "n-button-tertiary-positive":
+        props.theme === "tertiary" && props.state === "positive",
+      "n-button-tertiary-destructive":
+        props.theme === "tertiary" && props.state === "destructive",
       "n-button-large": props.size === "large",
+      "n-button-large_only_icon": !props.children,
       "n-button-mid": props.size === "medium",
+      "n-button-mid_only_icon": !props.children,
       "n-button-small": props.size === "small",
+      "n-button-small_only_icon": !props.children,
       "n-button-focused": props.focused,
       "n-button-disable": props.showProgress,
       "n-button-stroke n-button-stroke-primary":
@@ -41,13 +59,13 @@ const Button = (props: ButtonProps) => {
         !props.stroke && props.theme === "primary",
       "n-flat-button n-flat-button-secondary":
         !props.stroke && props.theme === "secondary",
-      "n-button-link": props.link,
     });
   const generateAttributes = () => {
     if (props.href) {
       const {
         rounded,
         theme,
+        as,
         stroke,
         size,
         focused,
@@ -56,6 +74,7 @@ const Button = (props: ButtonProps) => {
         className,
         children,
         icon,
+        iconRight,
         ...rest
       } = props;
       return { ...rest };
@@ -63,6 +82,7 @@ const Button = (props: ButtonProps) => {
       const {
         rounded,
         theme,
+        as,
         stroke,
         size,
         href,
@@ -71,6 +91,7 @@ const Button = (props: ButtonProps) => {
         className,
         children,
         icon,
+        iconRight,
         ...rest
       } = props;
       return { ...rest };
@@ -87,6 +108,24 @@ const Button = (props: ButtonProps) => {
     >
       <ButtonContent {...props} />
     </a>
+  ) : props.as == "div" ? (
+    <div
+      className={`n-button ripple ${generateClasses()} ${
+        props.className && props.className
+      }`}
+      {...generateAttributes} //{...generateAttributes()}
+    >
+      <ButtonContent {...props} />
+    </div>
+  ) : props.as == "span" ? (
+    <span
+      className={`n-button ripple ${generateClasses()} ${
+        props.className && props.className
+      }`}
+      {...generateAttributes()}
+    >
+      <ButtonContent {...props} />
+    </span>
   ) : (
     <button
       className={`n-button ripple ${generateClasses()} ${
@@ -101,26 +140,40 @@ const Button = (props: ButtonProps) => {
 
 const ButtonContent = (props: ButtonProps) => {
   const Icon = props.icon as React.ElementType;
+  const IconRight = props.iconRight as React.ElementType;
   return (
     <div className="n-button-content">
-      {!props.showProgress && props.icon && (
+      {props.icon && (props.children || !props.showProgress) && (
         <div className="social-icon">
           <Icon
             className={classnames({
               "n-icon-small": props.size === "small",
               "n-icon": props.size === "medium",
               "n-icon-large": props.size === "large",
+              "icon-padding-right": props.children,
             })}
           />
         </div>
       )}
-      {!props.showProgress && props.children}
+      {props.children}
       {props.showProgress && (
         <div className="n-btn-spin">
           <img
             className="n-btn-spinner"
             style={{ width: "50px" }}
             src={loaderWhite}
+          />
+        </div>
+      )}
+      {!props.showProgress && props.children && props.iconRight && (
+        <div className="social-icon-right">
+          <IconRight
+            className={classnames({
+              "n-icon-small": props.size === "small",
+              "n-icon": props.size === "medium",
+              "n-icon-large": props.size === "large",
+              "icon-padding-left": props.children,
+            })}
           />
         </div>
       )}
@@ -132,8 +185,9 @@ Button.defaultProps = {
   href: null,
   type: "button",
   disabled: false,
-  rounded: false,
+  rounded: true,
   theme: "primary",
+  as: null,
   size: "medium",
   focused: false,
   showProgress: false,

@@ -1,7 +1,7 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import Button from "./Button";
-import { SvgStore } from "../../assets/svg-components";
+import * as SvgArray from "../../assets/svg-components";
 export default {
   title: "Components/Button",
   component: Button,
@@ -15,7 +15,13 @@ export default {
     theme: {
       control: "select",
       description: "This property sets the theme of the button",
-      options: ["primary", "secondary"],
+      options: ["primary", "secondary", "tertiary"],
+    },
+    as: {
+      control: "select",
+      description:
+        "Whether the root element should be a `<div>` or `<span>` instead of a `<button>`",
+      options: ["div", "span"],
     },
     size: {
       control: "select",
@@ -44,9 +50,10 @@ export default {
       control: { type: "boolean" },
       description: "This property sets focus on the button.",
     },
-    link: {
-      control: { type: "boolean" },
-      description: "This property makes button look like link",
+    state: {
+      control: "select",
+      description: "Changes the button to custom state",
+      options: ["positive", "destructive", "default"],
     },
     showProgress: {
       control: { type: "boolean" },
@@ -63,7 +70,12 @@ export default {
       description: "This property sets name for the button.",
     },
     icon: {
-      description: "This property sets an icon for the button.",
+      description: "Displays icon on the left.",
+      options: SvgArray,
+    },
+    iconRight: {
+      description: "Displays icon on the right with.",
+      options: SvgArray,
     },
   },
 } as ComponentMeta<typeof Button>;
@@ -82,93 +94,142 @@ Default.args = {
 export const PrimaryAndOutline = () => (
   <div className="main-div">
     <div className="sb-display-grid">
-      <Button size="large">Button</Button>
-      <Button size="medium">Button</Button>
       <Button size="small">Button</Button>
+      <Button size="medium">Button</Button>
+      <Button size="lagge">Button</Button>
     </div>
     <div className="sb-display-grid">
-      <Button size="large" disabled>
+      <Button size="small" disabled>
         Button
       </Button>
       <Button size="medium" disabled>
         Button
       </Button>
-      <Button size="small" disabled>
+      <Button size="lagge" disabled>
         Button
       </Button>
     </div>
     <div className="sb-display-grid">
-      <Button size="large" stroke>
+      <Button size="small" stroke>
         Button
       </Button>
       <Button size="medium" stroke>
         Button
       </Button>
-      <Button size="small" stroke>
+      <Button size="lagge" stroke>
         Button
       </Button>
     </div>
     <div className="sb-display-grid">
-      <Button size="large" stroke disabled>
+      <Button size="small" stroke disabled>
         Button
       </Button>
       <Button size="medium" stroke disabled>
         Button
       </Button>
-      <Button size="small" stroke disabled>
+      <Button size="lagge" stroke disabled>
         Button
       </Button>
     </div>
   </div>
 );
 
-export const LinkButton = () => (
-  <div className="main-div">
-    <div className="sb-display-grid">
-      <Button size="large" link>
-        Button
-      </Button>
-      <Button size="medium" link>
-        Button
-      </Button>
-      <Button size="small" link>
-        Button
-      </Button>
-    </div>
-    <div className="sb-display-grid">
-      <Button theme="secondary" size="large" link>
-        Button
-      </Button>
-      <Button theme="secondary" size="medium" link>
-        Button
-      </Button>
-      <Button theme="secondary" size="small" link>
-        Button
-      </Button>
-    </div>
-  </div>
-);
+// export const LinkButton = () => (
+//   <div className="main-div">
+//     <div className="sb-display-grid">
+//       <Button size="large" link>
+//         Button
+//       </Button>
+//       <Button size="medium" link>
+//         Button
+//       </Button>
+//       <Button size="small" link>
+//         Button
+//       </Button>
+//     </div>
+//     <div className="sb-display-grid">
+//       <Button theme="secondary" size="large" link>
+//         Button
+//       </Button>
+//       <Button theme="secondary" size="medium" link>
+//         Button
+//       </Button>
+//       <Button theme="secondary" size="small" link>
+//         Button
+//       </Button>
+//     </div>
+//   </div>
+// );
 export const IconButton = () => (
   <div className="main-div">
     <div className="sb-display-grid">
-      <Button icon={SvgStore} size="small"></Button>
-      <Button icon={SvgStore} size="medium"></Button>
-      <Button icon={SvgStore} size="large"></Button>
+      <Button icon={SvgArray.SvgStore} size="small"></Button>
+      <Button icon={SvgArray.SvgStore} size="medium"></Button>
+      <Button icon={SvgArray.SvgStore} size="large"></Button>
     </div>
     <div className="sb-display-grid">
-      <Button icon={SvgStore} size="small" stroke></Button>
-      <Button icon={SvgStore} size="medium" stroke></Button>
-      <Button icon={SvgStore} size="large" stroke></Button>
+      <Button icon={SvgArray.SvgStore} size="small" stroke></Button>
+      <Button icon={SvgArray.SvgStore} size="medium" stroke></Button>
+      <Button icon={SvgArray.SvgStore} size="large" stroke></Button>
     </div>
     <div className="sb-display-grid">
-      <Button icon={SvgStore} size="small" disabled></Button>
-      <Button icon={SvgStore} size="medium" disabled></Button>
-      <Button icon={SvgStore} size="large" disabled></Button>
+      <Button icon={SvgArray.SvgStore} size="small" disabled></Button>
+      <Button icon={SvgArray.SvgStore} size="medium" disabled></Button>
+      <Button icon={SvgArray.SvgStore} size="large" disabled></Button>
     </div>
     <div className="sb-display-grid">
-      <Button icon={SvgStore} size="small" disabled stroke></Button>
-      <Button icon={SvgStore} size="medium" disabled stroke></Button>
-      <Button icon={SvgStore} size="large" disabled stroke></Button>
+      <Button icon={SvgArray.SvgStore} size="small" disabled stroke></Button>
+      <Button icon={SvgArray.SvgStore} size="medium" disabled stroke></Button>
+      <Button icon={SvgArray.SvgStore} size="large" disabled stroke></Button>
+    </div>
+  </div>
+);
+
+export const IconRightButton = () => (
+  <div className="main-div">
+    <div className="sb-display-grid">
+      <Button iconRight={SvgArray.SvgStore} size="small">
+        Button
+      </Button>
+      <Button iconRight={SvgArray.SvgStore} size="medium">
+        Button
+      </Button>
+      <Button iconRight={SvgArray.SvgStore} size="large">
+        Button
+      </Button>
+    </div>
+    <div className="sb-display-grid">
+      <Button iconRight={SvgArray.SvgStore} size="small" stroke>
+        Button
+      </Button>
+      <Button iconRight={SvgArray.SvgStore} size="medium" stroke>
+        Button
+      </Button>
+      <Button iconRight={SvgArray.SvgStore} size="large" stroke>
+        Button
+      </Button>
+    </div>
+    <div className="sb-display-grid">
+      <Button iconRight={SvgArray.SvgStore} size="small" disabled>
+        Button
+      </Button>
+      <Button iconRight={SvgArray.SvgStore} size="medium" disabled>
+        Button
+      </Button>
+      <Button iconRight={SvgArray.SvgStore} size="large" disabled>
+        Button
+      </Button>
+    </div>
+    <div className="sb-display-grid">
+      <Button iconRight={SvgArray.SvgStore} size="small" disabled stroke>
+        Button
+      </Button>
+      <Button iconRight={SvgArray.SvgStore} size="medium" disabled stroke>
+        Button
+      </Button>
+      <Button iconRight={SvgArray.SvgStore} size="large" disabled stroke>
+        Button
+      </Button>
     </div>
   </div>
 );

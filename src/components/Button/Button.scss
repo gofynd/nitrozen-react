@@ -5,7 +5,7 @@
   cursor: pointer;
   box-shadow: none;
   font-family: $PrimaryFont;
-  font-size: $BaseFontSize + 3;
+  font-size: $BaseFontSize + 5;
   font-weight: 700;
   line-height: 1.8rem;
   text-align: center;
@@ -16,20 +16,168 @@
   text-decoration: none;
   box-sizing: border-box;
   letter-spacing: 0.05rem;
+  padding: 0rem 3rem;
+  border-radius: 0.3rem;
+  color: $WhiteColor;
 
   &:disabled {
-    // opacity: 0.4;
     cursor: not-allowed;
     pointer-events: none;
+  }
+
+  &:focus {
+    text-decoration: none;
+    text-underline-position: under;
+  }
+
+  &:active {
+    background-color: $ColorPrimary20;
+  }
+
+  &-primary:disabled {
+    background-color: $ColorFeedbackError20;
+    color: $ColorFeedbackError80;
+  }
+
+  &-secondary:disabled {
+    border-color: $ColorSecondaryGrey80;
+    color: $ColorFeedbackError80;
+  }
+
+  &-tertiary:disabled {
+    color: $ColorFeedbackError80;
   }
 }
 
 .n-button-primary {
-  color: $PrimaryColor;
+  background-color: $ColorPrimary50;
+
+  &:hover:not([disabled]) {
+    background-color: $ColorPrimary60;
+  }
+
+  &:active:not([disabled]) {
+    color: $ColorPrimary30;
+  }
+
+  &-positive {
+    background-color: $ColorFeedbackSuccess20;
+    color: $ColorFeedbackSuccess80;
+
+    &:hover:not([disabled]) {
+      background-color: $ColorFeedbackSuccess50;
+      color: $ColorWhite;
+    }
+
+    &:active:not([disabled]) {
+      background-color: $ColorFeedbackSuccess80;
+      color: $ColorFeedbackSuccess20;
+    }
+  }
+
+  &-destructive {
+    background-color: $ColorFeedbackError20;
+    color: $ColorFeedbackError80;
+
+    &:hover:not([disabled]) {
+      background-color: $ColorFeedbackError50;
+      color: $ColorWhite;
+    }
+
+    &:active:not([disabled]) {
+      background-color: $ColorFeedbackError80;
+      color: $ColorFeedbackError20;
+    }
+  }
 }
 
 .n-button-secondary {
-  color: $SecondaryColor;
+  color: $ColorPrimary60;
+  background-color: #00000000;
+  border: 1px solid $ColorSecondaryGrey40;
+
+  &:hover:not([disabled]) {
+    border-color: $ColorPrimary60;
+  }
+
+  &:active:not([disabled]) {
+    border-color: $ColorPrimary60;
+    background-color: $ColorPrimary20;
+  }
+
+  &-positive {
+    background-color: #00000000;
+    color: $ColorFeedbackSuccess80;
+    border: 1px solid $ColorSecondaryGrey40;
+
+    &:hover:not([disabled]) {
+      background-color: #00000000;
+      border-color: $ColorFeedbackSuccess50;
+    }
+
+    &:active:not([disabled]) {
+      color: $ColorFeedbackSuccess80;
+      background-color: $ColorFeedbackSuccess20;
+    }
+  }
+
+  &-destructive {
+    background-color: #00000000;
+    border: 1px solid $ColorFeedbackError20;
+    color: $ColorFeedbackError80;
+
+    &:hover:not([disabled]) {
+      background-color: $ColorWhite;
+      border-color: $ColorFeedbackError50;
+    }
+
+    &:active:not([disabled]) {
+      background-color: $ColorFeedbackError20;
+      color: $ColorFeedbackError80;
+    }
+  }
+}
+
+.n-button-tertiary {
+  background: transparent;
+  border: none;
+  color: $ColorPrimary60;
+
+  &:hover:not([disabled]) {
+    background-color: $ColorPrimary20;
+  }
+
+  &:active:not([disabled]) {
+    background-color: $ColorPrimary30;
+  }
+
+  &-positive {
+    background-color: #00000000;
+    color: $ColorFeedbackSuccess80;
+
+    &:hover:not([disabled]) {
+      background-color: $ColorFeedbackSuccess20;
+    }
+
+    &:active:not([disabled]) {
+      background-color: $ColorFeedbackSuccess80;
+      color: $ColorFeedbackSuccess20;
+    }
+  }
+
+  &-destructive {
+    background-color: #00000000;
+    color: $ColorFeedbackError80;
+
+    &:hover:not([disabled]) {
+      background-color: $ColorFeedbackError20;
+    }
+
+    &:active:not([disabled]) {
+      background-color: $ColorFeedbackError80;
+      color: $ColorFeedbackError20;
+    }
+  }
 }
 
 .hover-state {
@@ -45,33 +193,6 @@
   transform: translate(-50%, -50%);
 }
 
-.n-flat-button {
-  padding: 0rem 3rem;
-  border-radius: 0.3rem;
-  color: $WhiteColor;
-
-  &:focus {
-    text-decoration: underline;
-    text-underline-position: under;
-  }
-}
-
-.n-flat-button-primary {
-  background-color: $PrimaryColor;
-
-  &:hover:not([disabled]) {
-    background-color: $PrimaryHoverColor;
-  }
-}
-
-.n-flat-button-secondary {
-  background-color: $SecondaryColor;
-
-  &:hover:not([disabled]) {
-    background-color: $SecondaryHoverColor;
-  }
-}
-
 .n-button-stroke {
   // padding: 0rem 4rem;
   padding: 0rem 3rem;
@@ -84,49 +205,27 @@
   }
 }
 
-.n-button-stroke-primary {
-  border: 0.1rem solid $PrimaryColor;
-  color: $PrimaryColor;
+// .n-button-stroke-primary {
+//   border: 0.1rem solid $PrimaryColor;
+//   color: $PrimaryColor;
 
-  // background-color: #B5FFE7;
-  &:hover:not([disabled]) {
-    background-color: #dfefe9;
-  }
-}
+//   // background-color: #B5FFE7;
+//   &:hover:not([disabled]) {
+//     background-color: #dfefe9;
+//   }
+// }
 
-.n-button-stroke-secondary {
-  border: 0.1rem solid $SecondaryColor;
-  color: $SecondaryColor;
+// .n-button-stroke-secondary {
+//   border: 0.1rem solid $SecondaryColor;
+//   color: $SecondaryColor;
 
-  &:hover:not([disabled]) {
-    background-color: $HoverEnabled;
-  }
-}
+//   &:hover:not([disabled]) {
+//     background-color: $HoverEnabled;
+//   }
+// }
 
-.n-button-link {
-  background: transparent;
-  border: none;
-  &.n-button-primary,
-  &.n-flat-button-primary {
-    color: $PrimaryColor;
-    &:hover:not([disabled]) {
-      color: $PrimaryHoverColor;
-      background-color: transparent;
-    }
-  }
-  &.n-button-secondary {
-    color: $SecondaryColor;
-    &:hover:not([disabled]) {
-      color: $SecondaryHoverColor;
-      background-color: transparent;
-    }
-  }
-  &:hover:not([disabled]) {
-    background-color: transparent;
-  }
-}
-.n-button-stroke:disabled,
-.n-flat-button:disabled,
+// .n-button-stroke:disabled,
+// .n-flat-button:disabled,
 .n-button-rounded:disabled {
   cursor: not-allowed;
   pointer-events: none;
@@ -134,28 +233,44 @@
 }
 
 .n-button-rounded {
-  border-radius: 2.4rem;
+  border-radius: 3.4rem;
   padding: 0rem 3.2rem;
 }
 
 .n-button-large {
-  padding: 1.3rem 2.4rem;
-  height: 4.8rem;
-  font-size: $BaseFontSize + 8;
+  padding: 1.6rem 2.4rem; // 1.6rem 0.6rem;
+  height: 5.4rem;
+  font-size: 18px;
   line-height: 2.5rem;
+  min-width: 5.4rem;
+
+  &_only_icon {
+    padding: 1.6rem 0.6rem !important;
+  }
 }
 
 .n-button-mid {
-  padding: 0.95rem 1.6rem;
-  height: 4rem;
-  font-size: $BaseFontSize + 5;
-  line-height: 2.1rem;
+  padding: 1.2rem 1.6rem; // 1.2rem 1.2rem;
+  height: 4.8rem;
+  font-size: 15px;
+  line-height: 2.5rem;
+  min-width: 4.8rem;
+
+  &_only_icon {
+    padding: 1.2rem 1.2rem !important;
+  }
 }
+
 .n-button-small {
-  padding: 0.55rem 1.2rem;
+  padding: 0.4rem 1.6rem; //0.4rem 0.4rem;
   height: 3rem;
   font-size: $BaseFontSize + 2;
   line-height: 1.9rem;
+  min-width: 3rem;
+
+  &_only_icon {
+    padding: 0.4rem 0.4rem !important;
+  }
 }
 
 .n-button-focused {
@@ -179,24 +294,36 @@
   justify-content: center;
 }
 
-.social-icon {
+.social-icon,
+.social-icon-right {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.icon-padding-left {
+  padding-left: $SpacingBase;
+}
+
+.icon-padding-right {
+  padding-right: $SpacingBase;
 }
 
 .n-icon-small {
   height: 2rem;
   font-size: 2rem;
 }
+
 .n-icon {
   height: 2.4rem;
   font-size: 2.4rem;
 }
+
 .n-icon-large {
   height: 3rem;
   font-size: 3rem;
 }
+
 .disable-click {
   pointer-events: none;
 }
