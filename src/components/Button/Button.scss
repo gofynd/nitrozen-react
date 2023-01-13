@@ -245,8 +245,8 @@
 }
 
 .n-button-focused {
-  text-decoration: underline;
-  text-underline-position: under;
+  text-decoration: underline !important;
+  text-underline-position: under !important;
 }
 
 .n-button-content {
@@ -270,6 +270,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.social-icon-right {
+  margin-left: auto;
 }
 
 .icon-padding-left {
@@ -309,4 +313,8 @@
   justify-content: space-evenly;
   grid-gap: 1.6rem;
   padding: 1.6rem;
+}
+
+.n-button-full-width {
+  width: 100%;
 }

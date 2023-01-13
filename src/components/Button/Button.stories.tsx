@@ -28,11 +28,6 @@ export default {
       description: "This property sets the size of the button",
       options: ["small", "medium", "large"],
     },
-    type: {
-      control: "select",
-      description: "This property sets the type of the button",
-      options: ["button", "submit", "reset"],
-    },
     rounded: {
       control: { type: "boolean" },
       description: "This property sets the border radius of the button",
@@ -58,6 +53,10 @@ export default {
     showProgress: {
       control: { type: "boolean" },
       description: "This property adds a loader on the button.",
+    },
+    fullWidth: {
+      control: { type: "boolean" },
+      description: "Whether the button takes full width or not",
     },
     id: {
       description: "This property sets a unique identifier for the button.",
@@ -183,7 +182,7 @@ export const IconButton = () => (
   </div>
 );
 
-export const IconRightButton = () => (
+export const ButtonWithIconLeft = () => (
   <div className="main-div">
     <div className="sb-display-grid">
       <Button theme="primary" size="small" icon={SvgArray.SvgStore}>
@@ -215,6 +214,127 @@ export const IconRightButton = () => (
         Button
       </Button>
       <Button theme="tertiary" size="large" icon={SvgArray.SvgStore}>
+        Button
+      </Button>
+    </div>
+  </div>
+);
+
+export const ButtonWithIconRight = () => (
+  <div className="main-div">
+    <div className="sb-display-grid">
+      <Button theme="primary" size="small" iconRight={SvgArray.SvgStore}>
+        Button
+      </Button>
+      <Button theme="primary" size="medium" iconRight={SvgArray.SvgStore}>
+        Button
+      </Button>
+      <Button theme="primary" size="large" iconRight={SvgArray.SvgStore}>
+        Button
+      </Button>
+    </div>
+    <div className="sb-display-grid">
+      <Button theme="secondary" size="small" iconRight={SvgArray.SvgStore}>
+        Button
+      </Button>
+      <Button theme="secondary" size="medium" iconRight={SvgArray.SvgStore}>
+        Button
+      </Button>
+      <Button theme="secondary" size="large" iconRight={SvgArray.SvgStore}>
+        Button
+      </Button>
+    </div>
+    <div className="sb-display-grid">
+      <Button theme="tertiary" size="small" iconRight={SvgArray.SvgStore}>
+        Button
+      </Button>
+      <Button theme="tertiary" size="medium" iconRight={SvgArray.SvgStore}>
+        Button
+      </Button>
+      <Button theme="tertiary" size="large" iconRight={SvgArray.SvgStore}>
+        Button
+      </Button>
+    </div>
+  </div>
+);
+
+export const ButtonWithBothIcon = () => (
+  <div className="main-div">
+    <div className="sb-display-grid">
+      <Button
+        theme="primary"
+        size="small"
+        icon={SvgArray.SvgStore}
+        iconRight={SvgArray.SvgArrowRight}
+      >
+        Button
+      </Button>
+      <Button
+        theme="primary"
+        size="medium"
+        icon={SvgArray.SvgStore}
+        iconRight={SvgArray.SvgArrowRight}
+      >
+        Button
+      </Button>
+      <Button
+        theme="primary"
+        size="large"
+        icon={SvgArray.SvgStore}
+        iconRight={SvgArray.SvgArrowRight}
+      >
+        Button
+      </Button>
+    </div>
+    <div className="sb-display-grid">
+      <Button
+        theme="secondary"
+        size="small"
+        icon={SvgArray.SvgStore}
+        iconRight={SvgArray.SvgArrowRight}
+      >
+        Button
+      </Button>
+      <Button
+        theme="secondary"
+        size="medium"
+        icon={SvgArray.SvgStore}
+        iconRight={SvgArray.SvgArrowRight}
+      >
+        Button
+      </Button>
+      <Button
+        theme="secondary"
+        size="large"
+        icon={SvgArray.SvgStore}
+        iconRight={SvgArray.SvgArrowRight}
+      >
+        Button
+      </Button>
+    </div>
+    <div className="sb-display-grid">
+      <Button
+        theme="tertiary"
+        size="small"
+        icon={SvgArray.SvgStore}
+        iconRight={SvgArray.SvgArrowRight}
+      >
+        Button
+      </Button>
+      <Button
+        theme="tertiary"
+        size="medium"
+        icon={SvgArray.SvgStore}
+        iconRight={SvgArray.SvgArrowRight}
+      >
+        Button
+      </Button>
+      <Button
+        theme="tertiary"
+        size="large"
+        icon={SvgArray.SvgStore}
+        iconRight={SvgArray.SvgArrowRight}
+      >
         Button
       </Button>
     </div>

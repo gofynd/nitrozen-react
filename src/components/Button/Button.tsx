@@ -4,7 +4,6 @@ import classnames from "classnames";
 import "./Button.scss";
 export interface ButtonProps {
   href?: string;
-  type?: "button" | "submit" | "reset";
   disabled?: boolean;
   rounded?: boolean;
   state?: "positive" | "destructive" | "default";
@@ -13,6 +12,7 @@ export interface ButtonProps {
   size?: string;
   focused?: boolean;
   showProgress?: boolean;
+  fullWidth?: boolean;
   children: React.ReactNode;
   onClick?: React.MouseEventHandler<HTMLButtonElement | HTMLAnchorElement>;
   className?: string;
@@ -49,6 +49,7 @@ const Button = (props: ButtonProps) => {
       "n-button-small_only_icon": !props.children,
       "n-button-focused": props.focused,
       "n-button-disable": props.showProgress,
+      "n-button-full-width": props.fullWidth,
     });
   const generateAttributes = () => {
     if (props.href) {
@@ -59,6 +60,7 @@ const Button = (props: ButtonProps) => {
         size,
         focused,
         showProgress,
+        fullWidth,
         onClick,
         className,
         children,
@@ -76,6 +78,7 @@ const Button = (props: ButtonProps) => {
         href,
         focused,
         showProgress,
+        fullWidth,
         className,
         children,
         icon,
@@ -171,7 +174,6 @@ const ButtonContent = (props: ButtonProps) => {
 
 Button.defaultProps = {
   href: null,
-  type: "button",
   disabled: false,
   rounded: true,
   theme: "primary",
@@ -179,6 +181,7 @@ Button.defaultProps = {
   size: "medium",
   focused: false,
   showProgress: false,
+  fullWidth: false,
   children: null,
   onClick: null,
   className: null,
