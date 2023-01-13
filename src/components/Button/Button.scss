@@ -34,6 +34,10 @@
     background-color: $ColorPrimary20;
   }
 
+  &:after {
+    transition: none !important;
+  }
+
   &-primary:disabled {
     background-color: $ColorFeedbackError20;
     color: $ColorFeedbackError80;
