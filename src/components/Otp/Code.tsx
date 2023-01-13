@@ -5,19 +5,18 @@ export interface CodeProps {
   fields: 4 | 6;
   getCode: Function;
   label: string;
+  codeId: string;
 }
 
 const Code = (props: CodeProps) => {
-  const { fields, getCode, label, ...restProps } = props;
+  const { fields, getCode, label, codeId, ...restProps } = props;
   const [labelFocus, setlabelFocus] = useState("");
   const [codeArr, setCodeArr] = useState<string[]>([]);
 
   useEffect(() => {
     let codeArrEnum = Array(fields).fill("");
     setCodeArr(codeArrEnum);
-    let firstField = document.getElementById(`code-input-${0}`);
-    firstField?.focus();
-  }, [fields]);
+  }, []);
 
   function onInputChange(
     event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>,
@@ -40,7 +39,9 @@ const Code = (props: CodeProps) => {
 
   function goToNextField(currentIndex: number) {
     if (currentIndex + 1 <= fields - 1) {
-      let nextField = document.getElementById(`code-input-${currentIndex + 1}`);
+      let nextField = document.getElementById(
+        `code-input-${codeId}-${currentIndex + 1}`
+      );
       nextField?.focus();
     }
   }
@@ -51,7 +52,9 @@ const Code = (props: CodeProps) => {
       tempCodeArr[currentIndex] = "";
       setCodeArr(tempCodeArr);
       getCode(tempCodeArr.join(""));
-      let prevField = document.getElementById(`code-input-${currentIndex - 1}`);
+      let prevField = document.getElementById(
+        `code-input-${codeId}-${currentIndex - 1}`
+      );
       prevField?.focus();
     }
   }
@@ -72,7 +75,8 @@ const Code = (props: CodeProps) => {
         {codeArr.map((value, index) => {
           return (
             <input
-              id={"code-input-" + index}
+              autoComplete="off"
+              id={`code-input-${codeId}-` + index}
               value={value}
               type="text"
               onClick={handleClick}
@@ -90,6 +94,7 @@ const Code = (props: CodeProps) => {
 Code.defaulProps = {
   fields: 4,
   label: "",
+  codeId: "",
 };
 
 export default React.memo(Code);

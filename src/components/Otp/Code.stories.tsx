@@ -20,6 +20,11 @@ export default {
     getCode: {
       action: "changed",
     },
+    codeId: {
+      action: {
+        type: "text",
+      },
+    },
   },
 } as ComponentMeta<typeof Code>;
 
@@ -35,6 +40,7 @@ CodePlayground.args = {
   fields: 6,
   label: "OTP",
   getCode: () => {},
+  codeId: "",
 };
 
 export const OtpSample = (args: CodeProps) => {
@@ -45,8 +51,14 @@ export const OtpSample = (args: CodeProps) => {
   }
   return (
     <div className="main-div space-between">
-      <Code fields={6} label={"Type your OTP"} getCode={getFinalOtp} />
-      <span>OTP : {otpText}</span>
+      <Code
+        fields={4}
+        label={"Type your OTP"}
+        getCode={getFinalOtp}
+        codeId={"custom-otp"}
+      />
+      <br />
+      <div style={{ marginTop: "12px" }}>OTP : {otpText}</div>
     </div>
   );
 };
