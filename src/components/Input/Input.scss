@@ -1,6 +1,6 @@
 @import "./../../base/base.scss";
 
-.j-input {
+.n-input {
   padding: 1px 0px 5px;
   height: 2em;
   color: $TypographyPrimaryColor;
@@ -32,7 +32,7 @@
   width: calc(100% - 60px);
 }
 
-.jds-input-container {
+.n-input-container {
   width: inherit;
 
   &::before {
@@ -59,11 +59,11 @@
   }
 }
 
-.border-focused::after {
+.n-border-focused::after {
   transform: scaleX(1) translateX(0);
 }
 
-.jds-input-grp {
+.n-input-grp {
   display: flex;
   position: relative;
   -webkit-box-align: center;
@@ -72,7 +72,7 @@
   width: 100%;
 }
 
-.j-input-label-container {
+.n-input-label-container {
   display: flex;
   font-weight: 400;
   font-size: 1rem;
@@ -99,32 +99,32 @@
   left: 30px;
 }
 
-.focused-label {
+.n-focused-label {
   transform: none;
 }
 
-.focused-label-prefixed {
+.n-focused-label-prefixed {
   transform: translate(-30px, -2px) scale(1);
 }
 
-.j-input-textarea {
+.n-input-textarea {
   height: 9.6rem;
   line-height: 2.1rem;
   padding-top: 0.6rem;
 }
 
-.j-input:disabled {
+.n-input:disabled {
   background: $HoverColor;
   pointer-events: none;
   cursor: not-allowed;
   opacity: 0.5;
 }
 
-.j-input:disabled + .j-input-label {
+.n-input:disabled + .n-input-label {
   opacity: 0.5;
 }
 
-.jds-form-input {
+.n-form-input {
   outline: none;
   flex-direction: column;
   display: inline-flex;
@@ -136,7 +136,7 @@
   width: 100%;
 }
 
-.j-input-label {
+.n-input-label {
   color: $LabelColor;
   font-family: $PrimaryFont;
   font-size: 1.2rem;
@@ -146,13 +146,13 @@
   flex: 1;
 }
 
-// .j-input-maxLength {
-//   display: flex;
-//   justify-content: flex-end;
-//   position: relative;
-// }
+.n-input-maxLength {
+  display: flex;
+  justify-content: flex-end;
+  position: relative;
+}
 
-.jds-input-grp:focus-within + .j-input-label-container > .j-input-label {
+.n-input-grp:focus-within + .n-input-label-container > .n-input-label {
   color: $PrimaryColor !important;
 }
 
@@ -183,39 +183,20 @@ input[type="search"]::-webkit-search-cancel-button {
   cursor: pointer;
 }
 
-.jds-loader-div {
-  float: right;
-  position: relative;
-  bottom: 5.2rem;
-  left: 2rem;
-
-  img {
-    width: 6.5rem;
-  }
-}
-
-.jds-search-icon {
+.n-search-icon {
   z-index: $ZIndex1;
   position: absolute;
   left: 0;
   top: 0;
 }
 
-.jds-tooltip-icon {
-  margin-left: 0.5rem;
-}
-
-// .jds-search-input-padding {
-//   padding-left: 3.5rem;
-// }
-
-.jds-input-label-div {
+.n-input-label-div {
   display: flex;
   justify-content: space-between;
 }
 
-.jds-input-prefix,
-.jds-input-suffix {
+.n-input-prefix,
+.n-input-suffix {
   height: 2.5rem;
   width: 2.5rem;
   margin: auto;
@@ -225,29 +206,29 @@ input[type="search"]::-webkit-search-cancel-button {
   position: absolute;
 }
 
-.jds-prefix-position {
+.n-prefix-position {
   top: 0px;
 }
 
-.jds-suffix-position {
+.n-suffix-position {
   top: 0px;
   right: 0px;
 }
 
-.jds-remove-left-border {
+.n-remove-left-border {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
   border-left-color: $WhiteColor;
 }
 
-.jds-remove-right-border {
+.n-remove-right-border {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
   border-right-color: $WhiteColor;
 }
 
-.jds-prefix-padding,
-.jds-suffix-padding {
+.n-prefix-padding,
+.n-suffix-padding {
   display: flex;
   justify-content: center;
   align-items: center;

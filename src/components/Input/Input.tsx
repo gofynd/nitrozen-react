@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect, FocusEvent } from "react";
 import "./Input.scss";
 import InputPrefix from "./InputPrefix";
 import InputSuffix from "./InputSuffix";
-import JDSId from "../../utils/uuids";
+import NId from "../../utils/uuids";
 import { SvgSearch } from "../../assets/svg-components/Action";
 import errorSvg from "../../assets/error-badge.svg";
 import warningSvg from "../../assets/warning-badge.svg";
@@ -123,7 +123,7 @@ const Input = (props: InputProps) => {
     let classes = "";
     classes = `${classes} ${
       showSearchIcon && type !== "textarea"
-        ? "jds-search-input-padding input-prefixed"
+        ? "n-search-input-padding input-prefixed"
         : ""
     }`;
     classes = `${classes} ${className || ""}`;
@@ -133,10 +133,10 @@ const Input = (props: InputProps) => {
     } else {
       // else set separate classes
       classes = `${classes} ${
-        showPrefix ? "jds-remove-left-border input-prefixed" : ""
+        showPrefix ? "n-remove-left-border input-prefixed" : ""
       }`;
       classes = `${classes} ${
-        showSuffix ? "jds-remove-right-border input-suffixed" : ""
+        showSuffix ? "n-remove-right-border input-suffixed" : ""
       }`;
     }
     return classes;
@@ -171,9 +171,9 @@ const Input = (props: InputProps) => {
   }
   function focusHandler() {
     setlabelFocus(
-      `focused-label${showPrefix || showSearchIcon ? "-prefixed" : ""}`
+      `n-focused-label${showPrefix || showSearchIcon ? "-prefixed" : ""}`
     );
-    setBorderFocus("border-focused");
+    setBorderFocus("n-border-focused");
   }
   function handleOnFocus(event: FocusEvent<HTMLInputElement>) {
     focusHandler();
@@ -228,30 +228,30 @@ const Input = (props: InputProps) => {
 
   return (
     <>
-      <div className="jds-form-input">
+      <div className="n-form-input">
         <div
-          className={`j-input-label-container ${
+          className={`n-input-label-container ${
             showPrefix || showSearchIcon ? "n-input-label-prefixed" : ""
           } ${labelFocus}`}
         >
           {label && (
-            <label className="j-input-label">
+            <label className="n-input-label">
               <>
                 {label} {required ? " *" : ""}
               </>
             </label>
           )}
           {maxLength && (
-            <label className="j-input-label j-input-maxLength">
+            <label className="n-input-label n-input-maxLength">
               <>
                 {length}/{maxLength}
               </>
             </label>
           )}
         </div>
-        <div className="jds-input-grp">
+        <div className="n-input-grp">
           {showSearchIcon && (
-            <span className="jds-search-icon">
+            <span className="n-search-icon">
               <SvgSearch className="search-icon" />
             </span>
           )}
@@ -261,12 +261,12 @@ const Input = (props: InputProps) => {
           )}
           {/* <!-- Input --> */}
           <div
-            className={`jds-input-container ${borderFocus} ${getBorderState()}`}
+            className={`n-input-container ${borderFocus} ${getBorderState()}`}
           >
             {type !== "textarea" && (
               <input
                 ref={inputRef}
-                className={`j-input ${generateClassesForInput()}`}
+                className={`n-input ${generateClassesForInput()}`}
                 onKeyUp={onKeyUp}
                 onChange={onChange}
                 onBlur={handleOnBlur}
@@ -290,8 +290,8 @@ const Input = (props: InputProps) => {
                 onFocus={onFocus}
                 onClick={onClick}
                 onKeyPress={onKeyPress}
-                className={`j-input input-text ${
-                  type === "textarea" && "j-input-textarea"
+                className={`n-input input-text ${
+                  type === "textarea" && "n-input-textarea"
                 }`}
                 {...generateAttributesForTextarea()}
                 onInput={onInputChange}
@@ -307,7 +307,7 @@ const Input = (props: InputProps) => {
           )}
           {showPasswordEye && (
             <span
-              className="jds-input-suffix jds-remove-left-border jds-suffix-position n-password-eye"
+              className="n-input-suffix n-remove-left-border n-suffix-position n-password-eye"
               onClick={toggleEye}
             >
               <img
@@ -335,7 +335,7 @@ Input.defaultProps = {
   required: false,
   value: "",
   showSearchIcon: false,
-  id: `jds-input${JDSId()}`,
+  id: `n-input${NId()}`,
   showPrefix: false,
   showSuffix: false,
   autofocus: false,
