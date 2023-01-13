@@ -25,7 +25,6 @@ export default {
         "radio",
         "range",
         "reset",
-        "search",
         "submit",
         "tel",
         "text",
@@ -40,7 +39,6 @@ export default {
     disabled: { control: { type: "boolean" } },
     required: { control: { type: "boolean" } },
     value: { control: { type: "text" } },
-    search: { control: { type: "boolean" } },
     showSearchIcon: { control: { type: "boolean" } },
     id: { control: { type: "text" } },
     showPrefix: { control: { type: "boolean" } },
@@ -54,6 +52,13 @@ export default {
     onBlur: { action: "blurred" },
     onFocus: { action: "focused" },
     onClick: { action: "clicked" },
+    onPrefixClick: { action: "clicked" },
+    onSuffixClick: { action: "clicked" },
+    state: {
+      control: "select",
+      options: ["deafult", "error", "success", "warning"],
+    },
+    stateText: { control: { type: "text" } },
   },
 } as ComponentMeta<typeof Input>;
 

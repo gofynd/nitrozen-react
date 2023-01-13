@@ -7,7 +7,6 @@ import { SvgSearch } from "../../assets/svg-components/Action";
 import errorSvg from "../../assets/error-badge.svg";
 import warningSvg from "../../assets/warning-badge.svg";
 import correctSvg from "../../assets/tick-green-badge.svg";
-import openEye from "../../assets/eye-open.svg";
 export interface InputProps {
   autoComplete?: string;
   type: string;
@@ -88,9 +87,6 @@ const Input = (props: InputProps) => {
   const inputRef = useRef<HTMLInputElement | HTMLTextAreaElement>(null);
   const [labelFocus, setlabelFocus] = useState("");
   const [borderFocus, setBorderFocus] = useState("");
-  const [showPasswordEye, setShowPasswordEye] = useState(false);
-  const [textType, setTextType] = useState("");
-
   useEffect(() => {
     function autoFocus() {
       if (props.autofocus) {
@@ -100,10 +96,6 @@ const Input = (props: InputProps) => {
       if (propValue || placeholder) {
         focusHandler();
       }
-      if (type == "password") {
-        setShowPasswordEye(true);
-      }
-      setTextType(type);
     }
     autoFocus();
   }, []);
@@ -148,6 +140,7 @@ const Input = (props: InputProps) => {
     typeof maxLength !== "undefined" && (attrs.maxLength = maxLength);
     autoComplete && (attrs.autoComplete = autoComplete);
     id && (attrs.id = id);
+    type && (attrs.type = type);
     disabled && (attrs.disabled = disabled);
     placeholder && (attrs.placeholder = placeholder);
     style && (attrs.style = style);
@@ -220,12 +213,6 @@ const Input = (props: InputProps) => {
     return borderClass;
   }
 
-  function toggleEye() {
-    if (!disabled) {
-      setTextType(textType == "text" ? "password" : "text");
-    }
-  }
-
   return (
     <>
       <div className="n-form-input">
@@ -276,7 +263,6 @@ const Input = (props: InputProps) => {
                 value={value}
                 {...generateAttributesForInput()}
                 onInput={onInputChange}
-                type={textType}
                 {...restProps}
               />
             )}
@@ -295,26 +281,14 @@ const Input = (props: InputProps) => {
                 }`}
                 {...generateAttributesForTextarea()}
                 onInput={onInputChange}
-                type={textType}
                 value={value}
                 {...restProps}
               ></textarea>
             )}
           </div>
           {/* <!-- Suffix --> */}
-          {!showPasswordEye && type !== "textarea" && showSuffix && (
+          {type !== "textarea" && showSuffix && (
             <InputSuffix suffix={suffix} onSuffixClick={onSuffixClick} />
-          )}
-          {showPasswordEye && (
-            <span
-              className="n-input-suffix n-remove-left-border n-suffix-position n-password-eye"
-              onClick={toggleEye}
-            >
-              <img
-                src={textType == "text" ? openEye : openEye}
-                alt={`${state} badge`}
-              />
-            </span>
           )}
         </div>
         <div className="n-input-underinfo">
