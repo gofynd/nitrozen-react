@@ -228,13 +228,6 @@ const Input = (props: InputProps) => {
               </>
             </label>
           )}
-          {maxLength && (
-            <label className="n-input-label n-input-maxLength">
-              <>
-                {length}/{maxLength}
-              </>
-            </label>
-          )}
         </div>
         <div className="n-input-grp">
           {showSearchIcon && (
