@@ -42,8 +42,6 @@ export default {
     value: { control: { type: "text" } },
     search: { control: { type: "boolean" } },
     showSearchIcon: { control: { type: "boolean" } },
-    showTooltip: { control: { type: "boolean" } },
-    tooltipText: { control: { type: "text" } },
     id: { control: { type: "text" } },
     showPrefix: { control: { type: "boolean" } },
     showSuffix: { control: { type: "boolean" } },
@@ -72,8 +70,8 @@ Textfield.args = {
   label: "Label",
   placeholder: "Placeholder",
   value: "",
-  showTooltip: true,
-  tooltipText: "This is a toolip",
+  helperText:
+    "It must contain a minimum of 8 characters and include at least 1 small case letter, 1 capital letter, and 1 special character.",
 };
 
 export const Textarea = Template.bind({});
@@ -82,37 +80,4 @@ Textarea.args = {
   label: "Label",
   placeholder: "Placeholder",
   value: "",
-  showTooltip: true,
-  tooltipText: "This is a toolip",
-};
-
-export const TextfieldValidation = () => {
-  const MIN_CHAR = 4;
-  const [inputValue, handleInputChange] = useState("");
-  const [isValidInput, handleValidation] = useState(
-    inputValue.length >= MIN_CHAR
-  );
-
-  return (
-    <>
-      <Input
-        label={"*Required Input field with Validation"}
-        value={inputValue}
-        onChange={changeInput}
-      />
-      <div style={{ marginTop: "8px" }}>
-        <Validation
-          isValid={isValidInput}
-          validLabel={"Criteria matched"}
-          invalidLabel={`Minimum ${MIN_CHAR} charaters required`}
-        />
-      </div>
-    </>
-  );
-
-  function changeInput(e: React.ChangeEvent<HTMLInputElement>) {
-    const input = e.target.value;
-    handleInputChange(input);
-    handleValidation(input.length >= MIN_CHAR);
-  }
 };
