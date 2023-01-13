@@ -193,39 +193,6 @@
   transform: translate(-50%, -50%);
 }
 
-.n-button-stroke {
-  // padding: 0rem 4rem;
-  padding: 0rem 3rem;
-  border-radius: 0.3rem;
-  background: $WhiteColor;
-
-  &:focus {
-    text-decoration: underline;
-    text-underline-position: under;
-  }
-}
-
-// .n-button-stroke-primary {
-//   border: 0.1rem solid $PrimaryColor;
-//   color: $PrimaryColor;
-
-//   // background-color: #B5FFE7;
-//   &:hover:not([disabled]) {
-//     background-color: #dfefe9;
-//   }
-// }
-
-// .n-button-stroke-secondary {
-//   border: 0.1rem solid $SecondaryColor;
-//   color: $SecondaryColor;
-
-//   &:hover:not([disabled]) {
-//     background-color: $HoverEnabled;
-//   }
-// }
-
-// .n-button-stroke:disabled,
-// .n-flat-button:disabled,
 .n-button-rounded:disabled {
   cursor: not-allowed;
   pointer-events: none;

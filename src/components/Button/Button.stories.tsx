@@ -59,10 +59,6 @@ export default {
       control: { type: "boolean" },
       description: "This property adds a loader on the button.",
     },
-    stroke: {
-      control: { type: "boolean" },
-      description: "This property removes the background color of the button.",
-    },
     id: {
       description: "This property sets a unique identifier for the button.",
     },
@@ -91,96 +87,98 @@ Default.args = {
   children: "Button",
 };
 
-export const PrimaryAndOutline = () => (
+export const AllThemes = () => (
   <div className="main-div">
     <div className="sb-display-grid">
-      <Button size="small">Button</Button>
-      <Button size="medium">Button</Button>
-      <Button size="lagge">Button</Button>
-    </div>
-    <div className="sb-display-grid">
-      <Button size="small" disabled>
+      <Button theme="primary" size="small">
         Button
       </Button>
-      <Button size="medium" disabled>
+      <Button theme="primary" size="medium">
         Button
       </Button>
-      <Button size="lagge" disabled>
+      <Button theme="primary" size="large">
         Button
       </Button>
     </div>
     <div className="sb-display-grid">
-      <Button size="small" stroke>
+      <Button theme="secondary" size="small">
         Button
       </Button>
-      <Button size="medium" stroke>
+      <Button theme="secondary" size="medium">
         Button
       </Button>
-      <Button size="lagge" stroke>
+      <Button theme="secondary" size="large">
         Button
       </Button>
     </div>
     <div className="sb-display-grid">
-      <Button size="small" stroke disabled>
+      <Button theme="tertiary" size="small">
         Button
       </Button>
-      <Button size="medium" stroke disabled>
+      <Button theme="tertiary" size="medium">
         Button
       </Button>
-      <Button size="lagge" stroke disabled>
+      <Button theme="tertiary" size="large">
         Button
       </Button>
     </div>
   </div>
 );
 
-// export const LinkButton = () => (
-//   <div className="main-div">
-//     <div className="sb-display-grid">
-//       <Button size="large" link>
-//         Button
-//       </Button>
-//       <Button size="medium" link>
-//         Button
-//       </Button>
-//       <Button size="small" link>
-//         Button
-//       </Button>
-//     </div>
-//     <div className="sb-display-grid">
-//       <Button theme="secondary" size="large" link>
-//         Button
-//       </Button>
-//       <Button theme="secondary" size="medium" link>
-//         Button
-//       </Button>
-//       <Button theme="secondary" size="small" link>
-//         Button
-//       </Button>
-//     </div>
-//   </div>
-// );
+export const AllDisbledThemes = () => (
+  <div className="main-div">
+    <div className="sb-display-grid">
+      <Button theme="primary" size="small" disabled>
+        Button
+      </Button>
+      <Button theme="primary" size="medium" disabled>
+        Button
+      </Button>
+      <Button theme="primary" size="large" disabled>
+        Button
+      </Button>
+    </div>
+    <div className="sb-display-grid">
+      <Button theme="secondary" size="small" disabled>
+        Button
+      </Button>
+      <Button theme="secondary" size="medium" disabled>
+        Button
+      </Button>
+      <Button theme="secondary" size="large" disabled>
+        Button
+      </Button>
+    </div>
+    <div className="sb-display-grid">
+      <Button theme="tertiary" size="small" disabled>
+        Button
+      </Button>
+      <Button theme="tertiary" size="medium" disabled>
+        Button
+      </Button>
+      <Button theme="tertiary" size="large" disabled>
+        Button
+      </Button>
+    </div>
+  </div>
+);
+
 export const IconButton = () => (
   <div className="main-div">
     <div className="sb-display-grid">
-      <Button icon={SvgArray.SvgStore} size="small"></Button>
-      <Button icon={SvgArray.SvgStore} size="medium"></Button>
-      <Button icon={SvgArray.SvgStore} size="large"></Button>
+      <Button theme="primary" size="small" icon={SvgArray.SvgStore}></Button>
+      <Button theme="primary" size="medium" icon={SvgArray.SvgStore}></Button>
+      <Button theme="primary" size="large" icon={SvgArray.SvgStore}></Button>
     </div>
     <div className="sb-display-grid">
-      <Button icon={SvgArray.SvgStore} size="small" stroke></Button>
-      <Button icon={SvgArray.SvgStore} size="medium" stroke></Button>
-      <Button icon={SvgArray.SvgStore} size="large" stroke></Button>
+      <Button theme="secondary" size="small" icon={SvgArray.SvgStore}></Button>
+      <Button theme="secondary" size="medium" icon={SvgArray.SvgStore}></Button>
+      <Button theme="secondary" size="large" icon={SvgArray.SvgStore}></Button>
     </div>
     <div className="sb-display-grid">
-      <Button icon={SvgArray.SvgStore} size="small" disabled></Button>
-      <Button icon={SvgArray.SvgStore} size="medium" disabled></Button>
-      <Button icon={SvgArray.SvgStore} size="large" disabled></Button>
-    </div>
-    <div className="sb-display-grid">
-      <Button icon={SvgArray.SvgStore} size="small" disabled stroke></Button>
-      <Button icon={SvgArray.SvgStore} size="medium" disabled stroke></Button>
-      <Button icon={SvgArray.SvgStore} size="large" disabled stroke></Button>
+      <Button theme="tertiary" size="small" icon={SvgArray.SvgStore}></Button>
+      <Button theme="tertiary" size="medium" icon={SvgArray.SvgStore}></Button>
+      <Button theme="tertiary" size="large" icon={SvgArray.SvgStore}></Button>
     </div>
   </div>
 );
@@ -188,46 +186,111 @@ export const IconButton = () => (
 export const IconRightButton = () => (
   <div className="main-div">
     <div className="sb-display-grid">
-      <Button iconRight={SvgArray.SvgStore} size="small">
+      <Button theme="primary" size="small" icon={SvgArray.SvgStore}>
         Button
       </Button>
-      <Button iconRight={SvgArray.SvgStore} size="medium">
+      <Button theme="primary" size="medium" icon={SvgArray.SvgStore}>
         Button
       </Button>
-      <Button iconRight={SvgArray.SvgStore} size="large">
-        Button
-      </Button>
-    </div>
-    <div className="sb-display-grid">
-      <Button iconRight={SvgArray.SvgStore} size="small" stroke>
-        Button
-      </Button>
-      <Button iconRight={SvgArray.SvgStore} size="medium" stroke>
-        Button
-      </Button>
-      <Button iconRight={SvgArray.SvgStore} size="large" stroke>
+      <Button theme="primary" size="large" icon={SvgArray.SvgStore}>
         Button
       </Button>
     </div>
     <div className="sb-display-grid">
-      <Button iconRight={SvgArray.SvgStore} size="small" disabled>
+      <Button theme="secondary" size="small" icon={SvgArray.SvgStore}>
         Button
       </Button>
-      <Button iconRight={SvgArray.SvgStore} size="medium" disabled>
+      <Button theme="secondary" size="medium" icon={SvgArray.SvgStore}>
         Button
       </Button>
-      <Button iconRight={SvgArray.SvgStore} size="large" disabled>
+      <Button theme="secondary" size="large" icon={SvgArray.SvgStore}>
         Button
       </Button>
     </div>
     <div className="sb-display-grid">
-      <Button iconRight={SvgArray.SvgStore} size="small" disabled stroke>
+      <Button theme="tertiary" size="small" icon={SvgArray.SvgStore}>
         Button
       </Button>
-      <Button iconRight={SvgArray.SvgStore} size="medium" disabled stroke>
+      <Button theme="tertiary" size="medium" icon={SvgArray.SvgStore}>
         Button
       </Button>
-      <Button iconRight={SvgArray.SvgStore} size="large" disabled stroke>
+      <Button theme="tertiary" size="large" icon={SvgArray.SvgStore}>
+        Button
+      </Button>
+    </div>
+  </div>
+);
+
+export const AllThemesWithPositiveState = () => (
+  <div className="main-div">
+    <div className="sb-display-grid">
+      <Button theme="primary" size="small" state="positive">
+        Button
+      </Button>
+      <Button theme="primary" size="medium" state="positive">
+        Button
+      </Button>
+      <Button theme="primary" size="large" state="positive">
+        Button
+      </Button>
+    </div>
+    <div className="sb-display-grid">
+      <Button theme="secondary" size="small" state="positive">
+        Button
+      </Button>
+      <Button theme="secondary" size="medium" state="positive">
+        Button
+      </Button>
+      <Button theme="secondary" size="large" state="positive">
+        Button
+      </Button>
+    </div>
+    <div className="sb-display-grid">
+      <Button theme="tertiary" size="small" state="positive">
+        Button
+      </Button>
+      <Button theme="tertiary" size="medium" state="positive">
+        Button
+      </Button>
+      <Button theme="tertiary" size="large" state="positive">
+        Button
+      </Button>
+    </div>
+  </div>
+);
+
+export const AllThemesWithDestructiveState = () => (
+  <div className="main-div">
+    <div className="sb-display-grid">
+      <Button theme="primary" size="small" state="destructive">
+        Button
+      </Button>
+      <Button theme="primary" size="medium" state="destructive">
+        Button
+      </Button>
+      <Button theme="primary" size="large" state="destructive">
+        Button
+      </Button>
+    </div>
+    <div className="sb-display-grid">
+      <Button theme="secondary" size="small" state="destructive">
+        Button
+      </Button>
+      <Button theme="secondary" size="medium" state="destructive">
+        Button
+      </Button>
+      <Button theme="secondary" size="large" state="destructive">
+        Button
+      </Button>
+    </div>
+    <div className="sb-display-grid">
+      <Button theme="tertiary" size="small" state="destructive">
+        Button
+      </Button>
+      <Button theme="tertiary" size="medium" state="destructive">
+        Button
+      </Button>
+      <Button theme="tertiary" size="large" state="destructive">
         Button
       </Button>
     </div>

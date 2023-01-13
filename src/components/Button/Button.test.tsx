@@ -20,14 +20,13 @@ describe("Button", () => {
     );
     expect(getByText("Submit")).toBeInTheDocument();
   });
-  test("renders the Button component with props - Primary, medium, href, className, stroke", () => {
+  test("renders the Button component with props - Primary, medium, href, className", () => {
     const { container } = render(
       <Button
         theme="primary"
         size="medium"
         href="http://example.com"
         className="test-class"
-        stroke={true}
         onClick={() => {}}
         id="btn"
         name="btn"
@@ -37,14 +36,13 @@ describe("Button", () => {
     );
     expect(container.getElementsByClassName("n-button-primary").length).toBe(1);
   });
-  test("renders the Button component with props - Secondary, stroke, small, className", () => {
+  test("renders the Button component with props - Secondary, small, className", () => {
     const { container } = render(
       <Button
         theme="secondary"
         size="small"
         href="http://example.com"
         className="test-class"
-        stroke={true}
         onClick={() => {}}
         id="btn"
         name="btn"
@@ -70,6 +68,6 @@ describe("Button", () => {
         Submit
       </Button>
     );
-    expect(container.getElementsByClassName("n-flat-button").length).toBe(1);
+    expect(container.getElementsByClassName("n-button").length).toBe(1);
   });
 });

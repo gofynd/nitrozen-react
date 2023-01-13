@@ -2,7 +2,6 @@ import React from "react";
 import loaderWhite from "./../../assets/loader-white.gif";
 import classnames from "classnames";
 import "./Button.scss";
-// import '../../base/base.scss';
 export interface ButtonProps {
   href?: string;
   type?: "button" | "submit" | "reset";
@@ -14,7 +13,6 @@ export interface ButtonProps {
   size?: string;
   focused?: boolean;
   showProgress?: boolean;
-  stroke?: boolean;
   children: React.ReactNode;
   onClick?: React.MouseEventHandler<HTMLButtonElement | HTMLAnchorElement>;
   className?: string;
@@ -51,14 +49,6 @@ const Button = (props: ButtonProps) => {
       "n-button-small_only_icon": !props.children,
       "n-button-focused": props.focused,
       "n-button-disable": props.showProgress,
-      "n-button-stroke n-button-stroke-primary":
-        props.stroke && props.theme === "primary",
-      "n-button-stroke n-button-stroke-secondary":
-        props.stroke && props.theme === "secondary",
-      "n-flat-button n-flat-button-primary":
-        !props.stroke && props.theme === "primary",
-      "n-flat-button n-flat-button-secondary":
-        !props.stroke && props.theme === "secondary",
     });
   const generateAttributes = () => {
     if (props.href) {
@@ -66,7 +56,6 @@ const Button = (props: ButtonProps) => {
         rounded,
         theme,
         as,
-        stroke,
         size,
         focused,
         showProgress,
@@ -83,7 +72,6 @@ const Button = (props: ButtonProps) => {
         rounded,
         theme,
         as,
-        stroke,
         size,
         href,
         focused,
@@ -191,7 +179,6 @@ Button.defaultProps = {
   size: "medium",
   focused: false,
   showProgress: false,
-  stroke: null,
   children: null,
   onClick: null,
   className: null,
