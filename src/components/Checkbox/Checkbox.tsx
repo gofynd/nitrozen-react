@@ -76,8 +76,8 @@ const Checkbox = (props: CheckboxProps) => {
   return (
     <label
       htmlFor={id}
-      className={`nitrozen-checkbox-container${
-        disabled ? " nitrozen-checkbox-container-disabled" : ""
+      className={`n-checkbox-container${
+        disabled ? " n-checkbox-container-disabled" : ""
       }`}
       style={labelStyle ?? {}}
     >
@@ -95,7 +95,7 @@ const Checkbox = (props: CheckboxProps) => {
       />
       {labelText}
       {children}
-      <span className="nitrozen-checkbox"></span>
+      <span className="n-checkbox"></span>
     </label>
   );
 };
@@ -105,7 +105,7 @@ Checkbox.defaultProps = {
   value: "",
   name: "",
   checkboxValue: null,
-  id: `nitrozen-dialog-${NitrozenId()}`,
+  id: `n-dialog-${NitrozenId()}`,
   labelText: "",
   children: null,
   onChange: () => {},

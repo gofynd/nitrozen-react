@@ -79,7 +79,7 @@ export const Multiple_checkbox = (args: any) => {
 export const checkboxVariant = () => {
   return (
     <div className="main-div space-between">
-      <div className="nitrozen-badge-collection">
+      <div className="n-badge-collection">
         <div
           style={{ display: "flex", flexDirection: "column", gap: "3.2rem" }}
         >
