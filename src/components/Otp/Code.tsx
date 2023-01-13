@@ -13,6 +13,7 @@ const Code = (props: CodeProps) => {
   const [labelFocus, setlabelFocus] = useState("");
   const [codeArr, setCodeArr] = useState<string[]>([]);
 
+  // Once the component mounts set the state array with the number of prop fields
   useEffect(() => {
     let codeArrEnum = Array(fields).fill("");
     setCodeArr(codeArrEnum);
@@ -22,11 +23,13 @@ const Code = (props: CodeProps) => {
     event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>,
     index: number
   ) {
+    // if the target event is empty then delete and go back
     if (event.target.value == "") {
       handleBackSpace(index);
     }
     // Replace the user input to allow only numbers
     let codeInput = event.target.value.replace(/[^0-9]+/g, "");
+    // only if there is input with 1 digit
     if (codeInput && codeInput.length <= 1) {
       let tempCodeArr = [...codeArr];
       tempCodeArr[index] = codeInput;
@@ -38,6 +41,7 @@ const Code = (props: CodeProps) => {
   }
 
   function goToNextField(currentIndex: number) {
+    // if there is a field after the current index then shift focus on that
     if (currentIndex + 1 <= fields - 1) {
       let nextField = document.getElementById(
         `code-input-${codeId}-${currentIndex + 1}`
@@ -47,6 +51,7 @@ const Code = (props: CodeProps) => {
   }
 
   function handleBackSpace(currentIndex: number) {
+    // if there is a field before the current index then delete and focus on that index
     if (currentIndex >= 0 && currentIndex <= fields - 1) {
       let tempCodeArr = [...codeArr];
       tempCodeArr[currentIndex] = "";
@@ -58,9 +63,12 @@ const Code = (props: CodeProps) => {
       prevField?.focus();
     }
   }
+
+  // handle the focus of the label container
   function handleClick() {
     setlabelFocus("n-code-focused-label");
   }
+  // handle the focus of the label container
   function handleBlur() {
     if (!codeArr.join("").length) {
       setlabelFocus("");

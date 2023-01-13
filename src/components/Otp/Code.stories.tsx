@@ -40,7 +40,7 @@ CodePlayground.args = {
   fields: 6,
   label: "OTP",
   getCode: () => {},
-  codeId: "",
+  codeId: "test",
 };
 
 export const OtpSample = (args: CodeProps) => {
@@ -53,7 +53,7 @@ export const OtpSample = (args: CodeProps) => {
     <div className="main-div space-between">
       <Code
         fields={4}
-        label={"Type your OTP"}
+        label={"Label"}
         getCode={getFinalOtp}
         codeId={"custom-otp"}
       />
