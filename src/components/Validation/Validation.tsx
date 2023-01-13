@@ -1,58 +1,62 @@
 import React from "react";
 import "./Validation.scss";
-import errorSvg from "../../assets/error-red-badge.svg";
+import errorSvg from "../../assets/error-badge.svg";
+import warningSvg from "../../assets/warning-badge.svg";
 import correctSvg from "../../assets/tick-green-badge.svg";
 export interface ValidationProps {
-  isValid: boolean;
+  validationState: string;
   isHidden?: boolean;
-  validLabel: string;
-  invalidLabel: string;
+  label: string;
   className?: string;
   style?: React.CSSProperties;
 }
 
 const Validation = (props: ValidationProps) => {
-  const {
-    isValid,
-    validLabel,
-    invalidLabel,
-    isHidden: hideValidation,
-    className,
-    style,
-    ...restProps
-  } = props;
+  const { validationState, label, isHidden, className, style, ...restProps } =
+    props;
 
-  if (hideValidation) return <></>;
-
-  if (!isValid) {
-    return (
+  function generateInputStateMessage() {
+    let customClass;
+    let icon;
+    switch (validationState) {
+      case "error":
+        customClass = "n-field-error";
+        icon = errorSvg;
+        break;
+      case "success":
+        customClass = "n-field-success";
+        icon = correctSvg;
+        break;
+      case "warning":
+        customClass = "n-field-warning";
+        icon = warningSvg;
+        break;
+      default:
+        break;
+    }
+    let markup = (
       <div
+        className={`n-state-container ${customClass} ${className ?? ""}`}
         style={style ?? {}}
-        className={`badge-description-container ${className ?? ""}`}
-        {...restProps}
       >
-        <img src={errorSvg} alt="error badge" />
-        <span className="nitrozen-error-visible">{invalidLabel}</span>
+        <div className="n-svg-container">
+          {" "}
+          <img src={icon} alt={`${validationState} badge`} />
+        </div>
+        {label}
       </div>
     );
+    return markup;
   }
-
-  return (
-    <div
-      style={style ?? {}}
-      className={`badge-description-container ${className ?? ""}`}
-      {...restProps}
-    >
-      <img src={correctSvg} alt="correct badge" />
-      <span className="nitrozen-approval-visible">{validLabel}</span>
-    </div>
-  );
+  if (isHidden) return <></>;
+  else {
+    return <>{generateInputStateMessage()}</>;
+  }
 };
 
 Validation.defaultProps = {
-  isValid: false,
-  validLabel: "",
-  invalidLabel: "",
+  validationState: "success",
+  label: "",
   isHidden: false,
 };
 
