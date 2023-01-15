@@ -102,7 +102,6 @@ const Dialog = (props: DialogProps) => {
                     <Button
                       theme={`${theme || "primary"}`}
                       rounded={false}
-                      stroke
                       className="nitrozen-dialog-footer-button-margin"
                       onClick={handlePositiveButtonClick}
                     >
