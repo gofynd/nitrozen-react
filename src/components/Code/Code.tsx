@@ -6,10 +6,11 @@ export interface CodeProps {
   getCode: Function;
   label: string;
   codeId: string;
+  type?: "text" | "password";
 }
 
 const Code = (props: CodeProps) => {
-  const { fields, getCode, label, codeId, ...restProps } = props;
+  const { fields, getCode, label, codeId, type, ...restProps } = props;
   const [labelFocus, setlabelFocus] = useState("");
   const [codeArr, setCodeArr] = useState<string[]>([]);
 
@@ -24,11 +25,21 @@ const Code = (props: CodeProps) => {
     index: number
   ) {
     // if the target event is empty then delete and go back
-    if (event.target.value == "") {
-      handleBackSpace(index);
-    }
     // Replace the user input to allow only numbers
     let codeInput = event.target.value.replace(/[^0-9]+/g, "");
+    // Case to handle backspace event in case there is a value already in the field
+    if (codeInput.length == 2 && index + 1 <= fields - 1) {
+      console.log("in if");
+      codeInput = codeInput[1];
+      let tempCodeArr = [...codeArr];
+      tempCodeArr[index + 1] = codeInput;
+      setCodeArr(tempCodeArr);
+      getCode(tempCodeArr.join(""));
+      goToNextField(index);
+      setlabelFocus("n-code-focused-label");
+      // IMP to return
+      return;
+    }
     // only if there is input with 1 digit
     if (codeInput && codeInput.length <= 1) {
       let tempCodeArr = [...codeArr];
@@ -63,7 +74,12 @@ const Code = (props: CodeProps) => {
       prevField?.focus();
     }
   }
-
+  function handleKeyDown(event: any, currentIndex: number) {
+    if ([8, 46].includes(event.keyCode)) {
+      console.log(event.keyCode, "evet from backspace");
+      handleBackSpace(currentIndex);
+    }
+  }
   // handle the focus of the label container
   function handleClick() {
     setlabelFocus("n-code-focused-label");
@@ -92,11 +108,12 @@ const Code = (props: CodeProps) => {
               id={`code-input-${codeId}-` + index}
               data-testid={`code-input-${codeId}-` + index}
               value={value}
-              type="text"
+              type={type}
               onClick={handleClick}
               onBlur={handleBlur}
               onChange={(e) => onInputChange(e, index)}
               className={`n-code-input-field ${`n-code-${fields}`}`}
+              onKeyDown={(e) => handleKeyDown(e, index)}
             />
           );
         })}
@@ -109,6 +126,7 @@ Code.defaulProps = {
   fields: 4,
   label: "",
   codeId: "",
+  default: "text",
 };
 
 export default React.memo(Code);

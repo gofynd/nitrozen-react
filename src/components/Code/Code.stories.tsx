@@ -25,6 +25,12 @@ export default {
         type: "text",
       },
     },
+    type: {
+      control: {
+        type: "select",
+      },
+      options: ["text", "password"],
+    },
   },
 } as ComponentMeta<typeof Code>;
 
@@ -56,6 +62,7 @@ export const OtpSample = (args: CodeProps) => {
         label={"Label"}
         getCode={getFinalOtp}
         codeId={"custom-otp"}
+        type={"password"}
       />
       <br />
       <div style={{ marginTop: "12px" }}>OTP : {otpText}</div>
