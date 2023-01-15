@@ -33,6 +33,7 @@ export interface DropdownProps {
   onSearchInputChange?: Function;
   onScroll?: Function;
   className?: string;
+  helperText?: string;
 }
 const ALL_OPTION = { text: "Select All", value: "all" };
 
@@ -383,7 +384,7 @@ const Dropdown = (props: DropdownProps) => {
                           className={`nitrozen-option-image ${
                             selectedItems.includes(item.value) &&
                             "nitrozen-dropdown-multicheckbox-selected"
-                          }`}
+                          } ${item.logo ? "n-icon-padding" : ""}`}
                         >
                           {item.logo && (
                             <img
@@ -442,6 +443,11 @@ const Dropdown = (props: DropdownProps) => {
           </div>
         </div>
       </div>
+      {props.helperText && (
+        <div className=" n-input-underinfo n-helper-text">
+          {props.helperText}
+        </div>
+      )}
     </div>
   );
 };
@@ -458,6 +464,7 @@ Dropdown.defaultProps = {
   tooltip: null,
   addOption: false,
   enableSelectAll: false,
+  helperText: "",
 };
 
 export default Dropdown;

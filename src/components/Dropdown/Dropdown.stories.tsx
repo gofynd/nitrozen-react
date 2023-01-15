@@ -72,26 +72,32 @@ const DropdownDatasource = [
   {
     text: "Maharashtra",
     value: 1,
+    logo: "https://hdn-1.jiox0.de/jioecomm/seller/pictures/logo/original/gionee-56405d/Gionee_Logo_20190919.jpg",
   },
   {
     text: "Andhra Pradesh",
     value: 2,
+    logo: "https://hdn-1.jiox0.de/jioecomm/seller/pictures/logo/original/gionee-56405d/Gionee_Logo_20190919.jpg",
   },
   {
     text: "West Bengal",
     value: 3,
+    logo: "https://hdn-1.jiox0.de/jioecomm/seller/pictures/logo/original/gionee-56405d/Gionee_Logo_20190919.jpg",
   },
   {
     text: "Madhya Pradesh",
     value: 4,
+    logo: "https://hdn-1.jiox0.de/jioecomm/seller/pictures/logo/original/gionee-56405d/Gionee_Logo_20190919.jpg",
   },
   {
     text: "Tamil Nadu",
     value: 5,
+    logo: "https://hdn-1.jiox0.de/jioecomm/seller/pictures/logo/original/gionee-56405d/Gionee_Logo_20190919.jpg",
   },
   {
     text: "Himachal Pradesh",
     value: 6,
+    logo: "https://hdn-1.jiox0.de/jioecomm/seller/pictures/logo/original/gionee-56405d/Gionee_Logo_20190919.jpg",
   },
 ];
 

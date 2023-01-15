@@ -15,24 +15,26 @@
   }
   .nitrozen-select {
     box-sizing: border-box;
-    border: 0.1rem solid $SecondaryDisabledColor;
-    border-radius: 0.3rem;
+    border-bottom: 2px solid $InactiveFieldBorder;
     background-color: $WhiteColor;
 
     position: relative;
     display: flex;
     flex-direction: column;
+    &:hover {
+      border-bottom: 2px solid $ColorPrimary50;
+    }
   }
   .nitrozen-select:focus-within {
     border-color: $PrimaryColor;
   }
   .nitrozen-select__trigger {
-    color: $Gray;
+    color: $TypographyPrimaryColor;
     border-radius: 0.3rem;
     font-size: 1.4rem;
     line-height: 2.2rem;
     min-height: 2.2rem;
-    padding: 0.8rem 1.4rem;
+    padding: 0.8rem 1.4rem 0.8rem 0;
     position: relative;
     display: flex;
     align-items: center;
@@ -69,8 +71,6 @@
     visibility: hidden;
     pointer-events: none;
     z-index: $ZIndex1;
-
-    @include nitrozen-menu-scrollbar;
   }
   .nitrozen-select.nitrozen-dropdown-open .nitrozen-options {
     opacity: 1;
@@ -88,8 +88,10 @@
     font-size: 1.4rem;
     color: $TypographyPrimaryColor;
     line-height: 2.2rem;
+    font-weight: 500;
     cursor: pointer;
     transition: all 0.5s;
+    border-bottom: 1px solid $ColorPrimaryGrey40;
     .nitrozen-checkbox-container {
       pointer-events: none;
       margin-top: 0.2rem;
@@ -123,6 +125,8 @@
     .nitrozen-option-image {
       display: flex;
       align-items: center;
+      width: 100%;
+      justify-content: flex-start !important;
     }
 
     .nitrozen-dropdown-multicheckbox-selected {
@@ -176,7 +180,7 @@
 }
 
 .nitrozen-dropdown-label {
-  color: $LabelColor;
+  color: $TypographyPrimaryColor;
   font-family: $PrimaryFont;
   font-size: 1.2rem;
   font-weight: 500;
@@ -200,7 +204,7 @@
   width: 100%;
   input {
     font-size: 1.4rem;
-    width: 100%;
+    width: 95%;
     border: none;
   }
   input:focus,
@@ -213,4 +217,8 @@
   width: 100%;
   background-color: lightgrey;
   margin: 0.5rem 0;
+}
+
+.n-icon-padding {
+  padding-left: 30px;
 }
