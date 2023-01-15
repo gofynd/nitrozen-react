@@ -76,8 +76,13 @@ const Code = (props: CodeProps) => {
   }
   return (
     <div className="n-code-main">
-      <div className={`n-code-label-container ${labelFocus}`}>
-        <label className="n-code-label">{label}</label>
+      <div
+        className={`n-code-label-container ${labelFocus}`}
+        data-testid={`label-id-${codeId}`}
+      >
+        <label className="n-code-label" data-testid={`code-label-${codeId}`}>
+          {label}
+        </label>
       </div>
       <div className={`n-code-field-container`}>
         {codeArr.map((value, index) => {
@@ -85,6 +90,7 @@ const Code = (props: CodeProps) => {
             <input
               autoComplete="off"
               id={`code-input-${codeId}-` + index}
+              data-testid={`code-input-${codeId}-` + index}
               value={value}
               type="text"
               onClick={handleClick}
