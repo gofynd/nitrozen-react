@@ -348,6 +348,8 @@ const Dropdown = (props: DropdownProps) => {
                   >
                     <span
                       className={`nitrozen-option-image ${
+                        props.multiple && "n-icon-padding"
+                      } ${
                         allSelected &&
                         "nitrozen-dropdown-multicheckbox-selected"
                       }`}
