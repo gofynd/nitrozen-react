@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Validation from "../Validation";
 import "./Code.scss";
 
 export interface CodeProps {
@@ -7,10 +8,27 @@ export interface CodeProps {
   label: string;
   codeId: string;
   type?: "text" | "password";
+  validationState?: string;
+  hideValidation?: boolean;
+  validationLabel?: string;
+  validationClassName?: string;
+  validationStyle?: React.CSSProperties;
 }
 
 const Code = (props: CodeProps) => {
-  const { fields, getCode, label, codeId, type, ...restProps } = props;
+  const {
+    fields,
+    getCode,
+    label,
+    codeId,
+    type,
+    hideValidation,
+    validationLabel,
+    validationState,
+    validationClassName,
+    validationStyle,
+    ...restProps
+  } = props;
   const [labelFocus, setlabelFocus] = useState("");
   const [codeArr, setCodeArr] = useState<string[]>([]);
 
@@ -29,7 +47,6 @@ const Code = (props: CodeProps) => {
     let codeInput = event.target.value.replace(/[^0-9]+/g, "");
     // Case to handle backspace event in case there is a value already in the field
     if (codeInput.length == 2 && index + 1 <= fields - 1) {
-      console.log("in if");
       codeInput = codeInput[1];
       let tempCodeArr = [...codeArr];
       tempCodeArr[index + 1] = codeInput;
@@ -76,7 +93,6 @@ const Code = (props: CodeProps) => {
   }
   function handleKeyDown(event: any, currentIndex: number) {
     if ([8, 46].includes(event.keyCode)) {
-      console.log(event.keyCode, "evet from backspace");
       handleBackSpace(currentIndex);
     }
   }
@@ -106,18 +122,34 @@ const Code = (props: CodeProps) => {
             <input
               autoComplete="off"
               id={`code-input-${codeId}-` + index}
+              key={`code-input-${codeId}-` + index}
               data-testid={`code-input-${codeId}-` + index}
               value={value}
               type={type}
               onClick={handleClick}
               onBlur={handleBlur}
               onChange={(e) => onInputChange(e, index)}
-              className={`n-code-input-field ${`n-code-${fields}`}`}
+              className={`n-code-input-field ${`n-code-${fields}`} ${
+                validationState && !hideValidation
+                  ? `n-code-input-border-${validationState}`
+                  : `n-code-input-border`
+              }`}
               onKeyDown={(e) => handleKeyDown(e, index)}
             />
           );
         })}
       </div>
+      {!hideValidation && (
+        <div className="n-code-validation-container">
+          <Validation
+            isHidden={hideValidation}
+            label={validationLabel}
+            style={validationStyle}
+            className={validationClassName}
+            validationState={validationState}
+          />
+        </div>
+      )}
     </div>
   );
 };
@@ -127,6 +159,10 @@ Code.defaulProps = {
   label: "",
   codeId: "",
   default: "text",
+  hideValidation: true,
+  validationLabel: "",
+  validationClassName: "",
+  validationStyle: {},
 };
 
 export default React.memo(Code);

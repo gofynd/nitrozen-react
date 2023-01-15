@@ -24,13 +24,15 @@
 .n-code-input-field {
   border: 0;
   background: none;
-  border-bottom: 2px solid $ColorPrimaryGrey80;
   -webkit-appearance: none;
   display: block;
   -webkit-tap-highlight-color: transparent;
   outline: none;
   text-align: center;
+}
 
+.n-code-input-border {
+  border-bottom: 2px solid $ColorPrimaryGrey80;
   &:focus,
   &:active {
     border-bottom: 2px solid $ColorPrimary70;
@@ -40,7 +42,15 @@
     border-bottom: 2px solid $ColorPrimary50;
   }
 }
-
+.n-code-input-border-success {
+  border-bottom: 2px solid $ColorFeedbackSuccess50;
+}
+.n-code-input-border-warning {
+  border-bottom: 2px solid $ColorFeedbackWarning50;
+}
+.n-code-input-border-error {
+  border-bottom: 2px solid $ColorFeedbackError50;
+}
 .n-code-label-container {
   display: flex;
   font-weight: 400;
@@ -62,4 +72,8 @@
 
 .n-code-focused-label {
   transform: translate(0px, -18px) scale(1);
+}
+
+.n-code-validation-container {
+  margin-top: 8px;
 }

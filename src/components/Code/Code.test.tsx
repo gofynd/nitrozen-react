@@ -20,7 +20,9 @@ describe("Button", () => {
     expect(label.textContent).toBe("OTP");
     for (let i = 0; i < 6; i++) {
       const field = getByTestId("code-input-custom-code-" + i);
-      expect(field.className).toBe("n-code-input-field n-code-6");
+      expect(field.className).toBe(
+        "n-code-input-field n-code-6 n-code-input-border"
+      );
     }
   });
   test("renders the Code component with 6 input fields on change", () => {
@@ -60,5 +62,22 @@ describe("Button", () => {
       userEvent.type(inputElement, `${i + 2}`);
     }
     expect(finalCode).toBe("234567");
+  });
+  test("renders the Code component with 4 fields and validation text visible", () => {
+    const { container } = render(
+      <Code
+        fields={6}
+        label={"OTP"}
+        codeId={"custom-code"}
+        getCode={() => {}}
+        hideValidation={false}
+        validationState={"success"}
+        validationLabel={"all good"}
+      />
+    );
+    expect(
+      container.getElementsByClassName("n-code-validation-container").length
+    ).toBe(1);
+    expect(container.getElementsByClassName("n-field-success").length).toBe(1);
   });
 });

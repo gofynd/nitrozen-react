@@ -19,6 +19,7 @@ export default {
     },
     getCode: {
       action: "changed",
+      description: "Function that returns the code value",
     },
     codeId: {
       action: {
@@ -31,6 +32,23 @@ export default {
       },
       options: ["text", "password"],
     },
+    validationState: {
+      control: "select",
+      options: ["success", "error", "warning"],
+      description: "Describes the state of validity",
+      defaultValue: "success",
+    },
+    validationLabel: {
+      type: "string",
+      description: "The description",
+    },
+    hideValidation: {
+      type: "boolean",
+      description: "Toggles validation component's visibility",
+      defaultValue: true,
+    },
+    validationStyle: { control: "object" },
+    validationClassName: { control: "text" },
   },
 } as ComponentMeta<typeof Code>;
 
@@ -51,9 +69,14 @@ CodePlayground.args = {
 
 export const OtpSample = (args: CodeProps) => {
   const [otpText, setOtpText] = useState("");
-
+  const [hideValidation, setHideValidation] = useState(true);
   function getFinalOtp(otp: string) {
     setOtpText(otp);
+    if (otpText.length == 3) {
+      setHideValidation(false);
+    } else {
+      setHideValidation(true);
+    }
   }
   return (
     <div className="main-div space-between">
@@ -63,6 +86,9 @@ export const OtpSample = (args: CodeProps) => {
         getCode={getFinalOtp}
         codeId={"custom-otp"}
         type={"password"}
+        hideValidation={hideValidation}
+        validationLabel={"Input data correct"}
+        validationState={"success"}
       />
       <br />
       <div style={{ marginTop: "12px" }}>OTP : {otpText}</div>
