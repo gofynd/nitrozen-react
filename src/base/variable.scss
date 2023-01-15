@@ -208,3 +208,10 @@ $LogoSize: var(--LogoSize, $SpacingXl);
 $LogoWordmarkSpacing: var(--LogoWordmarkSpacing, 5px);
 $WordmarkSizeConjested: var(--WordmarkSizeConjested, 25px);
 $WordmarkSize: var(--WordmarkSize, calc(1rem * 1.875));
+
+$InactiveFieldBorder: var(--InactiveFieldBorder, rgba(0, 0, 0, 0.65));
+$ActiveFieldBorder: var(--ActiveFieldBorder, #000093);
+$LabelColor: (--LabelColor, rgba(0, 0, 0, 0.65));
+$GrayText: (--GrayText, rgba(0, 0, 0, 0.65));
+
+$PrimaryGrey80: var(--PrimaryGrey80, rgba(0, 0, 0, 0.65));
