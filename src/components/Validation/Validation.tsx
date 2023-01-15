@@ -50,7 +50,11 @@ const Validation = (props: ValidationProps) => {
   }
   if (isHidden) return <></>;
   else {
-    return <>{generateInputStateMessage()}</>;
+    return (
+      <div className="n-validation-container">
+        {generateInputStateMessage()}
+      </div>
+    );
   }
 };
 

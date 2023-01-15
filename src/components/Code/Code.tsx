@@ -140,15 +140,13 @@ const Code = (props: CodeProps) => {
         })}
       </div>
       {!hideValidation && (
-        <div className="n-code-validation-container">
-          <Validation
-            isHidden={hideValidation}
-            label={validationLabel}
-            style={validationStyle}
-            className={validationClassName}
-            validationState={validationState}
-          />
-        </div>
+        <Validation
+          isHidden={hideValidation}
+          label={validationLabel}
+          style={validationStyle}
+          className={validationClassName}
+          validationState={validationState}
+        />
       )}
     </div>
   );

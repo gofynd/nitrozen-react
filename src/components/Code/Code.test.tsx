@@ -75,9 +75,6 @@ describe("Button", () => {
         validationLabel={"all good"}
       />
     );
-    expect(
-      container.getElementsByClassName("n-code-validation-container").length
-    ).toBe(1);
     expect(container.getElementsByClassName("n-field-success").length).toBe(1);
   });
 });
