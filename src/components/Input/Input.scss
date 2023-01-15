@@ -302,7 +302,11 @@ textarea {
 
 .n-state-container {
   display: flex;
-
+  font-weight: 500;
+  text-transform: none;
+  font-size: 0.875rem;
+  letter-spacing: -0.07px;
+  // line-height: 1.4285714286;
   img {
     height: 100%;
     width: 100%;
