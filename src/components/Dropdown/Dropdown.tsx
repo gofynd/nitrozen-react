@@ -360,9 +360,7 @@ const Dropdown = (props: DropdownProps) => {
                     onChange={setCheckedItem}
                   >
                     <span
-                      className={`nitrozen-option-image ${
-                        props.multiple && "n-icon-padding"
-                      } ${
+                      className={`nitrozen-option-image n-icon-padding ${
                         allSelected &&
                         "nitrozen-dropdown-multicheckbox-selected"
                       }`}
@@ -399,7 +397,7 @@ const Dropdown = (props: DropdownProps) => {
                           className={`nitrozen-option-image ${
                             selectedItems.includes(item.value) &&
                             "nitrozen-dropdown-multicheckbox-selected"
-                          } ${item.logo ? "n-icon-padding" : ""}`}
+                          } n-icon-padding`}
                         >
                           {item.logo && (
                             <img

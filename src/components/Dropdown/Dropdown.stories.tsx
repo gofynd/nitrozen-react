@@ -11,6 +11,21 @@ export default {
       description: "Used to uniquely identify the dropdown",
       default: "Randomly generated ID prepended by `nitrozen-dropdown-`",
     },
+    validationState: {
+      control: "select",
+      options: ["", "success", "error", "warning"],
+      description: "Describes the state of validition text",
+      defaultValue: "",
+    },
+    validationLabel: {
+      type: "string",
+      description: "The description",
+    },
+    helperText: {
+      type: "string",
+      description: "Helper text for the drop down field",
+      defaultValue: "",
+    },
     items: {
       description:
         "used to bind data list to the dropdown. items is an array of object. Each object can have 3 properties: {text, value, logo} ",
