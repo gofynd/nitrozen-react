@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import NitrozenId from "../../utils/uuids";
 import Tooltip from "../Tooltip";
 import Checkbox from "../Checkbox";
+import Validation from "../Validation";
 import "./Dropdown.scss";
 import {
   SvgAdd,
@@ -34,6 +35,8 @@ export interface DropdownProps {
   onScroll?: Function;
   className?: string;
   helperText?: string;
+  validationState?: string;
+  validationLabel?: string;
 }
 const ALL_OPTION = { text: "Select All", value: "all" };
 
@@ -305,7 +308,11 @@ const Dropdown = (props: DropdownProps) => {
         <div
           className={`nitrozen-select ${
             showOptions && "nitrozen-dropdown-open"
-          } ${props.disabled ? "cursor-disabled" : ""}`}
+          } ${props.disabled ? "cursor-disabled" : ""} ${
+            props.validationState
+              ? `n-${props.validationState}-border`
+              : "n-default-border"
+          }`}
           ref={dropdownRef}
         >
           <div
@@ -451,6 +458,13 @@ const Dropdown = (props: DropdownProps) => {
           </div>
         </div>
       </div>
+      {props.validationState && (
+        <Validation
+          isHidden={props.validationState ? false : true}
+          label={props.validationLabel}
+          validationState={props.validationState}
+        />
+      )}
       {props.helperText && (
         <div className=" n-input-underinfo n-helper-text">
           {props.helperText}
@@ -474,6 +488,8 @@ Dropdown.defaultProps = {
   enableSelectAll: false,
   helperText: "",
   className: "",
+  validationState: "",
+  validationLabel: "",
 };
 
 export default Dropdown;

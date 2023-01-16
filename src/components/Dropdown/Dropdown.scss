@@ -16,16 +16,10 @@
 
   .nitrozen-select {
     box-sizing: border-box;
-    border-bottom: 2px solid $InactiveFieldBorder;
     background-color: $WhiteColor;
-
     position: relative;
     display: flex;
     flex-direction: column;
-
-    &:hover {
-      border-bottom: 2px solid $ColorPrimary50;
-    }
   }
 
   .nitrozen-select:focus-within {
@@ -262,9 +256,27 @@
 .disabled {
   opacity: $DisabledOpacity;
   background: $ColorPrimaryDisabled;
-  cursor: not-allowed
+  cursor: not-allowed;
 }
 
 .cursor-disabled {
   cursor: not-allowed !important;
+}
+
+.n-error-border {
+  border-bottom: 2px solid $ColorFeedbackError50;
+}
+
+.n-warning-border {
+  border-bottom: 2px solid $ColorFeedbackWarning50;
+}
+
+.n-success-border {
+  border-bottom: 2px solid $ColorFeedbackSuccess50;
+}
+.n-default-border {
+  border-bottom: 2px solid $InactiveFieldBorder;
+  &:hover {
+    border-bottom: 2px solid $ColorPrimary50;
+  }
 }
