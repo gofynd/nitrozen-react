@@ -29,10 +29,7 @@ const Radio = (props: RadioProps) => {
     onChange?.(e.target.value);
   };
   return (
-    <div
-      style={style ?? {}}
-      className={`nitrozen-radio-group ${className ?? ""}`}
-    >
+    <div style={style ?? {}} className={`n-radio-group ${className ?? ""}`}>
       <input
         id={id}
         type="radio"
@@ -53,7 +50,7 @@ Radio.defaultProps = {
   name: "",
   value: "",
   radioValue: "",
-  id: `nitrozen-radio-${NitrozenId()}`,
+  id: `n-radio-${NitrozenId()}`,
   labelText: "",
   className: "",
   style: {},

@@ -96,7 +96,7 @@ export const radioSample = (args: RadioProps) => {
 export const radioVariants = (args: RadioProps) => {
   return (
     <div className="main-div space-between">
-      <div className="nitrozen-badge-collection">
+      <div className="n-badge-collection">
         <div
           style={{ display: "flex", flexDirection: "column", gap: "3.2rem" }}
         >
@@ -136,7 +136,7 @@ export const radioVariants = (args: RadioProps) => {
 export const radioSelectors = (args: RadioProps) => {
   return (
     <div className="main-div space-between">
-      <div className="nitrozen-badge-collection">
+      <div className="n-badge-collection">
         <div
           style={{ display: "flex", flexDirection: "column", gap: "3.2rem" }}
         >
