@@ -28,10 +28,10 @@ const ToggleButton = (props: ToggleButtonProps) => {
   return (
     <div
       style={style || {}}
-      className={`nitrozen-toggle-container ${className ?? ""}`}
+      className={`n-toggle-container ${className ?? ""}`}
       {...restProps}
     >
-      <label className={`nitrozen-switch ${size}`}>
+      <label className={`n-switch ${size}`}>
         <input
           type="checkbox"
           data-testid={"toggle-checkbox"}
@@ -41,8 +41,8 @@ const ToggleButton = (props: ToggleButtonProps) => {
         />
         <span
           className={classnames({
-            "nitrozen-slider nitrozen-round": true,
-            "nitrozen-disabled": disabled,
+            "n-slider n-round": true,
+            "n-disabled": disabled,
             checked: toggleActive,
           })}
         >
@@ -61,7 +61,7 @@ const ToggleButton = (props: ToggleButtonProps) => {
 ToggleButton.defaultProps = {
   value: false,
   disabled: false,
-  size: "large",
+  size: "medium",
 };
 
 export default React.memo(ToggleButton);

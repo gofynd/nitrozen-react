@@ -20,7 +20,7 @@ export default {
     },
     size: {
       control: "select",
-      defaultValue: "large",
+      defaultValue: "medium",
       options: ["large", "medium", "small"],
     },
     style: { control: "object" },
