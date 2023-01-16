@@ -49,6 +49,7 @@ export default {
     },
     validationStyle: { control: "object" },
     validationClassName: { control: "text" },
+    helperText: { control: "text", defaultValue: "" },
   },
 } as ComponentMeta<typeof Code>;
 
