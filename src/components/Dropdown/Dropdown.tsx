@@ -284,7 +284,9 @@ const Dropdown = (props: DropdownProps) => {
   return (
     <div
       id={props?.id}
-      className={`nitrozen-dropdown-container ${props?.className}`}
+      className={`nitrozen-dropdown-container ${props.className} ${
+        props.disabled ? "disabled" : ""
+      }`}
     >
       {props.label && (
         <label className="nitrozen-dropdown-label">
@@ -301,12 +303,16 @@ const Dropdown = (props: DropdownProps) => {
       )}
       <div className="nitrozen-select-wrapper" onClick={toggle}>
         <div
-          className={`nitrozen-select ${props.disabled ? "disabled" : ""} ${
+          className={`nitrozen-select ${
             showOptions && "nitrozen-dropdown-open"
-          }`}
+          } ${props.disabled ? "cursor-disabled" : ""}`}
           ref={dropdownRef}
         >
-          <div className="nitrozen-select__trigger">
+          <div
+            className={`nitrozen-select__trigger ${
+              props.disabled ? "cursor-disabled" : ""
+            }`}
+          >
             {props.searchable && !props.disabled ? (
               <span className="nitrozen-searchable-input-container">
                 <input
@@ -467,6 +473,7 @@ Dropdown.defaultProps = {
   addOption: false,
   enableSelectAll: false,
   helperText: "",
+  className: "",
 };
 
 export default Dropdown;
