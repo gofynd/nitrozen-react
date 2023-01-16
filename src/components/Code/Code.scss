@@ -54,7 +54,7 @@
 .n-code-label-container {
   display: flex;
   font-weight: 400;
-  font-size: 1rem;
+  font-size: 1.1rem;
   line-height: 1.4375em;
   letter-spacing: 0.00938em;
   padding: 0px;
@@ -66,7 +66,7 @@
   max-width: 100%;
   position: absolute;
   top: 0px;
-  transform: translate(0px, -2px) scale(1);
+  transform: translate(0px, -8px) scale(1);
   transition: transform 200ms cubic-bezier(0, 0, 0.2, 1) 0ms;
 }
 
