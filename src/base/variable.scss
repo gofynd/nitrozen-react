@@ -8,7 +8,7 @@ $PrimaryDisabledColor: var(--PrimaryDisabledColor, #b5ffe7);
 $SecondaryColor: var(--SecondaryColor, #2dbaaa);
 $SecondaryHoverColor: var(--SecondaryHoverColor, #2dbaaa);
 $SecondaryDisabledColor: var(--SecondaryDisabledColor, #e0e0e0);
-$TypographyPrimaryColor: var(--TypographyPrimaryColor, #41434c);
+$TypographyPrimaryColor: var(--TypographyPrimaryColor, rgba(0, 0, 0, 0.65));
 $TypographySecondaryColor: var(--TypographySecondaryColor, #666666);
 $TypographyTertiaryColor: var(--TypographyTertiaryColor, #999999);
 $PrimaryFont: var(--PrimaryFont, "Inter", sans-serif);
@@ -69,6 +69,7 @@ $ColorPrimary50: var(--ColorPrimary50, #3535f3);
 $ColorPrimary60: var(--ColorPrimary60, #000093);
 $ColorPrimary70: var(--ColorPrimary70, #00004c);
 $ColorPrimary80: var(--ColorPrimary80, #010029);
+$ColorPrimaryDisabled: var(--ColorPrimaryDisabled, rgba(0, 0, 0, 0));
 $ColorPrimaryInverse: var(--ColorPrimaryInverse, #ffffff);
 $ColorPrimaryBackground: var(--ColorPrimaryBackground, #ffffff);
 $ColorPrimaryGrey100: var(--ColorPrimaryGrey100, #141414);
@@ -215,3 +216,5 @@ $LabelColor: (--LabelColor, rgba(0, 0, 0, 0.65));
 $GrayText: (--GrayText, rgba(0, 0, 0, 0.65));
 
 $PrimaryGrey80: var(--PrimaryGrey80, rgba(0, 0, 0, 0.65));
+
+$DisabledOpacity: var(--disabled-opacity, 50%);
