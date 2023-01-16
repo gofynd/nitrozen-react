@@ -1,20 +1,20 @@
 @import "./../../base/base.scss";
 @import "./../Checkbox/Checkbox.scss";
 
-.nitrozen-dropdown-container {
+.n-dropdown-container {
   font-family: $PrimaryFont;
   display: flex;
   padding: 0;
   flex-direction: column;
   width: 100%;
 
-  .nitrozen-select-wrapper {
+  .n-select-wrapper {
     position: relative;
     user-select: none;
     width: 100%;
   }
 
-  .nitrozen-select {
+  .n-select {
     box-sizing: border-box;
     background-color: $WhiteColor;
     position: relative;
@@ -22,11 +22,11 @@
     flex-direction: column;
   }
 
-  .nitrozen-select:focus-within {
+  .n-select:focus-within {
     border-color: $PrimaryColor;
   }
 
-  .nitrozen-select__trigger {
+  .n-select__trigger {
     color: $TypographyPrimaryColor;
     border-radius: 0.3rem;
     font-size: 1.4rem;
@@ -54,7 +54,7 @@
     }
   }
 
-  .nitrozen-options {
+  .n-options {
     position: absolute;
     display: block;
     transform: translate3d(0rem, 4.2rem, 0rem);
@@ -74,19 +74,19 @@
     z-index: $ZIndex1;
   }
 
-  .nitrozen-select.nitrozen-dropdown-open .nitrozen-options {
+  .n-select.n-dropdown-open .n-options {
     opacity: 1;
     visibility: visible;
     pointer-events: all;
   }
 
-  .nitrozen-dropup {
+  .n-dropup {
     transform: translate3d(0rem, 0rem, 0rem);
     bottom: 4.2rem;
     z-index: $ZIndex2;
   }
 
-  .nitrozen-option {
+  .n-option {
     position: relative;
     display: block;
     font-size: 1.4rem;
@@ -97,85 +97,85 @@
     transition: all 0.5s;
     border-bottom: 1px solid $ColorPrimaryGrey40;
 
-    .nitrozen-checkbox-container {
+    .n-checkbox-container {
       pointer-events: none;
       margin-top: 0.2rem;
       height: 2rem;
 
-      .nitrozen-checkbox {
+      .n-checkbox {
         margin-top: 0.2rem;
       }
     }
 
-    &.nitrozen-option-group-label {
+    &.n-option-group-label {
       pointer-events: none;
       font-size: 1.4rem;
       font-weight: 600;
     }
 
-    .nitrozen-option-container {
+    .n-option-container {
       padding: 0.9rem 1.4rem;
     }
 
-    .nitrozen-option-child-label {
+    .n-option-child-label {
       padding-left: 2.4rem;
       display: flex;
       align-items: center;
     }
 
-    .nitrozen-option-logo {
+    .n-option-logo {
       height: 2.4rem;
       width: auto;
       padding-right: 0.8rem;
     }
 
-    .nitrozen-option-image {
+    .n-option-image {
       display: flex;
       align-items: center;
       width: 100%;
       justify-content: flex-start !important;
     }
 
-    .nitrozen-dropdown-multicheckbox-selected {
+    .n-dropdown-multicheckbox-selected {
       color: $PrimaryColor;
       font-weight: 600;
     }
   }
 
-  .nitrozen-option:hover {
+  .n-option:hover {
     cursor: pointer;
     background-color: $ColorSecondaryGrey20;
   }
 
-  .nitrozen-option.selected {
+  .n-option.selected {
     color: $ColorPrimary60;
   }
 
   // Disabled
-  .nitrozen-select__trigger:hover {
+  .n-select__trigger:hover {
     color: $Zambezi;
   }
 
-  .nitrozen-select__trigger .nitrozen-dropdown-arrow {
+  .n-select__trigger .n-dropdown-arrow {
     color: $WarningColor;
   }
 
   // Arrow
 
-  .nitrozen-dropdown-arrow {
+  .n-dropdown-arrow {
     position: relative;
     top: -0.4rem;
     height: 1.5rem;
     width: 1.5rem;
   }
 
-  .nitrozen-dropdown-arrow::after {
+  .n-dropdown-arrow::after {
     position: absolute;
     bottom: 0rem;
     height: 100%;
   }
 
-  .nitrozen-dropdown-open .nitrozen-dropdown-arrow {
+  .n-dropdown-open .n-dropdown-arrow {
     left: 0.5rem;
     right: 0rem;
     transform: rotate(180deg);
@@ -183,7 +183,7 @@
   }
 }
 
-.nitrozen-dropdown-label {
+.n-dropdown-label {
   color: $TypographyPrimaryColor;
   font-family: $PrimaryFont;
   font-size: 1.2rem;
@@ -191,11 +191,11 @@
   line-height: 2.1rem;
 }
 
-.nitrozen-dropdown-empty {
+.n-dropdown-empty {
   display: flex;
   align-items: center;
 
-  .nitrozen-add-btn {
+  .n-add-btn {
     width: 2.5rem;
     height: 2.5rem;
   }
@@ -206,7 +206,7 @@
   }
 }
 
-.nitrozen-searchable-input-container {
+.n-searchable-input-container {
   width: 100%;
 
   input {

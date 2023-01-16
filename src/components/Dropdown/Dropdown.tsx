@@ -287,12 +287,12 @@ const Dropdown = (props: DropdownProps) => {
   return (
     <div
       id={props?.id}
-      className={`nitrozen-dropdown-container ${props.className} ${
+      className={`n-dropdown-container ${props.className} ${
         props.disabled ? "disabled" : ""
       }`}
     >
       {props.label && (
-        <label className="nitrozen-dropdown-label">
+        <label className="n-dropdown-label">
           {` ${props.label} ${props.required ? " *" : ""} `}
           {props.tooltip && (
             <Tooltip
@@ -304,11 +304,11 @@ const Dropdown = (props: DropdownProps) => {
           )}
         </label>
       )}
-      <div className="nitrozen-select-wrapper" onClick={toggle}>
+      <div className="n-select-wrapper" onClick={toggle}>
         <div
-          className={`nitrozen-select ${
-            showOptions && "nitrozen-dropdown-open"
-          } ${props.disabled ? "cursor-disabled" : ""} ${
+          className={`n-select ${showOptions && "n-dropdown-open"} ${
+            props.disabled ? "cursor-disabled" : ""
+          } ${
             props.validationState
               ? `n-${props.validationState}-border`
               : "n-default-border"
@@ -316,12 +316,12 @@ const Dropdown = (props: DropdownProps) => {
           ref={dropdownRef}
         >
           <div
-            className={`nitrozen-select__trigger ${
+            className={`n-select__trigger ${
               props.disabled ? "cursor-disabled" : ""
             }`}
           >
             {props.searchable && !props.disabled ? (
-              <span className="nitrozen-searchable-input-container">
+              <span className="n-searchable-input-container">
                 <input
                   data-testid="dropdown-search"
                   type="search"
@@ -336,33 +336,32 @@ const Dropdown = (props: DropdownProps) => {
               <span>{selectedText}</span>
             )}
 
-            <div className="nitrozen-dropdown-arrow">
+            <div className="n-dropdown-arrow">
               <SvgKeyboardArrowDown style={{ width: "20px", height: "20px" }} />
             </div>
           </div>
           <div
-            className={`nitrozen-options ${dropUp && "nitrozen-dropup"}`}
+            className={`n-options ${dropUp && "n-dropup"}`}
             ref={nitrozenSelectOptionRef}
             data-testid="dropdown-scroll"
             onScroll={handleScroll}
           >
             {enableSelectAll && !searchInput && (
               <span
-                className="nitrozen-option ripple"
+                className="n-option ripple"
                 onClick={(e) => {
                   selectItem("all", ALL_OPTION, e);
                 }}
               >
-                <div className="nitrozen-option-container">
+                <div className="n-option-container">
                   <Checkbox
                     checkboxValue={allSelected}
                     value={allSelected}
                     onChange={setCheckedItem}
                   >
                     <span
-                      className={`nitrozen-option-image n-icon-padding ${
-                        allSelected &&
-                        "nitrozen-dropdown-multicheckbox-selected"
+                      className={`n-option-image n-icon-padding ${
+                        allSelected && "n-dropdown-multicheckbox-selected"
                       }`}
                     >
                       All
@@ -380,12 +379,12 @@ const Dropdown = (props: DropdownProps) => {
                 <span
                   key={index}
                   data-value={item.value}
-                  className={`nitrozen-option ripple ${
+                  className={`n-option ripple ${
                     item === selected && "selected"
-                  } ${item?.isGroupLabel && "nitrozen-option-group-label"}`}
+                  } ${item?.isGroupLabel && "n-option-group-label"}`}
                   onClick={(event) => selectItem(index, item, event)}
                 >
-                  <div className="nitrozen-option-container">
+                  <div className="n-option-container">
                     {props.multiple && !item?.isGroupLabel ? (
                       <Checkbox
                         checkboxValue={item.value}
@@ -394,14 +393,14 @@ const Dropdown = (props: DropdownProps) => {
                         value={item.value}
                       >
                         <span
-                          className={`nitrozen-option-image ${
+                          className={`n-option-image ${
                             selectedItems.includes(item.value) &&
-                            "nitrozen-dropdown-multicheckbox-selected"
+                            "n-dropdown-multicheckbox-selected"
                           } n-icon-padding`}
                         >
                           {item.logo && (
                             <img
-                              className="nitrozen-option-logo"
+                              className="n-option-logo"
                               src={item.logo}
                               alt="logo"
                             />
@@ -411,17 +410,17 @@ const Dropdown = (props: DropdownProps) => {
                       </Checkbox>
                     ) : (
                       <span
-                        className={`nitrozen-option-image ${
+                        className={`n-option-image ${
                           props.items?.find(
                             (i: ItemProps) => i?.isGroupLabel
                           ) && !item?.isGroupLabel
-                            ? "nitrozen-option-child-label"
+                            ? "n-option-child-label"
                             : ""
                         }`}
                       >
                         {item.logo && (
                           <img
-                            className="nitrozen-option-logo"
+                            className="n-option-logo"
                             src={item.logo}
                             alt="logo"
                           />
@@ -433,17 +432,17 @@ const Dropdown = (props: DropdownProps) => {
                 </span>
               ))}
             {props.searchable && props.items && props.items.length === 0 && (
-              <span className="nitrozen-option">
+              <span className="n-option">
                 {props.addOption && (
-                  <div className="nitrozen-option-container">
+                  <div className="n-option-container">
                     No {props.label} Found
                   </div>
                 )}
                 {props.addOption && searchInput?.length > 0 && (
-                  <div className="nitrozen-option-container">
+                  <div className="n-option-container">
                     <div
                       data-testid="add-option"
-                      className="nitrozen-dropdown-empty"
+                      className="n-dropdown-empty"
                       onClick={addOption}
                     >
                       <SvgAdd />
