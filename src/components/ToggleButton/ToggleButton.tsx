@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
+import NitrozenId from "../../utils/uuids";
 import "./ToggleButton.scss";
 import classnames from "classnames";
 
@@ -9,11 +10,22 @@ export interface ToggleButtonProps {
   className?: string;
   style?: React.CSSProperties;
   size?: string;
+  id?: string;
+  labelText?: string;
 }
 
 const ToggleButton = (props: ToggleButtonProps) => {
-  const { disabled, onToggle, value, className, style, size, ...restProps } =
-    props;
+  const {
+    disabled,
+    id,
+    labelText,
+    onToggle,
+    value,
+    className,
+    style,
+    size,
+    ...restProps
+  } = props;
   const [toggleActive, setToggle] = useState(value);
 
   useEffect(() => {
@@ -31,8 +43,9 @@ const ToggleButton = (props: ToggleButtonProps) => {
       className={`n-toggle-container ${className ?? ""}`}
       {...restProps}
     >
-      <label className={`n-switch ${size}`}>
+      <label htmlFor={id} className={`n-switch ${size}`}>
         <input
+          id={id}
           type="checkbox"
           data-testid={"toggle-checkbox"}
           onChange={changed}
@@ -53,14 +66,26 @@ const ToggleButton = (props: ToggleButtonProps) => {
             })}
           ></div>
         </span>
+        <span
+          className={classnames({
+            "label-text": true,
+            // "n-disabled": disabled,
+            checked: toggleActive,
+          })}
+        >
+          {labelText}
+        </span>
+        <></>
       </label>
     </div>
   );
 };
 
 ToggleButton.defaultProps = {
+  id: `nitrozen-dialog-${NitrozenId()}`,
   value: false,
   disabled: false,
+  labelText: null,
   size: "medium",
 };
 

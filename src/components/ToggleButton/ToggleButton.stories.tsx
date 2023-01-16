@@ -25,6 +25,7 @@ export default {
     },
     style: { control: "object" },
     className: { control: "text" },
+    labelText: { control: "text" },
   },
 } as ComponentMeta<typeof ToggleButton>;
 
@@ -38,6 +39,7 @@ const Template: ComponentStory<typeof ToggleButton> = (args) => (
 );
 export const ToggleBtn = Template.bind({});
 ToggleBtn.args = {
+  labelText: "React",
   disabled: false,
   value: false,
   onToggle: () => {},
@@ -51,10 +53,15 @@ export const demo = () => {
       {sizes.map((size) => (
         <div className="section" key={size}>
           <span>{size}</span>
-          <ToggleButton size={size} />
-          <ToggleButton size={size} value={true} />
-          <ToggleButton size={size} disabled={true} />
-          <ToggleButton size={size} disabled={true} value={true} />
+          <ToggleButton labelText="Text" size={size} />
+          <ToggleButton labelText="Text" size={size} value={true} />
+          <ToggleButton labelText="Text" size={size} disabled={true} />
+          <ToggleButton
+            labelText="Text"
+            size={size}
+            disabled={true}
+            value={true}
+          />
         </div>
       ))}
     </div>

@@ -32,14 +32,6 @@
       }
     }
 
-    .n-disabled {
-      cursor: not-allowed !important;
-
-      &:hover {
-        border-color: $ColorPrimaryGrey80;
-      }
-    }
-
     .checked:hover {
       border-color: $ColorPrimary50 !important;
     }
@@ -137,6 +129,38 @@
 
     .n-disabled.checked .slider-ball {
       background: $Portage;
+    }
+
+    .label-text {
+      position: absolute;
+      cursor: pointer;
+      color: $ColorPrimaryGrey80;
+
+      &:hover {
+        color: $ColorPrimaryGrey100;
+      }
+    }
+
+    .label-text.checked {
+      color: $ColorPrimaryGrey100;
+    }
+
+    &.small .label-text {
+      left: 4.5rem;
+      font-size: 1.4rem;
+      padding: 0.18rem;
+    }
+
+    &.medium .label-text {
+      left: 6rem;
+      font-size: 1.6rem;
+      padding: 0.25rem;
+    }
+
+    &.large .label-text {
+      left: 7.5rem;
+      font-size: 2rem;
+      padding: 0.35rem;
     }
   }
 }
