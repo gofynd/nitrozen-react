@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from "react";
 import NitrozenId from "../../utils/uuids";
+import NitrozenValidation from "./../Validation";
 import "./Checkbox.scss";
+import classnames from "classnames";
 export interface CheckboxProps {
   disabled?: boolean;
   value?: any;
   name?: string;
+  state?: "error" | "success" | "warning";
+  stateMessage?: string;
   checkboxValue: string | number | boolean | Object;
   id?: string;
   labelText?: string;
@@ -22,6 +26,8 @@ const Checkbox = (props: CheckboxProps) => {
     disabled,
     value,
     name,
+    state,
+    stateMessage,
     checkboxValue,
     id,
     labelText,
@@ -89,13 +95,27 @@ const Checkbox = (props: CheckboxProps) => {
         checked={isSelected()}
         disabled={disabled}
         ref={props?.ref}
+        name={props.name}
         className={className ?? ""}
         style={style ?? {}}
         {...restProps}
       />
       {labelText}
       {children}
-      <span className="n-checkbox"></span>
+      <span
+        className={classnames({
+          "n-checkbox": true,
+          "success-state": state == "success",
+          "warning-state": state == "warning",
+          "error-state": state == "error",
+        })}
+      ></span>
+      <NitrozenValidation
+        className="n-checkbox-validation"
+        validationState={state}
+        label={stateMessage}
+        isHidden={state == null}
+      />
     </label>
   );
 };
@@ -105,6 +125,8 @@ Checkbox.defaultProps = {
   value: "",
   name: "",
   checkboxValue: null,
+  state: null,
+  stateMessage: "Your validation message",
   id: `n-dialog-${NitrozenId()}`,
   labelText: "",
   children: null,

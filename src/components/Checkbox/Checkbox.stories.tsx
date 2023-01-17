@@ -11,6 +11,12 @@ export default {
     },
     value: { control: "text" },
     name: { control: "text" },
+    state: {
+      control: "select",
+      description: "Validation state",
+      options: ["success", "warning", "error"],
+    },
+    stateMessage: { control: "text" },
     checkboxValue: { control: "boolean" },
     id: { control: "text" },
     onChange: { action: "clicked" },
@@ -36,6 +42,7 @@ SingleCheckbox.args = {
   onChange: () => {},
   checkboxValue: true,
   name: "basic",
+  stateMessage: "Your Validation message!",
 };
 
 export const Multiple_checkbox = (args: any) => {
