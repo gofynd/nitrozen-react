@@ -4,6 +4,7 @@ var e = require("../../../node_modules/tslib/tslib.es6.js"),
 function s(e) {
   return e && "object" == typeof e && "default" in e ? e : { default: e };
 }
+require("./Badge.scss.js");
 var t = s(a);
 const l = (s) => {
   const {
@@ -22,7 +23,7 @@ const l = (s) => {
       "style",
       "onClickHandler",
     ]),
-    [b, u] = a.useState("");
+    [u, b] = a.useState("");
   return (
     a.useEffect(() => {
       let e = "";
@@ -46,14 +47,14 @@ const l = (s) => {
         case "disable":
           e = "nitrozen-badge-disable";
       }
-      r && (e += "-fill"), u(e);
+      r && (e += "-fill"), b(e);
     }, [l, r]),
     t.default.createElement(
       "div",
       Object.assign(
         {
           style: null != i ? i : {},
-          className: `nitrozen-badge ${b}`,
+          className: `nitrozen-badge ${u}`,
           onClick: o,
         },
         d

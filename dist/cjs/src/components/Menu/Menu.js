@@ -3,8 +3,9 @@ var e = require("../../../node_modules/tslib/tslib.es6.js"),
   t = require("react"),
   n = require("../../utils/uuids.js"),
   i = require("../../../node_modules/classnames/index.js"),
-  s = require("../../utils/useOutsideClick.js"),
-  r = require("../../assets/svg-components/Navigation/index.js");
+  s = require("../../utils/useOutsideClick.js");
+require("./Menu.scss.js");
+var r = require("../../assets/svg-components/Navigation/index.js");
 function o(e) {
   return e && "object" == typeof e && "default" in e ? e : { default: e };
 }
@@ -32,7 +33,7 @@ const a = (n) => {
     ]),
     [z, g] = t.useState(!1),
     j = s.useOutsideClick(() => g(!1)),
-    C = t.useCallback(
+    q = t.useCallback(
       (e) => {
         null == m || m(e.target.innerHTML);
       },
@@ -77,7 +78,7 @@ const a = (n) => {
             "nitrozen-menu-vertical-dropdown": "vertical" === a,
             "nitrozen-menu-top": "top" === d,
           }),
-          onClick: C,
+          onClick: q,
         },
         c
       )

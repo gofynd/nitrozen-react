@@ -1,12 +1,13 @@
 "use strict";
 var e = require("../../../node_modules/tslib/tslib.es6.js"),
-  t = require("react"),
-  l = require("../Input/Input.js");
-function n(e) {
+  t = require("react");
+require("./Autocomplete.scss.js");
+var l = require("../Input/Input.js");
+function o(e) {
   return e && "object" == typeof e && "default" in e ? e : { default: e };
 }
-var o = n(t);
-const s = (n) => {
+var n = o(t);
+const s = (o) => {
   const {
       placeholder: s,
       items: a,
@@ -18,8 +19,8 @@ const s = (n) => {
       listItemClicked: m,
       className: h,
       style: f,
-    } = n,
-    p = e.__rest(n, [
+    } = o,
+    p = e.__rest(o, [
       "placeholder",
       "items",
       "onChange",
@@ -31,9 +32,9 @@ const s = (n) => {
       "className",
       "style",
     ]),
-    [C, w] = t.useState([]),
-    [I, v] = t.useState("");
-  return o.default.createElement(
+    [C, v] = t.useState([]),
+    [w, I] = t.useState("");
+  return n.default.createElement(
     "div",
     Object.assign(
       {
@@ -42,37 +43,37 @@ const s = (n) => {
       },
       p
     ),
-    o.default.createElement(l, {
+    n.default.createElement(l, {
       showSearchIcon: i,
       label: d,
       onChange: function (e) {
         const t = e.target.value,
           l = b(t.toLowerCase());
-        v(t), w(l), null == u || u(e);
+        I(t), v(l), null == u || u(e);
       },
       onBlur: function (e) {
-        w([]), null == c || c(e);
+        v([]), null == c || c(e);
       },
       onFocus: function (e) {
-        const t = b(I.toLowerCase());
-        w(t), null == r || r(e);
+        const t = b(w.toLowerCase());
+        v(t), null == r || r(e);
       },
-      value: I,
+      value: w,
       placeholder: s,
     }),
     (null == C ? void 0 : C.length) > 0 &&
-      o.default.createElement(
+      n.default.createElement(
         "div",
         { className: "nitrozen-autocomplete-items" },
         C.map((e, t) =>
-          o.default.createElement(
+          n.default.createElement(
             "div",
             {
               key: t,
               "data-testid": `test-${e}`,
               onMouseDown: () =>
                 (function (e) {
-                  v(e), w([]), null == m || m(e);
+                  I(e), v([]), null == m || m(e);
                 })(e),
             },
             e

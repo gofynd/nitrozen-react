@@ -6,14 +6,15 @@ var e = require("../../../node_modules/tslib/tslib.es6.js"),
 function n(e) {
   return e && "object" == typeof e && "default" in e ? e : { default: e };
 }
+require("./TabItem.scss.js");
 var i = n(t);
 const s = (t) => {
   const {
       id: l,
       children: n,
       onClick: s,
-      className: a,
-      style: r,
+      className: r,
+      style: a,
       icon: c,
       tooltipIcon: u,
       tooltipIconHoverText: d,
@@ -34,8 +35,8 @@ const s = (t) => {
       {
         onClick: s,
         id: l,
-        className: `nitrozen-tab-item ${null != a ? a : ""}`,
-        style: null != r ? r : {},
+        className: `nitrozen-tab-item ${null != r ? r : ""}`,
+        style: null != a ? a : {},
       },
       m
     ),
@@ -57,6 +58,6 @@ s.defaultProps = {
   id: "nitrozen-tab-item" + l(),
   children: i.default.createElement("span", null, "hello"),
 };
-var a = t.memo(s);
-module.exports = a;
+var r = t.memo(s);
+module.exports = r;
 //# sourceMappingURL=TabItem.js.map

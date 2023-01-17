@@ -1,17 +1,19 @@
 "use strict";
-var e = require("../../../node_modules/tslib/tslib.es6.js");
-function r(e) {
+var e = require("../../../node_modules/tslib/tslib.es6.js"),
+  r = require("react");
+function t(e) {
   return e && "object" == typeof e && "default" in e ? e : { default: e };
 }
-var t = r(require("react"));
-const a = (r) => {
+require("./Card.scss.js");
+var a = t(r);
+const n = (r) => {
   const {
-      style: a,
+      style: t,
       headerStyle: n,
       cardTitle: c,
       className: l,
-      showBorder: d,
-      children: s,
+      showBorder: s,
+      children: d,
       cardIcon: o,
     } = r,
     i = e.__rest(r, [
@@ -23,38 +25,38 @@ const a = (r) => {
       "children",
       "cardIcon",
     ]);
-  return t.default.createElement(
+  return a.default.createElement(
     "div",
     Object.assign(
       {
         className: l
           ? `${l} ${
-              d && "nitrozen-card-container-border"
+              s && "nitrozen-card-container-border"
             } nitrozen-card-container`
-          : `${d && "nitrozen-card-container-border"} nitrozen-card-container`,
-        style: a,
+          : `${s && "nitrozen-card-container-border"} nitrozen-card-container`,
+        style: t,
       },
       i
     ),
-    t.default.createElement(
+    a.default.createElement(
       "div",
       { className: "nitrozen-card-header", style: n },
       o &&
-        t.default.createElement("img", {
+        a.default.createElement("img", {
           src: o,
           alt: "cardIcon",
           className: "nitrozen-card-icon",
         }),
-      c && t.default.createElement("span", null, c)
+      c && a.default.createElement("span", null, c)
     ),
-    t.default.createElement(
+    a.default.createElement(
       "div",
       { className: "nitrozen-card-description" },
-      s
+      d
     )
   );
 };
-(a.defaultProps = {
+(n.defaultProps = {
   style: {},
   cardTitle: "",
   className: "",
@@ -62,5 +64,5 @@ const a = (r) => {
   children: null,
   cardIcon: null,
 }),
-  (module.exports = a);
+  (module.exports = n);
 //# sourceMappingURL=Card.js.map

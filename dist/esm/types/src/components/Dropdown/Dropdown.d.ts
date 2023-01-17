@@ -23,6 +23,9 @@ export interface DropdownProps {
   onSearchInputChange?: Function;
   onScroll?: Function;
   className?: string;
+  helperText?: string;
+  validationState?: string;
+  validationLabel?: string;
 }
 declare const Dropdown: {
   (props: DropdownProps): JSX.Element;
@@ -38,6 +41,10 @@ declare const Dropdown: {
     tooltip: null;
     addOption: boolean;
     enableSelectAll: boolean;
+    helperText: string;
+    className: string;
+    validationState: string;
+    validationLabel: string;
   };
 };
 export default Dropdown;

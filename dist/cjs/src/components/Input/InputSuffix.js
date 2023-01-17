@@ -2,15 +2,17 @@
 function e(e) {
   return e && "object" == typeof e && "default" in e ? e : { default: e };
 }
-var t = e(require("react"));
-module.exports = (e) =>
-  t.default.createElement(
+var f = e(require("react"));
+const t = (e) =>
+  f.default.createElement(
     "span",
     {
-      className: `nitrozen-input-suffix nitrozen-remove-left-border ${
-        "string" == typeof e.suffix && "nitrozen-suffix-padding"
+      className: `jds-input-suffix jds-remove-left-border jds-suffix-position ${
+        "string" == typeof e.suffix && "jds-suffix-padding"
       }`,
+      onClick: e.onSuffixClick,
     },
     e.suffix
   );
+(t.defaultProps = { onSuffixClick: () => {} }), (module.exports = t);
 //# sourceMappingURL=InputSuffix.js.map

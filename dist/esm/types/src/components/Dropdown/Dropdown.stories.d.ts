@@ -13,6 +13,10 @@ declare const _default: ComponentMeta<{
     tooltip: null;
     addOption: boolean;
     enableSelectAll: boolean;
+    helperText: string;
+    className: string;
+    validationState: string;
+    validationLabel: string;
   };
 }>;
 export default _default;
@@ -30,6 +34,10 @@ export declare const SingleSelect: ComponentStory<{
     tooltip: null;
     addOption: boolean;
     enableSelectAll: boolean;
+    helperText: string;
+    className: string;
+    validationState: string;
+    validationLabel: string;
   };
 }>;
 export declare const MultiSelect: ComponentStory<{
@@ -46,6 +54,10 @@ export declare const MultiSelect: ComponentStory<{
     tooltip: null;
     addOption: boolean;
     enableSelectAll: boolean;
+    helperText: string;
+    className: string;
+    validationState: string;
+    validationLabel: string;
   };
 }>;
 export declare const Search: () => JSX.Element;

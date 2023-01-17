@@ -7,10 +7,11 @@ var e = require("../../../node_modules/tslib/tslib.es6.js"),
 function r(e) {
   return e && "object" == typeof e && "default" in e ? e : { default: e };
 }
-var o = r(t);
-const i = (r) => {
+require("./Tab.scss.js");
+var i = r(t);
+const o = (r) => {
     const {
-        id: i,
+        id: o,
         tabItem: u,
         label: d,
         activeIndex: m,
@@ -27,40 +28,40 @@ const i = (r) => {
         "style",
         "onTabChange",
       ]),
-      [p, x] = t.useState(m);
+      [T, p] = t.useState(m);
     if (
       (t.useEffect(() => {
-        x(m);
+        p(m);
       }, [m]),
-      p > (null == u ? void 0 : u.length))
+      T > (null == u ? void 0 : u.length))
     )
       throw new Error(
         "Active Tab index cannot be greater than TabItem array length !"
       );
-    const T = (e, t) => () => {
-      x(e), null == I || I(t);
+    const x = (e, t) => () => {
+      p(e), null == I || I(t);
     };
-    return o.default.createElement(
+    return i.default.createElement(
       "div",
       Object.assign(
         {
-          id: i,
+          id: o,
           style: null != v ? v : {},
           className: `nitrozen-tab-container ${null != b ? b : ""}`,
         },
         f
       ),
-      o.default.createElement(
+      i.default.createElement(
         "ul",
         { className: "nitrozen-tab" },
         null == u
           ? void 0
           : u.map((e, t) =>
-              o.default.createElement(
+              i.default.createElement(
                 n,
                 {
-                  onClick: T(t, e),
-                  className: l({ "nitrozen-tab-active": p === t }),
+                  onClick: x(t, e),
+                  className: l({ "nitrozen-tab-active": T === t }),
                   key: s(e, d) + t + a(),
                   icon: c(e, "icon"),
                   tooltipIcon: c(e, "tooltipIcon"),
@@ -79,7 +80,7 @@ const i = (r) => {
   c = (e, t) => {
     if (e[t]) return e[t];
   };
-i.defaultProps = { id: "nitrozen-tab-item" + a(), activeIndex: 0, tabItem: [] };
-var u = t.memo(i);
+o.defaultProps = { id: "nitrozen-tab-item" + a(), activeIndex: 0, tabItem: [] };
+var u = t.memo(o);
 module.exports = u;
 //# sourceMappingURL=Tab.js.map

@@ -3,8 +3,9 @@ Object.defineProperty(exports, "__esModule", { value: !0 });
 var e = require("../../../node_modules/tslib/tslib.es6.js"),
   t = require("react"),
   n = require("../../utils/uuids.js"),
-  a = require("../Dropdown/Dropdown.js"),
-  r = require("../../assets/svg-components/Navigation/index.js");
+  a = require("../Dropdown/Dropdown.js");
+require("./Pagination.scss.js");
+var r = require("../../assets/svg-components/Navigation/index.js");
 function i(e) {
   return e && "object" == typeof e && "default" in e ? e : { default: e };
 }

@@ -1,27 +1,36 @@
 import { __rest as e } from "../../../node_modules/tslib/tslib.es6.js";
-import l, { useState as a, useEffect as r } from "react";
+import a, { useState as l, useEffect as s } from "react";
 import n from "../../utils/uuids.js";
+import t from "../Validation/Validation.js";
 import "./Checkbox.scss.js";
-const s = (n) => {
+import c from "../../../node_modules/classnames/index.js";
+const o = (n) => {
   const {
-      disabled: s,
-      value: t,
-      name: c,
-      checkboxValue: i,
-      id: o,
-      labelText: d,
-      children: u,
-      onChange: b,
-      checkArray: h,
-      ref: m,
-      className: y,
-      style: f,
-      labelStyle: k,
+      disabled: o,
+      value: r,
+      name: i,
+      state: d,
+      stateMessage: u,
+      checkboxValue: m,
+      id: b,
+      labelText: h,
+      children: y,
+      onChange: k,
+      checkArray: f,
+      ref: g,
+      className: x,
+      style: v,
+      labelStyle: p,
+      icon: A,
+      showIcon: C,
+      onIconClick: N,
     } = n,
-    x = e(n, [
+    j = e(n, [
       "disabled",
       "value",
       "name",
+      "state",
+      "stateMessage",
       "checkboxValue",
       "id",
       "labelText",
@@ -32,65 +41,88 @@ const s = (n) => {
       "className",
       "style",
       "labelStyle",
+      "icon",
+      "showIcon",
+      "onIconClick",
     ]),
-    A = Array.isArray(h) ? h : i,
-    [p, v] = a(A);
-  r(() => {
-    v(Array.isArray(h) ? h : i);
-  }, [i, h]);
-  return l.createElement(
+    I = Array.isArray(f) ? f : m,
+    [w, E] = l(I);
+  s(() => {
+    E(Array.isArray(f) ? f : m);
+  }, [m, f]);
+  const V = n.icon;
+  return a.createElement(
     "label",
     {
-      htmlFor: o,
+      htmlFor: b,
       className:
-        "nitrozen-checkbox-container" +
-        (s ? " nitrozen-checkbox-container-disabled" : ""),
-      style: null != k ? k : {},
+        "n-checkbox-container" + (o ? " n-checkbox-container-disabled" : ""),
+      style: null != p ? p : {},
     },
-    l.createElement(
+    C && A && a.createElement(V, { className: "social-icon", onClick: N }),
+    a.createElement(
       "input",
       Object.assign(
         {
-          id: o,
+          id: b,
           type: "checkbox",
           onChange: (e) => {
-            if (Array.isArray(p))
-              if (null == p ? void 0 : p.includes(i)) {
-                const e = p.filter((e) => e !== i);
-                v([...e]), b([...e]);
-              } else v([...p, e.target.value]), b([...p, e.target.value]);
-            else v(!p), b(!i);
+            if (Array.isArray(w))
+              if (null == w ? void 0 : w.includes(m)) {
+                const e = w.filter((e) => e !== m);
+                E([...e]), k([...e]);
+              } else E([...w, e.target.value]), k([...w, e.target.value]);
+            else E(!w), k(!m);
           },
-          value: i || t,
-          checked: Array.isArray(p)
-            ? null == p
+          value: m || r,
+          checked: Array.isArray(w)
+            ? null == w
               ? void 0
-              : p.includes(i)
-            : !!p,
-          disabled: s,
+              : w.includes(m)
+            : !!w,
+          disabled: o,
           ref: null == n ? void 0 : n.ref,
-          className: null != y ? y : "",
-          style: null != f ? f : {},
+          name: n.name,
+          className: null != x ? x : "",
+          style: null != v ? v : {},
         },
-        x
+        j
       )
     ),
-    d,
-    u,
-    l.createElement("span", { className: "nitrozen-checkbox" })
+    h,
+    y,
+    a.createElement("span", {
+      className: c({
+        "n-checkbox": !0,
+        "success-state": "success" == d,
+        "warning-state": "warning" == d,
+        "error-state": "error" == d,
+      }),
+    }),
+    a.createElement(t, {
+      className: "n-checkbox-validation",
+      validationState: d,
+      label: u,
+      isHidden: null == d,
+    })
   );
 };
-s.defaultProps = {
+o.defaultProps = {
   disabled: !1,
   value: "",
   name: "",
   checkboxValue: null,
-  id: `nitrozen-dialog-${n()}`,
+  state: null,
+  stateMessage: "Your validation message",
+  id: `n-dialog-${n()}`,
   labelText: "",
   children: null,
+  icon: null,
+  showIcon: !1,
   onChange: () => {},
+  onIconClick: () => {},
   checkArray: null,
   ref: null,
 };
-export { s as default };
+export { o as default };
 //# sourceMappingURL=Checkbox.js.map

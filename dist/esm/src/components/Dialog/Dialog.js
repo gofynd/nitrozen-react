@@ -1,10 +1,10 @@
 import { __rest as e } from "../../../node_modules/tslib/tslib.es6.js";
 import t from "react";
 import l from "../Button/Button.js";
-import o from "../../utils/uuids.js";
+import i from "../../utils/uuids.js";
 import "./Dialog.scss.js";
-import { useOutsideClick as i } from "../../utils/useOutsideClick.js";
-const n = (o) => {
+import { useOutsideClick as o } from "../../utils/useOutsideClick.js";
+const n = (i) => {
   const {
       id: n,
       title: a,
@@ -21,8 +21,8 @@ const n = (o) => {
       className: v,
       style: f,
       closeHandle: h,
-    } = o,
-    E = e(o, [
+    } = i,
+    E = e(i, [
       "id",
       "title",
       "DialogIcon",
@@ -45,7 +45,7 @@ const n = (o) => {
     L = () => {
       null == h || h();
     },
-    j = i(L);
+    j = o(L);
   return t.createElement(
     t.Fragment,
     null,
@@ -92,7 +92,6 @@ const n = (o) => {
                     {
                       theme: `${r || "primary"}`,
                       rounded: !1,
-                      stroke: !0,
                       className: "nitrozen-dialog-footer-button-margin",
                       onClick: () => {
                         b && b(), L();
@@ -134,7 +133,7 @@ const n = (o) => {
   );
 };
 n.defaultProps = {
-  id: `nitrozen-dialog-${o()}`,
+  id: `nitrozen-dialog-${i()}`,
   title: "",
   theme: null,
   children: null,

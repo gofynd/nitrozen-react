@@ -11,10 +11,7 @@ declare const _default: ComponentMeta<
       disabled: boolean;
       required: boolean;
       value: string;
-      search: boolean;
       showSearchIcon: boolean;
-      showTooltip: boolean;
-      tooltipText: string;
       id: string;
       showPrefix: boolean;
       showSuffix: boolean;
@@ -25,6 +22,10 @@ declare const _default: ComponentMeta<
       onBlur: () => void;
       onFocus: () => void;
       onClick: () => void;
+      state: string;
+      stateText: string;
+      onSuffixClick: () => void;
+      onPrefixClick: () => void;
     };
   }>
 >;
@@ -40,10 +41,7 @@ export declare const Textfield: ComponentStory<
       disabled: boolean;
       required: boolean;
       value: string;
-      search: boolean;
       showSearchIcon: boolean;
-      showTooltip: boolean;
-      tooltipText: string;
       id: string;
       showPrefix: boolean;
       showSuffix: boolean;
@@ -54,6 +52,10 @@ export declare const Textfield: ComponentStory<
       onBlur: () => void;
       onFocus: () => void;
       onClick: () => void;
+      state: string;
+      stateText: string;
+      onSuffixClick: () => void;
+      onPrefixClick: () => void;
     };
   }>
 >;
@@ -68,10 +70,7 @@ export declare const Textarea: ComponentStory<
       disabled: boolean;
       required: boolean;
       value: string;
-      search: boolean;
       showSearchIcon: boolean;
-      showTooltip: boolean;
-      tooltipText: string;
       id: string;
       showPrefix: boolean;
       showSuffix: boolean;
@@ -82,7 +81,10 @@ export declare const Textarea: ComponentStory<
       onBlur: () => void;
       onFocus: () => void;
       onClick: () => void;
+      state: string;
+      stateText: string;
+      onSuffixClick: () => void;
+      onPrefixClick: () => void;
     };
   }>
 >;
-export declare const TextfieldValidation: () => JSX.Element;

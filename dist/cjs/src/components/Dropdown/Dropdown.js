@@ -2,52 +2,54 @@
 var e = require("react"),
   t = require("../../utils/uuids.js"),
   l = require("../Tooltip/Tooltip.js"),
-  n = require("../Checkbox/Checkbox.js"),
-  a = require("../../assets/svg-components/Action/index.js"),
-  o = require("../../assets/svg-components/Content/index.js"),
-  i = require("../../assets/svg-components/Hardware/index.js");
-function r(e) {
+  a = require("../Checkbox/Checkbox.js"),
+  n = require("../Validation/Validation.js");
+require("./Dropdown.scss.js");
+var o = require("../../assets/svg-components/Action/index.js"),
+  i = require("../../assets/svg-components/Content/index.js"),
+  d = require("../../assets/svg-components/Hardware/index.js");
+function s(e) {
   return e && "object" == typeof e && "default" in e ? e : { default: e };
 }
-var d = r(e);
+var r = s(e);
 const u = { text: "Select All", value: "all" },
-  s = (t) => {
-    var r;
-    const s = e.useRef(null),
-      c = e.useRef(null),
-      [p, m] = e.useState(!1),
-      [v, f] = e.useState({ height: null, width: null }),
-      [h, g] = e.useState(!1),
-      [b, E] = e.useState(""),
-      [z, w] = e.useState(),
-      [x, N] = e.useState([]),
-      [S, C] = e.useState(),
-      [$, k] = e.useState(),
+  c = (t) => {
+    var s;
+    const c = e.useRef(null),
+      p = e.useRef(null),
+      [m, v] = e.useState(!1),
+      [f, h] = e.useState({ height: null, width: null }),
+      [g, b] = e.useState(!1),
+      [E, x] = e.useState(""),
+      [w, S] = e.useState(),
+      [N, $] = e.useState([]),
+      [C, k] = e.useState(),
       [y, A] = e.useState(),
-      [L, q] = e.useState(t.enableSelectAll || !1);
-    function j(e) {
-      const t = s.current;
-      t && !t.contains(e.target) && m(!1);
-    }
+      [L, q] = e.useState(),
+      [j, H] = e.useState(t.enableSelectAll || !1);
     function G(e) {
-      9 === e.keyCode && p && (e.preventDefault(), e.stopPropagation(), m(!1));
+      const t = c.current;
+      t && !t.contains(e.target) && v(!1);
     }
-    function H() {
+    function T(e) {
+      9 === e.keyCode && m && (e.preventDefault(), e.stopPropagation(), v(!1));
+    }
+    function z() {
       var e, l;
       if (t.multiple) {
-        if (S) return `All ${x.length} ${t.label} selected`;
+        if (C) return `All ${N.length} ${t.label} selected`;
         let e = [];
-        const n = {};
+        const a = {};
         return (
-          t.value && E(""),
-          x.length
-            ? (x.forEach((e) => {
-                n[e] || (n[e] = !0);
+          t.value && x(""),
+          N.length
+            ? (N.forEach((e) => {
+                a[e] || (a[e] = !0);
               }),
               null === (l = t.items) ||
                 void 0 === l ||
                 l.forEach((t) => {
-                  n[t.value] && e.push(t.text);
+                  a[t.value] && e.push(t.text);
                 }),
               (e = [...new Set(e)]),
               `${e.join(", ")}`)
@@ -61,39 +63,39 @@ const u = { text: "Select All", value: "all" },
         (null === (e = t.items) || void 0 === e ? void 0 : e.length)
       ) {
         const e = t.items.find((e) => e.value == t.value);
-        A(e), E((null == y ? void 0 : y.text) ? y.text : "");
+        q(e), x((null == L ? void 0 : L.text) ? L.text : "");
       }
-      return (null == y ? void 0 : y.text)
-        ? y.text
+      return (null == L ? void 0 : L.text)
+        ? L.text
         : t.label
         ? t.placeholder || `Choose ${t.label}`
         : t.placeholder
         ? t.placeholder
         : "";
     }
-    function O() {
-      const e = null == s ? void 0 : s.current;
+    function D() {
+      const e = null == c ? void 0 : c.current;
       if (!e) return;
       const t = e.getBoundingClientRect(),
-        l = (v.height ? v.height : 0) - t.top - e.offsetHeight,
-        n = e.children[1].offsetHeight || 0;
-      g(!(n < l));
+        l = (f.height ? f.height : 0) - t.top - e.offsetHeight,
+        a = e.children[1].offsetHeight || 0;
+      b(!(a < l));
     }
-    function P(e = !1) {
+    function O(e = !1) {
       const l = t.items ? [...t.items] : [];
-      if (t.multiple && L) {
-        const e = x.length === D(l).length && L;
-        C(e), k(e);
+      if (t.multiple && j) {
+        const e = N.length === P(l).length && j;
+        k(e), A(e);
       }
     }
-    function D(e) {
+    function P(e) {
       return e
         .filter(function (e) {
           return !e.isGroupLabel;
         })
         .map((e) => e.value);
     }
-    function R() {
+    function V() {
       const e = Math.max(
           document.documentElement.clientWidth,
           window.innerWidth || 0
@@ -102,170 +104,177 @@ const u = { text: "Select All", value: "all" },
           document.documentElement.clientHeight,
           window.innerHeight || 0
         );
-      f({ width: e, height: t });
+      h({ width: e, height: t });
     }
-    function I(e, l, n) {
-      var a;
+    function R(e, l, a) {
+      var n;
       l.isGroupLabel ||
         (t.multiple
           ? "all" === e
-            ? (N($ ? [] : D(t.items)), k(!$), n.stopPropagation())
-            : (x.includes(l.value)
-                ? N((e) => e.filter((e) => e !== l.value))
-                : N([...x, l.value]),
-              n.stopPropagation(),
-              k(S))
-          : (A(l),
-            l.text && E(l.text),
-            null === (a = t.onChange) || void 0 === a || a.call(t, l.value)));
+            ? ($(y ? [] : P(t.items)), A(!y), a.stopPropagation())
+            : (N.includes(l.value)
+                ? $((e) => e.filter((e) => e !== l.value))
+                : $([...N, l.value]),
+              a.stopPropagation(),
+              A(C))
+          : (q(l),
+            l.text && x(l.text),
+            null === (n = t.onChange) || void 0 === n || n.call(t, l.value)));
     }
-    function M() {
+    function I() {
       var e;
-      null === (e = t.onChange) || void 0 === e || e.call(t, x), w(H());
+      null === (e = t.onChange) || void 0 === e || e.call(t, N), S(z());
     }
     return (
       e.useEffect(() => {
         var e;
         if (
-          (R(),
+          (V(),
           "undefined" != typeof document &&
-            (document.addEventListener("click", j),
-            document.addEventListener("keydown", G)),
+            (document.addEventListener("click", G),
+            document.addEventListener("keydown", T)),
           "undefined" != typeof window &&
-            (window.addEventListener("resize", R),
-            window.addEventListener("scroll", R)),
+            (window.addEventListener("resize", V),
+            window.addEventListener("scroll", V)),
           t.multiple)
         )
           t.value &&
-            (N(Array.isArray(t.value) ? [...t.value] : [t.value]),
-            E(""),
-            P(!0));
-        else if ((q(!1), t.value)) {
+            ($(Array.isArray(t.value) ? [...t.value] : [t.value]),
+            x(""),
+            O(!0));
+        else if ((H(!1), t.value)) {
           const l =
             null === (e = t.items) || void 0 === e
               ? void 0
               : e.find((e) => e.value === t.value);
-          E((null == l ? void 0 : l.text) ? l.text : ""), N([t.value]);
+          x((null == l ? void 0 : l.text) ? l.text : ""), $([t.value]);
         }
       }, []),
       e.useEffect(() => {
-        t.multiple && t.onChange && t.onChange(x), w(H());
-      }, [x, y]),
+        t.multiple && t.onChange && t.onChange(N), S(z());
+      }, [N, L]),
       e.useEffect(() => {
-        O();
-      }, [v]),
-      d.default.createElement(
+        D();
+      }, [f]),
+      r.default.createElement(
         "div",
         {
           id: null == t ? void 0 : t.id,
-          className: `nitrozen-dropdown-container ${
-            null == t ? void 0 : t.className
+          className: `n-dropdown-container ${t.className} ${
+            t.disabled ? "disabled" : ""
           }`,
         },
         t.label &&
-          d.default.createElement(
+          r.default.createElement(
             "label",
-            { className: "nitrozen-dropdown-label" },
+            { className: "n-dropdown-label" },
             ` ${t.label} ${t.required ? " *" : ""} `,
             t.tooltip &&
-              d.default.createElement(l, {
+              r.default.createElement(l, {
                 "data-testid": "icon-component",
                 tooltipContent: t.tooltip,
                 position: "top",
-                icon: d.default.createElement(a.SvgInfo, {
+                icon: r.default.createElement(o.SvgInfo, {
                   style: { fontSize: "14px" },
                 }),
               })
           ),
-        d.default.createElement(
+        r.default.createElement(
           "div",
           {
-            className: "nitrozen-select-wrapper",
+            className: "n-select-wrapper",
             onClick: function () {
-              t.disabled || (m(!p), p && O());
+              t.disabled || (v(!m), m && D());
             },
           },
-          d.default.createElement(
+          r.default.createElement(
             "div",
             {
-              className: `nitrozen-select ${t.disabled ? "disabled" : ""} ${
-                p && "nitrozen-dropdown-open"
+              className: `n-select ${m && "n-dropdown-open"} ${
+                t.disabled ? "cursor-disabled" : ""
+              } ${
+                t.validationState
+                  ? `n-${t.validationState}-border`
+                  : "n-default-border"
               }`,
-              ref: s,
+              ref: c,
             },
-            d.default.createElement(
+            r.default.createElement(
               "div",
-              { className: "nitrozen-select__trigger" },
+              {
+                className:
+                  "n-select__trigger " + (t.disabled ? "cursor-disabled" : ""),
+              },
               t.searchable && !t.disabled
-                ? d.default.createElement(
+                ? r.default.createElement(
                     "span",
-                    { className: "nitrozen-searchable-input-container" },
-                    d.default.createElement("input", {
+                    { className: "n-searchable-input-container" },
+                    r.default.createElement("input", {
                       "data-testid": "dropdown-search",
                       type: "search",
-                      value: b,
+                      value: E,
                       onChange: function (e) {
                         var l;
-                        m(!0), E(e.target.value);
-                        const n = { id: t.id, text: e.target.value };
-                        b || P(),
+                        v(!0), x(e.target.value);
+                        const a = { id: t.id, text: e.target.value };
+                        E || O(),
                           null === (l = t.onSearchInputChange) ||
                             void 0 === l ||
-                            l.call(t, n),
-                          R();
+                            l.call(t, a),
+                          V();
                       },
                       placeholder:
-                        t.enableSelectAll && x.length
-                          ? x.length === D(null == t ? void 0 : t.items).length
+                        t.enableSelectAll && N.length
+                          ? N.length === P(null == t ? void 0 : t.items).length
                             ? `All ${t.label}(s) selected`
-                            : `${x.length} ${t.label}(s) selected`
+                            : `${N.length} ${t.label}(s) selected`
                           : t.placeholder || `Search ${t.label}`,
                     })
                   )
                 : t.disabled
-                ? d.default.createElement("span", null, "Disabled")
-                : d.default.createElement("span", null, z),
-              d.default.createElement(
+                ? r.default.createElement("span", null, "Disabled")
+                : r.default.createElement("span", null, w),
+              r.default.createElement(
                 "div",
-                { className: "nitrozen-dropdown-arrow" },
-                d.default.createElement(i.SvgKeyboardArrowDown, {
+                { className: "n-dropdown-arrow" },
+                r.default.createElement(d.SvgKeyboardArrowDown, {
                   style: { width: "20px", height: "20px" },
                 })
               )
             ),
-            d.default.createElement(
+            r.default.createElement(
               "div",
               {
-                className: `nitrozen-options ${h && "nitrozen-dropup"}`,
-                ref: c,
+                className: `n-options ${g && "n-dropup"}`,
+                ref: p,
                 "data-testid": "dropdown-scroll",
                 onScroll: function (e) {
                   var l;
-                  const n = null == c ? void 0 : c.current;
-                  null === (l = t.onScroll) || void 0 === l || l.call(t, n);
+                  const a = null == p ? void 0 : p.current;
+                  null === (l = t.onScroll) || void 0 === l || l.call(t, a);
                 },
               },
-              L &&
-                !b &&
-                d.default.createElement(
+              j &&
+                !E &&
+                r.default.createElement(
                   "span",
                   {
-                    className: "nitrozen-option ripple",
+                    className: "n-option ripple",
                     onClick: (e) => {
-                      I("all", u, e);
+                      R("all", u, e);
                     },
                   },
-                  d.default.createElement(
+                  r.default.createElement(
                     "div",
-                    { className: "nitrozen-option-container" },
-                    d.default.createElement(
-                      n,
-                      { checkboxValue: $, value: $, onChange: M },
-                      d.default.createElement(
+                    { className: "n-option-container" },
+                    r.default.createElement(
+                      a,
+                      { checkboxValue: y, value: y, onChange: I },
+                      r.default.createElement(
                         "span",
                         {
-                          className: `nitrozen-option-image ${
-                            $ && "nitrozen-dropdown-multicheckbox-selected"
+                          className: `n-option-image n-icon-padding ${
+                            y && "n-dropdown-multicheckbox-selected"
                           }`,
                         },
                         "All"
@@ -273,53 +282,53 @@ const u = { text: "Select All", value: "all" },
                     )
                   )
                 ),
-              L &&
-                !b &&
-                d.default.createElement("div", {
+              j &&
+                !E &&
+                r.default.createElement("div", {
                   className: "horizantal-divider",
                 }),
               t.items &&
                 t.items.length > 0 &&
-                (null === (r = null == t ? void 0 : t.items) || void 0 === r
+                (null === (s = null == t ? void 0 : t.items) || void 0 === s
                   ? void 0
-                  : r.map((e, l) => {
-                      var a;
-                      return d.default.createElement(
+                  : s.map((e, l) => {
+                      var n;
+                      return r.default.createElement(
                         "span",
                         {
                           key: l,
                           "data-value": e.value,
-                          className: `nitrozen-option ripple ${
-                            e === y && "selected"
+                          className: `n-option ripple ${
+                            e === L && "selected"
                           } ${
                             (null == e ? void 0 : e.isGroupLabel) &&
-                            "nitrozen-option-group-label"
+                            "n-option-group-label"
                           }`,
-                          onClick: (t) => I(l, e, t),
+                          onClick: (t) => R(l, e, t),
                         },
-                        d.default.createElement(
+                        r.default.createElement(
                           "div",
-                          { className: "nitrozen-option-container" },
+                          { className: "n-option-container" },
                           t.multiple && !(null == e ? void 0 : e.isGroupLabel)
-                            ? d.default.createElement(
-                                n,
+                            ? r.default.createElement(
+                                a,
                                 {
                                   checkboxValue: e.value,
-                                  checkArray: [...x],
-                                  onChange: M,
+                                  checkArray: [...N],
+                                  onChange: I,
                                   value: e.value,
                                 },
-                                d.default.createElement(
+                                r.default.createElement(
                                   "span",
                                   {
-                                    className: `nitrozen-option-image ${
-                                      x.includes(e.value) &&
-                                      "nitrozen-dropdown-multicheckbox-selected"
-                                    }`,
+                                    className: `n-option-image ${
+                                      N.includes(e.value) &&
+                                      "n-dropdown-multicheckbox-selected"
+                                    } n-icon-padding`,
                                   },
                                   e.logo &&
-                                    d.default.createElement("img", {
-                                      className: "nitrozen-option-logo",
+                                    r.default.createElement("img", {
+                                      className: "n-option-logo",
                                       src: e.logo,
                                       alt: "logo",
                                     }),
@@ -327,23 +336,23 @@ const u = { text: "Select All", value: "all" },
                                   e.text
                                 )
                               )
-                            : d.default.createElement(
+                            : r.default.createElement(
                                 "span",
                                 {
                                   className:
-                                    "nitrozen-option-image " +
-                                    ((null === (a = t.items) || void 0 === a
+                                    "n-option-image " +
+                                    ((null === (n = t.items) || void 0 === n
                                       ? void 0
-                                      : a.find((e) =>
+                                      : n.find((e) =>
                                           null == e ? void 0 : e.isGroupLabel
                                         )) &&
                                     !(null == e ? void 0 : e.isGroupLabel)
-                                      ? "nitrozen-option-child-label"
+                                      ? "n-option-child-label"
                                       : ""),
                                 },
                                 e.logo &&
-                                  d.default.createElement("img", {
-                                    className: "nitrozen-option-logo",
+                                  r.default.createElement("img", {
+                                    className: "n-option-logo",
                                     src: e.logo,
                                     alt: "logo",
                                   }),
@@ -355,49 +364,61 @@ const u = { text: "Select All", value: "all" },
               t.searchable &&
                 t.items &&
                 0 === t.items.length &&
-                d.default.createElement(
+                r.default.createElement(
                   "span",
-                  { className: "nitrozen-option" },
+                  { className: "n-option" },
                   t.addOption &&
-                    d.default.createElement(
+                    r.default.createElement(
                       "div",
-                      { className: "nitrozen-option-container" },
+                      { className: "n-option-container" },
                       "No ",
                       t.label,
                       " Found"
                     ),
                   t.addOption &&
-                    (null == b ? void 0 : b.length) > 0 &&
-                    d.default.createElement(
+                    (null == E ? void 0 : E.length) > 0 &&
+                    r.default.createElement(
                       "div",
-                      { className: "nitrozen-option-container" },
-                      d.default.createElement(
+                      { className: "n-option-container" },
+                      r.default.createElement(
                         "div",
                         {
                           "data-testid": "add-option",
-                          className: "nitrozen-dropdown-empty",
+                          className: "n-dropdown-empty",
                           onClick: function () {
                             var e;
-                            const l = b;
-                            E(""),
+                            const l = E;
+                            x(""),
                               null === (e = t.addOptionHandler) ||
                                 void 0 === e ||
                                 e.call(t, l),
-                              R();
+                              V();
                           },
                         },
-                        d.default.createElement(o.SvgAdd, null),
-                        d.default.createElement("p", null, "Add ", b)
+                        r.default.createElement(i.SvgAdd, null),
+                        r.default.createElement("p", null, "Add ", E)
                       )
                     )
                 )
             )
           )
-        )
+        ),
+        t.validationState &&
+          r.default.createElement(n, {
+            isHidden: !t.validationState,
+            label: t.validationLabel,
+            validationState: t.validationState,
+          }),
+        t.helperText &&
+          r.default.createElement(
+            "div",
+            { className: " n-input-underinfo n-helper-text" },
+            t.helperText
+          )
       )
     );
   };
-(s.defaultProps = {
+(c.defaultProps = {
   id: `nitrozen-dropdown-${t()}`,
   items: [],
   disabled: !1,
@@ -409,6 +430,10 @@ const u = { text: "Select All", value: "all" },
   tooltip: null,
   addOption: !1,
   enableSelectAll: !1,
+  helperText: "",
+  className: "",
+  validationState: "",
+  validationLabel: "",
 }),
-  (module.exports = s);
+  (module.exports = c);
 //# sourceMappingURL=Dropdown.js.map

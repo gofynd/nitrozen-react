@@ -1,16 +1,17 @@
 "use strict";
 var e = require("../../../node_modules/tslib/tslib.es6.js"),
-  t = require("react"),
-  n = require("../../assets/svg-components/Navigation/index.js");
-function l(e) {
+  t = require("react");
+require("./Chip.scss.js");
+var n = require("../../assets/svg-components/Navigation/index.js");
+function s(e) {
   return e && "object" == typeof e && "default" in e ? e : { default: e };
 }
-var s = l(t);
-const a = (l) => {
+var a = s(t);
+const l = (s) => {
   const {
-      deletable: a,
-      disabled: o,
-      isRounded: i,
+      deletable: l,
+      disabled: i,
+      isRounded: o,
       fontWeight: c,
       state: r,
       children: d,
@@ -21,8 +22,8 @@ const a = (l) => {
       icon: m,
       iconStyle: g,
       style: y,
-    } = l,
-    h = e.__rest(l, [
+    } = s,
+    h = e.__rest(s, [
       "deletable",
       "disabled",
       "isRounded",
@@ -38,38 +39,38 @@ const a = (l) => {
       "style",
     ]),
     [v, C] = t.useState(!1),
-    k = l.icon,
-    j = {
-      color: "secondary" === l.state ? "#2e31be" : "#8F8F8F",
+    j = s.icon,
+    k = {
+      color: "secondary" === s.state ? "#2e31be" : "#8F8F8F",
       fontSize: "16px",
     },
     E = t.useCallback(
       (e) => {
-        l.disabled ||
+        s.disabled ||
           (e.stopPropagation(),
-          null == u || u({ event: e, chipProps: l }),
-          a && b && (C(!v), b({ event: e, chipProps: l })));
+          null == u || u({ event: e, chipProps: s }),
+          l && b && (C(!v), b({ event: e, chipProps: s })));
       },
-      [l]
+      [s]
     ),
     P = t.useCallback(
       (e) => {
-        null == p || p({ event: e, chipProps: l });
+        null == p || p({ event: e, chipProps: s });
       },
-      [l]
+      [s]
     ),
     z = t.useCallback(
       (e) => {
-        l.disabled ||
+        s.disabled ||
           (e.stopPropagation(),
           C(!v),
-          null == b || b({ event: e, chipProps: l }));
+          null == b || b({ event: e, chipProps: s }));
       },
-      [l]
+      [s]
     );
   return v
-    ? s.default.createElement(s.default.Fragment, null)
-    : s.default.createElement(
+    ? a.default.createElement(a.default.Fragment, null)
+    : a.default.createElement(
         "div",
         Object.assign(
           {
@@ -79,8 +80,8 @@ const a = (l) => {
                 fontWeight: (function () {
                   let e;
                   return (
-                    (e = "secondary" === l.state ? 600 : 400),
-                    (e = l.fontWeight ? l.fontWeight : e),
+                    (e = "secondary" === s.state ? 600 : 400),
+                    (e = s.fontWeight ? s.fontWeight : e),
                     e
                   );
                 })(),
@@ -89,8 +90,8 @@ const a = (l) => {
             ),
             className: `nitrozen-chip ${(function () {
               let e = "";
-              o && (e += "nitrozen-disabled ");
-              i && (e += "rounded ");
+              i && (e += "nitrozen-disabled ");
+              o && (e += "rounded ");
               "secondary" === r && (e += "nitrozen-chip-secondary ");
               f && (e += f + " ");
               return e;
@@ -98,35 +99,35 @@ const a = (l) => {
           },
           h
         ),
-        s.default.createElement("span", null, d),
-        a &&
+        a.default.createElement("span", null, d),
+        l &&
           !m &&
-          s.default.createElement(
+          a.default.createElement(
             "span",
             {
               "data-testid": "deletable-cross",
               className: "nitrozen-icon",
               onClick: z,
             },
-            s.default.createElement(n.SvgClose, {
-              style: Object.assign(Object.assign({}, j), g),
+            a.default.createElement(n.SvgClose, {
+              style: Object.assign(Object.assign({}, k), g),
             })
           ),
         m &&
-          s.default.createElement(
+          a.default.createElement(
             "span",
             {
               "data-testid": "prop-icon",
               className: "nitrozen-icon",
               onClick: E,
             },
-            s.default.createElement(k, {
-              style: Object.assign(Object.assign({}, j), g),
+            a.default.createElement(j, {
+              style: Object.assign(Object.assign({}, k), g),
             })
           )
       );
 };
-a.defaultProps = {
+l.defaultProps = {
   deletable: !1,
   disabled: !1,
   iconStyle: {},
@@ -134,6 +135,6 @@ a.defaultProps = {
   state: "primary",
   style: {},
 };
-var o = s.default.memo(a);
-module.exports = o;
+var i = a.default.memo(l);
+module.exports = i;
 //# sourceMappingURL=Chip.js.map

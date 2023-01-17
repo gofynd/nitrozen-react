@@ -8,11 +8,7 @@ export interface InputProps {
   disabled?: Boolean;
   required?: Boolean;
   value?: Number | string;
-  search?: Boolean;
   showSearchIcon?: Boolean;
-  showTooltip?: Boolean;
-  tooltipText?: string;
-  tooltipIcon?: React.ReactNode;
   id?: Number | string;
   name?: string;
   maxLength?: Number;
@@ -33,6 +29,15 @@ export interface InputProps {
   onClick?: React.MouseEventHandler<HTMLTextAreaElement | HTMLInputElement>;
   className?: string;
   style?: React.CSSProperties;
+  helperText?: string;
+  state?: "error" | "success" | "warning" | "default";
+  stateText?: string;
+  onSuffixClick?: React.MouseEventHandler<
+    HTMLTextAreaElement | HTMLInputElement
+  >;
+  onPrefixClick?: React.MouseEventHandler<
+    HTMLTextAreaElement | HTMLInputElement
+  >;
 }
 declare const _default: React.MemoExoticComponent<{
   (props: InputProps): JSX.Element;
@@ -44,10 +49,7 @@ declare const _default: React.MemoExoticComponent<{
     disabled: boolean;
     required: boolean;
     value: string;
-    search: boolean;
     showSearchIcon: boolean;
-    showTooltip: boolean;
-    tooltipText: string;
     id: string;
     showPrefix: boolean;
     showSuffix: boolean;
@@ -58,6 +60,10 @@ declare const _default: React.MemoExoticComponent<{
     onBlur: () => void;
     onFocus: () => void;
     onClick: () => void;
+    state: string;
+    stateText: string;
+    onSuffixClick: () => void;
+    onPrefixClick: () => void;
   };
 }>;
 export default _default;

@@ -2,18 +2,19 @@
 var e = require("../../../node_modules/tslib/tslib.es6.js"),
   t = require("react"),
   l = require("../Button/Button.js"),
-  a = require("../../utils/uuids.js"),
-  i = require("../../utils/useOutsideClick.js");
+  a = require("../../utils/uuids.js");
+require("./Dialog.scss.js");
+var i = require("../../utils/useOutsideClick.js");
 function n(e) {
   return e && "object" == typeof e && "default" in e ? e : { default: e };
 }
 var o = n(t);
-const r = (t) => {
+const s = (t) => {
   const {
       id: a,
       title: n,
-      DialogIcon: r,
-      theme: s,
+      DialogIcon: s,
+      theme: r,
       children: d,
       positiveButtonLabel: u,
       neutralButtonLabel: c,
@@ -49,7 +50,7 @@ const r = (t) => {
     L = () => {
       null == h || h();
     },
-    k = i.useOutsideClick(L);
+    j = i.useOutsideClick(L);
   return o.default.createElement(
     o.default.Fragment,
     null,
@@ -64,7 +65,7 @@ const r = (t) => {
             "div",
             Object.assign(
               {
-                ref: k,
+                ref: j,
                 className: `nitrozen-dialog ${null != p ? p : ""}`,
                 style: null != N ? N : {},
                 role: "dialog",
@@ -73,7 +74,7 @@ const r = (t) => {
               },
               E
             ),
-            null != r ? r : null,
+            null != s ? s : null,
             o.default.createElement(
               "header",
               { className: "nitrozen-dialog-header", id: "id + '_title'" },
@@ -94,9 +95,8 @@ const r = (t) => {
                   o.default.createElement(
                     l,
                     {
-                      theme: `${s || "primary"}`,
+                      theme: `${r || "primary"}`,
                       rounded: !1,
-                      stroke: !0,
                       className: "nitrozen-dialog-footer-button-margin",
                       onClick: () => {
                         b && b(), L();
@@ -108,7 +108,7 @@ const r = (t) => {
                   o.default.createElement(
                     l,
                     {
-                      theme: `${s || "primary"}`,
+                      theme: `${r || "primary"}`,
                       rounded: !1,
                       className: "nitrozen-dialog-footer-button-margin",
                       onClick: () => {
@@ -122,7 +122,7 @@ const r = (t) => {
                     l,
                     {
                       rounded: !1,
-                      theme: `${s || "primary"}`,
+                      theme: `${r || "primary"}`,
                       className: "nitrozen-dialog-footer-button-margin",
                       onClick: () => {
                         g && g(), L();
@@ -137,7 +137,7 @@ const r = (t) => {
       )
   );
 };
-(r.defaultProps = {
+(s.defaultProps = {
   id: `nitrozen-dialog-${a()}`,
   title: "",
   theme: null,
@@ -147,5 +147,5 @@ const r = (t) => {
   negativeButtonLabel: !1,
   isVisible: !1,
 }),
-  (module.exports = r);
+  (module.exports = s);
 //# sourceMappingURL=Dialog.js.map

@@ -4,11 +4,12 @@ var e = require("react"),
 function a(e) {
   return e && "object" == typeof e && "default" in e ? e : { default: e };
 }
-var n = a(e);
-const s = (a) => {
+require("./Toast.scss.js");
+var s = a(e);
+const r = (a) => {
   const {
-    destroy: s,
-    content: r,
+    destroy: r,
+    content: n,
     title: l,
     duration: o,
     id: i,
@@ -22,42 +23,42 @@ const s = (a) => {
     e.useEffect(() => {
       if (!o) return;
       const e = setTimeout(() => {
-        s();
+        r();
       }, o);
       return () => clearTimeout(e);
-    }, [s, o]),
-    n.default.createElement(
+    }, [r, o]),
+    s.default.createElement(
       "div",
       { style: { width: u }, id: i, className: `toast-wrapper ${m} ${f}` },
-      n.default.createElement(
+      s.default.createElement(
         "div",
         { className: `toast-header ${d ? "space-between" : c}` },
-        n.default.createElement("div", null, l),
+        s.default.createElement("div", null, l),
         d &&
-          n.default.createElement(
+          s.default.createElement(
             "div",
             { className: "undo-container" },
-            n.default.createElement("span", { className: "vertical-line" }),
-            n.default.createElement(
+            s.default.createElement("span", { className: "vertical-line" }),
+            s.default.createElement(
               "button",
-              { className: "cross-btn", onClick: s },
-              n.default.createElement(t.SvgUndo, {
+              { className: "cross-btn", onClick: r },
+              s.default.createElement(t.SvgUndo, {
                 style: { fontSize: "20px", marginRight: "5px" },
               }),
               " UNDO"
             )
           )
       ),
-      r && n.default.createElement("div", { className: "toast-body" }, r)
+      n && s.default.createElement("div", { className: "toast-body" }, n)
     )
   );
 };
-s.defaultProps = {
+r.defaultProps = {
   title: "Title",
   toastHeaderAlign: "center",
   toastWidth: "25rem",
   duration: 2500,
 };
-var r = e.memo(s, (e, t) => e.id === t.id);
-module.exports = r;
+var n = e.memo(r, (e, t) => e.id === t.id);
+module.exports = n;
 //# sourceMappingURL=Toast.js.map

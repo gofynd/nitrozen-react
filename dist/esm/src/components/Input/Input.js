@@ -1,48 +1,48 @@
 import { __rest as e } from "../../../node_modules/tslib/tslib.es6.js";
-import t, { useState as n, useRef as o, useEffect as a } from "react";
+import n, { useState as t, useRef as a, useEffect as r } from "react";
 import "./Input.scss.js";
-import l from "./InputPrefix.js";
-import r from "./InputSuffix.js";
-import s from "../../utils/uuids.js";
-import i from "../Tooltip/Tooltip.js";
-import {
-  SvgHelpOutline as c,
-  SvgSearch as u,
-} from "../../assets/svg-components/Action/index.js";
-const m = (s) => {
+import o from "./InputPrefix.js";
+import s from "./InputSuffix.js";
+import l from "../../utils/uuids.js";
+import { SvgSearch as i } from "../../assets/svg-components/Action/index.js";
+import c from "../../assets/error-badge.svg.js";
+import u from "../../assets/warning-badge.svg.js";
+import m from "../../assets/tick-green-badge.svg.js";
+const f = (l) => {
   const {
-      autoComplete: m,
+      autoComplete: f,
       type: p,
-      label: f,
-      placeholder: d,
+      label: d,
+      placeholder: x,
       disabled: h,
-      required: x,
-      value: g,
-      search: b,
-      showSearchIcon: y,
-      showTooltip: E,
-      tooltipText: v,
-      tooltipIcon: C,
-      id: N,
-      name: w,
-      maxLength: $,
-      showPrefix: z,
-      showSuffix: I,
-      prefix: K,
+      required: g,
+      value: v,
+      showSearchIcon: b,
+      id: C,
+      name: $,
+      maxLength: y,
+      showPrefix: E,
+      showSuffix: k,
+      prefix: N,
       suffix: P,
-      autofocus: j,
-      min: F,
+      autofocus: w,
+      min: j,
       max: S,
-      onKeyUp: T,
-      onKeyPress: k,
-      onChange: B,
-      onBlur: L,
-      onFocus: U,
-      onClick: q,
-      className: O,
-      style: A,
-    } = s,
-    _ = e(s, [
+      onKeyUp: K,
+      onKeyPress: I,
+      onChange: F,
+      onBlur: B,
+      onFocus: T,
+      onClick: U,
+      className: L,
+      style: q,
+      helperText: O,
+      state: A,
+      stateText: _,
+      onPrefixClick: z,
+      onSuffixClick: D,
+    } = l,
+    G = e(l, [
       "autoComplete",
       "type",
       "label",
@@ -50,11 +50,7 @@ const m = (s) => {
       "disabled",
       "required",
       "value",
-      "search",
       "showSearchIcon",
-      "showTooltip",
-      "tooltipText",
-      "tooltipIcon",
       "id",
       "name",
       "maxLength",
@@ -73,162 +69,207 @@ const m = (s) => {
       "onClick",
       "className",
       "style",
+      "helperText",
+      "state",
+      "stateText",
+      "onPrefixClick",
+      "onSuffixClick",
     ]),
-    [D, G] = n(!1),
-    [H, J] = n(g || ""),
-    M = o(null);
-  function Q(e) {
-    "search" === p && G(!0), J(e.target.value), null == B || B(e);
+    [H, J] = t(v || ""),
+    M = a(null),
+    [Q, R] = t(""),
+    [V, W] = t("");
+  function X(e) {
+    J(e.target.value), null == F || F(e);
+  }
+  function Y() {
+    R("n-focused-label" + (E || b ? "-prefixed" : "")), W("n-border-focused");
   }
   return (
-    a(() => {
+    r(() => {
       var e;
-      s.autofocus &&
+      l.autofocus &&
         (null === (e = null == M ? void 0 : M.current) ||
           void 0 === e ||
-          e.focus());
+          e.focus()),
+        (v || x) && Y();
     }, []),
-    a(() => {
-      J(g || "");
-    }, [g]),
-    t.createElement(
-      t.Fragment,
+    r(() => {
+      J(v || "");
+    }, [v]),
+    n.createElement(
+      n.Fragment,
       null,
-      t.createElement(
+      n.createElement(
         "div",
-        { className: "nitrozen-form-input" },
-        t.createElement(
+        { className: "n-form-input" },
+        n.createElement(
           "div",
-          { className: "n-input-label-container" },
-          f &&
-            t.createElement(
+          {
+            className: `n-input-label-container ${
+              E || b ? "n-input-label-prefixed" : ""
+            } ${Q}`,
+          },
+          d &&
+            n.createElement(
               "label",
               { className: "n-input-label" },
-              t.createElement(
-                t.Fragment,
-                null,
-                f,
-                " ",
-                x ? " *" : "",
-                E &&
-                  t.createElement(
-                    "span",
-                    { className: "nitrozen-tooltip-icon" },
-                    v &&
-                      t.createElement(i, {
-                        tooltipContent: v,
-                        icon:
-                          C ||
-                          t.createElement(c, { style: { fontSize: "14px" } }),
-                        position: "top",
-                      })
-                  )
-              )
-            ),
-          $ &&
-            t.createElement(
-              "label",
-              { className: "n-input-label n-input-maxLength" },
-              t.createElement(t.Fragment, null, length, "/", $)
+              n.createElement(n.Fragment, null, d, " ", g ? " *" : "")
             )
         ),
-        D &&
-          b &&
-          t.createElement(
-            "span",
-            { className: "nitrozen-loader-div" },
-            t.createElement("img", { src: "./../../assets/loader.gif" })
-          ),
-        t.createElement(
+        n.createElement(
           "div",
-          { className: "nitrozen-input-grp" },
-          y &&
-            t.createElement(
+          { className: "n-input-grp" },
+          b &&
+            n.createElement(
               "span",
-              { className: "nitrozen-search-icon" },
-              t.createElement(u, { className: "search-icon" })
+              { className: "n-search-icon" },
+              n.createElement(i, { className: "search-icon" })
             ),
-          z && t.createElement(l, { prefix: K }),
-          "textarea" !== p &&
-            t.createElement(
-              "input",
-              Object.assign(
-                {
-                  ref: M,
-                  className: `n-input input-text ${(function () {
-                    let e = "";
+          E &&
+            "textarea" !== p &&
+            n.createElement(o, { prefix: N, onPrefixClick: z }),
+          n.createElement(
+            "div",
+            {
+              className: `n-input-container ${V} ${(function () {
+                let e = "";
+                return A && (e = `n-${A}-border`), e;
+              })()}`,
+            },
+            "textarea" !== p &&
+              n.createElement(
+                "input",
+                Object.assign(
+                  {
+                    ref: M,
+                    className: `n-input ${(function () {
+                      let e = "";
+                      return (
+                        (e = `${e} ${
+                          b && "textarea" !== p
+                            ? "n-search-input-padding input-prefixed"
+                            : ""
+                        }`),
+                        (e = `${e} ${L || ""}`),
+                        E && k
+                          ? (e = `${e} input-contained`)
+                          : ((e = `${e} ${
+                              E ? "n-remove-left-border input-prefixed" : ""
+                            }`),
+                            (e = `${e} ${
+                              k ? "n-remove-right-border input-suffixed" : ""
+                            }`)),
+                        e
+                      );
+                    })()}`,
+                    onKeyUp: K,
+                    onChange: F,
+                    onBlur: function (e) {
+                      var n;
+                      (null === (n = M.current) || void 0 === n
+                        ? void 0
+                        : n.value) ||
+                        x ||
+                        (R(""), W("")),
+                        null == B || B(e);
+                    },
+                    onFocus: function (e) {
+                      Y(), null == T || T(e);
+                    },
+                    onClick: U,
+                    onKeyPress: I,
+                    value: H,
+                  },
+                  (function () {
+                    const e = {};
                     return (
-                      (e = `${e} ${y ? "nitrozen-search-input-padding" : ""}`),
-                      (e = `${e} ${z ? "nitrozen-remove-left-border" : ""}`),
-                      (e = `${e} ${I ? "nitrozen-remove-right-border" : ""}`),
-                      (e = `${e} ${O || ""}`),
+                      j && (e.min = j),
+                      S && (e.max = S),
+                      void 0 !== y && (e.maxLength = y),
+                      f && (e.autoComplete = f),
+                      C && (e.id = C),
+                      p && (e.type = p),
+                      h && (e.disabled = h),
+                      x && (e.placeholder = x),
+                      q && (e.style = q),
                       e
                     );
-                  })()}`,
-                  onKeyUp: T,
-                  onChange: B,
-                  onBlur: L,
-                  onFocus: U,
-                  onClick: q,
-                  onKeyPress: k,
-                  value: H,
-                },
-                (function () {
-                  const e = {};
-                  return (
-                    F && (e.min = F),
-                    S && (e.max = S),
-                    void 0 !== $ && (e.maxLength = $),
-                    p && (e.type = p),
-                    d && (e.placeholder = d),
-                    m && (e.autoComplete = m),
-                    N && (e.id = N),
-                    h && (e.disabled = h),
-                    A && (e.style = A),
-                    e
-                  );
-                })(),
-                { onInput: Q },
-                _
+                  })(),
+                  { onInput: X },
+                  G
+                )
+              ),
+            "textarea" === p &&
+              n.createElement(
+                "textarea",
+                Object.assign(
+                  {
+                    ref: M,
+                    onKeyUp: K,
+                    onChange: F,
+                    onBlur: B,
+                    onFocus: T,
+                    onClick: U,
+                    onKeyPress: I,
+                    className: `n-input input-text ${
+                      "textarea" === p && "n-input-textarea"
+                    }`,
+                  },
+                  (function () {
+                    const e = {};
+                    return (
+                      void 0 !== y && (e.maxLength = y),
+                      h && (e.disabled = h),
+                      x && (e.placeholder = x),
+                      q && (e.style = q),
+                      e
+                    );
+                  })(),
+                  { onInput: X, value: H },
+                  G
+                )
               )
-            ),
-          "textarea" === p &&
-            t.createElement(
-              "textarea",
-              Object.assign(
-                {
-                  ref: M,
-                  onKeyUp: T,
-                  onChange: B,
-                  onBlur: L,
-                  onFocus: U,
-                  onClick: q,
-                  onKeyPress: k,
-                  className: `n-input input-text ${
-                    "textarea" === p && "n-input-textarea"
-                  }`,
-                },
-                (function () {
-                  const e = {};
-                  return (
-                    void 0 !== $ && (e.maxLength = $),
-                    h && (e.disabled = h),
-                    d && (e.placeholder = d),
-                    A && (e.style = A),
-                    e
-                  );
-                })(),
-                { onInput: Q },
-                _
-              )
-            ),
-          I && t.createElement(r, { suffix: P })
+          ),
+          "textarea" !== p &&
+            k &&
+            n.createElement(s, { suffix: P, onSuffixClick: D })
+        ),
+        n.createElement(
+          "div",
+          { className: "n-input-underinfo" },
+          "default" !== A &&
+            (function (e) {
+              let t, a;
+              switch (A) {
+                case "error":
+                  (t = "n-field-error"), (a = c);
+                  break;
+                case "success":
+                  (t = "n-field-success"), (a = m);
+                  break;
+                case "warning":
+                  (t = "n-field-warning"), (a = u);
+              }
+              return n.createElement(
+                "div",
+                { className: `n-state-container ${t}` },
+                n.createElement(
+                  "div",
+                  { className: "n-svg-container" },
+                  " ",
+                  n.createElement("img", { src: a, alt: `${A} badge` })
+                ),
+                e
+              );
+            })(_),
+          O && n.createElement("span", { className: "n-helper-text" }, O)
         )
       )
     )
   );
 };
-m.defaultProps = {
+f.defaultProps = {
   autoComplete: "",
   type: "text",
   label: "",
@@ -236,11 +277,8 @@ m.defaultProps = {
   disabled: !1,
   required: !1,
   value: "",
-  search: !1,
   showSearchIcon: !1,
-  showTooltip: !1,
-  tooltipText: "",
-  id: `nitrozen-input${s()}`,
+  id: `n-input${l()}`,
   showPrefix: !1,
   showSuffix: !1,
   autofocus: !1,
@@ -250,7 +288,11 @@ m.defaultProps = {
   onBlur: () => {},
   onFocus: () => {},
   onClick: () => {},
+  state: "default",
+  stateText: "",
+  onSuffixClick: () => {},
+  onPrefixClick: () => {},
 };
-var p = t.memo(m);
+var p = n.memo(f);
 export { p as default };
 //# sourceMappingURL=Input.js.map

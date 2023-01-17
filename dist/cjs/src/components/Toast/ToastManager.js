@@ -7,7 +7,8 @@ var e = require("react"),
 function i(e) {
   return e && "object" == typeof e && "default" in e ? e : { default: e };
 }
-var n = i(e);
+require("./Toast.scss.js");
+var r = i(e);
 exports.ToastManager = class {
   constructor(e) {
     if (((this.toasts = []), "undefined" != typeof window)) {
@@ -38,7 +39,7 @@ exports.ToastManager = class {
   }
   render() {
     const e = this.toasts.map((e) =>
-      n.default.createElement(o, Object.assign({ key: e.id }, e))
+      r.default.createElement(o, Object.assign({ key: e.id }, e))
     );
     "undefined" != typeof window && this.containerRef && this.root.render(e);
   }

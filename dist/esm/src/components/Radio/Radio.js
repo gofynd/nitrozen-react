@@ -1,20 +1,27 @@
 import { __rest as e } from "../../../node_modules/tslib/tslib.es6.js";
 import a from "react";
-import l from "../../utils/uuids.js";
+import s from "../../utils/uuids.js";
 import "./Radio.scss.js";
-const t = (l) => {
+import l from "../Validation/Validation.js";
+import t from "../../../node_modules/classnames/index.js";
+const o = (s) => {
   const {
-      disabled: t,
-      name: s,
+      disabled: o,
+      name: n,
       value: i,
-      radioValue: n,
-      id: o,
+      radioValue: c,
+      id: r,
       labelText: d,
-      onChange: r,
-      className: m,
-      style: u,
-    } = l,
-    c = e(l, [
+      onChange: m,
+      className: u,
+      state: g,
+      stateMessage: b,
+      icon: p,
+      showIcon: h,
+      onIconClick: v,
+      style: C,
+    } = s,
+    f = e(s, [
       "disabled",
       "name",
       "value",
@@ -23,44 +30,75 @@ const t = (l) => {
       "labelText",
       "onChange",
       "className",
+      "state",
+      "stateMessage",
+      "icon",
+      "showIcon",
+      "onIconClick",
       "style",
-    ]);
+    ]),
+    k = s.icon;
   return a.createElement(
     "div",
     {
-      style: null != u ? u : {},
-      className: `nitrozen-radio-group ${null != m ? m : ""}`,
+      style: null != C ? C : {},
+      className: `n-radio-group ${null != u ? u : ""}`,
     },
+    h && p && a.createElement(k, { className: "social-icon", onClick: v }),
     a.createElement(
       "input",
       Object.assign(
         {
-          id: o,
+          id: r,
           type: "radio",
           onChange: (e) => {
-            null == r || r(e.target.value);
+            null == m || m(e.target.value);
           },
-          checked: i === n,
+          checked: i === c,
           value: i,
-          name: s,
-          disabled: t,
+          name: n,
+          disabled: o,
         },
-        c
+        f
       )
     ),
-    a.createElement("label", { htmlFor: o }, d)
+    a.createElement(
+      "label",
+      {
+        htmlFor: r,
+        className: t({
+          "success-state": "success" == g,
+          "warning-state": "warning" == g,
+          "error-state": "error" == g,
+        }),
+      },
+      d
+    ),
+    a.createElement(l, {
+      className: "n-checkbox-validation",
+      validationState: g,
+      label: b,
+      isHidden: null == g,
+    })
   );
 };
-t.defaultProps = {
+o.defaultProps = {
   disabled: !1,
   name: "",
   value: "",
   radioValue: "",
-  id: `nitrozen-radio-${l()}`,
+  id: `n-radio-${s()}`,
+  state: null,
+  stateMessage: "Your validation message",
   labelText: "",
   className: "",
   style: {},
+  icon: null,
+  showIcon: !1,
   onChange: () => {},
+  onIconClick: () => {
+    console.log("clicked");
+  },
 };
-export { t as default };
+export { o as default };
 //# sourceMappingURL=Radio.js.map

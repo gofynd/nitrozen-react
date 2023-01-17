@@ -1,5 +1,6 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: !0 });
+Object.defineProperty(exports, "__esModule", { value: !0 }),
+  require("./base/common.scss.js");
 var e = require("./components/Autocomplete/Autocomplete.js"),
   o = require("./components/Badge/Badge.js"),
   t = require("./components/Button/Button.js"),

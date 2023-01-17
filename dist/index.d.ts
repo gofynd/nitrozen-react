@@ -45,20 +45,21 @@ declare const _default$c: React.MemoExoticComponent<{
 
 interface ButtonProps {
   href?: string;
-  type?: "button" | "submit" | "reset";
   disabled?: boolean;
   rounded?: boolean;
-  link?: boolean;
+  state?: "positive" | "destructive" | "default";
   theme?: string;
+  as?: "div" | "span" | "default";
   size?: string;
   focused?: boolean;
   showProgress?: boolean;
-  stroke?: boolean;
+  fullWidth?: boolean;
   children: React.ReactNode;
   onClick?: React.MouseEventHandler<HTMLButtonElement | HTMLAnchorElement>;
   className?: string;
   id?: string;
   icon?: React.ReactNode;
+  iconRight?: React.ReactNode;
   name?: string;
   style?: React.CSSProperties;
 }
@@ -66,14 +67,14 @@ declare const _default$b: React.MemoExoticComponent<{
   (props: ButtonProps): JSX.Element;
   defaultProps: {
     href: null;
-    type: string;
     disabled: boolean;
     rounded: boolean;
     theme: string;
+    as: null;
     size: string;
     focused: boolean;
     showProgress: boolean;
-    stroke: null;
+    fullWidth: boolean;
     children: null;
     onClick: null;
     className: null;
@@ -108,6 +109,8 @@ interface CheckboxProps {
   disabled?: boolean;
   value?: any;
   name?: string;
+  state?: "error" | "success" | "warning";
+  stateMessage?: string;
   checkboxValue: string | number | boolean | Object;
   id?: string;
   labelText?: string;
@@ -118,6 +121,9 @@ interface CheckboxProps {
   className?: string;
   style?: React.CSSProperties;
   labelStyle?: React.CSSProperties;
+  icon?: React.ReactNode;
+  showIcon?: Boolean;
+  onIconClick?: Function;
 }
 declare const Checkbox: {
   (props: CheckboxProps): JSX.Element;
@@ -126,10 +132,15 @@ declare const Checkbox: {
     value: string;
     name: string;
     checkboxValue: null;
+    state: null;
+    stateMessage: string;
     id: string;
     labelText: string;
     children: null;
+    icon: null;
+    showIcon: boolean;
     onChange: () => void;
+    onIconClick: () => void;
     checkArray: null;
     ref: null;
   };
@@ -186,6 +197,9 @@ interface DropdownProps {
   onSearchInputChange?: Function;
   onScroll?: Function;
   className?: string;
+  helperText?: string;
+  validationState?: string;
+  validationLabel?: string;
 }
 declare const Dropdown: {
   (props: DropdownProps): JSX.Element;
@@ -201,23 +215,25 @@ declare const Dropdown: {
     tooltip: null;
     addOption: boolean;
     enableSelectAll: boolean;
+    helperText: string;
+    className: string;
+    validationState: string;
+    validationLabel: string;
   };
 };
 
 interface ValidationProps {
-  isValid: boolean;
+  validationState: string;
   isHidden?: boolean;
-  validLabel: string;
-  invalidLabel: string;
+  label: string;
   className?: string;
   style?: React.CSSProperties;
 }
 declare const _default$9: React.MemoExoticComponent<{
   (props: ValidationProps): JSX.Element;
   defaultProps: {
-    isValid: boolean;
-    validLabel: string;
-    invalidLabel: string;
+    validationState: string;
+    label: string;
     isHidden: boolean;
   };
 }>;
@@ -230,11 +246,7 @@ interface InputProps {
   disabled?: Boolean;
   required?: Boolean;
   value?: Number | string;
-  search?: Boolean;
   showSearchIcon?: Boolean;
-  showTooltip?: Boolean;
-  tooltipText?: string;
-  tooltipIcon?: React.ReactNode;
   id?: Number | string;
   name?: string;
   maxLength?: Number;
@@ -255,6 +267,15 @@ interface InputProps {
   onClick?: React.MouseEventHandler<HTMLTextAreaElement | HTMLInputElement>;
   className?: string;
   style?: React.CSSProperties;
+  helperText?: string;
+  state?: "error" | "success" | "warning" | "default";
+  stateText?: string;
+  onSuffixClick?: React.MouseEventHandler<
+    HTMLTextAreaElement | HTMLInputElement
+  >;
+  onPrefixClick?: React.MouseEventHandler<
+    HTMLTextAreaElement | HTMLInputElement
+  >;
 }
 declare const _default$8: React.MemoExoticComponent<{
   (props: InputProps): JSX.Element;
@@ -266,10 +287,7 @@ declare const _default$8: React.MemoExoticComponent<{
     disabled: boolean;
     required: boolean;
     value: string;
-    search: boolean;
     showSearchIcon: boolean;
-    showTooltip: boolean;
-    tooltipText: string;
     id: string;
     showPrefix: boolean;
     showSuffix: boolean;
@@ -280,6 +298,10 @@ declare const _default$8: React.MemoExoticComponent<{
     onBlur: () => void;
     onFocus: () => void;
     onClick: () => void;
+    state: string;
+    stateText: string;
+    onSuffixClick: () => void;
+    onPrefixClick: () => void;
   };
 }>;
 
@@ -369,6 +391,11 @@ interface RadioProps {
   onChange?: Function;
   className?: string;
   style?: React.CSSProperties;
+  state?: "error" | "success" | "warning";
+  stateMessage?: string;
+  icon?: React.ReactNode;
+  showIcon?: Boolean;
+  onIconClick?: Function;
 }
 declare const Radio: {
   (props: RadioProps): JSX.Element;
@@ -378,10 +405,15 @@ declare const Radio: {
     value: string;
     radioValue: string;
     id: string;
+    state: null;
+    stateMessage: string;
     labelText: string;
     className: string;
     style: {};
+    icon: null;
+    showIcon: boolean;
     onChange: () => void;
+    onIconClick: () => void;
   };
 };
 
@@ -487,13 +519,27 @@ interface ToggleButtonProps {
   className?: string;
   style?: React.CSSProperties;
   size?: string;
+  id?: string;
+  labelText?: string;
+  state?: "error" | "success" | "warning";
+  stateMessage?: string;
+  icon?: React.ReactNode;
+  showIcon?: Boolean;
+  onIconClick?: Function;
 }
 declare const _default: React.MemoExoticComponent<{
   (props: ToggleButtonProps): JSX.Element;
   defaultProps: {
+    id: string;
     value: boolean;
     disabled: boolean;
+    labelText: null;
     size: string;
+    state: null;
+    stateMessage: string;
+    icon: null;
+    showIcon: boolean;
+    onIconClick: () => void;
   };
 }>;
 
