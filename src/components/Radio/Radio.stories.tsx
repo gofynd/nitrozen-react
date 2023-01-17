@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import Radio, { RadioProps } from "./Radio";
+import * as SvgArray from "../../assets/svg-components";
 
 export default {
   title: "Components/Input/Radiobutton",
@@ -45,6 +46,13 @@ export default {
       options: ["success", "warning", "error"],
     },
     stateMessage: { control: "text" },
+    onIconClick: { type: "function" },
+    showIcon: { control: "boolean" },
+    icon: {
+      description:
+        "An element to be placed on the left, ideally an icon. This is clickable if onIconClick is defined.",
+      options: SvgArray,
+    },
   },
 } as ComponentMeta<typeof Radio>;
 
@@ -78,6 +86,11 @@ export const radioSample = (args: RadioProps) => {
         radioValue={selected.selectedRadio}
         onChange={SelectedchangeHandler}
         name="basic"
+        showIcon={true}
+        icon={SvgArray.SvgGirl}
+        onIconClick={() => {
+          console.log("I am a women");
+        }}
       />
       <Radio
         labelText="Male"
@@ -86,6 +99,11 @@ export const radioSample = (args: RadioProps) => {
         radioValue={selected.selectedRadio}
         onChange={SelectedchangeHandler}
         name="basic"
+        showIcon={true}
+        icon={SvgArray.SvgBoy}
+        onIconClick={() => {
+          console.log("I am a man");
+        }}
       />
       <Radio
         labelText="Others"

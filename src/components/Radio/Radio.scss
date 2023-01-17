@@ -2,6 +2,7 @@
 
 .n-radio-group {
   height: 2.1rem;
+  display: flex;
 
   input[type="radio"]:checked,
   input[type="radio"]:not(:checked) {
@@ -152,4 +153,13 @@ input[type="radio"]:checked + label.success-state:hover::before {
 input[type="radio"]:checked + label.error-state:hover::before {
   border-color: $ColorFeedbackError80;
   box-shadow: inset 0 0 0 0.375em $ColorFeedbackError80;
+}
+
+.social-icon {
+  font-size: 2.4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 1rem;
+  cursor: pointer;
 }

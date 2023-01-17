@@ -15,6 +15,9 @@ export interface RadioProps {
   style?: React.CSSProperties;
   state?: "error" | "success" | "warning";
   stateMessage?: string;
+  icon?: React.ReactNode;
+  showIcon?: Boolean;
+  onIconClick?: Function;
 }
 const Radio = (props: RadioProps) => {
   const {
@@ -28,14 +31,22 @@ const Radio = (props: RadioProps) => {
     className,
     state,
     stateMessage,
+    icon,
+    showIcon,
+    onIconClick,
     style,
     ...restProps
   } = props;
   const ComponentChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     onChange?.(e.target.value);
   };
+
+  const Icon = props.icon as React.ElementType;
   return (
     <div style={style ?? {}} className={`n-radio-group ${className ?? ""}`}>
+      {showIcon && icon && (
+        <Icon className="social-icon" onClick={onIconClick} />
+      )}
       <input
         id={id}
         type="radio"
@@ -77,7 +88,12 @@ Radio.defaultProps = {
   labelText: "",
   className: "",
   style: {},
+  icon: null,
+  showIcon: false,
   onChange: () => {},
+  onIconClick: () => {
+    console.log("clicked");
+  },
 };
 
 export default Radio;
