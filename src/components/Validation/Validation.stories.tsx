@@ -7,18 +7,15 @@ export default {
   title: "Components/Validation",
   component: Validation,
   argTypes: {
-    isValid: {
-      type: { name: "boolean", required: true },
+    validationState: {
+      control: "select",
+      options: ["success", "error", "warning"],
       description: "Describes the state of validity",
-      defaultValue: true,
+      defaultValue: "success",
     },
-    validLabel: {
+    label: {
       type: "string",
-      description: "Shown when the validitiy is True",
-    },
-    invalidLabel: {
-      type: "string",
-      description: "Shown when the validitiy is False",
+      description: "The description",
     },
     isHidden: {
       type: "boolean",
@@ -36,19 +33,16 @@ const Template: ComponentStory<typeof Validation> = (args) => (
 
 export const ValidationMessage = Template.bind({});
 ValidationMessage.args = {
-  isValid: true,
-  validLabel: "Approval message",
-  invalidLabel: "Error message",
-  isHidden: false,
+  validationState: "success",
+  label: "All fields are valid",
+  isHidden: true,
+  style: {},
+  className: "",
 };
 
 // DEMO
 export const ValidationDemo = () => {
-  const MIN_CHAR = 4;
   const [inputValue, handleInputChange] = useState("");
-  const [isValidInput, handleValidation] = useState(
-    inputValue.length >= MIN_CHAR
-  );
 
   return (
     <>
@@ -59,9 +53,9 @@ export const ValidationDemo = () => {
       />
       <div style={{ marginTop: "8px" }}>
         <Validation
-          isValid={isValidInput}
-          validLabel={"Criteria matched"}
-          invalidLabel={`Minimum ${MIN_CHAR} charaters required`}
+          validationState="error"
+          label={"Criteria not matched"}
+          isHidden={false}
         />
       </div>
     </>
@@ -70,6 +64,5 @@ export const ValidationDemo = () => {
   function changeInput(e: React.ChangeEvent<HTMLInputElement>) {
     const input = e.target.value;
     handleInputChange(input);
-    handleValidation(input.length >= MIN_CHAR);
   }
 };

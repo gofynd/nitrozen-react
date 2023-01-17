@@ -41,12 +41,12 @@ describe("Dropdown", () => {
       />
     );
     const toggleDiv = document.querySelector(
-      ".nitrozen-select-wrapper"
+      ".n-select-wrapper"
     ) as HTMLDivElement;
     fireEvent.click(toggleDiv);
 
     const inputElem = document.querySelector(
-      ".nitrozen-option.ripple"
+      ".n-option.ripple"
     ) as HTMLSpanElement;
     fireEvent.click(inputElem);
     const checkbox = document.querySelectorAll("input:checked");
@@ -64,12 +64,12 @@ describe("Dropdown", () => {
       />
     );
     const toggleDiv = document.querySelector(
-      ".nitrozen-select-wrapper"
+      ".n-select-wrapper"
     ) as HTMLDivElement;
     fireEvent.click(toggleDiv);
 
     const inputElem = document.querySelector(
-      ".nitrozen-option.ripple"
+      ".n-option.ripple"
     ) as HTMLSpanElement;
     fireEvent.click(inputElem);
   });
@@ -95,7 +95,7 @@ describe("Dropdown", () => {
       />
     );
 
-    const inputElem = document.querySelectorAll(".nitrozen-option.ripple");
+    const inputElem = document.querySelectorAll(".n-option.ripple");
     fireEvent.click(inputElem[inputElem.length - 1]);
   });
   test("if custom scroll events are executed, also addOptions functionality", () => {
