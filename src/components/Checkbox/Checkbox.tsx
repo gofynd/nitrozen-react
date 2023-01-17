@@ -95,7 +95,9 @@ const Checkbox = (props: CheckboxProps) => {
       }`}
       style={labelStyle ?? {}}
     >
-      {showIcon && <Icon className="social-icon" onClick={onIconClick} />}
+      {showIcon && icon && (
+        <Icon className="social-icon" onClick={onIconClick} />
+      )}
       <input
         id={id}
         type="checkbox"
