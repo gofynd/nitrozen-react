@@ -69,7 +69,7 @@ const ToggleButton = (props: ToggleButtonProps) => {
         <span
           className={classnames({
             "label-text": true,
-            // "n-disabled": disabled,
+            "n-disabled": disabled,
             checked: toggleActive,
           })}
         >
