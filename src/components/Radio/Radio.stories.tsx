@@ -71,53 +71,7 @@ RadioPlayground.args = {
   name: "basic",
 };
 
-export const radioSample = (args: RadioProps) => {
-  const [selected, setSelected] = useState({ selectedRadio: "female" });
-  const SelectedchangeHandler = (arg: any) => {
-    setSelected({ ...selected, selectedRadio: arg });
-  };
-
-  return (
-    <div className="main-div space-between">
-      <Radio
-        labelText="Female"
-        value="female"
-        id="female"
-        radioValue={selected.selectedRadio}
-        onChange={SelectedchangeHandler}
-        name="basic"
-        showIcon={true}
-        icon={SvgArray.SvgGirl}
-        onIconClick={() => {
-          console.log("I am a women");
-        }}
-      />
-      <Radio
-        labelText="Male"
-        value="male"
-        id="male"
-        radioValue={selected.selectedRadio}
-        onChange={SelectedchangeHandler}
-        name="basic"
-        showIcon={true}
-        icon={SvgArray.SvgBoy}
-        onIconClick={() => {
-          console.log("I am a man");
-        }}
-      />
-      <Radio
-        labelText="Others"
-        value="others"
-        id="others"
-        radioValue={selected.selectedRadio}
-        onChange={SelectedchangeHandler}
-        name="basic"
-      />
-    </div>
-  );
-};
-
-// export const stateSample = (args: RadioProps) => {
+// export const radioSample = (args: RadioProps) => {
 //   const [selected, setSelected] = useState({ selectedRadio: "female" });
 //   const SelectedchangeHandler = (arg: any) => {
 //     setSelected({ ...selected, selectedRadio: arg });
@@ -129,28 +83,32 @@ export const radioSample = (args: RadioProps) => {
 //         labelText="Female"
 //         value="female"
 //         id="female"
-//         state="success"
-//         stateMessage="Success message!"
 //         radioValue={selected.selectedRadio}
 //         onChange={SelectedchangeHandler}
 //         name="basic"
+//         showIcon={true}
+//         icon={SvgArray.SvgGirl}
+//         onIconClick={() => {
+//           console.log("I am a women");
+//         }}
 //       />
 //       <Radio
 //         labelText="Male"
 //         value="male"
 //         id="male"
-//         state="warning"
-//         stateMessage="Warning message!"
 //         radioValue={selected.selectedRadio}
 //         onChange={SelectedchangeHandler}
 //         name="basic"
+//         showIcon={true}
+//         icon={SvgArray.SvgBoy}
+//         onIconClick={() => {
+//           console.log("I am a man");
+//         }}
 //       />
 //       <Radio
 //         labelText="Others"
 //         value="others"
 //         id="others"
-//         state="success"
-//         stateMessage="Success message!"
 //         radioValue={selected.selectedRadio}
 //         onChange={SelectedchangeHandler}
 //         name="basic"
@@ -158,6 +116,52 @@ export const radioSample = (args: RadioProps) => {
 //     </div>
 //   );
 // };
+
+export const stateSample = (args: RadioProps) => {
+  const [selected, setSelected] = useState({ selectedRadio: "female" });
+  const SelectedchangeHandler = (arg: any) => {
+    setSelected({ ...selected, selectedRadio: arg });
+  };
+
+  return (
+    <div className="main-div space-between">
+      <Radio
+        labelText="Female"
+        value="female"
+        id="female"
+        state="success"
+        stateMessage="Success!"
+        radioValue={selected.selectedRadio}
+        onChange={SelectedchangeHandler}
+        name="basic"
+        showIcon={true}
+        icon={SvgArray.SvgAutoMode}
+      />
+      <Radio
+        labelText="Male"
+        value="male"
+        id="male"
+        state="warning"
+        stateMessage="Warning!"
+        radioValue={selected.selectedRadio}
+        onChange={SelectedchangeHandler}
+        name="basic"
+        showIcon={true}
+        icon={SvgArray.SvgAutoMode}
+      />
+      <Radio
+        labelText="Others"
+        value="others"
+        id="others"
+        state="error"
+        stateMessage="Error!"
+        radioValue={selected.selectedRadio}
+        onChange={SelectedchangeHandler}
+        name="basic"
+      />
+    </div>
+  );
+};
 
 export const radioVariants = (args: RadioProps) => {
   return (
