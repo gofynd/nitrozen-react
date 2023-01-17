@@ -11,6 +11,21 @@ export default {
       description: "Used to uniquely identify the dropdown",
       default: "Randomly generated ID prepended by `nitrozen-dropdown-`",
     },
+    validationState: {
+      control: "select",
+      options: ["", "success", "error", "warning"],
+      description: "Describes the state of validition text",
+      defaultValue: "",
+    },
+    validationLabel: {
+      type: "string",
+      description: "The description",
+    },
+    helperText: {
+      type: "string",
+      description: "Helper text for the drop down field",
+      defaultValue: "",
+    },
     items: {
       description:
         "used to bind data list to the dropdown. items is an array of object. Each object can have 3 properties: {text, value, logo} ",
@@ -72,26 +87,32 @@ const DropdownDatasource = [
   {
     text: "Maharashtra",
     value: 1,
+    logo: "https://hdn-1.jiox0.de/jioecomm/seller/pictures/logo/original/gionee-56405d/Gionee_Logo_20190919.jpg",
   },
   {
     text: "Andhra Pradesh",
     value: 2,
+    logo: "https://hdn-1.jiox0.de/jioecomm/seller/pictures/logo/original/gionee-56405d/Gionee_Logo_20190919.jpg",
   },
   {
     text: "West Bengal",
     value: 3,
+    logo: "https://hdn-1.jiox0.de/jioecomm/seller/pictures/logo/original/gionee-56405d/Gionee_Logo_20190919.jpg",
   },
   {
     text: "Madhya Pradesh",
     value: 4,
+    logo: "https://hdn-1.jiox0.de/jioecomm/seller/pictures/logo/original/gionee-56405d/Gionee_Logo_20190919.jpg",
   },
   {
     text: "Tamil Nadu",
     value: 5,
+    logo: "https://hdn-1.jiox0.de/jioecomm/seller/pictures/logo/original/gionee-56405d/Gionee_Logo_20190919.jpg",
   },
   {
     text: "Himachal Pradesh",
     value: 6,
+    logo: "https://hdn-1.jiox0.de/jioecomm/seller/pictures/logo/original/gionee-56405d/Gionee_Logo_20190919.jpg",
   },
 ];
 

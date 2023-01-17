@@ -36,7 +36,7 @@
   width: inherit;
 
   &::before {
-    border-bottom: 1px solid $InactiveFieldBorder;
+    border-bottom: 2px solid $InactiveFieldBorder;
     left: 0px;
     bottom: 0px;
     content: " ";
@@ -265,9 +265,11 @@ textarea {
   display: block;
   font-weight: 500;
   text-transform: none;
-  font-size: 0.875rem;
+  font-size: 1.1rem;
   letter-spacing: -0.07px;
   line-height: 1.4285714286;
+  word-wrap: break-word;
+  color: $TypographyPrimaryColor;
 }
 
 .n-field-error {
@@ -304,7 +306,7 @@ textarea {
   display: flex;
   font-weight: 500;
   text-transform: none;
-  font-size: 0.875rem;
+  font-size: 1.1rem;
   letter-spacing: -0.07px;
   // line-height: 1.4285714286;
   img {
