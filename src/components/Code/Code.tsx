@@ -13,6 +13,7 @@ export interface CodeProps {
   validationLabel?: string;
   validationClassName?: string;
   validationStyle?: React.CSSProperties;
+  helperText?: string;
 }
 
 const Code = (props: CodeProps) => {
@@ -27,6 +28,7 @@ const Code = (props: CodeProps) => {
     validationState,
     validationClassName,
     validationStyle,
+    helperText,
     ...restProps
   } = props;
   const [labelFocus, setlabelFocus] = useState("");
@@ -148,6 +150,7 @@ const Code = (props: CodeProps) => {
           validationState={validationState}
         />
       )}
+      {helperText && <span className="n-helper-text">{helperText}</span>}
     </div>
   );
 };
@@ -161,6 +164,7 @@ Code.defaulProps = {
   validationLabel: "",
   validationClassName: "",
   validationStyle: {},
+  helperText: "",
 };
 
 export default React.memo(Code);
