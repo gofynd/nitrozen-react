@@ -45,8 +45,8 @@ export const SingleCheckbox = Template.bind({});
 
 SingleCheckbox.args = {
   labelText: "React",
-  value: "React",
-  id: "React",
+  value: "React0",
+  id: "React0",
   onChange: () => {},
   onIconClick: () => {
     console.log("124");
@@ -56,7 +56,7 @@ SingleCheckbox.args = {
   stateMessage: "Your Validation message!",
 };
 
-export const Multiple_checkbox = (args: any) => {
+export const Basic_checkbox = (args: any) => {
   const [CheckArray, setCheckArray] = useState<string[]>(["React"]);
   return (
     <div className="main-div space-between">
@@ -94,42 +94,92 @@ export const Multiple_checkbox = (args: any) => {
   );
 };
 
-export const checkboxVariant = () => {
+export const Multiple_checkbox = (args: any) => {
+  const [CheckArray2, setCheckArray2] = useState<string[]>(["Vue1"]);
   return (
     <div className="main-div space-between">
-      <div className="n-badge-collection">
-        <div
-          style={{ display: "flex", flexDirection: "column", gap: "3.2rem" }}
-        >
-          <div style={{ display: "flex", gap: "3.2rem" }}>
-            <Checkbox labelText="Text" value="random1" id="random1" />
-
-            <Checkbox
-              labelText="Text"
-              value="random2"
-              id="random2"
-              checkboxValue={true}
-            />
-          </div>
-
-          <div style={{ display: "flex", gap: "3.2rem" }}>
-            <Checkbox
-              labelText="Text"
-              value="randomValue1"
-              id="randomValue1"
-              disabled
-            />
-
-            <Checkbox
-              labelText="Text"
-              value="randomValue2"
-              id="randomValue2"
-              checkboxValue={true}
-              disabled
-            />
-          </div>
-        </div>
-      </div>
+      <Checkbox
+        labelText="React"
+        value="React1"
+        id="React1"
+        onChange={setCheckArray2}
+        checkArray={CheckArray2}
+        showIcon={true}
+        icon={SvgArray.SvgAutoMode}
+        state="success"
+        stateMessage="Success"
+        checkboxValue="React"
+        name="basic1"
+        {...args}
+      />
+      <Checkbox
+        labelText="Angular"
+        value="Angular1"
+        id="Angular1"
+        checkboxValue="Angular1"
+        checkArray={CheckArray2}
+        showIcon={true}
+        icon={SvgArray.SvgAutoMode}
+        state="warning"
+        stateMessage="Warning"
+        onChange={setCheckArray2}
+        name="basic"
+        {...args}
+      />
+      <Checkbox
+        labelText="Vue"
+        value="Vue1"
+        id="Vue1"
+        checkboxValue="Vue1"
+        checkArray={CheckArray2}
+        showIcon={true}
+        icon={SvgArray.SvgAutoMode}
+        state="error"
+        stateMessage="Error"
+        disabled
+        onChange={() => {}}
+        {...args}
+      />
     </div>
   );
 };
+
+// export const checkboxVariant = () => {
+//   return (
+//     <div className="main-div space-between">
+//       <div className="n-badge-collection">
+//         <div
+//           style={{ display: "flex", flexDirection: "column", gap: "3.2rem" }}
+//         >
+//           <div style={{ display: "flex", gap: "3.2rem" }}>
+//             <Checkbox labelText="Text" value="random1" id="random1" />
+
+//             <Checkbox
+//               labelText="Text"
+//               value="random2"
+//               id="random2"
+//               checkboxValue={true}
+//             />
+//           </div>
+
+//           <div style={{ display: "flex", gap: "3.2rem" }}>
+//             <Checkbox
+//               labelText="Text"
+//               value="randomValue1"
+//               id="randomValue1"
+//               disabled
+//             />
+
+//             <Checkbox
+//               labelText="Text"
+//               value="randomValue2"
+//               id="randomValue2"
+//               checkboxValue={true}
+//               disabled
+//             />
+//           </div>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
