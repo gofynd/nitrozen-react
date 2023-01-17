@@ -15,6 +15,9 @@ export interface ToggleButtonProps {
   labelText?: string;
   state?: "error" | "success" | "warning";
   stateMessage?: string;
+  icon?: React.ReactNode;
+  showIcon?: Boolean;
+  onIconClick?: Function;
 }
 
 const ToggleButton = (props: ToggleButtonProps) => {
@@ -28,6 +31,9 @@ const ToggleButton = (props: ToggleButtonProps) => {
     style,
     size,
     state,
+    icon,
+    showIcon,
+    onIconClick,
     stateMessage,
     ...restProps
   } = props;
@@ -42,12 +48,16 @@ const ToggleButton = (props: ToggleButtonProps) => {
     onToggle?.();
   }, [toggleActive]);
 
+  const Icon = props.icon as React.ElementType;
   return (
     <div
       style={style || {}}
       className={`n-toggle-container ${className ?? ""}`}
       {...restProps}
     >
+      {showIcon && icon && (
+        <Icon className={`social-icon-${size}`} onClick={onIconClick} />
+      )}
       <label htmlFor={id} className={`n-switch ${size}`}>
         <input
           id={id}
@@ -103,6 +113,9 @@ ToggleButton.defaultProps = {
   size: "medium",
   state: null,
   stateMessage: "Your validation message",
+  icon: null,
+  showIcon: false,
+  onIconClick: () => {},
 };
 
 export default React.memo(ToggleButton);

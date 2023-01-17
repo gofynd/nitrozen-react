@@ -1,6 +1,7 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import ToggleButton from "./ToggleButton";
+import * as SvgArray from "../../assets/svg-components";
 
 export default {
   title: "Components/Button/ToggleButton",
@@ -32,6 +33,13 @@ export default {
       options: ["success", "warning", "error"],
     },
     stateMessage: { control: "text" },
+    onIconClick: { type: "function" },
+    showIcon: { control: "boolean" },
+    icon: {
+      description:
+        "An element to be placed on the left, ideally an icon. This is clickable if onIconClick is defined.",
+      options: SvgArray,
+    },
   },
 } as ComponentMeta<typeof ToggleButton>;
 
@@ -58,11 +66,51 @@ export const demo = () => {
     <div className="main-div all-togglebtn-sections">
       {sizes.map((size) => (
         <div className="section" key={size}>
-          <span>{size}</span>
           <ToggleButton labelText="Text" size={size} />
           <ToggleButton labelText="Text" size={size} value={true} />
           <ToggleButton labelText="Text" size={size} disabled={true} />
           <ToggleButton
+            labelText="Text"
+            size={size}
+            disabled={true}
+            value={true}
+          />
+        </div>
+      ))}
+    </div>
+  );
+};
+
+export const iconDemo = () => {
+  const sizes = ["small", "medium", "large"];
+
+  return (
+    <div className="main-div all-togglebtn-sections">
+      {sizes.map((size) => (
+        <div className="section" key={size}>
+          <ToggleButton
+            showIcon={true}
+            icon={SvgArray.SvgAutoMode}
+            labelText="Text"
+            size={size}
+          />
+          <ToggleButton
+            showIcon={true}
+            icon={SvgArray.SvgAutoMode}
+            labelText="Text"
+            size={size}
+            value={true}
+          />
+          <ToggleButton
+            showIcon={true}
+            icon={SvgArray.SvgAutoMode}
+            labelText="Text"
+            size={size}
+            disabled={true}
+          />
+          <ToggleButton
+            showIcon={true}
+            icon={SvgArray.SvgAutoMode}
             labelText="Text"
             size={size}
             disabled={true}
