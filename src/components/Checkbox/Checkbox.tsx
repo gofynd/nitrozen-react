@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import NitrozenId from "../../utils/uuids";
 import NitrozenValidation from "./../Validation";
 import "./Checkbox.scss";
+
 import classnames from "classnames";
 export interface CheckboxProps {
   disabled?: boolean;
@@ -19,6 +20,9 @@ export interface CheckboxProps {
   className?: string;
   style?: React.CSSProperties;
   labelStyle?: React.CSSProperties;
+  icon?: React.ReactNode;
+  showIcon?: Boolean;
+  onIconClick?: Function;
 }
 
 const Checkbox = (props: CheckboxProps) => {
@@ -38,6 +42,9 @@ const Checkbox = (props: CheckboxProps) => {
     className,
     style,
     labelStyle,
+    icon,
+    showIcon,
+    onIconClick,
     ...restProps
   } = props;
 
@@ -79,6 +86,7 @@ const Checkbox = (props: CheckboxProps) => {
     }
   };
 
+  const Icon = props.icon as React.ElementType;
   return (
     <label
       htmlFor={id}
@@ -87,6 +95,7 @@ const Checkbox = (props: CheckboxProps) => {
       }`}
       style={labelStyle ?? {}}
     >
+      {showIcon && <Icon className="social-icon" onClick={onIconClick} />}
       <input
         id={id}
         type="checkbox"
@@ -130,7 +139,10 @@ Checkbox.defaultProps = {
   id: `n-dialog-${NitrozenId()}`,
   labelText: "",
   children: null,
+  icon: null,
+  showIcon: false,
   onChange: () => {},
+  onIconClick: () => {},
   checkArray: null,
   ref: null,
 };

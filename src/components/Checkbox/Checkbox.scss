@@ -153,3 +153,12 @@ input[type="checkbox"]:disabled + .n-checkbox {
     background-color: $ColorFeedbackError80;
   }
 }
+
+.social-icon {
+  position: absolute;
+  left: -3.2rem;
+  font-size: 2.4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

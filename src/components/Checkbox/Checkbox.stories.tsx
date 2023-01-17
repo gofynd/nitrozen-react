@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import Checkbox from "./Checkbox";
+import * as SvgArray from "../../assets/svg-components";
 
 export default {
   title: "Components/Input/Checkbox",
@@ -20,10 +21,17 @@ export default {
     checkboxValue: { control: "boolean" },
     id: { control: "text" },
     onChange: { action: "clicked" },
+    onIconClick: { type: "function" },
     style: { control: "object" },
     labelStyle: { control: "object" },
     className: { control: "text" },
     labelText: { control: "text" },
+    showIcon: { control: "boolean" },
+    icon: {
+      description:
+        "An element to be placed on the left, ideally an icon. This is clickable if onIconClick is defined.",
+      options: SvgArray,
+    },
   },
 } as ComponentMeta<typeof Checkbox>;
 
@@ -40,6 +48,9 @@ SingleCheckbox.args = {
   value: "React",
   id: "React",
   onChange: () => {},
+  onIconClick: () => {
+    console.log("124");
+  },
   checkboxValue: true,
   name: "basic",
   stateMessage: "Your Validation message!",
