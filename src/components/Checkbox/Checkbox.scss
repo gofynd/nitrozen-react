@@ -102,4 +102,7 @@ input[type="checkbox"]:disabled + .n-checkbox {
 
 .n-checkbox-container-disabled {
   color: $CheckboxDisableColor;
+  &:hover {
+    color: $CheckboxDisableColor;
+  }
 }
