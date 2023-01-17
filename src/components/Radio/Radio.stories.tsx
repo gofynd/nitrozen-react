@@ -39,6 +39,12 @@ export default {
     onChange: {
       action: "clicked",
     },
+    state: {
+      control: "select",
+      description: "Validation state",
+      options: ["success", "warning", "error"],
+    },
+    stateMessage: { control: "text" },
   },
 } as ComponentMeta<typeof Radio>;
 
@@ -92,6 +98,48 @@ export const radioSample = (args: RadioProps) => {
     </div>
   );
 };
+
+// export const stateSample = (args: RadioProps) => {
+//   const [selected, setSelected] = useState({ selectedRadio: "female" });
+//   const SelectedchangeHandler = (arg: any) => {
+//     setSelected({ ...selected, selectedRadio: arg });
+//   };
+
+//   return (
+//     <div className="main-div space-between">
+//       <Radio
+//         labelText="Female"
+//         value="female"
+//         id="female"
+//         state="success"
+//         stateMessage="Success message!"
+//         radioValue={selected.selectedRadio}
+//         onChange={SelectedchangeHandler}
+//         name="basic"
+//       />
+//       <Radio
+//         labelText="Male"
+//         value="male"
+//         id="male"
+//         state="warning"
+//         stateMessage="Warning message!"
+//         radioValue={selected.selectedRadio}
+//         onChange={SelectedchangeHandler}
+//         name="basic"
+//       />
+//       <Radio
+//         labelText="Others"
+//         value="others"
+//         id="others"
+//         state="success"
+//         stateMessage="Success message!"
+//         radioValue={selected.selectedRadio}
+//         onChange={SelectedchangeHandler}
+//         name="basic"
+//       />
+//     </div>
+//   );
+// };
 
 export const radioVariants = (args: RadioProps) => {
   return (
@@ -177,6 +225,51 @@ export const radioSelectors = (args: RadioProps) => {
               className="radio-story"
               style={{ border: "1px solid #2E31BE", background: "#E7EEFF" }}
               disabled
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export const stateVariants = (args: RadioProps) => {
+  return (
+    <div className="main-div space-between">
+      <div className="n-badge-collection">
+        <div
+          style={{ display: "flex", flexDirection: "column", gap: "4.2rem" }}
+        >
+          <div style={{ display: "flex", gap: "4.2rem" }}>
+            <Radio
+              labelText="Success"
+              value="random2"
+              id="random2"
+              state="success"
+              stateMessage="Success message!"
+              radioValue={"random2"}
+            />
+          </div>
+
+          <div style={{ display: "flex", gap: "4.2rem" }}>
+            <Radio
+              labelText="Warning"
+              value="random2"
+              id="random2"
+              state="warning"
+              stateMessage="Warning message!"
+              radioValue={"random2"}
+            />
+          </div>
+
+          <div style={{ display: "flex", gap: "4.2rem" }}>
+            <Radio
+              labelText="Error"
+              value="randomValue2"
+              id="randomValue2"
+              state="error"
+              stateMessage="Error message!"
+              radioValue={"randomValue2"}
             />
           </div>
         </div>

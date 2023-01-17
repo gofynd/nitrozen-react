@@ -104,3 +104,52 @@
   width: 14.6rem;
   height: 4rem;
 }
+
+.n-radio-validation {
+  position: absolute;
+  top: 3rem;
+  left: 0;
+  width: max-content;
+}
+
+input[type="radio"]:not(:checked) + label.warning-state:hover::before {
+  border-color: $ColorFeedbackWarning50;
+}
+
+input[type="radio"]:not(:checked) + label.success-state:hover::before {
+  border-color: $ColorFeedbackSuccess50;
+}
+
+input[type="radio"]:not(:checked) + label.error-state:hover::before {
+  border-color: $ColorFeedbackError50;
+}
+
+input[type="radio"]:checked + label.warning-state:before {
+  border: 1px solid $ColorFeedbackWarning50;
+  box-shadow: inset 0 0 0 0.375em $ColorFeedbackWarning50;
+}
+
+input[type="radio"]:checked + label.success-state:before {
+  border: 1px solid $ColorFeedbackSuccess50;
+  box-shadow: inset 0 0 0 0.375em $ColorFeedbackSuccess50;
+}
+
+input[type="radio"]:checked + label.error-state:before {
+  border: 1px solid $ColorFeedbackError50;
+  box-shadow: inset 0 0 0 0.375em $ColorFeedbackError50;
+}
+
+input[type="radio"]:checked + label.warning-state:hover::before {
+  border-color: $ColorFeedbackWarning80;
+  box-shadow: inset 0 0 0 0.375em $ColorFeedbackWarning80;
+}
+
+input[type="radio"]:checked + label.success-state:hover::before {
+  border-color: $ColorFeedbackSuccess80;
+  box-shadow: inset 0 0 0 0.375em $ColorFeedbackSuccess80;
+}
+
+input[type="radio"]:checked + label.error-state:hover::before {
+  border-color: $ColorFeedbackError80;
+  box-shadow: inset 0 0 0 0.375em $ColorFeedbackError80;
+}
