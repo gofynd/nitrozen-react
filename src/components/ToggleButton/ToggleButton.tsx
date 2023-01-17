@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import NitrozenId from "../../utils/uuids";
 import "./ToggleButton.scss";
 import classnames from "classnames";
+import NitrozenValidation from "./../Validation";
 
 export interface ToggleButtonProps {
   disabled?: boolean;
@@ -12,6 +13,8 @@ export interface ToggleButtonProps {
   size?: string;
   id?: string;
   labelText?: string;
+  state?: "error" | "success" | "warning";
+  stateMessage?: string;
 }
 
 const ToggleButton = (props: ToggleButtonProps) => {
@@ -24,6 +27,8 @@ const ToggleButton = (props: ToggleButtonProps) => {
     className,
     style,
     size,
+    state,
+    stateMessage,
     ...restProps
   } = props;
   const [toggleActive, setToggle] = useState(value);
@@ -56,6 +61,9 @@ const ToggleButton = (props: ToggleButtonProps) => {
           className={classnames({
             "n-slider n-round": true,
             "n-disabled": disabled,
+            "success-state": state == "success",
+            "warning-state": state == "warning",
+            "error-state": state == "error",
             checked: toggleActive,
           })}
         >
@@ -75,6 +83,12 @@ const ToggleButton = (props: ToggleButtonProps) => {
         >
           {labelText}
         </span>
+        <NitrozenValidation
+          className="n-toggle-validation"
+          validationState={state}
+          label={stateMessage}
+          isHidden={state == null}
+        />
         <></>
       </label>
     </div>
@@ -87,6 +101,8 @@ ToggleButton.defaultProps = {
   disabled: false,
   labelText: null,
   size: "medium",
+  state: null,
+  stateMessage: "Your validation message",
 };
 
 export default React.memo(ToggleButton);

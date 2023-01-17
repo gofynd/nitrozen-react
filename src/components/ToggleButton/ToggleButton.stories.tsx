@@ -26,6 +26,12 @@ export default {
     style: { control: "object" },
     className: { control: "text" },
     labelText: { control: "text" },
+    state: {
+      control: "select",
+      description: "Validation state",
+      options: ["success", "warning", "error"],
+    },
+    stateMessage: { control: "text" },
   },
 } as ComponentMeta<typeof ToggleButton>;
 
