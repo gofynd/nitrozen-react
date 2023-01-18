@@ -53,10 +53,13 @@ const Template: ComponentStory<typeof ToggleButton> = (args) => (
 );
 export const ToggleBtn = Template.bind({});
 ToggleBtn.args = {
+  id: "React0",
   labelText: "React",
   disabled: false,
   value: false,
-  onToggle: () => {},
+  onToggle: () => {
+    console.log("clicked");
+  },
 };
 
 export const demo = () => {
@@ -66,10 +69,21 @@ export const demo = () => {
     <div className="main-div all-togglebtn-sections">
       {sizes.map((size) => (
         <div className="section" key={size}>
-          <ToggleButton labelText="Text" size={size} />
-          <ToggleButton labelText="Text" size={size} value={true} />
-          <ToggleButton labelText="Text" size={size} disabled={true} />
+          <ToggleButton id={`${size} + 1`} labelText="Text" size={size} />
           <ToggleButton
+            id={`${size} + 2`}
+            labelText="Text"
+            size={size}
+            value={true}
+          />
+          <ToggleButton
+            id={`${size} + 3`}
+            labelText="Text"
+            size={size}
+            disabled={true}
+          />
+          <ToggleButton
+            id={`${size} + 4`}
             labelText="Text"
             size={size}
             disabled={true}
@@ -89,12 +103,14 @@ export const iconDemo = () => {
       {sizes.map((size) => (
         <div className="section" key={size}>
           <ToggleButton
+            id={`${size} + 5`}
             showIcon={true}
             icon={SvgArray.SvgAutoMode}
             labelText="Text"
             size={size}
           />
           <ToggleButton
+            id={`${size} + 6`}
             showIcon={true}
             icon={SvgArray.SvgAutoMode}
             labelText="Text"
@@ -102,6 +118,7 @@ export const iconDemo = () => {
             value={true}
           />
           <ToggleButton
+            id={`${size} + 7`}
             showIcon={true}
             icon={SvgArray.SvgAutoMode}
             labelText="Text"
@@ -109,12 +126,66 @@ export const iconDemo = () => {
             disabled={true}
           />
           <ToggleButton
+            id={`${size} + 8`}
             showIcon={true}
             icon={SvgArray.SvgAutoMode}
             labelText="Text"
             size={size}
             disabled={true}
             value={true}
+          />
+        </div>
+      ))}
+    </div>
+  );
+};
+
+export const stateIconDemo = () => {
+  const sizes = ["small", "medium", "large"];
+
+  return (
+    <div className="main-div all-togglebtn-sections">
+      {sizes.map((size) => (
+        <div className="section-validation" key={size}>
+          <ToggleButton
+            id={`${size} + 9`}
+            showIcon={true}
+            icon={SvgArray.SvgAutoMode}
+            labelText="Text"
+            size={size}
+            state="success"
+            stateMessage="Success"
+          />
+          <ToggleButton
+            id={`${size} + 10`}
+            showIcon={true}
+            icon={SvgArray.SvgAutoMode}
+            labelText="Text"
+            size={size}
+            value={true}
+            state="warning"
+            stateMessage="Warning"
+          />
+          <ToggleButton
+            id={`${size} + 11`}
+            showIcon={true}
+            icon={SvgArray.SvgAutoMode}
+            labelText="Text"
+            size={size}
+            disabled={true}
+            state="error"
+            stateMessage="Error"
+          />
+          <ToggleButton
+            id={`${size} + 12`}
+            showIcon={true}
+            icon={SvgArray.SvgAutoMode}
+            labelText="Text"
+            size={size}
+            disabled={true}
+            value={true}
+            state="success"
+            stateMessage="Success"
           />
         </div>
       ))}

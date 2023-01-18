@@ -181,7 +181,8 @@
   align-items: flex-start;
   gap: 3.4rem;
 
-  .section {
+  .section,
+  .section-validation {
     display: flex;
     flex-direction: column;
     gap: 2rem;
@@ -191,13 +192,27 @@
       font-size: $BaseFontSize + 2;
     }
   }
+
+  .section-validation {
+    gap: 3.5rem;
+  }
 }
 
-.n-toggle-validation {
+.small .n-toggle-validation,
+.medium .n-toggle-validation,
+.large .n-toggle-validation {
   position: absolute;
-  top: 3rem;
+  top: 2.5rem;
   left: 0;
   width: max-content;
+}
+
+.medium .n-toggle-validation {
+  top: 3rem;
+}
+
+.large .n-toggle-validation {
+  top: 3.5rem;
 }
 
 .warning-state {
