@@ -1,40 +1,122 @@
 @import "./../../base/base.scss";
 
-.nitrozen-card-container {
-  min-width: 25.2rem;
-  min-height: 10.8rem;
-  padding: 1.6rem;
-  border-radius: 0.8rem;
-  font-family: $PrimaryFont;
-  font-style: normal;
-  color: $TypographyPrimaryColor;
-  background-color: $WhiteColor;
+.story-container {
+  display: block;
+  position: relative;
+  -webkit-box-flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  overflow: auto;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  padding: 30px 20px;
+  margin: -10px;
 }
 
-.nitrozen-card-container-border {
-  border: 0.1rem solid $SecondaryDisabledColor;
+.n-card {
+  color: #000;
 }
 
-.nitrozen-card-header {
+.n-card h3 {
+  padding: 0;
+  margin: 0;
+  font-weight: 900;
+  line-height: 1;
+  font-size: 2.5rem;
+  letter-spacing: -1.2px;
+  color: inherit;
+}
+
+.n-card__content {
+  padding: $SpacingM;
+}
+
+.n-card__image {
+  border-radius: 1rem;
+  line-height: 0;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  align-self: start;
+
+  img {
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+}
+
+.ratio-wide,
+.ratio-wide img {
+  aspect-ratio: $AspectRatioWide;
+}
+
+.ratio-landscape,
+.ratio-landscape img {
+  aspect-ratio: $AspectRatioLandscape;
+}
+
+.ratio-square,
+.ratio-square img {
+  aspect-ratio: $AspectRatioSquare;
+}
+
+.ratio-portrait,
+.ratio-portrait img {
+  aspect-ratio: $AspectRatio-portrait;
+}
+
+.focus-top img {
+  object-position: top;
+}
+
+.focus-bottom img {
+  object-position: bottom;
+}
+
+.focus-left img {
+  object-position: left;
+}
+
+.focus-right img {
+  object-position: right;
+}
+
+.focus-center img {
+  object-position: center;
+}
+
+.n-flex {
   display: flex;
+}
+
+.orientation-horizontal {
+  flex-direction: row;
   align-items: center;
-  gap: 1.2rem;
-  font-weight: 600;
-  padding: 0.5rem;
-  font-size: 1.4rem;
-  line-height: 130%;
 }
 
-.nitrozen-card-icon {
-  width: 3rem;
-  height: 3rem;
-  border-radius: 50%;
+.orientation-vertical {
+  flex-direction: column;
 }
 
-.nitrozen-card-description {
-  color: $Zambezi;
-  padding: 0.5rem;
-  font-weight: 400;
-  font-size: 1.2rem;
-  line-height: 160%;
+.n-text-body {
+  font-weight: 500;
+  text-transform: none;
+  font-size: 1rem;
+  letter-spacing: -0.08px;
+  line-height: 1.5;
+}
+
+.n-button-group {
+  display: flex;
+  justify-content: inherit;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-top: 1.5rem;
+
+  * {
+    flex-grow: 1;
+  }
 }

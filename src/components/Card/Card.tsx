@@ -1,6 +1,15 @@
 import React from "react";
+import { ButtonProps } from "../Button/Button";
 import "./Card.scss";
 export interface CardProps {
+  title?: string;
+  image?: JSX.Element;
+  imageFocus?: "top" | "bottom" | "left" | "right" | "center";
+  imageRatio?: "wide" | "landscape" | "portrait" | "square";
+  orientation?: "horizontal" | "vertical";
+  description?: string | Element;
+  primaryCTA?: JSX.Element;
+  secondaryCTA?: JSX.Element;
   style?: React.CSSProperties;
   cardTitle?: string;
   className?: string;
@@ -19,34 +28,43 @@ const Card = (props: CardProps) => {
     showBorder,
     children,
     cardIcon,
+    title,
+    image,
+    imageFocus,
+    imageRatio,
+    orientation,
+    description,
+    primaryCTA,
+    secondaryCTA,
     ...restProps
   } = props;
   return (
-    <div
-      className={
-        className
-          ? `${className} ${
-              showBorder && "nitrozen-card-container-border"
-            } nitrozen-card-container`
-          : `${
-              showBorder && "nitrozen-card-container-border"
-            } nitrozen-card-container`
-      }
-      style={style}
-      {...restProps}
-    >
-      <div className="nitrozen-card-header" style={headerStyle}>
-        {cardIcon && (
-          <img src={cardIcon} alt="cardIcon" className="nitrozen-card-icon" />
+    <div className="n-card n-card__container">
+      <div className={`n-flex orientation-${orientation}`}>
+        {image && (
+          <div
+            className={`n-card__image ratio-${imageRatio} focus-${imageFocus}`}
+          >
+            {image}
+          </div>
         )}
-        {cardTitle && <span>{cardTitle}</span>}
+        <div className="n-card__content">
+          {title && <h3>{title}</h3>}
+          {description && <div className="n-text-body">{description}</div>}
+          <div className="n-button-group">
+            {primaryCTA && primaryCTA}
+            {secondaryCTA && secondaryCTA}
+          </div>
+        </div>
       </div>
-      <div className="nitrozen-card-description">{children}</div>
     </div>
   );
 };
 
 Card.defaultProps = {
+  imageRatio: "wide",
+  imageFocus: "center",
+  orientation: "vertical",
   style: {},
   cardTitle: "",
   className: "",
