@@ -1,7 +1,19 @@
 import React from "react";
 import "./Tooltip.scss";
 import { SvgInfo } from "../../assets/svg-components/Action";
-export type Position = "top" | "bottom" | "left" | "right";
+export type Position =
+  | "top"
+  | "bottom"
+  | "left"
+  | "right"
+  | "right-start"
+  | "right-end"
+  | "bottom-start"
+  | "bottom-end"
+  | "left-start"
+  | "left-end"
+  | "top-start"
+  | "top-end";
 
 export interface TooltipProps {
   children?: React.ReactNode;

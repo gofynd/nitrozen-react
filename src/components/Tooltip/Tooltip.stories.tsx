@@ -25,7 +25,20 @@ export default {
     },
     position: {
       control: "select",
-      options: ["top", "right", "left", "bottom"],
+      options: [
+        "top",
+        "right",
+        "left",
+        "bottom",
+        "right-start",
+        "right-end",
+        "left-start",
+        "left-end",
+        "bottom-start",
+        "bottom-end",
+        "top-start",
+        "top-end",
+      ],
     },
     icon: {
       control: "select",
