@@ -11,15 +11,17 @@ const Table: React.FC<TableProps> = (props) => {
   const { id, tableRow, tableHeader } = props;
 
   return (
-    <div className="table-scroll">
+    <div className="n-table" data-testid={`table-${id}`}>
       <table className="n-main-table">
         <thead>
-          <tr>
+          <tr className="n-table-header-tr">
+            {/* For all table headers map the table header values */}
             {tableHeader.map((headerItem, headerIndex) => {
               return (
                 <th
                   className="n-table-header"
                   data-testid={`n-table-header-${headerIndex}`}
+                  style={headerItem.width ? { width: headerItem.width } : {}}
                 >
                   {headerItem.value}
                 </th>
@@ -28,16 +30,18 @@ const Table: React.FC<TableProps> = (props) => {
           </tr>
         </thead>
         <tbody>
+          {/* Itetrate over each row item  */}
           {tableRow.map((rowItem, rowIndex) => {
             return (
-              <tr>
-                {tableHeader.map((headerCnt, headerIndex) => {
+              // map header value ex rowItem.name
+              <tr className="n-table-row-item">
+                {tableHeader.map((headerElement, headerIndex) => {
                   return (
                     <td
                       className="n-row-data"
                       data-testid={`n-row-data-${rowIndex}-${headerIndex}`}
                     >
-                      {JSON.stringify(tableHeader[rowIndex])}
+                      {rowItem[headerElement.name]}
                     </td>
                   );
                 })}
@@ -45,6 +49,10 @@ const Table: React.FC<TableProps> = (props) => {
             );
           })}
         </tbody>
+        {/* <tfoot>
+          <tr className="n-table-footer">
+            <td>Deafult Footer</td></tr>
+        </tfoot> */}
       </table>
     </div>
   );
