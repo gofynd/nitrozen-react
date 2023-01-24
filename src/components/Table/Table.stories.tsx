@@ -74,6 +74,12 @@ export default {
       ],
     },
     footer: { control: "text" },
+    rowStyle: {
+      control: "select",
+      options: ["simple", "zebra"],
+      defaultValue: "simple",
+    },
+    headerBackground: { control: "color" },
   },
 } as ComponentMeta<typeof Table>;
 
@@ -153,4 +159,5 @@ ShowTable.args = {
   ],
   id: "table-custom",
   footer: "Default footer",
+  rowStyle: "zebra",
 };

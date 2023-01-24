@@ -125,3 +125,7 @@
 .n-action-icon {
   color: $ColorWhite;
 }
+
+.n-table-row-zebra:nth-child(even) {
+  background-color: $ColorPrimaryGrey20;
+}

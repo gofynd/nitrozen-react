@@ -11,6 +11,8 @@ export interface TableProps {
   tableRow: Array<any>;
   tableHeader: Array<any>;
   footer?: String;
+  rowStyle: string;
+  headerBackground: string;
 }
 
 const Table: React.FC<TableProps> = (props) => {
@@ -62,7 +64,10 @@ const Table: React.FC<TableProps> = (props) => {
                     headerItem.sortable ? "n-cursor-pointer" : ""
                   }`}
                   data-testid={`n-table-header-${headerIndex}`}
-                  style={headerItem.width ? { width: headerItem.width } : {}}
+                  style={{
+                    width: headerItem.width ? headerItem.width : "auto",
+                    backgroundColor: props.headerBackground,
+                  }}
                   onClick={() => handleSortClicked(headerIndex)}
                 >
                   <div className="n-th-parent">
@@ -96,7 +101,7 @@ const Table: React.FC<TableProps> = (props) => {
               <tr
                 className={`n-table-row-item ${
                   !props.footer ? "n-table-row-item-nofooter" : ""
-                }`}
+                } ${props.rowStyle == "zebra" ? "n-table-row-zebra" : ""}`}
               >
                 {tableHeader.map((headerElement, headerIndex) => {
                   return (
@@ -128,6 +133,8 @@ Table.defaultProps = {
   id: `nitrozen-dialog-${NitrozenId()}`,
   tableHeader: [],
   tableRow: [],
+  rowStyle: "simple",
+  headerBackground: "",
 };
 
 export default memo(Table);
