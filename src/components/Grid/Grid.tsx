@@ -13,6 +13,10 @@ export interface GridProps {
   children: any;
 }
 
+const getWindowWidth = () => {
+  return window.document.documentElement.clientWidth;
+};
+
 const Grid = (props: GridProps) => {
   const {
     template,
@@ -31,23 +35,16 @@ const Grid = (props: GridProps) => {
 
   useEffect(() => {
     /* Regular */
-    if (getWindowWidth() > 768) {
-      setResponsiveTemplate(template);
-    }
+    const windowWidth = getWindowWidth();
 
-    if (getWindowWidth() <= 768) {
+    if (windowWidth > 768) {
+      setResponsiveTemplate(template);
+    } else if (windowWidth <= 480) {
+      setResponsiveTemplate(mobileTemplate);
+    } else if (windowWidth <= 768) {
       setResponsiveTemplate(tabletTemplate);
     }
-
-    if (getWindowWidth() <= 480) {
-      setResponsiveTemplate(mobileTemplate);
-    }
-    // console.log("getWindowWidth()", getWindowWidth());
   }, []);
-
-  const getWindowWidth = () => {
-    return window.document.documentElement.clientWidth;
-  };
 
   return (
     <div
