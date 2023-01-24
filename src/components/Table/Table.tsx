@@ -5,7 +5,6 @@ import {
   SvgKeyboardArrowDown,
   SvgKeyboardArrowRight,
 } from "../../assets/svg-components";
-
 export interface TableProps {
   id: string;
   tableRow: Array<any>;
@@ -13,6 +12,7 @@ export interface TableProps {
   footer?: String;
   rowStyle: string;
   headerBackground: string;
+  customSortIcon?: React.ReactNode;
 }
 
 const Table: React.FC<TableProps> = (props) => {
@@ -79,7 +79,13 @@ const Table: React.FC<TableProps> = (props) => {
                       <>
                         {/* if the current headerIndex exists in the clickedIds array then show the arrow down svg*/}
                         {clickedIds.includes(headerIndex) ? (
-                          <SvgKeyboardArrowDown className="n-action-icon" />
+                          props.customSortIcon ? (
+                            props.customSortIcon
+                          ) : (
+                            <SvgKeyboardArrowDown className="n-action-icon" />
+                          )
+                        ) : props.customSortIcon ? (
+                          props.customSortIcon
                         ) : (
                           <SvgKeyboardArrowRight className="n-action-icon" />
                         )}
@@ -135,6 +141,7 @@ Table.defaultProps = {
   tableRow: [],
   rowStyle: "simple",
   headerBackground: "",
+  customSortIcon: "",
 };
 
 export default memo(Table);

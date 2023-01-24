@@ -2,6 +2,8 @@ import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import Table from "./Table";
 import "./Table.scss";
+import * as SvgArray from "../../assets/svg-components";
+import { SvgDirections } from "../../assets/svg-components";
 
 export default {
   title: "Components/Table",
@@ -80,6 +82,11 @@ export default {
       defaultValue: "simple",
     },
     headerBackground: { control: "color" },
+    customSortIcon: {
+      description:
+        "An element to be placed on the left, ideally an icon. This is clickable if onIconClick is defined.",
+      options: SvgArray,
+    },
   },
 } as ComponentMeta<typeof Table>;
 
@@ -160,4 +167,5 @@ ShowTable.args = {
   id: "table-custom",
   footer: "Default footer",
   rowStyle: "zebra",
+  customSortIcon: <SvgDirections color="white" />,
 };
