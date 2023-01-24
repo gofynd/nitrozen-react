@@ -64,61 +64,6 @@ const Grid = (props: GridProps) => {
       {...restProps}
     >
       {children}
-      {/* <div className="item1">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni earum
-        temporibus facere expedita.
-      </div>
-
-      <div className="item1">
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quidem,
-        accusantium.
-      </div>
-
-      <div className="item1">Lorem ipsum dolor sit amet.</div>
-
-      <div className="item1">
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quia
-        recusandae, illum cumque nesciunt, voluptate vel.
-      </div>
-
-      <div className="item1">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae,
-        molestias ut laudantium nam optio ipsum incidunt provident.
-      </div>
-
-      <div className="item1">
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Placeat,
-        delectus dolores? Optio, deserunt. Beatae maxime in quas.
-      </div>
-
-      <div className="item1">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae,
-        molestias ut laudantium nam optio ipsum incidunt provident.
-      </div>
-
-      <div className="item1">
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quia
-        recusandae, illum cumque nesciunt, voluptate vel.
-      </div>
-
-      <div className="item1">
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Placeat,
-        delectus dolores? Optio, deserunt. Beatae maxime in quas.
-      </div>
-
-      <div className="item1">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-      </div>
-
-      <div className="item1">
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Placeat,
-        delectus dolores? Optio, deserunt. Beatae maxime in quas.
-      </div>
-
-      <div className="item1">
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quia
-        recusandae, illum cumque nesciunt, voluptate vel.
-      </div> */}
     </div>
   );
 };

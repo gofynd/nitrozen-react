@@ -40,19 +40,7 @@ export default {
     justify: {
       description: `CSS's align-items value. E.g. 'start' | 'center' | 'end' | 'stretch'
       "inherit" | (string & {}) | "center" | "stretch" | "-moz-initial" | "initial" | "revert" | "revert-layer" | "unset" | "end" | "flex-end" | "flex-start" | "self-end" | "self-start" | "start" | "baseline" | "normal"`,
-      // options: ["center", "start", "end", "stretch"],
     },
-    // templateTablet: {},
-
-    // templateMobile: {},
-
-    // showSearchIcon: {
-    //   type: "boolean",
-    //   description: "Includes a search icon inside input field",
-    //   defaultValue: true,
-    // },
-    // style: { control: "object", decription:"string" },
-    // className: { control: "text" },
   },
 } as ComponentMeta<typeof Grid>;
 

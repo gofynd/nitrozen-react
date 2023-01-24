@@ -2,24 +2,17 @@
 
 .nitrozen-grid-container {
   display: grid;
-  //   dynamic class for props template
-  //   grid-template-columns: 1fr 1fr 1fr 1fr;
-  //   grid-template: repeat(1fr, minmax(200px, 1fr));
-  //   background-color: #333333;
-  padding: 30px;
-  column-gap: 20px;
-  row-gap: 20px;
+  padding: 3rem;
+  column-gap: 2rem;
+  row-gap: 2rem;
 }
 
 .nitrozen-grid-container > div {
   background-color: #ffffffcc;
-  //   border: 1px dotted #ffffffcc;
-  //   color: #fff;
   text-align: center;
 }
 
 .nitrozen-grid-container > div {
-  //   background-color: #2B2B2B;
   text-align: center;
   font-size: 1.3rem;
 }
