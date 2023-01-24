@@ -6,12 +6,12 @@ import {
   SvgKeyboardArrowRight,
 } from "../../assets/svg-components";
 export interface TableProps {
-  id: string;
+  id?: string;
   tableRow: Array<any>;
   tableHeader: Array<any>;
   footer?: String;
   rowStyle: string;
-  headerBackground: string;
+  headerBackground?: string;
   customSortIcon?: React.ReactNode;
 }
 
@@ -71,7 +71,10 @@ const Table: React.FC<TableProps> = (props) => {
                   onClick={() => handleSortClicked(headerIndex)}
                 >
                   <div className="n-th-parent">
-                    <span className="n-table-header-text">
+                    <span
+                      className="n-table-header-text"
+                      data-testid={`header-value-${headerIndex}`}
+                    >
                       {" "}
                       {headerItem.value}
                     </span>
@@ -105,6 +108,7 @@ const Table: React.FC<TableProps> = (props) => {
             return (
               // map header value ex rowItem.name
               <tr
+                data-testid={`row-${rowIndex}`}
                 className={`n-table-row-item ${
                   !props.footer ? "n-table-row-item-nofooter" : ""
                 } ${props.rowStyle == "zebra" ? "n-table-row-zebra" : ""}`}
@@ -126,7 +130,9 @@ const Table: React.FC<TableProps> = (props) => {
         {props.footer ? (
           <tfoot>
             <tr className="n-table-footer">
-              <td colSpan={tableHeader.length}>{props.footer}</td>
+              <td colSpan={tableHeader.length} data-testid={`footer-data`}>
+                {props.footer}
+              </td>
             </tr>
           </tfoot>
         ) : null}
