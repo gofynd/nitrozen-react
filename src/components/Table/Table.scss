@@ -9,6 +9,7 @@
   border-collapse: separate;
   border-spacing: 0;
   width: 100%;
+  user-select: none;
 
   thead {
     color: $ColorPrimaryInverse;
@@ -58,7 +59,9 @@
   td:last-child {
     border-right: $TableBorderWidth solid $ColorSparkleGrey40;
   }
+}
 
+.n-table-row-item-nofooter {
   &:last-child {
     td {
       border-bottom: $TableBorderWidth solid $ColorSparkleGrey40;
@@ -77,5 +80,48 @@
 .n-table-footer {
   td {
     padding: 16px;
+    border-left: $TableBorderWidth solid $ColorSparkleGrey40;
+    border-top: $TableBorderWidth solid $ColorSparkleGrey40;
+    font-size: 14px;
   }
+
+  td:last-child {
+    border-right: $TableBorderWidth solid $ColorSparkleGrey40;
+  }
+
+  &:last-child {
+    td {
+      border-bottom: $TableBorderWidth solid $ColorSparkleGrey40;
+    }
+
+    td:first-child {
+      border-bottom-left-radius: $RadiusMedium;
+    }
+
+    td:last-child {
+      border-bottom-right-radius: $RadiusMedium;
+    }
+  }
+}
+
+.n-table-header-action {
+  cursor: pointer;
+  margin-left: 6px;
+}
+
+.n-cursor-pointer {
+  cursor: pointer;
+}
+
+.n-th-parent {
+  display: flex;
+  align-items: center;
+}
+
+.n-table-header-text {
+  margin-right: 4px;
+}
+
+.n-action-icon {
+  color: $ColorWhite;
 }

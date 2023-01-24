@@ -1,14 +1,53 @@
-import React, { memo } from "react";
+import React, { memo, useState } from "react";
+import NitrozenId from "../../utils/uuids";
 import "./Table.scss";
+import {
+  SvgKeyboardArrowDown,
+  SvgKeyboardArrowRight,
+} from "../../assets/svg-components";
 
 export interface TableProps {
   id: string;
   tableRow: Array<any>;
   tableHeader: Array<any>;
+  footer?: String;
 }
 
 const Table: React.FC<TableProps> = (props) => {
   const { id, tableRow, tableHeader } = props;
+  const [clickedIds, setClickedIds] = useState<number[]>([]);
+
+  /**
+   *
+   * @param headerIndex index of the item that was clicked
+   */
+  const handleSortClicked = (headerIndex: number) => {
+    let clickedHeaderItem = tableHeader[headerIndex];
+    // create a temp arr
+    let tempClickedIds = [...clickedIds];
+    // if not exists then that means its clicked
+    if (!tempClickedIds.includes(headerIndex)) {
+      tempClickedIds.push(headerIndex);
+      clickedHeaderItem.customSort({
+        sort: true,
+        headerIndex,
+        headerName: clickedHeaderItem.name,
+      });
+    } else {
+      // if exists then find by index and remove that array element
+      let indexPos = tempClickedIds.indexOf(headerIndex);
+      if (indexPos > -1) {
+        tempClickedIds.splice(indexPos, 1);
+        clickedHeaderItem.customSort({
+          sort: false,
+          headerIndex,
+          headerName: clickedHeaderItem.name,
+        });
+      }
+    }
+    // set to state
+    setClickedIds(tempClickedIds);
+  };
 
   return (
     <div className="n-table" data-testid={`table-${id}`}>
@@ -19,11 +58,31 @@ const Table: React.FC<TableProps> = (props) => {
             {tableHeader.map((headerItem, headerIndex) => {
               return (
                 <th
-                  className="n-table-header"
+                  className={`n-table-header ${
+                    headerItem.sortable ? "n-cursor-pointer" : ""
+                  }`}
                   data-testid={`n-table-header-${headerIndex}`}
                   style={headerItem.width ? { width: headerItem.width } : {}}
+                  onClick={() => handleSortClicked(headerIndex)}
                 >
-                  {headerItem.value}
+                  <div className="n-th-parent">
+                    <span className="n-table-header-text">
+                      {" "}
+                      {headerItem.value}
+                    </span>
+                    {headerItem.sortable ? (
+                      <>
+                        {/* if the current headerIndex exists in the clickedIds array then show the arrow down svg*/}
+                        {clickedIds.includes(headerIndex) ? (
+                          <SvgKeyboardArrowDown className="n-action-icon" />
+                        ) : (
+                          <SvgKeyboardArrowRight className="n-action-icon" />
+                        )}
+                      </>
+                    ) : (
+                      <></>
+                    )}
+                  </div>
                 </th>
               );
             })}
@@ -34,7 +93,11 @@ const Table: React.FC<TableProps> = (props) => {
           {tableRow.map((rowItem, rowIndex) => {
             return (
               // map header value ex rowItem.name
-              <tr className="n-table-row-item">
+              <tr
+                className={`n-table-row-item ${
+                  !props.footer ? "n-table-row-item-nofooter" : ""
+                }`}
+              >
                 {tableHeader.map((headerElement, headerIndex) => {
                   return (
                     <td
@@ -49,17 +112,21 @@ const Table: React.FC<TableProps> = (props) => {
             );
           })}
         </tbody>
-        {/* <tfoot>
-          <tr className="n-table-footer">
-            <td>Deafult Footer</td></tr>
-        </tfoot> */}
+        {props.footer ? (
+          <tfoot>
+            <tr className="n-table-footer">
+              <td colSpan={tableHeader.length}>{props.footer}</td>
+            </tr>
+          </tfoot>
+        ) : null}
       </table>
     </div>
   );
 };
 
 Table.defaultProps = {
-  id: "1",
+  id: `nitrozen-dialog-${NitrozenId()}`,
+  tableHeader: [],
   tableRow: [],
 };
 
