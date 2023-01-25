@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import NitrozenId from "../../utils/uuids";
 import Dropdown from "../Dropdown";
 import "./Pagination.scss";
@@ -48,9 +48,20 @@ const Pagination = (props: PaginationProps) => {
   const [selectedPageSize, setSelectedPageSize] = useState<any>(
     pageSizeOptions && pageSizeOptions.length > 0 ? pageSizeOptions[0] : 10
   );
+  const isFirstRender = useRef<boolean>(true);
+
   useEffect(() => {
     setDefaults();
   }, []);
+
+  useEffect(() => {
+    if (isFirstRender?.current) {
+      isFirstRender.current = false;
+      return;
+    }
+    change();
+  }, [value]);
+
   function setDefaults() {
     if (!value.current) {
       setValue({ ...value, current: 1 });
@@ -67,7 +78,6 @@ const Pagination = (props: PaginationProps) => {
       if (!value.prevPage) return;
       setValue({ ...value, nextPage: "", currentPage: value.prevPage });
     }
-    change();
     onPreviousClick?.();
   }
   function next() {
@@ -88,7 +98,6 @@ const Pagination = (props: PaginationProps) => {
       if (!value.nextPage) return;
       setValue({ ...value, prevPage: "", currentPage: value.nextPage });
     }
-    change();
     onNextClick?.();
   }
   function pageSizeChange(size: number) {
@@ -105,7 +114,6 @@ const Pagination = (props: PaginationProps) => {
       setValue({ ...value, current: 1, limit: size });
     }
     setSelectedPageSize(size);
-    change();
   }
   function change() {
     onChange?.(value);
