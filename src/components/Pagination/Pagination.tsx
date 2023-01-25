@@ -5,8 +5,8 @@ import "./Pagination.scss";
 import { SvgChevronLeft, SvgChevronRight } from "../../assets/svg-components";
 
 export enum ModeEnum {
-  MODE_REGULAR = "regular",
-  MODE_CURSOR = "cursor",
+  MODE_COMPACT = "compact",
+  MODE_BASIC = "basic",
 }
 export interface ConfigProps {
   limit?: number;
@@ -26,6 +26,8 @@ export interface PaginationProps {
   onChange?: Function;
   onPreviousClick?: Function;
   onNextClick?: Function;
+  onFirstClick?: Function;
+  onLastClick?: Function;
   className?: string;
   style?: React.CSSProperties;
 }
@@ -40,6 +42,8 @@ const Pagination = (props: PaginationProps) => {
     onChange,
     onPreviousClick,
     onNextClick,
+    onFirstClick,
+    onLastClick,
     className,
     style,
     ...restProps
@@ -63,7 +67,7 @@ const Pagination = (props: PaginationProps) => {
       }
       const newCurrent = value.current ? value.current - 1 : 0;
       setValue({ ...value, current: newCurrent });
-    } else if (mode === ModeEnum.MODE_CURSOR) {
+    } else if (mode === ModeEnum.MODE_COMPACT) {
       if (!value.prevPage) return;
       setValue({ ...value, nextPage: "", currentPage: value.prevPage });
     }
@@ -84,7 +88,7 @@ const Pagination = (props: PaginationProps) => {
       const newCurrent = value.current ? value.current + 1 : 1;
       setValue({ ...value, current: newCurrent });
     }
-    if (mode === ModeEnum.MODE_CURSOR) {
+    if (mode === ModeEnum.MODE_COMPACT) {
       if (!value.nextPage) return;
       setValue({ ...value, prevPage: "", currentPage: value.nextPage });
     }
@@ -92,7 +96,7 @@ const Pagination = (props: PaginationProps) => {
     onNextClick?.();
   }
   function pageSizeChange(size: number) {
-    if (mode === ModeEnum.MODE_CURSOR) {
+    if (mode === ModeEnum.MODE_COMPACT) {
       setValue({
         ...value,
         current: 1,
@@ -145,16 +149,9 @@ const Pagination = (props: PaginationProps) => {
     );
   }
   function countsText() {
-    let txt = " ";
-    if (showTotal()) {
-      txt = `Result ${firstRecord()} - ${lastRecord()}`;
-      txt += ` of ${value.total}`;
-    } else if (value.currentTotal) {
-      txt = `Showing ${value.currentTotal} ${name}`;
-    } else {
-      txt = "";
-    }
-    return txt;
+    let totalPage =
+      value.total && value.limit && Math.ceil(value.total / value.limit);
+    return `${value.current}/${totalPage}`;
   }
   function showTotal() {
     if (value.total) {
@@ -166,16 +163,37 @@ const Pagination = (props: PaginationProps) => {
     if (value.total && value.current === 1) {
       return false;
     }
-    if (mode === ModeEnum.MODE_CURSOR && !value.prevPage) {
-      return false;
-    }
     return true;
   }
   function showNext() {
     if (value.total && value.current && value.current >= (pages() || 0)) {
       return false;
     }
-    if (mode === ModeEnum.MODE_CURSOR && !value.nextPage) {
+    return true;
+  }
+
+  function first() {
+    const newCurrent = 1;
+    setValue({ ...value, current: newCurrent });
+    change();
+    onFirstClick?.();
+  }
+
+  function last() {
+    const newCurrent = pages() || 0;
+    setValue({ ...value, current: newCurrent });
+    change();
+    onLastClick?.();
+  }
+
+  function showFirst() {
+    if (value.total && value.current === 1) {
+      return false;
+    }
+    return true;
+  }
+  function showLast() {
+    if (value.total && value.current && value.current >= (pages() || 0)) {
       return false;
     }
     return true;
@@ -188,49 +206,57 @@ const Pagination = (props: PaginationProps) => {
       {...restProps}
     >
       <div className="nitrozen-pagination">
-        <div className="nitrozen-pagination__left">
-          <span
-            className="nitrozen-pagination__count"
-            data-testid="pagination-count"
-          >
-            {countsText()}
-          </span>
-        </div>
-        <div className="nitrozen-pagination__right">
-          <div className="nitrozen-pagination__select">
-            <span className="nitrozen-pagination__select__label">
-              Rows per page
-            </span>
-            <Dropdown
-              className="nitrozen-pagination-page-size"
-              items={pageSizes()}
-              value={selectedPageSize}
-              onChange={pageSizeChange}
-            />
-          </div>
-          {mode === ModeEnum.MODE_REGULAR && (
-            <>
-              <div
-                data-testid="btnPrevious"
-                onClick={previous}
-                className={`nitrozen-pagination__prev ${
-                  !showPrev() && "pagination-diabled"
-                }`}
-              >
+        {mode === ModeEnum.MODE_COMPACT && (
+          <div className="pagination-wrapper">
+            <div
+              data-testid="btnFirst"
+              onClick={first}
+              className={`nitrozen-pagination__prev ${
+                !showFirst() && "pagination-diabled"
+              }`}
+            >
+              <>
                 <SvgChevronLeft />
-              </div>
-              <div
-                data-testid="btnNext"
-                onClick={next}
-                className={`nitrozen-pagination__next ${
-                  !showNext() && "pagination-diabled"
-                } `}
-              >
+              </>
+            </div>
+            <div
+              data-testid="btnPrevious"
+              onClick={previous}
+              className={`nitrozen-pagination__prev ${
+                !showPrev() && "pagination-diabled"
+              }`}
+            >
+              <SvgChevronLeft />
+            </div>
+
+            <span
+              className="nitrozen-pagination__count"
+              data-testid="pagination-count"
+            >
+              {countsText()}
+            </span>
+            <div
+              data-testid="btnNext"
+              onClick={next}
+              className={`nitrozen-pagination__next ${
+                !showNext() && "pagination-diabled"
+              } `}
+            >
+              <SvgChevronRight />
+            </div>
+            <div
+              data-testid="btnLast"
+              onClick={last}
+              className={`nitrozen-pagination__prev ${
+                !showLast() && "pagination-diabled"
+              }`}
+            >
+              <>
                 <SvgChevronRight />
-              </div>
-            </>
-          )}
-        </div>
+              </>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
@@ -238,7 +264,7 @@ const Pagination = (props: PaginationProps) => {
 
 Pagination.defaultProps = {
   id: `nitrozen-pagination-${NitrozenId()}`,
-  mode: ModeEnum.MODE_REGULAR,
+  mode: ModeEnum.MODE_COMPACT,
   pageSizeOptions: [10, 20, 50, 100],
   value: {
     limit: 0,

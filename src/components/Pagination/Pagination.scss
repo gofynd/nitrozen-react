@@ -11,52 +11,37 @@
     color: $LabelColor;
     font-size: 1.4rem;
     font-weight: 400;
+    .pagination-wrapper {
+      display: flex;
+      width: 100%;
+      justify-content: center;
+    }
 
-    .nitrozen-pagination__left {
-      flex: 1;
+    .nitrozen-pagination__prev,
+    .nitrozen-pagination__next {
+      width: 2.4rem;
+      height: 2.4rem;
+      margin: 0 0.8rem;
+
+      svg {
+        width: 2.4rem;
+        height: 2.4rem;
+      }
+
+      :hover {
+        color: #000093;
+        background: #e8e8fc;
+        border-radius: 50%;
+      }
+    }
+    .nitrozen-pagination__count {
       display: flex;
       align-items: center;
     }
-
-    .nitrozen-pagination__right {
-      display: flex;
-      flex: 1;
-      justify-content: flex-end;
-      align-items: center;
-
-      .nitrozen-pagination__select {
-        display: flex;
-        align-items: center;
-
-        &__label {
-          @media only screen and (max-width: $sm-min) {
-            display: none;
-          }
-        }
-
-        .nitrozen-pagination-page-size {
-          width: 7.2rem;
-          margin: 0 1.2rem;
-        }
-      }
-
-      .nitrozen-pagination__prev,
-      .nitrozen-pagination__next {
-        width: 2.4rem;
-        height: 2.4rem;
-        margin: 0 0.8rem;
-
-        svg {
-          width: 2.4rem;
-          height: 2.4rem;
-        }
-      }
-
-      .pagination-diabled {
-        opacity: 0.4;
-        cursor: not-allowed;
-        pointer-events: none;
-      }
+    .pagination-diabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+      pointer-events: none;
     }
   }
 }
