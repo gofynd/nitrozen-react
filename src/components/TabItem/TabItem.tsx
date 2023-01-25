@@ -39,7 +39,7 @@ const TabItem = React.forwardRef<HTMLLIElement, TabItemProps>(
 
 TabItem.defaultProps = {
   id: "nitrozen-tab-item" + uuid(),
-  children: <span>hello</span>,
+  children: <></>,
 };
 
 export default memo(TabItem);
