@@ -100,6 +100,7 @@ const Checkbox = (props: CheckboxProps) => {
       )}
       <input
         id={id}
+        data-testid={id}
         type="checkbox"
         onChange={(e) => ComponentChangeHandler(e)}
         value={checkboxValue || value}
