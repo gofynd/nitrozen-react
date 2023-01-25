@@ -218,7 +218,7 @@ const Tab = (props: TabProps) => {
       <div
         id={id}
         style={style ?? {}}
-        className={`nitrozen-tab-container n-tab-scroll ${
+        className={`n-tab-container n-tab-scroll ${
           appearance === "navbar" ? "n-tab-navbar" : ""
         } ${overflow === "fit" ? "n-overflow-fit" : "n-overflow-scroll"} ${
           className ?? ""
@@ -235,7 +235,7 @@ const Tab = (props: TabProps) => {
             <SvgIcChevronLeft className="n-scroll-left-icon" />
           </button>
         )}
-        <ul className="nitrozen-tab" ref={tabContainerRef}>
+        <ul className="n-tab" ref={tabContainerRef}>
           {tabItem
             ?.filter((_, index) => !tabs || index < tabs)
             ?.map((item, index) => (
@@ -243,7 +243,7 @@ const Tab = (props: TabProps) => {
                 onClick={selectTab(index, item)}
                 ref={(el: HTMLLIElement) => (tabsRef.current[index] = el)}
                 className={classnames({
-                  "nitrozen-tab-active": activeTab === index,
+                  "n-tab-active": activeTab === index,
                 })}
                 key={getItem(item, label) + index + uuid()}
                 icon={getIcon(item, "icon")}
@@ -280,7 +280,7 @@ const getIcon = (item: Object | string | any, prop: string) => {
 };
 
 Tab.defaultProps = {
-  id: "nitrozen-tab-item" + uuid(),
+  id: "n-tab-item" + uuid(),
   activeIndex: 0,
   tabItem: [],
   appearance: "normal",

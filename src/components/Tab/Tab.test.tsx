@@ -18,7 +18,7 @@ describe("Tab", () => {
         onTabChange={() => {}}
       />
     );
-    const tab = document.querySelector(".nitrozen-tab-active")?.textContent;
+    const tab = document.querySelector(".n-tab-active")?.textContent;
     expect(tab).toBe("T2");
   });
 
@@ -30,7 +30,7 @@ describe("Tab", () => {
         onTabChange={() => {}}
       />
     );
-    const tab = document.querySelector(".nitrozen-tab-active")?.textContent;
+    const tab = document.querySelector(".n-tab-active")?.textContent;
     expect(tab).toBe("Tab 5");
   });
 
@@ -45,7 +45,7 @@ describe("Tab", () => {
     const tab2 = screen.getByText("Tab 2");
     userEvent.click(tab2);
     expect(screen.getByText("Tab 2").parentElement?.parentElement).toHaveClass(
-      "nitrozen-tab-active"
+      "n-tab-active"
     );
   });
 
