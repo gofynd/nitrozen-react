@@ -4,25 +4,40 @@
   display: flex;
   justify-content: center;
   font-family: $PrimaryFont;
-  cursor: pointer;
-  margin-right: 1.2rem;
-  padding-bottom: 1rem;
-  font-size: 1.6rem;
-  font-weight: 400;
-  line-height: 1.92rem;
-  padding-left: 0.8rem;
-  padding-right: 0.8rem;
-  letter-spacing: 0.5%;
-  color: $LabelColor;
-  min-width: fit-content;
+  padding: 1.2rem 0.8rem;
+  flex: 1;
+  align-items: center;
+  button.tab-btn {
+    border: 0;
+    outline: 0;
+    background-color: inherit;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.6rem;
+    line-height: 2.4rem;
+    color: $ColorPrimaryGrey80;
+    font-weight: 500;
+    min-width: 2.5rem;
+    height: 100%;
+    width: 100%;
+    white-space: pre;
+    vertical-align: top;
+    cursor: pointer;
+    &:hover,
+    &:focus {
+      color: $ColorSecondaryGrey100;
+    }
+    .tab-icon {
+      display: inline-flex;
+      margin-right: 0.8rem;
+      align-items: center;
+      justify-content: center;
+    }
+  }
 
   .tab-item-icon {
     margin-top: 0.15rem;
-    margin-left: 0.4rem;
+    margin-right: 0.4rem;
   }
-}
-.nitrozen-tab-active {
-  color: $PrimaryColor;
-  border-bottom: 0.3rem solid $PrimaryColor;
-  font-weight: 700;
 }

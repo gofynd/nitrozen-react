@@ -1,6 +1,5 @@
 import React, { memo } from "react";
 import uuid from "../../utils/uuids";
-import Tooltip from "../Tooltip";
 import "./TabItem.scss";
 
 export interface TabItemProps {
@@ -8,47 +7,30 @@ export interface TabItemProps {
   children?: React.ReactNode;
   onClick: React.MouseEventHandler;
   icon?: React.ReactElement;
-  tooltipIcon?: React.ReactNode;
-  tooltipIconHoverText?: JSX.Element | React.ReactNode | string;
   className?: string;
   style?: React.CSSProperties;
 }
 
-const TabItem = (props: TabItemProps) => {
-  const {
-    id,
-    children,
-    onClick,
-    className,
-    style,
-    icon,
-    tooltipIcon,
-    tooltipIconHoverText,
-    ...restProps
-  } = props;
-  return (
-    <li
-      onClick={onClick}
-      id={id}
-      className={`nitrozen-tab-item ${className ?? ""}`}
-      style={style ?? {}}
-      {...restProps}
-    >
-      <span>{children}</span>
-      {tooltipIcon && tooltipIconHoverText ? (
-        <span className="tab-item-icon">
-          <Tooltip
-            position="bottom"
-            icon={tooltipIcon}
-            tooltipContent={tooltipIconHoverText}
-          />
-        </span>
-      ) : (
-        icon || null
-      )}
-    </li>
-  );
-};
+const TabItem = React.forwardRef<HTMLLIElement, TabItemProps>(
+  (props: TabItemProps, ref) => {
+    const { id, children, onClick, className, style, icon, ...restProps } =
+      props;
+    return (
+      <li
+        id={id}
+        className={`nitrozen-tab-item ${className ?? ""}`}
+        style={style ?? {}}
+        {...restProps}
+        ref={ref}
+      >
+        <button role="tab" className="tab-btn" type="button" onClick={onClick}>
+          {icon ? <span className="tab-icon">{icon}</span> : null}
+          <span>{children}</span>
+        </button>
+      </li>
+    );
+  }
+);
 
 TabItem.defaultProps = {
   id: "nitrozen-tab-item" + uuid(),
