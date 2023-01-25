@@ -76,22 +76,6 @@ If you're looking for `@gofynd/nitrozen-react` API documentation, check out:
 
 - [Storybook](https://gofynd.io/nitrozen-react/?path=/story/introduction-welcome--welcome)
 
-## 🙌 Contributors:
-
-- Kingshuk - kingshukb@gofynd.com
-- Sumit - sumitsinha@gofynd.com
-- Rushikesh - rushikeshtarapure@gofynd.com
-- Pratyush - prathyushsunny@gofynd.com
-- Sayak - sayakghosh@gofynd.com
-- Surajit - surajitdas@gofynd.com
-- Aman - amantiwari@gofynd.com
-- Rakesh - rakeshyadav1@gofynd.com
-- Sameer - sameershaikh@gofynd.com
-- Ayush - ayushjain@gofynd.com
-- Rohit - rohitgupta@gofynd.com
-- Ashutosh - ashutoshkumar@gofynd.com
-- Aadesh - aadeshkulkarni@gofynd.com
-
 ## 📝 License
 
 > Licensed under the Apache 2.0 License
