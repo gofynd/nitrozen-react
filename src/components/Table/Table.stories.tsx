@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import Table from "./Table";
 import "./Table.scss";
 import * as SvgArray from "../../assets/svg-components";
-import { SvgDirections } from "../../assets/svg-components";
+import { SvgDirections, SvgSortByAlpha } from "../../assets/svg-components";
+import Badge from "../Badge/Badge";
 
 export default {
   title: "Components/Table",
@@ -87,6 +88,7 @@ export default {
         "An element to be placed on the left, ideally an icon. This is clickable if onIconClick is defined.",
       options: SvgArray,
     },
+    checkable: { control: "boolean", defaultValue: false },
   },
 } as ComponentMeta<typeof Table>;
 
@@ -100,9 +102,155 @@ export const Template: ComponentStory<typeof Table> = (args) => {
 
 export const ShowTable = Template.bind({});
 
-const testFn = (obj: any) => {
-  console.log("Callback with data ", obj);
+export const CheckableTable = (args: any) => {
+  const [countVal, setCount] = useState(0);
+  const [rowItem, setRowItem] = useState<any[]>([
+    {
+      age: 45,
+      firstName: "John",
+      lastName: "Yang",
+    },
+    {
+      age: 16,
+      firstName: "Robert",
+      lastName: "Peterson",
+    },
+    {
+      age: 45,
+      firstName: "Dana",
+      lastName: "Culley",
+    },
+    {
+      age: 150,
+      firstName: "Rav",
+      lastName: "Giraudy",
+    },
+    {
+      age: 44,
+      firstName: "Julia",
+      lastName: "Clifford",
+    },
+    {
+      age: 36,
+      firstName: "Sasha",
+      lastName: "Brecher",
+    },
+    {
+      age: 12,
+      firstName: "Harvey",
+      lastName: "Jefferson",
+    },
+  ]);
+  const getCheckedItems = (items: any) => {
+    let count = 0;
+    items.forEach((item: any) => {
+      if (item.isChecked) count++;
+    });
+    setCount(count);
+  };
+
+  const allCheckClicked = (status: boolean) => {
+    let tempRowArr = [...rowItem];
+    rowItem.forEach((item: any) => {
+      item.isChecked = status;
+    });
+    setRowItem(tempRowArr);
+    setCount(tempRowArr.length);
+  };
+  return (
+    <div>
+      <p style={{ fontSize: "14px", marginTop: "0px" }}>
+        Total items selected {countVal}
+      </p>
+      <Table
+        {...args}
+        checkable={true}
+        getCheckedItems={getCheckedItems}
+        allCheckClicked={allCheckClicked}
+        tableRow={rowItem}
+      />
+    </div>
+  );
 };
+
+export const sortableTable = (args: any) => {
+  const sortNames = () => {
+    let tempItemsArr = [...rowItem];
+    tempItemsArr = tempItemsArr.sort((a, b) =>
+      a.firstName.localeCompare(b.firstName)
+    );
+    setRowItem(tempItemsArr);
+  };
+  const [rowItem, setRowItem] = useState<any[]>([
+    {
+      age: 45,
+      firstName: "John",
+      lastName: "Yang",
+    },
+    {
+      age: 16,
+      firstName: "Robert",
+      lastName: "Peterson",
+    },
+    {
+      age: 45,
+      firstName: "Dana",
+      lastName: "Culley",
+    },
+    {
+      age: 150,
+      firstName: "Rav",
+      lastName: "Giraudy",
+    },
+    {
+      age: 44,
+      firstName: "Julia",
+      lastName: "Clifford",
+    },
+    {
+      age: 36,
+      firstName: "Sasha",
+      lastName: "Brecher",
+    },
+    {
+      age: 12,
+      firstName: "Harvey",
+      lastName: "Jefferson",
+    },
+  ]);
+  const [tableHeader, setTableHeader] = useState([
+    {
+      customSort: sortNames,
+      name: "firstName",
+      sortable: true,
+      value: "First name",
+      width: "50%",
+    },
+    {
+      name: "lastName",
+      sortable: false,
+      value: "Last name",
+      width: "20%",
+    },
+    {
+      name: "age",
+      type: "number",
+      value: "Age",
+      width: "100px",
+    },
+  ]);
+  return (
+    <div>
+      <Table
+        {...args}
+        tableRow={rowItem}
+        customSortIcon={<SvgSortByAlpha color="white" />}
+        tableHeader={tableHeader}
+      />
+    </div>
+  );
+};
+
 ShowTable.args = {
   tableRow: [
     {
@@ -143,7 +291,7 @@ ShowTable.args = {
   ],
   tableHeader: [
     {
-      customSort: testFn,
+      customSort: () => {},
       name: "firstName",
       sortable: true,
       value: "First name",
@@ -156,7 +304,7 @@ ShowTable.args = {
       width: "20%",
     },
     {
-      customSort: testFn,
+      customSort: () => {},
       name: "age",
       sortable: true,
       type: "number",

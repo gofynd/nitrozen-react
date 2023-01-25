@@ -131,3 +131,26 @@
 .n-table-row-zebra:nth-child(even) {
   background-color: $ColorPrimaryGrey20;
 }
+
+.n-table-checbox-wrapper {
+  .n-checkbox-container {
+    padding: 0px;
+  }
+  .n-checkbox {
+    top: -10px;
+    @media screen and (max-width: 768px) {
+      left: 0;
+    }
+  }
+}
+.n-table-header-checkbox {
+  width: 10px;
+}
+.n-table-row-item-checkbox {
+  td:first-child {
+    border-right: 0;
+  }
+  td:nth-child(2) {
+    border-left: 0;
+  }
+}

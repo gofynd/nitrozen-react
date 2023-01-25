@@ -1,10 +1,11 @@
-import React, { memo, useState } from "react";
+import React, { memo, useState, useEffect } from "react";
 import NitrozenId from "../../utils/uuids";
 import "./Table.scss";
 import {
   SvgKeyboardArrowDown,
   SvgKeyboardArrowRight,
 } from "../../assets/svg-components";
+import Checkbox from "../Checkbox/Checkbox";
 export interface TableProps {
   id?: string;
   tableRow: Array<any>;
@@ -13,6 +14,10 @@ export interface TableProps {
   rowStyle: string;
   headerBackground?: string;
   customSortIcon?: React.ReactNode;
+  checkable?: Boolean;
+  allChecked?: Boolean;
+  getCheckedItems?: Function;
+  allCheckClicked?: Function;
 }
 
 const Table: React.FC<TableProps> = (props) => {
@@ -51,11 +56,33 @@ const Table: React.FC<TableProps> = (props) => {
     setClickedIds(tempClickedIds);
   };
 
+  const handleRowCheckClicked = (status: boolean, rowIndex: number) => {
+    let tempCheckedArr = [...tableRow];
+    tempCheckedArr[rowIndex].isChecked = status;
+    props.getCheckedItems?.(tempCheckedArr);
+  };
+
   return (
     <div className="n-table" data-testid={`table-${id}`}>
       <table className="n-main-table">
         <thead>
           <tr className="n-table-header-tr">
+            {props.checkable ? (
+              <th className="n-table-header-checkbox">
+                <div className="n-table-checbox-wrapper">
+                  <Checkbox
+                    id="header-checkbox"
+                    value={props.allChecked}
+                    onChange={(status: boolean) =>
+                      props.allCheckClicked?.(status)
+                    }
+                    checkboxValue={props.allChecked}
+                  />
+                </div>
+              </th>
+            ) : (
+              <></>
+            )}
             {/* For all table headers map the table header values */}
             {tableHeader.map((headerItem, headerIndex) => {
               return (
@@ -69,6 +96,7 @@ const Table: React.FC<TableProps> = (props) => {
                     backgroundColor: props.headerBackground,
                   }}
                   onClick={() => handleSortClicked(headerIndex)}
+                  key={`n-table-header-${headerIndex}`}
                 >
                   <div className="n-th-parent">
                     <span
@@ -111,13 +139,37 @@ const Table: React.FC<TableProps> = (props) => {
                 data-testid={`row-${rowIndex}`}
                 className={`n-table-row-item ${
                   !props.footer ? "n-table-row-item-nofooter" : ""
-                } ${props.rowStyle == "zebra" ? "n-table-row-zebra" : ""}`}
+                } ${props.rowStyle == "zebra" ? "n-table-row-zebra" : ""} ${
+                  props.checkable ? "n-table-row-item-checkbox" : ""
+                }`}
+                key={`row-${rowIndex}`}
               >
+                {props.checkable ? (
+                  <td className="n-row-data">
+                    <div className="n-table-checbox-wrapper">
+                      <Checkbox
+                        id={`n-row-checkbox-${rowIndex}`}
+                        value={rowItem.isChecked}
+                        onChange={(status: boolean) =>
+                          handleRowCheckClicked(status, rowIndex)
+                        }
+                        checkboxValue={rowItem.isChecked}
+                      />
+                    </div>
+                  </td>
+                ) : (
+                  <></>
+                )}
                 {tableHeader.map((headerElement, headerIndex) => {
+                  console.log(
+                    rowItem[headerElement.name],
+                    "rowItem[headerElement.name]}"
+                  );
                   return (
                     <td
                       className="n-row-data"
                       data-testid={`n-row-data-${rowIndex}-${headerIndex}`}
+                      key={`n-row-data-${rowIndex}-${headerIndex}`}
                     >
                       {rowItem[headerElement.name]}
                     </td>
@@ -130,7 +182,12 @@ const Table: React.FC<TableProps> = (props) => {
         {props.footer ? (
           <tfoot>
             <tr className="n-table-footer">
-              <td colSpan={tableHeader.length} data-testid={`footer-data`}>
+              <td
+                colSpan={
+                  props.checkable ? 1 + tableHeader.length : tableHeader.length
+                }
+                data-testid={`footer-data`}
+              >
                 {props.footer}
               </td>
             </tr>
@@ -148,6 +205,10 @@ Table.defaultProps = {
   rowStyle: "simple",
   headerBackground: "",
   customSortIcon: "",
+  checkable: false,
+  allChecked: false,
+  getCheckedItems: () => {},
+  allCheckClicked: () => {},
 };
 
 export default memo(Table);
