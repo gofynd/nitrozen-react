@@ -1,5 +1,4 @@
 import React from "react";
-import { ButtonProps } from "../Button/Button";
 import "./Card.scss";
 export interface CardProps {
   title?: string;
@@ -10,24 +9,13 @@ export interface CardProps {
   description?: string | Element;
   primaryCTA?: JSX.Element;
   secondaryCTA?: JSX.Element;
-  style?: React.CSSProperties;
-  cardTitle?: string;
-  className?: string;
-  showBorder?: boolean;
-  children?: React.ReactNode;
-  cardIcon?: string;
-  headerStyle?: React.CSSProperties;
+  caption?: JSX.Element;
+  header?: JSX.Element;
+  footer?: JSX.Element;
 }
 
 const Card = (props: CardProps) => {
   const {
-    style,
-    headerStyle,
-    cardTitle,
-    className,
-    showBorder,
-    children,
-    cardIcon,
     title,
     image,
     imageFocus,
@@ -36,27 +24,41 @@ const Card = (props: CardProps) => {
     description,
     primaryCTA,
     secondaryCTA,
+    caption,
+    footer,
+    header,
     ...restProps
   } = props;
   return (
-    <div className="n-card n-card__container">
-      <div className={`n-flex orientation-${orientation}`}>
+    <div
+      className={`nitrozen-card nitrozen-card__container ${
+        orientation === "vertical" && "card-vertical"
+      }`}
+    >
+      {header && <div className="nitrozen-card-header">{header}</div>}
+      <div className={`nitrozen-flex orientation-${orientation}`}>
         {image && (
           <div
-            className={`n-card__image ratio-${imageRatio} focus-${imageFocus}`}
+            className={`nitrozen-card-image ratio-${imageRatio} focus-${imageFocus}`}
           >
             {image}
           </div>
         )}
-        <div className="n-card__content">
-          {title && <h3>{title}</h3>}
-          {description && <div className="n-text-body">{description}</div>}
-          <div className="n-button-group">
+        <div
+          className={`nitrozen-card__content ${
+            orientation === "vertical" && "vertical-space"
+          }`}
+        >
+          {caption && <div className="nitrozen-card-caption">{caption}</div>}
+          {title && <h3 className="nitrozen-heading">{title}</h3>}
+          {description && <div className="nitrozen-text-md">{description}</div>}
+          <div className="nitrozen-button-group">
             {primaryCTA && primaryCTA}
             {secondaryCTA && secondaryCTA}
           </div>
         </div>
       </div>
+      {footer && <div className="nitrozen-card-footer">{footer}</div>}
     </div>
   );
 };
@@ -66,11 +68,7 @@ Card.defaultProps = {
   imageFocus: "center",
   orientation: "vertical",
   style: {},
-  cardTitle: "",
   className: "",
-  showBorder: false,
-  children: null,
-  cardIcon: null,
 };
 
 export default Card;

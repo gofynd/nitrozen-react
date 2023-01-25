@@ -15,26 +15,45 @@
   margin: -10px;
 }
 
-.n-card {
+.nitrozen-card {
   color: #000;
+  box-shadow: $ShadowS;
+  border-radius: $RadiusLarge;
+}
+.vertical-space {
+  margin-top: $SpacingM;
 }
 
-.n-card h3 {
-  padding: 0;
-  margin: 0;
-  font-weight: 900;
-  line-height: 1;
-  font-size: 2.5rem;
-  letter-spacing: -1.2px;
-  color: inherit;
+.nitrozen-card__content {
+  padding: 0 $SpacingM;
+  flex: 1 0 70%;
+
+  h3 {
+    padding: 0;
+    margin: 0;
+    font-weight: bold;
+    line-height: 1;
+    font-size: 2.4rem;
+    letter-spacing: -1.2px;
+    color: inherit;
+  }
+
+  .nitrozen-text-body {
+    margin-top: 0.4rem;
+    font-weight: 500;
+    text-transform: none;
+    font-size: 1.6rem;
+    letter-spacing: -0.08px;
+    line-height: 1.5;
+  }
 }
 
-.n-card__content {
-  padding: $SpacingM;
+.card-vertical {
+  padding-bottom: $SpacingM;
 }
 
-.n-card__image {
-  border-radius: 1rem;
+.nitrozen-card-image {
+  border-radius: $RadiusLarge;
   line-height: 0;
   height: 100%;
   width: 100%;
@@ -42,9 +61,11 @@
   align-self: start;
 
   img {
+    aspect-ratio: $AspectRatioSquare;
     height: 100%;
     object-fit: cover;
     object-position: center;
+    flex: 1 1 30%;
   }
 }
 
@@ -88,35 +109,45 @@
   object-position: center;
 }
 
-.n-flex {
+.nitrozen-flex {
   display: flex;
 }
 
 .orientation-horizontal {
   flex-direction: row;
   align-items: center;
+  padding: $SpacingM;
 }
 
 .orientation-vertical {
   flex-direction: column;
 }
 
-.n-text-body {
-  font-weight: 500;
+.nitrozen-heading {
+  font-weight: 900;
   text-transform: none;
-  font-size: 1rem;
-  letter-spacing: -0.08px;
-  line-height: 1.5;
+  font-size: 2rem;
+  letter-spacing: -0.72px;
+  line-height: 1.1666666667;
 }
 
-.n-button-group {
+.nitrozen-text-md {
+  font-weight: 500;
+  text-transform: none;
+  font-size: 1.6rem;
+  letter-spacing: -0.08px;
+  line-height: 1.5;
+  margin-top: $SpacingXs;
+}
+
+.nitrozen-button-group {
   display: flex;
   justify-content: inherit;
   flex-wrap: wrap;
   align-items: center;
   margin-top: 1.5rem;
+}
 
-  * {
-    flex-grow: 1;
-  }
+.nitrozen-card-caption {
+  margin: $SpacingXs 0;
 }
