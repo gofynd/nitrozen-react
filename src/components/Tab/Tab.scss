@@ -4,7 +4,7 @@
   display: flex;
   height: 4.8rem;
   position: relative;
-  &.tab-scroll {
+  &.n-tab-scroll {
     padding: 0 6.4rem;
     overscroll-behavior-x: none;
     .nitrozen-tab {
@@ -15,7 +15,7 @@
       }
     }
   }
-  &.overflow-scroll {
+  &.n-overflow-scroll {
     .nitrozen-tab {
       .nitrozen-tab-item {
         flex: none;
@@ -23,10 +23,10 @@
     }
   }
 
-  &.tab-navbar {
+  &.n-tab-navbar {
     background-color: $ColorPrimary60;
     color: $ColorPrimaryBackground;
-    .nav-btn {
+    .n-nav-btn {
       color: $DarkPrimary60;
       border-radius: 50%;
 
@@ -34,23 +34,23 @@
         background-color: $ColorPrimary20Dark;
       }
 
-      &.icon-btn-left {
+      &.n-icon-btn-left {
         svg {
           color: $DarkPrimary60;
         }
       }
-      &.icon-btn-right {
+      &.n-icon-btn-right {
         svg {
           color: $DarkPrimary60;
         }
       }
     }
     .nitrozen-tab {
-      & .d-scroll {
+      & .n-d-scroll {
         background-color: $DarkPrimary60;
       }
       .nitrozen-tab-item {
-        button.tab-btn {
+        button.n-tab-btn {
           background-color: $ColorPrimary60;
           color: $ColorPrimaryBackground;
           &:hover {
@@ -58,7 +58,7 @@
           }
         }
         &.nitrozen-tab-active {
-          button.tab-btn {
+          button.n-tab-btn {
             color: $ColorPrimaryBackground;
           }
         }
@@ -66,7 +66,7 @@
     }
   }
 
-  .nav-btn {
+  .n-nav-btn {
     border: none;
     background: none;
     color: $ColorPrimary60;
@@ -87,14 +87,14 @@
       background-color: $ColorPrimary20;
     }
 
-    &.icon-btn-left {
+    &.n-icon-btn-left {
       left: 0.5rem;
       display: none;
       svg {
         color: $ActiveFieldBorder;
       }
     }
-    &.icon-btn-right {
+    &.n-icon-btn-right {
       right: 0.5rem;
       display: none;
       svg {
@@ -113,7 +113,7 @@
     margin: 0 1.6rem;
     font-family: $PrimaryFont;
     position: relative;
-    & .d-scroll {
+    & .n-d-scroll {
       height: 0.4rem;
       background-color: $ColorPrimary50;
       position: absolute;
@@ -125,7 +125,7 @@
     &::-webkit-scrollbar {
       display: none;
     }
-    &.dragging {
+    &.n-dragging {
       scroll-behavior: auto;
       cursor: grab;
     }

@@ -52,7 +52,7 @@ const Tab = (props: TabProps) => {
 
   const pointerup = () => {
     if (tabContainerRef.current) {
-      tabContainerRef.current.classList.remove("dragging");
+      tabContainerRef.current.classList.remove("n-dragging");
     }
     isDragging.current = false;
   };
@@ -60,7 +60,7 @@ const Tab = (props: TabProps) => {
   const pointermove = (e: PointerEvent) => {
     if (isDragging.current) {
       if (tabContainerRef.current) {
-        tabContainerRef.current.classList.add("dragging");
+        tabContainerRef.current.classList.add("n-dragging");
         let scrollWidth = tabContainerRef.current.scrollLeft - e.movementX;
         tabContainerRef.current.scrollLeft = scrollWidth;
         handleScrollIcon(scrollWidth);
@@ -71,7 +71,7 @@ const Tab = (props: TabProps) => {
   const wheelmove = (e: WheelEvent) => {
     e.preventDefault();
     if (tabContainerRef.current) {
-      tabContainerRef.current.classList.add("dragging");
+      tabContainerRef.current.classList.add("n-dragging");
       let scrollWidth = tabContainerRef.current.scrollLeft + e.deltaX;
       tabContainerRef.current.scrollLeft = scrollWidth;
       handleScrollIcon(scrollWidth);
@@ -208,7 +208,7 @@ const Tab = (props: TabProps) => {
         tabContainerRef.current.scrollWidth <=
         tabContainerRef.current.clientWidth
       ) {
-        tabContainerRootRef.current.classList.remove("tab-scroll");
+        tabContainerRootRef.current.classList.remove("n-tab-scroll");
       }
     }
   }, [tabItem, tabContainerRef, tabsRef, tabContainerRootRef]);
@@ -218,9 +218,9 @@ const Tab = (props: TabProps) => {
       <div
         id={id}
         style={style ?? {}}
-        className={`nitrozen-tab-container tab-scroll ${
-          appearance === "navbar" ? "tab-navbar" : ""
-        } ${overflow === "fit" ? "overflow-fit" : "overflow-scroll"} ${
+        className={`nitrozen-tab-container n-tab-scroll ${
+          appearance === "navbar" ? "n-tab-navbar" : ""
+        } ${overflow === "fit" ? "n-overflow-fit" : "n-overflow-scroll"} ${
           className ?? ""
         }`}
         {...restProps}
@@ -228,11 +228,11 @@ const Tab = (props: TabProps) => {
       >
         {overflow === "arrow" && (
           <button
-            className="nav-btn icon-btn-left"
+            className="n-nav-btn n-icon-btn-left"
             onClick={handleScroll("left")}
             ref={leftNavBtnRef}
           >
-            <SvgIcChevronLeft className="scroll-left-icon" />
+            <SvgIcChevronLeft className="n-scroll-left-icon" />
           </button>
         )}
         <ul className="nitrozen-tab" ref={tabContainerRef}>
@@ -251,15 +251,15 @@ const Tab = (props: TabProps) => {
                 {getItem(item, label)}
               </TabItem>
             ))}
-          <div className="d-scroll" ref={scroll} />
+          <div className="n-d-scroll" ref={scroll} />
         </ul>
         {overflow === "arrow" && (
           <button
-            className="nav-btn icon-btn-right"
+            className="n-nav-btn n-icon-btn-right"
             onClick={handleScroll("right")}
             ref={rightNavBtnRef}
           >
-            <SvgIcChevronRight className="scroll-right-icon" />
+            <SvgIcChevronRight className="n-scroll-right-icon" />
           </button>
         )}
       </div>

@@ -7,7 +7,7 @@
   padding: 1.2rem 0.8rem;
   flex: 1;
   align-items: center;
-  button.tab-btn {
+  button.n-tab-btn {
     border: 0;
     outline: 0;
     background-color: inherit;
@@ -28,7 +28,7 @@
     &:focus {
       color: $ColorSecondaryGrey100;
     }
-    .tab-icon {
+    .n-tab-icon {
       display: inline-flex;
       margin-right: 0.8rem;
       align-items: center;

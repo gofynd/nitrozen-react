@@ -79,7 +79,7 @@ describe("Tab", () => {
     );
 
     const btn = document.querySelectorAll(
-      ".nav-btn"
+      ".n-nav-btn"
     ) as NodeListOf<HTMLButtonElement>;
     expect(btn).toHaveLength(2);
     userEvent.click(btn[0]);

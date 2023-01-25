@@ -23,8 +23,13 @@ const TabItem = React.forwardRef<HTMLLIElement, TabItemProps>(
         {...restProps}
         ref={ref}
       >
-        <button role="tab" className="tab-btn" type="button" onClick={onClick}>
-          {icon ? <span className="tab-icon">{icon}</span> : null}
+        <button
+          role="tab"
+          className="n-tab-btn"
+          type="button"
+          onClick={onClick}
+        >
+          {icon ? <span className="n-tab-icon">{icon}</span> : null}
           <span>{children}</span>
         </button>
       </li>
