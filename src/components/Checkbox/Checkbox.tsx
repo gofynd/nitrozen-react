@@ -74,7 +74,7 @@ const Checkbox = (props: CheckboxProps) => {
       }
     } else {
       setChecked(!checked);
-      onChange(!checkboxValue);
+      onChange(e.target.checked);
     }
   };
 
@@ -101,7 +101,7 @@ const Checkbox = (props: CheckboxProps) => {
       <input
         id={id}
         type="checkbox"
-        onChange={ComponentChangeHandler}
+        onChange={(e) => ComponentChangeHandler(e)}
         value={checkboxValue || value}
         checked={isSelected()}
         disabled={disabled}
