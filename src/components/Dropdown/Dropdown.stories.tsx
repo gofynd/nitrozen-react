@@ -186,9 +186,7 @@ export const Search = () => {
           addOption={true}
           enableSelectAll={true}
           onSearchInputChange={onSearchInputHandler}
-          onScroll={(e: any) => {
-            console.log("Scroll event triggered with props: ", e);
-          }}
+          onScroll={(e: any) => {}}
           addOptionHandler={(newValue: string) => {
             setSearchData([
               ...DropdownDatasource,

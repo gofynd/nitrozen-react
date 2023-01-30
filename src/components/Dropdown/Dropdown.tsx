@@ -6,7 +6,7 @@ import Validation from "../Validation";
 import "./Dropdown.scss";
 import {
   SvgAdd,
-  SvgInfo,
+  SvgIcInfo,
   SvgKeyboardArrowDown,
 } from "../../assets/svg-components";
 
@@ -15,6 +15,7 @@ interface ItemProps {
   text?: string;
   value: string | number | boolean | Object;
   isGroupLabel?: Boolean;
+  sub_text?: string;
 }
 export interface DropdownProps {
   id?: string;
@@ -296,10 +297,11 @@ const Dropdown = (props: DropdownProps) => {
           {` ${props.label} ${props.required ? " *" : ""} `}
           {props.tooltip && (
             <Tooltip
+              className="n-dropdown-tooltip"
               data-testid="icon-component"
               tooltipContent={props.tooltip}
               position="top"
-              icon={<SvgInfo style={{ fontSize: "14px" }} />}
+              icon={<SvgIcInfo style={{ fontSize: "14px" }} />}
             />
           )}
         </label>
@@ -308,36 +310,39 @@ const Dropdown = (props: DropdownProps) => {
         <div
           className={`n-select ${showOptions && "n-dropdown-open"} ${
             props.disabled ? "cursor-disabled" : ""
-          } ${
-            props.validationState
-              ? `n-${props.validationState}-border`
-              : "n-default-border"
           }`}
           ref={dropdownRef}
         >
-          <div
-            className={`n-select__trigger ${
-              props.disabled ? "cursor-disabled" : ""
-            }`}
-          >
-            {props.searchable && !props.disabled ? (
-              <span className="n-searchable-input-container">
-                <input
-                  data-testid="dropdown-search"
-                  type="search"
-                  value={searchInput}
-                  onChange={searchInputChange}
-                  placeholder={searchInputPlaceholder()}
-                />
-              </span>
-            ) : props.disabled ? (
-              <span>Disabled</span>
-            ) : (
-              <span>{selectedText}</span>
-            )}
+          <div className={`${props.validationState ? "" : "n-default-border"}`}>
+            <div
+              className={`n-select__trigger ${
+                props.disabled ? "cursor-disabled" : ""
+              } ${
+                props.validationState ? `n-${props.validationState}-border` : ""
+              }`}
+            >
+              {props.searchable && !props.disabled ? (
+                <span className="n-searchable-input-container">
+                  <input
+                    data-testid="dropdown-search"
+                    type="search"
+                    value={searchInput}
+                    onChange={searchInputChange}
+                    placeholder={searchInputPlaceholder()}
+                    className={"n-dropdown-search"}
+                  />
+                </span>
+              ) : props.disabled ? (
+                <span>Disabled</span>
+              ) : (
+                <span>{selectedText}</span>
+              )}
 
-            <div className="n-dropdown-arrow">
-              <SvgKeyboardArrowDown style={{ width: "20px", height: "20px" }} />
+              <div className="n-dropdown-arrow">
+                <SvgKeyboardArrowDown
+                  style={{ width: "20px", height: "20px" }}
+                />
+              </div>
             </div>
           </div>
           <div
@@ -360,7 +365,7 @@ const Dropdown = (props: DropdownProps) => {
                     onChange={setCheckedItem}
                   >
                     <span
-                      className={`n-option-image n-icon-padding ${
+                      className={`n-option-image ${
                         allSelected && "n-dropdown-multicheckbox-selected"
                       }`}
                     >
@@ -396,7 +401,7 @@ const Dropdown = (props: DropdownProps) => {
                           className={`n-option-image ${
                             selectedItems.includes(item.value) &&
                             "n-dropdown-multicheckbox-selected"
-                          } n-icon-padding`}
+                          }`}
                         >
                           {item.logo && (
                             <img
@@ -457,13 +462,14 @@ const Dropdown = (props: DropdownProps) => {
       </div>
       {props.validationState && (
         <Validation
+          className="n-dropdown-validation"
           isHidden={props.validationState ? false : true}
           label={props.validationLabel}
           validationState={props.validationState}
         />
       )}
       {props.helperText && (
-        <div className=" n-input-underinfo n-helper-text">
+        <div className="n-input-underinfo n-helper-text n-dropdown-helper">
           {props.helperText}
         </div>
       )}

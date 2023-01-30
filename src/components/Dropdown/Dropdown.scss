@@ -28,29 +28,31 @@
 
   .n-select__trigger {
     color: $TypographyPrimaryColor;
-    border-radius: 0.3rem;
     font-size: 1.4rem;
     line-height: 2.2rem;
     min-height: 2.2rem;
-    padding: 0.8rem 1.4rem 0.8rem 0;
+    padding: 12px;
     position: relative;
     display: flex;
     align-items: center;
     justify-content: space-between;
     background: $WhiteColor;
     cursor: pointer;
-
+    border: 1px solid #b5b5b5;
+    border-radius: 16px;
     span {
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;
     }
-
     input[type="search"]::-webkit-search-cancel-button {
       position: relative;
-      right: 1rem;
+      right: 0;
       font-size: $BaseFontSize + 6;
       cursor: pointer;
+    }
+    &:active {
+      background-color: $ColorPrimaryGrey20;
     }
   }
 
@@ -60,6 +62,7 @@
     transform: translate3d(0rem, 4.2rem, 0rem);
     left: 0;
     right: 0;
+    top: 18px;
     border: 0.1rem solid $SecondaryDisabledColor;
     border-radius: 0.3rem;
     box-shadow: 0 0.4rem 0.8rem 0 rgba(229, 229, 229, 0.2),
@@ -67,11 +70,12 @@
     background: #fff;
     transition: all 0.5s;
     opacity: 0;
-    max-height: 20rem; // 48vh
+    max-height: 20rem;
     overflow-y: auto;
     visibility: hidden;
     pointer-events: none;
     z-index: $ZIndex1;
+    border-radius: $BaseFontSize + 6px;
   }
 
   .n-select.n-dropdown-open .n-options {
@@ -103,7 +107,11 @@
       height: 2rem;
 
       .n-checkbox {
-        margin-top: 0.2rem;
+        // margin-top: 0.2rem;
+        @media screen and (max-width: 768px) {
+          top: 0.2rem !important;
+          left: 0 !important;
+        }
       }
     }
 
@@ -114,7 +122,7 @@
     }
 
     .n-option-container {
-      padding: 0.9rem 1.4rem;
+      padding: 1.4rem;
     }
 
     .n-option-child-label {
@@ -186,15 +194,17 @@
 .n-dropdown-label {
   color: $TypographyPrimaryColor;
   font-family: $PrimaryFont;
-  font-size: 1.2rem;
+  font-size: $BaseFontSize + 4px;
   font-weight: 500;
   line-height: 2.1rem;
+  display: flex;
+  margin-left: 14px;
 }
 
 .n-dropdown-empty {
   display: flex;
   align-items: center;
-
+  word-break: break-all;
   .n-add-btn {
     width: 2.5rem;
     height: 2.5rem;
@@ -210,7 +220,7 @@
   width: 100%;
 
   input {
-    width: 95%;
+    width: 100%;
     border: none;
     color: $TypographyPrimaryColor;
     font-size: 1.4rem;
@@ -227,10 +237,6 @@
   width: 100%;
   background-color: lightgrey;
   margin: 0.5rem 0;
-}
-
-.n-icon-padding {
-  padding-left: 30px;
 }
 
 ::-webkit-input-placeholder {
@@ -264,19 +270,45 @@
 }
 
 .n-error-border {
-  border-bottom: 2px solid $ColorFeedbackError50;
+  border-color: $ColorFeedbackError50 !important;
 }
 
 .n-warning-border {
-  border-bottom: 2px solid $ColorFeedbackWarning50;
+  border-color: $ColorFeedbackWarning50 !important;
 }
 
 .n-success-border {
-  border-bottom: 2px solid $ColorFeedbackSuccess50;
+  border-color: $ColorFeedbackSuccess50 !important;
 }
 .n-default-border {
-  border-bottom: 2px solid $InactiveFieldBorder;
+  border: 4px solid $WhiteColor;
+  border-radius: 20px;
   &:hover {
-    border-bottom: 2px solid $ColorPrimary50;
+    border: 4px solid $ColorPrimary60;
   }
+}
+.n-white-border {
+  border: 4px solid $WhiteColor;
+}
+.n-dropdown-tooltip {
+  margin-left: 4px;
+  .nitrozen-svg-icon {
+    height: 20px;
+    width: 20px;
+  }
+}
+.n-dropdown-search {
+  &:active {
+    background-color: $ColorPrimaryGrey20;
+  }
+}
+.n-dropdown-search:focus::-webkit-input-placeholder {
+  color: $TypographyPrimaryColor;
+}
+.n-dropdown-helper,
+.n-dropdown-validation {
+  margin-left: 12px;
+}
+.n-no-data-container {
+  border-bottom: 1px solid $ColorPrimaryGrey40;
 }

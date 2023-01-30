@@ -265,7 +265,7 @@ textarea {
   display: block;
   font-weight: 500;
   text-transform: none;
-  font-size: 1.1rem;
+  font-size: $BaseFontSize + 4px;
   letter-spacing: -0.07px;
   line-height: 1.4285714286;
   word-wrap: break-word;
