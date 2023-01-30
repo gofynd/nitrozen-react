@@ -135,7 +135,7 @@ const ButtonContent = (props: ButtonProps) => {
   return (
     <div className="n-button-content">
       {props.icon && (props.children || !props.showProgress) && (
-        <div className="social-icon">
+        <div className="n-btn-social-icon">
           <Icon
             className={classnames({
               "n-icon-small": props.size === "small",

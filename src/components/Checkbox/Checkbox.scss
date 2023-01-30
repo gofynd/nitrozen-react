@@ -183,9 +183,9 @@ input[type="checkbox"]:disabled + .n-checkbox {
   justify-content: center;
   align-items: center;
   @media screen and (max-width: 768px) {
-    height: 1.2rem;
-    width: 1.2rem;
+    height: 1.6rem;
+    width: 1.6rem;
     top: 0.5rem;
-    left: 1rem;
+    left: -1rem;
   }
 }
