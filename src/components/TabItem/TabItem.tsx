@@ -18,7 +18,7 @@ const TabItem = React.forwardRef<HTMLLIElement, TabItemProps>(
     return (
       <li
         id={id}
-        className={`nitrozen-tab-item ${className ?? ""}`}
+        className={`n-tab-item ${className ?? ""}`}
         style={style ?? {}}
         {...restProps}
         ref={ref}
@@ -38,7 +38,7 @@ const TabItem = React.forwardRef<HTMLLIElement, TabItemProps>(
 );
 
 TabItem.defaultProps = {
-  id: "nitrozen-tab-item" + uuid(),
+  id: "n-tab-item" + uuid(),
   children: <></>,
 };
 

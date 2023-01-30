@@ -1,23 +1,23 @@
 @import "./../../base/base.scss";
 
-.nitrozen-tab-container {
+.n-tab-container {
   display: flex;
   height: 4.8rem;
   position: relative;
   &.n-tab-scroll {
     padding: 0 6.4rem;
     overscroll-behavior-x: none;
-    .nitrozen-tab {
+    .n-tab {
       overflow: hidden;
       scroll-behavior: smooth;
-      .nitrozen-tab-item {
+      .n-tab-item {
         flex: auto;
       }
     }
   }
   &.n-overflow-scroll {
-    .nitrozen-tab {
-      .nitrozen-tab-item {
+    .n-tab {
+      .n-tab-item {
         flex: none;
       }
     }
@@ -45,11 +45,11 @@
         }
       }
     }
-    .nitrozen-tab {
+    .n-tab {
       & .n-d-scroll {
         background-color: $DarkPrimary60;
       }
-      .nitrozen-tab-item {
+      .n-tab-item {
         button.n-tab-btn {
           background-color: $ColorPrimary60;
           color: $ColorPrimaryBackground;
@@ -57,7 +57,7 @@
             color: $ColorPrimaryInverse80;
           }
         }
-        &.nitrozen-tab-active {
+        &.n-tab-active {
           button.n-tab-btn {
             color: $ColorPrimaryBackground;
           }
@@ -103,7 +103,7 @@
     }
   }
 
-  .nitrozen-tab {
+  .n-tab {
     display: flex;
     align-items: center;
     padding: 0;
