@@ -31,34 +31,34 @@ const Card = (props: CardProps) => {
   } = props;
   return (
     <div
-      className={`nitrozen-card nitrozen-card__container ${
+      className={`n-card n-card__container ${
         orientation === "vertical" && "card-vertical"
       }`}
     >
-      {header && <div className="nitrozen-card-header">{header}</div>}
-      <div className={`nitrozen-flex orientation-${orientation}`}>
+      {header && <div className="n-card-header">{header}</div>}
+      <div className={`n-flex orientation-${orientation}`}>
         {image && (
           <div
-            className={`nitrozen-card-image ratio-${imageRatio} focus-${imageFocus}`}
+            className={`n-card-image ratio-${imageRatio} focus-${imageFocus}`}
           >
             {image}
           </div>
         )}
         <div
-          className={`nitrozen-card__content ${
+          className={`n-card__content ${
             orientation === "vertical" && "vertical-space"
           }`}
         >
-          {caption && <div className="nitrozen-card-caption">{caption}</div>}
-          {title && <h3 className="nitrozen-heading">{title}</h3>}
-          {description && <div className="nitrozen-text-md">{description}</div>}
-          <div className="nitrozen-button-group">
+          {caption && <div className="n-card-caption">{caption}</div>}
+          {title && <h3 className="n-heading">{title}</h3>}
+          {description && <div className="n-text-md">{description}</div>}
+          <div className="n-button-group">
             {primaryCTA && primaryCTA}
             {secondaryCTA && secondaryCTA}
           </div>
         </div>
       </div>
-      {footer && <div className="nitrozen-card-footer">{footer}</div>}
+      {footer && <div className="n-card-footer">{footer}</div>}
     </div>
   );
 };
