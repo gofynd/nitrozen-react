@@ -10,7 +10,7 @@
   box-shadow: $ShadowS;
   overflow: hidden;
   overflow-y: scroll;
-  transition: all 0.1s ease-in;
+  transition: all 0.4s ease-in;
   &-close {
     max-height: 0px;
   }
@@ -24,11 +24,11 @@
     cursor: pointer;
     list-style: none;
     text-decoration: none;
-    font-size: $MenuItemFontSize;
+    font-size: calc($BaseFontSize + 6px);
     font-weight: 400;
     color: $ColorSecondaryGrey80;
     background-color: $ColorPrimaryBackground;
-    padding: $SpacingBase;
+    padding: $SpacingXs;
     box-sizing: border-box;
     height: 40px;
     display: flex;
@@ -49,6 +49,12 @@
     background-color: $ColorSecondaryGrey20;
     color: $ColorPrimaryGrey60;
   }
+  &-heading > a {
+    font-size: calc($BaseFontSize + 4px);
+    &:hover {
+      background-color: $ColorPrimaryBackground;
+    }
+  }
 }
 
 .n-menu-block-item-element {
@@ -59,16 +65,18 @@
 
   &-outer {
     height: 24px;
-    min-height: 24px;
+    min-width: 24px;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-left: 10px;
+    margin-left: $SpacingBase;
+    // color: $ColorPrimary60;
+    font-size: calc($BaseFontSize + 4px);
   }
 
   &-prefix {
-    min-width: 24px;
-    min-height: 24px;
+    width: 24px;
+    height: 24px;
     display: flex;
     justify-content: center;
     align-items: center;

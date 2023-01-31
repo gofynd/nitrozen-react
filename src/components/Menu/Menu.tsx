@@ -19,6 +19,7 @@ export interface MenuItemProps {
     target?: string;
   };
   divider?: boolean;
+  heading?: boolean;
 }
 export interface MenuProps {
   items: Array<any>;
@@ -101,7 +102,7 @@ const Menu = (props: MenuProps) => {
       anchorEl.current.parentElement.style.position = "relative";
       computedStyle = {
         position: "absolute",
-        zIndex: 60,
+        zIndex: 99,
         left: "0px",
         top: anchorEl.current?.offsetHeight + "px",
       };
@@ -151,7 +152,7 @@ const Menu = (props: MenuProps) => {
    * @returns boolean
    */
   const isSelected = (item: MenuItemProps, index: number) => {
-    return selection === index && !item.disabled;
+    return selection === index && !item.disabled && !item.heading;
   };
 
   /**
@@ -183,6 +184,7 @@ const Menu = (props: MenuProps) => {
               className={`n-menu-block-item 
             ${item.disabled ? "n-menu-block-item-disabled" : ""}
             ${item?.divider ? "n-menu-block-item-divider" : ""}
+            ${item?.heading ? "n-menu-block-item-heading" : ""}
             ${isSelected(item, index) ? "n-menu-block-item-selected" : ""}
             `}
             >

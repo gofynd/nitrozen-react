@@ -21,15 +21,8 @@ const stories = {
       value: "apple",
     },
     {
+      // heading:true,
       label: "Banana",
-      prefix: (
-        <svg fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path
-            d="M15.6 4A5.6 5.6 0 0012 5.46 5.6 5.6 0 008.4 4 5.36 5.36 0 003 9.44c0 3.37 2.63 6.43 7.16 10.56l.49.45a2 2 0 002.7 0l.49-.44C18.37 15.86 21 12.8 21 9.44A5.36 5.36 0 0015.6 4z"
-            fill="currentColor"
-          />
-        </svg>
-      ),
       value: "banana",
       suffix: (
         <svg fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -262,9 +255,7 @@ export const AnchoredMenu = (args: MenuItemProps) => {
   const onSelect = (index: number, value: string) => {
     console.log(index, value);
   };
-  const onOpen = () => {
-    // console.log("opened");
-  };
+  const onOpen = () => {};
   const onClose = () => {
     setIsOpen(false);
   };

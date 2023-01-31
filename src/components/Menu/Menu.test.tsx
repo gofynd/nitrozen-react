@@ -397,15 +397,7 @@ describe("Achored Menu", () => {
       </div>
     );
     const menuBlock = getByTestId("n-menu-block");
-    const button = getByTestId("button");
     expect(menuBlock.className).toContain("n-menu-block");
     expect(menuBlock.className).toContain("n-menu-block-open");
-
-    //open
-    // expect(menuBlock.className).toContain("n-menu-block-open");
-    // const style = getComputedStyle(menuBlock);
-    // expect(style.maxHeight).toBe("150px");
-    // expect(style.position).toBe("position: absolute");
-    // expect(onOpen).toBeCalled();
   });
 });
