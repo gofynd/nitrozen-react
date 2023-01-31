@@ -29,26 +29,21 @@ const Card = (props: CardProps) => {
     header,
     ...restProps
   } = props;
+  const containerVertical = orientation === "vertical" && "n-card-vertical";
+  const cardContentVertical =
+    orientation === "vertical" && "n-card-vertical-space";
   return (
-    <div
-      className={`n-card n-card__container ${
-        orientation === "vertical" && "card-vertical"
-      }`}
-    >
+    <div className={`n-card n-card__container ${containerVertical}`}>
       {header && <div className="n-card-header">{header}</div>}
-      <div className={`n-flex orientation-${orientation}`}>
+      <div className={`n-flex n-card-orientation-${orientation}`}>
         {image && (
           <div
-            className={`n-card-image ratio-${imageRatio} focus-${imageFocus}`}
+            className={`n-card-image n-card-ratio-${imageRatio} n-card-focus-${imageFocus}`}
           >
             {image}
           </div>
         )}
-        <div
-          className={`n-card__content ${
-            orientation === "vertical" && "vertical-space"
-          }`}
-        >
+        <div className={`n-card__content ${cardContentVertical}`}>
           {caption && <div className="n-card-caption">{caption}</div>}
           {title && <h3 className="n-heading">{title}</h3>}
           {description && <div className="n-text-md">{description}</div>}

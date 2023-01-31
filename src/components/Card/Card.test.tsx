@@ -11,7 +11,7 @@ describe("Card", () => {
         description="Fynd is your one stop destination for buying, selling & payments,
   Logistics, Order fulfillment, News, Games, Quizzes & a lot
   more."
-        image={<img src="static/media/src/components/Card/card1.jpeg" />}
+        image={<img src="static/media/src/components/Card/card-sample.jpeg" />}
         orientation="horizontal"
         primaryCTA={<Button size="small">Buy Now</Button>}
         secondaryCTA={

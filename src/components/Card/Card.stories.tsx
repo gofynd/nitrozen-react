@@ -2,6 +2,7 @@ import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import Card from "./Card";
 import Button from "../Button";
+import "../../base/storybook.scss";
 
 export default {
   title: "Components/Card",
@@ -77,7 +78,7 @@ Card_demo.args = {
   title: "Fynd - Build your e-commerce website today",
   description:
     "Fynd is your one stop destination for buying, selling & payments,\n  Logistics, Order fulfillment, News, Games, Quizzes & a lot\n  more.",
-  image: <img src={require("./card1.jpeg")} />,
+  image: <img src={require("./card-sample.jpeg")} />,
   primaryCTA: <Button size="small">Buy Now</Button>,
   secondaryCTA: (
     <Button size="small" theme="tertiary">

@@ -1,26 +1,11 @@
 @import "./../../base/base.scss";
 
-.story-container {
-  display: block;
-  position: relative;
-  -webkit-box-flex-wrap: wrap;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
-  overflow: auto;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  padding: 30px 20px;
-  margin: -10px;
-}
-
 .n-card {
   color: #000;
   box-shadow: $ShadowS;
   border-radius: $RadiusLarge;
 }
-.vertical-space {
+.n-card-vertical-space {
   margin-top: $SpacingM;
 }
 
@@ -48,7 +33,7 @@
   }
 }
 
-.card-vertical {
+.n-card-vertical {
   padding-bottom: $SpacingM;
 }
 
@@ -69,43 +54,43 @@
   }
 }
 
-.ratio-wide,
-.ratio-wide img {
+.n-card-ratio-wide,
+.n-card-ratio-wide img {
   aspect-ratio: $AspectRatioWide;
 }
 
-.ratio-landscape,
-.ratio-landscape img {
+.n-card-ratio-landscape,
+.n-card-ratio-landscape img {
   aspect-ratio: $AspectRatioLandscape;
 }
 
-.ratio-square,
-.ratio-square img {
+.n-card-ratio-square,
+.n-card-ratio-square img {
   aspect-ratio: $AspectRatioSquare;
 }
 
-.ratio-portrait,
-.ratio-portrait img {
+.n-card-ratio-portrait,
+.n-card-ratio-portrait img {
   aspect-ratio: $AspectRatio-portrait;
 }
 
-.focus-top img {
+.n-card-focus-top img {
   object-position: top;
 }
 
-.focus-bottom img {
+.n-card-focus-bottom img {
   object-position: bottom;
 }
 
-.focus-left img {
+.n-card-focus-left img {
   object-position: left;
 }
 
-.focus-right img {
+.n-card-focus-right img {
   object-position: right;
 }
 
-.focus-center img {
+.n-card-focus-center img {
   object-position: center;
 }
 
@@ -113,13 +98,13 @@
   display: flex;
 }
 
-.orientation-horizontal {
+.n-card-orientation-horizontal {
   flex-direction: row;
   align-items: center;
   padding: $SpacingM;
 }
 
-.orientation-vertical {
+.n-card-orientation-vertical {
   flex-direction: column;
 }
 
