@@ -24,6 +24,12 @@
   &:hover {
     border-color: $ColorPrimary60;
   }
+
+  @media screen and (max-width: 425px) {
+    height: 30px;
+    width: 30px;
+    border-radius: 10px;
+  }
 }
 
 .n-code-input-field:hover::placeholder {
