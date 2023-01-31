@@ -3,70 +3,45 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import Menu, { MenuItemProps } from "./Menu";
 import "./Menu.scss";
 import Button from "../Button";
-
-const stories = {
+import {
+  SvgDone,
+  SvgContentCopy,
+  SvgAdsClick,
+  SvgFace,
+  SvgFavorite,
+  SvgCheckBox,
+  SvgNature,
+  SvgNotAccessible,
+  SvgPanTool,
+} from "../../assets/svg-components";
+export const stories = {
   simple: [
     {
       label: "Apple",
-      prefix: (
-        <svg fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path
-            d="M15.6 4A5.6 5.6 0 0012 5.46 5.6 5.6 0 008.4 4 5.36 5.36 0 003 9.44c0 3.37 2.63 6.43 7.16 10.56l.49.45a2 2 0 002.7 0l.49-.44C18.37 15.86 21 12.8 21 9.44A5.36 5.36 0 0015.6 4z"
-            fill="currentColor"
-          />
-        </svg>
-      ),
+      prefix: <SvgAdsClick />,
       disabled: true,
       suffix: <p>$50,000</p>,
       value: "apple",
     },
     {
-      // heading:true,
+      heading: true,
       label: "Banana",
       value: "banana",
-      suffix: (
-        <svg fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path
-            d="M15.6 4A5.6 5.6 0 0012 5.46 5.6 5.6 0 008.4 4 5.36 5.36 0 003 9.44c0 3.37 2.63 6.43 7.16 10.56l.49.45a2 2 0 002.7 0l.49-.44C18.37 15.86 21 12.8 21 9.44A5.36 5.36 0 0015.6 4z"
-            fill="currentColor"
-          />
-        </svg>
-      ),
+      suffix: <SvgContentCopy />,
     },
     {
       label: "Pineapple",
-      prefix: (
-        <svg fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path
-            d="M15.6 4A5.6 5.6 0 0012 5.46 5.6 5.6 0 008.4 4 5.36 5.36 0 003 9.44c0 3.37 2.63 6.43 7.16 10.56l.49.45a2 2 0 002.7 0l.49-.44C18.37 15.86 21 12.8 21 9.44A5.36 5.36 0 0015.6 4z"
-            fill="currentColor"
-          />
-        </svg>
-      ),
+      prefix: <SvgFace />,
       value: "pineapple",
     },
     {
       label: "Guava",
-      prefix: (
-        <svg fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path
-            d="M15.6 4A5.6 5.6 0 0012 5.46 5.6 5.6 0 008.4 4 5.36 5.36 0 003 9.44c0 3.37 2.63 6.43 7.16 10.56l.49.45a2 2 0 002.7 0l.49-.44C18.37 15.86 21 12.8 21 9.44A5.36 5.36 0 0015.6 4z"
-            fill="currentColor"
-          />
-        </svg>
-      ),
+      prefix: <SvgFavorite />,
       value: "guava",
     },
     {
       label: "Pomegranate",
-      prefix: (
-        <svg fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path
-            d="M15.6 4A5.6 5.6 0 0012 5.46 5.6 5.6 0 008.4 4 5.36 5.36 0 003 9.44c0 3.37 2.63 6.43 7.16 10.56l.49.45a2 2 0 002.7 0l.49-.44C18.37 15.86 21 12.8 21 9.44A5.36 5.36 0 0015.6 4z"
-            fill="currentColor"
-          />
-        </svg>
-      ),
+      prefix: <SvgDone />,
       value: "apple",
     },
   ],
@@ -74,14 +49,7 @@ const stories = {
   links: [
     {
       label: "Apple",
-      prefix: (
-        <svg fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path
-            d="M15.6 4A5.6 5.6 0 0012 5.46 5.6 5.6 0 008.4 4 5.36 5.36 0 003 9.44c0 3.37 2.63 6.43 7.16 10.56l.49.45a2 2 0 002.7 0l.49-.44C18.37 15.86 21 12.8 21 9.44A5.36 5.36 0 0015.6 4z"
-            fill="currentColor"
-          />
-        </svg>
-      ),
+      prefix: <SvgFace />,
       disabled: true,
       suffix: <p>$50,000</p>,
       value: "apple",
@@ -89,61 +57,26 @@ const stories = {
     },
     {
       label: "Banana",
-      prefix: (
-        <svg fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path
-            d="M15.6 4A5.6 5.6 0 0012 5.46 5.6 5.6 0 008.4 4 5.36 5.36 0 003 9.44c0 3.37 2.63 6.43 7.16 10.56l.49.45a2 2 0 002.7 0l.49-.44C18.37 15.86 21 12.8 21 9.44A5.36 5.36 0 0015.6 4z"
-            fill="currentColor"
-          />
-        </svg>
-      ),
+      prefix: <SvgNature />,
       value: "apple",
       linkConfig: { href: "/" },
-      suffix: (
-        <svg fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path
-            d="M15.6 4A5.6 5.6 0 0012 5.46 5.6 5.6 0 008.4 4 5.36 5.36 0 003 9.44c0 3.37 2.63 6.43 7.16 10.56l.49.45a2 2 0 002.7 0l.49-.44C18.37 15.86 21 12.8 21 9.44A5.36 5.36 0 0015.6 4z"
-            fill="currentColor"
-          />
-        </svg>
-      ),
+      suffix: <SvgNotAccessible />,
     },
     {
       label: "Pineapple",
-      prefix: (
-        <svg fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path
-            d="M15.6 4A5.6 5.6 0 0012 5.46 5.6 5.6 0 008.4 4 5.36 5.36 0 003 9.44c0 3.37 2.63 6.43 7.16 10.56l.49.45a2 2 0 002.7 0l.49-.44C18.37 15.86 21 12.8 21 9.44A5.36 5.36 0 0015.6 4z"
-            fill="currentColor"
-          />
-        </svg>
-      ),
+      prefix: <SvgCheckBox />,
       suffix: <p>$50,000</p>,
       value: "pineapple",
       linkConfig: { href: "/?path=/docs/introduction-changelog--changelog" },
     },
     {
       label: "Guava",
-      prefix: (
-        <svg fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path
-            d="M15.6 4A5.6 5.6 0 0012 5.46 5.6 5.6 0 008.4 4 5.36 5.36 0 003 9.44c0 3.37 2.63 6.43 7.16 10.56l.49.45a2 2 0 002.7 0l.49-.44C18.37 15.86 21 12.8 21 9.44A5.36 5.36 0 0015.6 4z"
-            fill="currentColor"
-          />
-        </svg>
-      ),
+      prefix: <SvgCheckBox />,
       value: "Guava",
     },
     {
       label: "Pomegranate",
-      prefix: (
-        <svg fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path
-            d="M15.6 4A5.6 5.6 0 0012 5.46 5.6 5.6 0 008.4 4 5.36 5.36 0 003 9.44c0 3.37 2.63 6.43 7.16 10.56l.49.45a2 2 0 002.7 0l.49-.44C18.37 15.86 21 12.8 21 9.44A5.36 5.36 0 0015.6 4z"
-            fill="currentColor"
-          />
-        </svg>
-      ),
+      prefix: <SvgPanTool />,
       value: "pomegranate",
       linkConfig: { href: "/?path=/docs/introduction-changelog--changelog" },
     },
