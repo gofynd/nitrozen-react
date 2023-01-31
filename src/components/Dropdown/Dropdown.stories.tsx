@@ -93,11 +93,13 @@ const Template: ComponentStory<typeof Dropdown> = (args) => (
 const DropdownDatasource = [
   {
     text: "Maharashtra",
+    sub_text: "SUB TEXT",
     value: 1,
     logo: "https://hdn-1.jiox0.de/jioecomm/seller/pictures/logo/original/gionee-56405d/Gionee_Logo_20190919.jpg",
   },
   {
     text: "Andhra Pradesh",
+    sub_text: "SUB TEXT",
     value: 2,
     logo: "https://hdn-1.jiox0.de/jioecomm/seller/pictures/logo/original/gionee-56405d/Gionee_Logo_20190919.jpg",
   },

@@ -93,6 +93,7 @@ const Input = (props: InputProps) => {
   const inputRef = useRef<HTMLInputElement | HTMLTextAreaElement>(null);
   const [labelFocus, setlabelFocus] = useState("");
   const [borderFocus, setBorderFocus] = useState("");
+  const [focusBorder, setFocusBorder] = useState("");
   useEffect(() => {
     function autoFocus() {
       if (props.autofocus) {
@@ -166,6 +167,7 @@ const Input = (props: InputProps) => {
       setlabelFocus("");
       setBorderFocus("");
     }
+    setFocusBorder("");
     onBlur?.(event);
   }
 
@@ -191,6 +193,10 @@ const Input = (props: InputProps) => {
     return borderClass;
   }
 
+  function handleClick(event: any) {
+    setFocusBorder("n-focused-border");
+    onClick?.(event);
+  }
   return (
     <div className={`n-form-input ${disabled && "n-input-group-disabled"}`}>
       <div
@@ -233,7 +239,7 @@ const Input = (props: InputProps) => {
           props.state == "default" && !disabled
             ? "n-default-border"
             : "n-no-hover"
-        }`}
+        } ${focusBorder}`}
       >
         {showSearchIcon && (
           <span className="n-search-icon">
@@ -254,7 +260,7 @@ const Input = (props: InputProps) => {
               onChange={onChange}
               onBlur={handleOnBlur}
               onFocus={handleOnFocus}
-              onClick={onClick}
+              onClick={handleClick}
               onKeyPress={onKeyPress}
               value={value}
               {...generateAttributesForInput()}
@@ -270,7 +276,7 @@ const Input = (props: InputProps) => {
               onChange={onChange}
               onBlur={onBlur}
               onFocus={onFocus}
-              onClick={onClick}
+              onClick={handleClick}
               onKeyPress={onKeyPress}
               className={`n-input input-text ${
                 type === "textarea" && "n-input-textarea"

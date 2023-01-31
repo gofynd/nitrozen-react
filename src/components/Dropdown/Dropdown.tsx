@@ -60,6 +60,7 @@ const Dropdown = (props: DropdownProps) => {
   const [allOptionsSelected, setAllOptionsSelected] = useState<Boolean>();
   const [allSelected, setAllSelected] = useState<any>();
   const [selected, setSelected] = useState<any>();
+  const [focusBorder, setFocusBorder] = useState("");
 
   const [enableSelectAll, setEnableSelectAll] = useState(
     props.enableSelectAll || false
@@ -315,7 +316,11 @@ const Dropdown = (props: DropdownProps) => {
           }`}
           ref={dropdownRef}
         >
-          <div className={`${props.validationState ? "" : "n-default-border"}`}>
+          <div
+            className={`${
+              props.validationState ? "" : `n-default-border ${focusBorder}`
+            }`}
+          >
             <div
               className={`n-select__trigger ${
                 props.disabled ? "cursor-disabled" : ""
@@ -337,6 +342,8 @@ const Dropdown = (props: DropdownProps) => {
                       value={searchInput}
                       onChange={searchInputChange}
                       placeholder={searchInputPlaceholder()}
+                      onClick={() => setFocusBorder("n-focused-border")}
+                      onBlur={() => setFocusBorder("")}
                       className={"n-dropdown-search"}
                     />
                   </span>
@@ -439,7 +446,12 @@ const Dropdown = (props: DropdownProps) => {
                             alt="logo"
                           />
                         )}
-                        {item.text}
+                        <div className="n-option-wrapper">
+                          <span>{item.text}</span>
+                          <span className="n-option-subtext">
+                            {item.sub_text}
+                          </span>
+                        </div>
                       </span>
                     )}
                   </div>
