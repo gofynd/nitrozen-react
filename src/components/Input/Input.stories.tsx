@@ -35,6 +35,10 @@ export default {
     autofocus: { control: { type: "boolean" } },
     min: { control: { type: "number" } },
     max: { control: { type: "number" } },
+    stateText: { control: { type: "text" } },
+    maxLength: { control: { type: "number" } },
+    tooltipText: { control: { type: "text" } },
+    showTooltip: { control: { type: "boolean" } },
     onKeyUp: { action: "keyup" },
     onKeyPress: { action: "keypressed" },
     onChange: { action: "changed" },
@@ -47,13 +51,6 @@ export default {
       control: "select",
       options: ["default", "error", "success", "warning"],
     },
-    stateText: { control: { type: "text" } },
-    tooltip: {
-      control: {
-        type: "text",
-      },
-    },
-    maxLength: { control: { type: "number" } },
   },
 } as ComponentMeta<typeof Input>;
 

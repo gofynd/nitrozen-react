@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Validation from "../Validation";
+import { SvgHelpOutline } from "../../assets/svg-components";
+import Tooltip from "../Tooltip";
 import "./Code.scss";
 
 export interface CodeProps {
@@ -14,6 +16,9 @@ export interface CodeProps {
   validationClassName?: string;
   validationStyle?: React.CSSProperties;
   helperText?: string;
+  required?: boolean;
+  tooltip?: string;
+  tooltipIcon?: React.ReactNode;
 }
 
 const Code = (props: CodeProps) => {
@@ -29,9 +34,11 @@ const Code = (props: CodeProps) => {
     validationClassName,
     validationStyle,
     helperText,
+    required,
+    tooltip,
+    tooltipIcon,
     ...restProps
   } = props;
-  const [labelFocus, setlabelFocus] = useState("");
   const [codeArr, setCodeArr] = useState<string[]>([]);
 
   // Once the component mounts set the state array with the number of prop fields
@@ -55,7 +62,6 @@ const Code = (props: CodeProps) => {
       setCodeArr(tempCodeArr);
       getCode(tempCodeArr.join(""));
       goToNextField(index);
-      setlabelFocus("n-code-focused-label");
       // IMP to return
       return;
     }
@@ -66,7 +72,6 @@ const Code = (props: CodeProps) => {
       setCodeArr(tempCodeArr);
       getCode(tempCodeArr.join(""));
       goToNextField(index);
-      setlabelFocus("n-code-focused-label");
     }
   }
 
@@ -100,22 +105,37 @@ const Code = (props: CodeProps) => {
   }
   // handle the focus of the label container
   function handleClick() {
-    setlabelFocus("n-code-focused-label");
+    // setlabelFocus("n-code-focused-label");
   }
   // handle the focus of the label container
   function handleBlur() {
     if (!codeArr.join("").length) {
-      setlabelFocus("");
+      // setlabelFocus("");
     }
   }
   return (
     <div className="n-code-main">
       <div
-        className={`n-code-label-container ${labelFocus}`}
+        className={`n-code-label-container`}
         data-testid={`label-id-${codeId}`}
       >
         <label className="n-code-label" data-testid={`code-label-${codeId}`}>
-          {label}
+          {label} {required ? "*" : ""}
+          {tooltip && (
+            <span className="n-input-tooltip">
+              {tooltip && (
+                <Tooltip
+                  tooltipContent={tooltip}
+                  icon={
+                    tooltipIcon || (
+                      <SvgHelpOutline style={{ fontSize: "14px" }} />
+                    )
+                  }
+                  position="top"
+                />
+              )}
+            </span>
+          )}
         </label>
       </div>
       <div className={`n-code-field-container`}>
@@ -131,7 +151,8 @@ const Code = (props: CodeProps) => {
               onClick={handleClick}
               onBlur={handleBlur}
               onChange={(e) => onInputChange(e, index)}
-              className={`n-code-input-field ${`n-code-${fields}`} ${
+              placeholder={"0"}
+              className={`n-code-input-field ${
                 validationState && !hideValidation
                   ? `n-code-input-border-${validationState}`
                   : `n-code-input-border`
@@ -141,16 +162,18 @@ const Code = (props: CodeProps) => {
           );
         })}
       </div>
-      {!hideValidation && (
-        <Validation
-          isHidden={hideValidation}
-          label={validationLabel}
-          style={validationStyle}
-          className={validationClassName}
-          validationState={validationState}
-        />
-      )}
-      {helperText && <span className="n-helper-text">{helperText}</span>}
+      <div className="n-code-underinfo">
+        {!hideValidation && (
+          <Validation
+            isHidden={hideValidation}
+            label={validationLabel}
+            style={validationStyle}
+            className={validationClassName}
+            validationState={validationState}
+          />
+        )}
+        {helperText && <span className="n-helper-text">{helperText}</span>}
+      </div>
     </div>
   );
 };
@@ -165,6 +188,8 @@ Code.defaulProps = {
   validationClassName: "",
   validationStyle: {},
   helperText: "",
+  tooltip: null,
+  required: false,
 };
 
 export default React.memo(Code);
