@@ -45,9 +45,15 @@ export default {
     onSuffixClick: { action: "clicked" },
     state: {
       control: "select",
-      options: ["deafult", "error", "success", "warning"],
+      options: ["default", "error", "success", "warning"],
     },
     stateText: { control: { type: "text" } },
+    tooltip: {
+      control: {
+        type: "text",
+      },
+    },
+    maxLength: { control: { type: "number" } },
   },
 } as ComponentMeta<typeof Input>;
 

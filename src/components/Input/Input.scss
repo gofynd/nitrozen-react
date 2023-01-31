@@ -1,8 +1,8 @@
 @import "./../../base/base.scss";
 
 .n-input {
-  padding: 1px 0px 5px;
-  height: 2em;
+  // padding: 1px 0px 5px;
+  // height: 48px;
   color: $TypographyPrimaryColor;
   border: 0px;
   min-width: 0px;
@@ -12,7 +12,7 @@
   position: relative;
   outline: none;
   box-sizing: border-box;
-  font-size: $BaseFontSize + 4;
+  font-size: $BaseFontSize + 6px;
   -webkit-appearance: none;
   display: block;
   -webkit-tap-highlight-color: transparent;
@@ -34,33 +34,9 @@
 
 .n-input-container {
   width: inherit;
-
-  &::before {
-    border-bottom: 2px solid $InactiveFieldBorder;
-    left: 0px;
-    bottom: 0px;
-    content: " ";
-    position: absolute;
-    right: 0px;
-    transition: border-bottom-color 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-    pointer-events: none;
-  }
-
-  &::after {
-    border-bottom: 2px solid $ActiveFieldBorder;
-    left: 0px;
-    bottom: 0px;
-    content: "";
-    position: absolute;
-    right: 0px;
-    transform: scaleX(0);
-    transition: transform 200ms cubic-bezier(0, 0, 0.2, 1) 0ms;
-    pointer-events: none;
-  }
-}
-
-.n-border-focused::after {
-  transform: scaleX(1) translateX(0);
+  padding: 12px;
+  border: 1px solid $ColorSparkleGrey60;
+  border-radius: 16px;
 }
 
 .n-input-grp {
@@ -68,27 +44,21 @@
   position: relative;
   -webkit-box-align: center;
   align-items: center;
-  margin-top: 16px;
   width: 100%;
 }
 
 .n-input-label-container {
   display: flex;
   font-weight: 400;
-  font-size: 1rem;
   line-height: 1.4375em;
   letter-spacing: 0.00938em;
   padding: 0px;
-  display: block;
-  transform-origin: left top;
+  // transform-origin: left top;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   max-width: 100%;
-  position: absolute;
-  top: 0px;
-  transform: translate(0px, 17px) scale(1);
-  transition: transform 200ms cubic-bezier(0, 0, 0.2, 1) 0ms;
+  margin-left: 12px;
 }
 
 .n-input-label-default {
@@ -97,14 +67,6 @@
 
 .n-input-label-prefixed {
   left: 30px;
-}
-
-.n-focused-label {
-  transform: none;
-}
-
-.n-focused-label-prefixed {
-  transform: translate(-30px, -2px) scale(1);
 }
 
 .n-input-textarea {
@@ -139,7 +101,7 @@
 .n-input-label {
   color: $LabelColor;
   font-family: $PrimaryFont;
-  font-size: 1.2rem;
+  font-size: $BaseFontSize + 4px;
   font-weight: 500;
   line-height: 2.1rem;
   display: flex;
@@ -150,6 +112,9 @@
   display: flex;
   justify-content: flex-end;
   position: relative;
+  font-size: 14px;
+  color: $TypographyPrimaryColor;
+  opacity: 0.4;
 }
 
 .n-input-grp:focus-within + .n-input-label-container > .n-input-label {
@@ -159,20 +124,20 @@
 ::-webkit-input-placeholder {
   /* Edge */
   color: $PlaceholderColor;
-  font-size: 1.2rem;
+  font-size: $BaseFontSize + 6px;
   font-family: $PrimaryFont;
 }
 
 :-ms-input-placeholder {
   /* Internet Explorer 10-11 */
   color: $PlaceholderColor;
-  font-size: 1.2rem;
+  font-size: $BaseFontSize + 6px;
   font-family: $PrimaryFont;
 }
 
 ::placeholder {
   color: $PlaceholderColor;
-  font-size: 1.2rem;
+  font-size: $BaseFontSize + 6px;
   font-family: $PrimaryFont;
 }
 
@@ -258,7 +223,8 @@ textarea {
 .n-input-underinfo {
   color: $PrimaryGrey80;
   position: relative;
-  margin-top: calc($SpacingXs + 1px);
+  // margin-top: calc($SpacingXs + 1px);
+  margin-left: 12px;
 }
 
 .n-helper-text {
@@ -270,6 +236,7 @@ textarea {
   line-height: 1.4285714286;
   word-wrap: break-word;
   color: $TypographyPrimaryColor;
+  margin-top: 2px;
 }
 
 .n-field-error {
@@ -296,25 +263,23 @@ textarea {
   border-bottom: 2px solid $ColorFeedbackSuccess50;
 }
 
-.n-svg-container {
-  height: 12px;
-  width: 12px;
-  margin-right: 6px;
-}
-
-.n-state-container {
-  display: flex;
-  font-weight: 500;
-  text-transform: none;
-  font-size: 1.1rem;
-  letter-spacing: -0.07px;
-  // line-height: 1.4285714286;
-  img {
-    height: 100%;
-    width: 100%;
-  }
-}
-
 .n-password-eye {
   cursor: pointer;
+}
+
+.n-no-hover {
+  border: 4px solid $WhiteColor;
+  border-radius: 20px;
+}
+
+.n-input-group-disabled {
+  opacity: 0.4;
+  background-color: $WhiteColor;
+}
+.n-input-tooltip {
+  margin-left: 0.5rem;
+  .nitrozen-svg-icon {
+    height: 20px;
+    width: 20px;
+  }
 }
