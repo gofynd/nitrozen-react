@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useState } from "react";
+import React, { memo, useEffect, useState, useMemo } from "react";
 import "./Badge.scss";
 export interface BadgeProps {
   size?: String;
@@ -26,6 +26,12 @@ const Badge = (props: BadgeProps) => {
     ...restProps
   } = props;
   const [classes, setClasses] = useState("");
+
+  const containerClassname = useMemo(
+    () => (kind === "service" ? "nitrogen-badge-background" : ""),
+    [kind]
+  );
+  
   useEffect(() => {
     let classes = "";
     switch (state) {
@@ -57,23 +63,23 @@ const Badge = (props: BadgeProps) => {
 
     switch (size) {
       case "small":
-        classes += " badge-small";
+        classes += " nitrozen-badge-small";
         break;
       case "medium":
-        classes += " badge-medium";
+        classes += " nitrozen-badge-medium";
         break;
       case "large":
-        classes += " badge-large";
+        classes += " nitrozen-badge-large";
         break;
       default:
-        classes += " badge-medium";
+        classes += " nitrozen-badge-medium";
         break;
     }
     setClasses(classes);
   }, [state, fill, size]);
 
   return (
-    <div className={kind === "service" ? "badge-background" : ""}>
+    <div className={containerClassname}>
       <div
         style={style ?? {}}
         className={`nitrozen-badge ${classes}`}
@@ -81,7 +87,7 @@ const Badge = (props: BadgeProps) => {
         {...restProps}
       >
         {icon ? <span className={`${classes}-badge-icon`}>{icon}</span> : null}
-        <div className="badge-truncate">{labelText}</div>
+        <div className="nitrozen-badge-truncate">{labelText}</div>
       </div>
     </div>
   );
