@@ -15,7 +15,7 @@ describe("Primary Menu", () => {
     const selectedIndex = 3;
     const { getByTestId } = render(
       <Menu
-        items={menuItems.simple}
+        items={stories.simple}
         onSelect={onSelectHandler}
         selectedIndex={selectedIndex}
         maxHeight={150}
@@ -28,7 +28,7 @@ describe("Primary Menu", () => {
     // testing rendered classes
     expect(menuBlock.className).toContain("n-menu-block");
     expect(menuBlock.className).toContain("n-menu-block-open");
-    menuItems.simple.map((item, index) => {
+    stories.simple.map((item, index) => {
       const menuItem = getByTestId(`n-menu-block-item-${index}`);
       const menuItemPrefix = getByTestId(
         `n-menu-block-item-element-prefix-${index}`
@@ -62,7 +62,7 @@ describe("Primary Menu", () => {
     const selectedIndex = 3;
     const { getByTestId } = render(
       <Menu
-        items={menuItems.noIcons}
+        items={stories.noIcons}
         onSelect={onSelectHandler}
         selectedIndex={selectedIndex}
       />
@@ -71,7 +71,7 @@ describe("Primary Menu", () => {
     // testing rendered classes
     expect(menuBlock.className).toContain("n-menu-block");
     expect(menuBlock.className).toContain("n-menu-block-open");
-    menuItems.noIcons.map(async (item, index) => {
+    stories.noIcons.map(async (item, index) => {
       const menuItem = getByTestId(`n-menu-block-item-${index}`);
       const menuItemLabel = getByTestId(
         `n-menu-block-item-element-label-${index}`
@@ -101,7 +101,7 @@ describe("Primary Menu", () => {
     const selectedIndex = 3;
     const { getByTestId } = render(
       <Menu
-        items={menuItems.links}
+        items={stories.links}
         onSelect={onSelectHandler}
         selectedIndex={selectedIndex}
       />
@@ -110,7 +110,7 @@ describe("Primary Menu", () => {
     //testing rendered classes
     expect(menuBlock.className).toContain("n-menu-block");
     expect(menuBlock.className).toContain("n-menu-block-open");
-    menuItems.links.map(async (item, index) => {
+    stories.links.map(async (item, index) => {
       const menuItem = getByTestId(`n-menu-block-item-${index}`);
       const menuItemPrefix = getByTestId(
         `n-menu-block-item-element-prefix-${index}`

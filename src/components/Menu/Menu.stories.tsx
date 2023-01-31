@@ -22,6 +22,7 @@ export const stories = {
       disabled: true,
       suffix: <p>$50,000</p>,
       value: "apple",
+      divider: true,
     },
     {
       heading: true,
@@ -57,6 +58,7 @@ export const stories = {
     },
     {
       label: "Banana",
+      divider: false,
       prefix: <SvgNature />,
       value: "apple",
       linkConfig: { href: "/" },
@@ -84,6 +86,7 @@ export const stories = {
   noIcons: [
     {
       label: "Apple",
+      divider: false,
       disabled: true,
       suffix: <p>$50,000</p>,
       value: "apple",
