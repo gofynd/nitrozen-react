@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { ComponentMeta } from "@storybook/react";
 import Dialog from "./Dialog";
 import Button from "../Button";
-import Radio from "../Radio";
 import { SvgError } from "../../assets/svg-components";
 
 export default {
@@ -25,14 +24,14 @@ export default {
     },
     id: { type: "string" },
     theme: { type: "string" },
-    title: { type: "string" },
+    title: { control: "object" } || { type: "string" },
     DialogIcon: { type: "string" },
     style: { control: "object" },
     className: { control: "text" },
   },
 } as ComponentMeta<typeof Dialog>;
 
-export const confirm_dialog = (args: any) => {
+export const dialog = (args: any) => {
   const [open, setOpen] = useState(false);
   return (
     <div>
@@ -42,7 +41,7 @@ export const confirm_dialog = (args: any) => {
             setOpen(true);
           }}
         >
-          Confirm Dialog
+          dialog
         </Button>
       </div>
       <Dialog
@@ -53,28 +52,58 @@ export const confirm_dialog = (args: any) => {
             style={{ borderRadius: "50%", color: "#FFBB33" }}
           />
         }
-        title={"Are you sure ?"}
-        positiveButtonLabel={"No"}
-        negativeButtonLabel={`Yes`}
+        kind={"dialog"}
+        size="m"
+        title={"MyJio - One-stop destination for all things Jio"}
+        isClosable={true}
+        positiveButtonLabel={"Positive"}
+        negativeButtonLabel={"Negative"}
         isVisible={open}
         neutralButtonLabel={false}
         {...args}
         closeHandle={() => setOpen(false)}
       >
-        <span>
-          If you turn off multi size, your current selection will be deselected
-          and you will have to select everythng from the start
-        </span>
+        <div>
+          <div>
+            <p>
+              <span>MyJio - One-stop destination for all things Jio.</span>{" "}
+              <span>
+                There's more to Jio than just unlimited data and free voice
+                calls.
+              </span>{" "}
+              <span>
+                MyJio is your one stop destination for recharges, UPI &
+                payments, managing Jio devices, Movies, Music, News, Games,
+                Quizzes & a lot more.
+              </span>{" "}
+            </p>
+            <p>
+              <span>MyJio is a gateway to digital Life.</span>{" "}
+              <span>
+                Using MyJio app you can view your high speed data balance,
+              </span>{" "}
+              <span>
+                choose from a range of plans to recharge your number and manage
+                your account.
+              </span>{" "}
+            </p>
+            <p>
+              <span>
+                You can also view your active 4G plan along with validity
+              </span>{" "}
+              <span>
+                , check usage details for your calls, messages & data.
+              </span>
+              <span>generate detailed statements for up to 6 months.</span>{" "}
+            </p>
+          </div>
+        </div>
       </Dialog>
     </div>
   );
 };
 
-export const choose_dialog = (args: any) => {
-  const [selected, setSelected] = useState({ selectedRadio: "" });
-  const SchangeHandler = (arg: any) => {
-    setSelected({ ...selected, selectedRadio: arg });
-  };
+export const Acknowledgement = (args: any) => {
   const [open, setOpen] = useState(false);
   return (
     <div>
@@ -84,44 +113,134 @@ export const choose_dialog = (args: any) => {
             setOpen(true);
           }}
         >
-          Choose Dialog
+          Acknowledgement
         </Button>
       </div>
       <Dialog
         id={"1"}
-        title={"Choose Who You are?"}
+        DialogIcon={
+          <SvgError
+            size="60px"
+            style={{ borderRadius: "50%", color: "#FFBB33" }}
+          />
+        }
+        kind={"acknowledgement"}
+        size="m"
+        title={"MyJio - One-stop destination for all things Jio"}
+        isClosable={true}
+        positiveButtonLabel={"Positive"}
+        negativeButtonLabel={"Negative"}
         isVisible={open}
-        neutralButtonLabel="DONE"
+        neutralButtonLabel={false}
         {...args}
         closeHandle={() => setOpen(false)}
       >
-        <div
-          style={{ display: "flex", flexDirection: "column", gap: "1.6rem" }}
+        <div>
+          <div>
+            <p>
+              <span>MyJio - One-stop destination for all things Jio.</span>{" "}
+              <span>
+                There's more to Jio than just unlimited data and free voice
+                calls.
+              </span>{" "}
+              <span>
+                MyJio is your one stop destination for recharges, UPI &
+                payments, managing Jio devices, Movies, Music, News, Games,
+                Quizzes & a lot more.
+              </span>{" "}
+            </p>
+            <p>
+              <span>MyJio is a gateway to digital Life.</span>{" "}
+              <span>
+                Using MyJio app you can view your high speed data balance,
+              </span>{" "}
+              <span>
+                choose from a range of plans to recharge your number and manage
+                your account.
+              </span>{" "}
+            </p>
+            <p>
+              <span>
+                You can also view your active 4G plan along with validity
+              </span>{" "}
+              <span>
+                , check usage details for your calls, messages & data.
+              </span>
+              <span>generate detailed statements for up to 6 months.</span>{" "}
+            </p>
+          </div>
+        </div>
+      </Dialog>
+    </div>
+  );
+};
+
+export const Informational = (args: any) => {
+  const [open, setOpen] = useState(false);
+  return (
+    <div>
+      <div className="main-div space-between">
+        <Button
+          onClick={() => {
+            setOpen(true);
+          }}
         >
-          <Radio
-            labelText="Male"
-            value="male"
-            id="male"
-            radioValue={selected.selectedRadio}
-            onChange={SchangeHandler}
-            name="basic"
+          Informational
+        </Button>
+      </div>
+      <Dialog
+        id={"1"}
+        DialogIcon={
+          <SvgError
+            size="60px"
+            style={{ borderRadius: "50%", color: "#FFBB33" }}
           />
-          <Radio
-            labelText="Female"
-            value="female"
-            id="female"
-            radioValue={selected.selectedRadio}
-            onChange={SchangeHandler}
-            name="basic"
-          />
-          <Radio
-            labelText="Others"
-            value="others"
-            id="others"
-            radioValue={selected.selectedRadio}
-            onChange={SchangeHandler}
-            name="basic"
-          />
+        }
+        kind={"informational"}
+        size="m"
+        title={"MyJio - One-stop destination for all things Jio"}
+        isClosable={true}
+        positiveButtonLabel={"Positive"}
+        negativeButtonLabel={"Negative"}
+        isVisible={open}
+        neutralButtonLabel={false}
+        {...args}
+        closeHandle={() => setOpen(false)}
+      >
+        <div>
+          <div>
+            <p>
+              <span>MyJio - One-stop destination for all things Jio.</span>{" "}
+              <span>
+                There's more to Jio than just unlimited data and free voice
+                calls.
+              </span>{" "}
+              <span>
+                MyJio is your one stop destination for recharges, UPI &
+                payments, managing Jio devices, Movies, Music, News, Games,
+                Quizzes & a lot more.
+              </span>{" "}
+            </p>
+            <p>
+              <span>MyJio is a gateway to digital Life.</span>{" "}
+              <span>
+                Using MyJio app you can view your high speed data balance,
+              </span>{" "}
+              <span>
+                choose from a range of plans to recharge your number and manage
+                your account.
+              </span>{" "}
+            </p>
+            <p>
+              <span>
+                You can also view your active 4G plan along with validity
+              </span>{" "}
+              <span>
+                , check usage details for your calls, messages & data.
+              </span>
+              <span>generate detailed statements for up to 6 months.</span>{" "}
+            </p>
+          </div>
         </div>
       </Dialog>
     </div>
