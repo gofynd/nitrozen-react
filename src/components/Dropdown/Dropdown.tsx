@@ -317,47 +317,43 @@ const Dropdown = (props: DropdownProps) => {
           ref={dropdownRef}
         >
           <div
-            className={`${
-              props.validationState ? "" : `n-default-border ${focusBorder}`
+            className={`n-select__trigger ${
+              props.disabled ? "cursor-disabled" : ""
+            } ${
+              props.validationState
+                ? `n-${props.validationState}-border`
+                : focusBorder
             }`}
           >
-            <div
-              className={`n-select__trigger ${
-                props.disabled ? "cursor-disabled" : ""
-              } ${
-                props.validationState ? `n-${props.validationState}-border` : ""
-              }`}
-            >
-              {props.prefixIcon ? (
-                <div className="n-dropdown-prefix-icon-wrapper">
-                  <Icon className="n-dropdown-prefix" />
-                </div>
-              ) : null}
-              <div className="n-dropdown-input-arrow-wrapper">
-                {props.searchable && !props.disabled ? (
-                  <span className="n-searchable-input-container">
-                    <input
-                      data-testid="dropdown-search"
-                      type="search"
-                      value={searchInput}
-                      onChange={searchInputChange}
-                      placeholder={searchInputPlaceholder()}
-                      onClick={() => setFocusBorder("n-focused-border")}
-                      onBlur={() => setFocusBorder("")}
-                      className={"n-dropdown-search"}
-                    />
-                  </span>
-                ) : props.disabled ? (
-                  <span>Disabled</span>
-                ) : (
-                  <span>{selectedText}</span>
-                )}
-
-                <div className="n-dropdown-arrow">
-                  <SvgKeyboardArrowDown
-                    style={{ width: "20px", height: "20px" }}
+            {props.prefixIcon ? (
+              <div className="n-dropdown-prefix-icon-wrapper">
+                <Icon className="n-dropdown-prefix" />
+              </div>
+            ) : null}
+            <div className="n-dropdown-input-arrow-wrapper">
+              {props.searchable && !props.disabled ? (
+                <span className="n-searchable-input-container">
+                  <input
+                    data-testid="dropdown-search"
+                    type="search"
+                    value={searchInput}
+                    onChange={searchInputChange}
+                    placeholder={searchInputPlaceholder()}
+                    onClick={() => setFocusBorder("n-focused-border")}
+                    onBlur={() => setFocusBorder("")}
+                    className={"n-dropdown-search"}
                   />
-                </div>
+                </span>
+              ) : props.disabled ? (
+                <span>Disabled</span>
+              ) : (
+                <span>{selectedText}</span>
+              )}
+
+              <div className="n-dropdown-arrow">
+                <SvgKeyboardArrowDown
+                  style={{ width: "20px", height: "20px" }}
+                />
               </div>
             </div>
           </div>

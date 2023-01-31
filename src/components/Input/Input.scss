@@ -1,8 +1,6 @@
 @import "./../../base/base.scss";
 
 .n-input {
-  // padding: 1px 0px 5px;
-  // height: 48px;
   color: $TypographyPrimaryColor;
   border: 0px;
   min-width: 0px;
@@ -35,7 +33,7 @@
 .n-input-container {
   width: inherit;
   padding: 12px;
-  border: 1px solid $ColorSparkleGrey60;
+  border: 2px solid $ColorSparkleGrey60;
   border-radius: 16px;
 }
 
@@ -236,7 +234,7 @@ textarea {
   line-height: 1.4285714286;
   word-wrap: break-word;
   color: $TypographyPrimaryColor;
-  margin-top: 2px;
+  margin-top: 4px;
 }
 
 .n-field-error {
@@ -267,11 +265,6 @@ textarea {
   cursor: pointer;
 }
 
-.n-no-hover {
-  border: 4px solid $WhiteColor;
-  border-radius: 20px;
-}
-
 .n-input-group-disabled {
   opacity: 0.4;
   background-color: $WhiteColor;
@@ -287,5 +280,11 @@ textarea {
 }
 
 .n-focused-border {
-  border: 4px solid $ColorPrimary60;
+  border: 2px solid $ColorPrimary60 !important;
+  border-radius: 16px;
+}
+
+.n-input:hover::placeholder {
+  color: $ColorPrimaryGrey80;
+  font-weight: 500;
 }

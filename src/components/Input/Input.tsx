@@ -234,13 +234,7 @@ const Input = (props: InputProps) => {
           </label>
         )}
       </div>
-      <div
-        className={`n-input-grp ${
-          props.state == "default" && !disabled
-            ? "n-default-border"
-            : "n-no-hover"
-        } ${focusBorder}`}
-      >
+      <div className={`n-input-grp`}>
         {showSearchIcon && (
           <span className="n-search-icon">
             <SvgSearch className="search-icon" />
@@ -251,7 +245,9 @@ const Input = (props: InputProps) => {
           <InputPrefix prefix={prefix} onPrefixClick={onPrefixClick} />
         )}
         {/* <!-- Input --> */}
-        <div className={`n-input-container ${borderFocus} ${getBorderState()}`}>
+        <div
+          className={`n-input-container ${borderFocus} ${focusBorder} ${getBorderState()}`}
+        >
           {type !== "textarea" && (
             <input
               ref={inputRef}
