@@ -103,12 +103,9 @@
 
     .n-checkbox-container {
       pointer-events: none;
-      margin-top: 0.2rem;
-      height: 2rem;
-
       .n-checkbox {
-        // margin-top: 0.2rem;
         @media screen and (max-width: 768px) {
+          margin-top: 0.4rem;
           top: 0.2rem !important;
           left: 0 !important;
         }
@@ -311,4 +308,19 @@
 }
 .n-no-data-container {
   border-bottom: 1px solid $ColorPrimaryGrey40;
+}
+
+.n-dropdown-prefix {
+  height: 24px;
+  width: 24px;
+  &-icon-wrapper {
+    display: flex;
+  }
+}
+.n-dropdown-input-arrow-wrapper {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2px;
 }

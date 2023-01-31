@@ -38,6 +38,7 @@ export interface DropdownProps {
   helperText?: string;
   validationState?: string;
   validationLabel?: string;
+  prefixIcon?: React.ReactNode;
 }
 const ALL_OPTION = { text: "Select All", value: "all" };
 
@@ -285,6 +286,7 @@ const Dropdown = (props: DropdownProps) => {
     props.addOptionHandler?.(value);
     calculateViewport();
   }
+  const Icon = props.prefixIcon as React.ElementType;
   return (
     <div
       id={props?.id}
@@ -321,27 +323,34 @@ const Dropdown = (props: DropdownProps) => {
                 props.validationState ? `n-${props.validationState}-border` : ""
               }`}
             >
-              {props.searchable && !props.disabled ? (
-                <span className="n-searchable-input-container">
-                  <input
-                    data-testid="dropdown-search"
-                    type="search"
-                    value={searchInput}
-                    onChange={searchInputChange}
-                    placeholder={searchInputPlaceholder()}
-                    className={"n-dropdown-search"}
-                  />
-                </span>
-              ) : props.disabled ? (
-                <span>Disabled</span>
-              ) : (
-                <span>{selectedText}</span>
-              )}
+              {props.prefixIcon ? (
+                <div className="n-dropdown-prefix-icon-wrapper">
+                  <Icon className="n-dropdown-prefix" />
+                </div>
+              ) : null}
+              <div className="n-dropdown-input-arrow-wrapper">
+                {props.searchable && !props.disabled ? (
+                  <span className="n-searchable-input-container">
+                    <input
+                      data-testid="dropdown-search"
+                      type="search"
+                      value={searchInput}
+                      onChange={searchInputChange}
+                      placeholder={searchInputPlaceholder()}
+                      className={"n-dropdown-search"}
+                    />
+                  </span>
+                ) : props.disabled ? (
+                  <span>Disabled</span>
+                ) : (
+                  <span>{selectedText}</span>
+                )}
 
-              <div className="n-dropdown-arrow">
-                <SvgKeyboardArrowDown
-                  style={{ width: "20px", height: "20px" }}
-                />
+                <div className="n-dropdown-arrow">
+                  <SvgKeyboardArrowDown
+                    style={{ width: "20px", height: "20px" }}
+                  />
+                </div>
               </div>
             </div>
           </div>
@@ -493,6 +502,7 @@ Dropdown.defaultProps = {
   className: "",
   validationState: "",
   validationLabel: "",
+  prefixIcon: "",
 };
 
 export default Dropdown;
