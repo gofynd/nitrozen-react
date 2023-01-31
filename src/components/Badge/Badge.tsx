@@ -1,6 +1,9 @@
 import React, { memo, useEffect, useState } from "react";
 import "./Badge.scss";
 export interface BadgeProps {
+  size?: String;
+  kind?: String;
+  icon?: any;
   state?: string;
   fill?: Boolean;
   labelText?: string;
@@ -11,6 +14,9 @@ export interface BadgeProps {
 
 const Badge = (props: BadgeProps) => {
   const {
+    size,
+    kind,
+    icon,
     state,
     fill,
     labelText,
@@ -48,23 +54,44 @@ const Badge = (props: BadgeProps) => {
     if (fill) {
       classes += "-fill";
     }
+
+    switch (size) {
+      case "small":
+        classes += " badge-small";
+        break;
+      case "medium":
+        classes += " badge-medium";
+        break;
+      case "large":
+        classes += " badge-large";
+        break;
+      default:
+        classes += " badge-medium";
+        break;
+    }
     setClasses(classes);
-  }, [state, fill]);
+  }, [state, fill, size]);
 
   return (
-    <div
-      style={style ?? {}}
-      className={`nitrozen-badge ${classes}`}
-      onClick={onClickHandler}
-      {...restProps}
-    >
-      {labelText}
+    <div className={kind === "service" ? "badge-background" : ""}>
+      <div
+        style={style ?? {}}
+        className={`nitrozen-badge ${classes}`}
+        onClick={onClickHandler}
+        {...restProps}
+      >
+        {icon ? <span className={`${classes}-badge-icon`}>{icon}</span> : null}
+        <div className="badge-truncate">{labelText}</div>
+      </div>
     </div>
   );
 };
 
 Badge.defaultProps = {
+  size: "medium",
+  kind: "normal",
   state: "success",
+  icon: "",
   fill: false,
   labelText: "Warn",
   className: "",
