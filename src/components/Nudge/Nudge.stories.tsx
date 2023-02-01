@@ -53,10 +53,14 @@ ShowNudge.args = {
   supportText: "This is a support text",
   cta1: "CTA1",
   cta2: "CTA2",
-  duration: 3000,
+  duration: 7000,
   id: "custom-nudge",
-  cta1OnClick: () => {},
-  cta2OnClick: () => {},
+  cta1OnClick: () => {
+    console.log("CTA1 clicked");
+  },
+  cta2OnClick: () => {
+    console.log("CTA2 clicked");
+  },
   leftImage: <img src={require("../../assets/nitrozen.png")} />,
   rightImage: <img src={require("../../assets/nitrozen.png")} />,
   position: "top-right",

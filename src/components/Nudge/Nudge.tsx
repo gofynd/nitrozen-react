@@ -52,7 +52,7 @@ const Nudge = (props: NudgeProps) => {
       data-testid={`${id}-nudge`}
       className={`${
         className ? className : ""
-      } n-nudge-wrapper n-nudge-${position}`}
+      } n-nudge-wrapper n-nudge-${position} n-nudge`}
     >
       <div className="n-nudge-top">
         <div className="n-nudge-left-section">

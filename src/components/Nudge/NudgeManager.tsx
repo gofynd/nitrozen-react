@@ -49,7 +49,6 @@ export class NudgeManager {
     };
 
     this.nudges = [...this.nudges, { ...nudge, id: nitrozenNudgeId }];
-    console.log(this.nudges);
     this.render();
   }
 
@@ -62,9 +61,7 @@ export class NudgeManager {
     const nudgeLists = this.nudges.map((nudgeProps: NudgeProps) => (
       <Nudge key={nudgeProps.id} {...nudgeProps} />
     ));
-    console.log(nudgeLists, "lists");
     if (typeof window !== "undefined" && this.nudgeContainerRef) {
-      console.log(this.root, "root", nudgeLists);
       this.root.render(nudgeLists);
     }
   }
