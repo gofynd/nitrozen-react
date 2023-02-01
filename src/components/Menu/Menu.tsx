@@ -1,91 +1,237 @@
-import React, { memo, useCallback, useState } from "react";
-import uuid from "../../utils/uuids";
-import classnames from "classnames";
-import { useOutsideClick } from "../../utils/useOutsideClick";
+import React, {
+  CSSProperties,
+  memo,
+  useEffect,
+  useState,
+  RefObject,
+} from "react";
 import "./Menu.scss";
-import { SvgMoreHoriz } from "../../assets/svg-components";
 
+export interface MenuItemProps {
+  disabled?: boolean;
+  label?: string;
+  value?: string;
+  prefix?: React.ReactSVGElement;
+  suffix?: any;
+  linkConfig?: {
+    href: string;
+    textAppreance?: string;
+    target?: string;
+  };
+  divider?: boolean;
+  heading?: boolean;
+}
 export interface MenuProps {
-  id?: string | undefined;
-  mode: string;
-  inverted: boolean;
-  position: string;
-  className?: string;
-  style?: React.CSSProperties;
-  children: React.ReactNode;
-  onChangeMenuItem?: (menu: string) => void;
+  items: Array<any>;
+  open?: boolean;
+  selectedIndex?: number;
+  anchorEl?: RefObject<HTMLDivElement>;
+  onSelect?: Function;
+  onOpen?: Function;
+  onClose?: Function;
+  maxHeight?: number;
+  style?: CSSProperties;
 }
 
 const Menu = (props: MenuProps) => {
   const {
-    id,
-    mode,
-    inverted,
-    position,
-    children,
-    onChangeMenuItem,
-    className = "",
+    items,
+    open = true,
+    selectedIndex,
+    anchorEl = undefined,
+    onSelect,
+    onOpen,
+    onClose,
+    maxHeight,
     style,
-    ...restProps
   } = props;
-  const [toggleMenu, setToggleMenu] = useState(false);
-  const ref = useOutsideClick(() => setToggleMenu(false));
+  const [selection, setSelection] = useState(selectedIndex);
+  const [hasPrefix, setHasPrefix] = useState(false);
+  const [hasSuffix, setHasSuffix] = useState(false);
+  const [isOpen, setIsOpen] = useState(open || false);
 
-  const handleToggleMenu = () => {
-    setToggleMenu((toggle) => !toggle);
+  /**
+   * get onOpen/onClose event callbacks
+   */
+  useEffect(() => {
+    if (!open) {
+      setIsOpen(false);
+      return onClose?.();
+    }
+    setIsOpen(true);
+    onOpen?.();
+  }, [open]);
+
+  /**
+   * check if any suffix or prefix exists for ui formatting
+   */
+  useEffect(() => {
+    checkPrefix();
+    checkSuffix();
+    if (anchorEl !== undefined && typeof document !== "undefined") {
+      document.addEventListener("click", documentClick);
+    }
+  }, []);
+
+  /**
+   * get menu visibility
+   * @returns boolean
+   */
+  const getVisibilityClass = () => {
+    return isOpen ? "n-menu-block-open" : "n-menu-block-close";
   };
 
-  const getSelectedMenuItem = useCallback(
-    (e: any) => {
-      onChangeMenuItem?.(e.target.innerHTML);
-    },
-    [onChangeMenuItem]
-  );
+  /**
+   * set current selection for highlightingn and call onSelect callback
+   * @param index
+   * @returns void
+   */
+  const onSelectHandler = (index: number) => {
+    if (items[index]?.disabled) return;
+    onSelect?.(index, items[index]?.value);
+    setSelection(index);
+  };
+
+  /**
+   * sets the max height if explicitly passed
+   * @returns inline css styling
+   */
+  const getStyle = () => {
+    let computedStyle = {};
+    if (anchorEl?.current?.parentElement) {
+      anchorEl.current.parentElement.style.position = "relative";
+      computedStyle = {
+        position: "absolute",
+        zIndex: 99,
+        left: "0px",
+        top: anchorEl.current?.offsetHeight + "px",
+      };
+    }
+    if (maxHeight) {
+      return {
+        height: `${maxHeight}px`,
+        ...style,
+        ...computedStyle,
+      } as React.CSSProperties;
+    }
+    return { ...style, ...computedStyle };
+  };
+
+  /**
+   * checks if any prefix exists
+   * @returns void
+   */
+  const checkPrefix = () => {
+    if (hasPrefix) return;
+    const index = items.findIndex((item) => item?.prefix);
+    if (index < 0) {
+      setHasPrefix(false);
+      return;
+    }
+    setHasPrefix(true);
+  };
+
+  /**
+   * checks if any suffix exists
+   * @returns void
+   */
+  const checkSuffix = () => {
+    if (hasSuffix) return;
+    const index = items.findIndex((item) => item.suffix);
+    if (index < 0) {
+      setHasSuffix(false);
+      return;
+    }
+    setHasSuffix(true);
+  };
+
+  /**
+   * check if curent menu item selected
+   * @param item menu prop item
+   * @param index curent index
+   * @returns boolean
+   */
+  const isSelected = (item: MenuItemProps, index: number) => {
+    return selection === index && !item.disabled && !item.heading;
+  };
+
+  /**
+   * handle document click events
+   * @param e
+   */
+  const documentClick = (e: Event) => {
+    if (anchorEl?.current && !anchorEl.current.contains(e.target as Node)) {
+      onClose?.();
+      setIsOpen(false);
+      document.removeEventListener("click", () => {});
+    }
+  };
 
   return (
-    <div
-      id={id}
-      ref={ref}
-      onClick={handleToggleMenu}
-      style={style ?? {}}
-      className={classnames({
-        "nitrozen-menu-content": true,
-        "nitrozen-default-menu": !inverted,
-        [className]: className?.length,
-      })}
-      {...restProps}
-    >
-      <span
-        className={classnames({
-          "nitrozen-menu-dots": true,
-          "nitrozen-menu-vertical-dots": mode === "vertical",
-        })}
+    <div className="menu-container">
+      <ul
+        className={`n-menu-block ${getVisibilityClass()}`}
+        style={getStyle()}
+        data-testid="n-menu-block"
       >
-        <SvgMoreHoriz
-          data-testid="menu-icon"
-          className={`nitrozen-menu-icon ${inverted ? "inverted" : ""}`}
-        />
-      </span>
-      {toggleMenu && (
-        <ul
-          className={classnames({
-            "nitrozen-menu-vertical-dropdown": mode === "vertical",
-            "nitrozen-menu-top": position === "top",
-          })}
-          onClick={getSelectedMenuItem}
-        >
-          {children}
-        </ul>
-      )}
+        {items.map((item, index) => {
+          // if type is not set, then it is a menu item, else divider
+          return (
+            <li
+              onClick={() => onSelectHandler(index)}
+              key={`n-menu-block-item-${index}`}
+              data-testid={`n-menu-block-item-${index}`}
+              className={`n-menu-block-item 
+            ${item.disabled ? "n-menu-block-item-disabled" : ""}
+            ${item?.divider ? "n-menu-block-item-divider" : ""}
+            ${item?.heading ? "n-menu-block-item-heading" : ""}
+            ${isSelected(item, index) ? "n-menu-block-item-selected" : ""}
+            `}
+            >
+              {/* setting links only for enabled menu items */}
+              <a
+                href={(!item.disabled && item?.linkConfig?.href) || undefined}
+                target={item?.linkConfig?.target || "_self"}
+                data-testid={`n-menu-block-item-${index}-link`}
+              >
+                {hasPrefix && (
+                  <div className={`n-menu-block-item-element`}>
+                    <span
+                      data-testid={`n-menu-block-item-element-prefix-${index}`}
+                      className="n-menu-block-item-element-prefix"
+                    >
+                      {item.prefix}
+                    </span>
+                  </div>
+                )}
+                <div className="n-menu-block-item-element n-menu-block-item-element-suffix">
+                  <span
+                    data-testid={`n-menu-block-item-element-label-${index}`}
+                  >
+                    {item.label}
+                  </span>
+                  {hasSuffix && (
+                    <span
+                      data-testid={`n-menu-block-item-element-suffix-${index}`}
+                      className="n-menu-block-item-element-outer"
+                    >
+                      {item.suffix}
+                    </span>
+                  )}
+                </div>
+              </a>
+            </li>
+          );
+        })}
+      </ul>
     </div>
   );
 };
 
 Menu.defaultProps = {
-  id: "nitrozen-menu" + uuid(),
-  mode: "vertical",
-  inverted: false,
-  position: "bottom",
+  items: [],
+  open: true,
+  selectedIndex: 3,
 };
 
 export default memo(Menu);
