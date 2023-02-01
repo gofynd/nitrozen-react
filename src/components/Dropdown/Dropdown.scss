@@ -293,10 +293,10 @@
 }
 
 .n-dropdown-tooltip {
-  margin-left: 4px;
+  margin-left: 0.4rem;
   .nitrozen-svg-icon {
-    height: 20px;
-    width: 20px;
+    height: 2rem;
+    width: 2rem;
   }
 }
 
@@ -312,7 +312,7 @@
 
 .n-dropdown-helper,
 .n-dropdown-validation {
-  margin-left: 12px;
+  margin-left: 1.2rem;
 }
 
 .n-no-data-container {
@@ -320,8 +320,8 @@
 }
 
 .n-dropdown-prefix {
-  height: 24px;
-  width: 24px;
+  height: 2.4rem;
+  width: 2.4rem;
 
   &-icon-wrapper {
     display: flex;
@@ -340,10 +340,10 @@
   display: flex;
   flex-direction: column;
   color: $ColorPrimaryGrey100;
-  font-size: $BaseFontSize + 6px;
+  font-size: 1.6rem;
 }
 
 .n-option-subtext {
-  font-size: $BaseFontSize + 2px;
+  font-size: 1.2rem;
   color: $TypographyPrimaryColor;
 }
