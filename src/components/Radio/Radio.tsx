@@ -45,7 +45,7 @@ const Radio = (props: RadioProps) => {
   return (
     <div style={style ?? {}} className={`n-radio-group ${className ?? ""}`}>
       {showIcon && icon && (
-        <Icon className="social-icon" onClick={onIconClick} />
+        <Icon className="n-prefix-icon" onClick={onIconClick} />
       )}
       <input
         id={id}

@@ -20,6 +20,14 @@ export default {
   component: Badge,
   argTypes: {
     labelText: { control: "text" },
+    size: {
+      control: "select",
+      options: ["small", "medium", "large"],
+    },
+    kind: {
+      control: "select",
+      options: ["normal", "service"],
+    },
     state: {
       control: "select",
       options: ["info", "success", "warn", "error", "default", "disable"],
@@ -37,14 +45,18 @@ export default {
 const Template: ComponentStory<typeof Badge> = (args) => (
   <div className="main-div space-between">
     <Badge {...args} />
+    <Badge {...args} icon={<SvgCheck color="#000" />} />
+    <Badge {...args} labelText="Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab dolores vel expedita, praesentium quisquam quia optio nisi in alias laboriosam voluptate ratione error quibusdam inventore. Perspiciatis labore nemo quidem facere."/>
   </div>
 );
 export const Badge_demo = Template.bind({});
 
 Badge_demo.args = {
+  size: "medium",
+  kind: "normal",
   state: "success",
   fill: true,
-  labelText: "VERIFIED",
+  labelText: "Success",
 };
 
 export const badge_with_alert_strip = (args: any) => {
