@@ -17,14 +17,11 @@ export interface DialogProps {
   title: string | dialogTitle;
   kind: "dialog" | "acknowledgement" | "informational";
   size: "s" | "m";
-  DialogIcon?: React.ReactNode;
   theme?: string;
   children?: React.ReactNode;
   positiveButtonLabel?: string | boolean;
-  neutralButtonLabel?: string | boolean;
   negativeButtonLabel?: string | boolean;
   onPositiveResponse?: Function;
-  onNeutralResponse?: Function;
   onNegativeResponse?: Function;
   isVisible?: boolean;
   isClosable?: boolean;
@@ -39,14 +36,11 @@ const Dialog = (props: DialogProps) => {
     kind,
     title,
     size,
-    DialogIcon,
     theme,
     children,
     positiveButtonLabel,
-    neutralButtonLabel,
     negativeButtonLabel,
     onPositiveResponse,
-    onNeutralResponse,
     onNegativeResponse,
     isVisible,
     isClosable,
@@ -55,8 +49,6 @@ const Dialog = (props: DialogProps) => {
     closeHandle,
     ...restProps
   } = props;
-
-  const neutralButtonLabelText = neutralButtonLabel ?? "";
 
   // Methods
   const close = () => {
@@ -70,13 +62,6 @@ const Dialog = (props: DialogProps) => {
     close();
   };
 
-  const handleNeutralButtonClick = () => {
-    if (onNeutralResponse) {
-      onNeutralResponse();
-    }
-    close();
-  };
-
   const handleNegativeButtonClick = () => {
     if (onNegativeResponse) {
       onNegativeResponse();
@@ -86,12 +71,10 @@ const Dialog = (props: DialogProps) => {
 
   const footerClass = () => {
     if (kind === "dialog") {
-      return size === "s"
-        ? "nitrozen-dialog-footer-size"
-        : "nitrozen-dialog-footer";
+      return size === "s" ? "n-dialog-footer-size" : "n-dialog-footer";
     }
     if (kind === "acknowledgement") {
-      return "nitrozen-dialog-footer-size";
+      return "n-dialog-footer-size";
     }
   };
 
@@ -99,13 +82,13 @@ const Dialog = (props: DialogProps) => {
     <>
       {isVisible && (
         <div id={id}>
-          <div className="nitrozen-dialog-backdrop">
+          <div className="n-dialog-backdrop">
             <div
-              className={
+              className={` n-${kind} ${
                 size === "s"
-                  ? `n-wrapper-width-s nitrozen-dialog ${className ?? ""}`
-                  : `n-wrapper-width-m nitrozen-dialog ${className ?? ""}`
-              }
+                  ? `n-wrapper-width-s n-dialog ${className ?? ""}`
+                  : `n-wrapper-width-m n-dialog ${className ?? ""}`
+              }`}
               style={style ?? {}}
               role="dialog"
               aria-labelledby="id + '_title'"
@@ -117,7 +100,7 @@ const Dialog = (props: DialogProps) => {
                   <SvgClose className="n-closebtn" onClick={close} />
                 )}
               </div>
-              <header className="nitrozen-dialog-header" id="id + '_title'">
+              <header className="n-dialog-header" id="id + '_title'">
                 {typeof title === "string" ? (
                   <h5 className="header">{title}</h5>
                 ) : (
@@ -133,25 +116,14 @@ const Dialog = (props: DialogProps) => {
                   </div>
                 )}
               </header>
-              <section className="nitrozen-dialog-body" id="id + '_desc'">
+              <section className="n-dialog-body" id="id + '_desc'">
                 {children}
               </section>
 
               <footer className={footerClass()}>
-                {neutralButtonLabelText && (
-                  <Button
-                    theme={`${theme || "primary"}`}
-                    rounded={false}
-                    className="nitrozen-dialog-footer-button-margin"
-                    onClick={handleNeutralButtonClick}
-                  >
-                    {neutralButtonLabelText}
-                  </Button>
-                )}
-
                 {kind === "dialog" && (
                   <Button
-                    className="nitrozen-dialog-footer-btn-spacing"
+                    className="n-dialog-footer-btn-spacing"
                     theme="secondary"
                     size="medium"
                     onClick={handleNegativeButtonClick}
@@ -165,6 +137,11 @@ const Dialog = (props: DialogProps) => {
                     theme="primary"
                     size="medium"
                     onClick={handlePositiveButtonClick}
+                    className={
+                      kind == "dialog" && size !== "s"
+                        ? "n-dialog-positive"
+                        : ""
+                    }
                   >
                     {positiveButtonLabel}
                   </Button>
@@ -179,12 +156,11 @@ const Dialog = (props: DialogProps) => {
 };
 
 Dialog.defaultProps = {
-  id: `nitrozen-dialog-${NitrozenId()}`,
+  id: `n-dialog-${NitrozenId()}`,
   title: "",
   theme: null,
   children: null,
   positiveButtonLabel: false,
-  neutralButtonLabel: "",
   negativeButtonLabel: false,
   isVisible: false,
 };

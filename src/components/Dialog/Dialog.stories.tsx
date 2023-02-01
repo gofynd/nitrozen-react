@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { ComponentMeta } from "@storybook/react";
 import Dialog from "./Dialog";
 import Button from "../Button";
-import { SvgError } from "../../assets/svg-components";
 
 export default {
   title: "Components/Dialog",
@@ -23,11 +22,12 @@ export default {
       },
     },
     id: { type: "string" },
-    theme: { type: "string" },
+    theme: { type: "string", description: "Theme for buttons" },
     title: { control: "object" } || { type: "string" },
-    DialogIcon: { type: "string" },
     style: { control: "object" },
     className: { control: "text" },
+    positiveButtonLabel: { control: "text", defaultValue: "Primary action" },
+    negativeButtonLabel: { control: "text", defaultValue: "Cancel" },
   },
 } as ComponentMeta<typeof Dialog>;
 
@@ -41,25 +41,19 @@ export const dialog = (args: any) => {
             setOpen(true);
           }}
         >
-          dialog
+          Dialog
         </Button>
       </div>
       <Dialog
         id={"1"}
-        DialogIcon={
-          <SvgError
-            size="60px"
-            style={{ borderRadius: "50%", color: "#FFBB33" }}
-          />
-        }
         kind={"dialog"}
         size="m"
         title={"MyJio - One-stop destination for all things Jio"}
         isClosable={true}
-        positiveButtonLabel={"Positive"}
-        negativeButtonLabel={"Negative"}
+        positiveButtonLabel={"Primary action"}
+        negativeButtonLabel={"Cancel"}
         isVisible={open}
-        neutralButtonLabel={false}
+        neutralButtonLabel={"Neutral"}
         {...args}
         closeHandle={() => setOpen(false)}
       >
@@ -118,18 +112,12 @@ export const Acknowledgement = (args: any) => {
       </div>
       <Dialog
         id={"1"}
-        DialogIcon={
-          <SvgError
-            size="60px"
-            style={{ borderRadius: "50%", color: "#FFBB33" }}
-          />
-        }
         kind={"acknowledgement"}
         size="m"
         title={"MyJio - One-stop destination for all things Jio"}
         isClosable={true}
-        positiveButtonLabel={"Positive"}
-        negativeButtonLabel={"Negative"}
+        positiveButtonLabel={"Primary action"}
+        negativeButtonLabel={"Cancel"}
         isVisible={open}
         neutralButtonLabel={false}
         {...args}
@@ -190,18 +178,12 @@ export const Informational = (args: any) => {
       </div>
       <Dialog
         id={"1"}
-        DialogIcon={
-          <SvgError
-            size="60px"
-            style={{ borderRadius: "50%", color: "#FFBB33" }}
-          />
-        }
         kind={"informational"}
         size="m"
         title={"MyJio - One-stop destination for all things Jio"}
         isClosable={true}
-        positiveButtonLabel={"Positive"}
-        negativeButtonLabel={"Negative"}
+        positiveButtonLabel={"Primary action"}
+        negativeButtonLabel={"Cancel"}
         isVisible={open}
         neutralButtonLabel={false}
         {...args}
