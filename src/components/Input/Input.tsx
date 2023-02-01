@@ -178,25 +178,6 @@ const Input = (props: InputProps) => {
     setBorderFocus("n-border-focused");
   }
 
-  function handleOnFocus(event: FocusEvent<HTMLInputElement>) {
-    focusHandler();
-    // set the place holder only if the value exists in props
-    // placeholder && setPlaceHolderText(value ? "" : placeholder);
-    onFocus?.(event);
-  }
-
-  function getBorderState() {
-    let borderClass = "";
-    if (state && state !== "default") {
-      borderClass = `n-${state}-border`;
-    }
-    return borderClass;
-  }
-
-  function handleClick(event: any) {
-    setFocusBorder("n-focused-border");
-    onClick?.(event);
-  }
   return (
     <div className={`n-form-input ${disabled && "n-input-group-disabled"}`}>
       <div
@@ -246,7 +227,9 @@ const Input = (props: InputProps) => {
         )}
         {/* <!-- Input --> */}
         <div
-          className={`n-input-container ${borderFocus} ${focusBorder} ${getBorderState()}`}
+          className={`n-input-container ${borderFocus} ${focusBorder} ${
+            props.state && props.state !== "default" ? `n-${state}-border` : ""
+          }`}
         >
           {type !== "textarea" && (
             <input
@@ -255,8 +238,16 @@ const Input = (props: InputProps) => {
               onKeyUp={onKeyUp}
               onChange={onChange}
               onBlur={handleOnBlur}
-              onFocus={handleOnFocus}
-              onClick={handleClick}
+              onFocus={(event) => {
+                focusHandler();
+                // set the place holder only if the value exists in props
+                // placeholder && setPlaceHolderText(value ? "" : placeholder);
+                onFocus?.(event);
+              }}
+              onClick={(event) => {
+                setFocusBorder("n-focused-border");
+                onClick?.(event);
+              }}
               onKeyPress={onKeyPress}
               value={value}
               {...generateAttributesForInput()}
@@ -271,8 +262,16 @@ const Input = (props: InputProps) => {
               onKeyUp={onKeyUp}
               onChange={onChange}
               onBlur={onBlur}
-              onFocus={onFocus}
-              onClick={handleClick}
+              onFocus={(event) => {
+                focusHandler();
+                // set the place holder only if the value exists in props
+                // placeholder && setPlaceHolderText(value ? "" : placeholder);
+                onFocus?.(event);
+              }}
+              onClick={(event) => {
+                setFocusBorder("n-focused-border");
+                onClick?.(event);
+              }}
               onKeyPress={onKeyPress}
               className={`n-input input-text ${
                 type === "textarea" && "n-input-textarea"

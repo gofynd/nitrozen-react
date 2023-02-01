@@ -103,16 +103,7 @@ const Code = (props: CodeProps) => {
       handleBackSpace(currentIndex);
     }
   }
-  // handle the focus of the label container
-  function handleClick() {
-    // setlabelFocus("n-code-focused-label");
-  }
-  // handle the focus of the label container
-  function handleBlur() {
-    if (!codeArr.join("").length) {
-      // setlabelFocus("");
-    }
-  }
+
   return (
     <div className="n-code-main">
       <div
@@ -148,8 +139,6 @@ const Code = (props: CodeProps) => {
               data-testid={`code-input-${codeId}-` + index}
               value={value}
               type={type}
-              onClick={handleClick}
-              onBlur={handleBlur}
               onChange={(e) => onInputChange(e, index)}
               placeholder={"0"}
               className={`n-code-input-field ${

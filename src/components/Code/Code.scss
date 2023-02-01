@@ -5,7 +5,7 @@
   display: flex;
   width: 100%;
   justify-content: space-between;
-  gap: 10px;
+  gap: 1rem;
 }
 
 .n-code-input-field {
@@ -16,9 +16,9 @@
   -webkit-tap-highlight-color: transparent;
   outline: none;
   text-align: center;
-  border-radius: 16px;
-  height: 48px;
-  width: 48px;
+  border-radius: 1.6rem;
+  height: 4.8rem;
+  width: 4.8rem;
 
   &:focus,
   &:hover {
@@ -26,9 +26,9 @@
   }
 
   @media screen and (max-width: 425px) {
-    height: 30px;
-    width: 30px;
-    border-radius: 10px;
+    height: 3rem;
+    width: 3rem;
+    border-radius: 1rem;
   }
 }
 
@@ -55,7 +55,7 @@
   &-container {
     display: flex;
     font-weight: 400;
-    font-size: $BaseFontSize + 4px;
+    font-size: 1.4rem;
     line-height: 1.4375em;
     letter-spacing: 0.00938em;
     padding: 0px;
@@ -70,5 +70,5 @@
 }
 
 .n-code-underinfo {
-  margin: 4px;
+  margin: 0.4rem;
 }
