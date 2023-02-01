@@ -1,21 +1,30 @@
 @import "./../../base/base.scss";
 
+.menu-story-container {
+  height: 250px;
+  display: flex;
+  justify-content: center;
+}
+.n-menu-container {
+  z-index: $ZIndex2;
+  overflow: hidden;
+  overflow-y: scroll;
+  border-radius: $RadiusMedium;
+  box-sizing: border-box;
+  box-shadow: $ShadowS;
+  width: fit-content;
+  height: fit-content;
+}
 .n-menu-block {
   padding: 0;
   margin: 0;
   transform-origin: top;
-  width: fit-content;
-  border-radius: $RadiusMedium;
-  box-sizing: border-box;
-  box-shadow: $ShadowS;
-  overflow: hidden;
-  overflow-y: scroll;
-  transition: all 0.4s ease-in;
+  transition: all 0.2s ease-in-out;
   &-close {
     max-height: 0px;
   }
   &-open {
-    max-height: 100%;
+    max-height: 1000px;
   }
 }
 
@@ -43,6 +52,9 @@
   }
   &-selected > a {
     color: $ColorPrimary60;
+    svg {
+      color: $ColorPrimary60;
+    }
   }
   &-disabled > a {
     cursor: not-allowed;

@@ -102,19 +102,23 @@ const Menu = (props: MenuProps) => {
       anchorEl.current.parentElement.style.position = "relative";
       computedStyle = {
         position: "absolute",
-        zIndex: 99,
-        left: "0px",
-        top: anchorEl.current?.offsetHeight + "px",
+        zIndex: 60,
+        left: anchorEl.current?.offsetLeft + "px",
+        top:
+          anchorEl.current?.offsetHeight + anchorEl.current?.offsetTop + "px",
       };
     }
     if (maxHeight) {
       return {
-        height: `${maxHeight}px`,
+        maxHeight: `${maxHeight}px`,
         ...style,
         ...computedStyle,
       } as React.CSSProperties;
     }
-    return { ...style, ...computedStyle };
+    return {
+      ...style,
+      ...computedStyle,
+    } as React.CSSProperties;
   };
 
   /**
@@ -168,10 +172,9 @@ const Menu = (props: MenuProps) => {
   };
 
   return (
-    <div className="menu-container">
+    <div className="n-menu-container" style={getStyle()}>
       <ul
         className={`n-menu-block ${getVisibilityClass()}`}
-        style={getStyle()}
         data-testid="n-menu-block"
       >
         {items.map((item, index) => {

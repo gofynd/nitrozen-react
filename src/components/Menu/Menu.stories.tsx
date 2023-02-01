@@ -196,11 +196,12 @@ export const AnchoredMenu = (args: MenuItemProps) => {
     setIsOpen(false);
   };
   return (
-    <div className="menu-story-container" style={{ height: "500px" }}>
+    <div className="menu-story-container">
       <div
         id="menu-div"
         style={{
           width: "fit-content",
+          height: "fit-content",
         }}
         ref={ref}
       >
@@ -208,9 +209,6 @@ export const AnchoredMenu = (args: MenuItemProps) => {
           Menu
         </Button>
       </div>
-
-      <Button name="Settings">Settings</Button>
-      <Button name="Login">Login</Button>
       <Menu
         items={stories.simple}
         selectedIndex={2}
@@ -219,7 +217,7 @@ export const AnchoredMenu = (args: MenuItemProps) => {
         onSelect={onSelect}
         anchorEl={ref}
         open={isOpen}
-        maxHeight={150}
+        maxHeight={250}
       ></Menu>
     </div>
   );
