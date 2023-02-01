@@ -56,23 +56,40 @@ const Nudge = (props: NudgeProps) => {
     >
       <div className="n-nudge-top">
         <div className="n-nudge-left-section">
-          <div className="n-nudge-image-container">{leftImage}</div>
+          <div className="n-nudge-image-container" data-testid="left-image">
+            {leftImage}
+          </div>
           <div className="n-nudge-text-wrapper">
-            <span className="n-nudge-header">{heading}</span>
-            <span className="n-nudge-support">{supportText}</span>
+            <span className="n-nudge-header" data-testid="nudge-header">
+              {heading}
+            </span>
+            <span className="n-nudge-support" data-testid="nudge-support">
+              {supportText}
+            </span>
           </div>
         </div>
         <div className="n-nudge-right-section">
-          <div className="n-nudge-image-container">{rightImage}</div>
+          <div className="n-nudge-image-container" data-testid="right-image">
+            {rightImage}
+          </div>
         </div>
       </div>
       <div className="n-nudge-bottom">
-        <Button name={cta1} onClick={cta1OnClick} className="n-nudge-cta1">
-          {cta1}
-        </Button>
-        <Button name={cta2} onClick={cta2OnClick} className="n-nudge-cta2">
-          {cta2}
-        </Button>
+        {cta1 && (
+          <Button
+            name={cta1}
+            onClick={cta1OnClick}
+            className="n-nudge-cta1"
+            data-testid="cta1-btn"
+          >
+            {cta1}
+          </Button>
+        )}
+        {cta2 && (
+          <Button name={cta2} onClick={cta2OnClick} className="n-nudge-cta2">
+            {cta2}
+          </Button>
+        )}
       </div>
     </div>
   );
