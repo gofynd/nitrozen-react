@@ -105,8 +105,8 @@
   .nitrozen-dialog-body {
     position: relative;
     font-weight: 400;
-    font-size: 16px;
-    line-height: 24px;
+    font-size: 1.5rem;
+    line-height: 2rem;
     letter-spacing: -0.005em;
     word-break: break-word;
     color: $ColorPrimaryGrey80;
@@ -145,17 +145,17 @@
 }
 
 .n-wrapper-width-m {
-  width: 60%;
+  width: 55%;
 }
 
 .header {
-  margin: 0px;
+  margin: 0rem;
   font-weight: 700;
   color: #141414;
   text-transform: none;
-  font-size: 24px;
+  font-size: 2rem;
   letter-spacing: -0.005em;
-  line-height: 32px;
+  line-height: 2.5rem;
   font-family: $PrimaryFont;
 }
 
