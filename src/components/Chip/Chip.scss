@@ -1,6 +1,6 @@
 @import "./../../base/base.scss";
 
-.nitrozen-chip {
+.n-chip {
   background-color: $WhiteColor;
   @include d-flex-center;
   padding: 0.8rem;
@@ -8,7 +8,7 @@
   border-radius: 0.4rem;
   border: 0.1rem solid $ColorPrimaryGrey60;
   color: $TypographyPrimaryColor;
-  font-size: $BaseFontSize + 6;
+  font-size: 1.6rem;
   vertical-align: middle;
   white-space: nowrap;
   font-family: $PrimaryFont;
@@ -16,14 +16,14 @@
   box-sizing: border-box;
   user-select: none;
 
-  .chiptext {
+  .n-chiptext {
     word-break: break-all;
     text-overflow: ellipsis;
     overflow: hidden;
   }
 
-  .label {
-    font-size: $BaseFontSize + 6;
+  .n-chip-label {
+    font-size: 1.6rem;
     letter-spacing: -0.005em;
     color: $ColorPrimaryGrey80;
   }
@@ -31,19 +31,23 @@
   &:active {
     background-color: $GreyColor;
   }
+
   &:focus {
     border: 0.4rem solid $ActiveFieldBorder;
   }
+
   &:hover {
     // box-shadow: 0rem 0rem 0.5rem $Whisper;
     color: $ColorBlack;
   }
-  &.nitrozen-disabled {
+
+  &.n-disabled {
     cursor: default;
     background: $WhiteColor;
     color: $TypographyPrimaryColor;
     opacity: $DisabledOpacity;
     pointer-events: none;
+
     &:hover {
       box-shadow: none;
     }
@@ -53,18 +57,25 @@
       filter: saturate(65%);
     }
   }
-  &.nitrozen-chip-secondary {
+
+  &.n-chip-secondary {
     color: $PrimaryColor;
     border-color: $PrimaryColor;
     font-weight: 700;
   }
+
   &.rounded {
     border-radius: 3.9rem;
   }
-  .nitrozen-icon {
+
+  .n-icon {
     @include d-flex-center;
     margin-left: 0.4rem;
   }
+}
+
+.n-label-chip-text {
+  color: $ColorBlack;
 }
 
 //DEMO

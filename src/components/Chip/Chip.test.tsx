@@ -44,20 +44,16 @@ describe("Chips", () => {
   });
   test("Renders disabled chip", () => {
     const { container } = render(<Chip disabled={true}> Disabled Chip </Chip>);
-    expect(container.getElementsByClassName("nitrozen-disabled").length).toBe(
-      1
-    );
+    expect(container.getElementsByClassName("n-disabled").length).toBe(1);
   });
   test("Renders Secondary state chip", () => {
     const { container } = render(
       <Chip state="secondary"> Selected State Chip </Chip>
     );
-    expect(
-      container.getElementsByClassName("nitrozen-chip-secondary").length
-    ).toBe(1);
+    expect(container.getElementsByClassName("n-chip-secondary").length).toBe(1);
   });
   test("Renders Label with chip", () => {
     const { container } = render(<Chip label="Filter"></Chip>);
-    expect(container.getElementsByClassName("label").length).toBe(1);
+    expect(container.getElementsByClassName("n-chip-label").length).toBe(1);
   });
 });
