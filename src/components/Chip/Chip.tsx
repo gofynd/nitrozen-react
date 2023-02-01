@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from "react";
 import "./Chip.scss";
-import { SvgClose } from "../../assets/svg-components";
+import { SvgIcClose } from "../../assets/svg-components/Jio/";
 
 export interface ChipProps {
   deletable?: boolean;
@@ -16,6 +16,8 @@ export interface ChipProps {
   onIconClick?: Function;
   className?: string;
   style?: React.CSSProperties;
+  maxWidth?: string | number;
+  label?: string | number;
 }
 
 const Chip = (props: ChipProps) => {
@@ -33,6 +35,8 @@ const Chip = (props: ChipProps) => {
     icon,
     iconStyle,
     style,
+    maxWidth,
+    label,
     ...restProps
   } = props;
 
@@ -81,14 +85,17 @@ const Chip = (props: ChipProps) => {
         className={`nitrozen-chip ${setClasses()}`}
         {...restProps}
       >
-        <span>{children}</span>
+        <span className="chiptext" style={{ maxWidth: setMaxWidth() }}>
+          {label ? <span className="label">{label}: </span> : null}
+          {children ? children : "Submit"}
+        </span>
         {deletable && !icon && (
           <span
             data-testid="deletable-cross"
             className="nitrozen-icon"
             onClick={removeChip}
           >
-            <SvgClose style={{ ...defaultIconStyles, ...iconStyle }} />
+            <SvgIcClose style={{ ...defaultIconStyles, ...iconStyle }} />
           </span>
         )}
         {icon && (
@@ -121,6 +128,12 @@ const Chip = (props: ChipProps) => {
     fw = props.fontWeight ? props.fontWeight : fw;
     return fw;
   }
+
+  function setMaxWidth() {
+    let maxWidth: string | number;
+    maxWidth = props.maxWidth ? props.maxWidth : "22rem";
+    return maxWidth;
+  }
 };
 
 Chip.defaultProps = {
@@ -130,6 +143,7 @@ Chip.defaultProps = {
   isRounded: false,
   state: "primary",
   style: {},
+  maxWidth: "22rem",
 };
 
 export default React.memo(Chip);
