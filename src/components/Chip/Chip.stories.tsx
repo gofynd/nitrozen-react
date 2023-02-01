@@ -65,6 +65,11 @@ export default {
     },
     style: { control: "object" },
     className: { control: "text" },
+    maxWidth: {
+      control: { type: "string", required: false },
+      description: "Custom chip width",
+      defaultValue: "220px",
+    },
   },
 } as ComponentMeta<typeof Chip>;
 
@@ -120,6 +125,7 @@ export const ChipsDemo = () => {
         >
           Chip with Custom Styling
         </Chip>
+        <Chip maxWidth={"100px"}> Chip with Custom Width </Chip>
       </div>
     </div>
   );
