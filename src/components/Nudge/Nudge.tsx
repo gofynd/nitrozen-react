@@ -1,0 +1,83 @@
+import React, { memo, useEffect } from "react";
+import uuid from "../../utils/uuids";
+import Button from "../Button";
+
+export interface NudgeProps {
+  id: string;
+  destroy: () => void;
+  heading: string;
+  supportText: string;
+  duration?: number;
+  cta1?: string;
+  cta2?: string;
+  cta1OnClick?: any;
+  cta2OnClick?: any;
+  leftImage: React.ReactNode;
+  rightImage: React.ReactNode;
+  className?: string;
+}
+
+const Nudge = (props: NudgeProps) => {
+  const {
+    id,
+    destroy,
+    heading,
+    supportText,
+    duration,
+    cta1,
+    cta2,
+    cta1OnClick,
+    cta2OnClick,
+    leftImage,
+    rightImage,
+    className,
+    ...restProps
+  } = props;
+
+  useEffect(() => {
+    if (!duration) return;
+
+    const timer = setTimeout(() => {
+      destroy();
+    }, duration);
+
+    return () => clearTimeout(timer);
+  }, [destroy, duration]);
+
+  return (
+    <div
+      id={id}
+      data-testid={`${id}-nudge`}
+      className={`${className && className} n-nudge-wrapper n-nudge-top-right`}
+    >
+      <div className="n-nudge-top">
+        <div className="n-nudge-left-section">
+          <div className="n-nudge-image-container">{leftImage}</div>
+          <div className="n-nudge-text-wrapper">
+            <span className="n-nudge-header">{heading}</span>
+            <span className="n-nudge-support">{supportText}</span>
+          </div>
+        </div>
+        <div className="n-nudge-right-section">
+          <div className="n-nudge-image-container">{rightImage}</div>
+        </div>
+      </div>
+      <div className="n-nudge-bottom">
+        <Button name={cta1} onClick={cta1OnClick} className="n-nudge-cta1">
+          {" "}
+          {cta1}{" "}
+        </Button>
+        <Button name={cta2} onClick={cta2OnClick} className="n-nudge-cta2">
+          {cta2}
+        </Button>
+      </div>
+    </div>
+  );
+};
+
+Nudge.defaultProps = {
+  id: "nitrozen-menu" + uuid(),
+  duration: 4000,
+};
+
+export default memo(Nudge);

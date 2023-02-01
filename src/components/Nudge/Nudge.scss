@@ -1,0 +1,165 @@
+@import "./../../base/base.scss";
+
+.n-nudge {
+  user-select: none;
+
+  &-container-main {
+    position: fixed;
+    z-index: $ZIndex3;
+  }
+
+  &-wrapper {
+    display: flex;
+    flex-direction: column;
+    background-color: $ColorSecondaryGrey80;
+    border-radius: 24px;
+    width: 30vw;
+    padding: 16px;
+    backdrop-filter: blur(12px);
+    margin-bottom: 10px;
+
+    @media screen and (max-width: 768px) {
+      width: 55vw;
+    }
+
+    @media screen and (max-width: 425px) {
+      width: 70vw;
+    }
+  }
+
+  &-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &-left-section {
+    display: flex;
+    align-items: center;
+  }
+
+  &-text-wrapper {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+    gap: 4px;
+  }
+
+  &-header {
+    color: $WhiteColor;
+    font-size: $BaseFontSize + 6px;
+    font-weight: 700;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 300px;
+    user-select: none;
+  }
+
+  &-support {
+    color: $WhiteColor;
+    font-weight: 500;
+    font-size: $BaseFontSize + 4px;
+    user-select: none;
+  }
+
+  &-image-container {
+    height: 40px;
+    width: 40px;
+    object-fit: contain;
+    border-radius: 6px;
+
+    img {
+      height: 100%;
+      width: 100%;
+      border-radius: 4px;
+    }
+  }
+
+  &-bottom {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 16px;
+
+    .n-nudge-cta1 {
+      background-color: transparent;
+      font-size: $BaseFontSize + 6px;
+      font-weight: 700;
+
+      &:hover {
+        background-color: transparent;
+      }
+
+      &:active {
+        color: $WhiteColor;
+      }
+    }
+
+    .n-nudge-cta2 {
+      border: 1px solid $ColorPrimaryGrey60;
+      background-color: transparent;
+      font-size: $BaseFontSize + 6px;
+      font-weight: 700;
+
+      &:hover {
+        background-color: transparent;
+      }
+
+      &:active {
+        color: $WhiteColor;
+      }
+    }
+  }
+}
+
+.n-nudge-top-right {
+  top: 5rem;
+  right: 5rem;
+  transition: transform 0.6s ease-in-out;
+  animation: nudge-in-right 0.7s;
+}
+
+// @-webkit-keyframes nudge-in-right {
+//     from {
+//         transform: translateX(100%);
+//         width: 100%;
+//     }
+
+//     to {
+//         transform: translateX(0);
+//     }
+// }
+
+// @-o-keyframes nudge-in-right {
+//     from {
+//         transform: translateX(100%);
+//         width: 100%;
+//     }
+
+//     to {
+//         transform: translateX(0);
+//     }
+// }
+
+// @-moz-keyframes nudge-in-right {
+//     from {
+//         transform: translateX(100%);
+//         width: 100%;
+//     }
+
+//     to {
+//         transform: translateX(0);
+//     }
+// }
+
+@keyframes nudge-in-right {
+  from {
+    transform: translateX(100%);
+    width: 100%;
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
