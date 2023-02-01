@@ -17,21 +17,23 @@ interface NudgeOptions {
   leftImage: React.ReactNode;
   rightImage: React.ReactNode;
   className?: string;
+  position: "top-right" | "top-bottom";
 }
 
 export class NudgeManager {
-  private readonly containerRef?: HTMLDivElement;
+  private readonly nudgeContainerRef?: HTMLDivElement;
   private nudges: NudgeProps[] = [];
   public root: any;
 
-  constructor() {
+  constructor(position: string) {
     if (typeof window !== "undefined") {
       const body = document.getElementsByTagName("body")[0];
       const nudgeContainer = document.createElement("div");
-      nudgeContainer.className = "n-nudge-container-main n-nudge-top-right";
+      nudgeContainer.className =
+        "n-nudge-container-main" + " n-nudge-" + position;
       body.insertAdjacentElement("beforeend", nudgeContainer);
-      this.containerRef = nudgeContainer;
-      this.root = createRoot(this.containerRef);
+      this.nudgeContainerRef = nudgeContainer;
+      this.root = createRoot(this.nudgeContainerRef);
     }
   }
 
@@ -61,7 +63,7 @@ export class NudgeManager {
       <Nudge key={nudgeProps.id} {...nudgeProps} />
     ));
     console.log(nudgeLists, "lists");
-    if (typeof window !== "undefined" && this.containerRef) {
+    if (typeof window !== "undefined" && this.nudgeContainerRef) {
       console.log(this.root, "root", nudgeLists);
       this.root.render(nudgeLists);
     }

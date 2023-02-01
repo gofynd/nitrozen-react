@@ -6,6 +6,8 @@
   &-container-main {
     position: fixed;
     z-index: $ZIndex3;
+    display: flex;
+    flex-direction: column;
   }
 
   &-wrapper {
@@ -116,42 +118,49 @@
 .n-nudge-top-right {
   top: 5rem;
   right: 5rem;
-  transition: transform 0.6s ease-in-out;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
   animation: nudge-in-right 0.7s;
 }
 
-// @-webkit-keyframes nudge-in-right {
-//     from {
-//         transform: translateX(100%);
-//         width: 100%;
-//     }
+.n-nudge-top-bottom {
+  top: 10%;
+  left: 35%;
+  transition: transform 0.6s ease-in-out;
+  animation: nudge-top 0.7s;
+}
 
-//     to {
-//         transform: translateX(0);
-//     }
-// }
+@-webkit-keyframes nudge-in-right {
+  from {
+    transform: translateX(100%);
+    width: 100%;
+  }
 
-// @-o-keyframes nudge-in-right {
-//     from {
-//         transform: translateX(100%);
-//         width: 100%;
-//     }
+  to {
+    transform: translateX(0);
+  }
+}
 
-//     to {
-//         transform: translateX(0);
-//     }
-// }
+@-o-keyframes nudge-in-right {
+  from {
+    transform: translateX(100%);
+    width: 100%;
+  }
 
-// @-moz-keyframes nudge-in-right {
-//     from {
-//         transform: translateX(100%);
-//         width: 100%;
-//     }
+  to {
+    transform: translateX(0);
+  }
+}
 
-//     to {
-//         transform: translateX(0);
-//     }
-// }
+@-moz-keyframes nudge-in-right {
+  from {
+    transform: translateX(100%);
+    width: 100%;
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
 
 @keyframes nudge-in-right {
   from {
@@ -161,5 +170,38 @@
 
   to {
     transform: translateX(0);
+  }
+}
+
+@keyframes nudge-top {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+@-moz-keyframes nudge-top {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+@-o-keyframes nudge-top {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+@-webkit-keyframes nudge-top {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
   }
 }

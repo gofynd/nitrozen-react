@@ -18,7 +18,8 @@ export default {
 } as ComponentMeta<typeof Nudge>;
 
 export const ShowNudge: ComponentStory<typeof Nudge> = (args) => {
-  const nudge = new NudgeManager();
+  const nudge = new NudgeManager("top-right");
+  const nudge2 = new NudgeManager("top-bottom");
   return (
     <div className="main-div space-between">
       <Button
@@ -28,7 +29,19 @@ export const ShowNudge: ComponentStory<typeof Nudge> = (args) => {
           })
         }
       >
-        Show Nudge
+        Show Nudge Top right
+      </Button>
+      <Button
+        onClick={() => {
+          nudge.destroy("custom-nudge");
+          nudge2.show({
+            ...args,
+            position: "top-bottom",
+            id: "top-nudge",
+          });
+        }}
+      >
+        Show Nudge Top bottom
       </Button>
     </div>
   );
@@ -46,4 +59,5 @@ ShowNudge.args = {
   cta2OnClick: () => {},
   leftImage: <img src={require("../../assets/nitrozen.png")} />,
   rightImage: <img src={require("../../assets/nitrozen.png")} />,
+  position: "top-right",
 };

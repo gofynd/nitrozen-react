@@ -73,7 +73,7 @@ Toast.defaultProps = {
   title: "Title",
   toastHeaderAlign: "center",
   toastWidth: "25rem",
-  duration: 2500000000000,
+  duration: 2500,
 };
 
 export default memo(Toast, shouldRerender);

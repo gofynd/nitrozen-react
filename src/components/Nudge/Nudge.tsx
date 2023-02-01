@@ -15,6 +15,7 @@ export interface NudgeProps {
   leftImage: React.ReactNode;
   rightImage: React.ReactNode;
   className?: string;
+  position: "top-right" | "top-bottom";
 }
 
 const Nudge = (props: NudgeProps) => {
@@ -31,6 +32,7 @@ const Nudge = (props: NudgeProps) => {
     leftImage,
     rightImage,
     className,
+    position,
     ...restProps
   } = props;
 
@@ -48,7 +50,9 @@ const Nudge = (props: NudgeProps) => {
     <div
       id={id}
       data-testid={`${id}-nudge`}
-      className={`${className && className} n-nudge-wrapper n-nudge-top-right`}
+      className={`${
+        className ? className : ""
+      } n-nudge-wrapper n-nudge-${position}`}
     >
       <div className="n-nudge-top">
         <div className="n-nudge-left-section">
@@ -64,8 +68,7 @@ const Nudge = (props: NudgeProps) => {
       </div>
       <div className="n-nudge-bottom">
         <Button name={cta1} onClick={cta1OnClick} className="n-nudge-cta1">
-          {" "}
-          {cta1}{" "}
+          {cta1}
         </Button>
         <Button name={cta2} onClick={cta2OnClick} className="n-nudge-cta2">
           {cta2}
@@ -78,6 +81,7 @@ const Nudge = (props: NudgeProps) => {
 Nudge.defaultProps = {
   id: "nitrozen-menu" + uuid(),
   duration: 4000,
+  position: "top-right",
 };
 
 export default memo(Nudge);
