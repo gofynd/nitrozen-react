@@ -82,17 +82,20 @@ const Chip = (props: ChipProps) => {
       <div
         onClick={handleChipClick}
         style={{ fontWeight: setFontWeight(), ...style }}
-        className={`nitrozen-chip ${setClasses()}`}
+        className={`n-chip ${setClasses()}`}
         {...restProps}
       >
-        <span className="chiptext" style={{ maxWidth: setMaxWidth() }}>
-          {label ? <span className="label">{label}: </span> : null}
+        <span
+          className={`n-chiptext ${label ? "n-label-chip-text" : ""}`}
+          style={{ maxWidth: setMaxWidth() }}
+        >
+          {label ? <span className="n-chip-label">{label}: </span> : null}
           {children ? children : "Submit"}
         </span>
         {deletable && !icon && (
           <span
             data-testid="deletable-cross"
-            className="nitrozen-icon"
+            className="n-icon"
             onClick={removeChip}
           >
             <SvgIcClose style={{ ...defaultIconStyles, ...iconStyle }} />
@@ -101,7 +104,7 @@ const Chip = (props: ChipProps) => {
         {icon && (
           <span
             data-testid="prop-icon"
-            className="nitrozen-icon"
+            className="n-icon"
             onClick={iconClicked}
           >
             <Icon style={{ ...defaultIconStyles, ...iconStyle }} />
@@ -114,9 +117,9 @@ const Chip = (props: ChipProps) => {
 
   function setClasses() {
     let classes: String = "";
-    if (disabled) classes += "nitrozen-disabled ";
+    if (disabled) classes += "n-disabled ";
     if (isRounded) classes += "rounded ";
-    if (state === "secondary") classes += "nitrozen-chip-secondary ";
+    if (state === "secondary") classes += "n-chip-secondary ";
     if (className) classes += className + " ";
 
     return classes;
@@ -140,7 +143,7 @@ Chip.defaultProps = {
   deletable: false,
   disabled: false,
   iconStyle: {},
-  isRounded: false,
+  isRounded: true,
   state: "primary",
   style: {},
   maxWidth: "22rem",
