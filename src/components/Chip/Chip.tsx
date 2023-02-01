@@ -131,7 +131,7 @@ const Chip = (props: ChipProps) => {
 
   function setMaxWidth() {
     let maxWidth: string | number;
-    maxWidth = props.maxWidth ? props.maxWidth : "220px";
+    maxWidth = props.maxWidth ? props.maxWidth : "22rem";
     return maxWidth;
   }
 };
@@ -143,7 +143,7 @@ Chip.defaultProps = {
   isRounded: false,
   state: "primary",
   style: {},
-  maxWidth: "220px",
+  maxWidth: "22rem",
 };
 
 export default React.memo(Chip);

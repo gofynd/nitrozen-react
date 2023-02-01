@@ -23,8 +23,7 @@
   }
 
   .label {
-    font-size: 16px;
-    line-height: 24px;
+    font-size: $BaseFontSize + 6;
     letter-spacing: -0.005em;
     color: $ColorPrimaryGrey80;
   }
@@ -33,7 +32,7 @@
     background-color: $GreyColor;
   }
   &:focus {
-    border: 4px solid $ActiveFieldBorder;
+    border: 0.4rem solid $ActiveFieldBorder;
   }
   &:hover {
     // box-shadow: 0rem 0rem 0.5rem $Whisper;
