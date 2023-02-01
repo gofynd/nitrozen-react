@@ -56,4 +56,8 @@ describe("Chips", () => {
       container.getElementsByClassName("nitrozen-chip-secondary").length
     ).toBe(1);
   });
+  test("Renders Label with chip", () => {
+    const { container } = render(<Chip label="Filter"></Chip>);
+    expect(container.getElementsByClassName("label").length).toBe(1);
+  });
 });

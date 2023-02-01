@@ -130,7 +130,7 @@ export const ChipsDemo = () => {
           Chip with Custom Styling
         </Chip>
         <Chip maxWidth={"100px"}> Chip with Custom Width </Chip>
-        <Chip label={"Filter1"}> Chip With Label </Chip>
+        <Chip label="Filter1"> Chip With Label </Chip>
       </div>
     </div>
   );
