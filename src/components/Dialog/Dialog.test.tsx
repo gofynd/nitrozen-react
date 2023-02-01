@@ -5,7 +5,7 @@ import Dialog from "./Dialog";
 describe("Dialog", () => {
   it("should present title prop passed", () => {
     render(
-      <Dialog title="simple" isVisible={true}>
+      <Dialog title="simple" kind="dialog" size="s" isVisible={true}>
         <p>
           Custom domains direct requests for your apps in this Cloud Foundry
           organization to a URL that you own. A custom domain can be a shared
@@ -26,6 +26,8 @@ describe("Dialog", () => {
         isVisible={true}
         negativeButtonLabel={"Cancel"}
         neutralButtonLabel={false}
+        kind="dialog"
+        size="s"
       >
         <p>
           Custom domains direct requests for your apps in this Cloud Foundry
