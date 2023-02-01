@@ -131,6 +131,13 @@
   flex-wrap: wrap;
   align-items: center;
   margin-top: 1.5rem;
+  gap: 0.5rem;
+}
+
+@media screen and (max-width: 768px) {
+  .n-button-group > * {
+    flex-grow: 1;
+  }
 }
 
 .n-card-caption {
