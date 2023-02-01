@@ -53,7 +53,7 @@ ShowNudge.args = {
   supportText: "This is a support text",
   cta1: "CTA1",
   cta2: "CTA2",
-  duration: 10000000000,
+  duration: 3000,
   id: "custom-nudge",
   cta1OnClick: () => {},
   cta2OnClick: () => {},
