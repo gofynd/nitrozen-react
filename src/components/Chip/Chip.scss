@@ -16,12 +16,22 @@
   box-sizing: border-box;
   user-select: none;
 
-  .nitrozen-chiptext {
+  .chiptext {
     word-break: break-all;
     text-overflow: ellipsis;
     overflow: hidden;
   }
 
+  .label {
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: -0.005em;
+    color: $ColorPrimaryGrey80;
+  }
+
+  &:active {
+    background-color: $GreyColor;
+  }
   &:focus {
     border: 4px solid $ActiveFieldBorder;
   }

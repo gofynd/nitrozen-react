@@ -17,6 +17,7 @@ export interface ChipProps {
   className?: string;
   style?: React.CSSProperties;
   maxWidth?: string | number;
+  label?: string | number;
 }
 
 const Chip = (props: ChipProps) => {
@@ -35,6 +36,7 @@ const Chip = (props: ChipProps) => {
     iconStyle,
     style,
     maxWidth,
+    label,
     ...restProps
   } = props;
 
@@ -83,7 +85,8 @@ const Chip = (props: ChipProps) => {
         className={`nitrozen-chip ${setClasses()}`}
         {...restProps}
       >
-        <span className="nitrozen-chiptext" style={{ maxWidth: setMaxWidth() }}>
+        <span className="chiptext" style={{ maxWidth: setMaxWidth() }}>
+          {label ? <span className="label">{label}: </span> : null}
           {children ? children : "Submit"}
         </span>
         {deletable && !icon && (

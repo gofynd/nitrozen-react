@@ -12,7 +12,7 @@ export default {
   component: Chip,
   argTypes: {
     children: {
-      name: "label",
+      name: "Value",
       type: { name: "string", required: false },
       defaultValue: "Submit",
       description: "Sets the display value of the chip",
@@ -70,6 +70,10 @@ export default {
       description: "Custom chip width",
       defaultValue: "220px",
     },
+    label: {
+      control: "string",
+      description: "Sets the display label of the chip",
+    },
   },
 } as ComponentMeta<typeof Chip>;
 
@@ -126,6 +130,7 @@ export const ChipsDemo = () => {
           Chip with Custom Styling
         </Chip>
         <Chip maxWidth={"100px"}> Chip with Custom Width </Chip>
+        <Chip label={"Filter1"}> Chip With Label </Chip>
       </div>
     </div>
   );
