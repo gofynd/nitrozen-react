@@ -20,6 +20,7 @@ body {
 .main-div {
   margin-top: 2%;
   padding: 4rem;
+
   &.pad {
     padding: 2.4rem;
   }
@@ -33,6 +34,7 @@ body {
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
+  gap: 0.4em;
 
   .box {
     margin: 2rem;
