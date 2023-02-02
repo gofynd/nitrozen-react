@@ -23,6 +23,7 @@ export interface CheckboxProps {
   icon?: React.ReactNode;
   showIcon?: Boolean;
   onIconClick?: Function;
+  isIndeterminate?: Boolean;
 }
 
 const Checkbox = (props: CheckboxProps) => {
@@ -45,6 +46,7 @@ const Checkbox = (props: CheckboxProps) => {
     icon,
     showIcon,
     onIconClick,
+    isIndeterminate,
     ...restProps
   } = props;
 
@@ -120,6 +122,7 @@ const Checkbox = (props: CheckboxProps) => {
           "success-state": state == "success",
           "warning-state": state == "warning",
           "error-state": state == "error",
+          "n-checkbox-indeterminate": props.isIndeterminate,
         })}
       ></span>
       <NitrozenValidation
