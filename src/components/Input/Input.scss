@@ -35,6 +35,10 @@
   padding: 1.2rem;
   border: 0.2rem solid $ColorSparkleGrey60;
   border-radius: 1.6rem;
+
+  &:hover {
+    border: 0.2rem solid $ColorPrimary60;
+  }
 }
 
 .n-input-grp {
