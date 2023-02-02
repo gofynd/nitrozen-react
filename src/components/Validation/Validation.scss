@@ -3,3 +3,22 @@
 .n-validation-container {
   margin-top: 8px;
 }
+
+.n-state-container {
+  display: flex;
+  font-weight: 500;
+  text-transform: none;
+  font-size: $BaseFontSize + 4px;
+  letter-spacing: -0.07px;
+
+  img {
+    height: 100%;
+    width: 100%;
+  }
+}
+
+.n-svg-container {
+  height: 16px;
+  width: 16px;
+  margin-right: 6px;
+}

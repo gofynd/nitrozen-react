@@ -25,17 +25,16 @@ describe("Button", () => {
         label={"OTP"}
         codeId={"custom-code"}
         getCode={() => {}}
+        required={true}
       />
     );
     const testImage = getByTestId("label-id-custom-code");
-    expect(testImage.className).toBe("n-code-label-container ");
+    expect(testImage.className).toBe("n-code-label-container");
     const label = getByTestId("code-label-custom-code");
-    expect(label.textContent).toBe("OTP");
+    expect(label.textContent).toBe("OTP *");
     for (let i = 0; i < 6; i++) {
       const field = getByTestId("code-input-custom-code-" + i);
-      expect(field.className).toBe(
-        "n-code-input-field n-code-6 n-code-input-border"
-      );
+      expect(field.className).toBe("n-code-input-field n-code-input-border");
     }
   });
   test("renders the Code component with 6 input fields on change", () => {
@@ -53,7 +52,7 @@ describe("Button", () => {
     userEvent.type(inputElement, "1");
     expect(inputElement.value).toBe("1");
     const field = screen.getByTestId("label-id-custom-code");
-    expect(field.className).toBe("n-code-label-container n-code-focused-label");
+    expect(field.className).toBe("n-code-label-container");
   });
   test("renders the Code component with 6 input fields on change on all fields", () => {
     let finalCode = "";
@@ -109,7 +108,7 @@ describe("Button", () => {
     ) as HTMLInputElement;
     expect(inputElement1.value).toBe("2");
     const field = screen.getByTestId("label-id-custom-code");
-    expect(field.className).toBe("n-code-label-container n-code-focused-label");
+    expect(field.className).toBe("n-code-label-container");
     const inputElement2 = screen.getByTestId(
       "code-input-custom-code-2"
     ) as HTMLInputElement;
