@@ -2,16 +2,16 @@
 .n-searchbox-wrapper {
   .n-searchbox {
     font-family: $PrimaryFont;
-    gap: 8px;
-    width: 464px;
-    height: 48px;
-    background: #ffffff;
-    border: 1px solid #b5b5b5; //grey-60
-    border-radius: 16px;
-    margin-bottom: 24px;
+    gap: 0.8rem;
+    width: 46.4rem;
+    height: 4.8rem;
+    background: $ColorPrimaryInverse;
+    border: 0.1rem solid $ColorPrimaryGrey60;
+    border-radius: 1.6rem;
+    margin-bottom: 2.4rem;
     position: relative;
     display: flex;
-    color: #000000a6; //grey-80;
+    color: $ColorPrimaryGrey80;
     .n-pre-input-icon,
     .n-suf-input-icon {
       position: absolute;
@@ -20,66 +20,125 @@
       justify-content: center;
       height: 100%;
       svg {
-        color: #000000a6;
+        color: $ColorPrimaryGrey80;
       }
     }
-    &:hover {
+    .n-suf-icon-back {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+    &:hover :not(&.n-searchbox-disabled) {
       input[type="text"] {
         &::placeholder {
-          color: #141414; //grey 100;;
+          color: $ColorPrimaryGrey100;
         }
       }
       .n-pre-input-icon,
       .n-suf-input-icon {
         svg {
-          color: #141414;
+          color: $ColorPrimaryGrey100;
         }
       }
     }
-    &.n-searchbox-active {
-    }
 
+    &.n-searchbox-disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
     .n-pre-input-icon {
-      left: 12px;
+      left: 1.2rem;
     }
     .n-suf-input-icon {
-      right: 12px;
+      right: 1.2rem;
     }
     input[type="text"] {
       -webkit-appearance: none;
       appearance: none;
       border: none;
-      border-radius: 16px;
-      // background-color: #f5f5f5; //var(--color-primary-grey-20);
+      border-radius: 1.6rem;
       width: 100%;
-      padding: 8px 16px;
-      padding-right: 12px;
-      color: #141414;
+      padding: 0.8rem 1.6rem;
+      padding-right: 1.2rem;
+      color: $ColorPrimaryGrey100;
       outline: none;
       font-family: "JioType", helvetica, arial, sans-serif;
       font-weight: 500;
       text-transform: none;
-      font-size: 16px;
-      letter-spacing: -0.08px;
+      font-size: 1.6rem;
+      letter-spacing: -0.008rem;
       line-height: 1.5;
       &::placeholder {
         /* Chrome, Firefox, Opera, Safari 10.1+ */
-        color: #000000a6;
-        font-size: 16px;
-        //   opacity: 1; /* Firefox */
+        color: $ColorPrimaryGrey80;
+        font-size: 1.6rem;
+        opacity: 1; /* Firefox */
       }
       &:hover {
         cursor: text;
-        color: #141414; //grey 100;
-        //   color: red;
+        color: $ColorPrimaryGrey100;
+      }
+      &:disabled {
+        cursor: not-allowed;
       }
     }
     input[type="text"].n-pre-input {
-      padding-left: 48px;
+      padding-left: 4.8rem;
     }
 
     input[type="text"].n-suf-input {
-      padding-right: 48px;
+      padding-right: 4.8rem;
+    }
+  }
+
+  .n-searchbox-result-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.6rem;
+    background: $ColorPrimaryInverse;
+    box-shadow: 0rem 0.4rem 1.6rem $Shadow;
+    border-radius: 2.4rem;
+    padding: 1.6rem;
+    max-height: 33.6rem;
+    overflow-y: scroll;
+    position: relative;
+    z-index: 1;
+    list-style: none;
+
+    .n-searchbox-result-item {
+      display: flex;
+      align-items: center;
+
+      gap: 1.6rem;
+
+      font-style: normal;
+      font-weight: 500;
+      font-size: 1.6rem;
+      line-height: 2.4rem;
+      width: 100%;
+      letter-spacing: -0.005em;
+      color: $ColorPrimaryGrey100;
+      cursor: pointer;
+      &:hover,
+      &.n-searchbox-result-item-active {
+        background: $ColorPrimaryGrey20;
+      }
+      span {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.6rem;
+        padding: 0.4rem;
+        color: $ColorPrimaryGrey100;
+        &.n-searchbox-result-item-icon {
+          height: 3.2rem;
+          width: 3.2rem;
+          border-radius: 50%;
+          background-color: $ColorPrimaryGrey20;
+        }
+      }
     }
   }
 }

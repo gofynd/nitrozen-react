@@ -37,12 +37,13 @@ const Template: ComponentStory<typeof SearchBox> = (args) => (
 );
 export const SearchBoxInput = Template.bind({});
 SearchBoxInput.args = {
-  //   items: countries,
   onChange: () => {},
-  //   onBlur: () => {},
-  //   onFocus: () => {},
-  //   listItemClicked: () => {},
-  //   showSearchIcon: true,
+  onBlur: () => {},
+  onFocus: () => {},
+  listItemClicked: () => {},
   placeholder: "Search ",
   items: countries,
+  showItemsAtStart: true,
+  showClearAll: true,
+  disabled: false,
 };
