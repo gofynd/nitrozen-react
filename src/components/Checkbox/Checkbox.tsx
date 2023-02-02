@@ -110,7 +110,7 @@ const Checkbox = (props: CheckboxProps) => {
         disabled={disabled}
         ref={props?.ref}
         name={props.name}
-        className={className ?? ""}
+        className={`n-id-checkbox ${className ?? ""}`}
         style={style ?? {}}
         {...restProps}
       />
