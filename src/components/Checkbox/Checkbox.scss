@@ -109,6 +109,12 @@
     top: 0.17rem;
   }
 }
+.n-checkbox-indeterminate:after {
+  width: unset !important;
+  transform: rotate(90deg) !important;
+  left: 45% !important;
+  top: 25% !important;
+}
 
 input[type="checkbox"]:disabled + .n-checkbox {
   opacity: 0.5;
