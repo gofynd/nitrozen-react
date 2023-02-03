@@ -20,6 +20,7 @@ import debounce from "../../utils/debounce";
 export interface AutocompleteProps {
   className?: string;
   disabled?: boolean;
+  debounceDuration?: number;
   items?: any[];
   onListItemClick?: Function;
   onBlur?: Function;
@@ -40,6 +41,7 @@ const Autocomplete = (props: AutocompleteProps) => {
   const {
     className = "",
     disabled,
+    debounceDuration,
     items = [],
     onListItemClick,
     onBlur,
@@ -100,7 +102,10 @@ const Autocomplete = (props: AutocompleteProps) => {
     onChange?.(e.target.value);
   }
 
-  const debouncedHandleChange = useCallback(debounce(handleOnChange), []);
+  const debouncedHandleChange = useCallback(
+    debounce(handleOnChange, debounceDuration),
+    []
+  );
 
   function handleChange(e: ChangeEvent<HTMLInputElement>) {
     setInputValue(e.target.value);
@@ -259,6 +264,10 @@ const Autocomplete = (props: AutocompleteProps) => {
   );
 };
 
-Autocomplete.defaultProps = {};
+Autocomplete.defaultProps = {
+  debounceDuration: 300,
+  showSearchIcon: true,
+  showClearAll: true,
+};
 
 export default Autocomplete;
