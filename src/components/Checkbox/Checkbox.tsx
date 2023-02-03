@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import NitrozenId from "../../utils/uuids";
-import NitrozenValidation from "./../Validation";
+import Validation from "./../Validation/Validation";
 import "./Checkbox.scss";
 
 import classnames from "classnames";
@@ -117,6 +117,7 @@ const Checkbox = (props: CheckboxProps) => {
       {labelText}
       {children}
       <span
+        data-testid={`n-checkbox-${id}`}
         className={classnames({
           "n-checkbox": true,
           "success-state": state == "success",
@@ -125,7 +126,7 @@ const Checkbox = (props: CheckboxProps) => {
           "n-checkbox-indeterminate": props.isIndeterminate,
         })}
       ></span>
-      <NitrozenValidation
+      <Validation
         className="n-checkbox-validation"
         validationState={state}
         label={stateMessage}
@@ -151,6 +152,7 @@ Checkbox.defaultProps = {
   onIconClick: () => {},
   checkArray: null,
   ref: null,
+  isIndeterminate: false,
 };
 
 export default Checkbox;
