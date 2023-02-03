@@ -21,6 +21,8 @@ export { default as Dialog } from "./components/Dialog/Dialog.js";
 export { ToastManager } from "./components/Toast/ToastManager.js";
 import "./components/Toast/Toast.js";
 export { default as Code } from "./components/Code/Code.js";
+export { NudgeManager } from "./components/Nudge/NudgeManager.js";
+import "./components/Nudge/Nudge.js";
 export {
   Svg124,
   Svg3DRotation,
