@@ -89,7 +89,7 @@ const i = (s) => {
             {
               className: `n-button ripple ${i()} ${s.className && s.className}`,
             },
-            r
+            r()
           ),
           t.createElement(a, Object.assign({}, s))
         )
@@ -125,7 +125,7 @@ const i = (s) => {
         (e.children || !e.showProgress) &&
         t.createElement(
           "div",
-          { className: "social-icon" },
+          { className: "n-btn-social-icon" },
           t.createElement(i, {
             className: n({
               "n-icon-small": "small" === e.size,

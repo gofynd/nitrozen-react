@@ -20,6 +20,10 @@
   gap: 0.8rem;
   box-sizing: border-box;
 
+  @media screen and (max-width: 768px) {
+    font-size: 1.2rem;
+  }
+
   &:hover {
     color: $ColorPrimaryGrey100;
   }
@@ -134,6 +138,10 @@ input[type="checkbox"]:disabled + .n-checkbox {
   top: 3rem;
   left: 0;
   width: max-content;
+  @media screen and (max-width: 768px) {
+    top: 2.5rem;
+    left: 1rem;
+  }
 }
 
 .warning-state {

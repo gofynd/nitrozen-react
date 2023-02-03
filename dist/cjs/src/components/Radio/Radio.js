@@ -14,8 +14,8 @@ const o = (a) => {
       disabled: l,
       name: n,
       value: o,
-      radioValue: c,
-      id: r,
+      radioValue: r,
+      id: c,
       labelText: d,
       onChange: u,
       className: m,
@@ -51,17 +51,17 @@ const o = (a) => {
     },
     f &&
       v &&
-      i.default.createElement(k, { className: "social-icon", onClick: h }),
+      i.default.createElement(k, { className: "n-prefix-icon", onClick: h }),
     i.default.createElement(
       "input",
       Object.assign(
         {
-          id: r,
+          id: c,
           type: "radio",
           onChange: (e) => {
             null == u || u(e.target.value);
           },
-          checked: o === c,
+          checked: o === r,
           value: o,
           name: n,
           disabled: l,
@@ -72,7 +72,7 @@ const o = (a) => {
     i.default.createElement(
       "label",
       {
-        htmlFor: r,
+        htmlFor: c,
         className: t({
           "success-state": "success" == b,
           "warning-state": "warning" == b,

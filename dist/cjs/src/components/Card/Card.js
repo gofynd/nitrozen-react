@@ -1,68 +1,76 @@
 "use strict";
 var e = require("../../../node_modules/tslib/tslib.es6.js"),
-  r = require("react");
+  a = require("react");
 function t(e) {
   return e && "object" == typeof e && "default" in e ? e : { default: e };
 }
 require("./Card.scss.js");
-var a = t(r);
-const n = (r) => {
+var r = t(a);
+const c = (a) => {
   const {
-      style: t,
-      headerStyle: n,
-      cardTitle: c,
-      className: l,
-      showBorder: s,
-      children: d,
-      cardIcon: o,
-    } = r,
-    i = e.__rest(r, [
-      "style",
-      "headerStyle",
-      "cardTitle",
-      "className",
-      "showBorder",
-      "children",
-      "cardIcon",
-    ]);
-  return a.default.createElement(
+    title: t,
+    image: c,
+    imageFocus: i,
+    imageRatio: n,
+    orientation: s,
+    description: d,
+    primaryCTA: l,
+    secondaryCTA: o,
+    caption: m,
+    footer: u,
+    header: f,
+  } = a;
+  e.__rest(a, [
+    "title",
+    "image",
+    "imageFocus",
+    "imageRatio",
+    "orientation",
+    "description",
+    "primaryCTA",
+    "secondaryCTA",
+    "caption",
+    "footer",
+    "header",
+  ]);
+  const v = "vertical" === s && "n-card-vertical",
+    p = "vertical" === s && "n-card-vertical-space";
+  return r.default.createElement(
     "div",
-    Object.assign(
-      {
-        className: l
-          ? `${l} ${
-              s && "nitrozen-card-container-border"
-            } nitrozen-card-container`
-          : `${s && "nitrozen-card-container-border"} nitrozen-card-container`,
-        style: t,
-      },
-      i
-    ),
-    a.default.createElement(
+    { className: `n-card n-card__container ${v}` },
+    f && r.default.createElement("div", { className: "n-card-header" }, f),
+    r.default.createElement(
       "div",
-      { className: "nitrozen-card-header", style: n },
-      o &&
-        a.default.createElement("img", {
-          src: o,
-          alt: "cardIcon",
-          className: "nitrozen-card-icon",
-        }),
-      c && a.default.createElement("span", null, c)
+      { className: `n-flex n-card-orientation-${s}` },
+      c &&
+        r.default.createElement(
+          "div",
+          { className: `n-card-image n-card-ratio-${n} n-card-focus-${i}` },
+          c
+        ),
+      r.default.createElement(
+        "div",
+        { className: `n-card__content ${p}` },
+        m && r.default.createElement("div", { className: "n-card-caption" }, m),
+        t && r.default.createElement("h3", { className: "n-heading" }, t),
+        d && r.default.createElement("div", { className: "n-text-md" }, d),
+        r.default.createElement(
+          "div",
+          { className: "n-button-group" },
+          l && l,
+          o && o
+        )
+      )
     ),
-    a.default.createElement(
-      "div",
-      { className: "nitrozen-card-description" },
-      d
-    )
+    u && r.default.createElement("div", { className: "n-card-footer" }, u)
   );
 };
-(n.defaultProps = {
+(c.defaultProps = {
+  imageRatio: "wide",
+  imageFocus: "center",
+  orientation: "vertical",
   style: {},
-  cardTitle: "",
   className: "",
-  showBorder: !1,
-  children: null,
-  cardIcon: null,
 }),
-  (module.exports = n);
+  (module.exports = c);
 //# sourceMappingURL=Card.js.map

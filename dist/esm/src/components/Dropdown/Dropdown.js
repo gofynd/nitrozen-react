@@ -2,34 +2,35 @@ import e, { useRef as l, useState as t, useEffect as n } from "react";
 import a from "../../utils/uuids.js";
 import o from "../Tooltip/Tooltip.js";
 import i from "../Checkbox/Checkbox.js";
-import d from "../Validation/Validation.js";
+import r from "../Validation/Validation.js";
 import "./Dropdown.scss.js";
-import { SvgInfo as r } from "../../assets/svg-components/Action/index.js";
-import { SvgAdd as s } from "../../assets/svg-components/Content/index.js";
-import { SvgKeyboardArrowDown as c } from "../../assets/svg-components/Hardware/index.js";
-const u = { text: "Select All", value: "all" },
-  m = (a) => {
-    var m;
-    const p = l(null),
+import { SvgAdd as d } from "../../assets/svg-components/Content/index.js";
+import { SvgKeyboardArrowDown as s } from "../../assets/svg-components/Hardware/index.js";
+import { SvgIcInfo as c } from "../../assets/svg-components/Jio/index.js";
+const p = { text: "Select All", value: "all" },
+  u = (a) => {
+    var u;
+    const m = l(null),
       v = l(null),
-      [h, g] = t(!1),
-      [f, b] = t({ height: null, width: null }),
-      [E, x] = t(!1),
-      [w, N] = t(""),
+      [h, f] = t(!1),
+      [g, b] = t({ height: null, width: null }),
+      [E, w] = t(!1),
+      [x, N] = t(""),
       [$, C] = t(),
       [S, k] = t([]),
-      [y, A] = t(),
-      [L, j] = t(),
+      [y, L] = t(),
+      [A, j] = t(),
       [H, G] = t(),
-      [T, z] = t(a.enableSelectAll || !1);
-    function O(e) {
-      const l = p.current;
-      l && !l.contains(e.target) && g(!1);
-    }
+      [T, z] = t(""),
+      [I, O] = t(a.enableSelectAll || !1);
     function P(e) {
-      9 === e.keyCode && h && (e.preventDefault(), e.stopPropagation(), g(!1));
+      const l = m.current;
+      l && !l.contains(e.target) && f(!1);
     }
-    function V() {
+    function V(e) {
+      9 === e.keyCode && h && (e.preventDefault(), e.stopPropagation(), f(!1));
+    }
+    function D() {
       var e, l;
       if (a.multiple) {
         if (y) return `All ${S.length} ${a.label} selected`;
@@ -68,29 +69,29 @@ const u = { text: "Select All", value: "all" },
         ? a.placeholder
         : "";
     }
-    function D() {
-      const e = null == p ? void 0 : p.current;
+    function _() {
+      const e = null == m ? void 0 : m.current;
       if (!e) return;
       const l = e.getBoundingClientRect(),
-        t = (f.height ? f.height : 0) - l.top - e.offsetHeight,
+        t = (g.height ? g.height : 0) - l.top - e.offsetHeight,
         n = e.children[1].offsetHeight || 0;
-      x(!(n < t));
+      w(!(n < t));
     }
     function q(e = !1) {
       const l = a.items ? [...a.items] : [];
-      if (a.multiple && T) {
-        const e = S.length === M(l).length && T;
-        A(e), j(e);
+      if (a.multiple && I) {
+        const e = S.length === B(l).length && I;
+        L(e), j(e);
       }
     }
-    function M(e) {
+    function B(e) {
       return e
         .filter(function (e) {
           return !e.isGroupLabel;
         })
         .map((e) => e.value);
     }
-    function W() {
+    function M() {
       const e = Math.max(
           document.documentElement.clientWidth,
           window.innerWidth || 0
@@ -101,12 +102,12 @@ const u = { text: "Select All", value: "all" },
         );
       b({ width: e, height: l });
     }
-    function _(e, l, t) {
+    function W(e, l, t) {
       var n;
       l.isGroupLabel ||
         (a.multiple
           ? "all" === e
-            ? (k(L ? [] : M(a.items)), j(!L), t.stopPropagation())
+            ? (k(A ? [] : B(a.items)), j(!A), t.stopPropagation())
             : (S.includes(l.value)
                 ? k((e) => e.filter((e) => e !== l.value))
                 : k([...S, l.value]),
@@ -116,88 +117,94 @@ const u = { text: "Select All", value: "all" },
             l.text && N(l.text),
             null === (n = a.onChange) || void 0 === n || n.call(a, l.value)));
     }
-    function B() {
+    function F() {
       var e;
-      null === (e = a.onChange) || void 0 === e || e.call(a, S), C(V());
+      null === (e = a.onChange) || void 0 === e || e.call(a, S), C(D());
     }
-    return (
+    n(() => {
+      var e;
+      if (
+        (M(),
+        "undefined" != typeof document &&
+          (document.addEventListener("click", P),
+          document.addEventListener("keydown", V)),
+        "undefined" != typeof window &&
+          (window.addEventListener("resize", M),
+          window.addEventListener("scroll", M)),
+        a.multiple)
+      )
+        a.value &&
+          (k(Array.isArray(a.value) ? [...a.value] : [a.value]), N(""), q(!0));
+      else if ((O(!1), a.value)) {
+        const l =
+          null === (e = a.items) || void 0 === e
+            ? void 0
+            : e.find((e) => e.value === a.value);
+        N((null == l ? void 0 : l.text) ? l.text : ""), k([a.value]);
+      }
+    }, []),
       n(() => {
-        var e;
-        if (
-          (W(),
-          "undefined" != typeof document &&
-            (document.addEventListener("click", O),
-            document.addEventListener("keydown", P)),
-          "undefined" != typeof window &&
-            (window.addEventListener("resize", W),
-            window.addEventListener("scroll", W)),
-          a.multiple)
-        )
-          a.value &&
-            (k(Array.isArray(a.value) ? [...a.value] : [a.value]),
-            N(""),
-            q(!0));
-        else if ((z(!1), a.value)) {
-          const l =
-            null === (e = a.items) || void 0 === e
-              ? void 0
-              : e.find((e) => e.value === a.value);
-          N((null == l ? void 0 : l.text) ? l.text : ""), k([a.value]);
-        }
-      }, []),
-      n(() => {
-        a.multiple && a.onChange && a.onChange(S), C(V());
+        a.multiple && a.onChange && a.onChange(S), C(D());
       }, [S, H]),
       n(() => {
-        D();
-      }, [f]),
+        _();
+      }, [g]);
+    const J = a.prefixIcon;
+    return e.createElement(
+      "div",
+      {
+        id: null == a ? void 0 : a.id,
+        className: `n-dropdown-container ${a.className} ${
+          a.disabled ? "disabled" : ""
+        }`,
+      },
+      a.label &&
+        e.createElement(
+          "label",
+          { className: "n-dropdown-label" },
+          ` ${a.label} ${a.required ? " *" : ""} `,
+          a.tooltip &&
+            e.createElement(o, {
+              className: "n-dropdown-tooltip",
+              "data-testid": "icon-component",
+              tooltipContent: a.tooltip,
+              position: "top",
+              icon: e.createElement(c, { style: { fontSize: "14px" } }),
+            })
+        ),
       e.createElement(
         "div",
         {
-          id: null == a ? void 0 : a.id,
-          className: `n-dropdown-container ${a.className} ${
-            a.disabled ? "disabled" : ""
-          }`,
+          className: "n-select-wrapper",
+          onClick: function () {
+            a.disabled || (f(!h), h && _());
+          },
         },
-        a.label &&
-          e.createElement(
-            "label",
-            { className: "n-dropdown-label" },
-            ` ${a.label} ${a.required ? " *" : ""} `,
-            a.tooltip &&
-              e.createElement(o, {
-                "data-testid": "icon-component",
-                tooltipContent: a.tooltip,
-                position: "top",
-                icon: e.createElement(r, { style: { fontSize: "14px" } }),
-              })
-          ),
         e.createElement(
           "div",
           {
-            className: "n-select-wrapper",
-            onClick: function () {
-              a.disabled || (g(!h), h && D());
-            },
+            className: `n-select ${h && "n-dropdown-open"} ${
+              a.disabled ? "cursor-disabled" : ""
+            }`,
+            ref: m,
           },
           e.createElement(
             "div",
             {
-              className: `n-select ${h && "n-dropdown-open"} ${
+              className: `n-select__trigger ${
                 a.disabled ? "cursor-disabled" : ""
-              } ${
-                a.validationState
-                  ? `n-${a.validationState}-border`
-                  : "n-default-border"
-              }`,
-              ref: p,
+              } ${a.validationState ? `n-${a.validationState}-border` : T}`,
             },
+            a.prefixIcon
+              ? e.createElement(
+                  "div",
+                  { className: "n-dropdown-prefix-icon-wrapper" },
+                  e.createElement(J, { className: "n-dropdown-prefix" })
+                )
+              : null,
             e.createElement(
               "div",
-              {
-                className:
-                  "n-select__trigger " + (a.disabled ? "cursor-disabled" : ""),
-              },
+              { className: "n-dropdown-input-arrow-wrapper" },
               a.searchable && !a.disabled
                 ? e.createElement(
                     "span",
@@ -205,23 +212,26 @@ const u = { text: "Select All", value: "all" },
                     e.createElement("input", {
                       "data-testid": "dropdown-search",
                       type: "search",
-                      value: w,
+                      value: x,
                       onChange: function (e) {
                         var l;
-                        g(!0), N(e.target.value);
+                        f(!0), N(e.target.value);
                         const t = { id: a.id, text: e.target.value };
-                        w || q(),
+                        x || q(),
                           null === (l = a.onSearchInputChange) ||
                             void 0 === l ||
                             l.call(a, t),
-                          W();
+                          M();
                       },
                       placeholder:
                         a.enableSelectAll && S.length
-                          ? S.length === M(null == a ? void 0 : a.items).length
+                          ? S.length === B(null == a ? void 0 : a.items).length
                             ? `All ${a.label}(s) selected`
                             : `${S.length} ${a.label}(s) selected`
                           : a.placeholder || `Search ${a.label}`,
+                      onClick: () => z("n-focused-border"),
+                      onBlur: () => z(""),
+                      className: "n-dropdown-search",
                     })
                   )
                 : a.disabled
@@ -230,114 +240,89 @@ const u = { text: "Select All", value: "all" },
               e.createElement(
                 "div",
                 { className: "n-dropdown-arrow" },
-                e.createElement(c, { style: { width: "20px", height: "20px" } })
+                e.createElement(s, { style: { width: "20px", height: "20px" } })
               )
-            ),
-            e.createElement(
-              "div",
-              {
-                className: `n-options ${E && "n-dropup"}`,
-                ref: v,
-                "data-testid": "dropdown-scroll",
-                onScroll: function (e) {
-                  var l;
-                  const t = null == v ? void 0 : v.current;
-                  null === (l = a.onScroll) || void 0 === l || l.call(a, t);
-                },
+            )
+          ),
+          e.createElement(
+            "div",
+            {
+              className: `n-options ${E && "n-dropup"}`,
+              ref: v,
+              "data-testid": "dropdown-scroll",
+              onScroll: function (e) {
+                var l;
+                const t = null == v ? void 0 : v.current;
+                null === (l = a.onScroll) || void 0 === l || l.call(a, t);
               },
-              T &&
-                !w &&
-                e.createElement(
-                  "span",
-                  {
-                    className: "n-option ripple",
-                    onClick: (e) => {
-                      _("all", u, e);
-                    },
+            },
+            I &&
+              !x &&
+              e.createElement(
+                "span",
+                {
+                  className: "n-option ripple",
+                  onClick: (e) => {
+                    W("all", p, e);
                   },
+                },
+                e.createElement(
+                  "div",
+                  { className: "n-option-container" },
                   e.createElement(
-                    "div",
-                    { className: "n-option-container" },
+                    i,
+                    { checkboxValue: A, value: A, onChange: F },
                     e.createElement(
-                      i,
-                      { checkboxValue: L, value: L, onChange: B },
-                      e.createElement(
-                        "span",
-                        {
-                          className: `n-option-image n-icon-padding ${
-                            L && "n-dropdown-multicheckbox-selected"
-                          }`,
-                        },
-                        "All"
-                      )
+                      "span",
+                      {
+                        className: `n-option-image ${
+                          A && "n-dropdown-multicheckbox-selected"
+                        }`,
+                      },
+                      "All"
                     )
                   )
-                ),
-              T &&
-                !w &&
-                e.createElement("div", { className: "horizantal-divider" }),
-              a.items &&
-                a.items.length > 0 &&
-                (null === (m = null == a ? void 0 : a.items) || void 0 === m
-                  ? void 0
-                  : m.map((l, t) => {
-                      var n;
-                      return e.createElement(
-                        "span",
-                        {
-                          key: t,
-                          "data-value": l.value,
-                          className: `n-option ripple ${
-                            l === H && "selected"
-                          } ${
-                            (null == l ? void 0 : l.isGroupLabel) &&
-                            "n-option-group-label"
-                          }`,
-                          onClick: (e) => _(t, l, e),
-                        },
-                        e.createElement(
-                          "div",
-                          { className: "n-option-container" },
-                          a.multiple && !(null == l ? void 0 : l.isGroupLabel)
-                            ? e.createElement(
-                                i,
-                                {
-                                  checkboxValue: l.value,
-                                  checkArray: [...S],
-                                  onChange: B,
-                                  value: l.value,
-                                },
-                                e.createElement(
-                                  "span",
-                                  {
-                                    className: `n-option-image ${
-                                      S.includes(l.value) &&
-                                      "n-dropdown-multicheckbox-selected"
-                                    } n-icon-padding`,
-                                  },
-                                  l.logo &&
-                                    e.createElement("img", {
-                                      className: "n-option-logo",
-                                      src: l.logo,
-                                      alt: "logo",
-                                    }),
-                                  " ",
-                                  l.text
-                                )
-                              )
-                            : e.createElement(
+                )
+              ),
+            I &&
+              !x &&
+              e.createElement("div", { className: "horizantal-divider" }),
+            a.items &&
+              a.items.length > 0 &&
+              (null === (u = null == a ? void 0 : a.items) || void 0 === u
+                ? void 0
+                : u.map((l, t) => {
+                    var n;
+                    return e.createElement(
+                      "span",
+                      {
+                        key: t,
+                        "data-value": l.value,
+                        className: `n-option ripple ${l === H && "selected"} ${
+                          (null == l ? void 0 : l.isGroupLabel) &&
+                          "n-option-group-label"
+                        }`,
+                        onClick: (e) => W(t, l, e),
+                      },
+                      e.createElement(
+                        "div",
+                        { className: "n-option-container" },
+                        a.multiple && !(null == l ? void 0 : l.isGroupLabel)
+                          ? e.createElement(
+                              i,
+                              {
+                                checkboxValue: l.value,
+                                checkArray: [...S],
+                                onChange: F,
+                                value: l.value,
+                              },
+                              e.createElement(
                                 "span",
                                 {
-                                  className:
-                                    "n-option-image " +
-                                    ((null === (n = a.items) || void 0 === n
-                                      ? void 0
-                                      : n.find((e) =>
-                                          null == e ? void 0 : e.isGroupLabel
-                                        )) &&
-                                    !(null == l ? void 0 : l.isGroupLabel)
-                                      ? "n-option-child-label"
-                                      : ""),
+                                  className: `n-option-image ${
+                                    S.includes(l.value) &&
+                                    "n-dropdown-multicheckbox-selected"
+                                  }`,
                                 },
                                 l.logo &&
                                   e.createElement("img", {
@@ -345,69 +330,102 @@ const u = { text: "Select All", value: "all" },
                                     src: l.logo,
                                     alt: "logo",
                                   }),
+                                " ",
                                 l.text
                               )
-                        )
-                      );
-                    })),
-              a.searchable &&
-                a.items &&
-                0 === a.items.length &&
-                e.createElement(
-                  "span",
-                  { className: "n-option" },
-                  a.addOption &&
-                    e.createElement(
-                      "div",
-                      { className: "n-option-container" },
-                      "No ",
-                      a.label,
-                      " Found"
-                    ),
-                  a.addOption &&
-                    (null == w ? void 0 : w.length) > 0 &&
-                    e.createElement(
-                      "div",
-                      { className: "n-option-container" },
-                      e.createElement(
-                        "div",
-                        {
-                          "data-testid": "add-option",
-                          className: "n-dropdown-empty",
-                          onClick: function () {
-                            var e;
-                            const l = w;
-                            N(""),
-                              null === (e = a.addOptionHandler) ||
-                                void 0 === e ||
-                                e.call(a, l),
-                              W();
-                          },
-                        },
-                        e.createElement(s, null),
-                        e.createElement("p", null, "Add ", w)
+                            )
+                          : e.createElement(
+                              "span",
+                              {
+                                className:
+                                  "n-option-image " +
+                                  ((null === (n = a.items) || void 0 === n
+                                    ? void 0
+                                    : n.find((e) =>
+                                        null == e ? void 0 : e.isGroupLabel
+                                      )) &&
+                                  !(null == l ? void 0 : l.isGroupLabel)
+                                    ? "n-option-child-label"
+                                    : ""),
+                              },
+                              l.logo &&
+                                e.createElement("img", {
+                                  className: "n-option-logo",
+                                  src: l.logo,
+                                  alt: "logo",
+                                }),
+                              e.createElement(
+                                "div",
+                                { className: "n-option-wrapper" },
+                                e.createElement("span", null, l.text),
+                                e.createElement(
+                                  "span",
+                                  { className: "n-option-subtext" },
+                                  l.sub_text
+                                )
+                              )
+                            )
                       )
+                    );
+                  })),
+            a.searchable &&
+              a.items &&
+              0 === a.items.length &&
+              e.createElement(
+                "span",
+                { className: "n-option" },
+                a.addOption &&
+                  e.createElement(
+                    "div",
+                    { className: "n-option-container" },
+                    "No ",
+                    a.label,
+                    " Found"
+                  ),
+                a.addOption &&
+                  (null == x ? void 0 : x.length) > 0 &&
+                  e.createElement(
+                    "div",
+                    { className: "n-option-container" },
+                    e.createElement(
+                      "div",
+                      {
+                        "data-testid": "add-option",
+                        className: "n-dropdown-empty",
+                        onClick: function () {
+                          var e;
+                          const l = x;
+                          N(""),
+                            null === (e = a.addOptionHandler) ||
+                              void 0 === e ||
+                              e.call(a, l),
+                            M();
+                        },
+                      },
+                      e.createElement(d, null),
+                      e.createElement("p", null, "Add ", x)
                     )
-                )
-            )
+                  )
+              )
           )
-        ),
-        a.validationState &&
-          e.createElement(d, {
-            isHidden: !a.validationState,
-            label: a.validationLabel,
-            validationState: a.validationState,
-          }),
-        a.helperText &&
-          e.createElement(
-            "div",
-            { className: " n-input-underinfo n-helper-text" },
-            a.helperText
-          )
-      )
+        )
+      ),
+      a.validationState &&
+        e.createElement(r, {
+          className: "n-dropdown-validation",
+          isHidden: !a.validationState,
+          label: a.validationLabel,
+          validationState: a.validationState,
+        }),
+      a.helperText &&
+        e.createElement(
+          "div",
+          { className: "n-input-underinfo n-helper-text n-dropdown-helper" },
+          a.helperText
+        )
     );
   };
-m.defaultProps = {
+u.defaultProps = {
   id: `nitrozen-dropdown-${a()}`,
   items: [],
   disabled: !1,
@@ -423,6 +441,7 @@ m.defaultProps = {
   className: "",
   validationState: "",
   validationLabel: "",
+  prefixIcon: "",
 };
-export { m as default };
+export { u as default };
 //# sourceMappingURL=Dropdown.js.map
