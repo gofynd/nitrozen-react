@@ -1,5 +1,4 @@
 import React, { memo, useEffect } from "react";
-import { SvgUndo } from "../../assets/svg-components";
 import "./Toast.scss";
 
 export interface ToastProps {
@@ -9,23 +8,27 @@ export interface ToastProps {
   content?: string;
   duration?: number;
   shouldClose?: boolean;
-  type: string;
+  leftImage: React.ReactNode;
+  rightImage: React.ReactNode;
+  leftIconPosition: string;
+  rightIconPosition: string;
   position: string;
-  toastHeaderAlign?: "left" | "center" | "right";
   toastWidth?: string;
 }
 
 const Toast: React.FC<ToastProps> = (props) => {
   const {
     destroy,
-    content,
+    content = "Support text",
     title,
     duration,
     id,
     shouldClose,
-    toastHeaderAlign,
-    toastWidth = "25rem",
-    type,
+    leftIconPosition,
+    rightIconPosition,
+    toastWidth = "38.4rem",
+    leftImage,
+    rightImage,
     position,
   } = props;
 
@@ -40,27 +43,34 @@ const Toast: React.FC<ToastProps> = (props) => {
   }, [destroy, duration]);
 
   return (
-    <div
-      style={{ width: toastWidth }}
-      id={id}
-      className={`toast-wrapper ${type} ${position}`}
-    >
-      <div
-        className={`toast-header ${
-          shouldClose ? "space-between" : toastHeaderAlign
-        }`}
-      >
-        <div>{title}</div>
-        {shouldClose && (
-          <div className="undo-container">
-            <span className="vertical-line"></span>
-            <button className="cross-btn" onClick={destroy}>
-              <SvgUndo style={{ fontSize: "20px", marginRight: "5px" }} /> UNDO
-            </button>
+    <div style={{ width: toastWidth }} id={id} className={`toast-wrapper`}>
+      <div className="toast-left-container">
+        <div
+          className={`toast-left-image ${leftIconPosition}`}
+          data-testid="left-image"
+        >
+          {leftImage}
+        </div>
+        <div className={`toast-title-container`}>
+          <div className={`toast-header ${shouldClose ? "space-between" : ""}`}>
+            {title}
           </div>
-        )}
+          {content && (
+            <div className={`toast-body ${shouldClose ? "space-between" : ""}`}>
+              {content}
+            </div>
+          )}
+        </div>
       </div>
-      {content && <div className="toast-body">{content}</div>}
+      {shouldClose && (
+        <div
+          className={`toast-right-image ${rightIconPosition}`}
+          data-testid="right-image"
+          onClick={destroy}
+        >
+          {rightImage}
+        </div>
+      )}
     </div>
   );
 };
@@ -71,8 +81,13 @@ const shouldRerender = (prevProps: ToastProps, nextProps: ToastProps) => {
 
 Toast.defaultProps = {
   title: "Title",
-  toastHeaderAlign: "center",
-  toastWidth: "25rem",
+  toastWidth: "38.4rem",
+  position: "top-center",
+  leftIconPosition: "top-align",
+  rightIconPosition: "top-align",
+  shouldClose: false,
+  leftImage: <img src={require("../../assets/left-placeholder.svg")} />,
+  rightImage: <img src={require("../../assets/right-placeholder.svg")} />,
   duration: 2500,
 };
 

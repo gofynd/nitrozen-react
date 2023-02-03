@@ -1,5 +1,7 @@
 @import "./../../base/base.scss";
 
+// 16px=1em
+
 .toast-container-main {
   position: fixed;
   z-index: $ZIndex3;
@@ -8,24 +10,78 @@
   font-size: $BaseFontSize + 6;
 
   .toast-wrapper {
-    background-color: $BlackColor;
-    border-radius: 0.4rem;
+    background: $ColorSecondaryGrey80;
+    border-radius: 1.4em;
     color: $WhiteColor;
     width: 25rem;
     margin-bottom: 1rem;
+    transition: transform 0.6s ease-in-out;
+    animation: toast-in-center 0.7s;
     min-height: 2.5rem;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
+
     padding: 1.2rem;
     font-family: $PrimaryFont;
-
-    .toast-header {
+    .toast-left-container {
       display: flex;
-      flex-direction: row;
+      width: 90%;
+      gap: 0.5em;
+      .toast-title-container {
+        display: flex;
+        flex-direction: column;
+        gap: 0.3em;
+        width: 100%;
+      }
+      .toast-header {
+        display: inline-block;
+        text-overflow: ellipsis;
+        width: calc(90%);
+        color: $WhiteColor;
+        font-size: 1em;
+        font-weight: 700;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        max-width: 30em;
+        user-select: none;
+      }
+      .toast-left-image {
+        height: 100%;
+
+        object-fit: contain;
+        border-radius: 0.6em;
+
+        img {
+          height: 2em;
+          width: 2em;
+          border-radius: 0.4em;
+        }
+      }
+    }
+
+    .toast-right-image {
+      object-fit: contain;
+      border-radius: 0.6em;
+
+      img {
+        height: 2em;
+        width: 2em;
+        border-radius: 0.4em;
+      }
+    }
+    .center-align {
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
     .toast-body {
-      font-size: 1.4rem;
+      display: flex;
+      width: 80%;
+      word-break: break-word;
+      flex-direction: row;
+      color: $WhiteColor;
+      font-size: 0.8em;
     }
     .center {
       justify-content: center;
@@ -51,7 +107,6 @@
   }
   .cross-btn {
     border: none;
-    // border-left: 1px solid $GreyColor;
     border-top-left-radius: 0rem;
     border-bottom-left-radius: 0rem;
     background: none;
@@ -62,22 +117,6 @@
     padding-left: 1.6rem;
     display: flex;
     align-items: center;
-  }
-
-  .success {
-    background-color: $SeaGreen;
-  }
-
-  .danger {
-    background-color: $Flamingo;
-  }
-
-  .info {
-    background-color: $InfoColor;
-  }
-
-  .warning {
-    background-color: $WarningColor;
   }
 }
 
@@ -97,9 +136,10 @@
 
 .top-center {
   top: 10%;
-  left: 35%;
-  transition: transform 0.6s ease-in-out;
-  animation: toast-in-center 0.7s;
+  left: 50%;
+  transform: translateX(-50%);
+  // transition: transform 0.6s ease-in-out;
+  // animation: toast-in-center 0.7s;
 }
 
 .top-left {

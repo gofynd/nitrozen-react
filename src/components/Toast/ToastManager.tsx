@@ -10,7 +10,10 @@ interface ToastOptions {
   content?: string;
   duration?: number;
   shouldClose?: boolean;
-  type: string;
+  leftIconPosition: string;
+  rightIconPosition: string;
+  leftImage: React.ReactNode;
+  rightImage: React.ReactNode;
   position: string;
 }
 
