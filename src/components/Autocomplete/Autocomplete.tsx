@@ -1,113 +1,264 @@
-import React, { useState } from "react";
+import React, {
+  useCallback,
+  useState,
+  useEffect,
+  useRef,
+  ChangeEvent,
+  FocusEvent,
+  KeyboardEvent,
+  MouseEventHandler,
+} from "react";
+import classNames from "classnames";
 import "./Autocomplete.scss";
-import Input from "../Input/Input";
+import {
+  SvgIcSearch,
+  SvgIcCloseRemove,
+  SvgIcStatusLoading,
+} from "../../assets/svg-components";
+import debounce from "../../utils/debounce";
 
 export interface AutocompleteProps {
-  placeholder?: string;
-  items?: string[];
-  onChange?: Function;
-  onBlur?: Function;
-  onFocus?: Function;
-  listItemClicked?: Function;
-  showSearchIcon?: boolean;
-  label?: string;
   className?: string;
+  disabled?: boolean;
+  items?: any[];
+  onListItemClick?: Function;
+  onBlur?: Function;
+  onChange?: Function;
+  onFocus?: Function;
+  loader?: React.ReactNode;
+  placeholder?: string;
+  renderItem?: (item: any, index: number) => JSX.Element;
+  resultStringKeyName?: string;
+  showClearAll?: boolean;
+  showLoader?: boolean;
+  showItems?: boolean;
+  showSearchIcon?: boolean;
   style?: React.CSSProperties;
 }
 
 const Autocomplete = (props: AutocompleteProps) => {
   const {
-    placeholder,
-    items,
-    onChange,
+    className = "",
+    disabled,
+    items = [],
+    onListItemClick,
     onBlur,
+    onChange,
     onFocus,
+    loader,
+    placeholder,
+    renderItem,
+    resultStringKeyName,
+    showClearAll,
+    showLoader,
+    showItems,
     showSearchIcon,
-    label,
-    listItemClicked,
-    className,
     style,
     ...restProps
   } = props;
-  const emptyStringTypeArray: string[] = [];
-  const [list, filterList] = useState(emptyStringTypeArray);
-  const [inputValue, updateInputValue] = useState("");
+
+  const [inputValue, setInputValue] = useState("");
+  const [activeItemIndex, setActiveItemIndex] = useState<number | null>(null);
+  const [isInputFocus, setIsInputFocus] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  const wrapperRef = useRef<HTMLDivElement>(null);
+  const resultWrapperRef = useRef<HTMLUListElement>(null);
+  const resultItemWrapperRef = useRef<HTMLLIElement[]>([]);
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (
+      activeItemIndex !== null &&
+      resultItemWrapperRef.current &&
+      wrapperRef.current
+    ) {
+      let item = resultItemWrapperRef.current[activeItemIndex];
+
+      item?.scrollIntoView?.({ block: "nearest", inline: "nearest" });
+    }
+  }, [activeItemIndex, resultItemWrapperRef, wrapperRef.current]);
+
+  useEffect(() => {
+    setActiveItemIndex(null);
+    setLoading(false);
+  }, [items]);
+
+  useEffect(() => {
+    if (!showLoader) {
+      setLoading(false);
+    }
+  }, [showLoader]);
+
+  const cName = classNames(
+    "n-autocomplete",
+    { [className]: className },
+    { "n-autocomplete-disabled": disabled }
+  );
+
+  function handleOnChange(e: ChangeEvent<HTMLInputElement>) {
+    onChange?.(e.target.value);
+  }
+
+  const debouncedHandleChange = useCallback(debounce(handleOnChange), []);
+
+  function handleChange(e: ChangeEvent<HTMLInputElement>) {
+    setInputValue(e.target.value);
+    if (showLoader) {
+      setLoading(true);
+    }
+    debouncedHandleChange(e);
+  }
+
+  function handleKeyDown(event: KeyboardEvent<HTMLInputElement>) {
+    if (event.key === "Enter") {
+      if (activeItemIndex === null) {
+        wrapperRef.current?.classList.remove("n-autocomplete-focussed");
+      } else {
+        onListItemClick?.(activeItemIndex);
+        const item = items[activeItemIndex];
+        if (typeof item === "object" && resultStringKeyName) {
+          setInputValue(items[activeItemIndex][resultStringKeyName]);
+        } else {
+          setInputValue(items[activeItemIndex]);
+        }
+        inputRef.current?.blur();
+        onListItemClick?.(activeItemIndex);
+      }
+    } else if (event.key === "Tab") {
+      inputRef.current?.blur();
+      wrapperRef.current?.classList.remove("n-autocomplete-focussed");
+    } else if (event.key === "ArrowDown") {
+      if (activeItemIndex === null) {
+        setActiveItemIndex(0);
+      } else {
+        setActiveItemIndex((activeItemIndex + 1) % items.length);
+      }
+    } else if (event.key === "ArrowUp") {
+      if (activeItemIndex === null || activeItemIndex === 0) {
+        setActiveItemIndex(items.length - 1);
+      } else {
+        setActiveItemIndex(activeItemIndex - 1);
+      }
+    }
+  }
+  function handleOnFocus(event: FocusEvent<HTMLInputElement>) {
+    wrapperRef.current?.classList.add("n-autocomplete-focussed");
+    setIsInputFocus(true);
+    onFocus?.(event);
+  }
+
+  function handleOnBlur(event: FocusEvent<HTMLInputElement>) {
+    setTimeout(() => {
+      setIsInputFocus(false);
+      onBlur?.(event);
+      wrapperRef.current?.classList.remove("n-autocomplete-focussed");
+    }, 10);
+  }
+  function handleListItemClick(index: number) {
+    return function () {
+      const item = items[index];
+      if (typeof item === "object" && resultStringKeyName) {
+        setInputValue(items[index][resultStringKeyName]);
+      } else {
+        setInputValue(items[index]);
+      }
+      onListItemClick?.(index);
+      wrapperRef.current?.classList.remove("n-autocomplete-focussed");
+    } as MouseEventHandler<HTMLLIElement>;
+  }
+
+  function handleClearInput() {
+    setInputValue("");
+    inputRef.current?.focus();
+    onChange?.("");
+  }
 
   return (
-    <div
-      style={style ?? {}}
-      className={`nitrozen-autocomplete ${className ?? ""}`}
-      {...restProps}
-    >
-      <Input
-        showSearchIcon={showSearchIcon}
-        label={label}
-        onChange={updateList}
-        onBlur={inputBlurred}
-        onFocus={inputFocussed}
-        value={inputValue}
-        placeholder={placeholder}
-      />
-      {list?.length > 0 && (
-        <div className="nitrozen-autocomplete-items">
-          {list.map((item, index) => {
-            return (
-              <div
+    <div className="n-autocomplete-wrapper" {...restProps}>
+      <div style={style ?? {}} className={cName} ref={wrapperRef}>
+        {(loading || showSearchIcon) && (
+          <span className="n-pre-input-icon ">
+            {loading ? (
+              loader ? (
+                { loader }
+              ) : (
+                <SvgIcStatusLoading className="n-search-loading" size={24} />
+              )
+            ) : (
+              <SvgIcSearch className="n-search-svg" size={24} />
+            )}
+          </span>
+        )}
+        <input
+          type="text"
+          placeholder={placeholder}
+          className={classNames([
+            { "n-pre-input": showSearchIcon || loading },
+            "n-suf-input",
+          ])}
+          onChange={handleChange}
+          value={inputValue}
+          onKeyDown={handleKeyDown}
+          onBlur={handleOnBlur}
+          onFocus={handleOnFocus}
+          ref={inputRef}
+          disabled={disabled}
+        />
+        <span className="n-suf-input-icon ">
+          {showClearAll && inputValue && (
+            <div className="n-suf-icon-back" onClick={handleClearInput}>
+              <SvgIcCloseRemove size={24} />
+            </div>
+          )}
+        </span>
+      </div>
+      {(isInputFocus || showItems) && items?.length > 0 && (
+        <ul className="n-autocomplete-result-wrapper" ref={resultWrapperRef}>
+          {items.map((item, index) => {
+            let element;
+            if (renderItem) {
+              element = renderItem(item, index);
+            }
+            return element ? (
+              React.cloneElement(element, {
+                key: index,
+                "data-testid": `test-item-${index}`,
+                className: classNames("n-autocomplete-result-item", {
+                  "n-autocomplete-result-item-active":
+                    activeItemIndex === index,
+                }),
+                ref: (el: HTMLLIElement) =>
+                  (resultItemWrapperRef.current[index] = el),
+                onClick: handleListItemClick(index),
+              })
+            ) : (
+              <li
                 key={index}
                 data-testid={`test-${item}`}
-                onMouseDown={() => autoComplete(item)}
+                className={classNames("n-autocomplete-result-item", {
+                  "n-autocomplete-result-item-active":
+                    activeItemIndex === index,
+                })}
+                ref={(el: HTMLLIElement) =>
+                  (resultItemWrapperRef.current[index] = el)
+                }
+                onClick={handleListItemClick(index)}
               >
-                {item}
-              </div>
+                <span className="n-autocomplete-result-item-icon">
+                  {" "}
+                  <SvgIcSearch className="n-search-svg" size={19} />
+                </span>
+                <span className="n-autocomplete-result-item-text">{item}</span>
+              </li>
             );
           })}
-        </div>
+        </ul>
       )}
     </div>
   );
-
-  function updateList(e: React.KeyboardEvent | any) {
-    const entry = e.target.value;
-    const filteredList: string[] = getFilteredList(entry.toLowerCase());
-    updateInputValue(entry);
-    filterList(filteredList);
-    onChange?.(e);
-  }
-
-  function getFilteredList(entry: string = "") {
-    if (entry === "") return [];
-    return items
-      ? items.filter(
-          (item) =>
-            item.toLowerCase() !== entry && item.toLowerCase().includes(entry)
-        )
-      : [];
-  }
-
-  function autoComplete(item: string) {
-    updateInputValue(item);
-    filterList([]);
-    listItemClicked?.(item);
-  }
-
-  function inputFocussed(e: React.KeyboardEvent | any) {
-    const filteredList: string[] = getFilteredList(inputValue.toLowerCase());
-    filterList(filteredList);
-    onFocus?.(e);
-  }
-
-  function inputBlurred(e: React.KeyboardEvent | any) {
-    filterList([]);
-    onBlur?.(e);
-  }
 };
 
-Autocomplete.defaultProps = {
-  onChange: () => {},
-  onBlur: () => {},
-  onFocus: () => {},
-  listItemClicked: () => {},
-  showSearchIcon: true,
-};
+Autocomplete.defaultProps = {};
 
 export default Autocomplete;
