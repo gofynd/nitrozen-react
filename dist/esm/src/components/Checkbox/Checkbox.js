@@ -12,10 +12,10 @@ const o = (n) => {
       state: d,
       stateMessage: u,
       checkboxValue: m,
-      id: b,
-      labelText: h,
-      children: y,
-      onChange: k,
+      id: h,
+      labelText: b,
+      children: k,
+      onChange: y,
       checkArray: f,
       ref: g,
       className: x,
@@ -54,7 +54,7 @@ const o = (n) => {
   return a.createElement(
     "label",
     {
-      htmlFor: b,
+      htmlFor: h,
       className:
         "n-checkbox-container" + (o ? " n-checkbox-container-disabled" : ""),
       style: null != p ? p : {},
@@ -64,16 +64,18 @@ const o = (n) => {
       "input",
       Object.assign(
         {
-          id: b,
+          id: h,
+          "data-testid": h,
           type: "checkbox",
-          onChange: (e) => {
-            if (Array.isArray(w))
-              if (null == w ? void 0 : w.includes(m)) {
-                const e = w.filter((e) => e !== m);
-                E([...e]), k([...e]);
-              } else E([...w, e.target.value]), k([...w, e.target.value]);
-            else E(!w), k(!m);
-          },
+          onChange: (e) =>
+            ((e) => {
+              if (Array.isArray(w))
+                if (null == w ? void 0 : w.includes(m)) {
+                  const e = w.filter((e) => e !== m);
+                  E([...e]), y([...e]);
+                } else E([...w, e.target.value]), y([...w, e.target.value]);
+              else E(!w), y(e.target.checked);
+            })(e),
           value: m || r,
           checked: Array.isArray(w)
             ? null == w
@@ -89,8 +91,8 @@ const o = (n) => {
         j
       )
     ),
-    h,
-    y,
+    b,
+    k,
     a.createElement("span", {
       className: c({
         "n-checkbox": !0,

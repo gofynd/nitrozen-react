@@ -6,13 +6,14 @@ import {
   SvgDelete,
   SvgColorLens,
 } from "../../assets/svg-components";
+import * as SvgArray from "../../assets/svg-components";
 
 export default {
   title: "Components/Chip",
   component: Chip,
   argTypes: {
     children: {
-      name: "label",
+      name: "Value",
       type: { name: "string", required: false },
       defaultValue: "Submit",
       description: "Sets the display value of the chip",
@@ -27,6 +28,7 @@ export default {
     isRounded: {
       control: "boolean",
       description: "Makes the chip rounded",
+      defaultValue: true,
     },
     fontWeight: {
       control: "select",
@@ -65,6 +67,20 @@ export default {
     },
     style: { control: "object" },
     className: { control: "text" },
+    maxWidth: {
+      control: { type: "text", required: false },
+      description: "Custom chip width",
+      defaultValue: "220px",
+    },
+    label: {
+      control: "text",
+      description: "Sets the display label of the chip",
+    },
+    icon: {
+      description:
+        "An element to be placed on the right, ideally an icon. This is clickable if onIconClick is defined.",
+      options: SvgArray,
+    },
   },
 } as ComponentMeta<typeof Chip>;
 
@@ -78,14 +94,14 @@ export const PrimaryChip = Template.bind({});
 PrimaryChip.args = {
   children: "Primary Chip",
   state: "none",
-  isRounded: false,
+  isRounded: true,
 };
 
 export const SecondaryChip = Template.bind({});
 SecondaryChip.args = {
   state: "secondary",
   children: "Secondary Chip",
-  isRounded: false,
+  isRounded: true,
 };
 
 export const DeletableChip = Template.bind({});
@@ -94,7 +110,7 @@ DeletableChip.args = {
   children: "Delete Chip",
   onClick: () => {},
   onDelete: () => {},
-  isRounded: false,
+  isRounded: true,
 };
 
 export const ChipsDemo = () => {
@@ -120,6 +136,8 @@ export const ChipsDemo = () => {
         >
           Chip with Custom Styling
         </Chip>
+        <Chip maxWidth={"100px"}> Chip with Custom Width </Chip>
+        <Chip label="Filter1"> Chip With Label </Chip>
       </div>
     </div>
   );

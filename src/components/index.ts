@@ -19,3 +19,5 @@ export { default as ToggleButton } from "./ToggleButton";
 export { default as Dialog } from "./Dialog";
 export { ToastManager } from "./Toast";
 export { default as Code } from "./Code";
+export { NudgeManager } from "./Nudge";
+export { default as Table } from "./Table";

@@ -14,7 +14,9 @@ export interface ButtonProps {
   showProgress?: boolean;
   fullWidth?: boolean;
   children: React.ReactNode;
-  onClick?: React.MouseEventHandler<HTMLButtonElement | HTMLAnchorElement>;
+  onClick?: React.MouseEventHandler<
+    HTMLButtonElement | HTMLAnchorElement | HTMLDivElement
+  >;
   className?: string;
   id?: string;
   icon?: React.ReactNode;
@@ -104,7 +106,7 @@ const Button = (props: ButtonProps) => {
       className={`n-button ripple ${generateClasses()} ${
         props.className && props.className
       }`}
-      {...generateAttributes} //{...generateAttributes()}
+      {...generateAttributes()}
     >
       <ButtonContent {...props} />
     </div>
@@ -135,7 +137,7 @@ const ButtonContent = (props: ButtonProps) => {
   return (
     <div className="n-button-content">
       {props.icon && (props.children || !props.showProgress) && (
-        <div className="social-icon">
+        <div className="n-btn-social-icon">
           <Icon
             className={classnames({
               "n-icon-small": props.size === "small",

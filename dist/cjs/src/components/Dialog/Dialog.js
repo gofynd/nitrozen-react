@@ -1,151 +1,167 @@
 "use strict";
 var e = require("../../../node_modules/tslib/tslib.es6.js"),
   t = require("react"),
-  l = require("../Button/Button.js"),
-  a = require("../../utils/uuids.js");
-require("./Dialog.scss.js");
-var i = require("../../utils/useOutsideClick.js");
-function n(e) {
+  a = require("../../assets/svg-components/Navigation/index.js"),
+  l = require("../../utils/uuids.js"),
+  i = require("../Button/Button.js");
+function s(e) {
   return e && "object" == typeof e && "default" in e ? e : { default: e };
 }
-var o = n(t);
-const s = (t) => {
+require("./Dialog.scss.js");
+var n = s(t);
+const d = (t) => {
   const {
-      id: a,
-      title: n,
-      DialogIcon: s,
+      id: l,
+      kind: s,
+      title: d,
+      size: o,
       theme: r,
-      children: d,
+      children: c,
       positiveButtonLabel: u,
-      neutralButtonLabel: c,
       negativeButtonLabel: m,
-      onPositiveResponse: b,
-      onNeutralResponse: f,
-      onNegativeResponse: g,
-      isVisible: v,
-      className: p,
-      style: N,
-      closeHandle: h,
+      onPositiveResponse: g,
+      onNegativeResponse: f,
+      isVisible: b,
+      isClosable: p,
+      className: v,
+      style: h,
+      closeHandle: N,
     } = t,
     E = e.__rest(t, [
       "id",
+      "kind",
       "title",
-      "DialogIcon",
+      "size",
       "theme",
       "children",
       "positiveButtonLabel",
-      "neutralButtonLabel",
       "negativeButtonLabel",
       "onPositiveResponse",
-      "onNeutralResponse",
       "onNegativeResponse",
       "isVisible",
+      "isClosable",
       "className",
       "style",
       "closeHandle",
     ]),
-    B = u || !1,
-    y = null != c ? c : "",
-    z = m || !1,
-    L = () => {
-      null == h || h();
-    },
-    j = i.useOutsideClick(L);
-  return o.default.createElement(
-    o.default.Fragment,
+    k = () => {
+      null == N || N();
+    };
+  return n.default.createElement(
+    n.default.Fragment,
     null,
-    v &&
-      o.default.createElement(
+    b &&
+      n.default.createElement(
         "div",
-        { id: a },
-        o.default.createElement(
+        { id: l },
+        n.default.createElement(
           "div",
-          { className: "nitrozen-dialog-backdrop" },
-          o.default.createElement(
+          { className: "n-dialog-backdrop" },
+          n.default.createElement(
             "div",
             Object.assign(
               {
-                ref: j,
-                className: `nitrozen-dialog ${null != p ? p : ""}`,
-                style: null != N ? N : {},
+                className: ` n-${s} ${
+                  "s" === o
+                    ? `n-wrapper-width-s n-dialog ${null != v ? v : ""}`
+                    : `n-wrapper-width-m n-dialog ${null != v ? v : ""}`
+                }`,
+                style: null != h ? h : {},
                 role: "dialog",
                 "aria-labelledby": "id + '_title'",
                 "aria-describedby": "id + '_desc'",
               },
               E
             ),
-            null != s ? s : null,
-            o.default.createElement(
+            n.default.createElement(
+              "div",
+              { className: "n-closebtn-container" },
+              p &&
+                n.default.createElement(a.SvgClose, {
+                  className: "n-closebtn",
+                  onClick: k,
+                })
+            ),
+            n.default.createElement(
               "header",
-              { className: "nitrozen-dialog-header", id: "id + '_title'" },
-              o.default.createElement("div", { className: "header" }, n)
-            ),
-            o.default.createElement(
-              "section",
-              { className: "nitrozen-dialog-body", id: "id + '_desc'" },
-              d
-            ),
-            o.default.createElement(
-              "footer",
-              { className: "nitrozen-dialog-footer" },
-              o.default.createElement(
-                "div",
-                { className: "nitrozen-dialog-footer-container" },
-                B &&
-                  o.default.createElement(
-                    l,
-                    {
-                      theme: `${r || "primary"}`,
-                      rounded: !1,
-                      className: "nitrozen-dialog-footer-button-margin",
-                      onClick: () => {
-                        b && b(), L();
-                      },
-                    },
-                    B
-                  ),
-                y &&
-                  o.default.createElement(
-                    l,
-                    {
-                      theme: `${r || "primary"}`,
-                      rounded: !1,
-                      className: "nitrozen-dialog-footer-button-margin",
-                      onClick: () => {
-                        f && f(), L();
-                      },
-                    },
-                    y
-                  ),
-                z &&
-                  o.default.createElement(
-                    l,
-                    {
-                      rounded: !1,
-                      theme: `${r || "primary"}`,
-                      className: "nitrozen-dialog-footer-button-margin",
-                      onClick: () => {
-                        g && g(), L();
-                      },
-                    },
-                    z
+              { className: "n-dialog-header", id: "id + '_title'" },
+              "string" == typeof d
+                ? n.default.createElement("h5", { className: "header" }, d)
+                : n.default.createElement(
+                    "div",
+                    { className: "n-header-card" },
+                    n.default.createElement(
+                      "span",
+                      { className: "n-header-card-1" },
+                      " ",
+                      d.helperBlock.text
+                    ),
+                    n.default.createElement(
+                      "span",
+                      { className: "n-header-card-2" },
+                      " ",
+                      d.titleBlock.text
+                    )
                   )
-              )
+            ),
+            n.default.createElement(
+              "section",
+              { className: "n-dialog-body", id: "id + '_desc'" },
+              c
+            ),
+            n.default.createElement(
+              "footer",
+              {
+                className:
+                  "dialog" === s
+                    ? "s" === o
+                      ? "n-dialog-footer-size"
+                      : "n-dialog-footer"
+                    : "acknowledgement" === s
+                    ? "n-dialog-footer-size"
+                    : void 0,
+              },
+              "dialog" === s &&
+                n.default.createElement(
+                  i,
+                  {
+                    className: "n-dialog-footer-btn-spacing",
+                    theme: "secondary",
+                    size: "medium",
+                    onClick: () => {
+                      f && f(), k();
+                    },
+                  },
+                  m
+                ),
+              ("dialog" === s || "acknowledgement" === s) &&
+                n.default.createElement(
+                  i,
+                  {
+                    theme: "primary",
+                    size: "medium",
+                    onClick: () => {
+                      g && g(), k();
+                    },
+                    className:
+                      "dialog" == s && "s" !== o ? "n-dialog-positive" : "",
+                  },
+                  u
+                )
             )
           )
         )
       )
   );
 };
-(s.defaultProps = {
-  id: `nitrozen-dialog-${a()}`,
+(d.defaultProps = {
+  id: `n-dialog-${l()}`,
   title: "",
   theme: null,
   children: null,
   positiveButtonLabel: !1,
-  neutralButtonLabel: "",
   negativeButtonLabel: !1,
   isVisible: !1,
 }),
-  (module.exports = s);
+  (module.exports = d);
 //# sourceMappingURL=Dialog.js.map
