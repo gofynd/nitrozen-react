@@ -4,3 +4,4 @@ package-lock.json
 coverage
 .vscode
 src/assets/svgs
+/dist
