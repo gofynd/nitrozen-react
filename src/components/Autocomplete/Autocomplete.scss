@@ -134,11 +134,8 @@
     .n-autocomplete-result-item {
       display: flex;
       align-items: center;
-
+      height: 4.2rem;
       gap: 1.6rem;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
       font-style: normal;
       font-weight: 500;
       font-size: 1.6rem;
@@ -158,6 +155,11 @@
         font-size: 1.6rem;
         padding: 0.4rem;
         color: $ColorPrimaryGrey100;
+        &.n-autocomplete-result-item-text {
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
         &.n-autocomplete-result-item-icon {
           height: 3.2rem;
           width: 3.2rem;

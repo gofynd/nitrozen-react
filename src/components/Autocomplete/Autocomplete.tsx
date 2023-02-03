@@ -150,7 +150,7 @@ const Autocomplete = (props: AutocompleteProps) => {
 
   function handleOnBlur(event: FocusEvent<HTMLInputElement>) {
     setTimeout(() => {
-      setIsInputFocus(false);
+      // setIsInputFocus(false);
       onBlur?.(event);
       wrapperRef.current?.classList.remove("n-autocomplete-focussed");
     }, 10);
