@@ -4,71 +4,70 @@ import React, {
   useEffect,
   useState,
   RefObject,
+  useRef,
 } from "react";
+import { SvgMoreHoriz } from "../../assets/svg-components";
 import "./Menu.scss";
+import NitrozenId from "../../utils/uuids";
 
-export interface MenuItemProps {
-  disabled?: boolean;
-  label?: string;
-  value?: string;
-  prefix?: React.ReactSVGElement;
-  suffix?: any;
-  linkConfig?: {
-    href: string;
-    textAppreance?: string;
-    target?: string;
-  };
-  divider?: boolean;
-  heading?: boolean;
-}
 export interface MenuProps {
-  items: Array<any>;
+  id?: string | undefined;
+  mode?: string;
+  inverted?: boolean;
+  position?: string;
+  icon?: React.ReactSVGElement;
+  children?: React.ReactNode;
+  className?: string;
+  style?: CSSProperties;
   open?: boolean;
-  selectedIndex?: number;
+  maxHeight?: number;
+  onChangeMenuItem?: Function;
   anchorEl?: RefObject<HTMLDivElement>;
-  onSelect?: Function;
   onOpen?: Function;
   onClose?: Function;
-  maxHeight?: number;
-  style?: CSSProperties;
 }
-
+let counter = 0;
 const Menu = (props: MenuProps) => {
   const {
-    items,
-    open = true,
-    selectedIndex,
-    anchorEl = undefined,
-    onSelect,
+    id,
+    mode,
+    inverted,
+    position,
+    icon,
+    children,
+    className,
+    style,
+    open,
+    maxHeight,
+    onChangeMenuItem,
+    anchorEl,
     onOpen,
     onClose,
-    maxHeight,
-    style,
   } = props;
-  const [selection, setSelection] = useState(selectedIndex);
-  const [hasPrefix, setHasPrefix] = useState(false);
-  const [hasSuffix, setHasSuffix] = useState(false);
   const [isOpen, setIsOpen] = useState(open || false);
-
+  const [isAnchored, setIsAnchored] = useState(false);
+  let ref = useRef<HTMLDivElement>(null);
+  const toggleRef = useRef<HTMLDivElement>(null);
+  const ulId = `{n-menu-block-ul-${NitrozenId()}`;
   /**
    * get onOpen/onClose event callbacks
    */
   useEffect(() => {
-    if (!open) {
-      setIsOpen(false);
+    if (isOpen) {
       return onClose?.();
     }
-    setIsOpen(true);
     onOpen?.();
-  }, [open]);
+    setIsOpen(false);
+  }, [isOpen]);
 
   /**
-   * check if any suffix or prefix exists for ui formatting
+   * add click event listner
    */
   useEffect(() => {
-    checkPrefix();
-    checkSuffix();
-    if (anchorEl !== undefined && typeof document !== "undefined") {
+    if (anchorEl?.current) {
+      setIsAnchored(true);
+    }
+    if (typeof document !== "undefined") {
       document.addEventListener("click", documentClick);
     }
   }, []);
@@ -82,14 +81,38 @@ const Menu = (props: MenuProps) => {
   };
 
   /**
-   * set current selection for highlightingn and call onSelect callback
-   * @param index
+   * get selected active lebel index, headings are ignored
+   * @param e Event
+   * @returns
+   */
+  const getClickIndex = (e: any) => {
+    const ulList: any = document.getElementById(ulId)?.childNodes;
+    const nodes = Array.from(ulList);
+    const currentLi = e?.target?.parentElement;
+    const index = nodes.indexOf(currentLi);
+    if (
+      !currentLi.className.includes("n-menu-block-item-disabled") &&
+      !currentLi.className.includes("n-menu-block-item-heading")
+    ) {
+      return index;
+    }
+    return -1;
+  };
+  /**
+   * return the current selected menu element and index
+   * @param e Event
    * @returns void
    */
-  const onSelectHandler = (index: number) => {
-    if (items[index]?.disabled) return;
-    onSelect?.(index, items[index]?.value);
-    setSelection(index);
+  const onSelectHandler = (e: any) => {
+    const index = getClickIndex(e);
+    if (index > -1) {
+      onChangeMenuItem?.(e.target.innerHTML, index);
+      setIsOpen(false);
+    }
+  };
+
+  const onIconClickHandler = () => {
+    setIsOpen(!isOpen);
   };
 
   /**
@@ -97,12 +120,26 @@ const Menu = (props: MenuProps) => {
    * @returns inline css styling
    */
   const getStyle = () => {
-    let computedStyle = {};
-    if (anchorEl?.current?.parentElement) {
+    let computedStyle: any = {};
+
+    if (toggleRef?.current?.parentElement && !anchorEl) {
+      toggleRef.current.parentElement.style.position = "relative";
+      computedStyle = {
+        right: "100%",
+        top:
+          toggleRef.current?.offsetHeight + toggleRef.current?.offsetTop + "px",
+      };
+      if (position === "top" && !anchorEl) {
+        delete computedStyle.top;
+        computedStyle.bottom = "100%";
+      }
+      if (mode === "horizontal" && !anchorEl) {
+        delete computedStyle.right;
+        computedStyle.left = "100%";
+      }
+    } else if (anchorEl?.current) {
       anchorEl.current.parentElement.style.position = "relative";
       computedStyle = {
-        position: "absolute",
-        zIndex: 60,
         left: anchorEl.current?.offsetLeft + "px",
         top:
           anchorEl.current?.offsetHeight + anchorEl.current?.offsetTop + "px",
@@ -122,119 +159,66 @@ const Menu = (props: MenuProps) => {
   };
 
   /**
-   * checks if any prefix exists
-   * @returns void
-   */
-  const checkPrefix = () => {
-    if (hasPrefix) return;
-    const index = items.findIndex((item) => item?.prefix);
-    if (index < 0) {
-      setHasPrefix(false);
-      return;
-    }
-    setHasPrefix(true);
-  };
-
-  /**
-   * checks if any suffix exists
-   * @returns void
-   */
-  const checkSuffix = () => {
-    if (hasSuffix) return;
-    const index = items.findIndex((item) => item.suffix);
-    if (index < 0) {
-      setHasSuffix(false);
-      return;
-    }
-    setHasSuffix(true);
-  };
-
-  /**
-   * check if curent menu item selected
-   * @param item menu prop item
-   * @param index curent index
-   * @returns boolean
-   */
-  const isSelected = (item: MenuItemProps, index: number) => {
-    return selection === index && !item.disabled && !item.heading;
-  };
-
-  /**
    * handle document click events
    * @param e
    */
   const documentClick = (e: Event) => {
-    if (anchorEl?.current && !anchorEl.current.contains(e.target as Node)) {
-      onClose?.();
+    if (ref?.current && !ref.current.contains(e.target as Node)) {
       setIsOpen(false);
       document.removeEventListener("click", () => {});
     }
   };
 
   return (
-    <div className="n-menu-container" style={getStyle()}>
-      <ul
-        className={`n-menu-block ${getVisibilityClass()}`}
-        data-testid="n-menu-block"
+    <div
+      className="n-menu-container"
+      id={`prop-${open}-state-${isOpen}`}
+      ref={ref}
+    >
+      {!isAnchored ? (
+        <span
+          ref={toggleRef}
+          className={`n-menu-block-toggle 
+          ${mode === "horizontal" ? "n-menu-block-toggle-horizontal" : ""}
+          ${inverted ? "n-menu-block-toggle-inverted" : ""}`}
+          onClick={onIconClickHandler}
+        >
+          <>{icon}</>
+        </span>
+      ) : null}
+      <div
+        id={id}
+        className={`n-menu-block-container ${className}`}
+        style={getStyle()}
       >
-        {items.map((item, index) => {
-          // if type is not set, then it is a menu item, else divider
-          return (
-            <li
-              onClick={() => onSelectHandler(index)}
-              key={`n-menu-block-item-${index}`}
-              data-testid={`n-menu-block-item-${index}`}
-              className={`n-menu-block-item 
-            ${item.disabled ? "n-menu-block-item-disabled" : ""}
-            ${item?.divider ? "n-menu-block-item-divider" : ""}
-            ${item?.heading ? "n-menu-block-item-heading" : ""}
-            ${isSelected(item, index) ? "n-menu-block-item-selected" : ""}
-            `}
-            >
-              {/* setting links only for enabled menu items */}
-              <a
-                href={(!item.disabled && item?.linkConfig?.href) || undefined}
-                target={item?.linkConfig?.target || "_self"}
-                data-testid={`n-menu-block-item-${index}-link`}
-              >
-                {hasPrefix && (
-                  <div className={`n-menu-block-item-element`}>
-                    <span
-                      data-testid={`n-menu-block-item-element-prefix-${index}`}
-                      className="n-menu-block-item-element-prefix"
-                    >
-                      {item.prefix}
-                    </span>
-                  </div>
-                )}
-                <div className="n-menu-block-item-element n-menu-block-item-element-suffix">
-                  <span
-                    data-testid={`n-menu-block-item-element-label-${index}`}
-                  >
-                    {item.label}
-                  </span>
-                  {hasSuffix && (
-                    <span
-                      data-testid={`n-menu-block-item-element-suffix-${index}`}
-                      className="n-menu-block-item-element-outer"
-                    >
-                      {item.suffix}
-                    </span>
-                  )}
-                </div>
-              </a>
-            </li>
-          );
-        })}
-      </ul>
+        <ul
+          id={ulId}
+          className={`n-menu-block ${getVisibilityClass()}`}
+          data-testid="n-menu-block"
+          onClick={onSelectHandler}
+        >
+          {children}
+        </ul>
+      </div>
     </div>
   );
 };
 
 Menu.defaultProps = {
-  items: [],
-  open: true,
-  selectedIndex: 3,
+  id: `n-menu-block-container-${NitrozenId()}`,
+  mode: "vertical",
+  inverted: false,
+  position: "bottom",
+  icon: <SvgMoreHoriz />,
+  className: "custom-classname",
+  style: {},
+  open: false,
+  maxHeight: undefined,
+  onChangeMenuItem: () => {},
+  anchorEl: undefined,
+  onOpen: () => {},
+  onClose: () => {},
+  children: <></>,
 };
 
 export default memo(Menu);

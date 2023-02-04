@@ -5,7 +5,9 @@
   display: flex;
   justify-content: center;
 }
-.n-menu-container {
+.n-menu-block-container {
+  position: absolute;
+  right: "100%";
   z-index: $ZIndex2;
   overflow: hidden;
   overflow-y: scroll;
@@ -27,76 +29,30 @@
     max-height: 1000px;
   }
 }
-
-.n-menu-block-item {
-  & > a {
-    cursor: pointer;
-    list-style: none;
-    text-decoration: none;
-    font-size: calc($BaseFontSize + 6px);
-    font-weight: 400;
-    color: $ColorSecondaryGrey80;
-    background-color: $ColorPrimaryBackground;
-    padding: $SpacingXs;
-    box-sizing: border-box;
-    height: 40px;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    &:hover {
-      background-color: $ColorSecondaryGrey20;
-    }
+.n-menu-block-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  background-color: $ColorSecondaryGrey20;
+  transform: rotateZ(0deg);
+  &-horizontal {
+    transform: rotateZ(90deg) !important;
   }
-  &-divider {
-    border-bottom: 1px solid $ColorSecondaryGrey40;
-  }
-  &-selected > a {
-    color: $ColorPrimary60;
+  &-inverted {
+    background-color: $ColorPrimary60;
     svg {
-      color: $ColorPrimary60;
+      color: $ColorSecondaryGrey20 !important;
     }
   }
-  &-disabled > a {
-    cursor: not-allowed;
-    background-color: $ColorSecondaryGrey20;
-    color: $ColorPrimaryGrey60;
-  }
-  &-heading > a {
-    font-size: calc($BaseFontSize + 4px);
-    &:hover {
-      background-color: $ColorPrimaryBackground;
-    }
+  svg {
+    font-size: calc($BaseFontSize + 10px);
+    color: $ColorPrimary60;
   }
 }
-
-.n-menu-block-item-element {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  padding: 0 $SpacingXs;
-
-  &-outer {
-    height: 24px;
-    min-width: 24px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-left: $SpacingBase;
-    // color: $ColorPrimary60;
-    font-size: calc($BaseFontSize + 4px);
-  }
-
-  &-prefix {
-    width: 24px;
-    height: 24px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  &-suffix {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-  }
+.n-menu-container {
+  width: fit-content;
+  height: fit-content;
 }

@@ -1,163 +1,52 @@
-import React, { useRef, useState } from "react";
+import React, { useCallback, useRef, useState } from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
-import Menu, { MenuItemProps } from "./Menu";
+import Menu, { MenuProps } from "./Menu";
+import MenuItem from "../MenuItem";
 import "./Menu.scss";
 import Button from "../Button";
-import {
-  SvgDone,
-  SvgContentCopy,
-  SvgAdsClick,
-  SvgFace,
-  SvgFavorite,
-  SvgCheckBox,
-  SvgNature,
-  SvgNotAccessible,
-  SvgPanTool,
-} from "../../assets/svg-components";
-export const stories = {
-  simple: [
-    {
-      label: "Apple",
-      prefix: <SvgAdsClick />,
-      disabled: true,
-      suffix: <p>$50,000</p>,
-      value: "apple",
-      divider: true,
-    },
-    {
-      heading: true,
-      label: "Banana",
-      value: "banana",
-      suffix: <SvgContentCopy />,
-    },
-    {
-      label: "Pineapple",
-      prefix: <SvgFace />,
-      value: "pineapple",
-    },
-    {
-      label: "Guava",
-      prefix: <SvgFavorite />,
-      value: "guava",
-    },
-    {
-      label: "Pomegranate",
-      prefix: <SvgDone />,
-      value: "apple",
-    },
-  ],
-  complex: [],
-  links: [
-    {
-      label: "Apple",
-      prefix: <SvgFace />,
-      disabled: true,
-      suffix: <p>$50,000</p>,
-      value: "apple",
-      linkConfig: { href: "/?path=/docs/introduction-changelog--changelog" },
-    },
-    {
-      label: "Banana",
-      divider: false,
-      prefix: <SvgNature />,
-      value: "apple",
-      linkConfig: { href: "/" },
-      suffix: <SvgNotAccessible />,
-    },
-    {
-      label: "Pineapple",
-      prefix: <SvgCheckBox />,
-      suffix: <p>$50,000</p>,
-      value: "pineapple",
-      linkConfig: { href: "/?path=/docs/introduction-changelog--changelog" },
-    },
-    {
-      label: "Guava",
-      prefix: <SvgCheckBox />,
-      value: "Guava",
-    },
-    {
-      label: "Pomegranate",
-      prefix: <SvgPanTool />,
-      value: "pomegranate",
-      linkConfig: { href: "/?path=/docs/introduction-changelog--changelog" },
-    },
-  ],
-  noIcons: [
-    {
-      label: "Apple",
-      divider: false,
-      disabled: true,
-      suffix: <p>$50,000</p>,
-      value: "apple",
-    },
-    {
-      label: "Banana",
-      value: "apple",
-    },
-    {
-      label: "Pineapple",
-      suffix: <p>$50,000</p>,
-      value: "pineapple",
-    },
-    {
-      label: "Guava",
-      value: "Guava",
-    },
-    {
-      label: "Pomegranate",
-      value: "pomegranate",
-    },
-  ],
-  onlyLabels: [
-    {
-      label: "Apple",
-      disabled: true,
-      value: "apple",
-      divider: true,
-    },
-    {
-      label: "Banana",
-      value: "apple",
-      divider: true,
-    },
-    {
-      label: "Pineapple",
-      value: "pineapple",
-      divider: true,
-    },
-    {
-      label: "Guava",
-      value: "Guava",
-      divider: true,
-    },
-    {
-      label: "Pomegranate",
-      value: "pomegranate",
-    },
-  ],
-};
+import { SvgAddAlarm } from "../../assets/svg-components";
+import { log } from "../../../docs/83.d53405cc.iframe.bundle";
+import NitrozenId from "../../utils/uuids";
+
 export default {
   title: "Components/Menu",
   component: Menu,
   argTypes: {
-    items: {
+    id: { control: { type: "text" }, description: "unique id" },
+    className: { control: { type: "text" }, description: "unique id" },
+    open: {
       control: "select",
-      options: ["simple", "with links", "no icons", "only labels"],
-      mapping: {
-        simple: stories.simple,
-        "with links": stories.links,
-        "no icons": stories.noIcons,
-        "only labels": stories.onlyLabels,
-      },
-      defaultValue: "simple",
+      options: [true, false],
+      description: "open or close the menu",
     },
-    open: { control: "select", options: [true, false] },
-    maxHeight: { control: { type: "number" } },
-    selectedIndex: { control: { type: "number" } },
-    onSelect: {
+    inverted: {
+      control: "select",
+      options: [true, false],
+      description:
+        "invenrt two tonw color scheme of the default menu icon element",
+    },
+    position: {
+      control: "select",
+      options: ["top", "bottom"],
+      description: "menu render position",
+    },
+    mode: {
+      control: "select",
+      options: ["vertical", "horizontal"],
+      description: "menu render direction",
+    },
+    maxHeight: {
+      control: { type: "number" },
+      description: "menu becomes scrollable after this height",
+    },
+    icon: { control: { type: "number" }, description: "custom menu icon" },
+    selectedIndex: {
+      control: { type: "number" },
+      description: "highlight a specific index",
+    },
+    onChangeMenuItem: {
       action: "changed",
-      description: "Function that returns the current selected index",
+      description: "Function that returns the current value",
     },
     onOpen: {
       action: "changed",
@@ -172,29 +61,118 @@ export default {
       description:
         "The target element underneath which the menu should open from",
     },
+    style: {
+      action: "changed",
+      description: "custom css styling",
+    },
   },
 } as ComponentMeta<typeof Menu>;
 
-export const PrimaryMenu: ComponentStory<typeof Menu> = (args) => (
+const menuItems = [
+  {
+    label: "Fruits for thought",
+    heading: true,
+    divider: true,
+  },
+  {
+    label: "Apple",
+    disabled: true,
+    heading: false,
+    divider: false,
+  },
+  {
+    label: "Banana",
+    heading: false,
+    divider: false,
+  },
+  {
+    label: "Pomegranet",
+    heading: false,
+    divider: true,
+    selected: true,
+  },
+  {
+    label: "Links",
+    heading: true,
+    divider: true,
+  },
+  {
+    label: "Spacex.com",
+    selected: false,
+    linkConfig: { href: "https://www.spacex.com/", target: "_self" },
+  },
+  {
+    label: "Nasa.com",
+    selected: false,
+    linkConfig: { href: "https://www.nasa.com/", target: "_blank" },
+  },
+  {
+    label: "Tesla.com",
+    selected: false,
+    disabled: true,
+    linkConfig: { href: "https://www.tesla.com/", target: "_blank" },
+  },
+];
+const onChangeMenuItem = (value: any, index: number) => {
+  console.log(
+    "onChangeMenuItem = (value, index) => {}\n",
+    "value:",
+    value,
+    "\n",
+    "index:",
+    index
+  );
+};
+const onClose = () => {
+  console.log("onClose = () => {}");
+};
+const onOpen = () => {
+  console.log("onOpen = () => {}");
+};
+export const PrimaryMenu = (args: MenuProps) => (
   <div className="menu-story-container">
-    <Menu {...args}></Menu>
+    <Menu {...args}>
+      {menuItems.map((item, index) => {
+        return (
+          <MenuItem
+            disabled={item.disabled}
+            divider={item.divider}
+            heading={item.heading}
+            selected={2 === index}
+            linkConfig={item.linkConfig}
+            key={index}
+          >
+            {item.label}
+          </MenuItem>
+        );
+      })}
+    </Menu>
   </div>
 );
 
-export const AnchoredMenu = (args: MenuItemProps) => {
+export const AnchoredMenu = (args: MenuProps) => {
   const ref = useRef<HTMLDivElement>(null);
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
+  const [selected, setSelected] = useState(undefined);
+  const [selectedIndex, setSelectedIndex] = useState(2);
+
   const onClick = () => {
     setIsOpen(!isOpen);
   };
 
-  const onSelect = (index: number, value: string) => {
-    console.log(index, value);
+  const onSelect = (value: any, index: number) => {
+    onChangeMenuItem(value, index);
+    setSelected(value);
+    setSelectedIndex(index);
   };
-  const onOpen = () => {};
-  const onClose = () => {
-    setIsOpen(false);
+  const _onOpen = () => {
+    onOpen();
   };
+  const _onClose = () => {
+    onClose();
+    // setIsOpen(false);
+  };
+
   return (
     <div className="menu-story-container">
       <div
@@ -206,19 +184,47 @@ export const AnchoredMenu = (args: MenuItemProps) => {
         ref={ref}
       >
         <Button onClick={onClick} name="Menu">
-          Menu
+          {selected || "Menu"}
         </Button>
       </div>
       <Menu
-        items={stories.simple}
-        selectedIndex={2}
-        onClose={onClose}
-        onOpen={onOpen}
-        onSelect={onSelect}
+        onClose={_onClose}
+        onOpen={_onOpen}
+        onChangeMenuItem={onSelect}
         anchorEl={ref}
         open={isOpen}
-        maxHeight={250}
-      ></Menu>
+      >
+        {menuItems.map((item, index) => {
+          return (
+            <MenuItem
+              disabled={item.disabled}
+              divider={item.divider}
+              heading={item.heading}
+              selected={selectedIndex === index}
+              linkConfig={item.linkConfig}
+              key={index}
+            >
+              {item.label}
+            </MenuItem>
+          );
+        })}
+      </Menu>
     </div>
   );
+};
+
+PrimaryMenu.args = {
+  className: `menu-${NitrozenId()}`,
+  id: "",
+  open: false,
+  mode: "vertical",
+  icon: <SvgAddAlarm />,
+  inverted: true,
+  position: "bottom",
+  selectedIndex: 2,
+  onChangeMenuItem: onChangeMenuItem,
+  onClose: onOpen,
+  onOpen: onClose,
+  anchorEl: undefined,
+  style: { undefined },
 };
