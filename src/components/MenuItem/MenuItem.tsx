@@ -10,7 +10,6 @@ export interface MenuItemProps {
   disabled?: boolean;
   linkConfig?: {
     href: string;
-    textAppreance?: string;
     target?: string;
   };
   divider?: boolean;
