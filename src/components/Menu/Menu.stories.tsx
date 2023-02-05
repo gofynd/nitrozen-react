@@ -156,6 +156,24 @@ export const PrimaryMenu = (args: MenuProps) => (
         );
       })}
     </Menu>
+    {delete args.icon}
+    <Menu {...args}>
+      {menuItems.map((item, index) => {
+        return (
+          <MenuItem
+            disabled={item.disabled}
+            divider={item.divider}
+            heading={item.heading}
+            selected={item.selected}
+            linkConfig={item.linkConfig}
+            index={index}
+            key={NitrozenId()}
+          >
+            {item.label}
+          </MenuItem>
+        );
+      })}
+    </Menu>
   </div>
 );
 
@@ -226,7 +244,7 @@ PrimaryMenu.args = {
   className: `n-menu-container-${NitrozenId()}`,
   mode: "vertical",
   position: "bottom",
-  inverted: true,
+  inverted: false,
   icon: <SvgAddAlarm />,
   maxHeight: undefined,
   open: false,
