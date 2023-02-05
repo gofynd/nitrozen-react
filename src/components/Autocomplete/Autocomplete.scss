@@ -1,37 +1,175 @@
 @import "./../../base/base.scss";
-
-.nitrozen-autocomplete-items {
-  position: absolute;
-  border: 0.1rem solid $SecondaryDisabledColor;
-  font-family: $PrimaryFont;
-  border-bottom: none;
-  border-top: none;
-  z-index: $ZIndex3;
-  top: 100%;
-  left: 0;
-  right: 0;
-  border-radius: 0.3rem;
+.n-autocomplete-wrapper {
   width: 100%;
-  font-size: $BaseFontSize + 2;
-  margin-bottom: 2rem;
-  box-shadow: 0rem 0.2rem 1rem $Shadow;
-  max-height: 30rem;
-  overflow-y: auto;
-  @include nitrozen-menu-scrollbar;
-}
-
-.nitrozen-autocomplete-items div {
-  padding: 1.6rem;
-  cursor: pointer;
-  background-color: $WhiteColor;
-  border-bottom: 0.1rem solid $SecondaryDisabledColor;
-  &:hover,
-  &.selection-active {
-    background-color: $HoverColor;
-  }
-}
-
-.nitrozen-autocomplete {
   position: relative;
-  width: 100%;
+  .n-autocomplete {
+    font-family: $PrimaryFont;
+    gap: 0.8rem;
+    margin-left: auto;
+    margin-right: auto;
+    height: 4.8rem;
+    background: $ColorPrimaryInverse;
+    border: 0.1rem solid $ColorPrimaryGrey60;
+    border-radius: 1.6rem;
+    position: relative;
+    display: flex;
+    color: $ColorPrimaryGrey80;
+    .n-pre-input-icon,
+    .n-suf-input-icon {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      svg {
+        color: $ColorPrimaryGrey80;
+      }
+    }
+    .n-search-loading {
+      animation: loading 0.7s infinite ease-in-out;
+      @keyframes loading {
+        0% {
+          transform: rotate(0deg);
+        }
+        25% {
+          transform: rotate(90deg);
+        }
+        50% {
+          transform: rotate(180deg);
+        }
+        75% {
+          transform: rotate(270deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+    }
+
+    .n-suf-icon-back {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+    &:hover :not(&.n-autocomplete-disabled) {
+      input[type="text"] {
+        &::placeholder {
+          color: $ColorPrimaryGrey100;
+        }
+      }
+      .n-pre-input-icon,
+      .n-suf-input-icon {
+        svg {
+          color: $ColorPrimaryGrey100;
+        }
+      }
+    }
+
+    &.n-autocomplete-disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    &.n-autocomplete-focussed {
+      border: 2px solid $PrimaryColor;
+    }
+    .n-pre-input-icon {
+      left: 1.2rem;
+    }
+    .n-suf-input-icon {
+      right: 1.2rem;
+    }
+    input[type="text"] {
+      -webkit-appearance: none;
+      appearance: none;
+      border: none;
+      border-radius: 1.6rem;
+      width: 100%;
+      padding: 0.8rem 1.6rem;
+      padding-right: 1.2rem;
+      color: $ColorPrimaryGrey100;
+      outline: none;
+      font-family: "JioType", helvetica, arial, sans-serif;
+      font-weight: 500;
+      text-transform: none;
+      font-size: 1.6rem;
+      letter-spacing: -0.008rem;
+      line-height: 1.5;
+      &::placeholder {
+        /* Chrome, Firefox, Opera, Safari 10.1+ */
+        color: $ColorPrimaryGrey80;
+        font-size: 1.6rem;
+        opacity: 1; /* Firefox */
+      }
+      &:hover {
+        cursor: text;
+        color: $ColorPrimaryGrey100;
+      }
+      &:disabled {
+        cursor: not-allowed;
+      }
+    }
+    input[type="text"].n-pre-input {
+      padding-left: 4.8rem;
+    }
+
+    input[type="text"].n-suf-input {
+      padding-right: 4.8rem;
+    }
+  }
+
+  .n-autocomplete-result-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background: $ColorPrimaryInverse;
+    box-shadow: 0rem 0.4rem 1.6rem $Shadow;
+    border-radius: 2.4rem;
+    max-height: 33.6rem;
+    overflow-y: scroll;
+    position: absolute;
+    z-index: $ZIndex3;
+    list-style: none;
+    width: 100%;
+    padding: 0;
+    .n-autocomplete-result-item {
+      display: flex;
+      align-items: center;
+      height: 4.2rem;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 1.6rem;
+      line-height: 2.4rem;
+      border-radius: 1.6rem;
+      width: 100%;
+      letter-spacing: -0.005em;
+      color: $ColorPrimaryGrey100;
+      padding: 1.2rem;
+      cursor: pointer;
+      &:hover,
+      &.n-autocomplete-result-item-active {
+        background: $ColorPrimaryGrey20;
+        border-radius: 0;
+      }
+      span {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.6rem;
+        padding: 0.4rem;
+        color: $ColorPrimaryGrey100;
+        &.n-autocomplete-result-item-text {
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+        &.n-autocomplete-result-item-icon {
+          height: 3.2rem;
+          width: 3.2rem;
+          border-radius: 50%;
+          background-color: $ColorPrimaryGrey20;
+        }
+      }
+    }
+  }
 }

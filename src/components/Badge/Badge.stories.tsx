@@ -46,7 +46,10 @@ const Template: ComponentStory<typeof Badge> = (args) => (
   <div className="main-div space-between">
     <Badge {...args} />
     <Badge {...args} icon={<SvgCheck color="#000" />} />
-    <Badge {...args} labelText="Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab dolores vel expedita, praesentium quisquam quia optio nisi in alias laboriosam voluptate ratione error quibusdam inventore. Perspiciatis labore nemo quidem facere."/>
+    <Badge
+      {...args}
+      labelText="Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab dolores vel expedita, praesentium quisquam quia optio nisi in alias laboriosam voluptate ratione error quibusdam inventore. Perspiciatis labore nemo quidem facere."
+    />
   </div>
 );
 export const Badge_demo = Template.bind({});

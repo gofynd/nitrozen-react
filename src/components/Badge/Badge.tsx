@@ -31,7 +31,7 @@ const Badge = (props: BadgeProps) => {
     () => (kind === "service" ? "nitrogen-badge-background" : ""),
     [kind]
   );
-  
+
   useEffect(() => {
     let classes = "";
     switch (state) {
