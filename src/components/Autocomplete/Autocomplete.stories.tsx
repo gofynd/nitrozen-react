@@ -124,6 +124,9 @@ export const AutocompleteWithObjectItem = () => {
 
   return (
     <div className="main-div space-between">
+      <p style={{ marginTop: "0", fontSize: "1.4rem" }}>
+        Try searching with text `Item`
+      </p>
       <Autocomplete
         onChange={handleChange}
         items={items}

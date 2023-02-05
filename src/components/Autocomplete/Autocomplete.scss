@@ -1,19 +1,16 @@
 @import "./../../base/base.scss";
 .n-autocomplete-wrapper {
+  width: 100%;
+  position: relative;
   .n-autocomplete {
     font-family: $PrimaryFont;
     gap: 0.8rem;
-    width: 46.4rem;
-    @media screen and (max-width: 768px) {
-      width: 26.4rem;
-    }
     margin-left: auto;
     margin-right: auto;
     height: 4.8rem;
     background: $ColorPrimaryInverse;
     border: 0.1rem solid $ColorPrimaryGrey60;
     border-radius: 1.6rem;
-    margin-bottom: 2.4rem;
     position: relative;
     display: flex;
     color: $ColorPrimaryGrey80;
@@ -125,22 +122,20 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 1.6rem;
     background: $ColorPrimaryInverse;
     box-shadow: 0rem 0.4rem 1.6rem $Shadow;
     border-radius: 2.4rem;
-    padding: 1.6rem;
     max-height: 33.6rem;
     overflow-y: scroll;
-    position: relative;
+    position: absolute;
     z-index: $ZIndex3;
     list-style: none;
-
+    width: 100%;
+    padding: 0;
     .n-autocomplete-result-item {
       display: flex;
       align-items: center;
       height: 4.2rem;
-      gap: 1.6rem;
       font-style: normal;
       font-weight: 500;
       font-size: 1.6rem;
@@ -149,10 +144,12 @@
       width: 100%;
       letter-spacing: -0.005em;
       color: $ColorPrimaryGrey100;
+      padding: 1.2rem;
       cursor: pointer;
       &:hover,
       &.n-autocomplete-result-item-active {
         background: $ColorPrimaryGrey20;
+        border-radius: 0;
       }
       span {
         display: flex;
