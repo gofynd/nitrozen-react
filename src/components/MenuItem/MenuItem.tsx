@@ -1,5 +1,5 @@
 import React, { memo } from "react";
-import uuid from "../../utils/uuids";
+import NitrozenId from "../../utils/uuids";
 import "./MenuItem.scss";
 
 export interface MenuItemProps {
@@ -16,7 +16,8 @@ export interface MenuItemProps {
   divider?: boolean;
   heading?: boolean;
   selected?: boolean;
-  key: number;
+  key?: string;
+  index?: number;
 }
 
 const MenuItem = (props: MenuItemProps) => {
@@ -31,25 +32,27 @@ const MenuItem = (props: MenuItemProps) => {
     linkConfig,
     divider,
     key,
+    index,
+    ...restProps
   } = props;
   return (
     <li
       id={id ? id.toString() : ""}
-      key={`n-menu-block-item-${key}`}
-      data-testid={`n-menu-block-item-${key}`}
-      className={`n-menu-block-item ${className}
+      data-testid={`n-menu-block-item-${index}`}
+      className={`n-menu-block-item ${className ? className : ""}
         ${disabled ? "n-menu-block-item-disabled" : ""}
         ${divider ? "n-menu-block-item-divider" : ""}
         ${heading ? "n-menu-block-item-heading" : ""}
         ${selected && !heading && !disabled ? "n-menu-block-item-selected" : ""}
       `}
       style={style}
+      {...restProps}
     >
       {/* setting links only for enabled menu items */}
       <a
         href={(!disabled && linkConfig?.href) || undefined}
         target={linkConfig?.target || "_self"}
-        data-testid={`n-menu-block-item-${key}-link`}
+        data-testid={`n-menu-block-item-${index}-link`}
       >
         {children}
       </a>
@@ -58,7 +61,16 @@ const MenuItem = (props: MenuItemProps) => {
 };
 
 MenuItem.defaultProps = {
-  id: "n-menu-block-item" + uuid(),
+  id: `n-menu-block-item-${NitrozenId()}`,
+  key: `n-menu-block-item-key-${NitrozenId()}`,
+  style: {},
+  className: "",
+  disabled: false,
+  selected: false,
+  heading: false,
+  linkConfig: {},
+  divider: false,
+  childern: "Menu Item",
 };
 
 export default memo(MenuItem);

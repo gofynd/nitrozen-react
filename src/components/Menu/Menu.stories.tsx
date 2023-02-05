@@ -1,60 +1,62 @@
-import React, { useCallback, useRef, useState } from "react";
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import React, { useEffect, useRef, useState } from "react";
+import { ComponentMeta } from "@storybook/react";
 import Menu, { MenuProps } from "./Menu";
 import MenuItem from "../MenuItem";
 import "./Menu.scss";
 import Button from "../Button";
 import { SvgAddAlarm } from "../../assets/svg-components";
-import { log } from "../../../docs/83.d53405cc.iframe.bundle";
 import NitrozenId from "../../utils/uuids";
 
 export default {
   title: "Components/Menu",
   component: Menu,
   argTypes: {
-    id: { control: { type: "text" }, description: "unique id" },
-    className: { control: { type: "text" }, description: "unique id" },
+    id: { control: { type: "text" }, description: "Custom unique id" },
+    className: { control: { type: "text" }, description: "Custom classname" },
     open: {
       control: "select",
       options: [true, false],
-      description: "open or close the menu",
+      description: "Control Menu visibility via input props",
+    },
+    mode: {
+      control: "select",
+      options: ["vertical", "horizontal", "aligned"],
+      description: "Menu render direction",
+    },
+    position: {
+      control: "select",
+      options: ["top", "bottom"],
+      description: "Menu render position",
     },
     inverted: {
       control: "select",
       options: [true, false],
       description:
-        "invenrt two tonw color scheme of the default menu icon element",
+        "Invert the two tone color scheme of the default menu icon element",
     },
-    position: {
-      control: "select",
-      options: ["top", "bottom"],
-      description: "menu render position",
-    },
-    mode: {
-      control: "select",
-      options: ["vertical", "horizontal"],
-      description: "menu render direction",
+    icon: {
+      control: { type: "component" },
+      description: "custom menu svg icon",
     },
     maxHeight: {
       control: { type: "number" },
-      description: "menu becomes scrollable after this height",
+      description: "Menu becomes scrollable after this height",
     },
-    icon: { control: { type: "number" }, description: "custom menu icon" },
     selectedIndex: {
       control: { type: "number" },
-      description: "highlight a specific index",
+      description: "Highlight a specific index. Storybook Preview Only",
     },
     onChangeMenuItem: {
       action: "changed",
       description: "Function that returns the current value",
     },
-    onOpen: {
-      action: "changed",
-      description: "Function that executed when the menu opens",
-    },
     onClose: {
       action: "changed",
-      description: "Function that executed when the menu closes",
+      description: "Function that executes when the menu closes",
+    },
+    onOpen: {
+      action: "changed",
+      description: "Function that executes when the menu opens",
     },
     anchorEl: {
       action: "changed",
@@ -63,7 +65,12 @@ export default {
     },
     style: {
       action: "changed",
-      description: "custom css styling",
+      description: "Custom css styling",
+    },
+    children: {
+      control: { type: "object" },
+      action: "changed",
+      description: "Menu Item component",
     },
   },
 } as ComponentMeta<typeof Menu>;
@@ -129,6 +136,7 @@ const onClose = () => {
 const onOpen = () => {
   console.log("onOpen = () => {}");
 };
+
 export const PrimaryMenu = (args: MenuProps) => (
   <div className="menu-story-container">
     <Menu {...args}>
@@ -138,9 +146,10 @@ export const PrimaryMenu = (args: MenuProps) => (
             disabled={item.disabled}
             divider={item.divider}
             heading={item.heading}
-            selected={2 === index}
+            selected={item.selected}
             linkConfig={item.linkConfig}
-            key={index}
+            index={index}
+            key={NitrozenId()}
           >
             {item.label}
           </MenuItem>
@@ -150,11 +159,13 @@ export const PrimaryMenu = (args: MenuProps) => (
   </div>
 );
 
-export const AnchoredMenu = (args: MenuProps) => {
+export const AnchoredMenu = (args: any) => {
   const ref = useRef<HTMLDivElement>(null);
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(args.open || false);
   const [selected, setSelected] = useState(undefined);
-  const [selectedIndex, setSelectedIndex] = useState(2);
+  const [selectedIndex, setSelectedIndex] = useState(
+    args.selectedIndex || null
+  );
 
   const onClick = () => {
     setIsOpen(!isOpen);
@@ -164,67 +175,66 @@ export const AnchoredMenu = (args: MenuProps) => {
     onChangeMenuItem(value, index);
     setSelected(value);
     setSelectedIndex(index);
+    setIsOpen(false);
   };
   const _onOpen = () => {
+    setIsOpen(true);
     onOpen();
   };
   const _onClose = () => {
+    setIsOpen(false);
     onClose();
-    // setIsOpen(false);
   };
 
   return (
     <div className="menu-story-container">
-      <div
-        id="menu-div"
-        style={{
-          width: "fit-content",
-          height: "fit-content",
-        }}
-        ref={ref}
-      >
+      <div ref={ref}>
         <Button onClick={onClick} name="Menu">
           {selected || "Menu"}
         </Button>
+        <Menu
+          onClose={_onClose}
+          onOpen={_onOpen}
+          onChangeMenuItem={onSelect}
+          anchorEl={ref}
+          mode={"aligned"}
+          open={isOpen}
+        >
+          {menuItems.map((item, index) => {
+            return (
+              <MenuItem
+                disabled={item.disabled}
+                divider={item.divider}
+                heading={item.heading}
+                selected={selectedIndex === index}
+                linkConfig={item.linkConfig}
+                index={index}
+                key={NitrozenId()}
+              >
+                {item.label}
+              </MenuItem>
+            );
+          })}
+        </Menu>
       </div>
-      <Menu
-        onClose={_onClose}
-        onOpen={_onOpen}
-        onChangeMenuItem={onSelect}
-        anchorEl={ref}
-        open={isOpen}
-      >
-        {menuItems.map((item, index) => {
-          return (
-            <MenuItem
-              disabled={item.disabled}
-              divider={item.divider}
-              heading={item.heading}
-              selected={selectedIndex === index}
-              linkConfig={item.linkConfig}
-              key={index}
-            >
-              {item.label}
-            </MenuItem>
-          );
-        })}
-      </Menu>
     </div>
   );
 };
 
 PrimaryMenu.args = {
-  className: `menu-${NitrozenId()}`,
-  id: "",
-  open: false,
+  id: `n-menu-contaner-${NitrozenId()}`,
+  className: `n-menu-container-${NitrozenId()}`,
   mode: "vertical",
-  icon: <SvgAddAlarm />,
-  inverted: true,
   position: "bottom",
+  inverted: true,
+  icon: <SvgAddAlarm />,
+  maxHeight: undefined,
+  open: false,
   selectedIndex: 2,
   onChangeMenuItem: onChangeMenuItem,
-  onClose: onOpen,
-  onOpen: onClose,
+  onClose: onClose,
+  onOpen: onOpen,
   anchorEl: undefined,
-  style: { undefined },
+  style: {},
+  children: <></>,
 };

@@ -4,10 +4,10 @@
   height: 250px;
   display: flex;
   justify-content: center;
+  align-items: center;
 }
-.n-menu-block-container {
+.n-menu-block {
   position: absolute;
-  right: "100%";
   z-index: $ZIndex2;
   overflow: hidden;
   overflow-y: scroll;
@@ -16,13 +16,12 @@
   box-shadow: $ShadowS;
   width: fit-content;
   height: fit-content;
-}
-.n-menu-block {
   padding: 0;
   margin: 0;
   transform-origin: top;
-  transition: all 0.2s ease-in-out;
+  transition: all 0.4s ease-in;
   &-close {
+    transition: all 0s ease-in;
     max-height: 0px;
   }
   &-open {

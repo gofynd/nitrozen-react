@@ -12,54 +12,63 @@ import NitrozenId from "../../utils/uuids";
 
 export interface MenuProps {
   id?: string | undefined;
-  mode?: string;
-  inverted?: boolean;
-  position?: string;
-  icon?: React.ReactSVGElement;
-  children?: React.ReactNode;
   className?: string;
-  style?: CSSProperties;
-  open?: boolean;
+  mode?: string;
+  position?: string;
+  inverted?: boolean;
+  icon?: React.ReactSVGElement;
   maxHeight?: number;
+  open?: boolean;
+  selectedIndex?: number;
   onChangeMenuItem?: Function;
-  anchorEl?: RefObject<HTMLDivElement>;
   onOpen?: Function;
   onClose?: Function;
+  anchorEl?: RefObject<HTMLDivElement>;
+  style?: CSSProperties;
+  children?: React.ReactNode;
 }
-let counter = 0;
 const Menu = (props: MenuProps) => {
   const {
     id,
-    mode,
-    inverted,
-    position,
-    icon,
-    children,
     className,
-    style,
-    open,
+    mode,
+    position,
+    inverted,
+    icon,
     maxHeight,
+    open,
     onChangeMenuItem,
-    anchorEl,
     onOpen,
     onClose,
+    anchorEl,
+    style,
+    children,
+    selectedIndex,
+    ...restProps
   } = props;
-  const [isOpen, setIsOpen] = useState(open || false);
+  const [isOpen, setIsOpen] = useState(open);
   const [isAnchored, setIsAnchored] = useState(false);
   let ref = useRef<HTMLDivElement>(null);
   const toggleRef = useRef<HTMLDivElement>(null);
-  const ulId = `{n-menu-block-ul-${NitrozenId()}`;
+  const ulId = `n-menu-block-ul-${NitrozenId()}`;
+
+  /**
+   * set visibility state if element is anchore and controlled via
+   * an anchor elem, example: button, icon, etc.
+   */
+  useEffect(() => {
+    setIsOpen(open);
+  }, [open]);
+
   /**
    * get onOpen/onClose event callbacks
    */
   useEffect(() => {
     if (isOpen) {
-      return onClose?.();
+      return onOpen?.();
     }
-    onOpen?.();
-    setIsOpen(false);
+    return onClose?.();
   }, [isOpen]);
-
   /**
    * add click event listner
    */
@@ -69,6 +78,9 @@ const Menu = (props: MenuProps) => {
     }
     if (typeof document !== "undefined") {
       document.addEventListener("click", documentClick);
+      return () => {
+        document.removeEventListener("click", documentClick);
+      };
     }
   }, []);
 
@@ -81,7 +93,7 @@ const Menu = (props: MenuProps) => {
   };
 
   /**
-   * get selected active lebel index, headings are ignored
+   * get selected active label index, headings/disabled are ignored
    * @param e Event
    * @returns
    */
@@ -116,46 +128,44 @@ const Menu = (props: MenuProps) => {
   };
 
   /**
-   * sets the max height if explicitly passed
+   * sets the max height if passed explicitly
+   * computes component positioning base on `position` and `mode` props
    * @returns inline css styling
    */
   const getStyle = () => {
-    let computedStyle: any = {};
+    const computedStyle = {
+      ...style,
+    } as CSSProperties;
 
     if (toggleRef?.current?.parentElement && !anchorEl) {
       toggleRef.current.parentElement.style.position = "relative";
-      computedStyle = {
-        right: "100%",
-        top:
-          toggleRef.current?.offsetHeight + toggleRef.current?.offsetTop + "px",
-      };
-      if (position === "top" && !anchorEl) {
-        delete computedStyle.top;
-        computedStyle.bottom = "100%";
-      }
-      if (mode === "horizontal" && !anchorEl) {
-        delete computedStyle.right;
-        computedStyle.left = "100%";
-      }
     } else if (anchorEl?.current) {
-      anchorEl.current.parentElement.style.position = "relative";
-      computedStyle = {
-        left: anchorEl.current?.offsetLeft + "px",
-        top:
-          anchorEl.current?.offsetHeight + anchorEl.current?.offsetTop + "px",
-      };
+      anchorEl.current.style.position = "relative";
+      anchorEl.current.style.height = "fit-content";
+    }
+    switch (position) {
+      case "top":
+        computedStyle.bottom = "100%";
+        break;
+      case "bottom":
+        computedStyle.top = "100%";
+        break;
+    }
+    switch (mode) {
+      case "horizontal":
+        computedStyle.left = "100%";
+        break;
+      case "vertical":
+        computedStyle.right = "100%";
+        break;
+      case "aligned":
+        computedStyle.left = "0%";
+        break;
     }
     if (maxHeight) {
-      return {
-        maxHeight: `${maxHeight}px`,
-        ...style,
-        ...computedStyle,
-      } as React.CSSProperties;
+      computedStyle.height = `${maxHeight}px`;
     }
-    return {
-      ...style,
-      ...computedStyle,
-    } as React.CSSProperties;
+    return computedStyle;
   };
 
   /**
@@ -163,21 +173,30 @@ const Menu = (props: MenuProps) => {
    * @param e
    */
   const documentClick = (e: Event) => {
-    if (ref?.current && !ref.current.contains(e.target as Node)) {
+    if (
+      ref?.current &&
+      !ref.current.contains(e.target as Node) &&
+      !anchorEl?.current
+    ) {
       setIsOpen(false);
-      document.removeEventListener("click", () => {});
+      return;
+    }
+    if (anchorEl?.current && !anchorEl.current.contains(e.target as Node)) {
+      setIsOpen(false);
     }
   };
 
   return (
     <div
-      className="n-menu-container"
-      id={`prop-${open}-state-${isOpen}`}
+      className={`n-menu-container ${className}`}
       ref={ref}
+      id={id}
+      {...restProps}
     >
       {!isAnchored ? (
         <span
           ref={toggleRef}
+          data-testid={`n-menu-block-toggle`}
           className={`n-menu-block-toggle 
           ${mode === "horizontal" ? "n-menu-block-toggle-horizontal" : ""}
           ${inverted ? "n-menu-block-toggle-inverted" : ""}`}
@@ -186,38 +205,34 @@ const Menu = (props: MenuProps) => {
           <>{icon}</>
         </span>
       ) : null}
-      <div
-        id={id}
-        className={`n-menu-block-container ${className}`}
+      <ul
+        id={ulId}
+        className={`n-menu-block ${getVisibilityClass()}`}
+        data-testid="n-menu-block"
+        onClick={onSelectHandler}
         style={getStyle()}
       >
-        <ul
-          id={ulId}
-          className={`n-menu-block ${getVisibilityClass()}`}
-          data-testid="n-menu-block"
-          onClick={onSelectHandler}
-        >
-          {children}
-        </ul>
-      </div>
+        {children}
+      </ul>
     </div>
   );
 };
 
 Menu.defaultProps = {
-  id: `n-menu-block-container-${NitrozenId()}`,
+  id: `n-menu-container-${NitrozenId()}`,
+  className: `n-menu-container-${NitrozenId()}`,
   mode: "vertical",
-  inverted: false,
   position: "bottom",
+  inverted: false,
   icon: <SvgMoreHoriz />,
-  className: "custom-classname",
-  style: {},
-  open: false,
   maxHeight: undefined,
+  open: false,
+  selectedIndex: 2,
   onChangeMenuItem: () => {},
-  anchorEl: undefined,
   onOpen: () => {},
   onClose: () => {},
+  anchorEl: undefined,
+  style: {},
   children: <></>,
 };
 
