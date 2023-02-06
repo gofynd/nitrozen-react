@@ -1,6 +1,6 @@
 import { __rest as e } from "../../../node_modules/tslib/tslib.es6.js";
 import t from "react";
-import s from "../../assets/loader-white.gif.js";
+import s from "../../assets/loader.gif.js";
 import n from "../../../node_modules/classnames/index.js";
 import "./Button.scss.js";
 const i = (s) => {

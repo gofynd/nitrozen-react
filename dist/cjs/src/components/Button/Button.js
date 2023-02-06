@@ -1,7 +1,7 @@
 "use strict";
 var e = require("../../../node_modules/tslib/tslib.es6.js"),
   t = require("react"),
-  s = require("../../assets/loader-white.gif.js"),
+  s = require("../../assets/loader.gif.js"),
   n = require("../../../node_modules/classnames/index.js");
 function a(e) {
   return e && "object" == typeof e && "default" in e ? e : { default: e };
