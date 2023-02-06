@@ -324,28 +324,7 @@ describe("Render a Table component", () => {
     );
     const rowValue0 = screen.getByTestId("row-0");
     expect(rowValue0.className).toContain("n-table-row-item-clickable");
-    // const headerClick = screen.getByTestId("n-table-header-0");
     fireEvent.click(rowValue0);
-    // const allcheckBox = screen.getByTestId("header-checkbox");
-    // fireEvent.click(allcheckBox);
     expect(onRowClick).toBeCalledTimes(1);
-    // fireEvent.click(allcheckBox);
-    // expect(status).toBe(false);
-    // const firstRowCheck = screen.getByTestId("n-row-checkbox-0");
-    // fireEvent.click(firstRowCheck);
-    // expect(items.length).toBe(7);
-    // expect(items[0]).toStrictEqual({
-    //   age: 45,
-    //   firstName: "John",
-    //   isChecked: true,
-    //   lastName: "Yang",
-    // });
-    // fireEvent.click(firstRowCheck);
-    // expect(items[0]).toStrictEqual({
-    //   age: 45,
-    //   firstName: "John",
-    //   isChecked: false,
-    //   lastName: "Yang",
-    // });
   });
 });
