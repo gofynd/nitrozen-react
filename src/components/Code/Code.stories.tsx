@@ -80,7 +80,7 @@ export const OtpSample = (args: CodeProps) => {
     }
   }
   return (
-    <div className="main-div space-between">
+    <div className="main-div space-between" style={{ display: "flex" }}>
       <Code
         fields={4}
         label={"Label"}

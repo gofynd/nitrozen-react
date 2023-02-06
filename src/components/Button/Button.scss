@@ -258,14 +258,33 @@
 
 .n-btn-spinner {
   text-align: center;
+  width: 100%;
+  height: 100%;
 }
 
 .n-btn-spin {
   display: flex;
   justify-content: center;
+  height: 100%;
+  width: 2.4rem;
+  object-fit: contain;
+  margin-left: 0.4rem;
 }
 
-.social-icon,
+.n-btn-social-icon {
+  // position: absolute;
+  // left: -3.2rem;
+  font-size: 2.4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @media screen and (max-width: 425px) {
+    height: 2.6rem;
+    width: 2.6rem;
+  }
+}
+
 .social-icon-right {
   display: flex;
   justify-content: center;
@@ -313,6 +332,10 @@
   justify-content: space-evenly;
   grid-gap: 1.6rem;
   padding: 1.6rem;
+
+  @media screen and (max-width: 425px) {
+    flex-direction: column;
+  }
 }
 
 .n-button-full-width {

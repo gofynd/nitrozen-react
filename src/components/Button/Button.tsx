@@ -1,5 +1,5 @@
 import React from "react";
-import loaderWhite from "./../../assets/loader-white.gif";
+import loader from "./../../assets/loader.gif";
 import classnames from "classnames";
 import "./Button.scss";
 export interface ButtonProps {
@@ -14,7 +14,9 @@ export interface ButtonProps {
   showProgress?: boolean;
   fullWidth?: boolean;
   children: React.ReactNode;
-  onClick?: React.MouseEventHandler<HTMLButtonElement | HTMLAnchorElement>;
+  onClick?: React.MouseEventHandler<
+    HTMLButtonElement | HTMLAnchorElement | HTMLDivElement
+  >;
   className?: string;
   id?: string;
   icon?: React.ReactNode;
@@ -104,7 +106,7 @@ const Button = (props: ButtonProps) => {
       className={`n-button ripple ${generateClasses()} ${
         props.className && props.className
       }`}
-      {...generateAttributes} //{...generateAttributes()}
+      {...generateAttributes()}
     >
       <ButtonContent {...props} />
     </div>
@@ -135,7 +137,7 @@ const ButtonContent = (props: ButtonProps) => {
   return (
     <div className="n-button-content">
       {props.icon && (props.children || !props.showProgress) && (
-        <div className="social-icon">
+        <div className="n-btn-social-icon">
           <Icon
             className={classnames({
               "n-icon-small": props.size === "small",
@@ -152,7 +154,7 @@ const ButtonContent = (props: ButtonProps) => {
           <img
             className="n-btn-spinner"
             style={{ width: "50px" }}
-            src={loaderWhite}
+            src={loader}
           />
         </div>
       )}

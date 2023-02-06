@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from "react";
 import "./Chip.scss";
-import { SvgClose } from "../../assets/svg-components";
+import { SvgIcClose } from "../../assets/svg-components/Jio/";
 
 export interface ChipProps {
   deletable?: boolean;
@@ -16,6 +16,8 @@ export interface ChipProps {
   onIconClick?: Function;
   className?: string;
   style?: React.CSSProperties;
+  maxWidth?: string | number;
+  label?: string | number;
 }
 
 const Chip = (props: ChipProps) => {
@@ -33,6 +35,8 @@ const Chip = (props: ChipProps) => {
     icon,
     iconStyle,
     style,
+    maxWidth,
+    label,
     ...restProps
   } = props;
 
@@ -78,23 +82,29 @@ const Chip = (props: ChipProps) => {
       <div
         onClick={handleChipClick}
         style={{ fontWeight: setFontWeight(), ...style }}
-        className={`nitrozen-chip ${setClasses()}`}
+        className={`n-chip ${setClasses()}`}
         {...restProps}
       >
-        <span>{children}</span>
+        <span
+          className={`n-chiptext ${label ? "n-label-chip-text" : ""}`}
+          style={{ maxWidth: setMaxWidth() }}
+        >
+          {label ? <span className="n-chip-label">{label}: </span> : null}
+          {children ? children : "Submit"}
+        </span>
         {deletable && !icon && (
           <span
             data-testid="deletable-cross"
-            className="nitrozen-icon"
+            className="n-icon"
             onClick={removeChip}
           >
-            <SvgClose style={{ ...defaultIconStyles, ...iconStyle }} />
+            <SvgIcClose style={{ ...defaultIconStyles, ...iconStyle }} />
           </span>
         )}
         {icon && (
           <span
             data-testid="prop-icon"
-            className="nitrozen-icon"
+            className="n-icon"
             onClick={iconClicked}
           >
             <Icon style={{ ...defaultIconStyles, ...iconStyle }} />
@@ -107,9 +117,9 @@ const Chip = (props: ChipProps) => {
 
   function setClasses() {
     let classes: String = "";
-    if (disabled) classes += "nitrozen-disabled ";
+    if (disabled) classes += "n-disabled ";
     if (isRounded) classes += "rounded ";
-    if (state === "secondary") classes += "nitrozen-chip-secondary ";
+    if (state === "secondary") classes += "n-chip-secondary ";
     if (className) classes += className + " ";
 
     return classes;
@@ -121,15 +131,22 @@ const Chip = (props: ChipProps) => {
     fw = props.fontWeight ? props.fontWeight : fw;
     return fw;
   }
+
+  function setMaxWidth() {
+    let maxWidth: string | number;
+    maxWidth = props.maxWidth ? props.maxWidth : "22rem";
+    return maxWidth;
+  }
 };
 
 Chip.defaultProps = {
   deletable: false,
   disabled: false,
   iconStyle: {},
-  isRounded: false,
+  isRounded: true,
   state: "primary",
   style: {},
+  maxWidth: "22rem",
 };
 
 export default React.memo(Chip);

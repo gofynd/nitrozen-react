@@ -15,10 +15,10 @@ describe("Tab", () => {
         ]}
         label="name"
         activeIndex={1}
-        onTabChange={(tabItem) => {}}
+        onTabChange={() => {}}
       />
     );
-    const tab = document.querySelector(".nitrozen-tab-active")?.textContent;
+    const tab = document.querySelector(".n-tab-active")?.textContent;
     expect(tab).toBe("T2");
   });
 
@@ -27,10 +27,10 @@ describe("Tab", () => {
       <Tab
         tabItem={["Tab 1", "Tab 2", "Tab 3", "Tab 4", "Tab 5"]}
         activeIndex={4}
-        onTabChange={(tabItem) => {}}
+        onTabChange={() => {}}
       />
     );
-    const tab = document.querySelector(".nitrozen-tab-active")?.textContent;
+    const tab = document.querySelector(".n-tab-active")?.textContent;
     expect(tab).toBe("Tab 5");
   });
 
@@ -39,14 +39,51 @@ describe("Tab", () => {
       <Tab
         tabItem={["Tab 1", "Tab 2", "Tab 3", "Tab 4", "Tab 5"]}
         activeIndex={4}
-        onTabChange={(tabItem) => {}}
+        onTabChange={() => {}}
       />
     );
     const tab2 = screen.getByText("Tab 2");
     userEvent.click(tab2);
-    expect(screen.getByText("Tab 2").parentElement).toHaveClass(
-      "nitrozen-tab-active"
+    expect(screen.getByText("Tab 2").parentElement?.parentElement).toHaveClass(
+      "n-tab-active"
     );
+  });
+
+  test("navigation buttons should be visible and clickable", () => {
+    render(
+      <Tab
+        tabItem={[
+          "Tab 1",
+          "Tab 2",
+          "Tab 3",
+          "Tab 4",
+          "Tab 5",
+          "Tab 6",
+          "Tab 7",
+          "Tab 8",
+          "Tab 9",
+          "Tab 10",
+          "Tab 11",
+          "Tab 12",
+          "Tab 13",
+          "Tab 14",
+          "Tab 15",
+          "Tab 16",
+          "Tab 17",
+        ]}
+        tabs={16}
+        overflow="arrow"
+        activeIndex={4}
+        onTabChange={() => {}}
+      />
+    );
+
+    const btn = document.querySelectorAll(
+      ".n-nav-btn"
+    ) as NodeListOf<HTMLButtonElement>;
+    expect(btn).toHaveLength(2);
+    userEvent.click(btn[0]);
+    userEvent.click(btn[1]);
   });
 
   test("test Error", () => {
@@ -55,7 +92,7 @@ describe("Tab", () => {
         <Tab
           tabItem={["Tab 1", "Tab 2", "Tab 3", "Tab 4", "Tab 5"]}
           activeIndex={7}
-          onTabChange={(tabItem) => {}}
+          onTabChange={() => {}}
         />
       )
     ).toThrow("Active Tab index cannot be greater than TabItem array length !");

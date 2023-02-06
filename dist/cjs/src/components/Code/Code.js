@@ -1,27 +1,32 @@
 "use strict";
 var e = require("../../../node_modules/tslib/tslib.es6.js"),
   t = require("react"),
-  a = require("../Validation/Validation.js");
-function l(e) {
+  l = require("../Validation/Validation.js"),
+  a = require("../../assets/svg-components/Action/index.js"),
+  i = require("../Tooltip/Tooltip.js");
+function n(e) {
   return e && "object" == typeof e && "default" in e ? e : { default: e };
 }
 require("./Code.scss.js");
-var n = l(t);
-const d = (l) => {
+var o = n(t);
+const d = (n) => {
   const {
     fields: d,
-    getCode: i,
-    label: o,
-    codeId: c,
-    type: s,
-    hideValidation: u,
-    validationLabel: r,
-    validationState: f,
-    validationClassName: m,
-    validationStyle: p,
-    helperText: v,
-  } = l;
-  e.__rest(l, [
+    getCode: s,
+    label: c,
+    codeId: u,
+    type: r,
+    hideValidation: f,
+    validationLabel: p,
+    validationState: m,
+    validationClassName: v,
+    validationStyle: b,
+    helperText: y,
+    required: E,
+    tooltip: N,
+    tooltipIcon: g,
+  } = n;
+  e.__rest(n, [
     "fields",
     "getCode",
     "label",
@@ -33,104 +38,107 @@ const d = (l) => {
     "validationClassName",
     "validationStyle",
     "helperText",
+    "required",
+    "tooltip",
+    "tooltipIcon",
   ]);
-  const [b, y] = t.useState(""),
-    [$, h] = t.useState([]);
-  function g(e) {
+  const [h, C] = t.useState([]);
+  function $(e) {
     if (e + 1 <= d - 1) {
-      let t = document.getElementById(`code-input-${c}-${e + 1}`);
+      let t = document.getElementById(`code-input-${u}-${e + 1}`);
       null == t || t.focus();
     }
   }
-  function C(e, t) {
+  function j(e, t) {
     [8, 46].includes(e.keyCode) &&
       (function (e) {
         if (e >= 0 && e <= d - 1) {
-          let t = [...$];
-          (t[e] = ""), h(t), i(t.join(""));
-          let a = document.getElementById(`code-input-${c}-${e - 1}`);
-          null == a || a.focus();
+          let t = [...h];
+          (t[e] = ""), C(t), s(t.join(""));
+          let l = document.getElementById(`code-input-${u}-${e - 1}`);
+          null == l || l.focus();
         }
       })(t);
-  }
-  function E() {
-    y("n-code-focused-label");
-  }
-  function N() {
-    $.join("").length || y("");
   }
   return (
     t.useEffect(() => {
       let e = Array(d).fill("");
-      h(e);
+      C(e);
     }, []),
-    n.default.createElement(
+    o.default.createElement(
       "div",
       { className: "n-code-main" },
-      n.default.createElement(
+      o.default.createElement(
         "div",
-        {
-          className: `n-code-label-container ${b}`,
-          "data-testid": `label-id-${c}`,
-        },
-        n.default.createElement(
+        { className: "n-code-label-container", "data-testid": `label-id-${u}` },
+        o.default.createElement(
           "label",
-          { className: "n-code-label", "data-testid": `code-label-${c}` },
-          o
+          { className: "n-code-label", "data-testid": `code-label-${u}` },
+          c,
+          " ",
+          E ? "*" : "",
+          N &&
+            o.default.createElement(
+              "span",
+              { className: "n-input-tooltip" },
+              N &&
+                o.default.createElement(i, {
+                  tooltipContent: N,
+                  icon:
+                    g ||
+                    o.default.createElement(a.SvgHelpOutline, {
+                      style: { fontSize: "14px" },
+                    }),
+                  position: "top",
+                })
+            )
         )
       ),
-      n.default.createElement(
+      o.default.createElement(
         "div",
         { className: "n-code-field-container" },
-        $.map((e, t) =>
-          n.default.createElement("input", {
+        h.map((e, t) =>
+          o.default.createElement("input", {
             autoComplete: "off",
-            id: `code-input-${c}-` + t,
-            key: `code-input-${c}-` + t,
-            "data-testid": `code-input-${c}-` + t,
+            id: `code-input-${u}-` + t,
+            key: `code-input-${u}-` + t,
+            "data-testid": `code-input-${u}-` + t,
             value: e,
-            type: s,
-            onClick: E,
-            onBlur: N,
+            type: r,
             onChange: (e) =>
               (function (e, t) {
-                let a = e.target.value.replace(/[^0-9]+/g, "");
-                if (2 == a.length && t + 1 <= d - 1) {
-                  a = a[1];
-                  let e = [...$];
-                  return (
-                    (e[t + 1] = a),
-                    h(e),
-                    i(e.join("")),
-                    g(t),
-                    void y("n-code-focused-label")
-                  );
+                let l = e.target.value.replace(/[^0-9]+/g, "");
+                if (2 == l.length && t + 1 <= d - 1) {
+                  l = l[1];
+                  let e = [...h];
+                  return (e[t + 1] = l), C(e), s(e.join("")), void $(t);
                 }
-                if (a && a.length <= 1) {
-                  let e = [...$];
-                  (e[t] = a),
-                    h(e),
-                    i(e.join("")),
-                    g(t),
-                    y("n-code-focused-label");
+                if (l && l.length <= 1) {
+                  let e = [...h];
+                  (e[t] = l), C(e), s(e.join("")), $(t);
                 }
               })(e, t),
-            className: `n-code-input-field n-code-${d} ${
-              f && !u ? `n-code-input-border-${f}` : "n-code-input-border"
-            }`,
-            onKeyDown: (e) => C(e, t),
+            placeholder: "0",
+            className:
+              "n-code-input-field " +
+              (m && !f ? `n-code-input-border-${m}` : "n-code-input-border"),
+            onKeyDown: (e) => j(e, t),
           })
         )
       ),
-      !u &&
-        n.default.createElement(a, {
-          isHidden: u,
-          label: r,
-          style: p,
-          className: m,
-          validationState: f,
-        }),
-      v && n.default.createElement("span", { className: "n-helper-text" }, v)
+      o.default.createElement(
+        "div",
+        { className: "n-code-underinfo" },
+        !f &&
+          o.default.createElement(l, {
+            isHidden: f,
+            label: p,
+            style: b,
+            className: v,
+            validationState: m,
+          }),
+        y && o.default.createElement("span", { className: "n-helper-text" }, y)
+      )
     )
   );
 };
@@ -144,7 +152,9 @@ d.defaulProps = {
   validationClassName: "",
   validationStyle: {},
   helperText: "",
+  tooltip: null,
+  required: !1,
 };
-var i = n.default.memo(d);
-module.exports = i;
+var s = o.default.memo(d);
+module.exports = s;
 //# sourceMappingURL=Code.js.map

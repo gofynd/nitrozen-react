@@ -1,40 +1,145 @@
 @import "./../../base/base.scss";
 
-.nitrozen-card-container {
-  min-width: 25.2rem;
-  min-height: 10.8rem;
-  padding: 1.6rem;
-  border-radius: 0.8rem;
-  font-family: $PrimaryFont;
-  font-style: normal;
-  color: $TypographyPrimaryColor;
-  background-color: $WhiteColor;
+.n-card {
+  color: #000;
+  box-shadow: $ShadowS;
+  border-radius: $RadiusLarge;
+}
+.n-card-vertical-space {
+  margin-top: $SpacingM;
 }
 
-.nitrozen-card-container-border {
-  border: 0.1rem solid $SecondaryDisabledColor;
+.n-card__content {
+  padding: 0 $SpacingM;
+  flex: 1 0 70%;
+
+  h3 {
+    padding: 0;
+    margin: 0;
+    font-weight: bold;
+    line-height: 1;
+    font-size: 2.4rem;
+    letter-spacing: -1.2px;
+    color: inherit;
+  }
+
+  .n-text-body {
+    margin-top: 0.4rem;
+    font-weight: 500;
+    text-transform: none;
+    font-size: 1.6rem;
+    letter-spacing: -0.08px;
+    line-height: 1.5;
+  }
 }
 
-.nitrozen-card-header {
+.n-card-vertical {
+  padding-bottom: $SpacingM;
+}
+
+.n-card-image {
+  border-radius: $RadiusLarge;
+  line-height: 0;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  align-self: start;
+
+  img {
+    aspect-ratio: $AspectRatioSquare;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    flex: 1 1 30%;
+  }
+}
+
+.n-card-ratio-wide,
+.n-card-ratio-wide img {
+  aspect-ratio: $AspectRatioWide;
+}
+
+.n-card-ratio-landscape,
+.n-card-ratio-landscape img {
+  aspect-ratio: $AspectRatioLandscape;
+}
+
+.n-card-ratio-square,
+.n-card-ratio-square img {
+  aspect-ratio: $AspectRatioSquare;
+}
+
+.n-card-ratio-portrait,
+.n-card-ratio-portrait img {
+  aspect-ratio: $AspectRatio-portrait;
+}
+
+.n-card-focus-top img {
+  object-position: top;
+}
+
+.n-card-focus-bottom img {
+  object-position: bottom;
+}
+
+.n-card-focus-left img {
+  object-position: left;
+}
+
+.n-card-focus-right img {
+  object-position: right;
+}
+
+.n-card-focus-center img {
+  object-position: center;
+}
+
+.n-flex {
   display: flex;
+}
+
+.n-card-orientation-horizontal {
+  flex-direction: row;
   align-items: center;
-  gap: 1.2rem;
-  font-weight: 600;
-  padding: 0.5rem;
-  font-size: 1.4rem;
-  line-height: 130%;
+  padding: $SpacingM;
 }
 
-.nitrozen-card-icon {
-  width: 3rem;
-  height: 3rem;
-  border-radius: 50%;
+.n-card-orientation-vertical {
+  flex-direction: column;
 }
 
-.nitrozen-card-description {
-  color: $Zambezi;
-  padding: 0.5rem;
-  font-weight: 400;
-  font-size: 1.2rem;
-  line-height: 160%;
+.n-heading {
+  font-weight: 900;
+  text-transform: none;
+  font-size: 2rem;
+  letter-spacing: -0.72px;
+  line-height: 1.1666666667;
+}
+
+.n-text-md {
+  font-weight: 500;
+  text-transform: none;
+  font-size: 1.6rem;
+  letter-spacing: -0.08px;
+  line-height: 1.5;
+  margin-top: $SpacingXs;
+}
+
+.n-button-group {
+  display: flex;
+  justify-content: inherit;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-top: 1.5rem;
+  gap: 0.5rem;
+}
+
+@media screen and (max-width: 768px) {
+  .n-button-group > * {
+    flex-grow: 1;
+  }
+}
+
+.n-card-caption {
+  margin: $SpacingXs 0;
 }

@@ -4,14 +4,14 @@ var e = require("../../../node_modules/tslib/tslib.es6.js"),
   l = require("../../utils/uuids.js"),
   s = require("../Validation/Validation.js");
 require("./Checkbox.scss.js");
-var n = require("../../../node_modules/classnames/index.js");
-function t(e) {
+var t = require("../../../node_modules/classnames/index.js");
+function n(e) {
   return e && "object" == typeof e && "default" in e ? e : { default: e };
 }
-var c = t(a);
+var c = n(a);
 const r = (l) => {
   const {
-      disabled: t,
+      disabled: n,
       value: r,
       name: i,
       state: o,
@@ -23,8 +23,8 @@ const r = (l) => {
       onChange: f,
       checkArray: y,
       ref: k,
-      className: v,
-      style: g,
+      className: g,
+      style: v,
       labelStyle: x,
       icon: A,
       showIcon: C,
@@ -61,7 +61,7 @@ const r = (l) => {
     {
       htmlFor: b,
       className:
-        "n-checkbox-container" + (t ? " n-checkbox-container-disabled" : ""),
+        "n-checkbox-container" + (n ? " n-checkbox-container-disabled" : ""),
       style: null != x ? x : {},
     },
     C &&
@@ -72,26 +72,28 @@ const r = (l) => {
       Object.assign(
         {
           id: b,
+          "data-testid": b,
           type: "checkbox",
-          onChange: (e) => {
-            if (Array.isArray(q))
-              if (null == q ? void 0 : q.includes(d)) {
-                const e = q.filter((e) => e !== d);
-                E([...e]), f([...e]);
-              } else E([...q, e.target.value]), f([...q, e.target.value]);
-            else E(!q), f(!d);
-          },
+          onChange: (e) =>
+            ((e) => {
+              if (Array.isArray(q))
+                if (null == q ? void 0 : q.includes(d)) {
+                  const e = q.filter((e) => e !== d);
+                  E([...e]), f([...e]);
+                } else E([...q, e.target.value]), f([...q, e.target.value]);
+              else E(!q), f(e.target.checked);
+            })(e),
           value: d || r,
           checked: Array.isArray(q)
             ? null == q
               ? void 0
               : q.includes(d)
             : !!q,
-          disabled: t,
+          disabled: n,
           ref: null == l ? void 0 : l.ref,
           name: l.name,
-          className: null != v ? v : "",
-          style: null != g ? g : {},
+          className: null != g ? g : "",
+          style: null != v ? v : {},
         },
         N
       )
@@ -99,7 +101,7 @@ const r = (l) => {
     h,
     m,
     c.default.createElement("span", {
-      className: n({
+      className: t({
         "n-checkbox": !0,
         "success-state": "success" == o,
         "warning-state": "warning" == o,

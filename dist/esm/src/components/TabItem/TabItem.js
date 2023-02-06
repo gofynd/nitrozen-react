@@ -1,54 +1,33 @@
-import { __rest as t } from "../../../node_modules/tslib/tslib.es6.js";
-import e, { memo as o } from "react";
-import l from "../../utils/uuids.js";
-import i from "../Tooltip/Tooltip.js";
+import { __rest as e } from "../../../node_modules/tslib/tslib.es6.js";
+import t, { memo as l } from "react";
+import n from "../../utils/uuids.js";
 import "./TabItem.scss.js";
-const n = (o) => {
-  const {
-      id: l,
-      children: n,
-      onClick: s,
-      className: c,
-      style: r,
-      icon: a,
-      tooltipIcon: m,
-      tooltipIconHoverText: p,
-    } = o,
-    d = t(o, [
-      "id",
-      "children",
-      "onClick",
-      "className",
-      "style",
-      "icon",
-      "tooltipIcon",
-      "tooltipIconHoverText",
-    ]);
-  return e.createElement(
+const s = t.forwardRef((l, n) => {
+  const { id: s, children: a, onClick: r, className: i, style: c, icon: o } = l,
+    m = e(l, ["id", "children", "onClick", "className", "style", "icon"]);
+  return t.createElement(
     "li",
     Object.assign(
       {
-        onClick: s,
-        id: l,
-        className: `nitrozen-tab-item ${null != c ? c : ""}`,
-        style: null != r ? r : {},
+        id: s,
+        className: `n-tab-item ${null != i ? i : ""}`,
+        style: null != c ? c : {},
       },
-      d
+      m,
+      { ref: n }
     ),
-    e.createElement("span", null, n),
-    m && p
-      ? e.createElement(
-          "span",
-          { className: "tab-item-icon" },
-          e.createElement(i, { position: "bottom", icon: m, tooltipContent: p })
-        )
-      : a || null
+    t.createElement(
+      "button",
+      { role: "tab", className: "n-tab-btn", type: "button", onClick: r },
+      o ? t.createElement("span", { className: "n-tab-icon" }, o) : null,
+      t.createElement("span", null, a)
+    )
   );
+});
+s.defaultProps = {
+  id: "n-tab-item" + n(),
+  children: t.createElement(t.Fragment, null),
 };
-n.defaultProps = {
-  id: "nitrozen-tab-item" + l(),
-  children: e.createElement("span", null, "hello"),
-};
-var s = o(n);
-export { s as default };
+var a = l(s);
+export { a as default };
 //# sourceMappingURL=TabItem.js.map

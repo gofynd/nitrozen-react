@@ -270,7 +270,9 @@ describe("Button", () => {
         Submit
       </Button>
     );
-    expect(container.getElementsByClassName("social-icon").length).toBe(1);
+    expect(container.getElementsByClassName("n-btn-social-icon").length).toBe(
+      1
+    );
   });
   test("renders the Button component with props - tertiary, className, iconRight ", () => {
     const { container } = render(

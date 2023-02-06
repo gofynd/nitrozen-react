@@ -20,8 +20,9 @@ body {
 .main-div {
   margin-top: 2%;
   padding: 4rem;
-  background: $GreyColor;
-
+  @media screen and (max-width: 625px) {
+    padding: 1rem;
+  }
   &.pad {
     padding: 2.4rem;
   }
@@ -35,6 +36,7 @@ body {
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
+  gap: 0.4em;
 
   .box {
     margin: 2rem;

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import NitrozenId from "../../utils/uuids";
-import NitrozenValidation from "./../Validation";
+import Validation from "./../Validation/Validation";
 import "./Checkbox.scss";
 
 import classnames from "classnames";
@@ -23,6 +23,7 @@ export interface CheckboxProps {
   icon?: React.ReactNode;
   showIcon?: Boolean;
   onIconClick?: Function;
+  isIndeterminate?: Boolean;
 }
 
 const Checkbox = (props: CheckboxProps) => {
@@ -45,6 +46,7 @@ const Checkbox = (props: CheckboxProps) => {
     icon,
     showIcon,
     onIconClick,
+    isIndeterminate,
     ...restProps
   } = props;
 
@@ -74,7 +76,7 @@ const Checkbox = (props: CheckboxProps) => {
       }
     } else {
       setChecked(!checked);
-      onChange(!checkboxValue);
+      onChange(e.target.checked);
     }
   };
 
@@ -100,28 +102,31 @@ const Checkbox = (props: CheckboxProps) => {
       )}
       <input
         id={id}
+        data-testid={id}
         type="checkbox"
-        onChange={ComponentChangeHandler}
+        onChange={(e) => ComponentChangeHandler(e)}
         value={checkboxValue || value}
         checked={isSelected()}
         disabled={disabled}
         ref={props?.ref}
         name={props.name}
-        className={className ?? ""}
+        className={`n-id-checkbox ${className ?? ""}`}
         style={style ?? {}}
         {...restProps}
       />
       {labelText}
       {children}
       <span
+        data-testid={`n-checkbox-${id}`}
         className={classnames({
           "n-checkbox": true,
           "success-state": state == "success",
           "warning-state": state == "warning",
           "error-state": state == "error",
+          "n-checkbox-indeterminate": props.isIndeterminate,
         })}
       ></span>
-      <NitrozenValidation
+      <Validation
         className="n-checkbox-validation"
         validationState={state}
         label={stateMessage}
@@ -147,6 +152,7 @@ Checkbox.defaultProps = {
   onIconClick: () => {},
   checkArray: null,
   ref: null,
+  isIndeterminate: false,
 };
 
 export default Checkbox;

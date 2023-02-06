@@ -1,62 +1,46 @@
 "use strict";
 var e = require("../../../node_modules/tslib/tslib.es6.js"),
   t = require("react"),
-  l = require("../../utils/uuids.js"),
-  o = require("../Tooltip/Tooltip.js");
-function n(e) {
+  l = require("../../utils/uuids.js");
+function a(e) {
   return e && "object" == typeof e && "default" in e ? e : { default: e };
 }
 require("./TabItem.scss.js");
-var i = n(t);
-const s = (t) => {
-  const {
-      id: l,
-      children: n,
-      onClick: s,
-      className: r,
-      style: a,
-      icon: c,
-      tooltipIcon: u,
-      tooltipIconHoverText: d,
-    } = t,
-    m = e.__rest(t, [
+var n = a(t);
+const s = n.default.forwardRef((t, l) => {
+  const { id: a, children: s, onClick: r, className: u, style: i, icon: c } = t,
+    d = e.__rest(t, [
       "id",
       "children",
       "onClick",
       "className",
       "style",
       "icon",
-      "tooltipIcon",
-      "tooltipIconHoverText",
     ]);
-  return i.default.createElement(
+  return n.default.createElement(
     "li",
     Object.assign(
       {
-        onClick: s,
-        id: l,
-        className: `nitrozen-tab-item ${null != r ? r : ""}`,
-        style: null != a ? a : {},
+        id: a,
+        className: `n-tab-item ${null != u ? u : ""}`,
+        style: null != i ? i : {},
       },
-      m
+      d,
+      { ref: l }
     ),
-    i.default.createElement("span", null, n),
-    u && d
-      ? i.default.createElement(
-          "span",
-          { className: "tab-item-icon" },
-          i.default.createElement(o, {
-            position: "bottom",
-            icon: u,
-            tooltipContent: d,
-          })
-        )
-      : c || null
+    n.default.createElement(
+      "button",
+      { role: "tab", className: "n-tab-btn", type: "button", onClick: r },
+      c
+        ? n.default.createElement("span", { className: "n-tab-icon" }, c)
+        : null,
+      n.default.createElement("span", null, s)
+    )
   );
-};
+});
 s.defaultProps = {
-  id: "nitrozen-tab-item" + l(),
-  children: i.default.createElement("span", null, "hello"),
+  id: "n-tab-item" + l(),
+  children: n.default.createElement(n.default.Fragment, null),
 };
 var r = t.memo(s);
 module.exports = r;
