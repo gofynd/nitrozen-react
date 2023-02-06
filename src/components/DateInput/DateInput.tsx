@@ -172,6 +172,7 @@ const DateInput = (props: DateInputProps) => {
                   onBlur={() =>
                     getDateValue(`${date.mm}/${date.dd}/${date.yyyy}`)
                   }
+                  autoComplete={"off"}
                 />
                 {index < 3 ? <span className="n-date-divider">/</span> : <></>}
               </>

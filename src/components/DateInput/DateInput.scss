@@ -18,6 +18,9 @@
     &:hover {
       border: 1px solid $ColorPrimary60;
     }
+    &:active {
+      background-color: $ColorPrimaryGrey20;
+    }
   }
 
   &-left-group {
@@ -41,6 +44,7 @@
     -webkit-tap-highlight-color: transparent;
     outline: none;
     font-size: 1.6rem;
+    background: transparent;
     &:last-of-type {
       width: 20%;
     }
@@ -88,11 +92,6 @@
   border-color: $ColorFeedbackSuccess50 !important;
 }
 
-.n-date-single-field:focus input > .n-date-inputfield {
-  border-color: $ColorPrimary60;
-  background-color: red;
-}
-
 .n-date-single-field::placeholder {
   font-size: 1.4rem;
   padding: 0;
@@ -100,4 +99,9 @@
 
 .date-input-wrapper {
   width: 37.6rem;
+}
+
+.n-date-inputfield:hover .n-date-single-field::placeholder {
+  color: $ColorPrimaryGrey80;
+  font-weight: 500;
 }
