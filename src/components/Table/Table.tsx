@@ -15,7 +15,7 @@ export interface TableProps {
   headerBackground?: string;
   customSortIcon?: React.ReactNode;
   checkable?: Boolean;
-  onRowClick?: Function;
+  onRowClick?: (index: number) => void;
   allChecked?: Boolean;
   getCheckedItems?: Function;
   allCheckClicked?: Function;
