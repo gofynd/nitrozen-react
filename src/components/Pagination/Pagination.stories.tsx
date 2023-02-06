@@ -32,8 +32,6 @@ BasicPagination.args = {
   onChange: (event: any) => {},
   onPreviousClick: (event: any) => {},
   onNextClick: (event: any) => {},
-  onFirstClick: (event: any) => {},
-  onLastClick: (event: any) => {},
 };
 export const Secondary = Template.bind({});
 Secondary.args = {
@@ -48,6 +46,6 @@ Secondary.args = {
     currentPage: "",
     currentTotal: 100,
   },
-  mode: ModeEnum.MODE_COMPACT,
+  mode: ModeEnum.MODE_CURSOR,
   pageSizeOptions: [10, 20],
 };

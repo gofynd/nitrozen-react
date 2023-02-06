@@ -908,3 +908,33 @@ export function SvgWest(props: IconBaseProps) {
     ],
   })(props);
 }
+export function SvgLeft(props: IconBaseProps) {
+  return GenIcon({
+    tag: "svg",
+    attr: { viewBox: "0 0 24 24", fill: "none" },
+    child: [
+      {
+        tag: "path",
+        attr: {
+          d: "M15.7049 7.41L14.2949 6L8.29492 12L14.2949 18L15.7049 16.59L11.1249 12L15.7049 7.41Z",
+          fill: "#3535F3",
+        },
+      },
+    ],
+  })(props);
+}
+export function SvgRight(props: IconBaseProps) {
+  return GenIcon({
+    tag: "svg",
+    attr: { viewBox: "0 0 24 24", fill: "none" },
+    child: [
+      {
+        tag: "path",
+        attr: {
+          d: "M9.70492 6L8.29492 7.41L12.8749 12L8.29492 16.59L9.70492 18L15.7049 12L9.70492 6Z",
+          fill: "#3535F3",
+        },
+      },
+    ],
+  })(props);
+}

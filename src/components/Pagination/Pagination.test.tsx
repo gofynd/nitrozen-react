@@ -4,6 +4,21 @@ import { render, fireEvent } from "@testing-library/react";
 import Pagination, { ModeEnum } from "./Pagination";
 
 describe("Pagination", () => {
+  beforeAll(() => {
+    Object.defineProperty(window, "matchMedia", {
+      writable: true,
+      value: jest.fn().mockImplementation((query) => ({
+        matches: false,
+        media: query,
+        onchange: null,
+        addListener: jest.fn(),
+        removeListener: jest.fn(),
+        addEventListener: jest.fn(),
+        removeEventListener: jest.fn(),
+        dispatchEvent: jest.fn(),
+      })),
+    });
+  });
   test("renders the Pagination component", () => {
     const { getByTestId } = render(
       <Pagination
@@ -33,53 +48,53 @@ describe("Pagination", () => {
     const paginationCount = getByTestId("pagination-count");
     expect(paginationCount.textContent?.includes("10")).toBeTruthy();
   });
-  // test("renders the Pagination component without certain keys in value prop", () => {
-  //   const { getByTestId } = render(
-  //     <Pagination
-  //       id="1"
-  //       name="Pages"
-  //       value={{
-  //         prevPage: "",
-  //         currentPage: "",
-  //         currentTotal: 200,
-  //       }}
-  //       pageSizeOptions={[10, 20]}
-  //       onChange={(event: any) => {}}
-  //       onPreviousClick={(event: any) => {}}
-  //       onNextClick={(event: any) => {}}
-  //     />
-  //   );
-  //   const prevBtn = getByTestId("btnPrevious");
-  //   fireEvent.click(prevBtn);
+  test("renders the Pagination component without certain keys in value prop", () => {
+    const { getByTestId } = render(
+      <Pagination
+        id="1"
+        name="Pages"
+        value={{
+          prevPage: "",
+          currentPage: "",
+          currentTotal: 200,
+        }}
+        pageSizeOptions={[10, 20]}
+        onChange={(event: any) => {}}
+        onPreviousClick={(event: any) => {}}
+        onNextClick={(event: any) => {}}
+      />
+    );
+    const prevBtn = getByTestId("btnPrevious");
+    fireEvent.click(prevBtn);
 
-  //   const nextBtn = getByTestId("btnNext");
-  //   fireEvent.click(nextBtn);
+    const nextBtn = getByTestId("btnNext");
+    fireEvent.click(nextBtn);
 
-  //   const paginationCount = getByTestId("pagination-count");
-  //   expect(paginationCount.textContent?.includes("200")).toBeTruthy();
-  // });
-  // test("page size should change on dropdown select", () => {
-  //   const screen = render(
-  //     <Pagination
-  //       id="1"
-  //       name="Pages"
-  //       value={{
-  //         prevPage: "",
-  //         currentPage: "",
-  //         currentTotal: 200,
-  //       }}
-  //       pageSizeOptions={[10, 20]}
-  //       onChange={(event: any) => {}}
-  //       onPreviousClick={(event: any) => {}}
-  //       onNextClick={(event: any) => {}}
-  //     />
-  //   );
+    const paginationCount = getByTestId("pagination-count");
+    expect(paginationCount.textContent?.includes("200")).toBeTruthy();
+  });
+  test("page size should change on dropdown select", () => {
+    const screen = render(
+      <Pagination
+        id="1"
+        name="Pages"
+        value={{
+          prevPage: "",
+          currentPage: "",
+          currentTotal: 200,
+        }}
+        pageSizeOptions={[10, 20]}
+        onChange={(event: any) => {}}
+        onPreviousClick={(event: any) => {}}
+        onNextClick={(event: any) => {}}
+      />
+    );
 
-  //   const dropdown = screen.container.getElementsByClassName("n-option")[1];
-  //   fireEvent.click(dropdown);
+    const dropdown = screen.container.getElementsByClassName("n-option")[1];
+    fireEvent.click(dropdown);
 
-  //   expect(dropdown.getAttribute("data-value")).toBe("20");
-  // });
+    expect(dropdown.getAttribute("data-value")).toBe("20");
+  });
 
   test("renders the Pagination component last page", () => {
     const { getByTestId } = render(
@@ -111,27 +126,27 @@ describe("Pagination", () => {
     expect(paginationCount.textContent?.includes("10")).toBeTruthy();
   });
 
-  // test("It should trigger page change on mode cursor", () => {
-  //   const screen = render(
-  //     <Pagination
-  //       id="1"
-  //       mode={ModeEnum.MODE_COMPACT}
-  //       name="Pages"
-  //       value={{
-  //         prevPage: "",
-  //         currentPage: "",
-  //         currentTotal: 200,
-  //       }}
-  //       pageSizeOptions={[10, 20]}
-  //       onChange={(event: any) => {}}
-  //       onPreviousClick={(event: any) => {}}
-  //       onNextClick={(event: any) => {}}
-  //     />
-  //   );
+  test("It should trigger page change on mode cursor", () => {
+    const screen = render(
+      <Pagination
+        id="1"
+        mode={ModeEnum.MODE_CURSOR}
+        name="Pages"
+        value={{
+          prevPage: "",
+          currentPage: "",
+          currentTotal: 200,
+        }}
+        pageSizeOptions={[10, 20]}
+        onChange={(event: any) => {}}
+        onPreviousClick={(event: any) => {}}
+        onNextClick={(event: any) => {}}
+      />
+    );
 
-  //   const dropdown = screen.container.getElementsByClassName("n-option")[1];
-  //   fireEvent.click(dropdown);
+    const dropdown = screen.container.getElementsByClassName("n-option")[1];
+    fireEvent.click(dropdown);
 
-  //   expect(dropdown.getAttribute("data-value")).toBe("20");
-  // });
+    expect(dropdown.getAttribute("data-value")).toBe("20");
+  });
 });

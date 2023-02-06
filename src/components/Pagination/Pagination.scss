@@ -1,52 +1,227 @@
 @import "./../../base/base.scss";
 
-.nitrozen-pagination-container {
+.n-pagination-container {
   font-family: $PrimaryFont;
   color: $TypographyPrimaryColor;
-  padding: 1.2rem;
+  border: 1px solid $ColorPrimaryGrey60;
+  border-radius: 12px;
+  padding: 12px 12px;
 
-  .nitrozen-pagination {
+  .n-pagination {
     display: flex;
     font-size: 1.4rem;
     color: $LabelColor;
     font-size: 1.4rem;
     font-weight: 400;
-    .pagination-wrapper {
-      display: flex;
-      width: 100%;
-      justify-content: center;
-    }
-
-    .nitrozen-pagination__prev,
-    .nitrozen-pagination__next {
-      width: 2.4rem;
-      height: 2.4rem;
-      margin: 0 0.8rem;
-
-      svg {
-        width: 2.4rem;
-        height: 2.4rem;
-      }
-
-      :hover {
-        color: #000093;
-        background: #e8e8fc;
-        border-radius: 50%;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    .mobile_view {
+      display: none !important;
+      @media only screen and (max-width: $sm-min) {
+        display: flex !important;
       }
     }
-    .nitrozen-pagination__count {
+    .n-pagination__left {
+      flex: 1;
       display: flex;
       align-items: center;
+      color: rgba(0, 0, 0, 0.65);
+      @media only screen and (max-width: $sm-min) {
+        display: none;
+      }
+      .n-pagination__count {
+        color: rgba(0, 0, 0, 0.65);
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 20px;
+        @media only screen and (max-width: $sm-min) {
+          font-size: 12px;
+        }
+      }
     }
-    .pagination-diabled {
-      opacity: 0.4;
-      cursor: not-allowed;
-      pointer-events: none;
+    .n-pagination__main {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 36px;
+      flex-wrap: wrap;
+      @media only screen and (max-width: $sm-min) {
+        gap: 18px !important;
+      }
+      .n-pagination__number {
+        display: flex;
+        gap: 8px;
+        flex-direction: row;
+        position: relative;
+        flex-wrap: wrap;
+        @media only screen and (max-width: $sm-min) {
+          gap: 4px !important;
+        }
+      }
+      .n-pagination__showpopup {
+        position: absolute;
+        padding: 12px;
+        z-index: 1;
+        background: #ffffff;
+        box-shadow: 0px 4px 16px rgb(0 0 0 / 8%);
+        border-radius: 16px;
+        width: 184px;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        top: 50px;
+
+        .n-pagination__search_input {
+          border: 1px solid $ColorPrimaryGrey60;
+          border-radius: 12px;
+          padding: 10px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 8px;
+          input::placeholder {
+            font-weight: 500;
+            font-size: 14px;
+            line-height: 20px;
+            letter-spacing: -0.005em;
+            color: rgba(0, 0, 0, 0.65);
+          }
+          .n-pagination__search_logo {
+            padding-top: 5px;
+          }
+          .n-input {
+            border: 0px;
+            min-width: 0px;
+            width: 100%;
+            background: none;
+            position: relative;
+            outline: none;
+            box-sizing: border-box;
+            font-size: 1.6rem;
+            -webkit-appearance: none;
+            display: block;
+            -webkit-tap-highlight-color: transparent;
+          }
+        }
+        ::-webkit-scrollbar {
+          width: 4px;
+          border-radius: 0px 0px 48px 48px;
+          left: 4px;
+          top: 4px;
+        }
+        ::-webkit-scrollbar-track {
+          background: #ffffff;
+        }
+        ::-webkit-scrollbar-thumb {
+          background: #e0e0e0;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+          background: #e0e0e0;
+        }
+        .n-pagination__search_wrapper {
+          display: flex;
+          flex-wrap: wrap;
+          overflow: auto;
+          height: 108px;
+          .n-pagination__search_number_inactive {
+            height: 40px;
+            width: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            flex: 1 0 21%;
+            font-weight: 700;
+            font-size: 16px;
+            line-height: 24px;
+            color: #b5b5b5;
+          }
+          .n-pagination__search_number_active {
+            color: rgba(0, 0, 0, 0.65);
+          }
+        }
+      }
+      .n-pagination__number_inactive {
+        height: 40px;
+        width: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        color: $ColorPrimaryGrey60;
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 24px;
+        @media only screen and (max-width: $sm-min) {
+          height: 34px;
+          width: 34px;
+        }
+      }
+      .n-pagination__number_active {
+        background: #3535f3;
+        color: white;
+      }
+      .n-pagination__dot_active {
+        background: #e8e8fc;
+        color: #3535f3;
+      }
+    }
+
+    .n-pagination__right {
+      display: flex;
+      flex: 1;
+      justify-content: flex-end;
+      align-items: center;
+
+      .n-pagination__select {
+        display: flex;
+        align-items: center;
+        border: 1px solid $ColorPrimaryGrey60;
+        border-radius: 12px;
+        // padding: 8px 12px;
+        .n-pagination__select__label {
+          font-weight: 400;
+          font-size: 12px;
+          line-height: 16px;
+          color: rgba(0, 0, 0, 0.65);
+          padding-left: 12px;
+        }
+        .n-pagination-page-size .n-select-wrapper .n-select {
+          border: 0;
+          background: #fff;
+          color: var(--TypographyPrimaryColor, rgba(0, 0, 0, 0.65));
+        }
+        &__label {
+          @media only screen and (max-width: $sm-min) {
+            display: none;
+          }
+        }
+
+        .n-pagination-page-size {
+          width: 7.2rem;
+          margin: 0 1.2rem;
+        }
+      }
+
+      .n-pagination__prev,
+      .n-pagination__next {
+        width: 2.4rem;
+        height: 2.4rem;
+        margin: 0 0.8rem;
+
+        svg {
+          width: 2.4rem;
+          height: 2.4rem;
+        }
+      }
+
+      .pagination-diabled {
+        opacity: 0.4;
+        cursor: not-allowed;
+        pointer-events: none;
+      }
     }
   }
-}
-
-.sb-pagination {
-  border: 0.1rem solid $LilyWhite;
-  padding: 0.8rem;
 }
