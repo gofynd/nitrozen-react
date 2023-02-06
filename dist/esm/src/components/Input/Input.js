@@ -159,9 +159,6 @@ const m = (r) => {
             { className: "n-search-icon" },
             t.createElement(u, { className: "search-icon" })
           ),
-        $ &&
-          "textarea" !== f &&
-          t.createElement(l, { prefix: P, onPrefixClick: A }),
         t.createElement(
           "div",
           {
@@ -169,6 +166,9 @@ const m = (r) => {
               r.state && "default" !== r.state ? `n-${V}-border` : ""
             }`,
           },
+          $ &&
+            "textarea" !== f &&
+            t.createElement(l, { prefix: P, onPrefixClick: A }),
           "textarea" !== f &&
             t.createElement(
               "input",
@@ -268,11 +268,11 @@ const m = (r) => {
                 { onInput: ne, value: M },
                 J
               )
-            )
-        ),
-        "textarea" !== f &&
-          N &&
-          t.createElement(i, { suffix: k, onSuffixClick: H })
+            ),
+          "textarea" !== f &&
+            N &&
+            t.createElement(i, { suffix: k, onSuffixClick: H })
+        )
       ),
       t.createElement(
         "div",

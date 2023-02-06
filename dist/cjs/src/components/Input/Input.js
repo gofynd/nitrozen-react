@@ -163,9 +163,6 @@ const c = (l) => {
             { className: "n-search-icon" },
             s.default.createElement(o.SvgSearch, { className: "search-icon" })
           ),
-        C &&
-          "textarea" !== c &&
-          s.default.createElement(n, { prefix: y, onPrefixClick: O }),
         s.default.createElement(
           "div",
           {
@@ -173,6 +170,9 @@ const c = (l) => {
               l.state && "default" !== l.state ? `n-${L}-border` : ""
             }`,
           },
+          C &&
+            "textarea" !== c &&
+            s.default.createElement(n, { prefix: y, onPrefixClick: O }),
           "textarea" !== c &&
             s.default.createElement(
               "input",
@@ -272,11 +272,11 @@ const c = (l) => {
                 { onInput: Z, value: R },
                 A
               )
-            )
-        ),
-        "textarea" !== c &&
-          E &&
-          s.default.createElement(a, { suffix: S, onSuffixClick: _ })
+            ),
+          "textarea" !== c &&
+            E &&
+            s.default.createElement(a, { suffix: S, onSuffixClick: _ })
+        )
       ),
       s.default.createElement(
         "div",

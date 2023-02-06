@@ -7,8 +7,8 @@ const t = (e) =>
   f.default.createElement(
     "span",
     {
-      className: `jds-input-suffix jds-remove-left-border jds-suffix-position ${
-        "string" == typeof e.suffix && "jds-suffix-padding"
+      className: `n-input-suffix n-remove-left-border n-suffix-position ${
+        "string" == typeof e.suffix && "n-suffix-padding"
       }`,
       onClick: e.onSuffixClick,
     },
