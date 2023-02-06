@@ -1,5 +1,5 @@
 {
-  "generatedAt": 1675410531966,
+  "generatedAt": 1675679578705,
   "builder": { "name": "@storybook/builder-webpack5" },
   "hasCustomBabel": false,
   "hasCustomWebpack": false,

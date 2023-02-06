@@ -1,15 +1,15 @@
 import f from "react";
-const s = (s) =>
+const i = (i) =>
   f.createElement(
     "span",
     {
-      className: `jds-input-suffix jds-remove-left-border jds-suffix-position ${
-        "string" == typeof s.suffix && "jds-suffix-padding"
+      className: `n-input-suffix n-remove-left-border n-suffix-position ${
+        "string" == typeof i.suffix && "n-suffix-padding"
       }`,
-      onClick: s.onSuffixClick,
+      onClick: i.onSuffixClick,
     },
-    s.suffix
+    i.suffix
   );
-s.defaultProps = { onSuffixClick: () => {} };
-export { s as default };
+i.defaultProps = { onSuffixClick: () => {} };
+export { i as default };
 //# sourceMappingURL=InputSuffix.js.map

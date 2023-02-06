@@ -1,31 +1,32 @@
 import { __rest as e } from "../../../node_modules/tslib/tslib.es6.js";
-import a, { useState as l, useEffect as s } from "react";
-import n from "../../utils/uuids.js";
+import a, { useState as l, useEffect as n } from "react";
+import s from "../../utils/uuids.js";
 import t from "../Validation/Validation.js";
 import "./Checkbox.scss.js";
 import c from "../../../node_modules/classnames/index.js";
-const o = (n) => {
+const i = (s) => {
   const {
-      disabled: o,
+      disabled: i,
       value: r,
-      name: i,
+      name: o,
       state: d,
-      stateMessage: u,
-      checkboxValue: m,
+      stateMessage: m,
+      checkboxValue: u,
       id: h,
       labelText: b,
       children: k,
       onChange: y,
-      checkArray: f,
-      ref: g,
-      className: x,
+      checkArray: x,
+      ref: f,
+      className: g,
       style: v,
       labelStyle: p,
       icon: A,
-      showIcon: C,
-      onIconClick: N,
-    } = n,
-    j = e(n, [
+      showIcon: I,
+      onIconClick: C,
+      isIndeterminate: N,
+    } = s,
+    j = e(s, [
       "disabled",
       "value",
       "name",
@@ -44,22 +45,23 @@ const o = (n) => {
       "icon",
       "showIcon",
       "onIconClick",
+      "isIndeterminate",
     ]),
-    I = Array.isArray(f) ? f : m,
-    [w, E] = l(I);
-  s(() => {
-    E(Array.isArray(f) ? f : m);
-  }, [m, f]);
-  const V = n.icon;
+    w = Array.isArray(x) ? x : u,
+    [E, V] = l(w);
+  n(() => {
+    V(Array.isArray(x) ? x : u);
+  }, [u, x]);
+  const M = s.icon;
   return a.createElement(
     "label",
     {
       htmlFor: h,
       className:
-        "n-checkbox-container" + (o ? " n-checkbox-container-disabled" : ""),
+        "n-checkbox-container" + (i ? " n-checkbox-container-disabled" : ""),
       style: null != p ? p : {},
     },
-    C && A && a.createElement(V, { className: "social-icon", onClick: N }),
+    I && A && a.createElement(M, { className: "social-icon", onClick: C }),
     a.createElement(
       "input",
       Object.assign(
@@ -69,23 +71,23 @@ const o = (n) => {
           type: "checkbox",
           onChange: (e) =>
             ((e) => {
-              if (Array.isArray(w))
-                if (null == w ? void 0 : w.includes(m)) {
-                  const e = w.filter((e) => e !== m);
-                  E([...e]), y([...e]);
-                } else E([...w, e.target.value]), y([...w, e.target.value]);
-              else E(!w), y(e.target.checked);
+              if (Array.isArray(E))
+                if (null == E ? void 0 : E.includes(u)) {
+                  const e = E.filter((e) => e !== u);
+                  V([...e]), y([...e]);
+                } else V([...E, e.target.value]), y([...E, e.target.value]);
+              else V(!E), y(e.target.checked);
             })(e),
-          value: m || r,
-          checked: Array.isArray(w)
-            ? null == w
+          value: u || r,
+          checked: Array.isArray(E)
+            ? null == E
               ? void 0
-              : w.includes(m)
-            : !!w,
-          disabled: o,
-          ref: null == n ? void 0 : n.ref,
-          name: n.name,
-          className: null != x ? x : "",
+              : E.includes(u)
+            : !!E,
+          disabled: i,
+          ref: null == s ? void 0 : s.ref,
+          name: s.name,
+          className: `n-id-checkbox ${null != g ? g : ""}`,
           style: null != v ? v : {},
         },
         j
@@ -94,29 +96,31 @@ const o = (n) => {
     b,
     k,
     a.createElement("span", {
+      "data-testid": `n-checkbox-${h}`,
       className: c({
         "n-checkbox": !0,
         "success-state": "success" == d,
         "warning-state": "warning" == d,
         "error-state": "error" == d,
+        "n-checkbox-indeterminate": s.isIndeterminate,
       }),
     }),
     a.createElement(t, {
       className: "n-checkbox-validation",
       validationState: d,
-      label: u,
+      label: m,
       isHidden: null == d,
     })
   );
 };
-o.defaultProps = {
+i.defaultProps = {
   disabled: !1,
   value: "",
   name: "",
   checkboxValue: null,
   state: null,
   stateMessage: "Your validation message",
-  id: `n-dialog-${n()}`,
+  id: `n-dialog-${s()}`,
   labelText: "",
   children: null,
   icon: null,
@@ -125,6 +129,7 @@ o.defaultProps = {
   onIconClick: () => {},
   checkArray: null,
   ref: null,
+  isIndeterminate: !1,
 };
-export { o as default };
+export { i as default };
 //# sourceMappingURL=Checkbox.js.map

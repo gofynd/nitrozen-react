@@ -1,6 +1,8 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import Input from "./Input";
+import * as SvgArray from "../../assets/svg-components";
+import { SvgIcSave } from "../../assets/svg-components";
 
 export default {
   title: "Components/Input/Textfields",
@@ -51,6 +53,16 @@ export default {
       control: "select",
       options: ["default", "error", "success", "warning"],
     },
+    suffix: {
+      description:
+        "An element to be placed on the left, ideally an icon. This is clickable",
+      options: SvgArray,
+    },
+    prefix: {
+      description:
+        "An element to be placed on the right, ideally an icon. This is clickable",
+      options: SvgArray,
+    },
   },
 } as ComponentMeta<typeof Input>;
 
@@ -69,6 +81,8 @@ Textfield.args = {
   value: "",
   helperText:
     "It must contain a minimum of 8 characters and include at least 1 small case letter, 1 capital letter, and 1 special character.",
+  suffix: <SvgIcSave />,
+  prefix: <SvgIcSave />,
 };
 
 export const Textarea = Template.bind({});

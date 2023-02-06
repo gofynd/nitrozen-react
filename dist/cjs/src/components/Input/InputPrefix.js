@@ -7,8 +7,8 @@ const i = (e) =>
   r.default.createElement(
     "span",
     {
-      className: `jds-input-prefix jds-remove-right-border jds-prefix-position ${
-        "string" == typeof e.prefix && "jds-prefix-padding"
+      className: `n-input-prefix n-remove-right-border n-prefix-position ${
+        "string" == typeof e.prefix && "n-prefix-padding"
       }`,
       onClick: e.onPrefixClick,
     },
