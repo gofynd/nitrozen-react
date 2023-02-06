@@ -132,7 +132,7 @@ const DateInput = (props: DateInputProps) => {
     <div className="n-date-wrapper">
       <div className={`n-input-label-container`}>
         {label && (
-          <label className="n-input-label">
+          <label className="n-input-label" data-testid={`n-date-label`}>
             <>
               {label} {required ? " *" : ""}
             </>
@@ -140,6 +140,7 @@ const DateInput = (props: DateInputProps) => {
         )}
       </div>
       <div
+        data-testid={`n-date-inputfield`}
         className={`n-date-inputfield ${
           dateError
             ? "n-date-error"
@@ -150,6 +151,7 @@ const DateInput = (props: DateInputProps) => {
       >
         <div className="n-date-left-group">
           <div
+            data-testid={`n-datepicker-icon`}
             className="n-icon-container"
             onClick={useDatePicker ? () => {} : () => {}}
           >
@@ -158,10 +160,9 @@ const DateInput = (props: DateInputProps) => {
           <div className="n-date-input-group">
             {Object.keys(date).map((dateKey: string, index) => (
               <>
-                {" "}
                 <input
                   key={`date-input-${index}`}
-                  data-testid={`date-input-${index}`}
+                  data-testid={`date-input-${index}-${id}`}
                   id={`date-input-${index}-${id}`}
                   className="n-date-single-field"
                   value={date[dateKey]}
@@ -181,6 +182,7 @@ const DateInput = (props: DateInputProps) => {
         </div>
         {date.mm || date.dd || date.yyyy ? (
           <div
+            data-testid={`n-date-close-icon`}
             className="n-input-close-btn n-icon-container"
             onClick={() => {
               handleCancelClick();
@@ -193,7 +195,7 @@ const DateInput = (props: DateInputProps) => {
           <></>
         )}
       </div>
-      <div className="n-input-underinfo">
+      <div className="n-input-underinfo" data-testid={`n-date-underinfo`}>
         {(dateError || validationState) && (
           <Validation
             validationState={dateError ? "error" : validationState}
@@ -203,7 +205,11 @@ const DateInput = (props: DateInputProps) => {
             className={validationClassName}
           />
         )}
-        {helperText && <span className="n-helper-text">{helperText}</span>}
+        {helperText && (
+          <span className="n-helper-text" data-testid={`n-date-helpertext`}>
+            {helperText}
+          </span>
+        )}
       </div>
     </div>
   );
