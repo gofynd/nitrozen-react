@@ -8,7 +8,7 @@ class i {
     if (((this.toasts = []), "undefined" != typeof window)) {
       const e = document.getElementsByTagName("body")[0],
         o = document.createElement("div");
-      (o.className = "toast-container-main " + t),
+      (o.className = `n-toast-container-main n-toast-${t}`),
         e.insertAdjacentElement("beforeend", o),
         (this.containerRef = o),
         (this.root = s(this.containerRef));

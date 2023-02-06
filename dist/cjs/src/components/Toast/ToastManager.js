@@ -8,13 +8,13 @@ function i(e) {
   return e && "object" == typeof e && "default" in e ? e : { default: e };
 }
 require("./Toast.scss.js");
-var r = i(e);
+var n = i(e);
 exports.ToastManager = class {
   constructor(e) {
     if (((this.toasts = []), "undefined" != typeof window)) {
       const s = document.getElementsByTagName("body")[0],
         o = document.createElement("div");
-      (o.className = "toast-container-main " + e),
+      (o.className = `n-toast-container-main n-toast-${e}`),
         s.insertAdjacentElement("beforeend", o),
         (this.containerRef = o),
         (this.root = t.createRoot(this.containerRef));
@@ -39,7 +39,7 @@ exports.ToastManager = class {
   }
   render() {
     const e = this.toasts.map((e) =>
-      r.default.createElement(o, Object.assign({ key: e.id }, e))
+      n.default.createElement(o, Object.assign({ key: e.id }, e))
     );
     "undefined" != typeof window && this.containerRef && this.root.render(e);
   }

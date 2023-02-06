@@ -1,59 +1,94 @@
-import e, { memo as t, useEffect as a } from "react";
-import { SvgUndo as s } from "../../assets/svg-components/Content/index.js";
+import t, { memo as e, useEffect as a } from "react";
 import "./Toast.scss.js";
-const n = (t) => {
+const s = (e) => {
   const {
-    destroy: n,
-    content: r,
+    destroy: s,
+    content: i = "Support text",
     title: o,
-    duration: i,
-    id: l,
-    shouldClose: c,
-    toastHeaderAlign: m,
-    toastWidth: d = "25rem",
-    type: p,
-    position: u,
-  } = t;
+    duration: r,
+    id: n,
+    shouldClose: l,
+    leftIconPosition: c,
+    rightIconPosition: m,
+    toastWidth: d = "38.4rem",
+    leftImage: g,
+    rightImage: p,
+    position: h,
+  } = e;
   return (
     a(() => {
-      if (!i) return;
-      const e = setTimeout(() => {
-        n();
-      }, i);
-      return () => clearTimeout(e);
-    }, [n, i]),
-    e.createElement(
+      if (!r) return;
+      const t = setTimeout(() => {
+        s();
+      }, r);
+      return () => clearTimeout(t);
+    }, [s, r]),
+    t.createElement(
       "div",
-      { style: { width: d }, id: l, className: `toast-wrapper ${p} ${u}` },
-      e.createElement(
+      {
+        style: { width: d },
+        id: n,
+        className: `n-toast-wrapper n-toast-wrapper-${h}`,
+      },
+      t.createElement(
         "div",
-        { className: `toast-header ${c ? "space-between" : m}` },
-        e.createElement("div", null, o),
-        c &&
-          e.createElement(
+        { className: "n-toast-left-container" },
+        t.createElement(
+          "div",
+          {
+            className: `n-toast-left-image n-toast-${c}`,
+            "data-testid": "left-image",
+          },
+          g
+        ),
+        t.createElement(
+          "div",
+          { className: "n-toast-title-container" },
+          t.createElement(
             "div",
-            { className: "undo-container" },
-            e.createElement("span", { className: "vertical-line" }),
-            e.createElement(
-              "button",
-              { className: "cross-btn", onClick: n },
-              e.createElement(s, {
-                style: { fontSize: "20px", marginRight: "5px" },
-              }),
-              " UNDO"
+            {
+              className: "n-toast-header " + (l ? "n-toast-space-between" : ""),
+            },
+            o
+          ),
+          i &&
+            t.createElement(
+              "div",
+              {
+                className: "n-toast-body " + (l ? "n-toast-space-between" : ""),
+              },
+              i
             )
-          )
+        )
       ),
-      r && e.createElement("div", { className: "toast-body" }, r)
+      l &&
+        t.createElement(
+          "div",
+          {
+            className: `n-toast-right-image n-toast-${m}`,
+            "data-testid": "right-image",
+            onClick: s,
+          },
+          p
+        )
     )
   );
 };
-n.defaultProps = {
+s.defaultProps = {
   title: "Title",
-  toastHeaderAlign: "center",
-  toastWidth: "25rem",
+  toastWidth: "38.4rem",
+  position: "top-center",
+  leftIconPosition: "top-align",
+  rightIconPosition: "top-align",
+  shouldClose: !1,
+  leftImage: t.createElement("img", {
+    src: require("../../assets/left-placeholder.svg"),
+  }),
+  rightImage: t.createElement("img", {
+    src: require("../../assets/right-placeholder.svg"),
+  }),
   duration: 2500,
 };
-var r = t(n, (e, t) => e.id === t.id);
-export { r as default };
+var i = e(s, (t, e) => t.id === e.id);
+export { i as default };
 //# sourceMappingURL=Toast.js.map

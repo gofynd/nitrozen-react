@@ -13,10 +13,6 @@ export default {
     content: { control: "text" },
     destroy: { action: "clicked" },
     duration: { control: "number" },
-    type: {
-      control: "select",
-      options: ["success", "danger", "info", "warning"],
-    },
     position: {
       control: "select",
       options: [
@@ -27,10 +23,15 @@ export default {
         "bottom-left",
       ],
     },
-    toastHeaderAlign: {
+    leftIconPosition: {
       control: "select",
-      options: ["left", "right", "center"],
+      options: ["top-align", "center-align"],
     },
+    rightIconPosition: {
+      control: "select",
+      options: ["top-align", "center-align"],
+    },
+
     toastWidth: { control: "text" },
   },
 } as ComponentMeta<typeof Toast>;
@@ -51,14 +52,27 @@ export const ShowToast: ComponentStory<typeof Toast> = (args) => {
       <Button
         onClick={() =>
           toast.show({
-            destroy: () => console.log("Danger Toast destroyed"),
-            title: "Dangerous Toast",
-            type: "danger",
+            ...args,
+            destroy: () => console.log("Toast destroyed"),
+            title: "Toast with close icon",
             position: args.position,
+            rightImage: (
+              <img
+                style={{ height: "1em", width: "1em" }}
+                src={require("../../assets/cross-filled.svg")}
+              />
+            ),
+            leftImage: (
+              <img
+                style={{ height: "2em", width: "2em" }}
+                src={require("../../assets/left-placeholder.svg")}
+              ></img>
+            ),
+            shouldClose: true,
           })
         }
       >
-        Show Danger Toast
+        Show with Toast close
       </Button>
     </div>
   );
@@ -66,48 +80,13 @@ export const ShowToast: ComponentStory<typeof Toast> = (args) => {
 
 ShowToast.args = {
   destroy: () => console.log("Toast destroyed"),
-  title: "Title 1",
-  type: "success",
+  title: "HEADING TEXT",
   position: "top-center",
+  leftIconPosition: "top-align",
+  rightIconPosition: "top-align",
   shouldClose: false,
-};
-
-export const ToastWithUndo: ComponentStory<typeof Toast> = (args) => {
-  const toast = new ToastManager(args.position);
-  return (
-    <div className="main-div space-between">
-      <Button
-        onClick={() =>
-          toast.show({
-            ...args,
-          })
-        }
-      >
-        Show Success Toast
-      </Button>
-      <Button
-        onClick={() =>
-          toast.show({
-            destroy: () => console.log("Danger Toast destroyed"),
-            title: "Dangerous Toast",
-            type: "danger",
-            position: args.position,
-            shouldClose: true,
-          })
-        }
-      >
-        Show Danger Toast
-      </Button>
-    </div>
-  );
-};
-
-ToastWithUndo.args = {
-  destroy: () => console.log("Toast destroyed"),
-  title: "Title 1",
-  type: "success",
-  position: "top-center",
-  shouldClose: true,
+  leftImage: <img src={require("../../assets/left-placeholder.svg")} />,
+  rightImage: <img src={require("../../assets/right-placeholder.svg")} />,
 };
 
 ShowToast.parameters = {
