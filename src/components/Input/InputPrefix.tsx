@@ -10,8 +10,8 @@ export interface InputPrefixProps {
 const InputPrefix = (props: InputPrefixProps) => {
   return (
     <span
-      className={`jds-input-prefix jds-remove-right-border jds-prefix-position ${
-        typeof props.prefix === "string" && "jds-prefix-padding"
+      className={`n-input-prefix n-remove-right-border n-prefix-position ${
+        typeof props.prefix === "string" && "n-prefix-padding"
       }`}
       onClick={props.onPrefixClick}
     >

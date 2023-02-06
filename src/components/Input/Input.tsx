@@ -221,16 +221,16 @@ const Input = (props: InputProps) => {
             <SvgSearch className="search-icon" />
           </span>
         )}
-        {/* <!-- Prefix --> */}
-        {showPrefix && type !== "textarea" && (
-          <InputPrefix prefix={prefix} onPrefixClick={onPrefixClick} />
-        )}
         {/* <!-- Input --> */}
         <div
           className={`n-input-container ${borderFocus} ${focusBorder} ${
             props.state && props.state !== "default" ? `n-${state}-border` : ""
           }`}
         >
+          {/* <!-- Prefix --> */}
+          {showPrefix && type !== "textarea" && (
+            <InputPrefix prefix={prefix} onPrefixClick={onPrefixClick} />
+          )}
           {type !== "textarea" && (
             <input
               ref={inputRef}
@@ -282,11 +282,11 @@ const Input = (props: InputProps) => {
               {...restProps}
             ></textarea>
           )}
+          {/* <!-- Suffix --> */}
+          {type !== "textarea" && showSuffix && (
+            <InputSuffix suffix={suffix} onSuffixClick={onSuffixClick} />
+          )}
         </div>
-        {/* <!-- Suffix --> */}
-        {type !== "textarea" && showSuffix && (
-          <InputSuffix suffix={suffix} onSuffixClick={onSuffixClick} />
-        )}
       </div>
       <div className="n-input-underinfo">
         {props.state !== "default" && (

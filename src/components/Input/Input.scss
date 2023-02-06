@@ -35,6 +35,7 @@
   padding: 1.2rem;
   border: 0.2rem solid $ColorSparkleGrey60;
   border-radius: 1.6rem;
+  display: flex;
 
   &:hover {
     border: 0.2rem solid $ColorPrimary60;
@@ -154,8 +155,10 @@ input[type="search"]::-webkit-search-cancel-button {
 .n-search-icon {
   z-index: $ZIndex1;
   position: absolute;
-  left: 0;
-  top: 0;
+  // left: 0;
+  // top: 0;
+  left: 1rem;
+  top: 25%;
 }
 
 .n-input-label-div {
@@ -165,22 +168,27 @@ input[type="search"]::-webkit-search-cancel-button {
 
 .n-input-prefix,
 .n-input-suffix {
-  height: 2.5rem;
-  width: 2.5rem;
+  height: 100%;
+  width: 2.2rem;
   margin: auto;
   box-sizing: border-box;
   border-radius: 0.3rem;
   background: none;
   position: absolute;
+
+  svg {
+    height: 100%;
+    width: 100%;
+  }
 }
 
 .n-prefix-position {
-  top: 0px;
+  top: 0;
 }
 
 .n-suffix-position {
-  top: 0px;
-  right: 0px;
+  top: 0;
+  right: 1rem;
 }
 
 .n-remove-left-border {
