@@ -15,6 +15,7 @@ export interface TableProps {
   headerBackground?: string;
   customSortIcon?: React.ReactNode;
   checkable?: Boolean;
+  onRowClick?: Function;
   allChecked?: Boolean;
   getCheckedItems?: Function;
   allCheckClicked?: Function;
@@ -62,6 +63,12 @@ const Table: React.FC<TableProps> = (props) => {
     props.getCheckedItems?.(tempCheckedArr);
   };
 
+  const handleRowClick = (index: number) => {
+    return () => {
+      props.onRowClick?.(index);
+    };
+  };
+
   return (
     <div className="n-table" data-testid={`table-${id}`}>
       <table className="n-main-table">
@@ -73,9 +80,9 @@ const Table: React.FC<TableProps> = (props) => {
                   <Checkbox
                     id="header-checkbox"
                     value={props.allChecked}
-                    onChange={(status: boolean) =>
-                      props.allCheckClicked?.(status)
-                    }
+                    onChange={(status: boolean) => {
+                      props.allCheckClicked?.(status);
+                    }}
                     checkboxValue={props.allChecked}
                   />
                 </div>
@@ -141,8 +148,13 @@ const Table: React.FC<TableProps> = (props) => {
                   !props.footer ? "n-table-row-item-nofooter" : ""
                 } ${props.rowStyle == "zebra" ? "n-table-row-zebra" : ""} ${
                   props.checkable ? "n-table-row-item-checkbox" : ""
-                }`}
+                } ${props.onRowClick ? "n-table-row-item-clickable" : ""}`}
                 key={`row-${rowIndex}`}
+                {...(props.onRowClick
+                  ? {
+                      onClick: handleRowClick(rowIndex),
+                    }
+                  : {})}
               >
                 {props.checkable ? (
                   <td className="n-row-data">
@@ -161,10 +173,6 @@ const Table: React.FC<TableProps> = (props) => {
                   <></>
                 )}
                 {tableHeader.map((headerElement, headerIndex) => {
-                  console.log(
-                    rowItem[headerElement.name],
-                    "rowItem[headerElement.name]}"
-                  );
                   return (
                     <td
                       className="n-row-data"
