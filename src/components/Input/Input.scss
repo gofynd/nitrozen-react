@@ -154,8 +154,10 @@ input[type="search"]::-webkit-search-cancel-button {
 .n-search-icon {
   z-index: $ZIndex1;
   position: absolute;
-  left: 0;
-  top: 0;
+  // left: 0;
+  // top: 0;
+  left: 1rem;
+  top: 25%;
 }
 
 .n-input-label-div {

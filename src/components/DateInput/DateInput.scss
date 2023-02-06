@@ -1,0 +1,100 @@
+@import "./../../base/base.scss";
+
+.n-date {
+  &-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &-inputfield {
+    width: 100%;
+    border: 1px solid $ColorPrimaryGrey60;
+    border-radius: 16px;
+    height: 4.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    &:hover {
+      border: 1px solid $ColorPrimary60;
+    }
+  }
+
+  &-left-group {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding-left: 1.2rem;
+    flex-direction: row;
+  }
+
+  &-input-group {
+    width: 70%;
+    display: flex;
+    gap: 0.2rem;
+    padding-left: 1.2rem;
+    align-items: center;
+  }
+
+  &-single-field {
+    width: 12%;
+    border: 0px;
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
+    font-size: 1.6rem;
+    &:last-of-type {
+      width: 20%;
+    }
+  }
+  &-divider {
+    font-size: 1.6rem;
+    &:last-child {
+      display: none;
+    }
+  }
+}
+
+.n-icon-container {
+  height: 2.4rem;
+  width: 2.4rem;
+  cursor: pointer;
+
+  svg {
+    height: 100%;
+    width: 100%;
+  }
+}
+
+.n-input-close-btn {
+  height: 100%;
+  padding-right: 1.2rem;
+  display: flex;
+  align-items: center;
+  // width: 10%;
+}
+
+.n-date-error {
+  border-color: $ColorFeedbackError50 !important;
+}
+
+.n-error-field {
+  border-color: $ColorFeedbackError50 !important;
+}
+
+.n-warning-field {
+  border-color: $ColorFeedbackWarning50 !important;
+}
+
+.n-success-field {
+  border-color: $ColorFeedbackSuccess50 !important;
+}
+
+.n-date-single-field:focus input > .n-date-inputfield {
+  border-color: $ColorPrimary60;
+  background-color: red;
+}
+
+.n-date-single-field::placeholder {
+  font-size: 1.6rem;
+  padding: 0;
+}
