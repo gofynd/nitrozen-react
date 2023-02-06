@@ -1,115 +1,138 @@
 @import "./../../base/base.scss";
 
-.toast-container-main {
+// 16px=1em
+
+.n-toast-container-main {
   position: fixed;
   z-index: $ZIndex3;
   display: flex;
   flex-direction: column;
   font-size: $BaseFontSize + 6;
 
-  .toast-wrapper {
-    background-color: $BlackColor;
-    border-radius: 0.4rem;
+  .n-toast-wrapper {
+    background: $ColorSecondaryGrey80;
+    border-radius: 1.4em;
     color: $WhiteColor;
     width: 25rem;
     margin-bottom: 1rem;
+    transition: transform 0.6s ease-in-out;
     min-height: 2.5rem;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     padding: 1.2rem;
     font-family: $PrimaryFont;
-
-    .toast-header {
+    .n-toast-left-container {
       display: flex;
-      flex-direction: row;
+      width: 90%;
+      gap: 0.5em;
+      .n-toast-title-container {
+        display: flex;
+        flex-direction: column;
+        gap: 0.3em;
+        width: 100%;
+      }
+      .n-toast-header {
+        display: inline-block;
+        text-overflow: ellipsis;
+        width: calc(90%);
+        color: $WhiteColor;
+        font-size: 1em;
+        font-weight: 700;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        max-width: 30em;
+        user-select: none;
+      }
+      .n-toast-left-image {
+        height: 100%;
+
+        object-fit: contain;
+        border-radius: 0.6em;
+
+        img {
+          height: 2em;
+          width: 2em;
+          border-radius: 0.4em;
+        }
+      }
     }
-    .toast-body {
-      font-size: 1.4rem;
+
+    .n-toast-right-image {
+      object-fit: contain;
+      border-radius: 0.6em;
+
+      img {
+        height: 2em;
+        width: 2em;
+        border-radius: 0.4em;
+      }
     }
-    .center {
+    .n-toast-center-align {
+      display: flex;
       justify-content: center;
       align-items: center;
     }
-    .left {
-      justify-content: flex-start;
-      align-items: center;
+    .n-toast-body {
+      display: flex;
+      width: 90%;
+      word-break: break-word;
+      flex-direction: row;
+      color: $WhiteColor;
+      font-size: 0.8em;
     }
-    .right {
-      justify-content: flex-end;
-      align-items: center;
-    }
-    .space-between {
+    .n-toast-space-between {
       justify-content: space-between;
       align-items: center;
     }
   }
-  .vertical-line {
-    height: 1.2rem;
-    width: 0.1rem;
-    background-color: $GreyColor;
+  .n-toast-wrapper-top-center {
+    animation: toast-in-center 0.7s;
   }
-  .cross-btn {
-    border: none;
-    // border-left: 1px solid $GreyColor;
-    border-top-left-radius: 0rem;
-    border-bottom-left-radius: 0rem;
-    background: none;
-    color: $WhiteColor;
-    font-weight: 700;
-    outline: none;
-    cursor: pointer;
-    padding-left: 1.6rem;
-    display: flex;
-    align-items: center;
+  .n-toast-wrapper-top-right {
+    animation: toast-in-right 0.7s;
   }
-
-  .success {
-    background-color: $SeaGreen;
+  .n-toast-wrapper-bottom-right {
+    animation: toast-in-right 0.7s;
   }
-
-  .danger {
-    background-color: $Flamingo;
+  .n-toast-wrapper-bottom-left {
+    animation: toast-in-left 0.7s;
   }
-
-  .info {
-    background-color: $InfoColor;
-  }
-
-  .warning {
-    background-color: $WarningColor;
+  .n-toast-wrapper-top-left {
+    animation: toast-in-left 0.7s;
   }
 }
 
-.top-right {
+.n-toast-top-right {
   top: 5rem;
   right: 5rem;
   transition: transform 0.6s ease-in-out;
   animation: toast-in-right 0.7s;
 }
 
-.bottom-right {
+.n-toast-bottom-right {
   bottom: 5rem;
   right: 5rem;
   transition: transform 0.6s ease-in-out;
   animation: toast-in-right 0.7s;
 }
 
-.top-center {
+.n-toast-top-center {
   top: 10%;
-  left: 35%;
-  transition: transform 0.6s ease-in-out;
-  animation: toast-in-center 0.7s;
+  left: 50%;
+  transform: translateX(-50%);
+  // transition: transform 0.6s ease-in-out;
+  // animation: toast-in-center 0.7s;
 }
 
-.top-left {
+.n-toast-top-left {
   top: 5rem;
   left: 5rem;
   transition: transform 0.6s ease-in;
   animation: toast-in-left 0.7s;
 }
 
-.bottom-left {
+.n-toast-bottom-left {
   bottom: 5rem;
   left: 5rem;
   transition: transform 0.6s ease-in;
@@ -141,9 +164,4 @@
   to {
     transform: translateY(0);
   }
-}
-
-.undo-container {
-  display: flex;
-  align-items: center;
 }
