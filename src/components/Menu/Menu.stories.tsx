@@ -146,7 +146,7 @@ export const PrimaryMenu = (args: MenuProps) => (
             disabled={item.disabled}
             divider={item.divider}
             heading={item.heading}
-            selected={item.selected}
+            selected={index === args.selectedIndex}
             linkConfig={item.linkConfig}
             index={index}
             key={NitrozenId()}
@@ -164,7 +164,7 @@ export const PrimaryMenu = (args: MenuProps) => (
             disabled={item.disabled}
             divider={item.divider}
             heading={item.heading}
-            selected={item.selected}
+            selected={index == args.selectedIndex}
             linkConfig={item.linkConfig}
             index={index}
             key={NitrozenId()}
