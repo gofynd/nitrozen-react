@@ -41,7 +41,9 @@ export default {
 
 const Template: ComponentStory<typeof DateInput> = (args: any) => (
   <div className="main-div space-between">
-    <DateInput {...args} />
+    <div className="date-input-wrapper">
+      <DateInput {...args} />
+    </div>
   </div>
 );
 
@@ -52,4 +54,43 @@ DateInputPlayground.args = {
   required: true,
   useDatePicker: false,
   helperText: "Enter your birth date",
+  id: "customfynd",
+  getDateValue: () => {},
+};
+
+export const DateValidationSample = (args: DateInputProps) => {
+  const [date, setDate] = useState("");
+  const [error, setError] = useState("");
+
+  const dateValidator = (val: string) => {
+    let splitDate = val.split("/");
+    let currentYear = new Date().getUTCFullYear();
+    if (parseInt(splitDate[2]) > currentYear) {
+      setError("Your birthday cannot be greater than today");
+    } else {
+      setError("");
+    }
+  };
+
+  return (
+    <div className="main-div space-between">
+      <div className="date-input-wrapper">
+        <DateInput
+          label="Birthdate"
+          required={true}
+          helperText={"Enter your birth date"}
+          dateValue={date}
+          getDateValue={(val: any) => {
+            setDate(val);
+            dateValidator(val);
+          }}
+          validationState={error ? "error" : ""}
+          validationText={error}
+          id={"birth-field"}
+        />
+      </div>
+      <br />
+      <p>Date: {date}</p>
+    </div>
+  );
 };

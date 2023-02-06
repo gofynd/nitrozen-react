@@ -9,36 +9,34 @@ import {
 import "./DateInput.scss";
 
 export interface DateInputProps {
+  id: string;
   label: string;
   required?: Boolean;
-  tooltipText?: string;
-  tooltipIcon?: React.ReactNode;
   useDatePicker?: Boolean;
   dateValue?: string; // mm/dd/yyyy format
   helperText?: string;
   validationState?: string;
   validationText?: string;
-  dateValidation: Function;
   validationStyle?: React.CSSProperties;
   validationClassName?: string;
   getDateValue: Function;
+  closeClicked?: Function;
 }
 
 const DateInput = (props: DateInputProps) => {
   const {
     label,
     required,
-    tooltipText,
-    tooltipIcon,
     useDatePicker,
     dateValue,
     helperText,
     validationState,
     validationText,
-    dateValidation,
     validationClassName,
     validationStyle,
     getDateValue,
+    closeClicked,
+    id,
   } = props;
   const [date, setDate] = useState<any>({ mm: "", dd: "", yyyy: "" });
   const [dateError, setDateError] = useState("");
@@ -66,9 +64,10 @@ const DateInput = (props: DateInputProps) => {
     // if the given input has a length on 2 charcters and its not the last input field
     if (event.target.value.length == 2 && index != 2) {
       // get the next document and focus
-      let nextInput = document.getElementById(`date-input-${index + 1}`);
+      let nextInput = document.getElementById(`date-input-${index + 1}-${id}`);
       nextInput?.focus();
     }
+
     if (index == 2 && event.target.value.length > 4) {
       return;
     }
@@ -79,13 +78,7 @@ const DateInput = (props: DateInputProps) => {
     if (stateDateObj.mm && stateDateObj.dd && stateDateObj.yyyy) {
       defaultErrorValidation(stateDateObj);
     }
-    // if local validation is successfull and there are no errors then execute the props function if any
-    if (!dateError) {
-      dateValidation?.(
-        `${stateDateObj.mm}/${stateDateObj.dd}/${stateDateObj.yyyy}`
-      );
-    }
-    handleDateReturn();
+    getDateValue(`${stateDateObj.mm}/${stateDateObj.dd}/${stateDateObj.yyyy}`);
   };
 
   // Function to handle cancel button click
@@ -102,15 +95,15 @@ const DateInput = (props: DateInputProps) => {
 
   // a default date validation that peforms basic checks
   const defaultErrorValidation = (stateDateObj: any) => {
-    if (stateDateObj.mm == 0 || stateDateObj.mm > 12) {
+    if (stateDateObj.mm && (stateDateObj.mm == 0 || stateDateObj.mm > 12)) {
       setDateError("Entered month is not valid");
       return;
     }
-    if (stateDateObj.dd == 0 || stateDateObj.dd > 31) {
+    if (stateDateObj.dd && (stateDateObj.dd == 0 || stateDateObj.dd > 31)) {
       setDateError("Entered day is not valid");
       return;
     }
-    if (stateDateObj.yyyy == 0) {
+    if (stateDateObj.yyyy && stateDateObj.yyyy.length < 4) {
       setDateError("Entered year is not valid");
       return;
     }
@@ -121,9 +114,12 @@ const DateInput = (props: DateInputProps) => {
   function handleBackSpace(currentIndex: number, event: any) {
     // if there is a field before the current index then delete and focus on that index
     if (currentIndex >= 0 && !event.target.value) {
-      let prevField = document.getElementById(`date-input-${currentIndex - 1}`);
+      let prevField = document.getElementById(
+        `date-input-${currentIndex - 1}-${id}`
+      );
       prevField?.focus();
     }
+    defaultErrorValidation(date);
   }
 
   //function to handle backspace event
@@ -132,10 +128,6 @@ const DateInput = (props: DateInputProps) => {
       handleBackSpace(currentIndex, event);
     }
   }
-  function handleDateReturn() {
-    let dateVal = `${date.mm}/${date.dd}/${date.yyyy}`;
-    getDateValue(dateVal);
-  }
   return (
     <div className="n-date-wrapper">
       <div className={`n-input-label-container`}>
@@ -143,19 +135,6 @@ const DateInput = (props: DateInputProps) => {
           <label className="n-input-label">
             <>
               {label} {required ? " *" : ""}
-              {tooltipText && (
-                <span className="n-input-tooltip">
-                  <Tooltip
-                    tooltipContent={tooltipText}
-                    icon={
-                      tooltipIcon || (
-                        <SvgHelpOutline style={{ fontSize: "14px" }} />
-                      )
-                    }
-                    position="top"
-                  />
-                </span>
-              )}
             </>
           </label>
         )}
@@ -183,32 +162,41 @@ const DateInput = (props: DateInputProps) => {
                 <input
                   key={`date-input-${index}`}
                   data-testid={`date-input-${index}`}
-                  id={`date-input-${index}`}
+                  id={`date-input-${index}-${id}`}
                   className="n-date-single-field"
                   value={date[dateKey]}
                   type="text"
                   onChange={(event) => handleDateInput(event, dateKey, index)}
                   placeholder={dateKey.toUpperCase()}
                   onKeyDown={(e) => handleKeyDown(e, index)}
-                  onBlur={handleDateReturn}
+                  onBlur={() =>
+                    getDateValue(`${date.mm}/${date.dd}/${date.yyyy}`)
+                  }
                 />
                 {index < 3 ? <span className="n-date-divider">/</span> : <></>}
               </>
             ))}
           </div>
         </div>
-        <div
-          className="n-input-close-btn n-icon-container"
-          onClick={handleCancelClick}
-        >
-          <SvgIcCloseRemove />
-        </div>
+        {date.mm || date.dd || date.yyyy ? (
+          <div
+            className="n-input-close-btn n-icon-container"
+            onClick={() => {
+              handleCancelClick();
+              closeClicked?.();
+            }}
+          >
+            <SvgIcCloseRemove />
+          </div>
+        ) : (
+          <></>
+        )}
       </div>
       <div className="n-input-underinfo">
         {(dateError || validationState) && (
           <Validation
             validationState={dateError ? "error" : validationState}
-            label={validationText || dateError}
+            label={validationText ? validationText : dateError}
             isHidden={false}
             style={validationStyle}
             className={validationClassName}
