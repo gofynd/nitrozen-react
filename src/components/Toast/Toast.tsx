@@ -43,20 +43,32 @@ const Toast: React.FC<ToastProps> = (props) => {
   }, [destroy, duration]);
 
   return (
-    <div style={{ width: toastWidth }} id={id} className={`toast-wrapper`}>
-      <div className="toast-left-container">
+    <div
+      style={{ width: toastWidth }}
+      id={id}
+      className={`n-toast-wrapper n-toast-wrapper-${position}`}
+    >
+      <div className="n-toast-left-container">
         <div
-          className={`toast-left-image ${leftIconPosition}`}
+          className={`n-toast-left-image n-toast-${leftIconPosition}`}
           data-testid="left-image"
         >
           {leftImage}
         </div>
-        <div className={`toast-title-container`}>
-          <div className={`toast-header ${shouldClose ? "space-between" : ""}`}>
+        <div className={`n-toast-title-container`}>
+          <div
+            className={`n-toast-header ${
+              shouldClose ? "n-toast-space-between" : ""
+            }`}
+          >
             {title}
           </div>
           {content && (
-            <div className={`toast-body ${shouldClose ? "space-between" : ""}`}>
+            <div
+              className={`n-toast-body ${
+                shouldClose ? "n-toast-space-between" : ""
+              }`}
+            >
               {content}
             </div>
           )}
@@ -64,7 +76,7 @@ const Toast: React.FC<ToastProps> = (props) => {
       </div>
       {shouldClose && (
         <div
-          className={`toast-right-image ${rightIconPosition}`}
+          className={`n-toast-right-image n-toast-${rightIconPosition}`}
           data-testid="right-image"
           onClick={destroy}
         >

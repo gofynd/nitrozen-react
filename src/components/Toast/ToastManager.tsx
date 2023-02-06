@@ -26,7 +26,8 @@ export class ToastManager {
     if (typeof window !== "undefined") {
       const body = document.getElementsByTagName("body")[0];
       const toastContainer = document.createElement("div");
-      toastContainer.className = "toast-container-main " + position;
+      toastContainer.className =
+        "n-toast-container-main " + `n-toast-${position}`;
       body.insertAdjacentElement("beforeend", toastContainer);
       this.containerRef = toastContainer;
       this.root = createRoot(this.containerRef);
