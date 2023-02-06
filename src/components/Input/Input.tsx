@@ -4,9 +4,9 @@ import InputPrefix from "./InputPrefix";
 import InputSuffix from "./InputSuffix";
 import NId from "../../utils/uuids";
 import { SvgSearch } from "../../assets/svg-components/Action";
-import errorSvg from "../../assets/error-badge.svg";
-import warningSvg from "../../assets/warning-badge.svg";
-import correctSvg from "../../assets/tick-green-badge.svg";
+import Tooltip from "../Tooltip";
+import { SvgHelpOutline } from "../../assets/svg-components";
+import Validation from "../Validation";
 export interface InputProps {
   autoComplete?: string;
   type: string;
@@ -45,6 +45,9 @@ export interface InputProps {
   onPrefixClick?: React.MouseEventHandler<
     HTMLTextAreaElement | HTMLInputElement
   >;
+  tooltipText?: string;
+  showTooltip?: boolean;
+  tooltipIcon?: React.ReactNode;
 }
 
 const Input = (props: InputProps) => {
@@ -80,6 +83,9 @@ const Input = (props: InputProps) => {
     stateText,
     onPrefixClick,
     onSuffixClick,
+    tooltipText,
+    showTooltip,
+    tooltipIcon,
     ...restProps
   } = props;
 
@@ -87,6 +93,7 @@ const Input = (props: InputProps) => {
   const inputRef = useRef<HTMLInputElement | HTMLTextAreaElement>(null);
   const [labelFocus, setlabelFocus] = useState("");
   const [borderFocus, setBorderFocus] = useState("");
+  const [focusBorder, setFocusBorder] = useState("");
   useEffect(() => {
     function autoFocus() {
       if (props.autofocus) {
@@ -160,136 +167,138 @@ const Input = (props: InputProps) => {
       setlabelFocus("");
       setBorderFocus("");
     }
+    setFocusBorder("");
     onBlur?.(event);
   }
+
   function focusHandler() {
     setlabelFocus(
       `n-focused-label${showPrefix || showSearchIcon ? "-prefixed" : ""}`
     );
     setBorderFocus("n-border-focused");
   }
-  function handleOnFocus(event: FocusEvent<HTMLInputElement>) {
-    focusHandler();
-    // set the place holder only if the value exists in props
-    // placeholder && setPlaceHolderText(value ? "" : placeholder);
-    onFocus?.(event);
-  }
-
-  function generateInputStateMessage(text: string | undefined) {
-    let className;
-    let icon;
-    switch (state) {
-      case "error":
-        className = "n-field-error";
-        icon = errorSvg;
-        break;
-      case "success":
-        className = "n-field-success";
-        icon = correctSvg;
-        break;
-      case "warning":
-        className = "n-field-warning";
-        icon = warningSvg;
-        break;
-      default:
-        break;
-    }
-    let markup = (
-      <div className={`n-state-container ${className}`}>
-        <div className="n-svg-container">
-          {" "}
-          <img src={icon} alt={`${state} badge`} />
-        </div>
-        {text}
-      </div>
-    );
-    return markup;
-  }
-  function getBorderState() {
-    let borderClass = "";
-    if (state) {
-      borderClass = `n-${state}-border`;
-    }
-    return borderClass;
-  }
 
   return (
-    <>
-      <div className="n-form-input">
+    <div className={`n-form-input ${disabled && "n-input-group-disabled"}`}>
+      <div
+        className={`n-input-label-container ${
+          showPrefix || showSearchIcon ? "n-input-label-prefixed" : ""
+        } ${labelFocus}`}
+      >
+        {label && (
+          <label className="n-input-label">
+            <>
+              {label} {required ? " *" : ""}
+              {showTooltip && (
+                <span className="n-input-tooltip">
+                  {tooltipText && (
+                    <Tooltip
+                      tooltipContent={tooltipText}
+                      icon={
+                        tooltipIcon || (
+                          <SvgHelpOutline style={{ fontSize: "14px" }} />
+                        )
+                      }
+                      position="top"
+                    />
+                  )}
+                </span>
+              )}
+            </>
+          </label>
+        )}
+        {maxLength && typeof value == "string" && type != "number" && (
+          <label className="n-input-label n-input-maxLength">
+            <>
+              {value.length}/{maxLength}
+            </>
+          </label>
+        )}
+      </div>
+      <div className={`n-input-grp`}>
+        {showSearchIcon && (
+          <span className="n-search-icon">
+            <SvgSearch className="search-icon" />
+          </span>
+        )}
+        {/* <!-- Input --> */}
         <div
-          className={`n-input-label-container ${
-            showPrefix || showSearchIcon ? "n-input-label-prefixed" : ""
-          } ${labelFocus}`}
+          className={`n-input-container ${borderFocus} ${focusBorder} ${
+            props.state && props.state !== "default" ? `n-${state}-border` : ""
+          }`}
         >
-          {label && (
-            <label className="n-input-label">
-              <>
-                {label} {required ? " *" : ""}
-              </>
-            </label>
-          )}
-        </div>
-        <div className="n-input-grp">
-          {showSearchIcon && (
-            <span className="n-search-icon">
-              <SvgSearch className="search-icon" />
-            </span>
-          )}
           {/* <!-- Prefix --> */}
           {showPrefix && type !== "textarea" && (
             <InputPrefix prefix={prefix} onPrefixClick={onPrefixClick} />
           )}
-          {/* <!-- Input --> */}
-          <div
-            className={`n-input-container ${borderFocus} ${getBorderState()}`}
-          >
-            {type !== "textarea" && (
-              <input
-                ref={inputRef}
-                className={`n-input ${generateClassesForInput()}`}
-                onKeyUp={onKeyUp}
-                onChange={onChange}
-                onBlur={handleOnBlur}
-                onFocus={handleOnFocus}
-                onClick={onClick}
-                onKeyPress={onKeyPress}
-                value={value}
-                {...generateAttributesForInput()}
-                onInput={onInputChange}
-                {...restProps}
-              />
-            )}
-            {/* <!-- Textarea --> */}
-            {type === "textarea" && (
-              <textarea
-                ref={inputRef}
-                onKeyUp={onKeyUp}
-                onChange={onChange}
-                onBlur={onBlur}
-                onFocus={onFocus}
-                onClick={onClick}
-                onKeyPress={onKeyPress}
-                className={`n-input input-text ${
-                  type === "textarea" && "n-input-textarea"
-                }`}
-                {...generateAttributesForTextarea()}
-                onInput={onInputChange}
-                value={value}
-                {...restProps}
-              ></textarea>
-            )}
-          </div>
+          {type !== "textarea" && (
+            <input
+              ref={inputRef}
+              className={`n-input ${generateClassesForInput()}`}
+              onKeyUp={onKeyUp}
+              onChange={onChange}
+              onBlur={handleOnBlur}
+              onFocus={(event) => {
+                focusHandler();
+                // set the place holder only if the value exists in props
+                // placeholder && setPlaceHolderText(value ? "" : placeholder);
+                onFocus?.(event);
+              }}
+              onClick={(event) => {
+                setFocusBorder("n-focused-border");
+                onClick?.(event);
+              }}
+              onKeyPress={onKeyPress}
+              value={value}
+              {...generateAttributesForInput()}
+              onInput={onInputChange}
+              {...restProps}
+            />
+          )}
+          {/* <!-- Textarea --> */}
+          {type === "textarea" && (
+            <textarea
+              ref={inputRef}
+              onKeyUp={onKeyUp}
+              onChange={onChange}
+              onBlur={onBlur}
+              onFocus={(event) => {
+                focusHandler();
+                // set the place holder only if the value exists in props
+                // placeholder && setPlaceHolderText(value ? "" : placeholder);
+                onFocus?.(event);
+              }}
+              onClick={(event) => {
+                setFocusBorder("n-focused-border");
+                onClick?.(event);
+              }}
+              onKeyPress={onKeyPress}
+              className={`n-input input-text ${
+                type === "textarea" && "n-input-textarea"
+              }`}
+              {...generateAttributesForTextarea()}
+              onInput={onInputChange}
+              value={value}
+              {...restProps}
+            ></textarea>
+          )}
           {/* <!-- Suffix --> */}
           {type !== "textarea" && showSuffix && (
             <InputSuffix suffix={suffix} onSuffixClick={onSuffixClick} />
           )}
         </div>
-        <div className="n-input-underinfo">
-          {state !== "default" && generateInputStateMessage(stateText)}
-          {helperText && <span className="n-helper-text">{helperText}</span>}
-        </div>
       </div>
-    </>
+      <div className="n-input-underinfo">
+        {props.state !== "default" && (
+          <Validation
+            validationState={props.state}
+            label={stateText}
+            isHidden={false}
+          />
+        )}
+        {helperText && <span className="n-helper-text">{helperText}</span>}
+      </div>
+    </div>
   );
 };
 
@@ -316,6 +325,7 @@ Input.defaultProps = {
   stateText: "",
   onSuffixClick: () => {},
   onPrefixClick: () => {},
+  tooltip: null,
 };
 
 export default React.memo(Input);

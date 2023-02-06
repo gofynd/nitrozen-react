@@ -1,7 +1,7 @@
 "use strict";
 var e = require("../../../node_modules/tslib/tslib.es6.js"),
   t = require("react"),
-  s = require("../../assets/loader-white.gif.js"),
+  s = require("../../assets/loader.gif.js"),
   n = require("../../../node_modules/classnames/index.js");
 function a(e) {
   return e && "object" == typeof e && "default" in e ? e : { default: e };
@@ -94,7 +94,7 @@ const l = (t) => {
             {
               className: `n-button ripple ${s()} ${t.className && t.className}`,
             },
-            a
+            a()
           ),
           i.default.createElement(r, Object.assign({}, t))
         )
@@ -130,7 +130,7 @@ const l = (t) => {
         (e.children || !e.showProgress) &&
         i.default.createElement(
           "div",
-          { className: "social-icon" },
+          { className: "n-btn-social-icon" },
           i.default.createElement(t, {
             className: n({
               "n-icon-small": "small" === e.size,

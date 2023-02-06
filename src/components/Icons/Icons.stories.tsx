@@ -18,6 +18,7 @@ import * as ContentComponents from "../../assets/svg-components/Content";
 import * as DeviceComponents from "../../assets/svg-components/Device";
 import * as EditorComponents from "../../assets/svg-components/Editor";
 import * as FileComponents from "../../assets/svg-components/File";
+import * as JioComponents from "../../assets/svg-components/Jio";
 import * as HardwareComponents from "../../assets/svg-components/Hardware";
 import * as HomeComponents from "../../assets/svg-components/Home";
 import * as MapsComponents from "../../assets/svg-components/Maps";
@@ -65,6 +66,7 @@ const IconsList = (props: IconProp) => {
     "device",
     "editor",
     "file",
+    "jio",
     "hardware",
     "home",
     "maps",
@@ -85,6 +87,7 @@ const IconsList = (props: IconProp) => {
     device: DeviceComponents,
     editor: EditorComponents,
     file: FileComponents,
+    jio: JioComponents,
     hardware: HardwareComponents,
     home: HomeComponents,
     maps: MapsComponents,

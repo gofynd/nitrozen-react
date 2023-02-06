@@ -4,10 +4,10 @@ import s from "../../utils/uuids.js";
 import "./Radio.scss.js";
 import l from "../Validation/Validation.js";
 import t from "../../../node_modules/classnames/index.js";
-const o = (s) => {
+const n = (s) => {
   const {
-      disabled: o,
-      name: n,
+      disabled: n,
+      name: o,
       value: i,
       radioValue: c,
       id: r,
@@ -19,9 +19,9 @@ const o = (s) => {
       icon: p,
       showIcon: h,
       onIconClick: v,
-      style: C,
+      style: f,
     } = s,
-    f = e(s, [
+    C = e(s, [
       "disabled",
       "name",
       "value",
@@ -41,10 +41,10 @@ const o = (s) => {
   return a.createElement(
     "div",
     {
-      style: null != C ? C : {},
+      style: null != f ? f : {},
       className: `n-radio-group ${null != u ? u : ""}`,
     },
-    h && p && a.createElement(k, { className: "social-icon", onClick: v }),
+    h && p && a.createElement(k, { className: "n-prefix-icon", onClick: v }),
     a.createElement(
       "input",
       Object.assign(
@@ -56,10 +56,10 @@ const o = (s) => {
           },
           checked: i === c,
           value: i,
-          name: n,
-          disabled: o,
+          name: o,
+          disabled: n,
         },
-        f
+        C
       )
     ),
     a.createElement(
@@ -82,7 +82,7 @@ const o = (s) => {
     })
   );
 };
-o.defaultProps = {
+n.defaultProps = {
   disabled: !1,
   name: "",
   value: "",
@@ -100,5 +100,5 @@ o.defaultProps = {
     console.log("clicked");
   },
 };
-export { o as default };
+export { n as default };
 //# sourceMappingURL=Radio.js.map

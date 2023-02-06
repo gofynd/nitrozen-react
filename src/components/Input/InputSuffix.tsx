@@ -10,8 +10,8 @@ export interface InputSuffixProps {
 const InputSuffix = (props: InputSuffixProps) => {
   return (
     <span
-      className={`jds-input-suffix jds-remove-left-border jds-suffix-position ${
-        typeof props.suffix === "string" && "jds-suffix-padding"
+      className={`n-input-suffix n-remove-left-border n-suffix-position ${
+        typeof props.suffix === "string" && "n-suffix-padding"
       }`}
       onClick={props.onSuffixClick}
     >
