@@ -1,14 +1,12 @@
 @import "./../../base/base.scss";
 
-.nitrozen-alert {
+.n-alert {
   box-sizing: border-box;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 1.2rem;
+  padding: 1rem;
   gap: 0.8rem;
   cursor: default;
-  border-radius: 0.4rem;
+  border-radius: 1.6rem;
   border: 0.1rem solid $LabelColor;
   color: $TypographyPrimaryColor;
   font-size: $BaseFontSize + 2;
@@ -18,116 +16,156 @@
     outline: none;
   }
 
-  &.nitrozen-alert-info {
-    background: $Solitude;
-    border: 0.1rem solid $PrimaryColor;
+  &.n-alert-full-width {
+    .n-alert-label-text,
+    .n-alert-text {
+      font-size: $BaseFontSize + 6;
+    }
   }
 
-  &.nitrozen-alert-success {
+  &.n-alert-link-button-container {
+    .n-alert-label-text,
+    .n-alert-text {
+      font-size: $BaseFontSize + 4;
+    }
+  }
+
+  &.n-alert-info {
+    background: $ColorPrimary20;
+    border: 0.1rem solid $ColorPrimary50;
+  }
+
+  &.n-alert-success {
     background: $Bubbles;
     border: 0.1rem solid $SuccessColor;
   }
 
-  &.nitrozen-alert-warn {
-    background: $chinaIvory;
-    border: 0.1rem solid $WarningColor;
+  &.n-alert-warn {
+    background: $ColorFeedbackWarning20;
+    border: 0.1rem solid $ColorFeedbackWarning50;
   }
 
-  &.nitrozen-alert-error {
-    background: $WhiteSmoke2;
-    border: 0.1rem solid $ErrorColor;
-  }
-}
-
-.nitrozen-alert-text-icon-wrapper {
-  display: flex;
-  align-items: center;
-  gap: 0.8rem;
-}
-
-.nitrozen-alert-icon {
-  font-size: $BaseFontSize + 18.8;
-  &.nitrozen-alert-icon-info {
-    color: $PrimaryColor;
+  &.n-alert-error {
+    background: $ColorFeedbackError20;
+    border: 0.1rem solid $ColorFeedbackError50;
   }
 
-  &.nitrozen-alert-icon-success {
-    background-color: $SeaGreen;
-    color: $WhiteColor;
-    border-radius: 100%;
-    font-size: medium;
-    padding: 0.5rem;
+  &.n-alert-loader-container {
+    background: $ColorPrimary20 !important;
+    border: 0.1rem solid $ColorPrimary50;
   }
 
-  &.nitrozen-alert-icon-warn {
-    color: $WarningColor;
+  .n-alert-flex {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    column-gap: 8rem;
+    width: 100%;
+    align-items: center;
+
+    &.n-alert-extended {
+      flex-direction: column;
+      align-items: unset;
+      justify-content: center;
+      row-gap: 1.2rem;
+
+      .n-alert-button-container {
+        display: flex;
+        justify-content: flex-end;
+      }
+    }
   }
 
-  &.nitrozen-alert-icon-error {
-    color: $ErrorColor;
-  }
-}
+  .n-alert-text-icon-wrapper {
+    display: flex;
+    align-items: center;
+    column-gap: 0.4rem;
 
-.nitrozen-alert-button {
-  padding: 0.5rem;
+    .n-alert-icon {
+      font-size: $BaseFontSize + 18.8;
 
-  &.nitrozen-alert-button-success {
-    background-color: $SuccessColor;
-  }
+      &.n-alert-icon-info {
+        color: $ColorPrimary50;
+      }
 
-  &.nitrozen-alert-button-warn {
-    background-color: $WarningColor;
-  }
+      &.n-alert-icon-success {
+        background-color: $SeaGreen;
+        color: $WhiteColor;
+        border-radius: 100%;
+        font-size: medium;
+        padding: 0.5rem;
+      }
 
-  &.nitrozen-alert-button-error {
-    background-color: $ErrorColor;
-  }
-}
+      &.n-alert-icon-warn {
+        color: $ColorFeedbackWarning50;
+      }
 
-.nitrozen-alert-cta {
-  cursor: pointer;
-  font-weight: 700;
-  text-decoration: none;
-
-  &.nitrozen-alert-cta-info {
-    color: $PrimaryColor;
-  }
-
-  &.nitrozen-alert-cta-success {
-    color: $SeaGreen;
+      &.n-alert-icon-error {
+        color: $ColorFeedbackError50;
+      }
+    }
   }
 
-  &.nitrozen-alert-cta-warn {
-    color: $TypographyPrimaryColor;
+  .n-alert-button {
+    padding: 0.4rem 1.2rem;
+
+    &.n-alert-button-success {
+      background-color: $SuccessColor;
+    }
+
+    &.n-alert-button-warn {
+      background-color: $ColorFeedbackWarning50;
+    }
+
+    &.n-alert-button-error {
+      background-color: $ColorFeedbackError50;
+    }
   }
 
-  &.nitrozen-alert-cta-error {
-    color: $ErrorColor;
+  .n-alert-link {
+    cursor: pointer;
+    font-weight: 700;
+    text-decoration: none;
+
+    &.n-alert-button-link-info {
+      color: $ColorPrimary50;
+    }
+
+    &.n-alert-button-link-success {
+      color: $SeaGreen;
+    }
+
+    &.n-alert-button-link-warn {
+      color: $WarningColor;
+    }
+
+    &.n-alert-button-link-error {
+      color: $ErrorColor;
+    }
   }
-}
 
-.nitrozen-alert-flex {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
+  .n-alert-loader {
+    animation: spin 2s linear infinite;
+    height: 2.4rem;
+  }
 
-.nitrozen-extended-alert {
-  font-weight: 600;
-  font-size: 1.4rem;
-}
+  .loader {
+    border: 0.4rem solid #f3f3f3;
+    border-top: 0.4rem solid #3535f3;
+    border-right: 0.4rem solid #f7ab20;
+    border-bottom: 0.4rem solid #1eccb0;
+    border-radius: 50%;
+    width: 2rem;
+    height: 2rem;
+    animation: spin 2s linear infinite;
+  }
 
-.nitrozen-extended-alert-body {
-  display: flex;
-  flex-direction: column;
-  gap: 1.2rem;
-  color: $Zambezi;
-}
-
-.nitrozen-extended-alert-reasons {
-  padding: 0.5rem;
-}
-
-.nitrozen-extended-alert-description {
-  padding: 0.5rem;
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
 }
