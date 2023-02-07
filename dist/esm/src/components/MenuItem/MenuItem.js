@@ -1,23 +1,72 @@
 import { __rest as e } from "../../../node_modules/tslib/tslib.es6.js";
-import s, { memo as t } from "react";
-import l from "../../utils/uuids.js";
+import i, { memo as n } from "react";
+import t from "../../utils/uuids.js";
 import "./MenuItem.scss.js";
-const i = (t) => {
-  const { id: l, className: i, style: r, children: n } = t,
-    m = e(t, ["id", "className", "style", "children"]);
-  return s.createElement(
+const l = (n) => {
+  const {
+      id: t,
+      className: l,
+      style: d,
+      children: s,
+      disabled: m,
+      selected: a,
+      heading: o,
+      linkConfig: c,
+      divider: r,
+      key: u,
+      index: k,
+    } = n,
+    b = e(n, [
+      "id",
+      "className",
+      "style",
+      "children",
+      "disabled",
+      "selected",
+      "heading",
+      "linkConfig",
+      "divider",
+      "key",
+      "index",
+    ]);
+  return i.createElement(
     "li",
     Object.assign(
       {
-        style: null != r ? r : {},
-        className: `nitrozen-menu-item ${null != i ? i : ""}`,
+        id: t ? t.toString() : "",
+        "data-testid": `n-menu-block-item-${k}`,
+        className: `n-menu-block-item ${l || ""}\n        ${
+          m ? "n-menu-block-item-disabled" : ""
+        }\n        ${r ? "n-menu-block-item-divider" : ""}\n        ${
+          o ? "n-menu-block-item-heading" : ""
+        }\n        ${!a || o || m ? "" : "n-menu-block-item-selected"}\n      `,
+        style: d,
       },
-      m
+      b
     ),
-    t.children
+    i.createElement(
+      "a",
+      {
+        href: (!m && (null == c ? void 0 : c.href)) || void 0,
+        target: (null == c ? void 0 : c.target) || "_self",
+        "data-testid": `n-menu-block-item-${k}-link`,
+      },
+      s
+    )
   );
 };
-i.defaultProps = { id: "nitrozen-menu" + l() };
-var r = t(i);
-export { r as default };
+l.defaultProps = {
+  id: `n-menu-block-item-${t()}`,
+  key: `n-menu-block-item-key-${t()}`,
+  style: {},
+  className: "",
+  disabled: !1,
+  selected: !1,
+  heading: !1,
+  linkConfig: {},
+  divider: !1,
+  childern: "Menu Item",
+};
+var d = n(l);
+export { d as default };
 //# sourceMappingURL=MenuItem.js.map
