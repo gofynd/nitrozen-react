@@ -3,13 +3,12 @@
 .n-picker {
   &-wrapper {
     position: absolute;
-    width: 100%;
+    width: calc(100% - 3.2rem);
     max-width: 38.4rem;
     background: $WhiteColor;
     box-shadow: $ShadowM;
     border-radius: 2.4rem;
-    height: 45.2rem;
-    padding: 1.2rem;
+    padding: 1.6rem;
   }
 
   &-my-wrapper {
@@ -30,8 +29,18 @@
     display: flex;
     font-size: 1.6rem;
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
     border-radius: 100rem;
+    cursor: pointer;
+    span {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      svg {
+        color: $ColorPrimary60;
+      }
+    }
   }
 
   &-month-year {
@@ -51,14 +60,59 @@
       color: $ColorPrimary60;
     }
   }
+
   &-day-row {
     color: $TypographyPrimaryColor;
     font-size: 1.6rem;
     display: flex;
-    width: calc(100% - 4.8rem);
+    width: 100%;
     align-items: center;
     justify-content: space-between;
-    padding: 2.4rem;
+    padding: 2.4rem 0;
+
+    span {
+      width: 4.8rem;
+      text-align: center;
+    }
+  }
+
+  &-calendar-grid {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 4.8rem 4.8rem 4.8rem 4.8rem 4.8rem 4.8rem 4.8rem;
+    justify-content: space-between;
+    height: auto;
+  }
+
+  &-calendar-griditem {
+    font-size: 1.6rem;
+    color: $ColorPrimary60;
+    width: 4.8rem;
+    height: 4.8rem;
+    text-align: center;
+    cursor: default;
+    padding-bottom: 0.8rem;
+    cursor: pointer;
+    div {
+      height: 100%;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 100rem;
+    }
+
+    &-hover {
+      &:hover {
+        background-color: $ColorPrimary50;
+        color: $WhiteColor;
+      }
+    }
+
+    &-today {
+      border-radius: 100rem;
+      background-color: $ColorPrimary20;
+    }
   }
 }
 
