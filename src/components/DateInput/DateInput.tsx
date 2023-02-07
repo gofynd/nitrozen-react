@@ -138,6 +138,18 @@ const DateInput = (props: DateInputProps) => {
       handleBackSpace(currentIndex, event);
     }
   }
+
+  const handleDateClicked = (dateValue: string) => {
+    setDatePickerDate(dateValue);
+    let dateVal = dateValue.split("/");
+    let stateDateObj = { ...date };
+    stateDateObj.mm = dateVal[0];
+    stateDateObj.dd = dateVal[1];
+    stateDateObj.yyyy = dateVal[2];
+    setDate(stateDateObj);
+    getDateValue(`${stateDateObj.mm}/${stateDateObj.dd}/${stateDateObj.yyyy}`);
+  };
+
   return (
     <div className="n-date-wrapper">
       <div className={`n-input-label-container`}>
@@ -158,9 +170,12 @@ const DateInput = (props: DateInputProps) => {
             ? `n-${validationState}-field`
             : ""
         }`}
-        onClick={() => setShowPicker(!showPicker)}
       >
-        <div className="n-date-left-group">
+        <div
+          className="n-date-left-group"
+          data-testid={`n-date-left-group`}
+          onClick={() => setShowPicker(!showPicker)}
+        >
           <div
             data-testid={`n-datepicker-icon`}
             className={`n-icon-container ${
@@ -194,6 +209,7 @@ const DateInput = (props: DateInputProps) => {
                     getDateValue(`${date.mm}/${date.dd}/${date.yyyy}`);
                   }}
                   autoComplete={"off"}
+                  disabled={useDatePicker ? true : false}
                 />
                 {index < 3 ? <span className="n-date-divider">/</span> : <></>}
               </>
@@ -236,10 +252,11 @@ const DateInput = (props: DateInputProps) => {
           <DatePicker
             dateVal={datePickerDate}
             onDateClick={(date: string) => {
-              setDatePickerDate(date);
+              handleDateClicked(date);
               setShowPicker(false);
             }}
             onClose={() => setShowPicker(false)}
+            isRange={false}
           />
         ) : (
           <></>

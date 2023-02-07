@@ -45,7 +45,7 @@ export default {
 } as ComponentMeta<typeof DateInput>;
 
 const Template: ComponentStory<typeof DateInput> = (args: any) => (
-  <div className="main-div space-between" style={{ height: "550px" }}>
+  <div className="main-div space-between" style={{ height: "650px" }}>
     <div className="date-input-wrapper">
       <DateInput {...args} />
     </div>
@@ -57,7 +57,7 @@ export const DateInputPlayground = Template.bind({});
 DateInputPlayground.args = {
   label: "Birthday",
   required: true,
-  useDatePicker: false,
+  useDatePicker: true,
   helperText: "Enter your birth date",
   id: "customfynd",
   getDateValue: () => {},
