@@ -12,7 +12,9 @@ export interface ButtonProps {
   showProgress?: boolean;
   fullWidth?: boolean;
   children: React.ReactNode;
-  onClick?: React.MouseEventHandler<HTMLButtonElement | HTMLAnchorElement>;
+  onClick?: React.MouseEventHandler<
+    HTMLButtonElement | HTMLAnchorElement | HTMLDivElement
+  >;
   className?: string;
   id?: string;
   icon?: React.ReactNode;

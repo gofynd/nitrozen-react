@@ -16,3 +16,4 @@ export * from "./Photography";
 export * from "./Places";
 export * from "./Social";
 export * from "./Toggle";
+export * from "./Jio";

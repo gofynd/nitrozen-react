@@ -7,11 +7,11 @@ declare const _default: ComponentMeta<{
     theme: null;
     children: null;
     positiveButtonLabel: boolean;
-    neutralButtonLabel: string;
     negativeButtonLabel: boolean;
     isVisible: boolean;
   };
 }>;
 export default _default;
-export declare const confirm_dialog: (args: any) => JSX.Element;
-export declare const choose_dialog: (args: any) => JSX.Element;
+export declare const dialog: (args: any) => JSX.Element;
+export declare const Acknowledgement: (args: any) => JSX.Element;
+export declare const Informational: (args: any) => JSX.Element;

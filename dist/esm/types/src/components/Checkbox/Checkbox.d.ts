@@ -19,6 +19,7 @@ export interface CheckboxProps {
   icon?: React.ReactNode;
   showIcon?: Boolean;
   onIconClick?: Function;
+  isIndeterminate?: Boolean;
 }
 declare const Checkbox: {
   (props: CheckboxProps): JSX.Element;
@@ -38,6 +39,7 @@ declare const Checkbox: {
     onIconClick: () => void;
     checkArray: null;
     ref: null;
+    isIndeterminate: boolean;
   };
 };
 export default Checkbox;

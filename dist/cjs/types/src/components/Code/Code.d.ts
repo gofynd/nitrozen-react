@@ -12,6 +12,9 @@ export interface CodeProps {
   validationClassName?: string;
   validationStyle?: React.CSSProperties;
   helperText?: string;
+  required?: boolean;
+  tooltip?: string;
+  tooltipIcon?: React.ReactNode;
 }
 declare const _default: React.MemoExoticComponent<{
   (props: CodeProps): JSX.Element;
@@ -25,6 +28,8 @@ declare const _default: React.MemoExoticComponent<{
     validationClassName: string;
     validationStyle: {};
     helperText: string;
+    tooltip: null;
+    required: boolean;
   };
 }>;
 export default _default;

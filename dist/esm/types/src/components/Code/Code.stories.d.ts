@@ -14,6 +14,8 @@ declare const _default: ComponentMeta<
       validationClassName: string;
       validationStyle: {};
       helperText: string;
+      tooltip: null;
+      required: boolean;
     };
   }>
 >;
@@ -31,6 +33,8 @@ export declare const CodePlayground: ComponentStory<
       validationClassName: string;
       validationStyle: {};
       helperText: string;
+      tooltip: null;
+      required: boolean;
     };
   }>
 >;

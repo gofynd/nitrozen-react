@@ -37,3 +37,4 @@ export declare const ToggleBtn: ComponentStory<
 >;
 export declare const demo: () => JSX.Element;
 export declare const iconDemo: () => JSX.Element;
+export declare const stateIconDemo: () => JSX.Element;

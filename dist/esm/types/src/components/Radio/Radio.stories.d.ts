@@ -39,7 +39,7 @@ export declare const RadioPlayground: ComponentStory<{
     onIconClick: () => void;
   };
 }>;
+export declare const radioSample: (args: RadioProps) => JSX.Element;
 export declare const stateSample: (args: RadioProps) => JSX.Element;
-export declare const radioVariants: (args: RadioProps) => JSX.Element;
-export declare const radioSelectors: (args: RadioProps) => JSX.Element;
+export declare const disabledRadioSample: (args: RadioProps) => JSX.Element;
 export declare const stateVariants: (args: RadioProps) => JSX.Element;

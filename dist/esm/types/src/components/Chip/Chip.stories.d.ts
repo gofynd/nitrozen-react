@@ -10,6 +10,7 @@ declare const _default: ComponentMeta<
       isRounded: boolean;
       state: string;
       style: {};
+      maxWidth: string;
     };
   }>
 >;
@@ -24,6 +25,7 @@ export declare const PrimaryChip: ComponentStory<
       isRounded: boolean;
       state: string;
       style: {};
+      maxWidth: string;
     };
   }>
 >;
@@ -37,6 +39,7 @@ export declare const SecondaryChip: ComponentStory<
       isRounded: boolean;
       state: string;
       style: {};
+      maxWidth: string;
     };
   }>
 >;
@@ -50,6 +53,7 @@ export declare const DeletableChip: ComponentStory<
       isRounded: boolean;
       state: string;
       style: {};
+      maxWidth: string;
     };
   }>
 >;

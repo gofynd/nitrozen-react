@@ -100,7 +100,6 @@ export const badge_with_alert_strip = (args: any) => {
         <Alert
           labelText="Your account is still not verified"
           state="error"
-          ctaButtonText="close"
           onClick={inlineStripcloseHandler}
         >
           close
