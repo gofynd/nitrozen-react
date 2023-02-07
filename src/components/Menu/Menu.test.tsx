@@ -1,58 +1,227 @@
-import React from "react";
-import { render } from "@testing-library/react";
-import Menu from "./Menu";
+import React, { ReactSVGElement, RefObject, useRef, useState } from "react";
+import { cleanup, render } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import Menu from "./Menu";
 import MenuItem from "../MenuItem";
-
-describe("Menu", () => {
-  test("renders the Menu component with inverted=false", () => {
-    const { getByTestId } = render(
-      <Menu mode="horizontal" inverted={false} position="bottom">
-        <MenuItem>M1</MenuItem>
-      </Menu>
-    );
-    const testImage = getByTestId("menu-icon");
-    expect(testImage.classList).toContain("nitrozen-menu-icon");
+import Button from "../Button";
+import NitrozenId from "../../utils/uuids";
+import { SvgMoreHoriz } from "../../assets/svg-components";
+export const menuItems = [
+  {
+    label: "Fruits for thought",
+    heading: true,
+    divider: true,
+  },
+  {
+    label: "Apple",
+    disabled: true,
+    heading: false,
+    divider: false,
+  },
+  {
+    label: "Banana",
+    heading: false,
+    divider: false,
+  },
+  {
+    label: "Pomegranet",
+    heading: false,
+    divider: true,
+    selected: true,
+  },
+  {
+    label: "Links",
+    heading: true,
+    divider: true,
+  },
+  {
+    label: "Spacex.com",
+    selected: false,
+    linkConfig: { href: "https://www.spacex.com/", target: "_self" },
+  },
+  {
+    label: "Nasa.com",
+    selected: false,
+    linkConfig: { href: "https://www.nasa.com/", target: "_blank" },
+  },
+  {
+    label: "Tesla.com",
+    selected: false,
+    disabled: true,
+    linkConfig: { href: "https://www.tesla.com/", target: "_blank" },
+  },
+];
+const onClose = jest.fn();
+const onOpen = jest.fn();
+const onChangeMenuItem = jest.fn();
+const menuAttr = `n-menu-container-${NitrozenId()}`;
+const _args: any = {
+  id: menuAttr,
+  className: menuAttr,
+  mode: "vertical",
+  position: "bottom",
+  inverted: false,
+  maxHeight: undefined,
+  open: false,
+  selectedIndex: 2,
+  onChangeMenuItem: onChangeMenuItem,
+  onOpen: onOpen,
+  onClose: onClose,
+  anchorEl: undefined,
+  style: {},
+};
+describe("Primary Menu", () => {
+  afterEach(() => {
+    cleanup();
   });
+  test("should render default menu with all items", () => {
+    const { getByTestId } = render(primaryMenu(_args));
 
-  test("renders the Menu component with inverted=true", () => {
-    const { getByTestId } = render(
-      <Menu mode="horizontal" inverted={true} position="bottom">
-        <MenuItem>M1</MenuItem>
-      </Menu>
-    );
-    const testImage = getByTestId("menu-icon");
-    expect(testImage.classList).toContain("inverted");
+    const menuToggle = getByTestId("n-menu-block-toggle");
+    const menuBlock = getByTestId("n-menu-block");
+    expect(menuBlock.className).toContain("n-menu-block-close");
+    expect(onClose).toBeCalled();
+
+    userEvent.click(menuToggle);
+    expect(menuBlock.className).toContain("n-menu-block-open");
+    expect(onOpen).toBeCalled();
+
+    userEvent.click(menuToggle);
+    expect(menuBlock.className).toContain("n-menu-block-close");
+
+    menuItems.map((item, index) => {
+      const menuItem = getByTestId(`n-menu-block-item-${index}`);
+      if (item.disabled)
+        expect(menuItem.className).toContain("n-menu-block-item-disabled");
+      if (item.divider)
+        expect(menuItem.className).toContain("n-menu-block-item-divider");
+      if (item.heading)
+        expect(menuItem.className).toContain("n-menu-block-item-heading");
+      if (item.selected)
+        expect(menuItem.className).toContain("n-menu-block-item-selected");
+      expect(menuItem.innerHTML).toContain(item.label);
+    });
+    const menuItem2a = getByTestId(`n-menu-block-item-${2}-link`);
+    userEvent.click(menuItem2a);
+    expect(onChangeMenuItem).toBeCalled();
+    expect(onClose).toBeCalled();
   });
-
-  test("test onClick", () => {
-    const screen = render(
-      <Menu>
-        <MenuItem>M1</MenuItem>
-      </Menu>
-    );
-    const testImage = screen.getByTestId("menu-icon");
-    userEvent.click(testImage);
-    expect(screen.getByText("M1")).toBeInTheDocument();
-  });
-
-  test("Get MenuItem value after clicking on it", () => {
-    let selectedMenu = "";
-    const screen = render(
-      <Menu
-        onChangeMenuItem={(menu) => {
-          selectedMenu = menu;
-        }}
-      >
-        <MenuItem>M1</MenuItem>
-        <MenuItem>M2</MenuItem>
-        <MenuItem>M3</MenuItem>
-      </Menu>
-    );
-    const testImage = screen.getByTestId("menu-icon");
-    userEvent.click(testImage);
-    const menuItemM2 = screen.getByText("M2");
-    userEvent.click(menuItemM2);
-    expect(selectedMenu).toBe("M2");
+  test("should contain correct mode, iversion and position", () => {
+    const args = { ..._args };
+    args.mode = "horizontal";
+    args.position = "top";
+    args.inverted = true;
+    args.icon = (<SvgMoreHoriz />) as ReactSVGElement;
+    args.maxHeight = 200;
+    const { getByTestId } = render(primaryMenu(args));
+    const menuToggle = getByTestId("n-menu-block-toggle");
+    expect(menuToggle.className).toContain("n-menu-block-toggle-horizontal");
+    expect(menuToggle.className).toContain("n-menu-block-toggle-inverted");
+    const menuBlock = getByTestId("n-menu-block");
+    expect(menuBlock.style.height).toBe(`${args.maxHeight}px`);
+    expect(menuBlock.style.left).toBe(`100%`);
+    expect(menuBlock.style.bottom).toBe(`100%`);
   });
 });
+
+describe("Achored Menu", () => {
+  afterEach(() => {
+    cleanup();
+  });
+  test("should render buttoned menu with all items", async () => {
+    const args = { ..._args };
+    let isOpen = true;
+    let selectedIndex = undefined;
+    let selectedValue = undefined;
+    const ref = React.createRef() as RefObject<HTMLDivElement>;
+    args.anchorEl = ref;
+    const onClick = () => {
+      isOpen = !isOpen;
+    };
+
+    const _onChangeMenuItem = (value: number, index: string) => {
+      onChangeMenuItem();
+      selectedIndex = index;
+      selectedValue = value;
+    };
+
+    const _onClose = () => {
+      onClose();
+      isOpen = false;
+    };
+    args.onClose = _onClose;
+    args.onOpen = onOpen;
+    args.onChangeMenuItem = _onChangeMenuItem;
+    args.mode = "aligned";
+    args.maxHeight = 150;
+
+    const { getByTestId } = render(
+      <div className="menu-story-container" style={{ height: "500px" }}>
+        <div
+          id="menu-div"
+          style={{
+            width: "fit-content",
+          }}
+          ref={ref}
+        >
+          <Button onClick={onClick} name="Menu" data-testid="button">
+            {selectedValue || "Menu"}
+          </Button>
+          {primaryMenu(args)}
+        </div>
+      </div>
+    );
+    const menuBlock = getByTestId("n-menu-block");
+    expect(menuBlock.className).toContain("n-menu-block-close");
+    const button = getByTestId("button");
+    userEvent.click(button);
+
+    setTimeout(function () {
+      expect(onOpen).toBeCalled();
+      expect(menuBlock.className).toContain("n-menu-block-open");
+    }, 500);
+    expect(isOpen).toBeTruthy();
+    const menuItem2a = getByTestId(`n-menu-block-item-${2}-link`);
+    userEvent.click(menuItem2a);
+    expect(onChangeMenuItem).toBeCalled();
+    expect(onClose).toBeCalled();
+    expect(isOpen).toBeTruthy();
+    expect(selectedIndex).toBe(2);
+    expect(selectedValue).toBe(menuItems[2].label);
+    const menuItem2 = getByTestId(`n-menu-block-item-${2}`);
+    setTimeout(function () {
+      expect(menuItem2.className).toContain("n-menu-block-item-selected");
+    }, 500);
+
+    const menuItem3a = getByTestId(`n-menu-block-item-${3}-link`);
+    const menuItem3 = getByTestId(`n-menu-block-item-${3}`);
+    userEvent.click(menuItem3a);
+    expect(menuItem2.className).not.toContain("n-menu-block-item-selected");
+    expect(menuItem3.className).toContain("n-menu-block-item-selected");
+    expect(menuBlock.style.height).toBe(`${args.maxHeight}px`);
+    expect(menuBlock.style.left).toBe(`0%`);
+    expect(menuBlock.style.top).toBe(`100%`);
+  });
+});
+
+const primaryMenu = (args: any) => {
+  return (
+    <Menu {...args}>
+      {menuItems.map((item: any, index: any) => {
+        return (
+          <MenuItem
+            disabled={item.disabled}
+            divider={item.divider}
+            heading={item.heading}
+            selected={item.selected}
+            linkConfig={item.linkConfig}
+            index={index}
+            key={NitrozenId()}
+          >
+            {item.label}
+          </MenuItem>
+        );
+      })}
+    </Menu>
+  );
+};
