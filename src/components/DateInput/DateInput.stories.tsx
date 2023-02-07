@@ -73,7 +73,10 @@ export const DateValidationSample = (args: DateInputProps) => {
   };
 
   return (
-    <div className="main-div space-between">
+    <div className="main-div space-between custom-date-story">
+      <div className="state-date">
+        {date ? `Date: ${date}` : `Start typing to see the written date value`}
+      </div>
       <div className="date-input-wrapper">
         <DateInput
           label="Birthdate"
@@ -89,8 +92,6 @@ export const DateValidationSample = (args: DateInputProps) => {
           id={"birth-field"}
         />
       </div>
-      <br />
-      <p>Date: {date}</p>
     </div>
   );
 };

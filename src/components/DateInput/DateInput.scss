@@ -105,3 +105,14 @@
   color: $ColorPrimaryGrey80;
   font-weight: 500;
 }
+
+.custom-date-story {
+  flex-direction: column;
+  align-items: center;
+}
+.state-date {
+  font-size: 1.4rem;
+  text-align: left;
+  width: 37.6rem;
+  margin-bottom: 1.2rem;
+}

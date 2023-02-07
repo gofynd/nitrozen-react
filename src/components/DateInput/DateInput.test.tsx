@@ -62,4 +62,20 @@ describe("Button", () => {
     expect(helperText.className).toBe("n-helper-text");
     expect(helperText.textContent).toBe("Enter your birth date");
   });
+  test("renders the DateInput component to check typing on input field", () => {
+    const screen = render(
+      <DateInput
+        label="Birthdate"
+        required={true}
+        helperText={"Enter your birth date"}
+        dateValue={"11/27/1997"}
+        getDateValue={() => {}}
+        id={"birth-field"}
+      />
+    );
+    const Input1 = screen.getByTestId(
+      "date-input-0-birth-field"
+    ) as HTMLInputElement;
+    expect(Input1.value).toBe("11");
+  });
 });
