@@ -82,6 +82,10 @@ export default {
       options: ["simple", "zebra"],
       defaultValue: "simple",
     },
+    onRowClick: {
+      description:
+        "A click handler function ( (index)=>{} ) to make row clickable",
+    },
     headerBackground: { control: "color" },
     customSortIcon: {
       description:
@@ -155,7 +159,11 @@ export const CheckableTable = (args: any) => {
       item.isChecked = status;
     });
     setRowItem(tempRowArr);
-    setCount(tempRowArr.length);
+    setCount(status ? tempRowArr.length : 0);
+  };
+
+  const onRowClick = (ind: number) => {
+    console.log(ind);
   };
   return (
     <div>
@@ -168,6 +176,7 @@ export const CheckableTable = (args: any) => {
         getCheckedItems={getCheckedItems}
         allCheckClicked={allCheckClicked}
         tableRow={rowItem}
+        onRowClick={onRowClick}
       />
     </div>
   );
