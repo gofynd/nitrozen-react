@@ -1,6 +1,10 @@
 @import "./../../base/base.scss";
 
 .n-date {
+  &-picker-container {
+    position: relative;
+    width: 100%;
+  }
   &-wrapper {
     width: 100%;
     display: flex;

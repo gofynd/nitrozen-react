@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Validation from "../Validation";
 import { SvgIcCloseRemove, SvgIcCalendar } from "../../assets/svg-components";
 import "./DateInput.scss";
+import DatePicker from "../DatePicker/DatePicker";
 
 export interface DateInputProps {
   id: string;
@@ -226,6 +227,9 @@ const DateInput = (props: DateInputProps) => {
             {helperText}
           </span>
         )}
+      </div>
+      <div className="n-date-picker-container">
+        <DatePicker />
       </div>
     </div>
   );

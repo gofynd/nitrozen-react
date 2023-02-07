@@ -45,7 +45,7 @@ export default {
 } as ComponentMeta<typeof DateInput>;
 
 const Template: ComponentStory<typeof DateInput> = (args: any) => (
-  <div className="main-div space-between">
+  <div className="main-div space-between" style={{ height: "550px" }}>
     <div className="date-input-wrapper">
       <DateInput {...args} />
     </div>
