@@ -28,6 +28,11 @@ export default {
       options: [true, false],
       defaultValue: false,
     },
+    required: {
+      control: { type: "select" },
+      options: [true, false],
+      defaultValue: false,
+    },
     dateValue: {
       control: "text",
       description: "Pre value if any, format : mm/dd/yyyy",

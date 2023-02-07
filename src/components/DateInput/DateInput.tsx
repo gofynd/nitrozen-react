@@ -1,11 +1,6 @@
 import React, { useState, useEffect } from "react";
-import Tooltip from "../Tooltip";
 import Validation from "../Validation";
-import {
-  SvgHelpOutline,
-  SvgIcCloseRemove,
-  SvgIcCalendar,
-} from "../../assets/svg-components";
+import { SvgIcCloseRemove, SvgIcCalendar } from "../../assets/svg-components";
 import "./DateInput.scss";
 
 export interface DateInputProps {
@@ -96,20 +91,32 @@ const DateInput = (props: DateInputProps) => {
   // a default date validation that peforms basic checks
   const defaultErrorValidation = (stateDateObj: any) => {
     if (stateDateObj.mm && (stateDateObj.mm == 0 || stateDateObj.mm > 12)) {
-      setDateError("Entered month is not valid");
+      setDateError("Invalid Date");
       return;
     }
-    if (stateDateObj.dd && (stateDateObj.dd == 0 || stateDateObj.dd > 31)) {
-      setDateError("Entered day is not valid");
+    if (
+      (stateDateObj.yyyy && stateDateObj.yyyy.length < 4) ||
+      ["0000", "9999"].includes(stateDateObj.yyyy)
+    ) {
+      setDateError("Invalid Date");
       return;
     }
-    if (stateDateObj.yyyy && stateDateObj.yyyy.length < 4) {
-      setDateError("Entered year is not valid");
+    let availableMonths = daysInMonth(stateDateObj.mm, stateDateObj.yyyy);
+    if (
+      stateDateObj.dd &&
+      (stateDateObj.dd == 0 || stateDateObj.dd > availableMonths)
+    ) {
+      setDateError("Invalid Date");
       return;
     }
     // if no errors then set the error state as empty
     setDateError("");
   };
+
+  // Function to get number of days available in a mont
+  function daysInMonth(month: number, year: number) {
+    return new Date(year, month, 0).getDate();
+  }
 
   function handleBackSpace(currentIndex: number, event: any) {
     // if there is a field before the current index then delete and focus on that index
@@ -152,7 +159,9 @@ const DateInput = (props: DateInputProps) => {
         <div className="n-date-left-group">
           <div
             data-testid={`n-datepicker-icon`}
-            className="n-icon-container"
+            className={`n-icon-container ${
+              useDatePicker ? "n-cursor-pointer" : ""
+            }`}
             onClick={useDatePicker ? () => {} : () => {}}
           >
             <SvgIcCalendar />
@@ -161,7 +170,7 @@ const DateInput = (props: DateInputProps) => {
             {Object.keys(date).map((dateKey: string, index) => (
               <>
                 <input
-                  key={`date-input-${index}`}
+                  key={`date-input-${index}-${id}`}
                   data-testid={`date-input-${index}-${id}`}
                   id={`date-input-${index}-${id}`}
                   className="n-date-single-field"
@@ -170,9 +179,16 @@ const DateInput = (props: DateInputProps) => {
                   onChange={(event) => handleDateInput(event, dateKey, index)}
                   placeholder={dateKey.toUpperCase()}
                   onKeyDown={(e) => handleKeyDown(e, index)}
-                  onBlur={() =>
-                    getDateValue(`${date.mm}/${date.dd}/${date.yyyy}`)
-                  }
+                  onBlur={() => {
+                    if ([0, 1].includes(index)) {
+                      let dateVal = { ...date };
+                      if (dateVal[dateKey].length == 1) {
+                        dateVal[dateKey] = `0${dateVal[dateKey]}`;
+                        setDate(dateVal);
+                      }
+                    }
+                    getDateValue(`${date.mm}/${date.dd}/${date.yyyy}`);
+                  }}
                   autoComplete={"off"}
                 />
                 {index < 3 ? <span className="n-date-divider">/</span> : <></>}
@@ -183,7 +199,7 @@ const DateInput = (props: DateInputProps) => {
         {date.mm || date.dd || date.yyyy ? (
           <div
             data-testid={`n-date-close-icon`}
-            className="n-input-close-btn n-icon-container"
+            className="n-input-close-btn n-icon-container n-cursor-pointer"
             onClick={() => {
               handleCancelClick();
               closeClicked?.();
