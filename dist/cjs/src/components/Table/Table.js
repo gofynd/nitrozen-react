@@ -1,16 +1,20 @@
 "use strict";
 var e = require("react"),
-  t = require("../../utils/uuids.js");
+  a = require("../../utils/uuids.js");
 require("./Table.scss.js");
-var a = require("../../assets/svg-components/Hardware/index.js"),
+var t = require("../../assets/svg-components/Hardware/index.js"),
   l = require("../Checkbox/Checkbox.js");
 function r(e) {
   return e && "object" == typeof e && "default" in e ? e : { default: e };
 }
 var c = r(e);
-const n = (t) => {
-  const { id: r, tableRow: n, tableHeader: d } = t,
-    [o, s] = e.useState([]);
+const n = (a) => {
+  const { id: r, tableRow: n, tableHeader: d } = a,
+    [o, s] = e.useState([]),
+    u = (e) => () => {
+      var t;
+      null === (t = a.onRowClick) || void 0 === t || t.call(a, e);
+    };
   return c.default.createElement(
     "div",
     { className: "n-table", "data-testid": `table-${r}` },
@@ -23,7 +27,7 @@ const n = (t) => {
         c.default.createElement(
           "tr",
           { className: "n-table-header-tr" },
-          t.checkable
+          a.checkable
             ? c.default.createElement(
                 "th",
                 { className: "n-table-header-checkbox" },
@@ -32,14 +36,14 @@ const n = (t) => {
                   { className: "n-table-checbox-wrapper" },
                   c.default.createElement(l, {
                     id: "header-checkbox",
-                    value: t.allChecked,
+                    value: a.allChecked,
                     onChange: (e) => {
-                      var a;
-                      return null === (a = t.allCheckClicked) || void 0 === a
-                        ? void 0
-                        : a.call(t, e);
+                      var t;
+                      null === (t = a.allCheckClicked) ||
+                        void 0 === t ||
+                        t.call(a, e);
                     },
-                    checkboxValue: t.allChecked,
+                    checkboxValue: a.allChecked,
                   })
                 )
               )
@@ -53,29 +57,29 @@ const n = (t) => {
                 "data-testid": `n-table-header-${l}`,
                 style: {
                   width: e.width ? e.width : "auto",
-                  backgroundColor: t.headerBackground,
+                  backgroundColor: a.headerBackground,
                 },
                 onClick: () =>
                   ((e) => {
-                    let t = d[e],
-                      a = [...o];
-                    if (a.includes(e)) {
-                      let l = a.indexOf(e);
+                    let a = d[e],
+                      t = [...o];
+                    if (t.includes(e)) {
+                      let l = t.indexOf(e);
                       l > -1 &&
-                        (a.splice(l, 1),
-                        t.customSort({
+                        (t.splice(l, 1),
+                        a.customSort({
                           sort: !1,
                           headerIndex: e,
-                          headerName: t.name,
+                          headerName: a.name,
                         }));
                     } else
-                      a.push(e),
-                        t.customSort({
+                      t.push(e),
+                        a.customSort({
                           sort: !0,
                           headerIndex: e,
-                          headerName: t.name,
+                          headerName: a.name,
                         });
-                    s(a);
+                    s(t);
                   })(l),
                 key: `n-table-header-${l}`,
               },
@@ -96,14 +100,14 @@ const n = (t) => {
                       c.default.Fragment,
                       null,
                       o.includes(l)
-                        ? t.customSortIcon
-                          ? t.customSortIcon
-                          : c.default.createElement(a.SvgKeyboardArrowDown, {
+                        ? a.customSortIcon
+                          ? a.customSortIcon
+                          : c.default.createElement(t.SvgKeyboardArrowDown, {
                               className: "n-action-icon",
                             })
-                        : t.customSortIcon
-                        ? t.customSortIcon
-                        : c.default.createElement(a.SvgKeyboardArrowRight, {
+                        : a.customSortIcon
+                        ? a.customSortIcon
+                        : c.default.createElement(t.SvgKeyboardArrowRight, {
                             className: "n-action-icon",
                           })
                     )
@@ -116,19 +120,22 @@ const n = (t) => {
       c.default.createElement(
         "tbody",
         null,
-        n.map((e, a) =>
+        n.map((e, t) =>
           c.default.createElement(
             "tr",
-            {
-              "data-testid": `row-${a}`,
-              className: `n-table-row-item ${
-                t.footer ? "" : "n-table-row-item-nofooter"
-              } ${"zebra" == t.rowStyle ? "n-table-row-zebra" : ""} ${
-                t.checkable ? "n-table-row-item-checkbox" : ""
-              }`,
-              key: `row-${a}`,
-            },
-            t.checkable
+            Object.assign(
+              {
+                "data-testid": `row-${t}`,
+                className: `n-table-row-item ${
+                  a.footer ? "" : "n-table-row-item-nofooter"
+                } ${"zebra" == a.rowStyle ? "n-table-row-zebra" : ""} ${
+                  a.checkable ? "n-table-row-item-checkbox" : ""
+                } ${a.onRowClick ? "n-table-row-item-clickable" : ""}`,
+                key: `row-${t}`,
+              },
+              a.onRowClick ? { onClick: u(t) } : {}
+            ),
+            a.checkable
               ? c.default.createElement(
                   "td",
                   { className: "n-row-data" },
@@ -136,40 +143,37 @@ const n = (t) => {
                     "div",
                     { className: "n-table-checbox-wrapper" },
                     c.default.createElement(l, {
-                      id: `n-row-checkbox-${a}`,
+                      id: `n-row-checkbox-${t}`,
                       value: e.isChecked,
                       onChange: (e) =>
-                        ((e, a) => {
+                        ((e, t) => {
                           var l;
                           let r = [...n];
-                          (r[a].isChecked = e),
-                            null === (l = t.getCheckedItems) ||
+                          (r[t].isChecked = e),
+                            null === (l = a.getCheckedItems) ||
                               void 0 === l ||
-                              l.call(t, r);
-                        })(e, a),
+                              l.call(a, r);
+                        })(e, t),
                       checkboxValue: e.isChecked,
                     })
                   )
                 )
               : c.default.createElement(c.default.Fragment, null),
-            d.map(
-              (t, l) => (
-                console.log(e[t.name], "rowItem[headerElement.name]}"),
-                c.default.createElement(
-                  "td",
-                  {
-                    className: "n-row-data",
-                    "data-testid": `n-row-data-${a}-${l}`,
-                    key: `n-row-data-${a}-${l}`,
-                  },
-                  e[t.name]
-                )
+            d.map((a, l) =>
+              c.default.createElement(
+                "td",
+                {
+                  className: "n-row-data",
+                  "data-testid": `n-row-data-${t}-${l}`,
+                  key: `n-row-data-${t}-${l}`,
+                },
+                e[a.name]
               )
             )
           )
         )
       ),
-      t.footer
+      a.footer
         ? c.default.createElement(
             "tfoot",
             null,
@@ -179,10 +183,10 @@ const n = (t) => {
               c.default.createElement(
                 "td",
                 {
-                  colSpan: t.checkable ? 1 + d.length : d.length,
+                  colSpan: a.checkable ? 1 + d.length : d.length,
                   "data-testid": "footer-data",
                 },
-                t.footer
+                a.footer
               )
             )
           )
@@ -191,7 +195,7 @@ const n = (t) => {
   );
 };
 n.defaultProps = {
-  id: `nitrozen-dialog-${t()}`,
+  id: `nitrozen-dialog-${a()}`,
   tableHeader: [],
   tableRow: [],
   rowStyle: "simple",
