@@ -32,6 +32,7 @@
     justify-content: space-around;
     border-radius: 100rem;
     cursor: pointer;
+
     span {
       display: flex;
       align-items: center;
@@ -69,6 +70,7 @@
     align-items: center;
     justify-content: space-between;
     padding: 2.4rem 0;
+    position: relative;
 
     span {
       width: 4.8rem;
@@ -93,6 +95,7 @@
     cursor: default;
     padding-bottom: 0.8rem;
     cursor: pointer;
+
     div {
       height: 100%;
       width: 100%;
@@ -102,16 +105,50 @@
       border-radius: 100rem;
     }
 
+    &-selected {
+      background-color: $ColorPrimary50;
+      color: $WhiteColor;
+    }
+
     &-hover {
       &:hover {
-        background-color: $ColorPrimary50;
-        color: $WhiteColor;
+        background-color: $ColorPrimaryGrey20;
       }
     }
 
     &-today {
       border-radius: 100rem;
       background-color: $ColorPrimary20;
+    }
+  }
+
+  &-monthlist {
+    position: absolute;
+    width: calc(100% - 3.2rem);
+    overflow-y: scroll;
+    background-color: $WhiteColor;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: calc(100% - 15rem);
+    top: 28%;
+    border-top: 0.1rem solid $ColorPrimaryGrey40;
+    padding-top: 0.8rem;
+
+    &-item {
+      color: $ColorPrimary60;
+      font-size: 1.8rem;
+      padding: 1.2rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 25rem;
+    }
+
+    &-selected {
+      background-color: $ColorPrimary60;
+      color: $WhiteColor;
     }
   }
 }

@@ -3,16 +3,21 @@ import {
   SvgIcChevronDown,
   SvgIcChevronLeft,
   SvgIcChevronRight,
+  SvgIcChevronUp,
   SvgIcClose,
 } from "../../assets/svg-components";
 import "./DatePicker.scss";
-import { daysInMonth, months } from "../../utils/dateHandler";
+import { daysInMonth, months, years } from "../../utils/dateHandler";
 export interface DatePickerProps {
   dateVal?: string;
+  isRange?: boolean;
+  onDateClick: Function;
+  onClose: Function;
 }
 
 const DatePicker = (props: DatePickerProps) => {
-  const { dateVal } = props;
+  const { dateVal, isRange, onDateClick, onClose } = props;
+
   const [days, setDays] = useState([
     { name: "S", enum: 7 },
     { name: "M", enum: 1 },
@@ -27,6 +32,8 @@ const DatePicker = (props: DatePickerProps) => {
   const [selectedMonth, setSelectedMonth] = useState<string>("");
   const [selectedYear, setSelectedYear] = useState<string>("");
   const [today, setToday] = useState(new Date());
+  const [showMonthToggle, setShowMonthToggle] = useState(false);
+  const [showYearToggle, setShowYearToggle] = useState(false);
 
   useEffect(() => {
     let monthValue: any = "";
@@ -53,7 +60,7 @@ const DatePicker = (props: DatePickerProps) => {
     let mm: any = today.getMonth() + 1; // Months start at 0!
     let dd: any = today.getDate();
 
-    // get totaldays in the given month and year
+    // get total days in the given month and year
     let noOfDays = daysInMonth(month, year);
     let day = new Date(`${month}/01/${year}`).getDay();
     let monthVal = new Date(`${month}/01/${year}`).getMonth();
@@ -63,7 +70,7 @@ const DatePicker = (props: DatePickerProps) => {
       return a.enum == day;
     });
     // iterate through the number of days and push a data object for UI mapping
-    let tempCalendar = [...calendar];
+    let tempCalendar: any = [];
     for (var i = 1; i <= noOfDays; i++) {
       // only if the iteration value is the same as todays date then set today as true
       let today = false;
@@ -73,14 +80,64 @@ const DatePicker = (props: DatePickerProps) => {
       tempCalendar.push({ value: i, isToday: today });
     }
     // only to fill UI gaps has no functional use case
-    let emptyArr = Array(emptyIndex).fill({ value: 0 });
+    let emptyArr = Array(emptyIndex == -1 ? 0 : emptyIndex).fill({ value: 0 });
     setCalendar([...emptyArr, ...tempCalendar]);
     setSelectedMonth(months[monthVal]);
+    setSelectedYear(year);
   };
 
+  const handleMonthClicked = (monthIndex: number) => {
+    generateCalendar(monthIndex, selectedYear);
+    setShowMonthToggle(false);
+  };
+
+  const handleYearClicked = (year: any) => {
+    let monthIndex = months.findIndex((name) => name == selectedMonth);
+    generateCalendar(monthIndex + 1, year);
+    setShowYearToggle(false);
+  };
+
+  const handleDateClick = (calendarItem: any) => {
+    let dd =
+      calendarItem.value < 10 ? "0" + calendarItem.value : calendarItem.value;
+    let monthIndex: any = months.findIndex((name) => name == selectedMonth) + 1;
+    if (monthIndex < 10) {
+      monthIndex = "0" + monthIndex;
+    }
+    let formattedDate = `${monthIndex}/${dd}/${selectedYear}`;
+    // execute props function
+    onDateClick(formattedDate);
+  };
+
+  const getCalendarItemClasses = (calendarItem: any) => {
+    let classes = "";
+    classes += calendarItem.isToday ? " n-picker-calendar-griditem-today" : "";
+    classes +=
+      calendarItem.value !== 0 ? " n-picker-calendar-griditem-hover" : "";
+    let monthValue: any, yearValue: any, day: any;
+    if (dateVal) {
+      let recievedDate = new Date(dateVal);
+      monthValue = recievedDate.getMonth();
+      yearValue = recievedDate.getFullYear();
+      day = recievedDate.getDate();
+    }
+    if (
+      selectedMonth == months[monthValue] &&
+      yearValue == selectedYear &&
+      calendarItem.value == day
+    ) {
+      return " n-picker-calendar-griditem-selected";
+    }
+    return classes;
+  };
   return (
     <div className="n-picker-wrapper">
-      <div className="n-closeicon-wrapper">
+      <div
+        className="n-closeicon-wrapper"
+        onClick={() => {
+          onClose();
+        }}
+      >
         <SvgIcClose />
       </div>
       <div className="n-picker-my-wrapper">
@@ -88,16 +145,28 @@ const DatePicker = (props: DatePickerProps) => {
           <SvgIcChevronLeft />
         </div>
         <div className="n-picker-month-year">
-          <div className="n-picker-btn">
+          <div
+            className="n-picker-btn"
+            onClick={() => {
+              setShowMonthToggle(!showMonthToggle);
+              setShowYearToggle(false);
+            }}
+          >
             {selectedMonth.slice(0, 3)}
             <span>
-              <SvgIcChevronDown />
+              {showMonthToggle ? <SvgIcChevronUp /> : <SvgIcChevronDown />}
             </span>
           </div>
-          <div className="n-picker-btn">
+          <div
+            className="n-picker-btn"
+            onClick={() => {
+              setShowYearToggle(!showYearToggle);
+              setShowMonthToggle(false);
+            }}
+          >
             {selectedYear}
             <span>
-              <SvgIcChevronDown />
+              {showYearToggle ? <SvgIcChevronUp /> : <SvgIcChevronDown />}
             </span>
           </div>
         </div>
@@ -118,15 +187,12 @@ const DatePicker = (props: DatePickerProps) => {
           <div
             className={`n-picker-calendar-griditem `}
             key={`calendar-griditem-${calendarIndex}`}
+            onClick={() => {
+              isRange ? () => {} : handleDateClick(calendarItem);
+            }}
           >
             <div
-              className={`${
-                calendarItem.value !== 0
-                  ? "n-picker-calendar-griditem-hover"
-                  : ""
-              } ${
-                calendarItem.isToday ? "n-picker-calendar-griditem-today" : ""
-              }`}
+              className={`${getCalendarItemClasses(calendarItem)}`}
               key={`calendar-griditem-value-${calendarIndex}`}
             >
               {calendarItem.value !== 0 && calendarItem.value}
@@ -134,10 +200,38 @@ const DatePicker = (props: DatePickerProps) => {
           </div>
         ))}
       </div>
+      {showMonthToggle && (
+        <div className="n-picker-monthlist">
+          {months.map((month, monthIndex) => (
+            <div
+              className={`n-picker-monthlist-item ${
+                selectedMonth == month ? "n-picker-monthlist-selected" : ""
+              }`}
+              onClick={() => handleMonthClicked(monthIndex + 1)}
+            >
+              {month}
+            </div>
+          ))}
+        </div>
+      )}
+      {showYearToggle && (
+        <div className="n-picker-monthlist">
+          {years.map((year: any, yearIndex) => (
+            <div
+              className={`n-picker-monthlist-item ${
+                selectedYear == year ? "n-picker-monthlist-selected" : ""
+              }`}
+              onClick={() => handleYearClicked(year)}
+            >
+              {year}
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 };
 
-DatePicker.defaulProps = { dateVal: "" };
+DatePicker.defaulProps = { dateVal: "", isRange: false };
 
 export default React.memo(DatePicker);

@@ -36,6 +36,8 @@ const DateInput = (props: DateInputProps) => {
   } = props;
   const [date, setDate] = useState<any>({ mm: "", dd: "", yyyy: "" });
   const [dateError, setDateError] = useState("");
+  const [datePickerDate, setDatePickerDate] = useState("");
+  const [showPicker, setShowPicker] = useState(false);
 
   // if a date value is given as input then set that in the state
   // * The format is important "mm/dd/yyyy"
@@ -156,6 +158,7 @@ const DateInput = (props: DateInputProps) => {
             ? `n-${validationState}-field`
             : ""
         }`}
+        onClick={() => setShowPicker(!showPicker)}
       >
         <div className="n-date-left-group">
           <div
@@ -229,7 +232,18 @@ const DateInput = (props: DateInputProps) => {
         )}
       </div>
       <div className="n-date-picker-container">
-        <DatePicker />
+        {showPicker ? (
+          <DatePicker
+            dateVal={datePickerDate}
+            onDateClick={(date: string) => {
+              setDatePickerDate(date);
+              setShowPicker(false);
+            }}
+            onClose={() => setShowPicker(false)}
+          />
+        ) : (
+          <></>
+        )}
       </div>
     </div>
   );
