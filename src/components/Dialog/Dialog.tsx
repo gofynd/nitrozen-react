@@ -113,26 +113,42 @@ const Dialog = (props: DialogProps) => {
               {...restProps}
             >
               <div className="n-closebtn-container">
+                <header
+                  className={
+                    kind === "acknowledgement"
+                      ? `nitrozen-dialog-header-acknowlegdement nitrozen-dialog-header`
+                      : `nitrozen-dialog-header`
+                  }
+                  id="id + '_title'"
+                >
+                  {typeof title === "string" ? (
+                    <h5
+                      className={
+                        kind === "acknowledgement"
+                          ? `acknowlegdement-header header`
+                          : `header`
+                      }
+                    >
+                      {title}
+                    </h5>
+                  ) : (
+                    <div className="n-header-card">
+                      <span className="n-header-card-1">
+                        {" "}
+                        {title.helperBlock.text}
+                      </span>
+                      <span className="n-header-card-2">
+                        {" "}
+                        {title.titleBlock.text}
+                      </span>
+                    </div>
+                  )}
+                </header>
                 {isClosable && (
                   <SvgClose className="n-closebtn" onClick={close} />
                 )}
               </div>
-              <header className="nitrozen-dialog-header" id="id + '_title'">
-                {typeof title === "string" ? (
-                  <h5 className="header">{title}</h5>
-                ) : (
-                  <div className="n-header-card">
-                    <span className="n-header-card-1">
-                      {" "}
-                      {title.helperBlock.text}
-                    </span>
-                    <span className="n-header-card-2">
-                      {" "}
-                      {title.titleBlock.text}
-                    </span>
-                  </div>
-                )}
-              </header>
+
               <section className="nitrozen-dialog-body" id="id + '_desc'">
                 {children}
               </section>

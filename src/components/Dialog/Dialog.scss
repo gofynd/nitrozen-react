@@ -21,12 +21,12 @@
     font-family: $PrimaryFont;
     background: $WhiteColor;
     border: 0.1rem solid $SecondaryDisabledColor;
-    border-radius: 1rem;
+    border-radius: 2.5rem;
     padding: 2.5rem;
 
     .n-closebtn-container {
       display: flex;
-      justify-content: end;
+      justify-content: space-between;
 
       .n-closebtn {
         width: 3em;
@@ -47,10 +47,13 @@
     display: flex;
   }
 
+  .nitrozen-dialog-header-acknowlegdement {
+    width: 95%;
+  }
+
   .nitrozen-dialog-header {
     margin: 6px 0px 6px 0px;
     justify-content: space-between;
-
     font-weight: 900;
     text-transform: none;
     font-size: 1.5rem;
@@ -157,6 +160,10 @@
   letter-spacing: -0.005em;
   line-height: 2.5rem;
   font-family: $PrimaryFont;
+}
+.acknowlegdement-header {
+  width: 100%;
+  text-align: center;
 }
 
 @media screen and (max-width: 61.9375rem) {
