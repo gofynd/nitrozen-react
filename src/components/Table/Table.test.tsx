@@ -272,4 +272,59 @@ describe("Render a Table component", () => {
       lastName: "Yang",
     });
   });
+  test("Table rows clickable", async () => {
+    let status = false;
+    const onRowClick = jest.fn().mockImplementation((e) => {});
+    let items: any = [];
+    render(
+      <Table
+        customSortIcon={<SvgInfo />}
+        tableRow={[
+          {
+            age: 36,
+            firstName: "Sasha",
+            lastName: "Brecher",
+          },
+          {
+            age: 12,
+            firstName: "Harvey",
+            lastName: "Jefferson",
+          },
+        ]}
+        tableHeader={[
+          {
+            customSort: () => {},
+            name: "firstName",
+            sortable: true,
+            value: "First name",
+            width: "50%",
+          },
+          {
+            name: "lastName",
+            sortable: false,
+            value: "Last name",
+            width: "20%",
+          },
+          {
+            customSort: () => {},
+            name: "age",
+            sortable: true,
+            type: "number",
+            value: "Age",
+            width: "100px",
+          },
+        ]}
+        rowStyle="zebra"
+        id="custom-table"
+        footer={"Default footer"}
+        checkable={true}
+        allChecked={false}
+        onRowClick={onRowClick}
+      />
+    );
+    const rowValue0 = screen.getByTestId("row-0");
+    expect(rowValue0.className).toContain("n-table-row-item-clickable");
+    fireEvent.click(rowValue0);
+    expect(onRowClick).toBeCalledTimes(1);
+  });
 });
