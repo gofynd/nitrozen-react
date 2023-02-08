@@ -2,7 +2,6 @@
 
 .n-nudge {
   user-select: none;
-  // backdrop-filter: blur(1.2em);
 
   &-container-main {
     position: fixed;
@@ -25,7 +24,7 @@
     }
 
     @media screen and (max-width: 425px) {
-      width: 31.2rem;
+      width: 32.8rem;
     }
   }
 
@@ -120,6 +119,9 @@
   right: 5rem;
   transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
   animation: nudge-in-right 0.7s;
+  @media screen and (max-width: 425px) {
+    right: unset;
+  }
 }
 
 .n-nudge-top-bottom {
@@ -129,11 +131,11 @@
   animation: nudge-top 0.7s;
 
   @media screen and (max-width: 768px) {
-    left: 20%;
+    left: 25%;
   }
 
   @media screen and (max-width: 425px) {
-    left: 10%;
+    left: unset;
   }
 }
 
