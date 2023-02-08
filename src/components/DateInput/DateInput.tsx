@@ -38,6 +38,8 @@ const DateInput = (props: DateInputProps) => {
   const [dateError, setDateError] = useState("");
   const [datePickerDate, setDatePickerDate] = useState("");
   const [showPicker, setShowPicker] = useState(false);
+  // const [range, setRange] = useState({ start: "02/07/2023", end: "03/10/2023" });
+  const [range, setRange] = useState({ start: "", end: "" });
 
   // if a date value is given as input then set that in the state
   // * The format is important "mm/dd/yyyy"
@@ -256,9 +258,22 @@ const DateInput = (props: DateInputProps) => {
               setShowPicker(false);
             }}
             onClose={() => setShowPicker(false)}
-            isRange={false}
             min={"02/06/2023"}
             max={"02/20/2024"}
+            isRange={true}
+            rangeConfig={{
+              start: {
+                dateValue: range.start,
+                min: "02/06/2023",
+              },
+              end: {
+                dateValue: range.end,
+                max: "03/10/2023",
+              },
+            }}
+            getRange={(range: { start: string; end: string }) =>
+              setRange(range)
+            }
           />
         ) : (
           <></>

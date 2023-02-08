@@ -3,6 +3,16 @@ import { SvgIcClose } from "../../assets/svg-components";
 import "./DatePicker.scss";
 import Calendar from "./Calendar";
 import Button from "../Button/Button";
+interface RangeConfigProps {
+  start: {
+    dateValue: string;
+    min: string;
+  };
+  end: {
+    dateValue: string;
+    max: string;
+  };
+}
 export interface DatePickerProps {
   dateVal?: string;
   isRange?: boolean;
@@ -10,10 +20,21 @@ export interface DatePickerProps {
   onClose: Function;
   min?: string;
   max?: string;
+  rangeConfig: RangeConfigProps;
+  getRange: Function;
 }
 
 const DatePicker = (props: DatePickerProps) => {
-  const { dateVal, isRange, onDateClick, onClose, min, max } = props;
+  const {
+    dateVal,
+    isRange,
+    onDateClick,
+    onClose,
+    min,
+    max,
+    rangeConfig,
+    getRange,
+  } = props;
 
   const [days, setDays] = useState([
     { name: "S", enum: 7 },
@@ -24,10 +45,62 @@ const DatePicker = (props: DatePickerProps) => {
     { name: "F", enum: 5 },
     { name: "S", enum: 6 },
   ]);
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
 
   const handleDateItemClicked = (selectedDate: string) => {
     onDateClick(selectedDate);
   };
+
+  useEffect(() => {
+    setStartDate(rangeConfig.start.dateValue);
+    setEndDate(rangeConfig.end.dateValue);
+  }, []);
+
+  const handleCalendarDateItemClicked = (dateValue: string) => {
+    let convertedDate = new Date(dateValue);
+    if (startDate == dateValue) {
+      setStartDate("");
+      getRange({
+        start: "",
+        end: endDate,
+      });
+      return;
+    }
+    if (endDate == dateValue) {
+      setEndDate("");
+      getRange({
+        start: startDate,
+        end: "",
+      });
+      return;
+    }
+    // case if start date exists
+    if (startDate) {
+      if (new Date(startDate) > convertedDate) {
+        setEndDate(startDate);
+        setStartDate(dateValue);
+        getRange({
+          start: dateValue,
+          end: startDate,
+        });
+        return;
+      } else {
+        setEndDate(dateValue);
+        getRange({
+          start: startDate,
+          end: dateValue,
+        });
+        return;
+      }
+    }
+    setStartDate(dateValue);
+    getRange({
+      start: dateValue,
+      end: "",
+    });
+  };
+
   return (
     <div
       className={`n-picker-wrapper ${!isRange ? "n-picker-wrapper-width" : ""}`}
@@ -42,20 +115,32 @@ const DatePicker = (props: DatePickerProps) => {
       </div>
       <div className="n-picker-calendar-group">
         <Calendar
-          onDateClick={handleDateItemClicked}
-          dateVal={dateVal}
+          onDateClick={
+            isRange
+              ? (dateVal: string) => handleCalendarDateItemClicked(dateVal)
+              : handleDateItemClicked
+          }
+          dateVal={isRange ? rangeConfig.start.dateValue : dateVal}
           isRange={isRange}
-          min={min}
-          max={max}
+          min={isRange ? rangeConfig.start.min : min}
+          max={isRange ? rangeConfig.end.max : max}
+          rangeConfig={rangeConfig}
+          from={startDate}
+          to={endDate}
         />
         {isRange ? (
           <>
             <div className="n-picker-divider" />{" "}
-            <Calendar
-              onDateClick={handleDateItemClicked}
-              dateVal={dateVal}
+            {/* <Calendar
+              onDateClick={(dateVal: string) => handleCalendarDateItemClicked(dateVal)}
+              dateVal={rangeConfig.end.dateValue}
               isRange={isRange}
-            />
+              max={rangeConfig.end.max}
+              rangeConfig={rangeConfig}
+              min={rangeConfig.start.min}
+              from={startDate}
+              to={endDate}
+            /> */}
           </>
         ) : (
           <></>
@@ -66,15 +151,27 @@ const DatePicker = (props: DatePickerProps) => {
           <div className="n-picker-footer-date-group">
             <div className="n-picker-footer-date-item">
               <span>Start Date</span>
-              <span>Apr 18, 2022</span>
+              <span>
+                {rangeConfig.start.dateValue
+                  ? rangeConfig.start.dateValue
+                  : "--"}
+              </span>
             </div>
             <div className="n-picker-footer-date-item">
               <span>End Date</span>
-              <span>Apr 18, 2022</span>
+              <span>
+                {rangeConfig.end.dateValue ? rangeConfig.end.dateValue : "--"}
+              </span>
             </div>
           </div>
           <div className="n-picker-footer-button">
-            <Button>Confirm</Button>
+            <Button
+              disabled={
+                !rangeConfig.end.dateValue || !rangeConfig.start.dateValue
+              }
+            >
+              Confirm
+            </Button>
           </div>
         </div>
       ) : (
@@ -84,6 +181,11 @@ const DatePicker = (props: DatePickerProps) => {
   );
 };
 
-DatePicker.defaulProps = { dateVal: "", isRange: false };
+DatePicker.defaulProps = {
+  dateVal: "",
+  isRange: false,
+  rangeConfig: {},
+  getRange: () => {},
+};
 
 export default React.memo(DatePicker);

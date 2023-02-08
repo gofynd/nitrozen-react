@@ -13,10 +13,14 @@ export interface CalendarProps {
   isRange?: boolean;
   min?: string;
   max?: string;
+  rangeConfig: any;
+  from?: string;
+  to?: string;
 }
 
 const Calendar = (props: CalendarProps) => {
-  const { dateVal, onDateClick, isRange, min, max } = props;
+  const { dateVal, onDateClick, isRange, min, max, rangeConfig, from, to } =
+    props;
 
   const [days, setDays] = useState([
     { name: "S", enum: 7 },
@@ -52,7 +56,7 @@ const Calendar = (props: CalendarProps) => {
       monthValue < 10 ? "0" + monthValue : monthValue,
       yearValue
     );
-  }, []);
+  }, [rangeConfig]);
 
   const generateCalendar = (month: any, year: any) => {
     // Get todays date, month and year\
@@ -69,40 +73,45 @@ const Calendar = (props: CalendarProps) => {
     let emptyIndex = tempDays.findIndex((a) => {
       return a.enum == day;
     });
-    let minYear: any, minMonth: any, minDay: any;
-    if (min) {
-      let minVal = new Date(min);
-      minDay = minVal.getDate();
-      minMonth = minVal.getMonth() + 1;
-      minYear = minVal.getFullYear();
-    }
-    let maxYear: any, maxMonth: any, maxDay: any;
-    if (max) {
-      let maxVal = new Date(max);
-      maxDay = maxVal.getDate();
-      maxMonth = maxVal.getMonth() + 1;
-      maxYear = maxVal.getFullYear();
-    }
     // iterate through the number of days and push a data object for UI mapping
     let tempCalendar: any = [];
     for (var i = 1; i <= noOfDays; i++) {
+      let iterationDate = new Date(`${month}/${i}/${year}`);
       // only if the iteration value is the same as todays date then set today as true
       let today = false;
       let isDisabled = false;
+      let inRange = false;
+      let rangeStart = false;
+      let rangeEnd = false;
       if (mm == month && yyyy == year && dd == i) {
         today = true;
       }
       if (min) {
-        if (new Date(min) > new Date(`${month}/${i}/${year}`)) {
+        if (new Date(min) > iterationDate) {
           isDisabled = true;
         }
       }
       if (max) {
-        if (new Date(max) < new Date(`${month}/${i}/${year}`)) {
+        if (new Date(max) < iterationDate) {
           isDisabled = true;
         }
       }
-      tempCalendar.push({ value: i, isToday: today, isDisabled });
+      if (isRange && from && to) {
+        if (new Date(from) < iterationDate && iterationDate < new Date(to))
+          inRange = true;
+        if (from == `${month}/${i < 10 ? "0" + i : i}/${year}`)
+          rangeStart = true;
+        if (to == `${month}/${i < 10 ? "0" + i : i}/${year}`) rangeEnd = true;
+      }
+      console.log(rangeEnd, "rangeEnd");
+      tempCalendar.push({
+        value: i,
+        isToday: today,
+        isDisabled,
+        inRange,
+        rangeEnd,
+        rangeStart,
+      });
     }
     // only to fill UI gaps has no functional use case
     let emptyArr = Array(emptyIndex == -1 ? 0 : emptyIndex).fill({ value: 0 });
@@ -136,11 +145,17 @@ const Calendar = (props: CalendarProps) => {
 
   const getCalendarItemClasses = (calendarItem: any) => {
     let classes = "";
-    classes += calendarItem.isToday ? " n-picker-calendar-griditem-today" : "";
     classes +=
-      calendarItem.value !== 0 ? " n-picker-calendar-griditem-hover" : "";
+      calendarItem.value !== 0 && !calendarItem.inRange
+        ? " n-picker-calendar-griditem-hover"
+        : "";
     classes += calendarItem.isDisabled
       ? " n-picker-calendar-griditem-disabled"
+      : "";
+    classes += calendarItem.inRange
+      ? " n-picker-calendar-griditem-range"
+      : calendarItem.isToday
+      ? " n-picker-calendar-griditem-today"
       : "";
     let monthValue: any, yearValue: any, day: any;
     if (dateVal) {
@@ -149,12 +164,23 @@ const Calendar = (props: CalendarProps) => {
       yearValue = recievedDate.getFullYear();
       day = recievedDate.getDate();
     }
+    if (isRange && from && to) {
+      day = new Date(to).getDate();
+      monthValue = new Date(to).getMonth();
+      yearValue = new Date(to).getFullYear();
+    }
     if (
       selectedMonth == months[monthValue] &&
       yearValue == selectedYear &&
       calendarItem.value == day
     ) {
-      return " n-picker-calendar-griditem-selected";
+      let selectionClass = "";
+      if (calendarItem.rangeStart)
+        selectionClass += " n-picker-calendar-griditem-rangestart";
+      if (calendarItem.rangeEnd)
+        selectionClass += " n-picker-calendar-griditem-rangeend";
+      if (selectionClass) return selectionClass;
+      return "n-picker-calendar-griditem-selected";
     }
     return classes;
   };
@@ -270,6 +296,6 @@ const Calendar = (props: CalendarProps) => {
   );
 };
 
-Calendar.defaulProps = { dateVal: "" };
+Calendar.defaulProps = { dateVal: "", rangeConfig: {}, from: "", to: "" };
 
 export default React.memo(Calendar);

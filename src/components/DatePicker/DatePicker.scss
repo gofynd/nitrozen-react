@@ -127,23 +127,43 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      border-radius: 100rem;
+    }
+
+    &-range {
+      background: $ColorPrimary20;
     }
 
     &-disabled {
       color: $ColorPrimary60;
       opacity: 50%;
       cursor: not-allowed;
+      border-radius: 100rem;
+    }
+
+    &-rangestart {
+      background-color: $ColorPrimary50;
+      color: $WhiteColor;
+      border-bottom-left-radius: 25em;
+      border-top-left-radius: 25em;
+    }
+
+    &-rangeend {
+      background-color: $ColorPrimary50;
+      color: $WhiteColor;
+      border-bottom-right-radius: 25em;
+      border-top-right-radius: 25em;
     }
 
     &-selected {
       background-color: $ColorPrimary50;
       color: $WhiteColor;
+      border-radius: 100rem;
     }
 
     &-hover {
       &:hover {
         background-color: $ColorPrimaryGrey20;
+        border-radius: 100rem;
       }
     }
 
@@ -160,17 +180,19 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: calc(100% - 15rem);
-    top: 28%;
     border-top: 0.1rem solid $ColorPrimaryGrey40;
     padding-top: 0.8rem;
 
     &-width {
       width: calc(100% - 3.2rem);
+      height: calc(100% - 15rem);
+      top: 28%;
     }
 
     &-semiwidth {
-      width: calc(50% - 3.2rem);
+      width: calc(50% - 2.8rem);
+      height: calc(100% - 22rem);
+      top: 24%;
     }
 
     &-item {
