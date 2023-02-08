@@ -8,10 +8,12 @@ export interface DatePickerProps {
   isRange?: boolean;
   onDateClick: Function;
   onClose: Function;
+  min?: string;
+  max?: string;
 }
 
 const DatePicker = (props: DatePickerProps) => {
-  const { dateVal, isRange, onDateClick, onClose } = props;
+  const { dateVal, isRange, onDateClick, onClose, min, max } = props;
 
   const [days, setDays] = useState([
     { name: "S", enum: 7 },
@@ -43,6 +45,8 @@ const DatePicker = (props: DatePickerProps) => {
           onDateClick={handleDateItemClicked}
           dateVal={dateVal}
           isRange={isRange}
+          min={min}
+          max={max}
         />
         {isRange ? (
           <>

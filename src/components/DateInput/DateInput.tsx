@@ -257,6 +257,8 @@ const DateInput = (props: DateInputProps) => {
             }}
             onClose={() => setShowPicker(false)}
             isRange={false}
+            min={"02/06/2023"}
+            max={"02/20/2024"}
           />
         ) : (
           <></>

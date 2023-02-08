@@ -11,10 +11,12 @@ export interface CalendarProps {
   dateVal?: string;
   onDateClick: Function;
   isRange?: boolean;
+  min?: string;
+  max?: string;
 }
 
 const Calendar = (props: CalendarProps) => {
-  const { dateVal, onDateClick, isRange } = props;
+  const { dateVal, onDateClick, isRange, min, max } = props;
 
   const [days, setDays] = useState([
     { name: "S", enum: 7 },
@@ -67,15 +69,40 @@ const Calendar = (props: CalendarProps) => {
     let emptyIndex = tempDays.findIndex((a) => {
       return a.enum == day;
     });
+    let minYear: any, minMonth: any, minDay: any;
+    if (min) {
+      let minVal = new Date(min);
+      minDay = minVal.getDate();
+      minMonth = minVal.getMonth() + 1;
+      minYear = minVal.getFullYear();
+    }
+    let maxYear: any, maxMonth: any, maxDay: any;
+    if (max) {
+      let maxVal = new Date(max);
+      maxDay = maxVal.getDate();
+      maxMonth = maxVal.getMonth() + 1;
+      maxYear = maxVal.getFullYear();
+    }
     // iterate through the number of days and push a data object for UI mapping
     let tempCalendar: any = [];
     for (var i = 1; i <= noOfDays; i++) {
       // only if the iteration value is the same as todays date then set today as true
       let today = false;
+      let isDisabled = false;
       if (mm == month && yyyy == year && dd == i) {
         today = true;
       }
-      tempCalendar.push({ value: i, isToday: today });
+      if (min) {
+        if (new Date(min) > new Date(`${month}/${i}/${year}`)) {
+          isDisabled = true;
+        }
+      }
+      if (max) {
+        if (new Date(max) < new Date(`${month}/${i}/${year}`)) {
+          isDisabled = true;
+        }
+      }
+      tempCalendar.push({ value: i, isToday: today, isDisabled });
     }
     // only to fill UI gaps has no functional use case
     let emptyArr = Array(emptyIndex == -1 ? 0 : emptyIndex).fill({ value: 0 });
@@ -112,6 +139,9 @@ const Calendar = (props: CalendarProps) => {
     classes += calendarItem.isToday ? " n-picker-calendar-griditem-today" : "";
     classes +=
       calendarItem.value !== 0 ? " n-picker-calendar-griditem-hover" : "";
+    classes += calendarItem.isDisabled
+      ? " n-picker-calendar-griditem-disabled"
+      : "";
     let monthValue: any, yearValue: any, day: any;
     if (dateVal) {
       let recievedDate = new Date(dateVal);
@@ -175,10 +205,16 @@ const Calendar = (props: CalendarProps) => {
       <div className="n-picker-calendar-grid">
         {calendar.map((calendarItem: any, calendarIndex: number) => (
           <div
-            className={`n-picker-calendar-griditem `}
+            className={`n-picker-calendar-griditem ${
+              calendarItem.isDisabled
+                ? "n-picker-calendar-griditem-disabled"
+                : ""
+            }`}
             key={`calendar-griditem-${calendarIndex}`}
             onClick={() => {
-              handleDateClick(calendarItem);
+              calendarItem.value !== 0 && !calendarItem.isDisabled
+                ? handleDateClick(calendarItem)
+                : () => {};
             }}
           >
             <div
