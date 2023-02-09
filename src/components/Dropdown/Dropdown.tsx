@@ -163,8 +163,10 @@ const Dropdown = (props: DropdownProps) => {
         });
         tmp = [...new Set(tmp)];
         return `${tmp.join(", ")}`;
+      } else if (props.placeholder) {
+        return props.placeholder;
       } else if (props.label) {
-        return props.placeholder || `Choose ${props.label}`;
+        return `Choose ${props.label}`;
       }
       return "";
     }
