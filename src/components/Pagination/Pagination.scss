@@ -4,8 +4,8 @@
   font-family: $PrimaryFont;
   color: $TypographyPrimaryColor;
   border: 1px solid $ColorPrimaryGrey60;
-  border-radius: 12px;
-  padding: 12px 12px;
+  border-radius: 1.2rem;
+  padding: 1.2rem;
 
   .n-pagination {
     display: flex;
@@ -15,7 +15,7 @@
     font-weight: 400;
     align-items: center;
     flex-wrap: wrap;
-    gap: 12px;
+    gap: 1.2rem;
     .mobile_view {
       display: none !important;
       @media only screen and (max-width: $sm-min) {
@@ -26,17 +26,17 @@
       flex: 1;
       display: flex;
       align-items: center;
-      color: rgba(0, 0, 0, 0.65);
+      color: $ColorPrimaryGrey80;
       @media only screen and (max-width: $sm-min) {
         display: none;
       }
       .n-pagination__count {
-        color: rgba(0, 0, 0, 0.65);
+        color: $ColorPrimaryGrey80;
         font-weight: 500;
-        font-size: 14px;
-        line-height: 20px;
+        font-size: 1.4rem;
+        line-height: 2rem;
         @media only screen and (max-width: $sm-min) {
-          font-size: 12px;
+          font-size: 1.2rem;
         }
       }
     }
@@ -44,52 +44,52 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 36px;
+      gap: 3.6rem;
       flex-wrap: wrap;
       @media only screen and (max-width: $sm-min) {
-        gap: 18px !important;
+        gap: 1.8rem !important;
       }
       .n-pagination__number {
         display: flex;
-        gap: 8px;
+        gap: 0.8rem;
         flex-direction: row;
         position: relative;
         flex-wrap: wrap;
         @media only screen and (max-width: $sm-min) {
-          gap: 4px !important;
+          gap: 0.5rem !important;
         }
       }
       .n-pagination__showpopup {
         position: absolute;
-        padding: 12px;
+        padding: 1.2rem;
         z-index: 1;
-        background: #ffffff;
+        background: $ColorPrimaryBackground;
         box-shadow: 0px 4px 16px rgb(0 0 0 / 8%);
-        border-radius: 16px;
-        width: 184px;
+        border-radius: 1.6rem;
+        width: 18.5rem;
         height: auto;
         display: flex;
         flex-direction: column;
-        gap: 8px;
-        top: 50px;
+        gap: 0.8rem;
+        top: 5rem;
 
         .n-pagination__search_input {
           border: 1px solid $ColorPrimaryGrey60;
-          border-radius: 12px;
-          padding: 10px;
+          border-radius: 1.2rem;
+          padding: 1rem;
           display: flex;
           justify-content: center;
           align-items: center;
-          gap: 8px;
+          gap: 0.8rem;
           input::placeholder {
             font-weight: 500;
-            font-size: 14px;
-            line-height: 20px;
+            font-size: 1.4rem;
+            line-height: 2rem;
             letter-spacing: -0.005em;
-            color: rgba(0, 0, 0, 0.65);
+            color: $ColorPrimaryGrey80;
           }
           .n-pagination__search_logo {
-            padding-top: 5px;
+            padding-top: 0.5rem;
           }
           .n-input {
             border: 0px;
@@ -106,66 +106,66 @@
           }
         }
         ::-webkit-scrollbar {
-          width: 4px;
+          width: 0.25rem;
           border-radius: 0px 0px 48px 48px;
-          left: 4px;
-          top: 4px;
+          left: 0.25rem;
+          top: 0.25rem;
         }
         ::-webkit-scrollbar-track {
-          background: #ffffff;
+          background: $ColorPrimaryBackground;
         }
         ::-webkit-scrollbar-thumb {
-          background: #e0e0e0;
+          background: $ColorPrimaryGrey40;
         }
         ::-webkit-scrollbar-thumb:hover {
-          background: #e0e0e0;
+          background: $ColorPrimaryGrey40;
         }
         .n-pagination__search_wrapper {
           display: flex;
           flex-wrap: wrap;
           overflow: auto;
-          height: 108px;
+          height: 10.5rem;
           .n-pagination__search_number_inactive {
-            height: 40px;
-            width: 40px;
+            height: 4rem;
+            width: 4rem;
             display: flex;
             justify-content: center;
             align-items: center;
             border-radius: 50%;
             flex: 1 0 21%;
             font-weight: 700;
-            font-size: 16px;
-            line-height: 24px;
-            color: #b5b5b5;
+            font-size: 1.6rem;
+            line-height: 2.4rem;
+            color: $ColorPrimaryGrey60;
           }
           .n-pagination__search_number_active {
-            color: rgba(0, 0, 0, 0.65);
+            color: $ColorPrimaryGrey80;
           }
         }
       }
       .n-pagination__number_inactive {
-        height: 40px;
-        width: 40px;
+        height: 4rem;
+        width: 4rem;
         display: flex;
         justify-content: center;
         align-items: center;
         border-radius: 50%;
         color: $ColorPrimaryGrey60;
         font-weight: 700;
-        font-size: 16px;
-        line-height: 24px;
+        font-size: 1.6rem;
+        line-height: 2.4rem;
         @media only screen and (max-width: $sm-min) {
-          height: 34px;
-          width: 34px;
+          height: 3.5rem;
+          width: 3.5rem;
         }
       }
       .n-pagination__number_active {
-        background: #3535f3;
+        background: $ColorPrimary50;
         color: white;
       }
       .n-pagination__dot_active {
-        background: #e8e8fc;
-        color: #3535f3;
+        background: $ColorPrimary20;
+        color: $ColorPrimary50;
       }
     }
 
@@ -179,19 +179,18 @@
         display: flex;
         align-items: center;
         border: 1px solid $ColorPrimaryGrey60;
-        border-radius: 12px;
-        // padding: 8px 12px;
+        border-radius: 1.2rem;
         .n-pagination__select__label {
           font-weight: 400;
-          font-size: 12px;
-          line-height: 16px;
-          color: rgba(0, 0, 0, 0.65);
-          padding-left: 12px;
+          font-size: 1.2rem;
+          line-height: 1.6rem;
+          color: $ColorPrimaryGrey80;
+          padding-left: 1.2rem;
         }
         .n-pagination-page-size .n-select-wrapper .n-select__trigger {
           border: 0;
-          background: #fff;
-          color: var(--TypographyPrimaryColor, rgba(0, 0, 0, 0.65));
+          background: $ColorPrimaryBackground;
+          color: var(--TypographyPrimaryColor, $ColorPrimaryGrey80);
         }
         &__label {
           @media only screen and (max-width: $sm-min) {

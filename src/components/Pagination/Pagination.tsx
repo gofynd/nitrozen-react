@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import NitrozenId from "../../utils/uuids";
 import Dropdown from "../Dropdown";
 import "./Pagination.scss";
@@ -56,13 +56,14 @@ const Pagination = (props: PaginationProps) => {
   const [selectedPageSize, setSelectedPageSize] = useState<any>(
     pageSizeOptions && pageSizeOptions.length > 0 ? pageSizeOptions[0] : 10
   );
-  const ref = React.useRef(null);
+  const refSearchBox = useRef<any>(null);
   const [paginationRange, setPaginationRange] = useState<any>([
     1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
   ]);
   const [openPopup, setopenPopup] = useState(false);
-  const [searchListPages, setSearchListPages] = useState<any>([0]);
+  const [searchListPages, setSearchListPages] = useState<Array<string>>(["0"]);
   const [searchValue, setSearchValue] = useState(1);
+  const [popupPosition, setPopupPosition] = useState(1);
   useEffect(() => {
     setDefaults();
     onPaginationRange();
@@ -133,6 +134,7 @@ const Pagination = (props: PaginationProps) => {
     return 0;
   }
   function pageSizes() {
+    let maxPageCount = 1800;
     const po = pageSizeOptions
       ? pageSizeOptions.map((p) => {
           return { text: p.toString(), value: p.toString() };
@@ -140,7 +142,7 @@ const Pagination = (props: PaginationProps) => {
       : [];
     if (!selectedPageSize) {
       setSelectedPageSize(
-        value.limit ? value.limit : po.length > 0 ? po[0].value : 1800
+        value.limit ? value.limit : po.length > 0 ? po[0].value : maxPageCount
       );
     }
     return po;
@@ -193,26 +195,27 @@ const Pagination = (props: PaginationProps) => {
       <span
         key={index}
         id={index}
-        onClick={(e) => selectedPage(e, i, index)}
+        onClick={(e) => selectedNode(e, i, index)}
         className={`n-pagination__number_inactive ${
           i === value.current && "n-pagination__number_active"
-        } ${i === "..." && openPopup && "n-pagination__dot_active"}`}
+        } ${
+          i === "..." &&
+          popupPosition === index &&
+          openPopup &&
+          "n-pagination__dot_active"
+        }`}
       >
         {i}
       </span>
     ));
   }
-  function selectedPage(e: any, i: any, index: any) {
+  function selectedNode(e: any, i: any, index: any) {
     if (i == "...") {
       const ele = document.getElementById(index);
       const rect = ele && ele.getBoundingClientRect();
 
       const x = rect?.left;
       const y = rect?.top;
-      let popupData = document.getElementById("menu");
-      popupData && (popupData.style.top = `${y}px`);
-      popupData && (popupData.style.left = `${x}px`);
-
       let totalPage =
         value.total && value.limit && Math.ceil(value.total / value.limit);
 
@@ -226,7 +229,9 @@ const Pagination = (props: PaginationProps) => {
       }
       //calcluate range for search box
       let rangeList = range(rangeStart, rangeEnd, 1);
+      setPopupPosition(index);
       setSearchListPages(rangeList);
+      document.addEventListener("click", handleOutsideClick, false);
       setopenPopup(!openPopup);
     } else {
       setopenPopup(false);
@@ -234,8 +239,16 @@ const Pagination = (props: PaginationProps) => {
     }
     return;
   }
+  function handleOutsideClick(event: any) {
+    if (
+      refSearchBox.current &&
+      !refSearchBox.current.contains(event.target as Node)
+    ) {
+      setopenPopup(false);
+    }
+  }
   function range(start: any, stop: any, step: any) {
-    var a = [start],
+    let a = [start],
       b = start;
     while (b < stop) {
       a.push((b += step || 1));
@@ -247,7 +260,7 @@ const Pagination = (props: PaginationProps) => {
       <div
         key={index}
         id={i}
-        onClick={(e) => selectedPage(e, i, index)}
+        onClick={(e) => selectedNode(e, i, index)}
         className={`n-pagination__search_number_inactive ${
           i === searchValue && "n-pagination__search_number_active"
         }`}
@@ -334,10 +347,10 @@ const Pagination = (props: PaginationProps) => {
               >
                 <SvgLeft />
               </div>
-              <div className="n-pagination__number">
+              <div className="n-pagination__number" ref={refSearchBox}>
                 {displayPages()}
                 {openPopup ? (
-                  <div className="n-pagination__showpopup" id="menu" ref={ref}>
+                  <div className="n-pagination__showpopup" id="menu">
                     <div className="n-pagination__search_input">
                       <div className="n-pagination__search_logo">
                         <SvgSearchLogo className="search-icon" />
