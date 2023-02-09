@@ -1,13 +1,17 @@
 import React, { useState, useEffect, useCallback } from "react";
 import classnames from "classnames";
 import "./Stepper.scss";
-import {
-  SvgCheckCircle,
-  SvgCircleProgress,
-  SvgCircleDisabled,
-} from "../../assets/svg-components";
+import { SvgDone, SvgPriorityHigh } from "../../assets/svg-components";
 
-type ItemsType = Array<{
+export enum StepState {
+  "Current" = "Current",
+  "Upcoming" = "Upcoming",
+  "Disabled" = "Disabled",
+  "Issue" = "Issue",
+  "Completed" = "Completed",
+}
+
+export type ItemsType = Array<{
   name: string | number;
   description?: string | number;
   isInactive?: boolean;
@@ -18,6 +22,8 @@ type ItemsType = Array<{
   extraIconProps?: object;
   buttonText?: string;
   buttonStyles?: object;
+  state: StepState;
+  content?: string;
 }>;
 
 export interface StepperProps {
@@ -106,14 +112,44 @@ const Stepper = (props: StepperProps) => {
     return elements;
   }, []);
 
-  const getSelectedIcon = useCallback(
+  const getClassNameByState = useCallback((state: StepState) => {
+    switch (state) {
+      case StepState.Current:
+        return "current";
+      case StepState.Upcoming:
+        return "upcoming";
+      case StepState.Disabled:
+        return "disabled";
+      case StepState.Issue:
+        return "issue";
+      case StepState.Completed:
+        return "completed";
+      default:
+        return "";
+    }
+  }, []);
+
+  const getStepperCircleContent = useCallback(
     (
-      icon: React.ElementType,
+      index: number,
+      state: StepState,
+      icon: React.ElementType | null,
       iconSize: string = "22",
       iconColor: string = "#419266",
       extraIconProps: object = {}
     ) => {
-      if (!icon) return <></>;
+      if (state === StepState.Issue) {
+        return <SvgPriorityHigh color="#1E7B74" />;
+      }
+
+      if (state === StepState.Completed) {
+        return <SvgDone color="#1ECCB0" />;
+      }
+
+      if (!icon) {
+        return index + 1;
+      }
+
       const iconProps = {
         style: {
           color: iconColor,
@@ -164,99 +200,86 @@ const Stepper = (props: StepperProps) => {
                 data-testid={`stepper-${index}`}
                 key={index}
               >
-                <div className="nitrozen-flex-center bar-ball-container">
-                  {/* Horizontal Stepper Circle states */}
-                  {isHorizontal && isActive(index) && (
-                    <div className="nitrozen-circle-outer-container">
-                      <SvgCircleProgress className="progress-svg" />
+                {/* Horizontal Stepper Circle states */}
+                {isHorizontal && (
+                  <div className="nitrozen-circle-outer-container">
+                    <div
+                      className={`nitrozen-circle-outer ${getClassNameByState(
+                        item?.state
+                      )}`}
+                    >
+                      {getStepperCircleContent(
+                        index,
+                        item.state,
+                        item?.icon ?? null,
+                        item.iconSize,
+                        item.iconColor,
+                        item.extraIconProps
+                      )}
                     </div>
-                  )}
-                  {isHorizontal && isChecked(index) && (
-                    <div className="nitrozen-cirle-check-container">
-                      <SvgCheckCircle className="completed-svg" />
+                    <div className="stepper-header-description">
+                      <div className="header-description">
+                        <div
+                          className={classnames({
+                            "nitrozen-text": true,
+                            "heading-center": !item.description,
+                          })}
+                        >
+                          {item.name}
+                        </div>
+                      </div>
                     </div>
-                  )}
-                  {isHorizontal && isDisabled(index) && (
-                    <div className="nitrozen-circle-outer-container">
-                      <SvgCircleDisabled />
-                    </div>
-                  )}
-
-                  {/* Vertical Stepper Circle states */}
-                  {isVertical && item.isCompleted && (
-                    <div className="nitrozen-cirle-check-container">
-                      <div className="nitrozen-circle-outer"></div>
-                      <div className="nitrozen-checkmark"></div>
-                    </div>
-                  )}
-                  {isVertical && !item.isCompleted && !item.icon && (
-                    <div className="nitrozen-circle-outer-container index-container">
-                      <div className="nitrozen-circle-outer"></div>
-                      <div className="index-number">{index + 1}</div>
-                    </div>
-                  )}
-
-                  {isVertical && !item.isCompleted && item.icon && (
-                    <div className="nitrozen-circle-outer-container stepper-icon-container">
-                      <div className="nitrozen-circle-outer"></div>
-                      <div className="stepper-icon active-stepper">
-                        {getSelectedIcon(
-                          item.icon,
+                  </div>
+                )}
+                {/* Vertical Stepper Circle states */}
+                {isVertical && (
+                  <div className="nitrozen-circle-outer-container">
+                    <div
+                      className={`nitrozen-circle-outer nitrozen-circle-border ${getClassNameByState(
+                        item.state
+                      )}`}
+                    >
+                      <span
+                        className={`nitrozen-circle-content ${getClassNameByState(
+                          item.state
+                        )}`}
+                      >
+                        {getStepperCircleContent(
+                          index,
+                          item.state,
+                          item?.icon ?? null,
                           item.iconSize,
                           item.iconColor,
                           item.extraIconProps
                         )}
+                      </span>
+                    </div>
+                    <div className="stepper-header-description">
+                      <div className="header-description">
+                        <div
+                          className={classnames({
+                            "nitrozen-text": true,
+                            "heading-center": !item.description,
+                          })}
+                        >
+                          {item.name}
+                        </div>
                       </div>
                     </div>
-                  )}
-
-                  {/* Bar states */}
-                  {index < Math.max(maxActiveIndex, activeIndexState) && (
                     <div
                       className={classnames({
-                        "nitrozen-bar nitrozen-active": true,
-                        "completed-bar": isVertical && item.isCompleted,
+                        "nitrozen-bar": true,
+                        "completed-bar": index === items?.length - 1,
                       })}
                     ></div>
-                  )}
-                  {index > Math.max(maxActiveIndex, activeIndexState) - 1 && (
-                    <div
-                      className={classnames({
-                        "nitrozen-bar nitrozen-disabled": true,
-                        "completed-bar": isVertical && item.isCompleted,
-                      })}
-                    ></div>
-                  )}
-                </div>
-                <div className="stepper-header-description">
-                  <div className="header-description">
-                    <div
-                      className={classnames({
-                        "nitrozen-text": true,
-                        "heading-center": !item.description,
-                      })}
-                    >
-                      {item.name}
-                    </div>
-                    {item.description && (
-                      <div className="stepper-description">
-                        {encodeDescription(item.description.toString())}
-                      </div>
+                    {item.content && (
+                      <div
+                        className="content"
+                        dangerouslySetInnerHTML={{ __html: item.content }}
+                      ></div>
                     )}
                   </div>
-
-                  {/* Vertical stepper CTA */}
-                  {isVertical && item.buttonText && !item.isInactive && (
-                    <button
-                      className="ripple"
-                      data-testid={`stepper-cta-${index}`}
-                      onClick={() => stepClick(index, item)}
-                      style={{ ...defaultButtonStyles, ...item.buttonStyles }}
-                    >
-                      {item.buttonText}
-                    </button>
-                  )}
-                </div>
+                )}
               </div>
             );
           })}

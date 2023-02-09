@@ -5,29 +5,32 @@ import {
   SvgHourglassEmpty,
   SvgAddLocation,
 } from "../../assets/svg-components";
-import Stepper from "./Stepper";
+import Stepper, { ItemsType, StepState } from "./Stepper";
 import userEvent from "@testing-library/user-event";
 
 describe("Stepper", () => {
   const onHandlerMock = jest.fn().mockImplementation((e) => {});
-  const HORIZONTAL_STEPPER_ITEMS = [
+  const HORIZONTAL_STEPPER_ITEMS: ItemsType = [
     {
       name: "Step 1",
       description: "April 26, 2022 \n 11:17 AM",
+      state: StepState.Current,
     },
     {
       name: "Step 2",
       description: "April 27, 2022 \n 11:00 AM",
+      state: StepState.Current,
     },
   ];
 
-  const VERTICAL_STEPPER_ITEMS = [
+  const VERTICAL_STEPPER_ITEMS: ItemsType = [
     {
       name: "Step 1",
       description:
         "Lorem ipsum dolor sit amet consectetur Maxime mollitia, Maxime mollitia Maxime mollitia commodi repudiandae",
       isCompleted: true,
       buttonText: "View Status",
+      state: StepState.Current,
     },
     {
       name: "Step 2",
@@ -35,6 +38,7 @@ describe("Stepper", () => {
         "Lorem ipsum dolor sit amet consectetur Maxime mollitia, commodi repudiandae",
       buttonText: "View Status",
       icon: SvgStore,
+      state: StepState.Upcoming,
     },
     {
       name: "Step 3",
@@ -42,6 +46,7 @@ describe("Stepper", () => {
         "Lorem ipsum dolor sit amet consectetur Maxime mollitia, commodi repudiandae",
       buttonText: "View Status",
       icon: SvgAddLocation,
+      state: StepState.Upcoming,
     },
     {
       name: "Step 4",
@@ -49,6 +54,7 @@ describe("Stepper", () => {
         "Lorem ipsum dolor sit amet consectetur Maxime mollitia, commodi repudiandae",
       buttonText: "View Status",
       icon: SvgHourglassEmpty,
+      state: StepState.Upcoming,
     },
     {
       name: "Step 5",
@@ -56,6 +62,7 @@ describe("Stepper", () => {
         "Lorem ipsum dolor sit amet consectetur Maxime mollitia Maxime mollitia Maxime mollitia, commodi repudiandae",
       buttonText: "Complete",
       isInactive: true,
+      state: StepState.Upcoming,
     },
   ];
   test("Renders horizontal stepper", () => {
@@ -74,7 +81,7 @@ describe("Stepper", () => {
     const screen = render(
       <Stepper items={VERTICAL_STEPPER_ITEMS} onClick={onHandlerMock} />
     );
-    userEvent.click(screen.getByTestId("stepper-cta-1"));
+    userEvent.click(screen.getByTestId("stepper-1"));
     expect(onHandlerMock).toBeCalled();
   });
   test("Renders progress circle & heading", () => {
