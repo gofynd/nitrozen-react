@@ -8,6 +8,7 @@
   &-calendar-group {
     display: flex;
     gap: 1.2rem;
+    height: 48.4rem;
   }
 
   &-divider {
@@ -63,6 +64,10 @@
         color: $ColorPrimary60;
       }
     }
+  }
+  &-btn-active {
+    background-color: $ColorPrimary20;
+    border-color: $ColorPrimary60;
   }
 
   &-month-year {
@@ -192,7 +197,7 @@
     &-semiwidth {
       width: calc(50% - 2.8rem);
       height: calc(100% - 22rem);
-      top: 24%;
+      top: 20%;
     }
 
     &-item {

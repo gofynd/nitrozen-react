@@ -258,18 +258,14 @@ const DateInput = (props: DateInputProps) => {
               setShowPicker(false);
             }}
             onClose={() => setShowPicker(false)}
-            min={"02/06/2023"}
-            max={"02/20/2024"}
+            minDate={"02/06/2023"}
+            maxDate={"03/20/2023"}
             isRange={true}
             rangeConfig={{
-              start: {
-                dateValue: range.start,
-                min: "02/06/2023",
-              },
-              end: {
-                dateValue: range.end,
-                max: "03/10/2023",
-              },
+              start: range.start,
+              min: "02/06/2023",
+              max: "03/10/2023",
+              end: range.end,
             }}
             getRange={(range: { start: string; end: string }) =>
               setRange(range)
