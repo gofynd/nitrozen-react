@@ -525,6 +525,21 @@ var t = require("../../../components/Icons/GenIcon.js");
       ],
     })(r);
   }),
+  (exports.SvgLeft = function (r) {
+    return t.GenIcon({
+      tag: "svg",
+      attr: { viewBox: "0 0 24 24", fill: "none" },
+      child: [
+        {
+          tag: "path",
+          attr: {
+            d: "M15.7049 7.41L14.2949 6L8.29492 12L14.2949 18L15.7049 16.59L11.1249 12L15.7049 7.41Z",
+            fill: "#3535F3",
+          },
+        },
+      ],
+    })(r);
+  }),
   (exports.SvgLegendToggle = function (r) {
     return t.GenIcon({
       tag: "svg",
@@ -745,6 +760,21 @@ var t = require("../../../components/Icons/GenIcon.js");
           attr: {
             d: "M17.6449 6.35C16.1949 4.9 14.2049 4 11.9949 4C7.57488 4 4.00488 7.58 4.00488 12C4.00488 16.42 7.57488 20 11.9949 20C15.7249 20 18.8349 17.45 19.7249 14H17.6449C16.8249 16.33 14.6049 18 11.9949 18C8.68488 18 5.99488 15.31 5.99488 12C5.99488 8.69 8.68488 6 11.9949 6C13.6549 6 15.1349 6.69 16.2149 7.78L12.9949 11H19.9949V4L17.6449 6.35Z",
             fill: "currentColor",
+          },
+        },
+      ],
+    })(r);
+  }),
+  (exports.SvgRight = function (r) {
+    return t.GenIcon({
+      tag: "svg",
+      attr: { viewBox: "0 0 24 24", fill: "none" },
+      child: [
+        {
+          tag: "path",
+          attr: {
+            d: "M9.70492 6L8.29492 7.41L12.8749 12L8.29492 16.59L9.70492 18L15.7049 12L9.70492 6Z",
+            fill: "#3535F3",
           },
         },
       ],

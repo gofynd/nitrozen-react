@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import Dropdown from "./Dropdown";
+import * as SvgArray from "../../assets/svg-components";
+import { Svg10Mp } from "../../assets/svg-components";
 
 export default {
   title: "Components/Input/Dropdown",
@@ -10,6 +12,21 @@ export default {
       control: "text",
       description: "Used to uniquely identify the dropdown",
       default: "Randomly generated ID prepended by `nitrozen-dropdown-`",
+    },
+    validationState: {
+      control: "select",
+      options: ["", "success", "error", "warning"],
+      description: "Describes the state of validition text",
+      defaultValue: "",
+    },
+    validationLabel: {
+      type: "string",
+      description: "The description",
+    },
+    helperText: {
+      type: "string",
+      description: "Helper text for the drop down field",
+      defaultValue: "",
     },
     items: {
       description:
@@ -50,6 +67,11 @@ export default {
       action: "clicked",
       description: "onChange(event, item)",
     },
+    prefixIcon: {
+      description:
+        "An element to be placed on the left, ideally an icon. This is clickable if onIconClick is defined.",
+      options: SvgArray,
+    },
   },
 } as ComponentMeta<typeof Dropdown>;
 
@@ -69,6 +91,40 @@ const Template: ComponentStory<typeof Dropdown> = (args) => (
 );
 
 const DropdownDatasource = [
+  {
+    text: "Maharashtra",
+    sub_text: "SUB TEXT",
+    value: 1,
+    logo: "https://hdn-1.jiox0.de/jioecomm/seller/pictures/logo/original/gionee-56405d/Gionee_Logo_20190919.jpg",
+  },
+  {
+    text: "Andhra Pradesh",
+    sub_text: "SUB TEXT",
+    value: 2,
+    logo: "https://hdn-1.jiox0.de/jioecomm/seller/pictures/logo/original/gionee-56405d/Gionee_Logo_20190919.jpg",
+  },
+  {
+    text: "West Bengal",
+    value: 3,
+    logo: "https://hdn-1.jiox0.de/jioecomm/seller/pictures/logo/original/gionee-56405d/Gionee_Logo_20190919.jpg",
+  },
+  {
+    text: "Madhya Pradesh",
+    value: 4,
+    logo: "https://hdn-1.jiox0.de/jioecomm/seller/pictures/logo/original/gionee-56405d/Gionee_Logo_20190919.jpg",
+  },
+  {
+    text: "Tamil Nadu",
+    value: 5,
+    logo: "https://hdn-1.jiox0.de/jioecomm/seller/pictures/logo/original/gionee-56405d/Gionee_Logo_20190919.jpg",
+  },
+  {
+    text: "Himachal Pradesh",
+    value: 6,
+    logo: "https://hdn-1.jiox0.de/jioecomm/seller/pictures/logo/original/gionee-56405d/Gionee_Logo_20190919.jpg",
+  },
+];
+const DropdownDatasourceWithoutIcon = [
   {
     text: "Maharashtra",
     value: 1,
@@ -94,7 +150,6 @@ const DropdownDatasource = [
     value: 6,
   },
 ];
-
 export const SingleSelect = Template.bind({});
 SingleSelect.args = {
   id: "ddlStates",
@@ -110,7 +165,7 @@ SingleSelect.args = {
 export const MultiSelect = Template.bind({});
 MultiSelect.args = {
   id: "ddlStates",
-  items: DropdownDatasource,
+  items: DropdownDatasourceWithoutIcon,
   label: "States",
   placeholder: "States",
   tooltip: "Tooltip is working",
@@ -165,15 +220,14 @@ export const Search = () => {
           addOption={true}
           enableSelectAll={true}
           onSearchInputChange={onSearchInputHandler}
-          onScroll={(e: any) => {
-            console.log("Scroll event triggered with props: ", e);
-          }}
+          onScroll={(e: any) => {}}
           addOptionHandler={(newValue: string) => {
             setSearchData([
               ...DropdownDatasource,
               { text: newValue, value: 101 },
             ]);
           }}
+          prefixIcon={SvgArray.Svg10Mp}
         />
       </div>
     </div>

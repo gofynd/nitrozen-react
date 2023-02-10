@@ -7,9 +7,11 @@ export interface ToastProps {
   content?: string;
   duration?: number;
   shouldClose?: boolean;
-  type: string;
+  leftImage: React.ReactNode;
+  rightImage: React.ReactNode;
+  leftIconPosition: string;
+  rightIconPosition: string;
   position: string;
-  toastHeaderAlign?: "left" | "center" | "right";
   toastWidth?: string;
 }
 declare const _default: React.NamedExoticComponent<ToastProps>;

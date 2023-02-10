@@ -1,21 +1,24 @@
-@import "./../../base/base.scss";
+@import "./../Input/Input.scss";
 
-.nitrozen-error-visible,
-.nitrozen-approval-visible {
-  width: 100%;
-  font-family: $PrimaryFont;
-  font-size: $BaseFontSize + 2;
-}
-.nitrozen-error-visible {
-  color: $ErrorColor;
+.n-validation-container {
+  margin-top: 8px;
 }
 
-.nitrozen-approval-visible {
-  color: $SuccessColor;
-}
-
-.badge-description-container {
+.n-state-container {
   display: flex;
-  align-items: center;
-  gap: 0.4rem;
+  font-weight: 500;
+  text-transform: none;
+  font-size: $BaseFontSize + 4px;
+  letter-spacing: -0.07px;
+
+  img {
+    height: 100%;
+    width: 100%;
+  }
+}
+
+.n-svg-container {
+  height: 16px;
+  width: 16px;
+  margin-right: 6px;
 }

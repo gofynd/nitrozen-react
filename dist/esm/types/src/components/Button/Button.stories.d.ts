@@ -5,14 +5,14 @@ declare const _default: ComponentMeta<
     (props: import("./Button").ButtonProps): JSX.Element;
     defaultProps: {
       href: null;
-      type: string;
       disabled: boolean;
       rounded: boolean;
       theme: string;
+      as: null;
       size: string;
       focused: boolean;
       showProgress: boolean;
-      stroke: null;
+      fullWidth: boolean;
       children: null;
       onClick: null;
       className: null;
@@ -28,14 +28,14 @@ export declare const Default: ComponentStory<
     (props: import("./Button").ButtonProps): JSX.Element;
     defaultProps: {
       href: null;
-      type: string;
       disabled: boolean;
       rounded: boolean;
       theme: string;
+      as: null;
       size: string;
       focused: boolean;
       showProgress: boolean;
-      stroke: null;
+      fullWidth: boolean;
       children: null;
       onClick: null;
       className: null;
@@ -45,6 +45,11 @@ export declare const Default: ComponentStory<
     };
   }>
 >;
-export declare const PrimaryAndOutline: () => JSX.Element;
-export declare const LinkButton: () => JSX.Element;
+export declare const AllThemes: () => JSX.Element;
+export declare const AllDisbledThemes: () => JSX.Element;
 export declare const IconButton: () => JSX.Element;
+export declare const ButtonWithIconLeft: () => JSX.Element;
+export declare const ButtonWithIconRight: () => JSX.Element;
+export declare const ButtonWithBothIcon: () => JSX.Element;
+export declare const AllThemesWithPositiveState: () => JSX.Element;
+export declare const AllThemesWithDestructiveState: () => JSX.Element;

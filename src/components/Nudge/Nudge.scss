@@ -1,0 +1,220 @@
+@import "./../../base/base.scss";
+
+.n-nudge {
+  user-select: none;
+
+  &-container-main {
+    position: fixed;
+    z-index: $ZIndex3;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &-wrapper {
+    display: flex;
+    flex-direction: column;
+    background-color: $ColorSecondaryGrey80;
+    border-radius: 2.4rem;
+    width: 38.4rem;
+    padding: 1.6rem;
+    margin-bottom: 1rem;
+
+    @media screen and (max-width: 768px) {
+      width: 34.4rem;
+    }
+
+    @media screen and (max-width: 425px) {
+      width: 32.8rem;
+    }
+  }
+
+  &-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &-left-section {
+    display: flex;
+    align-items: center;
+  }
+
+  &-text-wrapper {
+    display: flex;
+    flex-direction: column;
+    margin-left: 1rem;
+    gap: 0.4rem;
+  }
+
+  &-header {
+    color: $WhiteColor;
+    font-size: 1.6rem;
+    font-weight: 700;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 30rem;
+    user-select: none;
+  }
+
+  &-support {
+    color: $WhiteColor;
+    font-weight: 500;
+    font-size: 1.4rem;
+    user-select: none;
+  }
+
+  &-image-container {
+    height: 4rem;
+    width: 4rem;
+    object-fit: contain;
+    border-radius: 0.6rem;
+
+    img {
+      height: 100%;
+      width: 100%;
+      border-radius: 0.4rem;
+    }
+  }
+
+  &-bottom {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1.2rem;
+    margin-top: 1.6rem;
+
+    .n-nudge-cta1 {
+      background-color: transparent;
+      font-size: 1.6rem;
+      font-weight: 700;
+
+      &:hover {
+        background-color: transparent;
+      }
+
+      &:active {
+        color: $WhiteColor;
+      }
+    }
+
+    .n-nudge-cta2 {
+      border: 1px solid $ColorPrimaryGrey60;
+      background-color: transparent;
+      font-size: 1.6rem;
+      font-weight: 700;
+
+      &:hover {
+        background-color: transparent;
+      }
+
+      &:active {
+        color: $WhiteColor;
+      }
+    }
+  }
+}
+
+.n-nudge-top-right {
+  top: 5rem;
+  right: 5rem;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: nudge-in-right 0.7s;
+  @media screen and (max-width: 425px) {
+    right: unset;
+  }
+}
+
+.n-nudge-top-bottom {
+  top: 10%;
+  left: 35%;
+  transition: transform 0.6s ease-in-out;
+  animation: nudge-top 0.7s;
+
+  @media screen and (max-width: 768px) {
+    left: 25%;
+  }
+
+  @media screen and (max-width: 425px) {
+    left: unset;
+  }
+}
+
+@-webkit-keyframes nudge-in-right {
+  from {
+    transform: translateX(100%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+@-o-keyframes nudge-in-right {
+  from {
+    transform: translateX(100%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+@-moz-keyframes nudge-in-right {
+  from {
+    transform: translateX(100%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes nudge-in-right {
+  from {
+    transform: translateX(100%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes nudge-top {
+  from {
+    transform: translateY(-100%);
+  }
+
+  to {
+    transform: translateY(0);
+  }
+}
+
+@-moz-keyframes nudge-top {
+  from {
+    transform: translateY(-100%);
+  }
+
+  to {
+    transform: translateY(0);
+  }
+}
+
+@-o-keyframes nudge-top {
+  from {
+    transform: translateY(-100%);
+  }
+
+  to {
+    transform: translateY(0);
+  }
+}
+
+@-webkit-keyframes nudge-top {
+  from {
+    transform: translateY(-100%);
+  }
+
+  to {
+    transform: translateY(0);
+  }
+}

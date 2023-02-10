@@ -1,19 +1,17 @@
 import React from "react";
 import "./Validation.scss";
 export interface ValidationProps {
-  isValid: boolean;
+  validationState: string;
   isHidden?: boolean;
-  validLabel: string;
-  invalidLabel: string;
+  label: string;
   className?: string;
   style?: React.CSSProperties;
 }
 declare const _default: React.MemoExoticComponent<{
   (props: ValidationProps): JSX.Element;
   defaultProps: {
-    isValid: boolean;
-    validLabel: string;
-    invalidLabel: string;
+    validationState: string;
+    label: string;
     isHidden: boolean;
   };
 }>;

@@ -7,15 +7,11 @@
   @include d-flex-center;
 }
 
-.nitrozen-stepper {
+.n-stepper {
   margin: 0 auto;
   width: 100%;
   font-size: $BaseFontSize + 6;
-  .nitrozen-stepper-group {
-    display: flex;
-    flex-grow: 10;
-    flex-basis: 100%;
-  }
+
   .nitrozen-checkmark {
     display: inline-block;
     position: absolute;
@@ -26,11 +22,31 @@
     color: $LabelColor;
     font-family: $PrimaryFont;
   }
-  .nitrozen-text {
+  .n-text {
     font-family: $PrimaryFont;
-    color: $TypographyPrimaryColor;
+
+    &.current {
+      color: $ColorBlack;
+    }
+
+    &.upcoming {
+      color: $JDSDefaultColor;
+    }
+
+    &.disabled {
+      color: $JDSDefaultColor;
+      opacity: 0.3;
+    }
+
+    &.issue {
+      color: $ColorBlack;
+    }
+
+    &.completed {
+      color: $JDSDefaultColor;
+    }
   }
-  .nitrozen-bar {
+  .n-bar {
     flex-grow: 1;
     position: relative;
   }
@@ -41,7 +57,7 @@
       color: $SuccessColor;
     }
   }
-  .nitrozen-circle-outer {
+  .n-circle-outer {
     background-color: $WhiteColor;
     border-radius: 50%;
     display: inline-block;
@@ -49,8 +65,8 @@
   .nitrozen-pointer {
     cursor: pointer;
   }
-  .nitrozen-stepper-group:last-child {
-    .nitrozen-bar:last-child {
+  .n-stepper-group:last-child {
+    .n-bar:last-child {
       visibility: hidden;
     }
   }
@@ -64,21 +80,31 @@
   .nitrozen-hidden {
     display: none;
   }
-  .nitrozen-circle-outer-container {
-    z-index: $ZIndex1;
-    display: flex;
-    position: relative;
-  }
 
   //VERTICAL STEPPER
   &.vertical {
-    .nitrozen-stepper-container {
+    .n-stepper-container {
       display: flex;
       flex-direction: column;
-      gap: 1.2rem;
+      gap: 0.8rem;
     }
 
-    .nitrozen-stepper-group {
+    .n-stepper-group {
+      --circle-size: 3.2rem;
+      --spacing: 0.8rem;
+    }
+
+    .n-circle-outer-container {
+      display: grid;
+      align-items: center;
+      grid-template-columns: 3.4rem auto;
+      grid-template-rows: auto minmax(2rem, auto);
+      grid-row-gap: 0.8rem;
+      grid-column-gap: 1rem;
+      cursor: pointer;
+    }
+
+    .n-stepper-group {
       column-gap: 1.6rem;
 
       &.inactive-stepper {
@@ -91,28 +117,52 @@
         flex-direction: column;
         justify-content: center;
       }
-      .nitrozen-bar {
+      .n-bar {
         width: 0.1rem;
         background: $SecondaryDisabledColor;
-        min-height: 2rem;
+        min-height: 100%;
         border-radius: 1rem;
+        justify-self: center;
 
         &.completed-bar {
-          background: $Bubbles;
+          display: none;
         }
       }
-      .index-number {
-        position: absolute;
-        top: 0.1rem;
-        bottom: 0.1rem;
-        left: 0.1rem;
-        right: 0.1rem;
-        background: $Bubbles;
-        border-radius: 100%;
+      .n-circle-content {
+        z-index: $ZIndex2;
         @include d-flex-center;
         font-family: $PrimaryFont;
-        color: $SeaGreen;
-        font-weight: 600;
+        color: $ColorSparkle80;
+        font-weight: 700;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+
+        &.current {
+          background: $ColorSparkle50;
+          color: $ColorSparkle80;
+        }
+
+        &.upcoming {
+          background: none;
+          color: $ColorPrimaryGrey60;
+        }
+
+        &.disabled {
+          background: none;
+          color: $ColorPrimaryGrey60;
+          opacity: 0.3;
+        }
+
+        &.issue {
+          background: $ColorSparkle20;
+          color: $ColorSparkle60;
+        }
+
+        &.completed {
+          background: $ColorSparkle20;
+          color: $ColorSparkle50;
+        }
       }
       .stepper-icon {
         border-radius: 50%;
@@ -135,21 +185,46 @@
         right: 0.1rem;
         background: $Bubbles;
       }
-      .nitrozen-text {
+      .n-text {
         font-size: $BaseFontSize + 4;
-        font-weight: 600;
+        font-weight: 500;
       }
       .stepper-description {
         font-size: $BaseFontSize + 2;
         margin-top: 0.4rem;
         line-height: 1.8rem;
       }
-      .nitrozen-circle-outer {
-        height: 4rem;
-        width: 4rem;
-        border: 0.1rem solid $SeaGreen;
+      .n-circle-outer {
+        height: var(--circle-size);
+        width: var(--circle-size);
+
+        &.nitrozen-circle-border {
+          border: 0.1rem;
+          border-style: solid;
+
+          &.current {
+            border-color: $ColorSparkle50;
+          }
+
+          &.upcoming {
+            border-color: $ColorPrimaryGrey60;
+          }
+
+          &.disabled {
+            border-color: $ColorPrimaryGrey60;
+            opacity: 0.3;
+          }
+
+          &.issue {
+            border-color: $ColorSparkle60;
+          }
+
+          &.completed {
+            border-color: $ColorSparkle50;
+          }
+        }
       }
-      .nitrozen-cirle-check-container .nitrozen-circle-outer {
+      .nitrozen-cirle-check-container .n-circle-outer {
         border: 0.1rem solid $Bubbles;
       }
       .nitrozen-checkmark {
@@ -159,12 +234,6 @@
         border-right: 0.2rem solid $SeaGreen;
       }
       .stepper-header-description {
-        flex-grow: 1;
-        display: flex;
-        justify-content: space-between;
-        position: relative;
-        padding-bottom: 1.2rem;
-
         & .header-description {
           max-width: 88%;
         }
@@ -195,30 +264,87 @@
 
   //HORIZONTAL STEPPER
   &.horizontal {
-    .nitrozen-stepper-container {
+    .n-stepper-group {
+      --circle-size: 3.2rem;
+      --spacing: 0.8rem;
+      display: flex;
+      flex-grow: 10;
+      flex-basis: 100%;
+    }
+
+    .n-circle-outer-container {
+      z-index: $ZIndex1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    .n-stepper-group:not(:last-child):after {
+      content: "";
+      position: relative;
+      top: 1.6rem;
+      height: 1px;
+      background-color: #e0e0e0;
+      order: -1;
+      width: calc(100% - var(--circle-size) - calc(var(--spacing)));
+      left: calc(50% + calc(var(--circle-size) / 2 + var(--spacing)));
+    }
+
+    .n-stepper-container {
       display: flex;
       gap: 0.8rem;
     }
-    .nitrozen-stepper-group {
+    .n-stepper-group {
       flex-direction: column;
-      row-gap: 0.7rem;
-      .nitrozen-circle-outer {
-        height: 1.4rem;
-        width: 1.4rem;
-        border: 0.1rem solid $SuccessColor;
-        transition: 0.2s ease;
+      text-align: center;
+
+      .n-circle-outer {
+        height: var(--circle-size);
+        width: var(--circle-size);
+        @include d-flex-center;
+        border-radius: 100%;
+
+        &.current {
+          background: $ColorSparkle50;
+          color: $ColorSparkle80;
+          border: 0.1rem solid $ColorSparkle50;
+        }
+
+        &.upcoming {
+          background: none;
+          color: $ColorPrimaryGrey60;
+          border: 0.1rem solid $ColorPrimaryGrey60;
+        }
+
+        &.disabled {
+          background: none;
+          color: $ColorPrimaryGrey60;
+          opacity: 0.3;
+          border: 0.1rem solid $ColorPrimaryGrey60;
+        }
+
+        &.issue {
+          background: $ColorSparkle20;
+          color: $ColorSparkle60;
+          border: 0.1rem solid $ColorSparkle60;
+        }
+
+        &.completed {
+          background: $ColorSparkle20;
+          color: $ColorSparkle50;
+          border: 0.1rem solid $ColorSparkle50;
+        }
       }
       .nitrozen-circle-inner {
-        height: 1.2rem;
-        width: 1.2rem;
-        background-color: $SuccessColor;
-        border-radius: 50%;
-        display: inline-block;
-        position: absolute;
-        @include absolute-position-center;
+        font-family: $PrimaryFont;
+        color: $ColorSparkle80;
+        font-weight: 600;
       }
-      &.active-group:hover .nitrozen-circle-outer {
-        transform: scale(1.08);
+
+      .stepper-header-description {
+        margin-top: 1rem;
       }
       .bar-ball-container {
         gap: 0.8rem;
@@ -229,7 +355,7 @@
         border-bottom: 0.15rem solid $SuccessColor;
         border-right: 0.15rem solid $SuccessColor;
       }
-      .nitrozen-bar {
+      .n-bar {
         flex-grow: 1;
         height: 0.1rem;
       }
@@ -239,13 +365,13 @@
       .nitrozen-disabled {
         background-color: $SecondaryDisabledColor;
 
-        &.nitrozen-circle-outer {
+        &.n-circle-outer {
           visibility: hidden;
         }
       }
-      .nitrozen-text {
-        font-size: $BaseFontSize + 2;
-        font-weight: 400;
+      .n-text {
+        font-size: $BaseFontSize + 4;
+        font-weight: 500;
       }
       .stepper-description {
         font-size: $BaseFontSize;

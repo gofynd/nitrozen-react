@@ -1,28 +1,31 @@
 "use strict";
 var e = require("../../../node_modules/tslib/tslib.es6.js"),
-  t = require("react"),
-  n = require("../../assets/svg-components/Navigation/index.js");
+  t = require("react");
+require("./Chip.scss.js");
+var a = require("../../assets/svg-components/Jio/index.js");
 function l(e) {
   return e && "object" == typeof e && "default" in e ? e : { default: e };
 }
-var s = l(t);
-const a = (l) => {
+var n = l(t);
+const s = (l) => {
   const {
-      deletable: a,
-      disabled: o,
-      isRounded: i,
-      fontWeight: c,
-      state: r,
-      children: d,
+      deletable: s,
+      disabled: i,
+      isRounded: c,
+      fontWeight: o,
+      state: d,
+      children: r,
       onIconClick: u,
-      onClick: p,
-      onDelete: b,
-      className: f,
-      icon: m,
-      iconStyle: g,
-      style: y,
+      onClick: m,
+      onDelete: p,
+      className: b,
+      icon: f,
+      iconStyle: h,
+      style: g,
+      maxWidth: y,
+      label: C,
     } = l,
-    h = e.__rest(l, [
+    v = e.__rest(l, [
       "deletable",
       "disabled",
       "isRounded",
@@ -36,10 +39,12 @@ const a = (l) => {
       "icon",
       "iconStyle",
       "style",
+      "maxWidth",
+      "label",
     ]),
-    [v, C] = t.useState(!1),
-    k = l.icon,
-    j = {
+    [x, W] = t.useState(!1),
+    j = l.icon,
+    k = {
       color: "secondary" === l.state ? "#2e31be" : "#8F8F8F",
       fontSize: "16px",
     },
@@ -48,32 +53,32 @@ const a = (l) => {
         l.disabled ||
           (e.stopPropagation(),
           null == u || u({ event: e, chipProps: l }),
-          a && b && (C(!v), b({ event: e, chipProps: l })));
+          s && p && (W(!x), p({ event: e, chipProps: l })));
+      },
+      [l]
+    ),
+    N = t.useCallback(
+      (e) => {
+        null == m || m({ event: e, chipProps: l });
       },
       [l]
     ),
     P = t.useCallback(
       (e) => {
-        null == p || p({ event: e, chipProps: l });
-      },
-      [l]
-    ),
-    z = t.useCallback(
-      (e) => {
         l.disabled ||
           (e.stopPropagation(),
-          C(!v),
-          null == b || b({ event: e, chipProps: l }));
+          W(!x),
+          null == p || p({ event: e, chipProps: l }));
       },
       [l]
     );
-  return v
-    ? s.default.createElement(s.default.Fragment, null)
-    : s.default.createElement(
+  return x
+    ? n.default.createElement(n.default.Fragment, null)
+    : n.default.createElement(
         "div",
         Object.assign(
           {
-            onClick: P,
+            onClick: N,
             style: Object.assign(
               {
                 fontWeight: (function () {
@@ -85,55 +90,72 @@ const a = (l) => {
                   );
                 })(),
               },
-              y
+              g
             ),
-            className: `nitrozen-chip ${(function () {
+            className: `n-chip ${(function () {
               let e = "";
-              o && (e += "nitrozen-disabled ");
-              i && (e += "rounded ");
-              "secondary" === r && (e += "nitrozen-chip-secondary ");
-              f && (e += f + " ");
+              i && (e += "n-disabled ");
+              c && (e += "rounded ");
+              "secondary" === d && (e += "n-chip-secondary ");
+              b && (e += b + " ");
               return e;
             })()}`,
           },
-          h
+          v
         ),
-        s.default.createElement("span", null, d),
-        a &&
-          !m &&
-          s.default.createElement(
+        n.default.createElement(
+          "span",
+          {
+            className: "n-chiptext " + (C ? "n-label-chip-text" : ""),
+            style: {
+              maxWidth: (function () {
+                let e;
+                return (e = l.maxWidth ? l.maxWidth : "22rem"), e;
+              })(),
+            },
+          },
+          C
+            ? n.default.createElement(
+                "span",
+                { className: "n-chip-label" },
+                C,
+                ": "
+              )
+            : null,
+          r || "Submit"
+        ),
+        s &&
+          !f &&
+          n.default.createElement(
             "span",
             {
               "data-testid": "deletable-cross",
-              className: "nitrozen-icon",
-              onClick: z,
+              className: "n-icon",
+              onClick: P,
             },
-            s.default.createElement(n.SvgClose, {
-              style: Object.assign(Object.assign({}, j), g),
+            n.default.createElement(a.SvgIcClose, {
+              style: Object.assign(Object.assign({}, k), h),
             })
           ),
-        m &&
-          s.default.createElement(
+        f &&
+          n.default.createElement(
             "span",
-            {
-              "data-testid": "prop-icon",
-              className: "nitrozen-icon",
-              onClick: E,
-            },
-            s.default.createElement(k, {
-              style: Object.assign(Object.assign({}, j), g),
+            { "data-testid": "prop-icon", className: "n-icon", onClick: E },
+            n.default.createElement(j, {
+              style: Object.assign(Object.assign({}, k), h),
             })
           )
       );
 };
-a.defaultProps = {
+s.defaultProps = {
   deletable: !1,
   disabled: !1,
   iconStyle: {},
-  isRounded: !1,
+  isRounded: !0,
   state: "primary",
   style: {},
+  maxWidth: "22rem",
 };
-var o = s.default.memo(a);
-module.exports = o;
+var i = n.default.memo(s);
+module.exports = i;
 //# sourceMappingURL=Chip.js.map

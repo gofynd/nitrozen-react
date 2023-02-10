@@ -1,7 +1,8 @@
 "use strict";
 var t = require("../../../node_modules/tslib/tslib.es6.js"),
-  e = require("react"),
-  o = require("../../assets/svg-components/Action/index.js");
+  e = require("react");
+require("./Tooltip.scss.js");
+var o = require("../../assets/svg-components/Action/index.js");
 function n(t) {
   return t && "object" == typeof t && "default" in t ? t : { default: t };
 }
@@ -12,8 +13,8 @@ const i = (e) => {
       tooltipContent: n,
       children: i,
       icon: r,
-      className: a,
-      style: s,
+      className: s,
+      style: a,
       contentColor: c,
       contentBgColor: u,
       link: d,
@@ -39,8 +40,8 @@ const i = (e) => {
       "div",
       Object.assign(
         {
-          className: `nitrozen-tooltip ${null != a ? a : ""}`,
-          style: null != s ? s : {},
+          className: `nitrozen-tooltip ${null != s ? s : ""}`,
+          style: null != a ? a : {},
         },
         p
       ),

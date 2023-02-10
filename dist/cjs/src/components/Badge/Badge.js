@@ -4,17 +4,24 @@ var e = require("../../../node_modules/tslib/tslib.es6.js"),
 function s(e) {
   return e && "object" == typeof e && "default" in e ? e : { default: e };
 }
+require("./Badge.scss.js");
 var t = s(a);
 const l = (s) => {
   const {
-      state: l,
-      fill: r,
-      labelText: n,
-      className: c,
-      style: i,
-      onClickHandler: o,
+      size: l,
+      kind: n,
+      icon: r,
+      state: i,
+      fill: c,
+      labelText: d,
+      className: o,
+      style: u,
+      onClickHandler: b,
     } = s,
-    d = e.__rest(s, [
+    m = e.__rest(s, [
+      "size",
+      "kind",
+      "icon",
       "state",
       "fill",
       "labelText",
@@ -22,11 +29,15 @@ const l = (s) => {
       "style",
       "onClickHandler",
     ]),
-    [b, u] = a.useState("");
+    [f, g] = a.useState(""),
+    k = a.useMemo(
+      () => ("service" === n ? "nitrogen-badge-background" : ""),
+      [n]
+    );
   return (
     a.useEffect(() => {
       let e = "";
-      switch (l) {
+      switch (i) {
         case "default":
         default:
           e = "nitrozen-badge-default";
@@ -46,30 +57,55 @@ const l = (s) => {
         case "disable":
           e = "nitrozen-badge-disable";
       }
-      r && (e += "-fill"), u(e);
-    }, [l, r]),
+      switch ((c && (e += "-fill"), l)) {
+        case "small":
+          e += " nitrozen-badge-small";
+          break;
+        case "medium":
+        default:
+          e += " nitrozen-badge-medium";
+          break;
+        case "large":
+          e += " nitrozen-badge-large";
+      }
+      g(e);
+    }, [i, c, l]),
     t.default.createElement(
       "div",
-      Object.assign(
-        {
-          style: null != i ? i : {},
-          className: `nitrozen-badge ${b}`,
-          onClick: o,
-        },
-        d
-      ),
-      n
+      { className: k },
+      t.default.createElement(
+        "div",
+        Object.assign(
+          {
+            style: null != u ? u : {},
+            className: `nitrozen-badge ${f}`,
+            onClick: b,
+          },
+          m
+        ),
+        r
+          ? t.default.createElement("span", { className: `${f}-badge-icon` }, r)
+          : null,
+        t.default.createElement(
+          "div",
+          { className: "nitrozen-badge-truncate" },
+          d
+        )
+      )
     )
   );
 };
 l.defaultProps = {
+  size: "medium",
+  kind: "normal",
   state: "success",
+  icon: "",
   fill: !1,
   labelText: "Warn",
   className: "",
   style: {},
   onClickHandler: () => {},
 };
-var r = a.memo(l);
-module.exports = r;
+var n = a.memo(l);
+module.exports = n;
 //# sourceMappingURL=Badge.js.map

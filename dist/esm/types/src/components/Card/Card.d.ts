@@ -1,23 +1,25 @@
-import React from "react";
 import "./Card.scss";
 export interface CardProps {
-  style?: React.CSSProperties;
-  cardTitle?: string;
-  className?: string;
-  showBorder?: boolean;
-  children?: React.ReactNode;
-  cardIcon?: string;
-  headerStyle?: React.CSSProperties;
+  title?: string;
+  image?: JSX.Element;
+  imageFocus?: "top" | "bottom" | "left" | "right" | "center";
+  imageRatio?: "wide" | "landscape" | "portrait" | "square";
+  orientation?: "horizontal" | "vertical";
+  description?: string | Element;
+  primaryCTA?: JSX.Element;
+  secondaryCTA?: JSX.Element;
+  caption?: JSX.Element;
+  header?: JSX.Element;
+  footer?: JSX.Element;
 }
 declare const Card: {
   (props: CardProps): JSX.Element;
   defaultProps: {
+    imageRatio: string;
+    imageFocus: string;
+    orientation: string;
     style: {};
-    cardTitle: string;
     className: string;
-    showBorder: boolean;
-    children: null;
-    cardIcon: null;
   };
 };
 export default Card;

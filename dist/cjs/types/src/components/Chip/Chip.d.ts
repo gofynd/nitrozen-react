@@ -14,6 +14,8 @@ export interface ChipProps {
   onIconClick?: Function;
   className?: string;
   style?: React.CSSProperties;
+  maxWidth?: string | number;
+  label?: string | number;
 }
 declare const _default: React.MemoExoticComponent<{
   (props: ChipProps): JSX.Element;
@@ -24,6 +26,7 @@ declare const _default: React.MemoExoticComponent<{
     isRounded: boolean;
     state: string;
     style: {};
+    maxWidth: string;
   };
 }>;
 export default _default;

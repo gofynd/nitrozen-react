@@ -2,10 +2,11 @@ import React, { useState, useRef, useEffect } from "react";
 import NitrozenId from "../../utils/uuids";
 import Tooltip from "../Tooltip";
 import Checkbox from "../Checkbox";
+import Validation from "../Validation";
 import "./Dropdown.scss";
 import {
   SvgAdd,
-  SvgInfo,
+  SvgIcInfo,
   SvgKeyboardArrowDown,
 } from "../../assets/svg-components";
 
@@ -14,6 +15,7 @@ interface ItemProps {
   text?: string;
   value: string | number | boolean | Object;
   isGroupLabel?: Boolean;
+  sub_text?: string;
 }
 export interface DropdownProps {
   id?: string;
@@ -33,6 +35,10 @@ export interface DropdownProps {
   onSearchInputChange?: Function;
   onScroll?: Function;
   className?: string;
+  helperText?: string;
+  validationState?: string;
+  validationLabel?: string;
+  prefixIcon?: React.ReactNode;
 }
 const ALL_OPTION = { text: "Select All", value: "all" };
 
@@ -54,6 +60,7 @@ const Dropdown = (props: DropdownProps) => {
   const [allOptionsSelected, setAllOptionsSelected] = useState<Boolean>();
   const [allSelected, setAllSelected] = useState<any>();
   const [selected, setSelected] = useState<any>();
+  const [focusBorder, setFocusBorder] = useState("");
 
   const [enableSelectAll, setEnableSelectAll] = useState(
     props.enableSelectAll || false
@@ -156,8 +163,10 @@ const Dropdown = (props: DropdownProps) => {
         });
         tmp = [...new Set(tmp)];
         return `${tmp.join(", ")}`;
+      } else if (props.placeholder) {
+        return props.placeholder;
       } else if (props.label) {
-        return props.placeholder || `Choose ${props.label}`;
+        return `Choose ${props.label}`;
       }
       return "";
     }
@@ -280,75 +289,98 @@ const Dropdown = (props: DropdownProps) => {
     props.addOptionHandler?.(value);
     calculateViewport();
   }
+  const Icon = props.prefixIcon as React.ElementType;
   return (
     <div
       id={props?.id}
-      className={`nitrozen-dropdown-container ${props?.className}`}
+      className={`n-dropdown-container ${props.className} ${
+        props.disabled ? "disabled" : ""
+      }`}
     >
       {props.label && (
-        <label className="nitrozen-dropdown-label">
+        <label className="n-dropdown-label">
           {` ${props.label} ${props.required ? " *" : ""} `}
           {props.tooltip && (
             <Tooltip
+              className="n-dropdown-tooltip"
               data-testid="icon-component"
               tooltipContent={props.tooltip}
               position="top"
-              icon={<SvgInfo style={{ fontSize: "14px" }} />}
+              icon={<SvgIcInfo style={{ fontSize: "14px" }} />}
             />
           )}
         </label>
       )}
-      <div className="nitrozen-select-wrapper" onClick={toggle}>
+      <div className="n-select-wrapper" onClick={toggle}>
         <div
-          className={`nitrozen-select ${props.disabled ? "disabled" : ""} ${
-            showOptions && "nitrozen-dropdown-open"
+          className={`n-select ${showOptions && "n-dropdown-open"} ${
+            props.disabled ? "cursor-disabled" : ""
           }`}
           ref={dropdownRef}
         >
-          <div className="nitrozen-select__trigger">
-            {props.searchable && !props.disabled ? (
-              <span className="nitrozen-searchable-input-container">
-                <input
-                  data-testid="dropdown-search"
-                  type="search"
-                  value={searchInput}
-                  onChange={searchInputChange}
-                  placeholder={searchInputPlaceholder()}
-                />
-              </span>
-            ) : props.disabled ? (
-              <span>Disabled</span>
-            ) : (
-              <span>{selectedText}</span>
-            )}
+          <div
+            className={`n-select__trigger ${
+              props.disabled ? "cursor-disabled" : ""
+            } ${
+              props.validationState
+                ? `n-${props.validationState}-border`
+                : focusBorder
+            }`}
+          >
+            {props.prefixIcon ? (
+              <div className="n-dropdown-prefix-icon-wrapper">
+                <Icon className="n-dropdown-prefix" />
+              </div>
+            ) : null}
+            <div className="n-dropdown-input-arrow-wrapper">
+              {props.searchable && !props.disabled ? (
+                <span className="n-searchable-input-container">
+                  <input
+                    data-testid="dropdown-search"
+                    type="search"
+                    value={searchInput}
+                    onChange={searchInputChange}
+                    placeholder={searchInputPlaceholder()}
+                    onClick={() => setFocusBorder("n-focused-border")}
+                    onBlur={() => setFocusBorder("")}
+                    className={"n-dropdown-search"}
+                  />
+                </span>
+              ) : props.disabled ? (
+                <span>Disabled</span>
+              ) : (
+                <span>{selectedText}</span>
+              )}
 
-            <div className="nitrozen-dropdown-arrow">
-              <SvgKeyboardArrowDown style={{ width: "20px", height: "20px" }} />
+              <div className="n-dropdown-arrow">
+                <SvgKeyboardArrowDown
+                  style={{ width: "20px", height: "20px" }}
+                />
+              </div>
             </div>
           </div>
           <div
-            className={`nitrozen-options ${dropUp && "nitrozen-dropup"}`}
+            className={`n-options ${dropUp && "n-dropup"}`}
             ref={nitrozenSelectOptionRef}
             data-testid="dropdown-scroll"
             onScroll={handleScroll}
           >
             {enableSelectAll && !searchInput && (
               <span
-                className="nitrozen-option ripple"
+                className="n-option ripple"
                 onClick={(e) => {
                   selectItem("all", ALL_OPTION, e);
                 }}
               >
-                <div className="nitrozen-option-container">
+                <div className="n-option-container">
                   <Checkbox
                     checkboxValue={allSelected}
                     value={allSelected}
                     onChange={setCheckedItem}
                   >
                     <span
-                      className={`nitrozen-option-image ${
-                        allSelected &&
-                        "nitrozen-dropdown-multicheckbox-selected"
+                      className={`n-option-image ${
+                        allSelected && "n-dropdown-multicheckbox-selected"
                       }`}
                     >
                       All
@@ -366,12 +398,12 @@ const Dropdown = (props: DropdownProps) => {
                 <span
                   key={index}
                   data-value={item.value}
-                  className={`nitrozen-option ripple ${
+                  className={`n-option ripple ${
                     item === selected && "selected"
-                  } ${item?.isGroupLabel && "nitrozen-option-group-label"}`}
+                  } ${item?.isGroupLabel && "n-option-group-label"}`}
                   onClick={(event) => selectItem(index, item, event)}
                 >
-                  <div className="nitrozen-option-container">
+                  <div className="n-option-container">
                     {props.multiple && !item?.isGroupLabel ? (
                       <Checkbox
                         checkboxValue={item.value}
@@ -380,14 +412,14 @@ const Dropdown = (props: DropdownProps) => {
                         value={item.value}
                       >
                         <span
-                          className={`nitrozen-option-image ${
+                          className={`n-option-image ${
                             selectedItems.includes(item.value) &&
-                            "nitrozen-dropdown-multicheckbox-selected"
+                            "n-dropdown-multicheckbox-selected"
                           }`}
                         >
                           {item.logo && (
                             <img
-                              className="nitrozen-option-logo"
+                              className="n-option-logo"
                               src={item.logo}
                               alt="logo"
                             />
@@ -397,39 +429,44 @@ const Dropdown = (props: DropdownProps) => {
                       </Checkbox>
                     ) : (
                       <span
-                        className={`nitrozen-option-image ${
+                        className={`n-option-image ${
                           props.items?.find(
                             (i: ItemProps) => i?.isGroupLabel
                           ) && !item?.isGroupLabel
-                            ? "nitrozen-option-child-label"
+                            ? "n-option-child-label"
                             : ""
                         }`}
                       >
                         {item.logo && (
                           <img
-                            className="nitrozen-option-logo"
+                            className="n-option-logo"
                             src={item.logo}
                             alt="logo"
                           />
                         )}
-                        {item.text}
+                        <div className="n-option-wrapper">
+                          <span>{item.text}</span>
+                          <span className="n-option-subtext">
+                            {item.sub_text}
+                          </span>
+                        </div>
                       </span>
                     )}
                   </div>
                 </span>
               ))}
             {props.searchable && props.items && props.items.length === 0 && (
-              <span className="nitrozen-option">
+              <span className="n-option">
                 {props.addOption && (
-                  <div className="nitrozen-option-container">
+                  <div className="n-option-container">
                     No {props.label} Found
                   </div>
                 )}
                 {props.addOption && searchInput?.length > 0 && (
-                  <div className="nitrozen-option-container">
+                  <div className="n-option-container">
                     <div
                       data-testid="add-option"
-                      className="nitrozen-dropdown-empty"
+                      className="n-dropdown-empty"
                       onClick={addOption}
                     >
                       <SvgAdd />
@@ -442,6 +479,19 @@ const Dropdown = (props: DropdownProps) => {
           </div>
         </div>
       </div>
+      {props.validationState && (
+        <Validation
+          className="n-dropdown-validation"
+          isHidden={props.validationState ? false : true}
+          label={props.validationLabel}
+          validationState={props.validationState}
+        />
+      )}
+      {props.helperText && (
+        <div className="n-input-underinfo n-helper-text n-dropdown-helper">
+          {props.helperText}
+        </div>
+      )}
     </div>
   );
 };
@@ -458,6 +508,11 @@ Dropdown.defaultProps = {
   tooltip: null,
   addOption: false,
   enableSelectAll: false,
+  helperText: "",
+  className: "",
+  validationState: "",
+  validationLabel: "",
+  prefixIcon: "",
 };
 
 export default Dropdown;

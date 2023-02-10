@@ -1,13 +1,15 @@
-import e from "react";
-const t = (t) =>
-  e.createElement(
+import f from "react";
+const i = (i) =>
+  f.createElement(
     "span",
     {
-      className: `nitrozen-input-suffix nitrozen-remove-left-border ${
-        "string" == typeof t.suffix && "nitrozen-suffix-padding"
+      className: `n-input-suffix n-remove-left-border n-suffix-position ${
+        "string" == typeof i.suffix && "n-suffix-padding"
       }`,
+      onClick: i.onSuffixClick,
     },
-    t.suffix
+    i.suffix
   );
-export { t as default };
+i.defaultProps = { onSuffixClick: () => {} };
+export { i as default };
 //# sourceMappingURL=InputSuffix.js.map

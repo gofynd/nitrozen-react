@@ -1,127 +1,178 @@
 import { __rest as e } from "../../../node_modules/tslib/tslib.es6.js";
-import s from "react";
-import t from "../../assets/loader-white.gif.js";
+import t from "react";
+import s from "../../assets/loader.gif.js";
 import n from "../../../node_modules/classnames/index.js";
 import "./Button.scss.js";
-const r = (t) => {
-    const r = () =>
+const i = (s) => {
+    const i = () =>
         n({
-          "n-button-rounded": t.rounded,
-          "n-button-primary": "primary" === t.theme,
-          "n-button-secondary": "secondary" === t.theme,
-          "n-button-large": "large" === t.size,
-          "n-button-mid": "medium" === t.size,
-          "n-button-small": "small" === t.size,
-          "n-button-focused": t.focused,
-          "n-button-disable": t.showProgress,
-          "n-button-stroke n-button-stroke-primary":
-            t.stroke && "primary" === t.theme,
-          "n-button-stroke n-button-stroke-secondary":
-            t.stroke && "secondary" === t.theme,
-          "n-flat-button n-flat-button-primary":
-            !t.stroke && "primary" === t.theme,
-          "n-flat-button n-flat-button-secondary":
-            !t.stroke && "secondary" === t.theme,
-          "n-button-link": t.link,
+          "n-button-rounded": s.rounded,
+          "n-button-primary": "primary" === s.theme,
+          "n-button-primary-positive":
+            "primary" === s.theme && "positive" === s.state,
+          "n-button-primary-destructive":
+            "primary" === s.theme && "destructive" === s.state,
+          "n-button-secondary": "secondary" === s.theme,
+          "n-button-secondary-positive":
+            "secondary" === s.theme && "positive" === s.state,
+          "n-button-secondary-destructive":
+            "secondary" === s.theme && "destructive" === s.state,
+          "n-button-tertiary": "tertiary" === s.theme,
+          "n-button-tertiary-positive":
+            "tertiary" === s.theme && "positive" === s.state,
+          "n-button-tertiary-destructive":
+            "tertiary" === s.theme && "destructive" === s.state,
+          "n-button-large": "large" === s.size,
+          "n-button-large_only_icon": !s.children,
+          "n-button-mid": "medium" === s.size,
+          "n-button-mid_only_icon": !s.children,
+          "n-button-small": "small" === s.size,
+          "n-button-small_only_icon": !s.children,
+          "n-button-focused": s.focused,
+          "n-button-disable": s.showProgress,
+          "n-button-full-width": s.fullWidth,
         }),
-      a = () => {
-        if (t.href) {
-          const s = e(t, [
+      r = () => {
+        if (s.href) {
+          const t = e(s, [
             "rounded",
             "theme",
-            "stroke",
+            "as",
             "size",
             "focused",
             "showProgress",
+            "fullWidth",
             "onClick",
             "className",
             "children",
             "icon",
+            "iconRight",
           ]);
-          return Object.assign({}, s);
+          return Object.assign({}, t);
         }
         {
-          const s = e(t, [
+          const t = e(s, [
             "rounded",
             "theme",
-            "stroke",
+            "as",
             "size",
             "href",
             "focused",
             "showProgress",
+            "fullWidth",
             "className",
             "children",
             "icon",
+            "iconRight",
           ]);
-          return Object.assign({}, s);
+          return Object.assign({}, t);
         }
       };
-    return t.href
-      ? s.createElement(
+    return s.href
+      ? t.createElement(
           "a",
           Object.assign(
             {
-              href: t.href,
-              className: `n-button ripple ripple-anchor ${r()} ${
-                t.className && t.className
+              href: s.href,
+              className: `n-button ripple ripple-anchor ${i()} ${
+                s.className && s.className
               }`,
             },
-            a()
+            r()
           ),
-          s.createElement(o, Object.assign({}, t))
+          t.createElement(a, Object.assign({}, s))
         )
-      : s.createElement(
+      : "div" == s.as
+      ? t.createElement(
+          "div",
+          Object.assign(
+            {
+              className: `n-button ripple ${i()} ${s.className && s.className}`,
+            },
+            r()
+          ),
+          t.createElement(a, Object.assign({}, s))
+        )
+      : "span" == s.as
+      ? t.createElement(
+          "span",
+          Object.assign(
+            {
+              className: `n-button ripple ${i()} ${s.className && s.className}`,
+            },
+            r()
+          ),
+          t.createElement(a, Object.assign({}, s))
+        )
+      : t.createElement(
           "button",
           Object.assign(
             {
-              className: `n-button ripple ${r()} ${t.className && t.className}`,
+              className: `n-button ripple ${i()} ${s.className && s.className}`,
             },
-            a()
+            r()
           ),
-          s.createElement(o, Object.assign({}, t))
+          t.createElement(a, Object.assign({}, s))
         );
   },
-  o = (e) => {
-    const r = e.icon;
-    return s.createElement(
+  a = (e) => {
+    const i = e.icon,
+      a = e.iconRight;
+    return t.createElement(
       "div",
       { className: "n-button-content" },
-      !e.showProgress &&
-        e.icon &&
-        s.createElement(
+      e.icon &&
+        (e.children || !e.showProgress) &&
+        t.createElement(
           "div",
-          { className: "social-icon" },
-          s.createElement(r, {
+          { className: "n-btn-social-icon" },
+          t.createElement(i, {
             className: n({
               "n-icon-small": "small" === e.size,
               "n-icon": "medium" === e.size,
               "n-icon-large": "large" === e.size,
+              "icon-padding-right": e.children,
             }),
           })
         ),
-      !e.showProgress && e.children,
+      e.children,
       e.showProgress &&
-        s.createElement(
+        t.createElement(
           "div",
           { className: "n-btn-spin" },
-          s.createElement("img", {
+          t.createElement("img", {
             className: "n-btn-spinner",
             style: { width: "50px" },
-            src: t,
+            src: s,
+          })
+        ),
+      !e.showProgress &&
+        e.children &&
+        e.iconRight &&
+        t.createElement(
+          "div",
+          { className: "social-icon-right" },
+          t.createElement(a, {
+            className: n({
+              "n-icon-small": "small" === e.size,
+              "n-icon": "medium" === e.size,
+              "n-icon-large": "large" === e.size,
+              "icon-padding-left": e.children,
+            }),
           })
         )
     );
   };
-r.defaultProps = {
+i.defaultProps = {
   href: null,
-  type: "button",
   disabled: !1,
-  rounded: !1,
+  rounded: !0,
   theme: "primary",
+  as: null,
   size: "medium",
   focused: !1,
   showProgress: !1,
-  stroke: null,
+  fullWidth: !1,
   children: null,
   onClick: null,
   className: null,
@@ -129,6 +180,6 @@ r.defaultProps = {
   icon: null,
   name: null,
 };
-var a = s.memo(r);
-export { a as default };
+var r = t.memo(i);
+export { r as default };
 //# sourceMappingURL=Button.js.map

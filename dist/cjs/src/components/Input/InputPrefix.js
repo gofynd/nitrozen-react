@@ -3,14 +3,16 @@ function e(e) {
   return e && "object" == typeof e && "default" in e ? e : { default: e };
 }
 var r = e(require("react"));
-module.exports = (e) =>
+const i = (e) =>
   r.default.createElement(
     "span",
     {
-      className: `nitrozen-input-prefix nitrozen-remove-right-border ${
-        "string" == typeof e.prefix && "nitrozen-prefix-padding"
+      className: `n-input-prefix n-remove-right-border n-prefix-position ${
+        "string" == typeof e.prefix && "n-prefix-padding"
       }`,
+      onClick: e.onPrefixClick,
     },
     e.prefix
   );
+(i.defaultProps = { onPrefixClick: () => {} }), (module.exports = i);
 //# sourceMappingURL=InputPrefix.js.map

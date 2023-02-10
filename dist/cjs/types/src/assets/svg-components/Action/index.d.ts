@@ -516,3 +516,4 @@ export declare function SvgYoutubeSearchedFor(
 export declare function SvgZoomIn(props: IconBaseProps): JSX.Element;
 export declare function SvgZoomOut(props: IconBaseProps): JSX.Element;
 export declare function SvgBulkAction(props: IconBaseProps): JSX.Element;
+export declare function SvgSearchLogo(props: IconBaseProps): JSX.Element;
