@@ -65,10 +65,21 @@ const Pagination = (props: PaginationProps) => {
   const [searchValue, setSearchValue] = useState(1);
   const [popupPosition, setPopupPosition] = useState(1);
   const [showSinglePage, setShowSinglePage] = useState(false);
+  const isFirstRender = useRef<boolean>(true);
+
   useEffect(() => {
     setDefaults();
     onPaginationRange();
   }, [value]);
+
+  useEffect(() => {
+    if (isFirstRender?.current) {
+      isFirstRender.current = false;
+      return;
+    }
+    change();
+  }, [value]);
+
   function setDefaults() {
     if (!value.current) {
       setValue({ ...value, current: 1 });
@@ -85,7 +96,6 @@ const Pagination = (props: PaginationProps) => {
       if (!value.prevPage) return;
       setValue({ ...value, nextPage: "", currentPage: value.prevPage });
     }
-    change();
     onPreviousClick?.();
   }
   function next() {
@@ -106,7 +116,6 @@ const Pagination = (props: PaginationProps) => {
       if (!value.nextPage) return;
       setValue({ ...value, prevPage: "", currentPage: value.nextPage });
     }
-    change();
     onNextClick?.();
   }
   function pageSizeChange(size: number) {
@@ -123,7 +132,6 @@ const Pagination = (props: PaginationProps) => {
       setValue({ ...value, current: 1, limit: size });
     }
     setSelectedPageSize(size);
-    change();
   }
   function change() {
     onChange?.(value);
