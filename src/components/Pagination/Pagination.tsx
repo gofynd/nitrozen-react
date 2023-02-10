@@ -62,7 +62,7 @@ const Pagination = (props: PaginationProps) => {
   ]);
   const [openPopup, setopenPopup] = useState(false);
   const [searchListPages, setSearchListPages] = useState<string[]>(["0"]);
-  const [searchValue, setSearchValue] = useState(1);
+  const [searchValue, setSearchValue] = useState(0);
   const [popupPosition, setPopupPosition] = useState(1);
   const [showSinglePage, setShowSinglePage] = useState(false);
   useEffect(() => {
@@ -196,9 +196,9 @@ const Pagination = (props: PaginationProps) => {
   function listNodeItems() {
     if (paginationRange.length > 1) {
       return paginationRange?.map((i: any, index: any) => (
-        <span
+        <div
           key={index}
-          id={index}
+          id={index + "node"}
           onClick={(e) => selectedNode(e, i, index)}
           className={`n-pagination__number_inactive ${
             i === value.current && "n-pagination__number_active"
@@ -210,7 +210,7 @@ const Pagination = (props: PaginationProps) => {
           }`}
         >
           {i}
-        </span>
+        </div>
       ));
     } else {
       setShowSinglePage(true);
@@ -218,11 +218,6 @@ const Pagination = (props: PaginationProps) => {
   }
   function selectedNode(e: any, i: any, index: any) {
     if (i == "...") {
-      const ele = document.getElementById(index);
-      const rect = ele && ele.getBoundingClientRect();
-
-      const x = rect?.left;
-      const y = rect?.top;
       let totalPage =
         value.total && value.limit && Math.ceil(value.total / value.limit);
 
@@ -239,7 +234,8 @@ const Pagination = (props: PaginationProps) => {
       setPopupPosition(index);
       setSearchListPages(rangeList);
       document.addEventListener("click", handleOutsideClick, false);
-      setopenPopup(!openPopup);
+      if (index == popupPosition) setopenPopup(!openPopup);
+      else setopenPopup(true);
     } else {
       setopenPopup(false);
       setValue({ ...value, current: i });
@@ -358,7 +354,14 @@ const Pagination = (props: PaginationProps) => {
               <div className="n-pagination__number" ref={refSearchBox}>
                 {listNodeItems()}
                 {openPopup ? (
-                  <div className="n-pagination__showpopup" id="menu">
+                  <div
+                    className={`n-pagination__showpopup ${
+                      popupPosition === 1
+                        ? "n-pagination__popup_left"
+                        : "n-pagination__popup_right"
+                    }`}
+                    id="menu"
+                  >
                     <div className="n-pagination__search_input">
                       <div className="n-pagination__search_logo">
                         <SvgSearchLogo className="search-icon" />
