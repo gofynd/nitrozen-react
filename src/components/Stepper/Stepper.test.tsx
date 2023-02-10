@@ -76,7 +76,7 @@ describe("Stepper", () => {
       <Stepper
         items={VERTICAL_STEPPER_ITEMS}
         heading={"Test heading"}
-        showProgress={true}
+        // showProgress={true}
       />
     );
     // Commenting showProgress as it is not present in the new designs
