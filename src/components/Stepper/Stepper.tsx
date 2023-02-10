@@ -32,10 +32,8 @@ export interface StepperProps {
   onClick?: Function;
   isHorizontal: boolean;
   heading?: string;
-  showProgress?: boolean;
   className?: string;
   style?: React.CSSProperties;
-  progressStrokeColor?: string;
 }
 
 export interface ProgressCircleProps {
@@ -49,10 +47,8 @@ const Stepper = (props: StepperProps) => {
     onClick,
     isHorizontal,
     heading,
-    showProgress = false,
     className = "",
     style,
-    progressStrokeColor,
     ...restProps
   } = props;
 
@@ -147,7 +143,7 @@ const Stepper = (props: StepperProps) => {
         <div className="n-stepper-container">
           <div
             className={classnames({
-              "heading-progress": heading || showProgress,
+              "heading-progress": heading,
             })}
           >
             {heading && <span className="stepper-heading">{heading}</span>}
@@ -302,7 +298,6 @@ function ProgressCircle(props: ProgressCircleProps) {
 Stepper.defaultProps = {
   items: [],
   isHorizontal: false,
-  progressStrokeColor: "#419266",
 };
 
 export default React.memo(Stepper);

@@ -20,11 +20,6 @@ export default {
       description:
         "JSON List of Stepper steps with the state (Current, Upcoming, Disabled, Issue, Completed)",
     },
-    progressStrokeColor: {
-      type: "string",
-      description: "Gives a color to the circle progress bar",
-      defaultValue: "#419266",
-    },
     onClick: {
       type: "function",
       description:
@@ -117,7 +112,6 @@ const Template: ComponentStory<typeof Stepper> = (args) => (
 export const StepperComponent = Template.bind({});
 StepperComponent.args = {
   items: HORIZONTAL_STEPPER_ITEMS,
-  activeIndex: 1,
   onClick: (item: object) => {},
   isHorizontal: true,
 };
