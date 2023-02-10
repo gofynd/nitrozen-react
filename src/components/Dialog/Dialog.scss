@@ -6,7 +6,7 @@
   height: 100%;
   top: 0;
   left: 0;
-  backdrop-filter: blur(8px);
+  backdrop-filter: blur(0.8rem);
   background-color: $BgColor;
   z-index: 70;
 
@@ -52,7 +52,7 @@
   }
 
   .n-dialog-header {
-    margin: 6px 0px 6px 0px;
+    margin: 0.6rem 0 0.6rem 0;
     justify-content: space-between;
     font-weight: 900;
     text-transform: none;
@@ -72,7 +72,7 @@
     flex-direction: column;
 
     .n-dialog-footer-btn-spacing {
-      margin-bottom: 8px;
+      margin-bottom: 0.8rem;
     }
   }
 
@@ -168,10 +168,10 @@
 
 @media screen and (max-width: 61.9375rem) {
   .n-wrapper-width-s {
-    width: 464px;
+    width: 46.4rem;
   }
 
   .n-wrapper-width-m {
-    width: 464px;
+    width: 46.4rem;
   }
 }
