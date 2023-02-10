@@ -63,3 +63,5 @@ export declare function SvgUnfoldLess(props: IconBaseProps): JSX.Element;
 export declare function SvgUnfoldMore(props: IconBaseProps): JSX.Element;
 export declare function SvgWaterfallChart(props: IconBaseProps): JSX.Element;
 export declare function SvgWest(props: IconBaseProps): JSX.Element;
+export declare function SvgLeft(props: IconBaseProps): JSX.Element;
+export declare function SvgRight(props: IconBaseProps): JSX.Element;

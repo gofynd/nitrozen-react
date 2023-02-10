@@ -1,322 +1,203 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: !0 });
 var e = require("../../../node_modules/tslib/tslib.es6.js"),
   t = require("react"),
   a = require("../../../node_modules/classnames/index.js");
 require("./Stepper.scss.js");
-var n = require("../../assets/svg-components/Action/index.js"),
-  r = require("../../assets/svg-components/Others/index.js");
-function l(e) {
+var s = require("../../assets/svg-components/Action/index.js"),
+  l = require("../../assets/svg-components/Notification/index.js");
+function r(e) {
   return e && "object" == typeof e && "default" in e ? e : { default: e };
 }
-var s = l(t);
-const c = (l) => {
+var n,
+  c = r(t);
+(exports.StepState = void 0),
+  ((n = exports.StepState || (exports.StepState = {})).Current = "Current"),
+  (n.Upcoming = "Upcoming"),
+  (n.Disabled = "Disabled"),
+  (n.Issue = "Issue"),
+  (n.Completed = "Completed");
+const i = (r) => {
   const {
-      items: c = [],
-      activeIndex: o = 1,
-      onClick: d,
-      maxActiveIndex: m = 0,
-      isHorizontal: u,
-      heading: p,
-      showProgress: f = !1,
-      className: v = "",
-      style: g,
-      progressStrokeColor: E,
-    } = l,
-    x = e.__rest(l, [
+      items: n = [],
+      onClick: i,
+      isHorizontal: o,
+      heading: d,
+      className: u = "",
+      style: m,
+    } = r,
+    p = e.__rest(r, [
       "items",
-      "activeIndex",
       "onClick",
-      "maxActiveIndex",
       "isHorizontal",
       "heading",
-      "showProgress",
       "className",
       "style",
-      "progressStrokeColor",
     ]),
-    [b, h] = t.useState(o),
-    N = !u,
-    z = {
-      padding: "6px 9px",
-      minWidth: "120px",
-      background: "#419266",
-      color: "#fff",
-      border: "none",
-      borderRadius: "4px",
-      fontSize: "12px",
-      fontWeight: "700",
-      whiteSpace: "nowrap",
-      cursor: "pointer",
-    };
-  t.useEffect(() => {
-    N && C();
-  }, [o]);
-  const C = t.useCallback(() => {
-      c.map(
-        (e) => (
-          !e.isCompleted && (e.isCompleted = !1),
-          !e.isInactive && (e.isInactive = !1),
-          !e.buttonStyles && (e.buttonStyles = {}),
-          e
-        )
-      );
-    }, [c]),
-    k = t.useCallback(
+    f = !o,
+    v = t.useCallback(
       (e, t) => {
-        N
-          ? null == d || d({ index: e, item: t })
-          : e <= m && (h(e), null == d || d({ index: e, item: t }));
+        (null == t ? void 0 : t.state) !== exports.StepState.Disabled &&
+          (null == i || i({ index: e, item: t }));
       },
-      [N, d, m]
+      [i]
     ),
     S = t.useCallback((e) => {
-      const t = e.split("\n");
-      if (1 === t.length) return e;
-      const a = t.map((e, t) => s.default.createElement("div", { key: t }, e));
-      return a;
+      switch (e) {
+        case exports.StepState.Current:
+          return "current";
+        case exports.StepState.Upcoming:
+          return "upcoming";
+        case exports.StepState.Disabled:
+          return "disabled";
+        case exports.StepState.Issue:
+          return "issue";
+        case exports.StepState.Completed:
+          return "completed";
+        default:
+          return "";
+      }
     }, []),
-    y = t.useCallback((e, t = "22", a = "#419266", n = {}) => {
-      if (!e) return s.default.createElement(s.default.Fragment, null);
-      const r = Object.assign({ style: { color: a, fontSize: `${t}px` } }, n),
-        l = e;
-      return s.default.createElement(l, Object.assign({}, r));
+    E = t.useCallback((e, t, a, r = "22", n = "#419266", i = {}) => {
+      if (t === exports.StepState.Issue)
+        return c.default.createElement(l.SvgPriorityHigh, { color: "#1E7B74" });
+      if (t === exports.StepState.Completed)
+        return c.default.createElement(s.SvgDone, { color: "#1ECCB0" });
+      if (!a) return e + 1;
+      const o = Object.assign({ style: { color: n, fontSize: `${r}px` } }, i),
+        d = a;
+      return c.default.createElement(d, Object.assign({}, o));
     }, []);
-  return s.default.createElement(
-    s.default.Fragment,
+  return c.default.createElement(
+    c.default.Fragment,
     null,
-    s.default.createElement(
+    c.default.createElement(
       "div",
       Object.assign(
         {
           className: a({
-            "nitrozen-stepper": !0,
-            vertical: N,
-            horizontal: u,
-            [v]: null == v ? void 0 : v.length,
+            "n-stepper": !0,
+            vertical: f,
+            horizontal: o,
+            [u]: null == u ? void 0 : u.length,
           }),
-          style: null != g ? g : {},
+          style: null != m ? m : {},
         },
-        x
+        p
       ),
-      s.default.createElement(
+      c.default.createElement(
         "div",
-        { className: "nitrozen-stepper-container" },
-        s.default.createElement(
+        { className: "n-stepper-container" },
+        c.default.createElement(
           "div",
-          { className: a({ "heading-progress": p || f }) },
-          p &&
-            s.default.createElement(
-              "span",
-              { className: "stepper-heading" },
-              p
-            ),
-          f && N && s.default.createElement(i, { items: c, color: E })
+          { className: a({ "heading-progress": d }) },
+          d &&
+            c.default.createElement("span", { className: "stepper-heading" }, d)
         ),
-        c.map((e, t) =>
-          s.default.createElement(
+        n.map((e, t) => {
+          var s, l;
+          return c.default.createElement(
             "div",
             {
-              className: a({
-                "nitrozen-stepper-group": !0,
-                "active-group": !j(t),
-                "nitrozen-pointer": !N && !j(t),
-                "inactive-stepper": N && e.isInactive,
-              }),
-              onClick: () => k(t, e),
+              className: "n-stepper-group",
+              onClick: () => v(t, e),
               "data-testid": `stepper-${t}`,
               key: t,
             },
-            s.default.createElement(
-              "div",
-              { className: "nitrozen-flex-center bar-ball-container" },
-              u &&
-                (function (e) {
-                  return e === b;
-                })(t) &&
-                s.default.createElement(
-                  "div",
-                  { className: "nitrozen-circle-outer-container" },
-                  s.default.createElement(r.SvgCircleProgress, {
-                    className: "progress-svg",
-                  })
-                ),
-              u &&
-                (function (e) {
-                  return e !== b && e <= Math.max(m, b);
-                })(t) &&
-                s.default.createElement(
-                  "div",
-                  { className: "nitrozen-cirle-check-container" },
-                  s.default.createElement(n.SvgCheckCircle, {
-                    className: "completed-svg",
-                  })
-                ),
-              u &&
-                j(t) &&
-                s.default.createElement(
-                  "div",
-                  { className: "nitrozen-circle-outer-container" },
-                  s.default.createElement(r.SvgCircleDisabled, null)
-                ),
-              N &&
-                e.isCompleted &&
-                s.default.createElement(
-                  "div",
-                  { className: "nitrozen-cirle-check-container" },
-                  s.default.createElement("div", {
-                    className: "nitrozen-circle-outer",
-                  }),
-                  s.default.createElement("div", {
-                    className: "nitrozen-checkmark",
-                  })
-                ),
-              N &&
-                !e.isCompleted &&
-                !e.icon &&
-                s.default.createElement(
+            o &&
+              c.default.createElement(
+                "div",
+                { className: "n-circle-outer-container" },
+                c.default.createElement(
                   "div",
                   {
-                    className:
-                      "nitrozen-circle-outer-container index-container",
+                    className: `n-circle-outer ${S(
+                      null == e ? void 0 : e.state
+                    )}`,
                   },
-                  s.default.createElement("div", {
-                    className: "nitrozen-circle-outer",
-                  }),
-                  s.default.createElement(
-                    "div",
-                    { className: "index-number" },
-                    t + 1
+                  E(
+                    t,
+                    e.state,
+                    null !== (s = null == e ? void 0 : e.icon) && void 0 !== s
+                      ? s
+                      : null,
+                    e.iconSize,
+                    e.iconColor,
+                    e.extraIconProps
                   )
                 ),
-              N &&
-                !e.isCompleted &&
-                e.icon &&
-                s.default.createElement(
+                c.default.createElement(
+                  "div",
+                  { className: "stepper-header-description" },
+                  c.default.createElement(
+                    "div",
+                    { className: "header-description" },
+                    c.default.createElement(
+                      "div",
+                      { className: `n-text ${S(e.state)}` },
+                      e.name
+                    )
+                  )
+                )
+              ),
+            f &&
+              c.default.createElement(
+                "div",
+                { className: "n-circle-outer-container" },
+                c.default.createElement(
                   "div",
                   {
-                    className:
-                      "nitrozen-circle-outer-container stepper-icon-container",
+                    className: `n-circle-outer nitrozen-circle-border ${S(
+                      e.state
+                    )}`,
                   },
-                  s.default.createElement("div", {
-                    className: "nitrozen-circle-outer",
-                  }),
-                  s.default.createElement(
-                    "div",
-                    { className: "stepper-icon active-stepper" },
-                    y(e.icon, e.iconSize, e.iconColor, e.extraIconProps)
+                  c.default.createElement(
+                    "span",
+                    { className: `n-circle-content ${S(e.state)}` },
+                    E(
+                      t,
+                      e.state,
+                      null !== (l = null == e ? void 0 : e.icon) && void 0 !== l
+                        ? l
+                        : null,
+                      e.iconSize,
+                      e.iconColor,
+                      e.extraIconProps
+                    )
                   )
                 ),
-              t < Math.max(m, b) &&
-                s.default.createElement("div", {
+                c.default.createElement(
+                  "div",
+                  { className: "stepper-header-description" },
+                  c.default.createElement(
+                    "div",
+                    { className: "header-description" },
+                    c.default.createElement(
+                      "div",
+                      { className: `n-text ${S(e.state)}` },
+                      e.name
+                    )
+                  )
+                ),
+                c.default.createElement("div", {
                   className: a({
-                    "nitrozen-bar nitrozen-active": !0,
-                    "completed-bar": N && e.isCompleted,
+                    "n-bar": !0,
+                    "completed-bar": t === (null == n ? void 0 : n.length) - 1,
                   }),
                 }),
-              t > Math.max(m, b) - 1 &&
-                s.default.createElement("div", {
-                  className: a({
-                    "nitrozen-bar nitrozen-disabled": !0,
-                    "completed-bar": N && e.isCompleted,
-                  }),
-                })
-            ),
-            s.default.createElement(
-              "div",
-              { className: "stepper-header-description" },
-              s.default.createElement(
-                "div",
-                { className: "header-description" },
-                s.default.createElement(
-                  "div",
-                  {
-                    className: a({
-                      "nitrozen-text": !0,
-                      "heading-center": !e.description,
-                    }),
-                  },
-                  e.name
-                ),
-                e.description &&
-                  s.default.createElement(
-                    "div",
-                    { className: "stepper-description" },
-                    S(e.description.toString())
-                  )
-              ),
-              N &&
-                e.buttonText &&
-                !e.isInactive &&
-                s.default.createElement(
-                  "button",
-                  {
-                    className: "ripple",
-                    "data-testid": `stepper-cta-${t}`,
-                    onClick: () => k(t, e),
-                    style: Object.assign(Object.assign({}, z), e.buttonStyles),
-                  },
-                  e.buttonText
-                )
-            )
-          )
-        )
+                e.content &&
+                  c.default.createElement("div", {
+                    className: "content",
+                    dangerouslySetInnerHTML: { __html: e.content },
+                  })
+              )
+          );
+        })
       )
     )
   );
-  function j(e) {
-    return e <= c.length - 1 && e > Math.max(m, b);
-  }
 };
-function i(e) {
-  const { items: a = [], color: n } = e,
-    r = t.useCallback(
-      (e) => {
-        const t = a.length;
-        let n = 0;
-        if (!a) return n;
-        if (
-          (null == a || a.map((e) => (e.isCompleted && n++, e)),
-          "get-steps-completed" === e)
-        )
-          return `${n}/${t}`;
-        const r = 126 - (126 * Math.floor((n / t) * 100)) / 100;
-        return Math.floor(r);
-      },
-      [e.items]
-    );
-  return s.default.createElement(
-    "div",
-    { className: "progress-circle" },
-    s.default.createElement(
-      "div",
-      { className: "svg-circle-container" },
-      s.default.createElement(
-        "svg",
-        null,
-        s.default.createElement("circle", {
-          cx: "25",
-          cy: "25",
-          r: "20",
-          style: { strokeWidth: "3px" },
-        }),
-        s.default.createElement("circle", {
-          style: { strokeDashoffset: r(), stroke: n, strokeWidth: "3px" },
-          cx: "25",
-          cy: "25",
-          r: "20",
-        })
-      ),
-      s.default.createElement("span", null, r("get-steps-completed"))
-    )
-  );
-}
-c.defaultProps = {
-  items: [],
-  maxActiveIndex: -1,
-  activeIndex: 0,
-  isHorizontal: !1,
-  progressStrokeColor: "#419266",
-};
-var o = s.default.memo(c);
-module.exports = o;
+i.defaultProps = { items: [], isHorizontal: !1 };
+var o = c.default.memo(i);
+exports.default = o;
 //# sourceMappingURL=Stepper.js.map

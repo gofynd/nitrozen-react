@@ -54,8 +54,10 @@ const u = { text: "Select All", value: "all" },
                 }),
               (e = [...new Set(e)]),
               `${e.join(", ")}`)
+            : t.placeholder
+            ? t.placeholder
             : t.label
-            ? t.placeholder || `Choose ${t.label}`
+            ? `Choose ${t.label}`
             : ""
         );
       }

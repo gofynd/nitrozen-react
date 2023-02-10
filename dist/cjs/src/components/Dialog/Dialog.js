@@ -4,15 +4,15 @@ var e = require("../../../node_modules/tslib/tslib.es6.js"),
   a = require("../../assets/svg-components/Navigation/index.js"),
   l = require("../../utils/uuids.js"),
   i = require("../Button/Button.js");
-function s(e) {
+function n(e) {
   return e && "object" == typeof e && "default" in e ? e : { default: e };
 }
 require("./Dialog.scss.js");
-var n = s(t);
+var s = n(t);
 const d = (t) => {
   const {
       id: l,
-      kind: s,
+      kind: n,
       title: d,
       size: o,
       theme: r,
@@ -22,9 +22,9 @@ const d = (t) => {
       onPositiveResponse: g,
       onNegativeResponse: f,
       isVisible: b,
-      isClosable: p,
-      className: v,
-      style: h,
+      isClosable: h,
+      className: p,
+      style: v,
       closeHandle: N,
     } = t,
     E = e.__rest(t, [
@@ -47,82 +47,96 @@ const d = (t) => {
     k = () => {
       null == N || N();
     };
-  return n.default.createElement(
-    n.default.Fragment,
+  return s.default.createElement(
+    s.default.Fragment,
     null,
     b &&
-      n.default.createElement(
+      s.default.createElement(
         "div",
         { id: l },
-        n.default.createElement(
+        s.default.createElement(
           "div",
           { className: "n-dialog-backdrop" },
-          n.default.createElement(
+          s.default.createElement(
             "div",
             Object.assign(
               {
-                className: ` n-${s} ${
+                className:
                   "s" === o
-                    ? `n-wrapper-width-s n-dialog ${null != v ? v : ""}`
-                    : `n-wrapper-width-m n-dialog ${null != v ? v : ""}`
-                }`,
-                style: null != h ? h : {},
+                    ? `n-wrapper-width-s n-dialog ${null != p ? p : ""}`
+                    : `n-wrapper-width-m n-dialog ${null != p ? p : ""}`,
+                style: null != v ? v : {},
                 role: "dialog",
                 "aria-labelledby": "id + '_title'",
                 "aria-describedby": "id + '_desc'",
               },
               E
             ),
-            n.default.createElement(
+            s.default.createElement(
               "div",
               { className: "n-closebtn-container" },
-              p &&
-                n.default.createElement(a.SvgClose, {
+              s.default.createElement(
+                "header",
+                {
+                  className:
+                    "acknowledgement" === n
+                      ? "n-dialog-header-acknowlegdement n-dialog-header"
+                      : "n-dialog-header",
+                  id: "id + '_title'",
+                },
+                "string" == typeof d
+                  ? s.default.createElement(
+                      "h5",
+                      {
+                        className:
+                          "acknowledgement" === n
+                            ? "acknowlegdement-header header"
+                            : "header",
+                      },
+                      d
+                    )
+                  : s.default.createElement(
+                      "div",
+                      { className: "n-header-card" },
+                      s.default.createElement(
+                        "span",
+                        { className: "n-header-card-1" },
+                        " ",
+                        d.helperBlock.text
+                      ),
+                      s.default.createElement(
+                        "span",
+                        { className: "n-header-card-2" },
+                        " ",
+                        d.titleBlock.text
+                      )
+                    )
+              ),
+              h &&
+                s.default.createElement(a.SvgClose, {
                   className: "n-closebtn",
                   onClick: k,
                 })
             ),
-            n.default.createElement(
-              "header",
-              { className: "n-dialog-header", id: "id + '_title'" },
-              "string" == typeof d
-                ? n.default.createElement("h5", { className: "header" }, d)
-                : n.default.createElement(
-                    "div",
-                    { className: "n-header-card" },
-                    n.default.createElement(
-                      "span",
-                      { className: "n-header-card-1" },
-                      " ",
-                      d.helperBlock.text
-                    ),
-                    n.default.createElement(
-                      "span",
-                      { className: "n-header-card-2" },
-                      " ",
-                      d.titleBlock.text
-                    )
-                  )
-            ),
-            n.default.createElement(
+            s.default.createElement(
               "section",
               { className: "n-dialog-body", id: "id + '_desc'" },
               c
             ),
-            n.default.createElement(
+            s.default.createElement(
               "footer",
               {
                 className:
-                  "dialog" === s
+                  "dialog" === n
                     ? "s" === o
                       ? "n-dialog-footer-size"
                       : "n-dialog-footer"
-                    : "acknowledgement" === s
+                    : "acknowledgement" === n
                     ? "n-dialog-footer-size"
                     : void 0,
               },
-              "dialog" === s &&
-                n.default.createElement(
+              "dialog" === n &&
+                s.default.createElement(
                   i,
                   {
                     className: "n-dialog-footer-btn-spacing",
@@ -134,8 +148,8 @@ const d = (t) => {
                   },
                   m
                 ),
-              ("dialog" === s || "acknowledgement" === s) &&
-                n.default.createElement(
+              ("dialog" === n || "acknowledgement" === n) &&
+                s.default.createElement(
                   i,
                   {
                     theme: "primary",
@@ -143,8 +157,6 @@ const d = (t) => {
                     onClick: () => {
                       g && g(), k();
                     },
-                    className:
-                      "dialog" == s && "s" !== o ? "n-dialog-positive" : "",
                   },
                   u
                 )

@@ -482,9 +482,15 @@ declare const Radio: {
   };
 };
 
-type ItemsType = Array<{
+declare enum StepState {
+  "Current" = "Current",
+  "Upcoming" = "Upcoming",
+  "Disabled" = "Disabled",
+  "Issue" = "Issue",
+  "Completed" = "Completed",
+}
+type ItemType = {
   name: string | number;
-  description?: string | number;
   isInactive?: boolean;
   isCompleted?: boolean;
   icon?: React.ElementType;
@@ -493,27 +499,23 @@ type ItemsType = Array<{
   extraIconProps?: object;
   buttonText?: string;
   buttonStyles?: object;
-}>;
+  state: StepState;
+  content?: string;
+};
+type ItemsType = Array<ItemType>;
 interface StepperProps {
-  activeIndex?: number;
-  maxActiveIndex?: number;
   items?: ItemsType;
   onClick?: Function;
   isHorizontal: boolean;
   heading?: string;
-  showProgress?: boolean;
   className?: string;
   style?: React.CSSProperties;
-  progressStrokeColor?: string;
 }
 declare const _default$6: React.MemoExoticComponent<{
   (props: StepperProps): JSX.Element;
   defaultProps: {
     items: never[];
-    maxActiveIndex: number;
-    activeIndex: number;
     isHorizontal: boolean;
-    progressStrokeColor: string;
   };
 }>;
 
@@ -1210,6 +1212,7 @@ declare function SvgYoutubeSearchedFor(props: IconBaseProps): JSX.Element;
 declare function SvgZoomIn(props: IconBaseProps): JSX.Element;
 declare function SvgZoomOut(props: IconBaseProps): JSX.Element;
 declare function SvgBulkAction(props: IconBaseProps): JSX.Element;
+declare function SvgSearchLogo(props: IconBaseProps): JSX.Element;
 
 declare function SvgAddAlert(props: IconBaseProps): JSX.Element;
 declare function SvgAutoDelete(props: IconBaseProps): JSX.Element;
@@ -2232,6 +2235,8 @@ declare function SvgUnfoldLess(props: IconBaseProps): JSX.Element;
 declare function SvgUnfoldMore(props: IconBaseProps): JSX.Element;
 declare function SvgWaterfallChart(props: IconBaseProps): JSX.Element;
 declare function SvgWest(props: IconBaseProps): JSX.Element;
+declare function SvgLeft(props: IconBaseProps): JSX.Element;
+declare function SvgRight(props: IconBaseProps): JSX.Element;
 
 declare function SvgAccountTree(props: IconBaseProps): JSX.Element;
 declare function SvgAdb(props: IconBaseProps): JSX.Element;
@@ -6557,6 +6562,7 @@ export {
   SvgLeaderboard,
   SvgLeakAdd,
   SvgLeakRemove,
+  SvgLeft,
   SvgLegendToggle,
   SvgLens,
   SvgLensBlur,
@@ -7050,6 +7056,7 @@ export {
   SvgRestorePage,
   SvgReviews,
   SvgRiceBowl,
+  SvgRight,
   SvgRingVolume,
   SvgRocket,
   SvgRocketLaunch,
@@ -7114,6 +7121,7 @@ export {
   SvgSdCardAlert,
   SvgSdStorage,
   SvgSearch,
+  SvgSearchLogo,
   SvgSearchOff,
   SvgSecurity,
   SvgSecurityUpdate,

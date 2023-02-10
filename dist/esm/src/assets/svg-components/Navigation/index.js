@@ -419,7 +419,7 @@ function m(r) {
     ],
   })(r);
 }
-function I(r) {
+function F(r) {
   return t({
     tag: "svg",
     attr: { viewBox: "0 0 24 24", fill: "none" },
@@ -434,7 +434,7 @@ function I(r) {
     ],
   })(r);
 }
-function j(r) {
+function I(r) {
   return t({
     tag: "svg",
     attr: { viewBox: "0 0 24 24", fill: "none" },
@@ -449,7 +449,7 @@ function j(r) {
     ],
   })(r);
 }
-function G(r) {
+function j(r) {
   return t({
     tag: "svg",
     attr: { viewBox: "0 0 24 24", fill: "none" },
@@ -464,7 +464,7 @@ function G(r) {
     ],
   })(r);
 }
-function b(r) {
+function G(r) {
   return t({
     tag: "svg",
     attr: { viewBox: "0 0 24 24", fill: "none" },
@@ -479,7 +479,7 @@ function b(r) {
     ],
   })(r);
 }
-function k(r) {
+function b(r) {
   return t({
     tag: "svg",
     attr: { viewBox: "0 0 24 24", fill: "none" },
@@ -508,7 +508,7 @@ function k(r) {
     ],
   })(r);
 }
-function q(r) {
+function k(r) {
   return t({
     tag: "svg",
     attr: { viewBox: "0 0 24 24", fill: "none" },
@@ -523,7 +523,7 @@ function q(r) {
     ],
   })(r);
 }
-function y(r) {
+function q(r) {
   return t({
     tag: "svg",
     attr: { viewBox: "0 0 24 24", fill: "none" },
@@ -538,7 +538,7 @@ function y(r) {
     ],
   })(r);
 }
-function z(r) {
+function y(r) {
   return t({
     tag: "svg",
     attr: { viewBox: "0 0 24 24", fill: "none" },
@@ -563,7 +563,7 @@ function z(r) {
     ],
   })(r);
 }
-function A(r) {
+function z(r) {
   return t({
     tag: "svg",
     attr: { viewBox: "0 0 24 24", fill: "none" },
@@ -578,7 +578,7 @@ function A(r) {
     ],
   })(r);
 }
-function D(r) {
+function A(r) {
   return t({
     tag: "svg",
     attr: { viewBox: "0 0 24 24", fill: "none" },
@@ -593,7 +593,7 @@ function D(r) {
     ],
   })(r);
 }
-function E(r) {
+function D(r) {
   return t({
     tag: "svg",
     attr: { viewBox: "0 0 24 24", fill: "none" },
@@ -608,7 +608,7 @@ function E(r) {
     ],
   })(r);
 }
-function F(r) {
+function E(r) {
   return t({
     tag: "svg",
     attr: { viewBox: "0 0 24 24", fill: "none" },
@@ -907,6 +907,36 @@ function lt(r) {
     ],
   })(r);
 }
+function nt(r) {
+  return t({
+    tag: "svg",
+    attr: { viewBox: "0 0 24 24", fill: "none" },
+    child: [
+      {
+        tag: "path",
+        attr: {
+          d: "M15.7049 7.41L14.2949 6L8.29492 12L14.2949 18L15.7049 16.59L11.1249 12L15.7049 7.41Z",
+          fill: "#3535F3",
+        },
+      },
+    ],
+  })(r);
+}
+function at(r) {
+  return t({
+    tag: "svg",
+    attr: { viewBox: "0 0 24 24", fill: "none" },
+    child: [
+      {
+        tag: "path",
+        attr: {
+          d: "M9.70492 6L8.29492 7.41L12.8749 12L8.29492 16.59L9.70492 18L15.7049 12L9.70492 6Z",
+          fill: "#3535F3",
+        },
+      },
+    ],
+  })(r);
+}
 export {
   r as SvgAppSettingsAlt,
   n as SvgApps,
@@ -934,18 +964,19 @@ export {
   w as SvgEast,
   B as SvgExpandCircleDown,
   m as SvgExpandLess,
-  I as SvgExpandMore,
-  j as SvgFirstPage,
-  b as SvgFullscreen,
-  G as SvgFullscreenExit,
-  k as SvgHomeWork,
-  q as SvgLastPage,
-  y as SvgLegendToggle,
-  z as SvgMapsHomeWork,
-  D as SvgMenu,
-  A as SvgMenuOpen,
-  E as SvgMoreHoriz,
-  F as SvgMoreVert,
+  F as SvgExpandMore,
+  I as SvgFirstPage,
+  G as SvgFullscreen,
+  j as SvgFullscreenExit,
+  b as SvgHomeWork,
+  k as SvgLastPage,
+  nt as SvgLeft,
+  q as SvgLegendToggle,
+  y as SvgMapsHomeWork,
+  A as SvgMenu,
+  z as SvgMenuOpen,
+  D as SvgMoreHoriz,
+  E as SvgMoreVert,
   N as SvgNorth,
   J as SvgNorthEast,
   K as SvgNorthWest,
@@ -953,6 +984,7 @@ export {
   P as SvgPayments,
   Q as SvgPivotTableChart,
   R as SvgRefresh,
+  at as SvgRight,
   U as SvgSouth,
   S as SvgSouthEast,
   T as SvgSouthWest,

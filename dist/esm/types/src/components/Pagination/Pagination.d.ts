@@ -25,6 +25,12 @@ export interface PaginationProps {
   className?: string;
   style?: React.CSSProperties;
 }
+export interface paginationInterface {
+  totalCount: number;
+  pageSize: number;
+  siblingCount: number;
+  currentPage: number;
+}
 declare const _default: React.MemoExoticComponent<{
   (props: PaginationProps): JSX.Element;
   defaultProps: {

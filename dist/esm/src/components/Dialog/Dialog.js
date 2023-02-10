@@ -4,10 +4,10 @@ import { SvgClose as a } from "../../assets/svg-components/Navigation/index.js";
 import l from "../../utils/uuids.js";
 import i from "../Button/Button.js";
 import "./Dialog.scss.js";
-const s = (l) => {
+const n = (l) => {
   const {
-      id: s,
-      kind: n,
+      id: n,
+      kind: s,
       title: o,
       size: d,
       theme: r,
@@ -17,12 +17,12 @@ const s = (l) => {
       onPositiveResponse: p,
       onNegativeResponse: u,
       isVisible: b,
-      isClosable: v,
-      className: h,
+      isClosable: h,
+      className: v,
       style: N,
       closeHandle: E,
     } = l,
-    f = e(l, [
+    k = e(l, [
       "id",
       "kind",
       "title",
@@ -39,7 +39,7 @@ const s = (l) => {
       "style",
       "closeHandle",
     ]),
-    k = () => {
+    f = () => {
       null == E || E();
     };
   return t.createElement(
@@ -48,7 +48,7 @@ const s = (l) => {
     b &&
       t.createElement(
         "div",
-        { id: s },
+        { id: n },
         t.createElement(
           "div",
           { className: "n-dialog-backdrop" },
@@ -56,44 +56,58 @@ const s = (l) => {
             "div",
             Object.assign(
               {
-                className: ` n-${n} ${
+                className:
                   "s" === d
-                    ? `n-wrapper-width-s n-dialog ${null != h ? h : ""}`
-                    : `n-wrapper-width-m n-dialog ${null != h ? h : ""}`
-                }`,
+                    ? `n-wrapper-width-s n-dialog ${null != v ? v : ""}`
+                    : `n-wrapper-width-m n-dialog ${null != v ? v : ""}`,
                 style: null != N ? N : {},
                 role: "dialog",
                 "aria-labelledby": "id + '_title'",
                 "aria-describedby": "id + '_desc'",
               },
-              f
+              k
             ),
             t.createElement(
               "div",
               { className: "n-closebtn-container" },
-              v && t.createElement(a, { className: "n-closebtn", onClick: k })
-            ),
-            t.createElement(
-              "header",
-              { className: "n-dialog-header", id: "id + '_title'" },
-              "string" == typeof o
-                ? t.createElement("h5", { className: "header" }, o)
-                : t.createElement(
-                    "div",
-                    { className: "n-header-card" },
-                    t.createElement(
-                      "span",
-                      { className: "n-header-card-1" },
-                      " ",
-                      o.helperBlock.text
-                    ),
-                    t.createElement(
-                      "span",
-                      { className: "n-header-card-2" },
-                      " ",
-                      o.titleBlock.text
+              t.createElement(
+                "header",
+                {
+                  className:
+                    "acknowledgement" === s
+                      ? "n-dialog-header-acknowlegdement n-dialog-header"
+                      : "n-dialog-header",
+                  id: "id + '_title'",
+                },
+                "string" == typeof o
+                  ? t.createElement(
+                      "h5",
+                      {
+                        className:
+                          "acknowledgement" === s
+                            ? "acknowlegdement-header header"
+                            : "header",
+                      },
+                      o
                     )
-                  )
+                  : t.createElement(
+                      "div",
+                      { className: "n-header-card" },
+                      t.createElement(
+                        "span",
+                        { className: "n-header-card-1" },
+                        " ",
+                        o.helperBlock.text
+                      ),
+                      t.createElement(
+                        "span",
+                        { className: "n-header-card-2" },
+                        " ",
+                        o.titleBlock.text
+                      )
+                    )
+              ),
+              h && t.createElement(a, { className: "n-closebtn", onClick: f })
             ),
             t.createElement(
               "section",
@@ -104,15 +118,15 @@ const s = (l) => {
               "footer",
               {
                 className:
-                  "dialog" === n
+                  "dialog" === s
                     ? "s" === d
                       ? "n-dialog-footer-size"
                       : "n-dialog-footer"
-                    : "acknowledgement" === n
+                    : "acknowledgement" === s
                     ? "n-dialog-footer-size"
                     : void 0,
               },
-              "dialog" === n &&
+              "dialog" === s &&
                 t.createElement(
                   i,
                   {
@@ -120,22 +134,20 @@ const s = (l) => {
                     theme: "secondary",
                     size: "medium",
                     onClick: () => {
-                      u && u(), k();
+                      u && u(), f();
                     },
                   },
                   g
                 ),
-              ("dialog" === n || "acknowledgement" === n) &&
+              ("dialog" === s || "acknowledgement" === s) &&
                 t.createElement(
                   i,
                   {
                     theme: "primary",
                     size: "medium",
                     onClick: () => {
-                      p && p(), k();
+                      p && p(), f();
                     },
-                    className:
-                      "dialog" == n && "s" !== d ? "n-dialog-positive" : "",
                   },
                   m
                 )
@@ -145,7 +157,7 @@ const s = (l) => {
       )
   );
 };
-s.defaultProps = {
+n.defaultProps = {
   id: `n-dialog-${l()}`,
   title: "",
   theme: null,
@@ -154,5 +166,5 @@ s.defaultProps = {
   negativeButtonLabel: !1,
   isVisible: !1,
 };
-export { s as default };
+export { n as default };
 //# sourceMappingURL=Dialog.js.map
