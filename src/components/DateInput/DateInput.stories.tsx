@@ -45,7 +45,10 @@ export default {
 } as ComponentMeta<typeof DateInput>;
 
 const Template: ComponentStory<typeof DateInput> = (args: any) => (
-  <div className="main-div space-between" style={{ height: "650px" }}>
+  <div
+    className="main-div space-between custom-date-story"
+    style={{ height: "650px" }}
+  >
     <div className="date-input-wrapper">
       <DateInput {...args} />
     </div>
@@ -57,10 +60,46 @@ export const DateInputPlayground = Template.bind({});
 DateInputPlayground.args = {
   label: "Birthday",
   required: true,
-  useDatePicker: true,
+  useDatePicker: false,
   helperText: "Enter your birth date",
   id: "customfynd",
   getDateValue: () => {},
+  isRange: false,
+};
+
+export const DateRangeSample = (args: DateInputProps) => {
+  const [rangeConfig, setRangeConfig] = useState({
+    start: "",
+    end: "",
+    min: "",
+    max: "",
+  });
+
+  return (
+    <div
+      className="main-div space-between custom-date-story"
+      style={{ height: "650px", justifyContent: "unset" }}
+    >
+      <div className="state-date">
+        {rangeConfig.start
+          ? `Selected Range: ${rangeConfig.start} to ${rangeConfig.end}`
+          : `Start selecting a range`}
+      </div>
+      <div className="date-input-wrapper">
+        <DateInput
+          useDatePicker={true}
+          label="Select your leaves"
+          helperText={"Select a range"}
+          id={"range-field"}
+          isRange={true}
+          rangeConfig={rangeConfig}
+          onConfirmRange={(range: any) => {
+            setRangeConfig(range);
+          }}
+        />
+      </div>
+    </div>
+  );
 };
 
 export const DateValidationSample = (args: DateInputProps) => {
@@ -78,7 +117,10 @@ export const DateValidationSample = (args: DateInputProps) => {
   };
 
   return (
-    <div className="main-div space-between custom-date-story">
+    <div
+      className="main-div space-between custom-date-story"
+      style={{ height: "650px", justifyContent: "unset" }}
+    >
       <div className="state-date">
         {date ? `Date: ${date}` : `Start typing to see the written date value`}
       </div>
@@ -95,6 +137,8 @@ export const DateValidationSample = (args: DateInputProps) => {
           validationState={error ? "error" : ""}
           validationText={error}
           id={"birth-field"}
+          isRange={false}
+          useDatePicker={false}
         />
       </div>
     </div>

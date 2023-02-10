@@ -20,6 +20,7 @@ export interface DatePickerProps {
   maxDate?: string;
   rangeConfig?: RangeConfigProps;
   getRange?: Function;
+  onConfirmRange?: Function;
 }
 
 const DatePicker = (props: DatePickerProps) => {
@@ -32,6 +33,7 @@ const DatePicker = (props: DatePickerProps) => {
     maxDate,
     rangeConfig,
     getRange,
+    onConfirmRange,
   } = props;
 
   const [startDate, setStartDate] = useState("");
@@ -50,8 +52,13 @@ const DatePicker = (props: DatePickerProps) => {
   const [selectedCalendarYear, setSelectedCalendarYear] = useState(["", ""]);
   const [calendars, setCalendars] = useState([[], []]);
   const [today] = useState(new Date());
+  const [singleDate, setSingleDate] = useState("");
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
+    if (window.innerWidth < 426) {
+      setIsMobile(true);
+    }
     let monthValue: any = "";
     let yearValue: any = "";
     // Only if the isRange prop is true
@@ -69,6 +76,24 @@ const DatePicker = (props: DatePickerProps) => {
         let recievedCalendar2 = new Date(rangeConfig.end);
         calendar2Month = recievedCalendar2.getMonth() + 1;
         calendar2Year = recievedCalendar2.getFullYear();
+        // if both the calendar1 and calendar2 months are same then increment the month by 1 for second calendar
+        if (monthValue == calendar2Month) {
+          if (calendar2Month == 12) {
+            recievedCalendar2 = new Date(
+              recievedCalendar2.getFullYear() + 1,
+              0,
+              1
+            );
+          } else {
+            recievedCalendar2 = new Date(
+              recievedCalendar2.getFullYear(),
+              recievedCalendar2.getMonth() + 1,
+              1
+            );
+          }
+          calendar2Month = recievedCalendar2.getMonth() + 1;
+          calendar2Year = recievedCalendar2.getFullYear();
+        }
       } else {
         // if no date is given for end date then go to the next month of the existing todays date
         let now = new Date();
@@ -101,6 +126,8 @@ const DatePicker = (props: DatePickerProps) => {
         forYear: calendar2Year,
         calendarIndex: 1,
       });
+      setStartDate(rangeConfig ? rangeConfig.start : "");
+      setEndDate(rangeConfig ? rangeConfig.end : "");
     }
   }, []);
 
@@ -216,6 +243,8 @@ const DatePicker = (props: DatePickerProps) => {
       getRange?.({
         start: "",
         end: endDate,
+        min: rangeConfig?.min,
+        max: rangeConfig?.max,
       });
       return;
     }
@@ -224,6 +253,8 @@ const DatePicker = (props: DatePickerProps) => {
       getRange?.({
         start: startDate,
         end: "",
+        min: rangeConfig?.min,
+        max: rangeConfig?.max,
       });
       return;
     }
@@ -235,6 +266,8 @@ const DatePicker = (props: DatePickerProps) => {
         getRange?.({
           start: dateValue,
           end: startDate,
+          min: rangeConfig?.min,
+          max: rangeConfig?.max,
         });
         return;
       } else {
@@ -242,6 +275,8 @@ const DatePicker = (props: DatePickerProps) => {
         getRange?.({
           start: startDate,
           end: dateValue,
+          min: rangeConfig?.min,
+          max: rangeConfig?.max,
         });
         return;
       }
@@ -250,12 +285,18 @@ const DatePicker = (props: DatePickerProps) => {
     getRange?.({
       start: dateValue,
       end: "",
+      min: rangeConfig?.min,
+      max: rangeConfig?.max,
     });
   };
 
   //function specific for non range calendar mode
   const handleDateItemClicked = (selectedDate: string) => {
-    onDateClick(selectedDate);
+    if (isMobile) {
+      setSingleDate(selectedDate);
+    } else {
+      onDateClick(selectedDate);
+    }
   };
   return (
     <div
@@ -333,13 +374,32 @@ const DatePicker = (props: DatePickerProps) => {
           <div className="n-picker-footer-button">
             <Button
               disabled={rangeConfig.end && rangeConfig.start ? false : true}
+              onClick={() => {
+                onConfirmRange?.(rangeConfig);
+              }}
             >
               Confirm
             </Button>
           </div>
         </div>
       ) : (
-        <></>
+        <div className="n-picker-single-footer">
+          <div className="n-picker-single-footer-date-group">
+            <div className="n-picker-single-footer-date-item">
+              <span>{singleDate ? singleDate : "--"}</span>
+            </div>
+          </div>
+          <div className="n-picker-single-footer-button">
+            <Button
+              disabled={singleDate ? false : true}
+              onClick={() => {
+                onDateClick(singleDate);
+              }}
+            >
+              Confirm
+            </Button>
+          </div>
+        </div>
       )}
     </div>
   );

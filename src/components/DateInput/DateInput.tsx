@@ -4,6 +4,12 @@ import { SvgIcCloseRemove, SvgIcCalendar } from "../../assets/svg-components";
 import "./DateInput.scss";
 import DatePicker from "../DatePicker/DatePicker";
 
+interface RangeConfigProps {
+  start: string;
+  end: string;
+  min: string;
+  max: string;
+}
 export interface DateInputProps {
   id: string;
   label: string;
@@ -15,8 +21,11 @@ export interface DateInputProps {
   validationText?: string;
   validationStyle?: React.CSSProperties;
   validationClassName?: string;
-  getDateValue: Function;
+  getDateValue?: Function;
   closeClicked?: Function;
+  isRange?: boolean;
+  rangeConfig?: RangeConfigProps;
+  onConfirmRange?: Function;
 }
 
 const DateInput = (props: DateInputProps) => {
@@ -33,13 +42,20 @@ const DateInput = (props: DateInputProps) => {
     getDateValue,
     closeClicked,
     id,
+    isRange,
+    rangeConfig,
+    onConfirmRange,
   } = props;
   const [date, setDate] = useState<any>({ mm: "", dd: "", yyyy: "" });
   const [dateError, setDateError] = useState("");
   const [datePickerDate, setDatePickerDate] = useState("");
   const [showPicker, setShowPicker] = useState(false);
-  // const [range, setRange] = useState({ start: "02/07/2023", end: "03/10/2023" });
-  const [range, setRange] = useState({ start: "", end: "" });
+  const [range, setRange] = useState<RangeConfigProps>({
+    start: "",
+    end: "",
+    min: "",
+    max: "",
+  });
 
   // if a date value is given as input then set that in the state
   // * The format is important "mm/dd/yyyy"
@@ -51,6 +67,9 @@ const DateInput = (props: DateInputProps) => {
       stateDateObj.dd = dateVal[1];
       stateDateObj.yyyy = dateVal[2];
       setDate(stateDateObj);
+    }
+    if (isRange && rangeConfig) {
+      setRange(rangeConfig);
     }
   }, []);
 
@@ -78,7 +97,9 @@ const DateInput = (props: DateInputProps) => {
     if (stateDateObj.mm && stateDateObj.dd && stateDateObj.yyyy) {
       defaultErrorValidation(stateDateObj);
     }
-    getDateValue(`${stateDateObj.mm}/${stateDateObj.dd}/${stateDateObj.yyyy}`);
+    getDateValue?.(
+      `${stateDateObj.mm}/${stateDateObj.dd}/${stateDateObj.yyyy}`
+    );
   };
 
   // Function to handle cancel button click
@@ -90,7 +111,7 @@ const DateInput = (props: DateInputProps) => {
     setDate(stateDateObj);
     // empty state value and error text
     setDateError("");
-    getDateValue("");
+    getDateValue?.("");
   };
 
   // a default date validation that peforms basic checks
@@ -149,7 +170,9 @@ const DateInput = (props: DateInputProps) => {
     stateDateObj.dd = dateVal[1];
     stateDateObj.yyyy = dateVal[2];
     setDate(stateDateObj);
-    getDateValue(`${stateDateObj.mm}/${stateDateObj.dd}/${stateDateObj.yyyy}`);
+    getDateValue?.(
+      `${stateDateObj.mm}/${stateDateObj.dd}/${stateDateObj.yyyy}`
+    );
   };
 
   return (
@@ -176,7 +199,9 @@ const DateInput = (props: DateInputProps) => {
         <div
           className="n-date-left-group"
           data-testid={`n-date-left-group`}
-          onClick={() => setShowPicker(!showPicker)}
+          onClick={() =>
+            useDatePicker ? setShowPicker(!showPicker) : () => {}
+          }
         >
           <div
             data-testid={`n-datepicker-icon`}
@@ -188,34 +213,50 @@ const DateInput = (props: DateInputProps) => {
             <SvgIcCalendar />
           </div>
           <div className="n-date-input-group">
-            {Object.keys(date).map((dateKey: string, index) => (
-              <>
-                <input
-                  key={`date-input-${index}-${id}`}
-                  data-testid={`date-input-${index}-${id}`}
-                  id={`date-input-${index}-${id}`}
-                  className="n-date-single-field"
-                  value={date[dateKey]}
-                  type="text"
-                  onChange={(event) => handleDateInput(event, dateKey, index)}
-                  placeholder={dateKey.toUpperCase()}
-                  onKeyDown={(e) => handleKeyDown(e, index)}
-                  onBlur={() => {
-                    if ([0, 1].includes(index)) {
-                      let dateVal = { ...date };
-                      if (dateVal[dateKey].length == 1) {
-                        dateVal[dateKey] = `0${dateVal[dateKey]}`;
-                        setDate(dateVal);
+            {!isRange &&
+              Object.keys(date).map((dateKey: string, index) => (
+                <>
+                  <input
+                    key={`date-input-${index}-${id}`}
+                    data-testid={`date-input-${index}-${id}`}
+                    id={`date-input-${index}-${id}`}
+                    className="n-date-single-field"
+                    value={date[dateKey]}
+                    type="text"
+                    onChange={(event) => handleDateInput(event, dateKey, index)}
+                    placeholder={dateKey.toUpperCase()}
+                    onKeyDown={(e) => handleKeyDown(e, index)}
+                    onBlur={() => {
+                      if ([0, 1].includes(index)) {
+                        let dateVal = { ...date };
+                        if (dateVal[dateKey].length == 1) {
+                          dateVal[dateKey] = `0${dateVal[dateKey]}`;
+                          setDate(dateVal);
+                        }
                       }
-                    }
-                    getDateValue(`${date.mm}/${date.dd}/${date.yyyy}`);
-                  }}
-                  autoComplete={"off"}
-                  disabled={useDatePicker ? true : false}
-                />
-                {index < 3 ? <span className="n-date-divider">/</span> : <></>}
-              </>
-            ))}
+                      getDateValue?.(`${date.mm}/${date.dd}/${date.yyyy}`);
+                    }}
+                    autoComplete={"off"}
+                    disabled={useDatePicker ? true : false}
+                  />
+                  {index < 3 ? (
+                    <span className="n-date-divider">/</span>
+                  ) : (
+                    <></>
+                  )}
+                </>
+              ))}
+            {isRange ? (
+              range.start && range.end ? (
+                <div className="n-date-range-field">
+                  <div>{range.start || "--"}</div>
+                  <div>{"to"}</div>
+                  <div>{range.end || "--"}</div>
+                </div>
+              ) : (
+                <div className="n-date-range-field">Select a date range</div>
+              )
+            ) : null}
           </div>
         </div>
         {date.mm || date.dd || date.yyyy ? (
@@ -258,18 +299,20 @@ const DateInput = (props: DateInputProps) => {
               setShowPicker(false);
             }}
             onClose={() => setShowPicker(false)}
-            minDate={"02/06/2023"}
-            maxDate={"03/20/2023"}
-            isRange={true}
+            minDate={""}
+            maxDate={""}
+            isRange={isRange}
             rangeConfig={{
               start: range.start,
-              min: "02/06/2023",
-              max: "03/10/2023",
+              min: range.min,
+              max: range.max,
               end: range.end,
             }}
-            getRange={(range: { start: string; end: string }) =>
-              setRange(range)
-            }
+            getRange={(range: RangeConfigProps) => setRange(range)}
+            onConfirmRange={(range: RangeConfigProps) => {
+              onConfirmRange?.(range);
+              setShowPicker(false);
+            }}
           />
         ) : (
           <></>
@@ -286,6 +329,9 @@ DateInput.defaulProps = {
   helperText: "",
   validationStyle: {},
   validationClassName: "",
+  isRange: false,
+  rangeConfig: {},
+  onConfirmRange: () => {},
 };
 
 export default React.memo(DateInput);

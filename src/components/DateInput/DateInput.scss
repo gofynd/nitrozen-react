@@ -37,13 +37,18 @@
     align-items: center;
     padding-left: 1.2rem;
     flex-direction: row;
+    width: 80%;
   }
 
   &-input-group {
-    width: 70%;
+    width: 80%;
     display: flex;
     padding-left: 1.2rem;
     align-items: center;
+
+    @media screen and (max-width: 425px) {
+      width: 90%;
+    }
   }
 
   &-single-field {
@@ -66,6 +71,15 @@
       display: none;
     }
   }
+
+  &-range-field {
+    color: $ColorPrimaryGrey60;
+    font-size: 1.6rem;
+    width: 90%;
+    justify-content: space-between;
+    display: flex;
+    align-items: center;
+  }
 }
 
 .n-icon-container {
@@ -83,7 +97,7 @@
   padding-right: 1.2rem;
   display: flex;
   align-items: center;
-  width: 3.4rem;
+  width: 2.4rem;
 }
 
 .n-date-error {
