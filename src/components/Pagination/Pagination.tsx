@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, ChangeEvent } from "react";
 import NitrozenId from "../../utils/uuids";
 import Dropdown from "../Dropdown";
 import "./Pagination.scss";
@@ -276,10 +276,11 @@ const Pagination = (props: PaginationProps) => {
       </div>
     ));
   }
-  function onSearchInputChnage(e: any) {
+  function onSearchInputChnage(e: ChangeEvent<HTMLInputElement>) {
     let totalPage =
       value.total && value.limit && Math.ceil(value.total / value.limit);
-    if (e.target.value <= (totalPage ? totalPage : 0)) {
+    let inputValue = Number(e.target.value);
+    if (inputValue <= (totalPage ? totalPage : 0)) {
       if (!e.target.value) {
         const ele = document.getElementById(searchListPages[0]);
         ele?.scrollIntoView();
@@ -291,7 +292,7 @@ const Pagination = (props: PaginationProps) => {
     } else {
       e.target.value = e.target.value.slice(0, -1);
     }
-    return setSearchValue(e.target.value);
+    return setSearchValue(inputValue);
   }
   function countsText() {
     let txt = " ";

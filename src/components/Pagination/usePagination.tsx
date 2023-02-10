@@ -4,11 +4,11 @@ const range = (start: any, end: any) => {
 };
 
 export const usePagination = (
-  totalDisplayNodeCount: any,
-  totalCount: any,
-  pageSize: any,
-  siblingNode: any,
-  currentPage: any
+  totalDisplayNodeCount: number,
+  totalCount = 0,
+  pageSize = 0,
+  siblingNode: number,
+  currentPage = 0
 ): number[] => {
   const DOTS = "...";
   const totalPageCount = Math.ceil(totalCount / pageSize);
