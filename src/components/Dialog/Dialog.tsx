@@ -84,11 +84,11 @@ const Dialog = (props: DialogProps) => {
         <div id={id}>
           <div className="n-dialog-backdrop">
             <div
-              className={` n-${kind} ${
+              className={
                 size === "s"
                   ? `n-wrapper-width-s n-dialog ${className ?? ""}`
                   : `n-wrapper-width-m n-dialog ${className ?? ""}`
-              }`}
+              }
               style={style ?? {}}
               role="dialog"
               aria-labelledby="id + '_title'"
@@ -96,26 +96,42 @@ const Dialog = (props: DialogProps) => {
               {...restProps}
             >
               <div className="n-closebtn-container">
+                <header
+                  className={
+                    kind === "acknowledgement"
+                      ? `n-dialog-header-acknowlegdement n-dialog-header`
+                      : `n-dialog-header`
+                  }
+                  id="id + '_title'"
+                >
+                  {typeof title === "string" ? (
+                    <h5
+                      className={
+                        kind === "acknowledgement"
+                          ? `acknowlegdement-header header`
+                          : `header`
+                      }
+                    >
+                      {title}
+                    </h5>
+                  ) : (
+                    <div className="n-header-card">
+                      <span className="n-header-card-1">
+                        {" "}
+                        {title.helperBlock.text}
+                      </span>
+                      <span className="n-header-card-2">
+                        {" "}
+                        {title.titleBlock.text}
+                      </span>
+                    </div>
+                  )}
+                </header>
                 {isClosable && (
                   <SvgClose className="n-closebtn" onClick={close} />
                 )}
               </div>
-              <header className="n-dialog-header" id="id + '_title'">
-                {typeof title === "string" ? (
-                  <h5 className="header">{title}</h5>
-                ) : (
-                  <div className="n-header-card">
-                    <span className="n-header-card-1">
-                      {" "}
-                      {title.helperBlock.text}
-                    </span>
-                    <span className="n-header-card-2">
-                      {" "}
-                      {title.titleBlock.text}
-                    </span>
-                  </div>
-                )}
-              </header>
+
               <section className="n-dialog-body" id="id + '_desc'">
                 {children}
               </section>
@@ -137,11 +153,6 @@ const Dialog = (props: DialogProps) => {
                     theme="primary"
                     size="medium"
                     onClick={handlePositiveButtonClick}
-                    className={
-                      kind == "dialog" && size !== "s"
-                        ? "n-dialog-positive"
-                        : ""
-                    }
                   >
                     {positiveButtonLabel}
                   </Button>
