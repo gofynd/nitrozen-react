@@ -6,7 +6,7 @@ import {
   SvgAddLocation,
   SvgQuestionMark,
 } from "../../assets/svg-components";
-import Stepper from "./Stepper";
+import Stepper, { ItemsType, StepperProps, StepState } from "./Stepper";
 
 export default {
   title: "Components/Stepper",
@@ -30,10 +30,10 @@ export default {
   },
 } as ComponentMeta<typeof Stepper>;
 
-const HORIZONTAL_STEPPER_ITEMS = [
+const HORIZONTAL_STEPPER_ITEMS: ItemsType = [
   {
     name: "Step Label 1",
-    state: "Current",
+    state: StepState.Current,
     content: `<p>
     Lorem ipsum dolor sit, amet consectetur adipisicing
     elit. Ducimus, doloremque ut, eius cum in repellat
@@ -44,23 +44,23 @@ const HORIZONTAL_STEPPER_ITEMS = [
   },
   {
     name: "Step Label 2",
-    state: "Upcoming",
+    state: StepState.Upcoming,
   },
   {
     name: "Step Label 3",
-    state: "Disabled",
+    state: StepState.Disabled,
   },
   {
     name: "Step Label 4",
-    state: "Issue",
+    state: StepState.Issue,
   },
   {
     name: "Step Label 5",
-    state: "Completed",
+    state: StepState.Completed,
   },
   {
     name: "Step Label 6",
-    state: "Current",
+    state: StepState.Current,
     icon: SvgQuestionMark,
   },
 ];
@@ -104,7 +104,7 @@ const VERTICAL_STEPPER_ITEMS = [
   },
 ];
 
-const Template: ComponentStory<typeof Stepper> = (args) => (
+const Template: ComponentStory<typeof Stepper> = (args: StepperProps) => (
   <div className="storybook-stepper-container">
     <Stepper {...args} />
   </div>

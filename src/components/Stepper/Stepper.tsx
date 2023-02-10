@@ -11,7 +11,7 @@ export enum StepState {
   "Completed" = "Completed",
 }
 
-type ItemType = {
+export type ItemType = {
   name: string | number;
   isInactive?: boolean;
   isCompleted?: boolean;
