@@ -21,6 +21,7 @@ export interface DatePickerProps {
   rangeConfig?: RangeConfigProps;
   getRange?: Function;
   onConfirmRange?: Function;
+  align: string;
 }
 
 const DatePicker = (props: DatePickerProps) => {
@@ -34,6 +35,7 @@ const DatePicker = (props: DatePickerProps) => {
     rangeConfig,
     getRange,
     onConfirmRange,
+    align,
   } = props;
 
   const [startDate, setStartDate] = useState("");
@@ -300,7 +302,9 @@ const DatePicker = (props: DatePickerProps) => {
   };
   return (
     <div
-      className={`n-picker-wrapper ${!isRange ? "n-picker-wrapper-width" : ""}`}
+      className={`n-picker-wrapper ${
+        !isRange ? "n-picker-wrapper-width" : ""
+      } n-picker-${align}-container`}
     >
       <div
         className="n-closeicon-wrapper"

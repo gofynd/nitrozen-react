@@ -1,6 +1,12 @@
 @import "./../../base/base.scss";
 
 .n-picker {
+  &-right-container {
+    left: 0;
+  }
+  &-left-container {
+    right: 0;
+  }
   &-calendar-wrapper {
     width: 100%;
   }

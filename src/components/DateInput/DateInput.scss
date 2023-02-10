@@ -123,6 +123,9 @@
 
 .date-input-wrapper {
   width: 37.6rem;
+  @media screen and (max-width: 425px) {
+    width: 30.6rem;
+  }
 }
 
 .n-date-inputfield:hover .n-date-single-field::placeholder {

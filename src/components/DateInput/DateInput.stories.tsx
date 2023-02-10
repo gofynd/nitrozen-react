@@ -45,10 +45,7 @@ export default {
 } as ComponentMeta<typeof DateInput>;
 
 const Template: ComponentStory<typeof DateInput> = (args: any) => (
-  <div
-    className="main-div space-between custom-date-story"
-    style={{ height: "650px" }}
-  >
+  <div className="main-div custom-date-story" style={{ height: "650px" }}>
     <div className="date-input-wrapper">
       <DateInput {...args} />
     </div>
@@ -65,6 +62,7 @@ DateInputPlayground.args = {
   id: "customfynd",
   getDateValue: () => {},
   isRange: false,
+  align: "left",
 };
 
 export const DateRangeSample = (args: DateInputProps) => {
@@ -77,7 +75,7 @@ export const DateRangeSample = (args: DateInputProps) => {
 
   return (
     <div
-      className="main-div space-between custom-date-story"
+      className="main-div custom-date-story"
       style={{ height: "650px", justifyContent: "unset" }}
     >
       <div className="state-date">
@@ -118,7 +116,7 @@ export const DateValidationSample = (args: DateInputProps) => {
 
   return (
     <div
-      className="main-div space-between custom-date-story"
+      className="main-div  custom-date-story"
       style={{ height: "650px", justifyContent: "unset" }}
     >
       <div className="state-date">
