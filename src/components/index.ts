@@ -21,3 +21,4 @@ export { ToastManager } from "./Toast";
 export { default as Code } from "./Code";
 export { NudgeManager } from "./Nudge";
 export { default as Table } from "./Table";
+export { default as Alert } from "./Alert";

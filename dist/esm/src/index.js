@@ -24,6 +24,7 @@ export { default as Code } from "./components/Code/Code.js";
 export { NudgeManager } from "./components/Nudge/NudgeManager.js";
 import "./components/Nudge/Nudge.js";
 export { default as Table } from "./components/Table/Table.js";
+export { default as Alert } from "./components/Alert/Alert.js";
 export {
   Svg124,
   Svg3DRotation,
