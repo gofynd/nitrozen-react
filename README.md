@@ -34,38 +34,13 @@ To use a component, you can import it directly from the package:
 import { Button } from "@gofynd/nitrozen-react";
 
 function MyComponent() {
-  return <Button>Example usage</Button>;
+  return <Button rounded>Button</Button>;
 }
 ```
 
 ### Example:
 
 ![button](https://github.com/gofynd/nitrozen-react/blob/main/src/assets/sb-buttons.png)
-![radio](https://github.com/gofynd/nitrozen-react/blob/main/src/assets/sb-radiobutton.png)
-
-## Components List:
-
-- [x] Autocomplete
-- [x] Badge
-- [x] Button
-- [x] Card
-- [x] Checkbox
-- [x] Chip
-- [x] Dialog
-- [x] Dropdown
-- [x] Icon
-- [x] Input
-- [x] Menu
-- [x] MenuItem
-- [x] Validation
-- [x] Pagination
-- [x] Radio
-- [x] Snackbar
-- [x] Stepper
-- [x] Tab
-- [x] TabItem
-- [x] ToggleBtn
-- [x] Tooltip
 
 > For a full list of components available & it's detailed documentation, checkout our
 > [Storybook](https://gofynd.io/nitrozen-react/?path=/story/introduction-welcome--welcome).
