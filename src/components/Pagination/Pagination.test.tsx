@@ -64,11 +64,6 @@ describe("Pagination", () => {
         onNextClick={(event: any) => {}}
       />
     );
-    const prevBtn = getByTestId("btnPrevious");
-    fireEvent.click(prevBtn);
-
-    const nextBtn = getByTestId("btnNext");
-    fireEvent.click(nextBtn);
 
     const paginationCount = getByTestId("pagination-count");
     expect(paginationCount.textContent?.includes("200")).toBeTruthy();

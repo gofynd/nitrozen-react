@@ -53,17 +53,18 @@ const Pagination = (props: PaginationProps) => {
     ...restProps
   } = props;
   const [value, setValue] = useState<ConfigProps>(propValue);
-  const [selectedPageSize, setSelectedPageSize] = useState<any>(
+  const [selectedPageSize, setSelectedPageSize] = useState<number>(
     pageSizeOptions && pageSizeOptions.length > 0 ? pageSizeOptions[0] : 10
   );
-  const refSearchBox = useRef<any>(null);
-  const [paginationRange, setPaginationRange] = useState<any>([
+  const refSearchBox = useRef<HTMLDivElement>(null);
+  const [paginationRange, setPaginationRange] = useState<number[]>([
     1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
   ]);
   const [openPopup, setopenPopup] = useState(false);
-  const [searchListPages, setSearchListPages] = useState<Array<string>>(["0"]);
+  const [searchListPages, setSearchListPages] = useState<string[]>(["0"]);
   const [searchValue, setSearchValue] = useState(1);
   const [popupPosition, setPopupPosition] = useState(1);
+  const [showSinglePage, setShowSinglePage] = useState(false);
   useEffect(() => {
     setDefaults();
     onPaginationRange();
@@ -142,7 +143,9 @@ const Pagination = (props: PaginationProps) => {
       : [];
     if (!selectedPageSize) {
       setSelectedPageSize(
-        value.limit ? value.limit : po.length > 0 ? po[0].value : maxPageCount
+        Number(
+          value.limit ? value.limit : po.length > 0 ? po[0].value : maxPageCount
+        )
       );
     }
     return po;
@@ -190,24 +193,28 @@ const Pagination = (props: PaginationProps) => {
       setPaginationRange(paginationRange);
     }
   }
-  function displayPages() {
-    return paginationRange?.map((i: any, index: any) => (
-      <span
-        key={index}
-        id={index}
-        onClick={(e) => selectedNode(e, i, index)}
-        className={`n-pagination__number_inactive ${
-          i === value.current && "n-pagination__number_active"
-        } ${
-          i === "..." &&
-          popupPosition === index &&
-          openPopup &&
-          "n-pagination__dot_active"
-        }`}
-      >
-        {i}
-      </span>
-    ));
+  function listNodeItems() {
+    if (paginationRange.length > 1) {
+      return paginationRange?.map((i: any, index: any) => (
+        <span
+          key={index}
+          id={index}
+          onClick={(e) => selectedNode(e, i, index)}
+          className={`n-pagination__number_inactive ${
+            i === value.current && "n-pagination__number_active"
+          } ${
+            i === "..." &&
+            popupPosition === index &&
+            openPopup &&
+            "n-pagination__dot_active"
+          }`}
+        >
+          {i}
+        </span>
+      ));
+    } else {
+      setShowSinglePage(true);
+    }
   }
   function selectedNode(e: any, i: any, index: any) {
     if (i == "...") {
@@ -336,7 +343,7 @@ const Pagination = (props: PaginationProps) => {
           </span>
         </div>
         <div className="n-pagination__main">
-          {mode === ModeEnum.MODE_REGULAR && (
+          {!showSinglePage && (
             <>
               <div
                 data-testid="btnPrevious"
@@ -348,7 +355,7 @@ const Pagination = (props: PaginationProps) => {
                 <SvgLeft />
               </div>
               <div className="n-pagination__number" ref={refSearchBox}>
-                {displayPages()}
+                {listNodeItems()}
                 {openPopup ? (
                   <div className="n-pagination__showpopup" id="menu">
                     <div className="n-pagination__search_input">
@@ -397,8 +404,8 @@ const Pagination = (props: PaginationProps) => {
           </span>
         </div>
         <div className="n-pagination__right">
+          <span className="n-pagination__select__label">Rows per page</span>
           <div className="n-pagination__select">
-            <span className="n-pagination__select__label">Items per page:</span>
             <Dropdown
               className="n-pagination-page-size"
               items={pageSizes()}

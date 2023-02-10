@@ -16,12 +16,6 @@
     align-items: center;
     flex-wrap: wrap;
     gap: 1.2rem;
-    .mobile_view {
-      display: none !important;
-      @media only screen and (max-width: $sm-min) {
-        display: flex !important;
-      }
-    }
     .n-pagination__left {
       flex: 1;
       display: flex;
@@ -40,6 +34,12 @@
         }
       }
     }
+    .mobile_view {
+      display: none;
+      @media only screen and (max-width: $sm-min) {
+        display: flex;
+      }
+    }
     .n-pagination__main {
       display: flex;
       justify-content: center;
@@ -47,7 +47,8 @@
       gap: 3.6rem;
       flex-wrap: wrap;
       @media only screen and (max-width: $sm-min) {
-        gap: 1.8rem !important;
+        gap: 1.8rem;
+        width: 100%;
       }
       .n-pagination__number {
         display: flex;
@@ -56,7 +57,7 @@
         position: relative;
         flex-wrap: wrap;
         @media only screen and (max-width: $sm-min) {
-          gap: 0.5rem !important;
+          gap: 0.5rem;
         }
       }
       .n-pagination__showpopup {
@@ -144,8 +145,8 @@
         }
       }
       .n-pagination__number_inactive {
-        height: 4rem;
-        width: 4rem;
+        height: 3.2rem;
+        width: 3.2rem;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -155,8 +156,8 @@
         font-size: 1.6rem;
         line-height: 2.4rem;
         @media only screen and (max-width: $sm-min) {
-          height: 3.5rem;
-          width: 3.5rem;
+          height: 3.2rem;
+          width: 3.2rem;
         }
       }
       .n-pagination__number_active {
@@ -174,6 +175,7 @@
       flex: 1;
       justify-content: flex-end;
       align-items: center;
+      gap: 0.8rem;
 
       .n-pagination__select {
         display: flex;

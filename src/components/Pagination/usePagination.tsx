@@ -9,7 +9,7 @@ export const usePagination = (
   pageSize: any,
   siblingNode: any,
   currentPage: any
-) => {
+): number[] => {
   const DOTS = "...";
   const totalPageCount = Math.ceil(totalCount / pageSize);
 
@@ -55,4 +55,5 @@ export const usePagination = (
     let middleRange = range(leftSiblingIndex, rightSiblingIndex);
     return [firstPageIndex, DOTS, ...middleRange, DOTS, lastPageIndex];
   }
+  return [];
 };
