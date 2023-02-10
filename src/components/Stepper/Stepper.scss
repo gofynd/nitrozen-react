@@ -7,7 +7,7 @@
   @include d-flex-center;
 }
 
-.nitrozen-stepper {
+.n-stepper {
   margin: 0 auto;
   width: 100%;
   font-size: $BaseFontSize + 6;
@@ -22,11 +22,31 @@
     color: $LabelColor;
     font-family: $PrimaryFont;
   }
-  .nitrozen-text {
+  .n-text {
     font-family: $PrimaryFont;
-    color: $TypographyPrimaryColor;
+
+    &.current {
+      color: $ColorBlack;
+    }
+
+    &.upcoming {
+      color: $JDSDefaultColor;
+    }
+
+    &.disabled {
+      color: $JDSDefaultColor;
+      opacity: 0.3;
+    }
+
+    &.issue {
+      color: $ColorBlack;
+    }
+
+    &.completed {
+      color: $JDSDefaultColor;
+    }
   }
-  .nitrozen-bar {
+  .n-bar {
     flex-grow: 1;
     position: relative;
   }
@@ -37,7 +57,7 @@
       color: $SuccessColor;
     }
   }
-  .nitrozen-circle-outer {
+  .n-circle-outer {
     background-color: $WhiteColor;
     border-radius: 50%;
     display: inline-block;
@@ -45,8 +65,8 @@
   .nitrozen-pointer {
     cursor: pointer;
   }
-  .nitrozen-stepper-group:last-child {
-    .nitrozen-bar:last-child {
+  .n-stepper-group:last-child {
+    .n-bar:last-child {
       visibility: hidden;
     }
   }
@@ -63,27 +83,28 @@
 
   //VERTICAL STEPPER
   &.vertical {
-    .nitrozen-stepper-container {
+    .n-stepper-container {
       display: flex;
       flex-direction: column;
       gap: 0.8rem;
     }
 
-    .nitrozen-stepper-group {
+    .n-stepper-group {
       --circle-size: 3.2rem;
       --spacing: 0.8rem;
     }
 
-    .nitrozen-circle-outer-container {
+    .n-circle-outer-container {
       display: grid;
       align-items: center;
       grid-template-columns: 3.4rem auto;
       grid-template-rows: auto minmax(2rem, auto);
       grid-row-gap: 0.8rem;
       grid-column-gap: 1rem;
+      cursor: pointer;
     }
 
-    .nitrozen-stepper-group {
+    .n-stepper-group {
       column-gap: 1.6rem;
 
       &.inactive-stepper {
@@ -96,7 +117,7 @@
         flex-direction: column;
         justify-content: center;
       }
-      .nitrozen-bar {
+      .n-bar {
         width: 0.1rem;
         background: $SecondaryDisabledColor;
         min-height: 100%;
@@ -107,7 +128,7 @@
           display: none;
         }
       }
-      .nitrozen-circle-content {
+      .n-circle-content {
         z-index: $ZIndex2;
         @include d-flex-center;
         font-family: $PrimaryFont;
@@ -164,16 +185,16 @@
         right: 0.1rem;
         background: $Bubbles;
       }
-      .nitrozen-text {
+      .n-text {
         font-size: $BaseFontSize + 4;
-        font-weight: 600;
+        font-weight: 500;
       }
       .stepper-description {
         font-size: $BaseFontSize + 2;
         margin-top: 0.4rem;
         line-height: 1.8rem;
       }
-      .nitrozen-circle-outer {
+      .n-circle-outer {
         height: var(--circle-size);
         width: var(--circle-size);
 
@@ -203,7 +224,7 @@
           }
         }
       }
-      .nitrozen-cirle-check-container .nitrozen-circle-outer {
+      .nitrozen-cirle-check-container .n-circle-outer {
         border: 0.1rem solid $Bubbles;
       }
       .nitrozen-checkmark {
@@ -243,7 +264,7 @@
 
   //HORIZONTAL STEPPER
   &.horizontal {
-    .nitrozen-stepper-group {
+    .n-stepper-group {
       --circle-size: 3.2rem;
       --spacing: 0.8rem;
       display: flex;
@@ -251,15 +272,16 @@
       flex-basis: 100%;
     }
 
-    .nitrozen-circle-outer-container {
+    .n-circle-outer-container {
       z-index: $ZIndex1;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
+      cursor: pointer;
     }
 
-    .nitrozen-stepper-group:not(:last-child):after {
+    .n-stepper-group:not(:last-child):after {
       content: "";
       position: relative;
       top: 1.6rem;
@@ -270,15 +292,15 @@
       left: calc(50% + calc(var(--circle-size) / 2 + var(--spacing)));
     }
 
-    .nitrozen-stepper-container {
+    .n-stepper-container {
       display: flex;
       gap: 0.8rem;
     }
-    .nitrozen-stepper-group {
+    .n-stepper-group {
       flex-direction: column;
       text-align: center;
 
-      .nitrozen-circle-outer {
+      .n-circle-outer {
         height: var(--circle-size);
         width: var(--circle-size);
         @include d-flex-center;
@@ -333,7 +355,7 @@
         border-bottom: 0.15rem solid $SuccessColor;
         border-right: 0.15rem solid $SuccessColor;
       }
-      .nitrozen-bar {
+      .n-bar {
         flex-grow: 1;
         height: 0.1rem;
       }
@@ -343,13 +365,13 @@
       .nitrozen-disabled {
         background-color: $SecondaryDisabledColor;
 
-        &.nitrozen-circle-outer {
+        &.n-circle-outer {
           visibility: hidden;
         }
       }
-      .nitrozen-text {
-        font-size: $BaseFontSize + 2;
-        font-weight: 400;
+      .n-text {
+        font-size: $BaseFontSize + 4;
+        font-weight: 500;
       }
       .stepper-description {
         font-size: $BaseFontSize;

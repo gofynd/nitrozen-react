@@ -11,9 +11,8 @@ export enum StepState {
   "Completed" = "Completed",
 }
 
-export type ItemsType = Array<{
+type ItemType = {
   name: string | number;
-  description?: string | number;
   isInactive?: boolean;
   isCompleted?: boolean;
   icon?: React.ElementType;
@@ -24,11 +23,11 @@ export type ItemsType = Array<{
   buttonStyles?: object;
   state: StepState;
   content?: string;
-}>;
+};
+
+export type ItemsType = Array<ItemType>;
 
 export interface StepperProps {
-  activeIndex?: number;
-  maxActiveIndex?: number;
   items?: ItemsType;
   onClick?: Function;
   isHorizontal: boolean;
@@ -47,9 +46,7 @@ export interface ProgressCircleProps {
 const Stepper = (props: StepperProps) => {
   const {
     items = [],
-    activeIndex = 1,
     onClick,
-    maxActiveIndex = 0,
     isHorizontal,
     heading,
     showProgress = false,
@@ -59,7 +56,6 @@ const Stepper = (props: StepperProps) => {
     ...restProps
   } = props;
 
-  const [activeIndexState, setActiveIndex] = useState(activeIndex);
   const isVertical: boolean = !isHorizontal;
   const defaultButtonStyles: React.CSSProperties = {
     padding: "6px 9px",
@@ -74,43 +70,15 @@ const Stepper = (props: StepperProps) => {
     cursor: "pointer",
   };
 
-  useEffect(() => {
-    if (isVertical) {
-      setDefaultStepperStates();
-    }
-  }, [activeIndex]);
-
-  const setDefaultStepperStates = useCallback(() => {
-    items.map((item) => {
-      !item.isCompleted && (item.isCompleted = false);
-      !item.isInactive && (item.isInactive = false);
-      !item.buttonStyles && (item.buttonStyles = {});
-      return item;
-    });
-  }, [items]);
-
   const stepClick = useCallback(
-    (index: number, item?: object) => {
-      if (isVertical) {
-        onClick?.({ index, item });
+    (index: number, item?: ItemType) => {
+      if (item?.state === StepState.Disabled) {
         return;
       }
-      if (index <= maxActiveIndex) {
-        setActiveIndex(index);
-        onClick?.({ index, item });
-      }
+      onClick?.({ index, item });
     },
-    [isVertical, onClick, maxActiveIndex]
+    [onClick]
   );
-
-  const encodeDescription = useCallback((description: string) => {
-    const lines: string[] = description.split("\n");
-    if (lines.length === 1) {
-      return description;
-    }
-    const elements = lines.map((line, index) => <div key={index}>{line}</div>);
-    return elements;
-  }, []);
 
   const getClassNameByState = useCallback((state: StepState) => {
     switch (state) {
@@ -168,7 +136,7 @@ const Stepper = (props: StepperProps) => {
     <>
       <div
         className={classnames({
-          "nitrozen-stepper": true,
+          "n-stepper": true,
           vertical: isVertical,
           horizontal: isHorizontal,
           [className]: className?.length,
@@ -176,35 +144,31 @@ const Stepper = (props: StepperProps) => {
         style={style ?? {}}
         {...restProps}
       >
-        <div className="nitrozen-stepper-container">
+        <div className="n-stepper-container">
           <div
             className={classnames({
               "heading-progress": heading || showProgress,
             })}
           >
             {heading && <span className="stepper-heading">{heading}</span>}
-            {showProgress && isVertical && (
+            {/* Commenting showProgress as it is not present in the new designs */}
+            {/* {showProgress && isVertical && (
               <ProgressCircle items={items} color={progressStrokeColor} />
-            )}
+            )} */}
           </div>
           {items.map((item, index) => {
             return (
               <div
-                className={classnames({
-                  "nitrozen-stepper-group": true,
-                  "active-group": !isDisabled(index),
-                  "nitrozen-pointer": !isVertical && !isDisabled(index),
-                  "inactive-stepper": isVertical && item.isInactive,
-                })}
+                className="n-stepper-group"
                 onClick={() => stepClick(index, item)}
                 data-testid={`stepper-${index}`}
                 key={index}
               >
                 {/* Horizontal Stepper Circle states */}
                 {isHorizontal && (
-                  <div className="nitrozen-circle-outer-container">
+                  <div className="n-circle-outer-container">
                     <div
-                      className={`nitrozen-circle-outer ${getClassNameByState(
+                      className={`n-circle-outer ${getClassNameByState(
                         item?.state
                       )}`}
                     >
@@ -220,10 +184,9 @@ const Stepper = (props: StepperProps) => {
                     <div className="stepper-header-description">
                       <div className="header-description">
                         <div
-                          className={classnames({
-                            "nitrozen-text": true,
-                            "heading-center": !item.description,
-                          })}
+                          className={`n-text ${getClassNameByState(
+                            item.state
+                          )}`}
                         >
                           {item.name}
                         </div>
@@ -233,14 +196,14 @@ const Stepper = (props: StepperProps) => {
                 )}
                 {/* Vertical Stepper Circle states */}
                 {isVertical && (
-                  <div className="nitrozen-circle-outer-container">
+                  <div className="n-circle-outer-container">
                     <div
-                      className={`nitrozen-circle-outer nitrozen-circle-border ${getClassNameByState(
+                      className={`n-circle-outer nitrozen-circle-border ${getClassNameByState(
                         item.state
                       )}`}
                     >
                       <span
-                        className={`nitrozen-circle-content ${getClassNameByState(
+                        className={`n-circle-content ${getClassNameByState(
                           item.state
                         )}`}
                       >
@@ -257,10 +220,9 @@ const Stepper = (props: StepperProps) => {
                     <div className="stepper-header-description">
                       <div className="header-description">
                         <div
-                          className={classnames({
-                            "nitrozen-text": true,
-                            "heading-center": !item.description,
-                          })}
+                          className={`n-text ${getClassNameByState(
+                            item.state
+                          )}`}
                         >
                           {item.name}
                         </div>
@@ -268,7 +230,7 @@ const Stepper = (props: StepperProps) => {
                     </div>
                     <div
                       className={classnames({
-                        "nitrozen-bar": true,
+                        "n-bar": true,
                         "completed-bar": index === items?.length - 1,
                       })}
                     ></div>
@@ -287,22 +249,6 @@ const Stepper = (props: StepperProps) => {
       </div>
     </>
   );
-
-  function isActive(index: number) {
-    return index === activeIndexState;
-  }
-  function isChecked(index: number) {
-    return (
-      index !== activeIndexState &&
-      index <= Math.max(maxActiveIndex, activeIndexState)
-    );
-  }
-  function isDisabled(index: number) {
-    return (
-      index <= items.length - 1 &&
-      index > Math.max(maxActiveIndex, activeIndexState)
-    );
-  }
 };
 
 function ProgressCircle(props: ProgressCircleProps) {
@@ -355,8 +301,6 @@ function ProgressCircle(props: ProgressCircleProps) {
 
 Stepper.defaultProps = {
   items: [],
-  maxActiveIndex: -1,
-  activeIndex: 0,
   isHorizontal: false,
   progressStrokeColor: "#419266",
 };

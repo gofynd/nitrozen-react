@@ -17,16 +17,8 @@ export default {
       description: "Defines the type of stepper",
     },
     items: {
-      description: "JSON List of Stepper steps",
-    },
-    maxActiveIndex: {
-      type: "number",
-      description: "Number of active steppers",
-    },
-    activeIndex: {
-      type: "number",
       description:
-        "Active stepper selection | should always be <= maxActiveIndex)",
+        "JSON List of Stepper steps with the state (Current, Upcoming, Disabled, Issue, Completed)",
     },
     progressStrokeColor: {
       type: "string",
@@ -46,7 +38,6 @@ export default {
 const HORIZONTAL_STEPPER_ITEMS = [
   {
     name: "Step Label 1",
-    description: "April 26, 2022 \n 11:17 AM",
     state: "Current",
     content: `<p>
     Lorem ipsum dolor sit, amet consectetur adipisicing
@@ -58,27 +49,22 @@ const HORIZONTAL_STEPPER_ITEMS = [
   },
   {
     name: "Step Label 2",
-    description: "April 27, 2022 \n 11:00 AM",
     state: "Upcoming",
   },
   {
     name: "Step Label 3",
-    description: "April 30, 2022 \n 10:00 AM",
     state: "Disabled",
   },
   {
     name: "Step Label 4",
-    description: "May 2, 2022 \n 11:00 AM",
     state: "Issue",
   },
   {
     name: "Step Label 5",
-    description: "May 3, 2022 \n 12:00 AM",
     state: "Completed",
   },
   {
     name: "Step Label 6",
-    description: "May 5, 2022 \n 12:00 AM",
     state: "Current",
     icon: SvgQuestionMark,
   },
@@ -128,18 +114,10 @@ const Template: ComponentStory<typeof Stepper> = (args) => (
     <Stepper {...args} />
   </div>
 );
-export const HorizontalStepper = Template.bind({});
-HorizontalStepper.args = {
+export const StepperComponent = Template.bind({});
+StepperComponent.args = {
   items: HORIZONTAL_STEPPER_ITEMS,
   activeIndex: 1,
   onClick: (item: object) => {},
   isHorizontal: true,
-};
-
-export const VerticalStepper = Template.bind({});
-VerticalStepper.args = {
-  items: VERTICAL_STEPPER_ITEMS,
-  onClick: (item: object) => {},
-  heading: "Lorem ipsum dolor sit amet consectetur Maxime ",
-  showProgress: true,
 };
