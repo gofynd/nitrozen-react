@@ -6,7 +6,7 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### Features
 
-- Design system upgrade
+- Design system upgrade([5621f49][https://github.com/gofynd/nitrozen-react/pull/54])
 
 ## 1.1.1 (2022-12-20)
 
