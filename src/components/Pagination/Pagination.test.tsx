@@ -74,8 +74,7 @@ describe("Pagination", () => {
       />
     );
 
-    const dropdown =
-      screen.container.getElementsByClassName("nitrozen-option")[1];
+    const dropdown = screen.container.getElementsByClassName("n-option")[1];
     fireEvent.click(dropdown);
 
     expect(dropdown.getAttribute("data-value")).toBe("20");
@@ -129,8 +128,7 @@ describe("Pagination", () => {
       />
     );
 
-    const dropdown =
-      screen.container.getElementsByClassName("nitrozen-option")[1];
+    const dropdown = screen.container.getElementsByClassName("n-option")[1];
     fireEvent.click(dropdown);
 
     expect(dropdown.getAttribute("data-value")).toBe("20");
@@ -235,8 +233,7 @@ describe("Pagination", () => {
 
     const screen = render(<Pagination {...testProps} />);
 
-    const dropdown =
-      screen.container.getElementsByClassName("nitrozen-option")[1];
+    const dropdown = screen.container.getElementsByClassName("n-option")[1];
     fireEvent.click(dropdown);
 
     expect(testProps?.onChange).toBeCalledTimes(1);

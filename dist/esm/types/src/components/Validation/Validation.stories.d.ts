@@ -4,9 +4,8 @@ declare const _default: ComponentMeta<
   React.MemoExoticComponent<{
     (props: import("./Validation").ValidationProps): JSX.Element;
     defaultProps: {
-      isValid: boolean;
-      validLabel: string;
-      invalidLabel: string;
+      validationState: string;
+      label: string;
       isHidden: boolean;
     };
   }>
@@ -16,9 +15,8 @@ export declare const ValidationMessage: ComponentStory<
   React.MemoExoticComponent<{
     (props: import("./Validation").ValidationProps): JSX.Element;
     defaultProps: {
-      isValid: boolean;
-      validLabel: string;
-      invalidLabel: string;
+      validationState: string;
+      label: string;
       isHidden: boolean;
     };
   }>

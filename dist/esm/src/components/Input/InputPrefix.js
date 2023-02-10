@@ -3,11 +3,13 @@ const r = (r) =>
   e.createElement(
     "span",
     {
-      className: `nitrozen-input-prefix nitrozen-remove-right-border ${
-        "string" == typeof r.prefix && "nitrozen-prefix-padding"
+      className: `n-input-prefix n-remove-right-border n-prefix-position ${
+        "string" == typeof r.prefix && "n-prefix-padding"
       }`,
+      onClick: r.onPrefixClick,
     },
     r.prefix
   );
+r.defaultProps = { onPrefixClick: () => {} };
 export { r as default };
 //# sourceMappingURL=InputPrefix.js.map

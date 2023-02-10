@@ -1,31 +1,42 @@
 "use strict";
 var e = require("../../../node_modules/tslib/tslib.es6.js"),
-  l = require("react"),
-  a = require("../../utils/uuids.js");
-function r(e) {
+  a = require("react"),
+  l = require("../../utils/uuids.js"),
+  t = require("../Validation/Validation.js");
+require("./Checkbox.scss.js");
+var n = require("../../../node_modules/classnames/index.js");
+function s(e) {
   return e && "object" == typeof e && "default" in e ? e : { default: e };
 }
-var t = r(l);
-const n = (a) => {
+var c = s(a);
+const i = (l) => {
   const {
-      disabled: r,
-      value: n,
-      name: s,
-      checkboxValue: c,
-      id: i,
-      labelText: u,
-      children: d,
-      onChange: o,
-      checkArray: b,
-      ref: h,
-      className: y,
-      style: f,
-      labelStyle: m,
-    } = a,
-    k = e.__rest(a, [
+      disabled: s,
+      value: i,
+      name: r,
+      state: o,
+      stateMessage: d,
+      checkboxValue: u,
+      id: b,
+      labelText: h,
+      children: m,
+      onChange: k,
+      checkArray: f,
+      ref: y,
+      className: x,
+      style: g,
+      labelStyle: v,
+      icon: A,
+      showIcon: I,
+      onIconClick: C,
+      isIndeterminate: j,
+    } = l,
+    N = e.__rest(l, [
       "disabled",
       "value",
       "name",
+      "state",
+      "stateMessage",
       "checkboxValue",
       "id",
       "labelText",
@@ -36,65 +47,96 @@ const n = (a) => {
       "className",
       "style",
       "labelStyle",
+      "icon",
+      "showIcon",
+      "onIconClick",
+      "isIndeterminate",
     ]),
-    v = Array.isArray(b) ? b : c,
-    [x, A] = l.useState(v);
-  l.useEffect(() => {
-    A(Array.isArray(b) ? b : c);
-  }, [c, b]);
-  return t.default.createElement(
+    p = Array.isArray(f) ? f : u,
+    [q, E] = a.useState(p);
+  a.useEffect(() => {
+    E(Array.isArray(f) ? f : u);
+  }, [u, f]);
+  const w = l.icon;
+  return c.default.createElement(
     "label",
     {
-      htmlFor: i,
+      htmlFor: b,
       className:
-        "nitrozen-checkbox-container" +
-        (r ? " nitrozen-checkbox-container-disabled" : ""),
-      style: null != m ? m : {},
+        "n-checkbox-container" + (s ? " n-checkbox-container-disabled" : ""),
+      style: null != v ? v : {},
     },
-    t.default.createElement(
+    I &&
+      A &&
+      c.default.createElement(w, { className: "social-icon", onClick: C }),
+    c.default.createElement(
       "input",
       Object.assign(
         {
-          id: i,
+          id: b,
+          "data-testid": b,
           type: "checkbox",
-          onChange: (e) => {
-            if (Array.isArray(x))
-              if (null == x ? void 0 : x.includes(c)) {
-                const e = x.filter((e) => e !== c);
-                A([...e]), o([...e]);
-              } else A([...x, e.target.value]), o([...x, e.target.value]);
-            else A(!x), o(!c);
-          },
-          value: c || n,
-          checked: Array.isArray(x)
-            ? null == x
+          onChange: (e) =>
+            ((e) => {
+              if (Array.isArray(q))
+                if (null == q ? void 0 : q.includes(u)) {
+                  const e = q.filter((e) => e !== u);
+                  E([...e]), k([...e]);
+                } else E([...q, e.target.value]), k([...q, e.target.value]);
+              else E(!q), k(e.target.checked);
+            })(e),
+          value: u || i,
+          checked: Array.isArray(q)
+            ? null == q
               ? void 0
-              : x.includes(c)
-            : !!x,
-          disabled: r,
-          ref: null == a ? void 0 : a.ref,
-          className: null != y ? y : "",
-          style: null != f ? f : {},
+              : q.includes(u)
+            : !!q,
+          disabled: s,
+          ref: null == l ? void 0 : l.ref,
+          name: l.name,
+          className: `n-id-checkbox ${null != x ? x : ""}`,
+          style: null != g ? g : {},
         },
-        k
+        N
       )
     ),
-    u,
-    d,
-    t.default.createElement("span", { className: "nitrozen-checkbox" })
+    h,
+    m,
+    c.default.createElement("span", {
+      "data-testid": `n-checkbox-${b}`,
+      className: n({
+        "n-checkbox": !0,
+        "success-state": "success" == o,
+        "warning-state": "warning" == o,
+        "error-state": "error" == o,
+        "n-checkbox-indeterminate": l.isIndeterminate,
+      }),
+    }),
+    c.default.createElement(t, {
+      className: "n-checkbox-validation",
+      validationState: o,
+      label: d,
+      isHidden: null == o,
+    })
   );
 };
-(n.defaultProps = {
+(i.defaultProps = {
   disabled: !1,
   value: "",
   name: "",
   checkboxValue: null,
-  id: `nitrozen-dialog-${a()}`,
+  state: null,
+  stateMessage: "Your validation message",
+  id: `n-dialog-${l()}`,
   labelText: "",
   children: null,
+  icon: null,
+  showIcon: !1,
   onChange: () => {},
+  onIconClick: () => {},
   checkArray: null,
   ref: null,
+  isIndeterminate: !1,
 }),
-  (module.exports = n);
+  (module.exports = i);
 //# sourceMappingURL=Checkbox.js.map

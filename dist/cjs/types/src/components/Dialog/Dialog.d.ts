@@ -1,18 +1,26 @@
 import React from "react";
 import "./Dialog.scss";
+export interface dialogTitle {
+  helperBlock: {
+    text: React.ReactNode;
+  };
+  titleBlock: {
+    text: React.ReactNode;
+  };
+}
 export interface DialogProps {
   id?: string;
-  title?: string;
-  DialogIcon?: React.ReactNode;
+  title: string | dialogTitle;
+  kind: "dialog" | "acknowledgement" | "informational";
+  size: "s" | "m";
   theme?: string;
   children?: React.ReactNode;
   positiveButtonLabel?: string | boolean;
-  neutralButtonLabel?: string | boolean;
   negativeButtonLabel?: string | boolean;
   onPositiveResponse?: Function;
-  onNeutralResponse?: Function;
   onNegativeResponse?: Function;
   isVisible?: boolean;
+  isClosable?: boolean;
   className?: string;
   style?: React.CSSProperties;
   closeHandle?: Function;
@@ -25,7 +33,6 @@ declare const Dialog: {
     theme: null;
     children: null;
     positiveButtonLabel: boolean;
-    neutralButtonLabel: string;
     negativeButtonLabel: boolean;
     isVisible: boolean;
   };

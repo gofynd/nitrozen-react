@@ -1,59 +1,66 @@
 import { __rest as e } from "../../../node_modules/tslib/tslib.es6.js";
-import r from "react";
+import a from "react";
 import "./Card.scss.js";
-const a = (a) => {
+const t = (t) => {
   const {
-      style: t,
-      headerStyle: c,
-      cardTitle: n,
-      className: s,
-      showBorder: l,
-      children: o,
-      cardIcon: d,
-    } = a,
-    i = e(a, [
-      "style",
-      "headerStyle",
-      "cardTitle",
-      "className",
-      "showBorder",
-      "children",
-      "cardIcon",
-    ]);
-  return r.createElement(
+    title: r,
+    image: c,
+    imageFocus: i,
+    imageRatio: n,
+    orientation: s,
+    description: o,
+    primaryCTA: m,
+    secondaryCTA: d,
+    caption: l,
+    footer: p,
+    header: v,
+  } = t;
+  e(t, [
+    "title",
+    "image",
+    "imageFocus",
+    "imageRatio",
+    "orientation",
+    "description",
+    "primaryCTA",
+    "secondaryCTA",
+    "caption",
+    "footer",
+    "header",
+  ]);
+  const g = "vertical" === s && "n-card-vertical",
+    N = "vertical" === s && "n-card-vertical-space";
+  return a.createElement(
     "div",
-    Object.assign(
-      {
-        className: s
-          ? `${s} ${
-              l && "nitrozen-card-container-border"
-            } nitrozen-card-container`
-          : `${l && "nitrozen-card-container-border"} nitrozen-card-container`,
-        style: t,
-      },
-      i
-    ),
-    r.createElement(
+    { className: `n-card n-card__container ${g}` },
+    v && a.createElement("div", { className: "n-card-header" }, v),
+    a.createElement(
       "div",
-      { className: "nitrozen-card-header", style: c },
-      d &&
-        r.createElement("img", {
-          src: d,
-          alt: "cardIcon",
-          className: "nitrozen-card-icon",
-        }),
-      n && r.createElement("span", null, n)
+      { className: `n-flex n-card-orientation-${s}` },
+      c &&
+        a.createElement(
+          "div",
+          { className: `n-card-image n-card-ratio-${n} n-card-focus-${i}` },
+          c
+        ),
+      a.createElement(
+        "div",
+        { className: `n-card__content ${N}` },
+        l && a.createElement("div", { className: "n-card-caption" }, l),
+        r && a.createElement("h3", { className: "n-heading" }, r),
+        o && a.createElement("div", { className: "n-text-md" }, o),
+        a.createElement("div", { className: "n-button-group" }, m && m, d && d)
+      )
     ),
-    r.createElement("div", { className: "nitrozen-card-description" }, o)
+    p && a.createElement("div", { className: "n-card-footer" }, p)
   );
 };
-a.defaultProps = {
+t.defaultProps = {
+  imageRatio: "wide",
+  imageFocus: "center",
+  orientation: "vertical",
   style: {},
-  cardTitle: "",
   className: "",
-  showBorder: !1,
-  children: null,
-  cardIcon: null,
 };
-export { a as default };
+export { t as default };
 //# sourceMappingURL=Card.js.map

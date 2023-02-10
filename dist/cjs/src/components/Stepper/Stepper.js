@@ -1,8 +1,9 @@
 "use strict";
 var e = require("../../../node_modules/tslib/tslib.es6.js"),
   t = require("react"),
-  a = require("../../../node_modules/classnames/index.js"),
-  n = require("../../assets/svg-components/Action/index.js"),
+  a = require("../../../node_modules/classnames/index.js");
+require("./Stepper.scss.js");
+var n = require("../../assets/svg-components/Action/index.js"),
   r = require("../../assets/svg-components/Others/index.js");
 function l(e) {
   return e && "object" == typeof e && "default" in e ? e : { default: e };
@@ -68,13 +69,13 @@ const c = (l) => {
       },
       [N, d, m]
     ),
-    y = t.useCallback((e) => {
+    S = t.useCallback((e) => {
       const t = e.split("\n");
       if (1 === t.length) return e;
       const a = t.map((e, t) => s.default.createElement("div", { key: t }, e));
       return a;
     }, []),
-    S = t.useCallback((e, t = "22", a = "#419266", n = {}) => {
+    y = t.useCallback((e, t = "22", a = "#419266", n = {}) => {
       if (!e) return s.default.createElement(s.default.Fragment, null);
       const r = Object.assign({ style: { color: a, fontSize: `${t}px` } }, n),
         l = e;
@@ -117,8 +118,8 @@ const c = (l) => {
             {
               className: a({
                 "nitrozen-stepper-group": !0,
-                "active-group": !I(t),
-                "nitrozen-pointer": !N && !I(t),
+                "active-group": !j(t),
+                "nitrozen-pointer": !N && !j(t),
                 "inactive-stepper": N && e.isInactive,
               }),
               onClick: () => k(t, e),
@@ -151,7 +152,7 @@ const c = (l) => {
                   })
                 ),
               u &&
-                I(t) &&
+                j(t) &&
                 s.default.createElement(
                   "div",
                   { className: "nitrozen-circle-outer-container" },
@@ -202,7 +203,7 @@ const c = (l) => {
                   s.default.createElement(
                     "div",
                     { className: "stepper-icon active-stepper" },
-                    S(e.icon, e.iconSize, e.iconColor, e.extraIconProps)
+                    y(e.icon, e.iconSize, e.iconColor, e.extraIconProps)
                   )
                 ),
               t < Math.max(m, b) &&
@@ -240,7 +241,7 @@ const c = (l) => {
                   s.default.createElement(
                     "div",
                     { className: "stepper-description" },
-                    y(e.description.toString())
+                    S(e.description.toString())
                   )
               ),
               N &&
@@ -262,7 +263,7 @@ const c = (l) => {
       )
     )
   );
-  function I(e) {
+  function j(e) {
     return e <= c.length - 1 && e > Math.max(m, b);
   }
 };

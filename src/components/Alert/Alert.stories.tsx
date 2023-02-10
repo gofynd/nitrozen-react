@@ -1,84 +1,231 @@
+/* Package imports */
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
+
+/* Component imports */
 import Alert from "./Alert";
-import { SvgAccountCircle } from "../../assets/svg-components";
 
 export default {
   title: "Components/Alert",
   component: Alert,
   argTypes: {
-    labelText: { control: "text" },
-    state: {
+    alertWidth: {
+      control: "text",
+      description: `This property sets the width of the alert.`,
+    },
+    buttonText: {
+      control: "text",
+      description: `This property sets the text of the button.`,
+    },
+    buttonType: {
       control: "select",
-      options: ["info", "success", "warn", "error"],
+      description: `This property decides whether the button should be a 
+                        link or the default button.`,
+      options: ["default", "link"],
     },
-    style: { control: "object" },
-    className: { control: "text" },
-    href: { control: "text" },
-    ctaButtonText: { control: "text" },
-    ctaButton: { control: "boolean" },
-    onClick: { control: "object" },
-    Icon: {
-      name: "Icon",
-      type: { name: "string", required: false },
-      description: "This property sets the display value of the button",
-    },
-    alertWidth: { control: "text" },
     children: {
       name: "children",
-      type: { name: "string", required: false },
-      description: "This property sets the display value of the button",
+      description: `This property sets the display value of the button.`,
+      type: {
+        name: "string",
+        required: true,
+      },
+    },
+    className: {
+      control: "text",
+      description: `This property sets the external classnames for the component.`,
+    },
+    displayButton: {
+      control: "boolean",
+      description: `This property decides whether the button should be shown or hidden.`,
+    },
+    extendedAlert: {
+      control: "boolean",
+      description: `This property decides whether the alert should be shown in an extended format, 
+                        like a card.`,
+    },
+    fullWidth: {
+      control: "boolean",
+      defaultValue: true,
+      description: `This property decides whether the component should take up the entire width of 
+                        its parent component.`,
+    },
+    href: {
+      control: "text",
+      description: `This property will be the URL that needs to be navigated to on the click of the link button. 
+                        This value is only used when the buttonType is 'link'.`,
+    },
+    Icon: {
+      name: "Icon",
+      description: `This property sets the icon to be displayed at the start of the alert.`,
+      type: {
+        name: "string",
+        required: false,
+      },
+    },
+    labelText: {
+      control: "text",
+      description: `This property will set the value of the label for the alert.`,
+    },
+    linkText: {
+      control: "text",
+      description: `This property will set the value of the link button for cases where buttonType = link.`,
+    },
+    loader: {
+      control: "boolean",
+      description: `This property decides if the loader is to be displayed.`,
+    },
+    onClick: {
+      control: "object",
+      description: `This property is an event handler for the onclick event of the button.`,
+    },
+    state: {
+      name: "state",
+      control: "select",
+      defaultValue: "info",
+      description: `This property describes the state of the alert.`,
+      options: ["error", "info", "success", "warn"],
+      type: {
+        name: "string",
+        required: true,
+      },
+    },
+    style: {
+      control: "object",
+      description: `This property is used for adding external styles to the alert component.`,
     },
   },
 } as ComponentMeta<typeof Alert>;
 
 const Template: ComponentStory<typeof Alert> = (args) => (
   <div className="main-div space-between">
-    <Alert {...args} />
+    <Alert {...args} state="error">
+      This is an error alert.
+    </Alert>
+    <Alert {...args} state="info">
+      This is an informational alert.
+    </Alert>
+    <Alert {...args} state="success">
+      This is a success alert.
+    </Alert>
+    <Alert {...args} state="warn">
+      This is a warning alert.
+    </Alert>
+    <Alert {...args}>
+      This is a stateless (default) alert. Value from controls will change this
+      alert.
+    </Alert>
   </div>
 );
-export const Alert_demo = Template.bind({});
 
-Alert_demo.args = {
-  state: "info",
-  labelText: "informational message goes here",
-  ctaButtonText: "CTA Label",
-  ctaButton: true,
+/**
+ * An alert without a button
+ */
+export const ButtonLessAlert = Template.bind({});
+ButtonLessAlert.args = {
+  displayButton: false,
 };
-export const Alert_custom_icon = Template.bind({});
-Alert_custom_icon.args = {
-  state: "warn",
-  labelText: "Warning message goes here",
-  ctaButtonText: "CTA Label",
-  Icon: <SvgAccountCircle size={"24px"} />,
+ButtonLessAlert.storyName = "Alert without button";
+
+/**
+ * An alert with a button
+ */
+export const ButtonAlert = Template.bind({});
+ButtonAlert.args = {
+  buttonText: "Accept",
+  buttonType: "default",
+  displayButton: true,
 };
-export const Alert_with_children = Template.bind({});
+ButtonAlert.storyName = "Alert with button";
 
-Alert_with_children.args = {
-  labelText: "Congratulations!",
-  children: "CTA Label",
-  ctaButtonText: "CTA Label",
+/**
+ * An alert with a link button
+ */
+export const ButtonLink = Template.bind({});
+ButtonLink.args = {
+  buttonType: "link",
+  displayButton: true,
+  href: "https://www.google.com",
+  linkText: "Next",
 };
+ButtonLink.storyName = "Alert with link";
 
-export const Extended_alert = Template.bind({});
+/**
+ * An alert with full width and without a button
+ */
+export const AlertFullWidth = Template.bind({});
+AlertFullWidth.args = {
+  displayButton: false,
+  fullWidth: true,
+};
+AlertFullWidth.storyName = "Alert without button and with full width";
 
-Extended_alert.args = {
-  labelText: "Correction Required!",
-  state: "error",
+/**
+ * An alert without a button and without a full width (width set to auto)
+ */
+export const AlertAutoWidth = Template.bind({});
+AlertAutoWidth.args = {
+  displayButton: false,
+  fullWidth: false,
+};
+AlertAutoWidth.storyName = "Alert without button and without full width";
+
+/**
+ * An alert with a set width
+ */
+export const AlertSetWidth = Template.bind({});
+AlertSetWidth.args = {
+  alertWidth: "45%",
+  displayButton: false,
+  fullWidth: false,
+};
+AlertSetWidth.storyName = "Alert without button and with a set width";
+
+/**
+ * An alert with a button and auto width
+ */
+export const ButtonAlertAutoWidth = Template.bind({});
+ButtonAlertAutoWidth.args = {
+  buttonType: "button",
+  buttonText: "Click",
+  displayButton: true,
+  fullWidth: false,
+};
+ButtonAlertAutoWidth.storyName = "Alert with button and without full width";
+
+/**
+ * An extended alert without a button
+ */
+export const ButtonLessExtendedAlert = Template.bind({});
+ButtonLessExtendedAlert.args = {
   extendedAlert: true,
-  reasonArray: ["Reason 1", "Reason 2", "Reason 3"],
-  extendedAlertBodyText:
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. ",
 };
+ButtonLessExtendedAlert.storyName = "Extended Alert without button";
 
-export const Extended_alert_custom_size = Template.bind({});
-
-Extended_alert_custom_size.args = {
-  labelText: "Correction Required!",
-  state: "error",
+/**
+ * An extended alert with a button
+ */
+export const ButtonExtendedAlert = Template.bind({});
+ButtonExtendedAlert.args = {
+  displayButton: true,
   extendedAlert: true,
-  alertWidth: "30%",
-  reasonArray: ["Reason 1", "Reason 2", "Reason 3"],
-  extendedAlertBodyText:
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. ",
 };
+ButtonExtendedAlert.storyName = "Extended Alert with button";
+
+/**
+ * An alert with a loader
+ */
+export const LoaderAlert = Template.bind({});
+LoaderAlert.args = {
+  loader: true,
+};
+LoaderAlert.storyName = "Alert with loader";
+
+/**
+ * An alert with custom class-name
+ */
+export const AlertCustomClass = Template.bind({});
+AlertCustomClass.args = {
+  className: "nitrozen-custom-class",
+};
+AlertCustomClass.storyName = "Alert with a custom classname";

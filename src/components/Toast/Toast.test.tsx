@@ -11,9 +11,12 @@ describe("Toast", () => {
         onClick={() =>
           toast.show({
             destroy: () => {},
+            leftIconPosition: "top-align",
+            rightIconPosition: "top-align",
+            leftImage: <img></img>,
+            rightImage: <img></img>,
             title: "Title 1",
             content: "This is the content of this tostst !!!",
-            type: "success",
             position: "top-right",
           })
         }
@@ -36,7 +39,16 @@ describe("Toast", () => {
             title: "Title 2",
             content: "This is the content of this toast !!!",
             duration: 3000,
-            type: "success",
+            leftIconPosition: "top-align",
+            rightIconPosition: "top-align",
+            leftImage: <img></img>,
+            rightImage: (
+              <img
+                aria-label="right-image"
+                style={{ height: "1em", width: "1em" }}
+                src={require("../../assets/cross-filled.svg")}
+              />
+            ),
             position: "top-right",
             shouldClose: true,
           })
@@ -47,7 +59,7 @@ describe("Toast", () => {
     );
     const showToast = screen.getByText("Show Toast");
     userEvent.click(showToast);
-    const toastCrossIcon = screen.getByRole("button", { name: "UNDO" });
+    const toastCrossIcon = screen.getByRole("img", { name: "right-image" });
     userEvent.click(toastCrossIcon);
     expect(screen.queryByText("Title 2")).toBeNull();
   });

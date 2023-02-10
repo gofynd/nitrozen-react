@@ -1,62 +1,71 @@
 @import "./../../base/base.scss";
 @import "./../Checkbox/Checkbox.scss";
 
-.nitrozen-dropdown-container {
+.n-dropdown-container {
   font-family: $PrimaryFont;
   display: flex;
   padding: 0;
   flex-direction: column;
   width: 100%;
 
-  .nitrozen-select-wrapper {
+  .n-select-wrapper {
     position: relative;
     user-select: none;
     width: 100%;
   }
-  .nitrozen-select {
-    box-sizing: border-box;
-    border: 0.1rem solid $SecondaryDisabledColor;
-    border-radius: 0.3rem;
-    background-color: $WhiteColor;
 
+  .n-select {
+    box-sizing: border-box;
+    background-color: $WhiteColor;
     position: relative;
     display: flex;
     flex-direction: column;
   }
-  .nitrozen-select:focus-within {
+
+  .n-select:focus-within {
     border-color: $PrimaryColor;
   }
-  .nitrozen-select__trigger {
-    color: $Gray;
-    border-radius: 0.3rem;
+
+  .n-select__trigger {
+    color: $TypographyPrimaryColor;
     font-size: 1.4rem;
     line-height: 2.2rem;
     min-height: 2.2rem;
-    padding: 0.8rem 1.4rem;
+    padding: 12px;
     position: relative;
     display: flex;
     align-items: center;
     justify-content: space-between;
     background: $WhiteColor;
     cursor: pointer;
+    border: 1px solid $ColorSparkleGrey60;
+    border-radius: 16px;
+
     span {
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;
     }
+
     input[type="search"]::-webkit-search-cancel-button {
       position: relative;
-      right: 1rem;
+      right: 0;
       font-size: $BaseFontSize + 6;
       cursor: pointer;
     }
+
+    &:active {
+      background-color: $ColorPrimaryGrey20;
+    }
   }
-  .nitrozen-options {
+
+  .n-options {
     position: absolute;
     display: block;
     transform: translate3d(0rem, 4.2rem, 0rem);
     left: 0;
     right: 0;
+    top: 18px;
     border: 0.1rem solid $SecondaryDisabledColor;
     border-radius: 0.3rem;
     box-shadow: 0 0.4rem 0.8rem 0 rgba(229, 229, 229, 0.2),
@@ -64,110 +73,118 @@
     background: #fff;
     transition: all 0.5s;
     opacity: 0;
-    max-height: 20rem; // 48vh
+    max-height: 20rem;
     overflow-y: auto;
     visibility: hidden;
     pointer-events: none;
     z-index: $ZIndex1;
-
-    @include nitrozen-menu-scrollbar;
+    border-radius: $BaseFontSize + 6px;
   }
-  .nitrozen-select.nitrozen-dropdown-open .nitrozen-options {
+
+  .n-select.n-dropdown-open .n-options {
     opacity: 1;
     visibility: visible;
     pointer-events: all;
   }
-  .nitrozen-dropup {
+
+  .n-dropup {
     transform: translate3d(0rem, 0rem, 0rem);
     bottom: 4.2rem;
     z-index: $ZIndex2;
   }
-  .nitrozen-option {
+
+  .n-option {
     position: relative;
     display: block;
     font-size: 1.4rem;
     color: $TypographyPrimaryColor;
     line-height: 2.2rem;
+    font-weight: 500;
     cursor: pointer;
     transition: all 0.5s;
-    .nitrozen-checkbox-container {
+    border-bottom: 1px solid $ColorPrimaryGrey40;
+
+    .n-checkbox-container {
       pointer-events: none;
-      margin-top: 0.2rem;
-      height: 2rem;
-      .nitrozen-checkbox {
-        margin-top: 0.2rem;
+
+      .n-checkbox {
+        @media screen and (max-width: 768px) {
+          margin-top: 0.4rem;
+          top: 0.2rem !important;
+          left: 0 !important;
+        }
       }
     }
-    &.nitrozen-option-group-label {
+
+    &.n-option-group-label {
       pointer-events: none;
       font-size: 1.4rem;
       font-weight: 600;
     }
 
-    .nitrozen-option-container {
-      padding: 0.9rem 1.4rem;
+    .n-option-container {
+      padding: 1.4rem;
     }
 
-    .nitrozen-option-child-label {
+    .n-option-child-label {
       padding-left: 2.4rem;
       display: flex;
       align-items: center;
     }
 
-    .nitrozen-option-logo {
+    .n-option-logo {
       height: 2.4rem;
       width: auto;
       padding-right: 0.8rem;
     }
 
-    .nitrozen-option-image {
+    .n-option-image {
       display: flex;
+      width: 100%;
+      justify-content: flex-start !important;
       align-items: center;
     }
 
-    .nitrozen-dropdown-multicheckbox-selected {
+    .n-dropdown-multicheckbox-selected {
       color: $PrimaryColor;
-      font-weight: bold;
+      font-weight: 600;
     }
   }
-  .nitrozen-option:hover {
+
+  .n-option:hover {
     cursor: pointer;
-    background-color: $HoverColor;
+    background-color: $ColorSecondaryGrey20;
   }
-  .nitrozen-option.selected {
-    color: $WhiteColor;
-    background-color: $PrimaryColor;
+
+  .n-option.selected {
+    color: $ColorPrimary60;
   }
+
   // Disabled
-  .nitrozen-select.disabled {
-    background-color: $SecondaryDisabledColor;
-  }
-  .nitrozen-select__trigger:hover {
+  .n-select__trigger:hover {
     color: $Zambezi;
   }
-  .nitrozen-select.disabled .nitrozen-select__trigger {
-    color: $WarningColor;
-    background-color: $SecondaryDisabledColor;
-    cursor: not-allowed;
-  }
-  .nitrozen-select.disabled .nitrozen-select__trigger .nitrozen-dropdown-arrow {
+
+  .n-select__trigger .n-dropdown-arrow {
     color: $WarningColor;
   }
 
   // Arrow
 
-  .nitrozen-dropdown-arrow {
+  .n-dropdown-arrow {
     position: relative;
     top: -0.4rem;
     height: 1.5rem;
     width: 1.5rem;
   }
-  .nitrozen-dropdown-arrow::after {
+
+  .n-dropdown-arrow::after {
     position: absolute;
     bottom: 0rem;
     height: 100%;
   }
-  .nitrozen-dropdown-open .nitrozen-dropdown-arrow {
+
+  .n-dropdown-open .n-dropdown-arrow {
     left: 0.5rem;
     right: 0rem;
     transform: rotate(180deg);
@@ -175,42 +192,158 @@
   }
 }
 
-.nitrozen-dropdown-label {
-  color: $LabelColor;
+.n-dropdown-label {
+  color: $TypographyPrimaryColor;
   font-family: $PrimaryFont;
-  font-size: 1.2rem;
+  font-size: $BaseFontSize + 4px;
   font-weight: 500;
   line-height: 2.1rem;
+  display: flex;
+  margin-left: 14px;
 }
 
-.nitrozen-dropdown-empty {
+.n-dropdown-empty {
   display: flex;
   align-items: center;
-  .nitrozen-add-btn {
+  word-break: break-all;
+
+  .n-add-btn {
     width: 2.5rem;
     height: 2.5rem;
   }
+
   p {
     margin: 0rem;
     margin-left: 1rem;
   }
 }
 
-.nitrozen-searchable-input-container {
+.n-searchable-input-container {
   width: 100%;
+  cursor: pointer;
   input {
-    font-size: 1.4rem;
     width: 100%;
     border: none;
+    color: $TypographyPrimaryColor;
+    background-color: transparent;
+    font-size: 1.4rem;
   }
   input:focus,
   textarea:focus {
     outline: none;
   }
 }
+
 .horizantal-divider {
-  height: 0.1rem;
+  // height: 0.1rem;
   width: 100%;
   background-color: lightgrey;
   margin: 0.5rem 0;
+}
+
+::-webkit-input-placeholder {
+  /* Edge */
+  color: $PlaceholderColor;
+  font-size: 1.4rem;
+  font-family: $PrimaryFont;
+}
+
+:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: $PlaceholderColor;
+  font-size: 1.4rem;
+  font-family: $PrimaryFont;
+}
+
+::placeholder {
+  color: $PlaceholderColor;
+  font-size: 1.4rem;
+  font-family: $PrimaryFont;
+}
+
+.disabled {
+  opacity: $DisabledOpacity;
+  background: $ColorPrimaryDisabled;
+  cursor: not-allowed;
+}
+
+.cursor-disabled {
+  cursor: not-allowed !important;
+}
+
+.n-error-border {
+  border-color: $ColorFeedbackError50 !important;
+}
+
+.n-warning-border {
+  border-color: $ColorFeedbackWarning50 !important;
+}
+
+.n-success-border {
+  border-color: $ColorFeedbackSuccess50 !important;
+}
+
+.n-default-border {
+  border: 2px solid $WhiteColor;
+  border-radius: 20px;
+}
+
+.n-white-border {
+  border: 2px solid $WhiteColor;
+}
+
+.n-dropdown-tooltip {
+  margin-left: 0.4rem;
+  .nitrozen-svg-icon {
+    height: 2rem;
+    width: 2rem;
+  }
+}
+
+.n-dropdown-search {
+  &:active {
+    background-color: $ColorPrimaryGrey20;
+  }
+}
+
+.n-dropdown-search:focus::-webkit-input-placeholder {
+  color: $TypographyPrimaryColor;
+}
+
+.n-dropdown-helper,
+.n-dropdown-validation {
+  margin-left: 1.2rem;
+}
+
+.n-no-data-container {
+  border-bottom: 1px solid $ColorPrimaryGrey40;
+}
+
+.n-dropdown-prefix {
+  height: 2.4rem;
+  width: 2.4rem;
+
+  &-icon-wrapper {
+    display: flex;
+  }
+}
+
+.n-dropdown-input-arrow-wrapper {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2px;
+}
+
+.n-option-wrapper {
+  display: flex;
+  flex-direction: column;
+  color: $ColorPrimaryGrey100;
+  font-size: 1.6rem;
+}
+
+.n-option-subtext {
+  font-size: 1.2rem;
+  color: $TypographyPrimaryColor;
 }

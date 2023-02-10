@@ -111,36 +111,36 @@
         z-index: $ZIndex2;
         @include d-flex-center;
         font-family: $PrimaryFont;
-        color: $BottleGreen;
+        color: $ColorSparkle80;
         font-weight: 700;
         width: 100%;
         height: 100%;
         border-radius: 50%;
 
         &.current {
-          background: $LightGreen;
-          color: $BottleGreen;
+          background: $ColorSparkle50;
+          color: $ColorSparkle80;
         }
 
         &.upcoming {
           background: none;
-          color: $NobelGrey;
+          color: $ColorPrimaryGrey60;
         }
 
         &.disabled {
           background: none;
-          color: $NobelGrey;
+          color: $ColorPrimaryGrey60;
           opacity: 0.3;
         }
 
         &.issue {
-          background: $PolarGreen;
-          color: $ElmGreen;
+          background: $ColorSparkle20;
+          color: $ColorSparkle60;
         }
 
         &.completed {
-          background: $PolarGreen;
-          color: $LightGreen;
+          background: $ColorSparkle20;
+          color: $ColorSparkle50;
         }
       }
       .stepper-icon {
@@ -182,24 +182,24 @@
           border-style: solid;
 
           &.current {
-            border-color: $LightGreen;
+            border-color: $ColorSparkle50;
           }
 
           &.upcoming {
-            border-color: $NobelGrey;
+            border-color: $ColorPrimaryGrey60;
           }
 
           &.disabled {
-            border-color: $NobelGrey;
+            border-color: $ColorPrimaryGrey60;
             opacity: 0.3;
           }
 
           &.issue {
-            border-color: $ElmGreen;
+            border-color: $ColorSparkle60;
           }
 
           &.completed {
-            border-color: $LightGreen;
+            border-color: $ColorSparkle50;
           }
         }
       }
@@ -285,39 +285,39 @@
         border-radius: 100%;
 
         &.current {
-          background: $LightGreen;
-          color: $BottleGreen;
-          border: 0.1rem solid $LightGreen;
+          background: $ColorSparkle50;
+          color: $ColorSparkle80;
+          border: 0.1rem solid $ColorSparkle50;
         }
 
         &.upcoming {
           background: none;
-          color: $NobelGrey;
-          border: 0.1rem solid $NobelGrey;
+          color: $ColorPrimaryGrey60;
+          border: 0.1rem solid $ColorPrimaryGrey60;
         }
 
         &.disabled {
           background: none;
-          color: $NobelGrey;
+          color: $ColorPrimaryGrey60;
           opacity: 0.3;
-          border: 0.1rem solid $NobelGrey;
+          border: 0.1rem solid $ColorPrimaryGrey60;
         }
 
         &.issue {
-          background: $PolarGreen;
-          color: $ElmGreen;
-          border: 0.1rem solid $ElmGreen;
+          background: $ColorSparkle20;
+          color: $ColorSparkle60;
+          border: 0.1rem solid $ColorSparkle60;
         }
 
         &.completed {
-          background: $PolarGreen;
-          color: $LightGreen;
-          border: 0.1rem solid $LightGreen;
+          background: $ColorSparkle20;
+          color: $ColorSparkle50;
+          border: 0.1rem solid $ColorSparkle50;
         }
       }
       .nitrozen-circle-inner {
         font-family: $PrimaryFont;
-        color: $BottleGreen;
+        color: $ColorSparkle80;
         font-weight: 600;
       }
 

@@ -2,21 +2,18 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 declare const _default: ComponentMeta<{
   (props: import("./Autocomplete").AutocompleteProps): JSX.Element;
   defaultProps: {
-    onChange: () => void;
-    onBlur: () => void;
-    onFocus: () => void;
-    listItemClicked: () => void;
+    debounceDuration: number;
     showSearchIcon: boolean;
+    showClearAll: boolean;
   };
 }>;
 export default _default;
 export declare const AutocompleteInput: ComponentStory<{
   (props: import("./Autocomplete").AutocompleteProps): JSX.Element;
   defaultProps: {
-    onChange: () => void;
-    onBlur: () => void;
-    onFocus: () => void;
-    listItemClicked: () => void;
+    debounceDuration: number;
     showSearchIcon: boolean;
+    showClearAll: boolean;
   };
 }>;
+export declare const AutocompleteWithObjectItem: () => JSX.Element;

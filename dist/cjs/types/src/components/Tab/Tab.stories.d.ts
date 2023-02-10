@@ -8,6 +8,8 @@ declare const _default: ComponentMeta<
       id: string;
       activeIndex: number;
       tabItem: never[];
+      appearance: string;
+      overflow: string;
     };
   }>
 >;
@@ -19,6 +21,8 @@ export declare const ObjectTabItems: ComponentStory<
       id: string;
       activeIndex: number;
       tabItem: never[];
+      appearance: string;
+      overflow: string;
     };
   }>
 >;
@@ -29,6 +33,8 @@ export declare const StringTabItems: ComponentStory<
       id: string;
       activeIndex: number;
       tabItem: never[];
+      appearance: string;
+      overflow: string;
     };
   }>
 >;

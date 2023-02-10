@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useCallback } from "react";
+import NitrozenId from "../../utils/uuids";
 import "./ToggleButton.scss";
 import classnames from "classnames";
+import NitrozenValidation from "./../Validation";
 
 export interface ToggleButtonProps {
   disabled?: boolean;
@@ -9,11 +11,32 @@ export interface ToggleButtonProps {
   className?: string;
   style?: React.CSSProperties;
   size?: string;
+  id?: string;
+  labelText?: string;
+  state?: "error" | "success" | "warning";
+  stateMessage?: string;
+  icon?: React.ReactNode;
+  showIcon?: Boolean;
+  onIconClick?: Function;
 }
 
 const ToggleButton = (props: ToggleButtonProps) => {
-  const { disabled, onToggle, value, className, style, size, ...restProps } =
-    props;
+  const {
+    disabled,
+    id,
+    labelText,
+    onToggle,
+    value,
+    className,
+    style,
+    size,
+    state,
+    icon,
+    showIcon,
+    onIconClick,
+    stateMessage,
+    ...restProps
+  } = props;
   const [toggleActive, setToggle] = useState(value);
 
   useEffect(() => {
@@ -25,14 +48,19 @@ const ToggleButton = (props: ToggleButtonProps) => {
     onToggle?.();
   }, [toggleActive]);
 
+  const Icon = props.icon as React.ElementType;
   return (
     <div
       style={style || {}}
-      className={`nitrozen-toggle-container ${className ?? ""}`}
+      className={`n-toggle-container ${className ?? ""}`}
       {...restProps}
     >
-      <label className={`nitrozen-switch ${size}`}>
+      {showIcon && icon && (
+        <Icon className={`social-icon-${size}`} onClick={onIconClick} />
+      )}
+      <label htmlFor={id} className={`n-switch ${size}`}>
         <input
+          id={id}
           type="checkbox"
           data-testid={"toggle-checkbox"}
           onChange={changed}
@@ -41,8 +69,11 @@ const ToggleButton = (props: ToggleButtonProps) => {
         />
         <span
           className={classnames({
-            "nitrozen-slider nitrozen-round": true,
-            "nitrozen-disabled": disabled,
+            "n-slider n-round": true,
+            "n-disabled": disabled,
+            "success-state": state == "success",
+            "warning-state": state == "warning",
+            "error-state": state == "error",
             checked: toggleActive,
           })}
         >
@@ -53,15 +84,38 @@ const ToggleButton = (props: ToggleButtonProps) => {
             })}
           ></div>
         </span>
+        <span
+          className={classnames({
+            "label-text": true,
+            "n-disabled": disabled,
+            checked: toggleActive,
+          })}
+        >
+          {labelText}
+        </span>
+        <NitrozenValidation
+          className="n-toggle-validation"
+          validationState={state}
+          label={stateMessage}
+          isHidden={state == null}
+        />
+        <></>
       </label>
     </div>
   );
 };
 
 ToggleButton.defaultProps = {
+  id: `nitrozen-dialog-${NitrozenId()}`,
   value: false,
   disabled: false,
-  size: "large",
+  labelText: null,
+  size: "medium",
+  state: null,
+  stateMessage: "Your validation message",
+  icon: null,
+  showIcon: false,
+  onIconClick: () => {},
 };
 
 export default React.memo(ToggleButton);
