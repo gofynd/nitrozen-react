@@ -41,6 +41,21 @@ export default {
       control: "function",
       description: "Custom function sent as props for date validation",
     },
+    align: {
+      control: { type: "select" },
+      options: ["left", "right"],
+      defaultValue: "right",
+    },
+    onConfirmRange: {
+      control: "function",
+      description:
+        "Function that returns range value when confirm button is clicked",
+    },
+    rangeConfig: {
+      control: { type: "object" },
+      description:
+        "Contains data of the range and min and max values of the calendar",
+    },
   },
 } as ComponentMeta<typeof DateInput>;
 
@@ -136,7 +151,7 @@ export const DateValidationSample = (args: DateInputProps) => {
           validationText={error}
           id={"birth-field"}
           isRange={false}
-          useDatePicker={false}
+          useDatePicker={true}
         />
       </div>
     </div>

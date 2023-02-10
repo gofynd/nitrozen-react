@@ -300,6 +300,81 @@ const DatePicker = (props: DatePickerProps) => {
       onDateClick(selectedDate);
     }
   };
+
+  const handleNextButtonClicked = (calendarIndex: number) => {
+    let calendarMonth = selectedCalendarMonth[calendarIndex];
+    let monthIndex = months.findIndex((name) => name == calendarMonth);
+    let calendarYear = selectedCalendarYear[calendarIndex];
+    let currentCalendar = `${monthIndex + 1}/01/${calendarYear}`;
+    // increment the month
+    let nextMonth = incrementMonth(currentCalendar);
+    generateCalendar({
+      forMonth: nextMonth.getMonth() + 1,
+      forYear: nextMonth.getFullYear(),
+      calendarIndex: 0,
+    });
+    if (isRange) {
+      nextMonth = incrementMonth(nextMonth);
+      generateCalendar({
+        forMonth: nextMonth.getMonth() + 1,
+        forYear: nextMonth.getFullYear(),
+        calendarIndex: 1,
+      });
+    }
+  };
+
+  const handlePreviousButtonClicked = (calendarIndex: number) => {
+    let calendarMonth = selectedCalendarMonth[calendarIndex];
+    let monthIndex = months.findIndex((name) => name == calendarMonth);
+    let calendarYear = selectedCalendarYear[calendarIndex];
+    let currentCalendar = `${monthIndex + 1}/01/${calendarYear}`;
+    // increment the month
+    let previousMonth = decrementMonth(currentCalendar);
+    console.log(previousMonth, "previousMonth");
+    generateCalendar({
+      forMonth: previousMonth.getMonth() + 1,
+      forYear: previousMonth.getFullYear(),
+      calendarIndex: 1,
+    });
+    if (isRange) {
+      previousMonth = decrementMonth(previousMonth);
+      generateCalendar({
+        forMonth: previousMonth.getMonth() + 1,
+        forYear: previousMonth.getFullYear(),
+        calendarIndex: 0,
+      });
+    }
+  };
+
+  const incrementMonth = (requestedDate: any) => {
+    let nextMonth = new Date(requestedDate);
+    console.log(nextMonth, "nextMonth");
+    if (nextMonth.getMonth() == 11) {
+      nextMonth = new Date(nextMonth.getFullYear() + 1, 0, 1);
+    } else {
+      nextMonth = new Date(
+        nextMonth.getFullYear(),
+        nextMonth.getMonth() + 1,
+        1
+      );
+    }
+    return nextMonth;
+  };
+
+  const decrementMonth = (requestedDate: any) => {
+    let previousMonth = new Date(requestedDate);
+    console.log(previousMonth.getMonth(), "previousMonth.getMonth()");
+    if (previousMonth.getMonth() == 0) {
+      previousMonth = new Date(previousMonth.getFullYear() - 1, 11, 1);
+    } else {
+      previousMonth = new Date(
+        previousMonth.getFullYear(),
+        previousMonth.getMonth() - 1,
+        1
+      );
+    }
+    return previousMonth;
+  };
   return (
     <div
       className={`n-picker-wrapper ${
@@ -331,10 +406,15 @@ const DatePicker = (props: DatePickerProps) => {
               handleYearClicked(year, 0);
             }}
             isRange={isRange}
-            rangeConfig={rangeConfig}
             from={startDate}
             to={endDate}
             calendar={calendars[0]}
+            handleNextButtonClicked={() => {
+              handleNextButtonClicked(0);
+            }}
+            handlePreviousButtonClicked={() => {
+              handlePreviousButtonClicked(0);
+            }}
           />
         )}
         {isRange && calendars[1].length ? (
@@ -345,7 +425,6 @@ const DatePicker = (props: DatePickerProps) => {
                 handleCalendarDateItemClicked(dateVal)
               }
               isRange={isRange}
-              rangeConfig={rangeConfig}
               from={startDate}
               to={endDate}
               selectedMonth={selectedCalendarMonth[1]}
@@ -356,6 +435,12 @@ const DatePicker = (props: DatePickerProps) => {
               }
               yearHandler={(year: string) => {
                 handleYearClicked(year, 1);
+              }}
+              handleNextButtonClicked={() => {
+                handleNextButtonClicked(1);
+              }}
+              handlePreviousButtonClicked={() => {
+                handlePreviousButtonClicked(1);
               }}
             />
           </>

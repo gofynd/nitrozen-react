@@ -11,7 +11,6 @@ export interface CalendarProps {
   dateVal?: string;
   onDateClick: Function;
   isRange?: boolean;
-  rangeConfig: any;
   from?: string;
   to?: string;
   calendar: any;
@@ -19,6 +18,8 @@ export interface CalendarProps {
   selectedYear: string;
   monthHandler: Function;
   yearHandler: Function;
+  handleNextButtonClicked?: Function;
+  handlePreviousButtonClicked?: Function;
 }
 
 const Calendar = (props: CalendarProps) => {
@@ -26,7 +27,6 @@ const Calendar = (props: CalendarProps) => {
     dateVal,
     onDateClick,
     isRange,
-    rangeConfig,
     from,
     to,
     calendar,
@@ -34,6 +34,8 @@ const Calendar = (props: CalendarProps) => {
     selectedYear,
     monthHandler,
     yearHandler,
+    handleNextButtonClicked,
+    handlePreviousButtonClicked,
   } = props;
 
   const [days, setDays] = useState([
@@ -139,7 +141,12 @@ const Calendar = (props: CalendarProps) => {
   return (
     <div className="n-picker-calendar-wrapper">
       <div className="n-picker-my-wrapper">
-        <div className="n-picker-toggle-icon">
+        <div
+          className="n-picker-toggle-icon"
+          onClick={() => {
+            handlePreviousButtonClicked?.();
+          }}
+        >
           <SvgIcChevronLeft />
         </div>
         {/* Render only if both month and year are present */}
@@ -175,7 +182,10 @@ const Calendar = (props: CalendarProps) => {
             </div>
           </div>
         )}
-        <div className="n-picker-toggle-icon">
+        <div
+          className="n-picker-toggle-icon"
+          onClick={() => handleNextButtonClicked?.()}
+        >
           <SvgIcChevronRight />
         </div>
       </div>
@@ -257,6 +267,6 @@ const Calendar = (props: CalendarProps) => {
   );
 };
 
-Calendar.defaulProps = { dateVal: "", rangeConfig: {}, from: "", to: "" };
+Calendar.defaulProps = { dateVal: "", from: "", to: "" };
 
 export default React.memo(Calendar);
