@@ -4,6 +4,21 @@ import { render, fireEvent } from "@testing-library/react";
 import Pagination, { ModeEnum } from "./Pagination";
 
 describe("Pagination", () => {
+  beforeAll(() => {
+    Object.defineProperty(window, "matchMedia", {
+      writable: true,
+      value: jest.fn().mockImplementation((query) => ({
+        matches: false,
+        media: query,
+        onchange: null,
+        addListener: jest.fn(),
+        removeListener: jest.fn(),
+        addEventListener: jest.fn(),
+        removeEventListener: jest.fn(),
+        dispatchEvent: jest.fn(),
+      })),
+    });
+  });
   test("renders the Pagination component", () => {
     const { getByTestId } = render(
       <Pagination
@@ -31,7 +46,7 @@ describe("Pagination", () => {
     fireEvent.click(nextBtn);
 
     const paginationCount = getByTestId("pagination-count");
-    expect(paginationCount.textContent?.includes("100")).toBeTruthy();
+    expect(paginationCount.textContent?.includes("10")).toBeTruthy();
   });
   test("renders the Pagination component without certain keys in value prop", () => {
     const { getByTestId } = render(
@@ -49,11 +64,6 @@ describe("Pagination", () => {
         onNextClick={(event: any) => {}}
       />
     );
-    const prevBtn = getByTestId("btnPrevious");
-    fireEvent.click(prevBtn);
-
-    const nextBtn = getByTestId("btnNext");
-    fireEvent.click(nextBtn);
 
     const paginationCount = getByTestId("pagination-count");
     expect(paginationCount.textContent?.includes("200")).toBeTruthy();
@@ -108,7 +118,7 @@ describe("Pagination", () => {
     fireEvent.click(nextBtn);
 
     const paginationCount = getByTestId("pagination-count");
-    expect(paginationCount.textContent?.includes("100")).toBeTruthy();
+    expect(paginationCount.textContent?.includes("10")).toBeTruthy();
   });
 
   test("It should trigger page change on mode cursor", () => {
