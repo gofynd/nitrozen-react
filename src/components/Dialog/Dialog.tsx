@@ -17,7 +17,6 @@ export interface DialogProps {
   title: string | dialogTitle;
   kind: "dialog" | "acknowledgement" | "informational";
   size: "s" | "m";
-  DialogIcon?: React.ReactNode;
   theme?: string;
   children?: React.ReactNode;
   positiveButtonLabel?: string | boolean;
@@ -37,7 +36,6 @@ const Dialog = (props: DialogProps) => {
     kind,
     title,
     size,
-    DialogIcon,
     theme,
     children,
     positiveButtonLabel,
