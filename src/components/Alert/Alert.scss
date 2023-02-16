@@ -55,6 +55,35 @@
     border: 0.1rem solid $ColorPrimary50;
   }
 
+  &.n-alert-xs {
+    height: fit-content !important;
+
+    .n-alert-flex {
+      flex-direction: column !important;
+      row-gap: 0.8rem;
+      column-gap: unset !important;
+    }
+  }
+
+  &.n-alert-xxs {
+    height: fit-content !important;
+
+    .n-alert-flex {
+      flex-direction: column !important;
+      row-gap: 0.8rem;
+      column-gap: unset !important;
+
+      .n-alert-text-icon-wrapper {
+        flex-direction: column !important;
+        row-gap: 0.4rem;
+      }
+
+      .n-alert-text {
+        word-break: break-word !important;
+      }
+    }
+  }
+
   .n-alert-flex {
     display: flex;
     flex-direction: row;

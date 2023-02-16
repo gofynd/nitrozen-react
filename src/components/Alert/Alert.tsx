@@ -96,6 +96,8 @@ const Alert = (props: AlertProps) => {
     });
     const [IconTag, setIconTag] = useState<any>(() => iconTypes["info"]);
     const [componentWidth, setComponentWidth] = useState("fit-content");
+    const [xsAlert, setXSAlert] = useState(false);
+    const [xxsAlert, setXXSAlert] = useState(false);
 
     /**
      * Handling the effects on state change.
@@ -167,6 +169,43 @@ const Alert = (props: AlertProps) => {
     useEffect(() => {
         if (alertWidth !== undefined) {
             setComponentWidth(alertWidth);
+
+            if(alertWidth.includes("%")) {
+                if(alertWidth < '15%') {
+                    setXSAlert(false);
+                    setXXSAlert(true);
+                } else if(alertWidth < '45%') {
+                    setXSAlert(true);
+                    setXXSAlert(false);
+                } else {
+                    setXSAlert(false);
+                    setXXSAlert(false);
+                }
+            } else if(alertWidth.includes('px')) {
+                let widthValue = alertWidth.split('px')[0];
+                if(+widthValue < 100) {
+                    setXSAlert(false);
+                    setXXSAlert(true);
+                } else if(+widthValue < 300) {
+                    setXSAlert(true);
+                    setXXSAlert(false);
+                } else {
+                    setXSAlert(false);
+                    setXXSAlert(false);
+                }
+            } else if(alertWidth.includes('rem')) {
+                let widthValue = alertWidth.split('rem')[0];
+                if(+widthValue < 10) {
+                    setXSAlert(false);
+                    setXXSAlert(true);
+                } else if(+widthValue <= 20) {
+                    setXSAlert(true);
+                    setXXSAlert(false);
+                } else {
+                    setXSAlert(false);
+                    setXXSAlert(false);
+                }
+            }
         } else if (!alertWidth && fullWidth) {
             setComponentWidth("100%");
         } else if (!alertWidth && !fullWidth) {
@@ -175,6 +214,14 @@ const Alert = (props: AlertProps) => {
             setComponentWidth("fit-content");
         }
     }, [alertWidth, fullWidth]);
+
+    let containerClassNames = ['n-alert', classes.container];
+    if(className) containerClassNames.push(className);
+    if(fullWidth) containerClassNames.push('n-alert-full-width');
+    if(buttonType === 'link') containerClassNames.push('n-alert-link-button-container');
+    if(loader) containerClassNames.push('n-alert-loader-container');
+    if(xsAlert) containerClassNames.push('n-alert-xs');
+    if(xxsAlert) containerClassNames.push('n-alert-xxs');
 
     return (
         //prettier-ignore
@@ -186,11 +233,11 @@ const Alert = (props: AlertProps) => {
                 height: extendedAlert ? "auto" : "48px",
                 } ?? {}
             }
-            className={`n-alert ${classes.container} ${className} ${fullWidth && "n-alert-full-width"} ${buttonType === "link" && "n-alert-link-button-container"} ${loader && 'n-alert-loader-container'}`}
+            className={containerClassNames.join(' ')}
             {...restProps}
         >
             {/* prettier-ignore */}
-            <div className={`n-alert-flex ${extendedAlert && "n-alert-extended"}`}>
+            <div className={`n-alert-flex ${extendedAlert ? "n-alert-extended" : ""}`}>
                 <div className={`n-alert-text-icon-wrapper`}>
                     {
                         loader ?
@@ -202,7 +249,7 @@ const Alert = (props: AlertProps) => {
                                     className={`
                                         n-alert-icon 
                                         ${classes.icon} 
-                                        ${loader && "n-alert-loader"}
+                                        ${loader ? "n-alert-loader" : ""}
                                     `}
                                 />
                             )
