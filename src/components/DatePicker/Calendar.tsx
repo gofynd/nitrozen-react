@@ -151,6 +151,7 @@ const Calendar = (props: CalendarProps) => {
     <div className="n-picker-calendar-wrapper">
       <div className="n-picker-my-wrapper">
         <div
+          data-testid="previous-click"
           className="n-picker-toggle-icon"
           onClick={() => {
             handlePreviousButtonClicked?.();
@@ -162,6 +163,7 @@ const Calendar = (props: CalendarProps) => {
         {selectedMonth && selectedYear && (
           <div className="n-picker-month-year">
             <div
+              data-testid="selected-month"
               className={`n-picker-btn ${
                 showMonthToggle ? "n-picker-btn-active" : ""
               }`}
@@ -176,6 +178,7 @@ const Calendar = (props: CalendarProps) => {
               </span>
             </div>
             <div
+              data-testid="selected-year"
               className={`n-picker-btn ${
                 showYearToggle ? "n-picker-btn-active" : ""
               }`}
@@ -192,6 +195,7 @@ const Calendar = (props: CalendarProps) => {
           </div>
         )}
         <div
+          data-testid="next-click"
           className="n-picker-toggle-icon"
           onClick={() => handleNextButtonClicked?.()}
         >
@@ -216,6 +220,7 @@ const Calendar = (props: CalendarProps) => {
                   ? "n-picker-calendar-griditem-disabled"
                   : ""
               }`}
+              data-testid={`calendar-griditem-${calendarIndex}`}
               key={`calendar-griditem-${calendarIndex}`}
               onClick={() => {
                 calendarItem.value !== 0 && !calendarItem.isDisabled
@@ -234,6 +239,7 @@ const Calendar = (props: CalendarProps) => {
       </div>
       {showMonthToggle && (
         <div
+          data-testid="month-dropdown"
           className={`n-picker-monthlist ${
             isRange
               ? "n-picker-monthlist-semiwidth"
@@ -242,6 +248,8 @@ const Calendar = (props: CalendarProps) => {
         >
           {months.map((month, monthIndex) => (
             <div
+              data-testid={`month-item-${monthIndex}`}
+              key={`month-item-${monthIndex}`}
               className={`n-picker-monthlist-item ${
                 selectedMonth == month ? "n-picker-monthlist-selected" : ""
               }`}
@@ -254,6 +262,7 @@ const Calendar = (props: CalendarProps) => {
       )}
       {showYearToggle && (
         <div
+          data-testid="year-dropdown"
           className={`n-picker-monthlist ${
             isRange
               ? "n-picker-monthlist-semiwidth"
@@ -262,6 +271,8 @@ const Calendar = (props: CalendarProps) => {
         >
           {years.map((year: any, yearIndex) => (
             <div
+              data-testid={`year-item-${yearIndex}`}
+              key={`year-item-${yearIndex}`}
               className={`n-picker-monthlist-item ${
                 selectedYear == year ? "n-picker-monthlist-selected" : ""
               }`}

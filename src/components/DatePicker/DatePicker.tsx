@@ -12,9 +12,9 @@ interface RangeConfigProps {
   max: string | Date;
 }
 export interface DatePickerProps {
-  dateVal?: string;
+  dateVal?: string | Date;
   isRange?: boolean;
-  onDateClick: Function;
+  onDateClick?: Function;
   onClose: Function;
   minDate?: string;
   maxDate?: string;
@@ -299,7 +299,7 @@ const DatePicker = (props: DatePickerProps) => {
     if (isMobile) {
       setSingleDate(selectedDate);
     } else {
-      onDateClick(selectedDate);
+      onDateClick?.(selectedDate);
     }
   };
 
@@ -385,11 +385,13 @@ const DatePicker = (props: DatePickerProps) => {
   };
   return (
     <div
+      data-testid="picker-wrapper"
       ref={datePickerRef}
       className={`n-picker-wrapper ${!isRange ? "n-picker-wrapper-width" : ""}`}
       style={dropDownStyle}
     >
       <div
+        data-testid="n-closeicon-wrapper"
         className="n-closeicon-wrapper"
         onClick={() => {
           onClose();
@@ -427,7 +429,10 @@ const DatePicker = (props: DatePickerProps) => {
         )}
         {isRange && calendars[1].length ? (
           <>
-            <div className="n-picker-divider" />{" "}
+            <div
+              className="n-picker-divider"
+              data-testid="date-picker-divider"
+            />{" "}
             <Calendar
               onDateClick={(dateVal: string) =>
                 handleCalendarDateItemClicked(dateVal)
@@ -459,13 +464,19 @@ const DatePicker = (props: DatePickerProps) => {
       {isRange && rangeConfig ? (
         <div className="n-picker-footer">
           <div className="n-picker-footer-date-group">
-            <div className="n-picker-footer-date-item">
+            <div
+              className="n-picker-footer-date-item"
+              data-testid="picker-startdate"
+            >
               <span>Start Date</span>
               <span>
                 {rangeConfig.start ? getFormattedDate(rangeConfig.start) : "--"}
               </span>
             </div>
-            <div className="n-picker-footer-date-item">
+            <div
+              className="n-picker-footer-date-item"
+              data-testid="picker-enddate"
+            >
               <span>End Date</span>
               <span>
                 {rangeConfig.end ? getFormattedDate(rangeConfig.end) : "--"}
@@ -488,9 +499,15 @@ const DatePicker = (props: DatePickerProps) => {
           </div>
         </div>
       ) : (
-        <div className="n-picker-single-footer">
+        <div
+          className="n-picker-single-footer"
+          data-testid="n-picker-single-footer"
+        >
           <div className="n-picker-single-footer-date-group">
-            <div className="n-picker-single-footer-date-item">
+            <div
+              className="n-picker-single-footer-date-item"
+              data-testid="single-footer-value"
+            >
               <span>{singleDate ? getFormattedDate(singleDate) : "--"}</span>
             </div>
           </div>
@@ -498,7 +515,7 @@ const DatePicker = (props: DatePickerProps) => {
             <Button
               disabled={singleDate ? false : true}
               onClick={() => {
-                onDateClick(singleDate);
+                onDateClick?.(singleDate);
               }}
             >
               Confirm

@@ -16,7 +16,7 @@ const sharedEventConfig = {
   which: backspaceKey.code,
 };
 
-describe("Button", () => {
+describe("DateInput", () => {
   test("renders the DateInput component to check markup", () => {
     const screen = render(
       <DateInput
