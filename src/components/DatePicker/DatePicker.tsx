@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { SvgIcClose } from "../../assets/svg-components";
 import "./DatePicker.scss";
 import Calendar from "./Calendar";
@@ -21,7 +21,6 @@ export interface DatePickerProps {
   rangeConfig?: RangeConfigProps;
   getRange?: Function;
   onConfirmRange?: Function;
-  align: string;
 }
 
 const DatePicker = (props: DatePickerProps) => {
@@ -35,7 +34,6 @@ const DatePicker = (props: DatePickerProps) => {
     rangeConfig,
     getRange,
     onConfirmRange,
-    align,
   } = props;
 
   const [startDate, setStartDate] = useState<any>("");
@@ -56,10 +54,14 @@ const DatePicker = (props: DatePickerProps) => {
   const [today] = useState(new Date());
   const [singleDate, setSingleDate] = useState("");
   const [isMobile, setIsMobile] = useState(false);
+  const datePickerRef = useRef<any>(null);
+  const [dropDownStyle, setDropDownStyle] = useState({});
 
   useEffect(() => {
     if (window.innerWidth < 426) {
       setIsMobile(true);
+    } else {
+      calculateDropDownPos();
     }
     let monthValue: any = "";
     let yearValue: any = "";
@@ -330,7 +332,6 @@ const DatePicker = (props: DatePickerProps) => {
     let currentCalendar = `${monthIndex + 1}/01/${calendarYear}`;
     // increment the month
     let previousMonth = decrementMonth(currentCalendar);
-    console.log(previousMonth, "previousMonth");
     generateCalendar({
       forMonth: previousMonth.getMonth() + 1,
       forYear: previousMonth.getFullYear(),
@@ -348,7 +349,6 @@ const DatePicker = (props: DatePickerProps) => {
 
   const incrementMonth = (requestedDate: any) => {
     let nextMonth = new Date(requestedDate);
-    console.log(nextMonth, "nextMonth");
     if (nextMonth.getMonth() == 11) {
       nextMonth = new Date(nextMonth.getFullYear() + 1, 0, 1);
     } else {
@@ -363,7 +363,6 @@ const DatePicker = (props: DatePickerProps) => {
 
   const decrementMonth = (requestedDate: any) => {
     let previousMonth = new Date(requestedDate);
-    console.log(previousMonth.getMonth(), "previousMonth.getMonth()");
     if (previousMonth.getMonth() == 0) {
       previousMonth = new Date(previousMonth.getFullYear() - 1, 11, 1);
     } else {
@@ -375,11 +374,20 @@ const DatePicker = (props: DatePickerProps) => {
     }
     return previousMonth;
   };
+
+  const calculateDropDownPos = () => {
+    const dateRef = datePickerRef?.current;
+    if (!dateRef) return;
+    const datePickerModal = dateRef.getBoundingClientRect();
+    const rightSpace = window.innerWidth - datePickerModal.width;
+    if (datePickerModal.right > rightSpace) setDropDownStyle({ right: 0 });
+    else setDropDownStyle({ left: 0 });
+  };
   return (
     <div
-      className={`n-picker-wrapper ${
-        !isRange ? "n-picker-wrapper-width" : ""
-      } n-picker-${align}-container`}
+      ref={datePickerRef}
+      className={`n-picker-wrapper ${!isRange ? "n-picker-wrapper-width" : ""}`}
+      style={dropDownStyle}
     >
       <div
         className="n-closeicon-wrapper"

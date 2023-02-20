@@ -26,7 +26,6 @@ export interface DateInputProps {
   isRange?: boolean;
   rangeConfig?: RangeConfigProps;
   onConfirmRange?: Function;
-  align?: string;
 }
 
 const DateInput = (props: DateInputProps) => {
@@ -46,7 +45,6 @@ const DateInput = (props: DateInputProps) => {
     isRange,
     rangeConfig,
     onConfirmRange,
-    align = "right",
   } = props;
   const [date, setDate] = useState<any>({ mm: "", dd: "", yyyy: "" });
   const [dateError, setDateError] = useState("");
@@ -321,7 +319,6 @@ const DateInput = (props: DateInputProps) => {
               onConfirmRange?.(range);
               setShowPicker(false);
             }}
-            align={align}
           />
         ) : (
           <></>
@@ -341,7 +338,6 @@ DateInput.defaulProps = {
   isRange: false,
   rangeConfig: {},
   onConfirmRange: () => {},
-  align: "right",
 };
 
 export default React.memo(DateInput);

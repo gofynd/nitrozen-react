@@ -42,11 +42,6 @@ export default {
       control: "function",
       description: "Custom function sent as props for date validation",
     },
-    align: {
-      control: { type: "select" },
-      options: ["left", "right"],
-      defaultValue: "right",
-    },
     onConfirmRange: {
       control: "function",
       description:
@@ -78,7 +73,6 @@ DateInputPlayground.args = {
   id: "customfynd",
   getDateValue: () => {},
   isRange: false,
-  align: "left",
   dateValue: new Date(),
 };
 
@@ -96,7 +90,12 @@ export const DateRangeSample = (args: DateInputProps) => {
   return (
     <div
       className="main-div custom-date-story"
-      style={{ height: "650px", justifyContent: "unset" }}
+      style={{
+        height: "650px",
+        justifyContent: "unset",
+        display: "flex",
+        alignItems: "flex-start",
+      }}
     >
       <div className="state-date">
         {rangeConfig.start
