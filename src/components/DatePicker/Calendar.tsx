@@ -6,13 +6,13 @@ import {
   SvgIcChevronUp,
 } from "../../assets/svg-components";
 import "./DatePicker.scss";
-import { daysInMonth, months, years } from "../../utils/dateHandler";
+import { months, years } from "../../utils/dateHandler";
 export interface CalendarProps {
   dateVal?: string;
   onDateClick: Function;
   isRange?: boolean;
-  from?: string;
-  to?: string;
+  from: string;
+  to: string;
   calendar: any;
   selectedMonth: string;
   selectedYear: string;
@@ -105,9 +105,16 @@ const Calendar = (props: CalendarProps) => {
         months.findIndex((name) => name == selectedMonth) + 1;
       monthIndex = monthIndex < 10 ? `0${monthIndex}` : monthIndex;
       let currentItetrationaDate = `${monthIndex}/${calendarItem.value}/${selectedYear}`;
+      // Set hours to 0 0 0 0 for proper date comparison
+      let fromDate = new Date(from);
+      fromDate.setHours(0, 0, 0, 0);
+      let toDate = new Date(to);
+      toDate.setHours(0, 0, 0, 0);
+
       if (
         from &&
-        new Date(currentItetrationaDate).getTime() == new Date(from).getTime()
+        new Date(currentItetrationaDate).getTime() ==
+          new Date(fromDate).getTime()
       ) {
         rangeClass += " n-picker-calendar-griditem-rangestart";
         classes = classes.replace("n-picker-calendar-griditem-hover", "");
@@ -116,7 +123,7 @@ const Calendar = (props: CalendarProps) => {
       if (
         !rangeClass &&
         to &&
-        new Date(currentItetrationaDate).getTime() == new Date(to).getTime()
+        new Date(currentItetrationaDate).getTime() == new Date(toDate).getTime()
       ) {
         rangeClass += " n-picker-calendar-griditem-rangeend";
         classes = classes.replace("n-picker-calendar-griditem-hover", "");
@@ -126,8 +133,10 @@ const Calendar = (props: CalendarProps) => {
         !rangeClass &&
         from &&
         to &&
-        new Date(currentItetrationaDate).getTime() < new Date(to).getTime() &&
-        new Date(currentItetrationaDate).getTime() > new Date(from).getTime()
+        new Date(currentItetrationaDate).getTime() <
+          new Date(toDate).getTime() &&
+        new Date(currentItetrationaDate).getTime() >
+          new Date(fromDate).getTime()
       ) {
         rangeClass += " n-picker-calendar-griditem-range";
         classes = classes.replace("n-picker-calendar-griditem-today", "");

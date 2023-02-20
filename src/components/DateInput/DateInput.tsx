@@ -3,19 +3,19 @@ import Validation from "../Validation";
 import { SvgIcCloseRemove, SvgIcCalendar } from "../../assets/svg-components";
 import "./DateInput.scss";
 import DatePicker from "../DatePicker/DatePicker";
-
+import { getFormattedDate } from "../../utils/dateHandler";
 interface RangeConfigProps {
-  start: string;
-  end: string;
-  min: string;
-  max: string;
+  start: string | Date;
+  end: string | Date;
+  min: string | Date;
+  max: string | Date;
 }
 export interface DateInputProps {
   id: string;
   label: string;
   required?: Boolean;
   useDatePicker?: Boolean;
-  dateValue?: string; // mm/dd/yyyy format
+  dateValue?: Date | string;
   helperText?: string;
   validationState?: string;
   validationText?: string;
@@ -63,11 +63,17 @@ const DateInput = (props: DateInputProps) => {
   // * The format is important "mm/dd/yyyy"
   useEffect(() => {
     if (dateValue) {
-      let dateVal = dateValue.split("/");
+      let dateVal: any = new Date(dateValue);
       let stateDateObj = { ...date };
-      stateDateObj.mm = dateVal[0];
-      stateDateObj.dd = dateVal[1];
-      stateDateObj.yyyy = dateVal[2];
+      stateDateObj.mm =
+        dateVal.getMonth() + 1 < 10
+          ? "0" + (dateVal.getMonth() + 1).toString()
+          : (dateVal.getMonth() + 1).toString();
+      stateDateObj.dd =
+        dateVal.getDate() < 10
+          ? "0" + dateVal.getDate().toString()
+          : dateVal.getDate().toString();
+      stateDateObj.yyyy = dateVal.getFullYear().toString();
       setDate(stateDateObj);
     }
     if (isRange && rangeConfig) {
@@ -249,11 +255,11 @@ const DateInput = (props: DateInputProps) => {
                 </>
               ))}
             {isRange ? (
-              range.start && range.end ? (
+              range.start !== "" && range.end !== "" ? (
                 <div className="n-date-range-field">
-                  <div>{range.start || "--"}</div>
+                  <div>{getFormattedDate(range.start) || "--"}</div>
                   <div>{"to"}</div>
-                  <div>{range.end || "--"}</div>
+                  <div>{getFormattedDate(range.end) || "--"}</div>
                 </div>
               ) : (
                 <div className="n-date-range-field">Select a date range</div>

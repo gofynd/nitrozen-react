@@ -25,4 +25,20 @@ const years = [
   2029, 2030, 2031, 2032, 2033, 2034, 2035, 2036, 2037, 2038, 2039, 2040, 2041,
   2042, 2043, 2044, 2045, 2046, 2047, 2048, 2049, 2050,
 ];
-export { daysInMonth, months, years };
+
+const getFormattedDate = (dateVal: any) => {
+  let inputDate = new Date(dateVal);
+  let formatDate: any = {};
+  formatDate.mm =
+    inputDate.getMonth() + 1 < 10
+      ? "0" + (inputDate.getMonth() + 1).toString()
+      : (inputDate.getMonth() + 1).toString();
+  formatDate.dd =
+    inputDate.getDate() < 10
+      ? "0" + inputDate.getDate().toString()
+      : inputDate.getDate().toString();
+  formatDate.yyyy = inputDate.getFullYear().toString();
+  return `${formatDate.mm}/${formatDate.dd}/${formatDate.yyyy}`;
+};
+
+export { daysInMonth, months, years, getFormattedDate };

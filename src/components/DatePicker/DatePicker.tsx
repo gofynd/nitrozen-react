@@ -3,13 +3,13 @@ import { SvgIcClose } from "../../assets/svg-components";
 import "./DatePicker.scss";
 import Calendar from "./Calendar";
 import Button from "../Button/Button";
-import { daysInMonth, months, years } from "../../utils/dateHandler";
+import { daysInMonth, months, getFormattedDate } from "../../utils/dateHandler";
 
 interface RangeConfigProps {
-  start: string;
-  end: string;
-  min: string;
-  max: string;
+  start: string | Date;
+  end: string | Date;
+  min: string | Date;
+  max: string | Date;
 }
 export interface DatePickerProps {
   dateVal?: string;
@@ -38,8 +38,8 @@ const DatePicker = (props: DatePickerProps) => {
     align,
   } = props;
 
-  const [startDate, setStartDate] = useState("");
-  const [endDate, setEndDate] = useState("");
+  const [startDate, setStartDate] = useState<any>("");
+  const [endDate, setEndDate] = useState<any>("");
 
   const [days] = useState([
     { name: "S", enum: 7 },
@@ -128,8 +128,8 @@ const DatePicker = (props: DatePickerProps) => {
         forYear: calendar2Year,
         calendarIndex: 1,
       });
-      setStartDate(rangeConfig ? rangeConfig.start : "");
-      setEndDate(rangeConfig ? rangeConfig.end : "");
+      setStartDate(rangeConfig?.start || "");
+      setEndDate(rangeConfig?.end || "");
     }
   }, []);
 
@@ -453,16 +453,24 @@ const DatePicker = (props: DatePickerProps) => {
           <div className="n-picker-footer-date-group">
             <div className="n-picker-footer-date-item">
               <span>Start Date</span>
-              <span>{rangeConfig.start ? rangeConfig.start : "--"}</span>
+              <span>
+                {rangeConfig.start ? getFormattedDate(rangeConfig.start) : "--"}
+              </span>
             </div>
             <div className="n-picker-footer-date-item">
               <span>End Date</span>
-              <span>{rangeConfig.end ? rangeConfig.end : "--"}</span>
+              <span>
+                {rangeConfig.end ? getFormattedDate(rangeConfig.end) : "--"}
+              </span>
             </div>
           </div>
           <div className="n-picker-footer-button">
             <Button
-              disabled={rangeConfig.end && rangeConfig.start ? false : true}
+              disabled={
+                rangeConfig.end && getFormattedDate(rangeConfig.start)
+                  ? false
+                  : true
+              }
               onClick={() => {
                 onConfirmRange?.(rangeConfig);
               }}
@@ -475,7 +483,7 @@ const DatePicker = (props: DatePickerProps) => {
         <div className="n-picker-single-footer">
           <div className="n-picker-single-footer-date-group">
             <div className="n-picker-single-footer-date-item">
-              <span>{singleDate ? singleDate : "--"}</span>
+              <span>{singleDate ? getFormattedDate(singleDate) : "--"}</span>
             </div>
           </div>
           <div className="n-picker-single-footer-button">

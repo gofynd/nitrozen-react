@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import DateInput, { DateInputProps } from "./DateInput";
+import { getFormattedDate } from "../../utils/dateHandler";
 
 export default {
   title: "Components/Input/DateInput",
@@ -34,8 +35,8 @@ export default {
       defaultValue: false,
     },
     dateValue: {
-      control: "text",
-      description: "Pre value if any, format : mm/dd/yyyy",
+      control: "date",
+      description: "Pre value if any, format : Date",
     },
     dateValidation: {
       control: "function",
@@ -78,12 +79,16 @@ DateInputPlayground.args = {
   getDateValue: () => {},
   isRange: false,
   align: "left",
+  dateValue: new Date(),
 };
 
 export const DateRangeSample = (args: DateInputProps) => {
+  var nextDay = new Date(new Date());
+  nextDay.setDate(new Date().getDate() + 1);
+
   const [rangeConfig, setRangeConfig] = useState({
-    start: "",
-    end: "",
+    start: new Date(),
+    end: nextDay,
     min: "",
     max: "",
   });
@@ -95,7 +100,9 @@ export const DateRangeSample = (args: DateInputProps) => {
     >
       <div className="state-date">
         {rangeConfig.start
-          ? `Selected Range: ${rangeConfig.start} to ${rangeConfig.end}`
+          ? `Selected Range: ${getFormattedDate(
+              rangeConfig.start
+            )} to ${getFormattedDate(rangeConfig.end)}`
           : `Start selecting a range`}
       </div>
       <div className="date-input-wrapper">
