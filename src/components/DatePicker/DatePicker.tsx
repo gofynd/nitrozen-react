@@ -402,7 +402,7 @@ const DatePicker = (props: DatePickerProps) => {
       <div className="n-picker-calendar-group">
         {calendars[0].length && (
           <Calendar
-            testId={"c1"}
+            calendarId={"c1"}
             onDateClick={
               isRange
                 ? (dateVal: string) => handleCalendarDateItemClicked(dateVal)
@@ -435,7 +435,7 @@ const DatePicker = (props: DatePickerProps) => {
               data-testid="date-picker-divider"
             />{" "}
             <Calendar
-              testId={"c2"}
+              calendarId={"c2"}
               onDateClick={(dateVal: string) =>
                 handleCalendarDateItemClicked(dateVal)
               }
