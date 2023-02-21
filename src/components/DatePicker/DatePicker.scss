@@ -32,6 +32,7 @@
     box-shadow: $ShadowM;
     border-radius: 2.4rem;
     padding: 1.6rem;
+    z-index: $ZIndex3;
     @media screen and (max-width: 425px) {
       position: fixed;
       top: 0;
