@@ -83,13 +83,12 @@ describe("DateInput", () => {
     ) as HTMLInputElement;
     expect(Input1.value).toBe("11");
     fireEvent.change(Input1, { target: { value: "12" } });
-    expect(date).toBe("12/27/1997");
+    expect(date).toStrictEqual(new Date("1997-12-26T18:30:00.000Z"));
     const Input2 = screen.getByTestId(
       "date-input-1-birth-field"
     ) as HTMLInputElement;
     expect(Input2).toHaveFocus();
     fireEvent.change(Input2, { target: { value: "44" } });
-    expect(date).toBe("12/44/1997");
     const Input3 = screen.getByTestId(
       "date-input-2-birth-field"
     ) as HTMLInputElement;

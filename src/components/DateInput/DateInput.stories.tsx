@@ -126,7 +126,8 @@ export const DateValidationSample = (args: DateInputProps) => {
   const [error, setError] = useState("");
 
   const dateValidator = (val: string) => {
-    let splitDate = val.split("/");
+    let formattedDate = getFormattedDate(val);
+    let splitDate = formattedDate.split("/");
     let currentYear = new Date().getUTCFullYear();
     if (parseInt(splitDate[2]) > currentYear) {
       setError("Your birthday cannot be greater than today");
@@ -141,7 +142,7 @@ export const DateValidationSample = (args: DateInputProps) => {
       style={{ height: "650px", justifyContent: "unset" }}
     >
       <div className="state-date">
-        {date ? `Date: ${date}` : `Start typing to see the written date value`}
+        {date ? `Date: ${getFormattedDate(date)}` : `Select a date`}
       </div>
       <div className="date-input-wrapper">
         <DateInput
@@ -157,7 +158,7 @@ export const DateValidationSample = (args: DateInputProps) => {
           validationText={error}
           id={"birth-field"}
           isRange={false}
-          useDatePicker={true}
+          useDatePicker={false}
         />
       </div>
     </div>

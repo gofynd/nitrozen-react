@@ -16,8 +16,8 @@ export interface DatePickerProps {
   isRange?: boolean;
   onDateClick?: Function;
   onClose: Function;
-  minDate?: string;
-  maxDate?: string;
+  minDate?: string | Date;
+  maxDate?: string | Date;
   rangeConfig?: RangeConfigProps;
   getRange?: Function;
   onConfirmRange?: Function;
@@ -246,7 +246,7 @@ const DatePicker = (props: DatePickerProps) => {
       setStartDate("");
       getRange?.({
         start: "",
-        end: endDate,
+        end: new Date(endDate),
         min: rangeConfig?.min,
         max: rangeConfig?.max,
       });
@@ -255,7 +255,7 @@ const DatePicker = (props: DatePickerProps) => {
     if (endDate == dateValue) {
       setEndDate("");
       getRange?.({
-        start: startDate,
+        start: new Date(startDate),
         end: "",
         min: rangeConfig?.min,
         max: rangeConfig?.max,
@@ -268,8 +268,8 @@ const DatePicker = (props: DatePickerProps) => {
         setEndDate(startDate);
         setStartDate(dateValue);
         getRange?.({
-          start: dateValue,
-          end: startDate,
+          start: new Date(dateValue),
+          end: new Date(startDate),
           min: rangeConfig?.min,
           max: rangeConfig?.max,
         });
@@ -277,8 +277,8 @@ const DatePicker = (props: DatePickerProps) => {
       } else {
         setEndDate(dateValue);
         getRange?.({
-          start: startDate,
-          end: dateValue,
+          start: new Date(startDate),
+          end: new Date(dateValue),
           min: rangeConfig?.min,
           max: rangeConfig?.max,
         });
@@ -287,7 +287,7 @@ const DatePicker = (props: DatePickerProps) => {
     }
     setStartDate(dateValue);
     getRange?.({
-      start: dateValue,
+      start: new Date(dateValue),
       end: "",
       min: rangeConfig?.min,
       max: rangeConfig?.max,
@@ -402,6 +402,7 @@ const DatePicker = (props: DatePickerProps) => {
       <div className="n-picker-calendar-group">
         {calendars[0].length && (
           <Calendar
+            testId={"c1"}
             onDateClick={
               isRange
                 ? (dateVal: string) => handleCalendarDateItemClicked(dateVal)
@@ -434,6 +435,7 @@ const DatePicker = (props: DatePickerProps) => {
               data-testid="date-picker-divider"
             />{" "}
             <Calendar
+              testId={"c2"}
               onDateClick={(dateVal: string) =>
                 handleCalendarDateItemClicked(dateVal)
               }

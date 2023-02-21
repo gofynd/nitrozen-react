@@ -104,7 +104,7 @@ const DateInput = (props: DateInputProps) => {
       defaultErrorValidation(stateDateObj);
     }
     getDateValue?.(
-      `${stateDateObj.mm}/${stateDateObj.dd}/${stateDateObj.yyyy}`
+      new Date(`${stateDateObj.mm}/${stateDateObj.dd}/${stateDateObj.yyyy}`)
     );
   };
 
@@ -177,7 +177,7 @@ const DateInput = (props: DateInputProps) => {
     stateDateObj.yyyy = dateVal[2];
     setDate(stateDateObj);
     getDateValue?.(
-      `${stateDateObj.mm}/${stateDateObj.dd}/${stateDateObj.yyyy}`
+      new Date(`${stateDateObj.mm}/${stateDateObj.dd}/${stateDateObj.yyyy}`)
     );
   };
 

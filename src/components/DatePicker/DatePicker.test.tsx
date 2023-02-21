@@ -9,12 +9,6 @@ const backspaceKey = {
   inputType: "deleteContentBackward",
 };
 
-const sharedEventConfig = {
-  key: backspaceKey.key,
-  charCode: backspaceKey.code,
-  keyCode: backspaceKey.code,
-  which: backspaceKey.code,
-};
 let onDateClick = jest.fn();
 let onClose = jest.fn();
 let getRange = jest.fn();
@@ -111,40 +105,83 @@ describe("DatePicker", () => {
         onClose={onClose}
       />
     );
-    const Month0 = screen.getByTestId("day-0") as HTMLElement;
+    const Month0 = screen.getByTestId("day-0-c1") as HTMLElement;
     expect(Month0.textContent).toBe("S"); // sunday
-    const PreviousArrow = screen.getByTestId("previous-click");
+    const PreviousArrow = screen.getByTestId("previous-click-c1");
     PreviousArrow.click();
-    const NextArrow = screen.getByTestId("next-click");
+    const NextArrow = screen.getByTestId("next-click-c1");
     NextArrow.click();
-    const SelectedMonth = screen.getByTestId("selected-month") as HTMLElement;
+    const SelectedMonth = screen.getByTestId(
+      "selected-month-c1"
+    ) as HTMLElement;
     expect(SelectedMonth.textContent).toBe("Feb"); // sunday
-    const SelectedYear = screen.getByTestId("selected-year") as HTMLElement;
+    const SelectedYear = screen.getByTestId("selected-year-c1") as HTMLElement;
     expect(SelectedYear.textContent).toBe("2023"); // sunday
   });
   test("renders the DatePicker component and checks CalendarComponent render and check for month and year toggle", () => {
     const screen = render(
       <DatePicker
         isRange={false}
-        dateVal={new Date(2023, 1, 1)}
+        dateVal={new Date(2023, 1, 3)}
         onDateClick={onDateClick}
         onClose={onClose}
+        minDate={new Date(2023, 1, 2)}
+        maxDate={new Date(2025, 1, 1)}
       />
     );
-    const SelectedMonth = screen.getByTestId("selected-month") as HTMLElement;
+    const SelectedMonth = screen.getByTestId(
+      "selected-month-c1"
+    ) as HTMLElement;
     expect(SelectedMonth.textContent).toBe("Feb"); // sunday
-    const SelectedYear = screen.getByTestId("selected-year") as HTMLElement;
+    const SelectedYear = screen.getByTestId("selected-year-c1") as HTMLElement;
     expect(SelectedYear.textContent).toBe("2023"); // sunday
     fireEvent.click(SelectedYear);
     // SelectedYear.click();
-    expect(screen.getByTestId(`year-item-0`).textContent).toBe("1990");
-    fireEvent.click(screen.getByTestId(`year-item-0`));
-    expect(SelectedYear.textContent).toBe("1990");
+    expect(screen.getByTestId(`year-item-0-c1`).textContent).toBe("1990");
+    fireEvent.click(screen.getByTestId(`year-item-34-c1`));
+    expect(SelectedYear.textContent).toBe("2024");
     fireEvent.click(SelectedMonth);
-    expect(screen.getByTestId(`month-item-0`).textContent).toBe("January");
-    fireEvent.click(screen.getByTestId(`month-item-0`));
+    expect(screen.getByTestId(`month-item-0-c1`).textContent).toBe("January");
+    fireEvent.click(screen.getByTestId(`month-item-0-c1`));
     expect(SelectedMonth.textContent).toBe("Jan");
-    fireEvent.click(screen.getByTestId(`calendar-griditem-10`));
-    expect(onDateClick).toHaveBeenCalledWith("01/10/1990");
+    fireEvent.click(screen.getByTestId(`calendar-griditem-10-c1`));
+    expect(onDateClick).toHaveBeenCalledWith("01/10/2024");
+  });
+  test("renders the DatePicker component to check markup with isRange prop as true with default values and test for fireEvents", () => {
+    var nextDay = new Date(new Date());
+    nextDay.setDate(new Date().getDate() + 1);
+    const screen = render(
+      <DatePicker
+        isRange={true}
+        onClose={onClose}
+        rangeConfig={{
+          start: new Date(2023, 1, 5),
+          end: new Date(2023, 2, 5),
+          min: new Date(2023, 1, 3),
+          max: new Date(2025, 1, 1),
+        }}
+        getRange={getRange}
+        onConfirmRange={onConfirmRange}
+      />
+    );
+    const SelectedMonthc1 = screen.getByTestId(
+      "selected-month-c1"
+    ) as HTMLElement;
+    expect(SelectedMonthc1.textContent).toBe("Feb"); // sunday
+    const SelectedMonthc2 = screen.getByTestId(
+      "selected-month-c2"
+    ) as HTMLElement;
+    expect(SelectedMonthc2.textContent).toBe("Mar"); // sunday
+    fireEvent.click(SelectedMonthc2);
+    expect(screen.getByTestId(`month-item-2-c2`).textContent).toBe("March");
+    fireEvent.click(screen.getByTestId(`month-item-2-c2`));
+    expect(SelectedMonthc2.textContent).toBe("Mar");
+    fireEvent.click(SelectedMonthc2);
+    expect(screen.getByTestId(`month-item-1-c2`).textContent).toBe("February");
+    fireEvent.click(screen.getByTestId(`month-item-1-c2`));
+    expect(SelectedMonthc2.textContent).toBe("Mar");
+    fireEvent.click(screen.getByTestId(`calendar-griditem-10-c1`));
+    fireEvent.click(screen.getByTestId(`calendar-griditem-15-c2`));
+    expect(getRange).toHaveBeenCalledTimes(2);
   });
 });

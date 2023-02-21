@@ -20,6 +20,7 @@ export interface CalendarProps {
   yearHandler: Function;
   handleNextButtonClicked?: Function;
   handlePreviousButtonClicked?: Function;
+  testId: string;
 }
 
 const Calendar = (props: CalendarProps) => {
@@ -36,6 +37,7 @@ const Calendar = (props: CalendarProps) => {
     yearHandler,
     handleNextButtonClicked,
     handlePreviousButtonClicked,
+    testId,
   } = props;
 
   const [days, setDays] = useState([
@@ -151,7 +153,7 @@ const Calendar = (props: CalendarProps) => {
     <div className="n-picker-calendar-wrapper">
       <div className="n-picker-my-wrapper">
         <div
-          data-testid="previous-click"
+          data-testid={`previous-click-${testId}`}
           className="n-picker-toggle-icon"
           onClick={() => {
             handlePreviousButtonClicked?.();
@@ -163,7 +165,7 @@ const Calendar = (props: CalendarProps) => {
         {selectedMonth && selectedYear && (
           <div className="n-picker-month-year">
             <div
-              data-testid="selected-month"
+              data-testid={`selected-month-${testId}`}
               className={`n-picker-btn ${
                 showMonthToggle ? "n-picker-btn-active" : ""
               }`}
@@ -178,7 +180,7 @@ const Calendar = (props: CalendarProps) => {
               </span>
             </div>
             <div
-              data-testid="selected-year"
+              data-testid={`selected-year-${testId}`}
               className={`n-picker-btn ${
                 showYearToggle ? "n-picker-btn-active" : ""
               }`}
@@ -195,7 +197,7 @@ const Calendar = (props: CalendarProps) => {
           </div>
         )}
         <div
-          data-testid="next-click"
+          data-testid={`next-click-${testId}`}
           className="n-picker-toggle-icon"
           onClick={() => handleNextButtonClicked?.()}
         >
@@ -204,7 +206,7 @@ const Calendar = (props: CalendarProps) => {
       </div>
       <div className="n-picker-day-row">
         {days.map((day, index) => (
-          <span key={`day-${index}`} data-testid={`day-${index}`}>
+          <span key={`day-${index}`} data-testid={`day-${index}-${testId}`}>
             {/* Sun/Mon/Tue etc */}
             {day.name}
           </span>
@@ -220,7 +222,7 @@ const Calendar = (props: CalendarProps) => {
                   ? "n-picker-calendar-griditem-disabled"
                   : ""
               }`}
-              data-testid={`calendar-griditem-${calendarIndex}`}
+              data-testid={`calendar-griditem-${calendarIndex}-${testId}`}
               key={`calendar-griditem-${calendarIndex}`}
               onClick={() => {
                 calendarItem.value !== 0 && !calendarItem.isDisabled
@@ -239,7 +241,7 @@ const Calendar = (props: CalendarProps) => {
       </div>
       {showMonthToggle && (
         <div
-          data-testid="month-dropdown"
+          data-testid={`month-dropdown-${testId}`}
           className={`n-picker-monthlist ${
             isRange
               ? "n-picker-monthlist-semiwidth"
@@ -248,7 +250,7 @@ const Calendar = (props: CalendarProps) => {
         >
           {months.map((month, monthIndex) => (
             <div
-              data-testid={`month-item-${monthIndex}`}
+              data-testid={`month-item-${monthIndex}-${testId}`}
               key={`month-item-${monthIndex}`}
               className={`n-picker-monthlist-item ${
                 selectedMonth == month ? "n-picker-monthlist-selected" : ""
@@ -262,7 +264,7 @@ const Calendar = (props: CalendarProps) => {
       )}
       {showYearToggle && (
         <div
-          data-testid="year-dropdown"
+          data-testid={`year-dropdown-${testId}`}
           className={`n-picker-monthlist ${
             isRange
               ? "n-picker-monthlist-semiwidth"
@@ -271,7 +273,7 @@ const Calendar = (props: CalendarProps) => {
         >
           {years.map((year: any, yearIndex) => (
             <div
-              data-testid={`year-item-${yearIndex}`}
+              data-testid={`year-item-${yearIndex}-${testId}`}
               key={`year-item-${yearIndex}`}
               className={`n-picker-monthlist-item ${
                 selectedYear == year ? "n-picker-monthlist-selected" : ""
