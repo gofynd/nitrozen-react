@@ -158,7 +158,7 @@ export const DateValidationSample = (args: DateInputProps) => {
           validationText={error}
           id={"birth-field"}
           isRange={false}
-          useDatePicker={false}
+          useDatePicker={true}
         />
       </div>
     </div>
