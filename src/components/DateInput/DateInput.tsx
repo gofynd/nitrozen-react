@@ -13,8 +13,8 @@ interface RangeConfigProps {
 export interface DateInputProps {
   id: string;
   label: string;
-  required?: Boolean;
-  useDatePicker?: Boolean;
+  required?: boolean;
+  useDatePicker?: boolean;
   dateValue?: Date | string;
   helperText?: string;
   validationState?: string;

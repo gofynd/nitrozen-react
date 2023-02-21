@@ -49,7 +49,6 @@ const Calendar = (props: CalendarProps) => {
     { name: "F", enum: 5 },
     { name: "S", enum: 6 },
   ]);
-  useEffect(() => {}, [props]);
 
   const [showMonthToggle, setShowMonthToggle] = useState(false);
   const [showYearToggle, setShowYearToggle] = useState(false);
@@ -65,7 +64,7 @@ const Calendar = (props: CalendarProps) => {
   };
 
   const handleDateClick = (calendarItem: any) => {
-    let dd =
+    const dd =
       calendarItem.value < 10 ? "0" + calendarItem.value : calendarItem.value;
     let monthIndex: any = months.findIndex((name) => name == selectedMonth) + 1;
     if (monthIndex < 10) {
