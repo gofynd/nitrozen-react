@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import classnames from "classnames";
 import "./Stepper.scss";
-import { SvgDone, SvgPriorityHigh } from "../../assets/svg-components";
+import { SvgIcConfirm, SvgIcExclamation } from "../../assets/svg-components";
 
 export enum StepState {
   "Current" = "Current",
@@ -103,11 +103,11 @@ const Stepper = (props: StepperProps) => {
       extraIconProps: object = {}
     ) => {
       if (state === StepState.Issue) {
-        return <SvgPriorityHigh color="#1E7B74" />;
+        return <SvgIcExclamation color="#1E7B74" />;
       }
 
       if (state === StepState.Completed) {
-        return <SvgDone color="#1ECCB0" />;
+        return <SvgIcConfirm color="#1ECCB0" />;
       }
 
       if (!icon) {

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Validation from "../Validation";
-import { SvgHelpOutline } from "../../assets/svg-components";
+import { SvgIcHelp } from "../../assets/svg-components";
 import Tooltip from "../Tooltip";
 import "./Code.scss";
 
@@ -118,9 +118,7 @@ const Code = (props: CodeProps) => {
                 <Tooltip
                   tooltipContent={tooltip}
                   icon={
-                    tooltipIcon || (
-                      <SvgHelpOutline style={{ fontSize: "14px" }} />
-                    )
+                    tooltipIcon || <SvgIcHelp style={{ fontSize: "14px" }} />
                   }
                   position="top"
                 />

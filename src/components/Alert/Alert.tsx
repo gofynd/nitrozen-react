@@ -10,11 +10,10 @@ import Button from "../Button";
 
 /* Assets imports*/
 import {
-  SvgCheck,
-  SvgError,
+  SvgIcConfirm,
+  SvgIcError,
   SvgIcErrorColored,
   SvgIcInfo,
-  SvgIcStatusLoading,
 } from "./../../assets/svg-components";
 import LoadingImage from "./../../assets/loader.gif";
 
@@ -71,8 +70,8 @@ const Alert = (props: AlertProps) => {
      */
     const iconTypes = {
         info: SvgIcInfo,
-        success: SvgCheck,
-        warn: SvgError,
+        success: SvgIcConfirm,
+        warn: SvgIcError,
         error: SvgIcErrorColored
     };
 

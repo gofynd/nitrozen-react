@@ -6,7 +6,7 @@ import React, {
   RefObject,
   useRef,
 } from "react";
-import { SvgMoreHoriz } from "../../assets/svg-components";
+import { SvgIcMoreHorizontal } from "../../assets/svg-components";
 import "./Menu.scss";
 import NitrozenId from "../../utils/uuids";
 
@@ -224,7 +224,7 @@ Menu.defaultProps = {
   mode: "vertical",
   position: "bottom",
   inverted: false,
-  icon: <SvgMoreHoriz />,
+  icon: <SvgIcMoreHorizontal />,
   maxHeight: undefined,
   open: false,
   selectedIndex: 2,

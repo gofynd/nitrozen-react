@@ -2,9 +2,12 @@ import React, { useState, useEffect, useRef, ChangeEvent } from "react";
 import NitrozenId from "../../utils/uuids";
 import Dropdown from "../Dropdown";
 import "./Pagination.scss";
-import { SvgLeft, SvgRight } from "../../assets/svg-components";
 import { usePagination } from "./usePagination";
-import { SvgSearchLogo } from "../../assets/svg-components/Action";
+import {
+  SvgIcSearch,
+  SvgIcChevronLeft,
+  SvgIcChevronRight,
+} from "../../assets/svg-components";
 
 export enum ModeEnum {
   MODE_REGULAR = "regular",
@@ -357,7 +360,7 @@ const Pagination = (props: PaginationProps) => {
                   !showPrev() && "pagination-diabled"
                 }`}
               >
-                <SvgLeft />
+                <SvgIcChevronLeft />
               </div>
               <div className="n-pagination__number" ref={refSearchBox}>
                 {listNodeItems()}
@@ -372,7 +375,7 @@ const Pagination = (props: PaginationProps) => {
                   >
                     <div className="n-pagination__search_input">
                       <div className="n-pagination__search_logo">
-                        <SvgSearchLogo className="search-icon" />
+                        <SvgIcSearch className="search-icon" />
                       </div>
                       <div className="text-input-wrapper">
                         <input
@@ -402,7 +405,7 @@ const Pagination = (props: PaginationProps) => {
                   !showNext() && "pagination-diabled"
                 } `}
               >
-                <SvgRight />
+                <SvgIcChevronRight />
               </div>
             </>
           )}

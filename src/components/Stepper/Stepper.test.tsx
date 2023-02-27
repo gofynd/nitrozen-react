@@ -1,9 +1,9 @@
 import React from "react";
 import { render } from "@testing-library/react";
 import {
-  SvgStore,
-  SvgHourglassEmpty,
-  SvgAddLocation,
+  SvgIcExclamation,
+  SvgIcExchange,
+  SvgIc4GBarFour,
 } from "../../assets/svg-components";
 import Stepper, { ItemsType, StepState } from "./Stepper";
 import userEvent from "@testing-library/user-event";
@@ -31,19 +31,19 @@ describe("Stepper", () => {
     {
       name: "Step 2",
       buttonText: "View Status",
-      icon: SvgStore,
+      icon: SvgIcExclamation,
       state: StepState.Upcoming,
     },
     {
       name: "Step 3",
       buttonText: "View Status",
-      icon: SvgAddLocation,
+      icon: SvgIc4GBarFour,
       state: StepState.Upcoming,
     },
     {
       name: "Step 4",
       buttonText: "View Status",
-      icon: SvgHourglassEmpty,
+      icon: SvgIcExchange,
       state: StepState.Upcoming,
     },
     {

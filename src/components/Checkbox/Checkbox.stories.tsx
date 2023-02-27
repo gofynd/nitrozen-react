@@ -109,7 +109,7 @@ export const Multiple_checkbox = (args: any) => {
         onChange={setCheckArray2}
         checkArray={CheckArray2}
         showIcon={true}
-        icon={SvgArray.SvgAutoMode}
+        icon={SvgArray.SvgIc4K}
         state="success"
         stateMessage="Success"
         checkboxValue="React"
@@ -123,7 +123,7 @@ export const Multiple_checkbox = (args: any) => {
         checkboxValue="Angular1"
         checkArray={CheckArray2}
         showIcon={true}
-        icon={SvgArray.SvgAutoMode}
+        icon={SvgArray.SvgIc4K}
         state="warning"
         stateMessage="Warning"
         onChange={setCheckArray2}
@@ -137,7 +137,7 @@ export const Multiple_checkbox = (args: any) => {
         checkboxValue="Vue1"
         checkArray={CheckArray2}
         showIcon={true}
-        icon={SvgArray.SvgAutoMode}
+        icon={SvgArray.SvgIc4K}
         state="error"
         stateMessage="Error"
         disabled
