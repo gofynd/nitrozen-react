@@ -1,6 +1,6 @@
 //prettier-ignore
 /* Package imports */
-import React, { ReactElement, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 /* CSS imports */
 import "./Alert.scss";
@@ -15,7 +15,6 @@ import {
   SvgIcErrorColored,
   SvgIcInfo,
 } from "./../../assets/svg-components";
-import LoadingImage from "./../../assets/loader.gif";
 
 /* Interface */
 export interface AlertProps {
@@ -193,7 +192,7 @@ const Alert = (props: AlertProps) => {
                 <div className={`n-alert-text-icon-wrapper`}>
                     {
                         loader ?
-                        <img src={LoadingImage} className={`n-alert-icon n-alert-loader`} /> :
+                        <img src={'https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyprod/wrkr/misc/general/free/original/loader.gif'} className={`n-alert-icon n-alert-loader`} /> :
                         (
                             Icon || 
                             (

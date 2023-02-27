@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from "react";
 import "./Chip.scss";
-import { SvgIcClose } from "../../assets/svg-components/Jio/";
+import { SvgIcClose } from "../../assets/svg-components";
 
 export interface ChipProps {
   deletable?: boolean;
