@@ -1,14 +1,13 @@
 "use strict";
 var e = require("../../../node_modules/tslib/tslib.es6.js"),
   t = require("react"),
-  s = require("../../assets/loader.gif.js"),
   n = require("../../../node_modules/classnames/index.js");
-function a(e) {
+function s(e) {
   return e && "object" == typeof e && "default" in e ? e : { default: e };
 }
 require("./Button.scss.js");
-var i = a(t);
-const l = (t) => {
+var a = s(t);
+const i = (t) => {
     const s = () =>
         n({
           "n-button-rounded": t.rounded,
@@ -37,9 +36,9 @@ const l = (t) => {
           "n-button-disable": t.showProgress,
           "n-button-full-width": t.fullWidth,
         }),
-      a = () => {
+      i = () => {
         if (t.href) {
-          const s = e.__rest(t, [
+          const n = e.__rest(t, [
             "rounded",
             "theme",
             "as",
@@ -53,10 +52,10 @@ const l = (t) => {
             "icon",
             "iconRight",
           ]);
-          return Object.assign({}, s);
+          return Object.assign({}, n);
         }
         {
-          const s = e.__rest(t, [
+          const n = e.__rest(t, [
             "rounded",
             "theme",
             "as",
@@ -70,11 +69,11 @@ const l = (t) => {
             "icon",
             "iconRight",
           ]);
-          return Object.assign({}, s);
+          return Object.assign({}, n);
         }
       };
     return t.href
-      ? i.default.createElement(
+      ? a.default.createElement(
           "a",
           Object.assign(
             {
@@ -83,55 +82,55 @@ const l = (t) => {
                 t.className && t.className
               }`,
             },
-            a()
+            i()
           ),
-          i.default.createElement(r, Object.assign({}, t))
+          a.default.createElement(l, Object.assign({}, t))
         )
       : "div" == t.as
-      ? i.default.createElement(
+      ? a.default.createElement(
           "div",
           Object.assign(
             {
               className: `n-button ripple ${s()} ${t.className && t.className}`,
             },
-            a()
+            i()
           ),
-          i.default.createElement(r, Object.assign({}, t))
+          a.default.createElement(l, Object.assign({}, t))
         )
       : "span" == t.as
-      ? i.default.createElement(
+      ? a.default.createElement(
           "span",
           Object.assign(
             {
               className: `n-button ripple ${s()} ${t.className && t.className}`,
             },
-            a()
+            i()
           ),
-          i.default.createElement(r, Object.assign({}, t))
+          a.default.createElement(l, Object.assign({}, t))
         )
-      : i.default.createElement(
+      : a.default.createElement(
           "button",
           Object.assign(
             {
               className: `n-button ripple ${s()} ${t.className && t.className}`,
             },
-            a()
+            i()
           ),
-          i.default.createElement(r, Object.assign({}, t))
+          a.default.createElement(l, Object.assign({}, t))
         );
   },
-  r = (e) => {
+  l = (e) => {
     const t = e.icon,
-      a = e.iconRight;
-    return i.default.createElement(
+      s = e.iconRight;
+    return a.default.createElement(
       "div",
       { className: "n-button-content" },
       e.icon &&
         (e.children || !e.showProgress) &&
-        i.default.createElement(
+        a.default.createElement(
           "div",
           { className: "n-btn-social-icon" },
-          i.default.createElement(t, {
+          a.default.createElement(t, {
             className: n({
               "n-icon-small": "small" === e.size,
               "n-icon": "medium" === e.size,
@@ -142,22 +141,22 @@ const l = (t) => {
         ),
       e.children,
       e.showProgress &&
-        i.default.createElement(
+        a.default.createElement(
           "div",
           { className: "n-btn-spin" },
-          i.default.createElement("img", {
+          a.default.createElement("img", {
             className: "n-btn-spinner",
             style: { width: "50px" },
-            src: s,
+            src: "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyprod/wrkr/misc/general/free/original/loader.gif",
           })
         ),
       !e.showProgress &&
         e.children &&
         e.iconRight &&
-        i.default.createElement(
+        a.default.createElement(
           "div",
           { className: "social-icon-right" },
-          i.default.createElement(a, {
+          a.default.createElement(s, {
             className: n({
               "n-icon-small": "small" === e.size,
               "n-icon": "medium" === e.size,
@@ -168,7 +167,7 @@ const l = (t) => {
         )
     );
   };
-l.defaultProps = {
+i.defaultProps = {
   href: null,
   disabled: !1,
   rounded: !0,
@@ -185,6 +184,6 @@ l.defaultProps = {
   icon: null,
   name: null,
 };
-var c = i.default.memo(l);
-module.exports = c;
+var r = a.default.memo(i);
+module.exports = r;
 //# sourceMappingURL=Button.js.map

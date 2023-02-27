@@ -1,7 +1,7 @@
 import { __rest as t } from "../../../node_modules/tslib/tslib.es6.js";
 import o from "react";
 import "./Tooltip.scss.js";
-import { SvgInfo as e } from "../../assets/svg-components/Action/index.js";
+import { SvgIcInfo as e } from "../../assets/svg-components/Nitrozen/index.js";
 const n = (e) => {
   const {
       position: n,

@@ -2,8 +2,10 @@ import { __rest as e } from "../../../node_modules/tslib/tslib.es6.js";
 import t, { useCallback as n } from "react";
 import s from "../../../node_modules/classnames/index.js";
 import "./Stepper.scss.js";
-import { SvgDone as a } from "../../assets/svg-components/Action/index.js";
-import { SvgPriorityHigh as r } from "../../assets/svg-components/Notification/index.js";
+import {
+  SvgIcExclamation as r,
+  SvgIcConfirm as a,
+} from "../../assets/svg-components/Nitrozen/index.js";
 var l;
 !(function (e) {
   (e.Current = "Current"),
@@ -18,8 +20,8 @@ const c = (c) => {
       onClick: o,
       isHorizontal: m,
       heading: d,
-      className: p = "",
-      style: u,
+      className: u = "",
+      style: p,
     } = c,
     v = e(c, [
       "items",
@@ -53,7 +55,7 @@ const c = (c) => {
           return "";
       }
     }, []),
-    f = n((e, n, s, c = "22", i = "#419266", o = {}) => {
+    C = n((e, n, s, c = "22", i = "#419266", o = {}) => {
       if (n === l.Issue) return t.createElement(r, { color: "#1E7B74" });
       if (n === l.Completed) return t.createElement(a, { color: "#1ECCB0" });
       if (!s) return e + 1;
@@ -72,9 +74,9 @@ const c = (c) => {
             "n-stepper": !0,
             vertical: E,
             horizontal: m,
-            [p]: null == p ? void 0 : p.length,
+            [u]: null == u ? void 0 : u.length,
           }),
-          style: null != u ? u : {},
+          style: null != p ? p : {},
         },
         v
       ),
@@ -87,7 +89,7 @@ const c = (c) => {
           d && t.createElement("span", { className: "stepper-heading" }, d)
         ),
         i.map((e, n) => {
-          var a, r;
+          var r, a;
           return t.createElement(
             "div",
             {
@@ -107,11 +109,11 @@ const c = (c) => {
                       null == e ? void 0 : e.state
                     )}`,
                   },
-                  f(
+                  C(
                     n,
                     e.state,
-                    null !== (a = null == e ? void 0 : e.icon) && void 0 !== a
-                      ? a
+                    null !== (r = null == e ? void 0 : e.icon) && void 0 !== r
+                      ? r
                       : null,
                     e.iconSize,
                     e.iconColor,
@@ -146,11 +148,11 @@ const c = (c) => {
                   t.createElement(
                     "span",
                     { className: `n-circle-content ${g(e.state)}` },
-                    f(
+                    C(
                       n,
                       e.state,
-                      null !== (r = null == e ? void 0 : e.icon) && void 0 !== r
-                        ? r
+                      null !== (a = null == e ? void 0 : e.icon) && void 0 !== a
+                        ? a
                         : null,
                       e.iconSize,
                       e.iconColor,

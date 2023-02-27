@@ -3,7 +3,7 @@ var e = require("../../../node_modules/tslib/tslib.es6.js"),
   t = require("react"),
   l = require("../../../node_modules/classnames/index.js");
 require("./Autocomplete.scss.js");
-var n = require("../../assets/svg-components/Jio/index.js"),
+var n = require("../../assets/svg-components/Nitrozen/index.js"),
   s = require("../../utils/debounce.js");
 function a(e) {
   return e && "object" == typeof e && "default" in e ? e : { default: e };
@@ -51,25 +51,25 @@ const o = (a) => {
     [I, C] = t.useState(""),
     [L, j] = t.useState(null),
     [q, A] = t.useState(!1),
-    [x, D] = t.useState(!1),
+    [x, z] = t.useState(!1),
+    D = t.useRef(null),
     R = t.useRef(null),
-    z = t.useRef(null),
     _ = t.useRef([]),
     B = t.useRef(null);
   t.useEffect(() => {
     var e;
-    if (null !== L && _.current && R.current) {
+    if (null !== L && _.current && D.current) {
       let t = _.current[L];
       null === (e = null == t ? void 0 : t.scrollIntoView) ||
         void 0 === e ||
         e.call(t, { block: "nearest", inline: "nearest" });
     }
-  }, [L, _, R.current]),
+  }, [L, _, D.current]),
     t.useEffect(() => {
-      j(null), D(!1);
+      j(null), z(!1);
     }, [i]),
     t.useEffect(() => {
-      N || D(!1);
+      N || z(!1);
     }, [N]);
   const F = l("n-autocomplete", { [o]: o }, { "n-autocomplete-disabled": r });
   const K = t.useCallback(
@@ -84,7 +84,7 @@ const o = (a) => {
       const l = i[e];
       C("object" == typeof l && g ? i[e][g] : i[e]),
         null == m || m(e),
-        null === (t = R.current) ||
+        null === (t = D.current) ||
           void 0 === t ||
           t.classList.remove("n-autocomplete-focussed");
     };
@@ -94,7 +94,7 @@ const o = (a) => {
     Object.assign({ className: "n-autocomplete-wrapper" }, k),
     u.default.createElement(
       "div",
-      { style: null != S ? S : {}, className: F, ref: R },
+      { style: null != S ? S : {}, className: F, ref: D },
       (x || y) &&
         u.default.createElement(
           "span",
@@ -116,14 +116,14 @@ const o = (a) => {
         placeholder: h,
         className: l([{ "n-pre-input": y || x }, "n-suf-input"]),
         onChange: function (e) {
-          C(e.target.value), N && D(!0), K(e);
+          C(e.target.value), N && z(!0), K(e);
         },
         value: I,
         onKeyDown: function (e) {
           var t, l, n, s;
           if ("Enter" === e.key)
             if (null === L)
-              null === (t = R.current) ||
+              null === (t = D.current) ||
                 void 0 === t ||
                 t.classList.remove("n-autocomplete-focussed");
             else {
@@ -136,7 +136,7 @@ const o = (a) => {
           else
             "Tab" === e.key
               ? (null === (n = B.current) || void 0 === n || n.blur(),
-                null === (s = R.current) ||
+                null === (s = D.current) ||
                   void 0 === s ||
                   s.classList.remove("n-autocomplete-focussed"))
               : "ArrowDown" === e.key
@@ -149,14 +149,14 @@ const o = (a) => {
             var t;
             A(!1),
               null == d || d(e),
-              null === (t = R.current) ||
+              null === (t = D.current) ||
                 void 0 === t ||
                 t.classList.remove("n-autocomplete-focussed");
           }, 10);
         },
         onFocus: function (e) {
           var t;
-          null === (t = R.current) ||
+          null === (t = D.current) ||
             void 0 === t ||
             t.classList.add("n-autocomplete-focussed"),
             A(!0),
@@ -189,7 +189,7 @@ const o = (a) => {
       (null == i ? void 0 : i.length) > 0 &&
       u.default.createElement(
         "ul",
-        { className: "n-autocomplete-result-wrapper", ref: z },
+        { className: "n-autocomplete-result-wrapper", ref: R },
         i.map((e, t) => {
           let s;
           return (

@@ -4,29 +4,28 @@ var e = require("../../../node_modules/tslib/tslib.es6.js"),
   t = require("react"),
   a = require("../../../node_modules/classnames/index.js");
 require("./Stepper.scss.js");
-var s = require("../../assets/svg-components/Action/index.js"),
-  l = require("../../assets/svg-components/Notification/index.js");
-function r(e) {
+var l = require("../../assets/svg-components/Nitrozen/index.js");
+function s(e) {
   return e && "object" == typeof e && "default" in e ? e : { default: e };
 }
-var n,
-  c = r(t);
+var r,
+  n = s(t);
 (exports.StepState = void 0),
-  ((n = exports.StepState || (exports.StepState = {})).Current = "Current"),
-  (n.Upcoming = "Upcoming"),
-  (n.Disabled = "Disabled"),
-  (n.Issue = "Issue"),
-  (n.Completed = "Completed");
-const i = (r) => {
+  ((r = exports.StepState || (exports.StepState = {})).Current = "Current"),
+  (r.Upcoming = "Upcoming"),
+  (r.Disabled = "Disabled"),
+  (r.Issue = "Issue"),
+  (r.Completed = "Completed");
+const c = (s) => {
   const {
-      items: n = [],
-      onClick: i,
-      isHorizontal: o,
-      heading: d,
-      className: u = "",
-      style: m,
-    } = r,
-    p = e.__rest(r, [
+      items: r = [],
+      onClick: c,
+      isHorizontal: i,
+      heading: o,
+      className: d = "",
+      style: u,
+    } = s,
+    m = e.__rest(s, [
       "items",
       "onClick",
       "isHorizontal",
@@ -34,15 +33,15 @@ const i = (r) => {
       "className",
       "style",
     ]),
-    f = !o,
-    v = t.useCallback(
+    p = !i,
+    f = t.useCallback(
       (e, t) => {
         (null == t ? void 0 : t.state) !== exports.StepState.Disabled &&
-          (null == i || i({ index: e, item: t }));
+          (null == c || c({ index: e, item: t }));
       },
-      [i]
+      [c]
     ),
-    S = t.useCallback((e) => {
+    v = t.useCallback((e) => {
       switch (e) {
         case exports.StepState.Current:
           return "current";
@@ -58,107 +57,109 @@ const i = (r) => {
           return "";
       }
     }, []),
-    E = t.useCallback((e, t, a, r = "22", n = "#419266", i = {}) => {
+    S = t.useCallback((e, t, a, s = "22", r = "#419266", c = {}) => {
       if (t === exports.StepState.Issue)
-        return c.default.createElement(l.SvgPriorityHigh, { color: "#1E7B74" });
+        return n.default.createElement(l.SvgIcExclamation, {
+          color: "#1E7B74",
+        });
       if (t === exports.StepState.Completed)
-        return c.default.createElement(s.SvgDone, { color: "#1ECCB0" });
+        return n.default.createElement(l.SvgIcConfirm, { color: "#1ECCB0" });
       if (!a) return e + 1;
-      const o = Object.assign({ style: { color: n, fontSize: `${r}px` } }, i),
-        d = a;
-      return c.default.createElement(d, Object.assign({}, o));
+      const i = Object.assign({ style: { color: r, fontSize: `${s}px` } }, c),
+        o = a;
+      return n.default.createElement(o, Object.assign({}, i));
     }, []);
-  return c.default.createElement(
-    c.default.Fragment,
+  return n.default.createElement(
+    n.default.Fragment,
     null,
-    c.default.createElement(
+    n.default.createElement(
       "div",
       Object.assign(
         {
           className: a({
             "n-stepper": !0,
-            vertical: f,
-            horizontal: o,
-            [u]: null == u ? void 0 : u.length,
+            vertical: p,
+            horizontal: i,
+            [d]: null == d ? void 0 : d.length,
           }),
-          style: null != m ? m : {},
+          style: null != u ? u : {},
         },
-        p
+        m
       ),
-      c.default.createElement(
+      n.default.createElement(
         "div",
         { className: "n-stepper-container" },
-        c.default.createElement(
+        n.default.createElement(
           "div",
-          { className: a({ "heading-progress": d }) },
-          d &&
-            c.default.createElement("span", { className: "stepper-heading" }, d)
+          { className: a({ "heading-progress": o }) },
+          o &&
+            n.default.createElement("span", { className: "stepper-heading" }, o)
         ),
-        n.map((e, t) => {
-          var s, l;
-          return c.default.createElement(
+        r.map((e, t) => {
+          var l, s;
+          return n.default.createElement(
             "div",
             {
               className: "n-stepper-group",
-              onClick: () => v(t, e),
+              onClick: () => f(t, e),
               "data-testid": `stepper-${t}`,
               key: t,
             },
-            o &&
-              c.default.createElement(
+            i &&
+              n.default.createElement(
                 "div",
                 { className: "n-circle-outer-container" },
-                c.default.createElement(
+                n.default.createElement(
                   "div",
                   {
-                    className: `n-circle-outer ${S(
+                    className: `n-circle-outer ${v(
                       null == e ? void 0 : e.state
                     )}`,
                   },
-                  E(
+                  S(
                     t,
                     e.state,
-                    null !== (s = null == e ? void 0 : e.icon) && void 0 !== s
-                      ? s
+                    null !== (l = null == e ? void 0 : e.icon) && void 0 !== l
+                      ? l
                       : null,
                     e.iconSize,
                     e.iconColor,
                     e.extraIconProps
                   )
                 ),
-                c.default.createElement(
+                n.default.createElement(
                   "div",
                   { className: "stepper-header-description" },
-                  c.default.createElement(
+                  n.default.createElement(
                     "div",
                     { className: "header-description" },
-                    c.default.createElement(
+                    n.default.createElement(
                       "div",
-                      { className: `n-text ${S(e.state)}` },
+                      { className: `n-text ${v(e.state)}` },
                       e.name
                     )
                   )
                 )
               ),
-            f &&
-              c.default.createElement(
+            p &&
+              n.default.createElement(
                 "div",
                 { className: "n-circle-outer-container" },
-                c.default.createElement(
+                n.default.createElement(
                   "div",
                   {
-                    className: `n-circle-outer nitrozen-circle-border ${S(
+                    className: `n-circle-outer nitrozen-circle-border ${v(
                       e.state
                     )}`,
                   },
-                  c.default.createElement(
+                  n.default.createElement(
                     "span",
-                    { className: `n-circle-content ${S(e.state)}` },
-                    E(
+                    { className: `n-circle-content ${v(e.state)}` },
+                    S(
                       t,
                       e.state,
-                      null !== (l = null == e ? void 0 : e.icon) && void 0 !== l
-                        ? l
+                      null !== (s = null == e ? void 0 : e.icon) && void 0 !== s
+                        ? s
                         : null,
                       e.iconSize,
                       e.iconColor,
@@ -166,27 +167,27 @@ const i = (r) => {
                     )
                   )
                 ),
-                c.default.createElement(
+                n.default.createElement(
                   "div",
                   { className: "stepper-header-description" },
-                  c.default.createElement(
+                  n.default.createElement(
                     "div",
                     { className: "header-description" },
-                    c.default.createElement(
+                    n.default.createElement(
                       "div",
-                      { className: `n-text ${S(e.state)}` },
+                      { className: `n-text ${v(e.state)}` },
                       e.name
                     )
                   )
                 ),
-                c.default.createElement("div", {
+                n.default.createElement("div", {
                   className: a({
                     "n-bar": !0,
-                    "completed-bar": t === (null == n ? void 0 : n.length) - 1,
+                    "completed-bar": t === (null == r ? void 0 : r.length) - 1,
                   }),
                 }),
                 e.content &&
-                  c.default.createElement("div", {
+                  n.default.createElement("div", {
                     className: "content",
                     dangerouslySetInnerHTML: { __html: e.content },
                   })
@@ -197,7 +198,7 @@ const i = (r) => {
     )
   );
 };
-i.defaultProps = { items: [], isHorizontal: !1 };
-var o = c.default.memo(i);
-exports.default = o;
+c.defaultProps = { items: [], isHorizontal: !1 };
+var i = n.default.memo(c);
+exports.default = i;
 //# sourceMappingURL=Stepper.js.map

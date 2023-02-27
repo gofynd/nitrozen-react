@@ -5,9 +5,9 @@ import l from "./InputPrefix.js";
 import i from "./InputSuffix.js";
 import r from "../../utils/uuids.js";
 import {
-  SvgHelpOutline as s,
-  SvgSearch as u,
-} from "../../assets/svg-components/Action/index.js";
+  SvgIcHelp as s,
+  SvgIcSearch as u,
+} from "../../assets/svg-components/Nitrozen/index.js";
 import c from "../Tooltip/Tooltip.js";
 import p from "../Validation/Validation.js";
 const m = (r) => {
@@ -38,12 +38,12 @@ const m = (r) => {
       onClick: L,
       className: U,
       style: q,
-      helperText: O,
-      state: V,
-      stateText: z,
-      onPrefixClick: A,
-      onSuffixClick: H,
-      tooltipText: _,
+      helperText: z,
+      state: O,
+      stateText: V,
+      onPrefixClick: H,
+      onSuffixClick: _,
+      tooltipText: A,
       showTooltip: D,
       tooltipIcon: G,
     } = r,
@@ -130,9 +130,9 @@ const m = (r) => {
                 t.createElement(
                   "span",
                   { className: "n-input-tooltip" },
-                  _ &&
+                  A &&
                     t.createElement(c, {
-                      tooltipContent: _,
+                      tooltipContent: A,
                       icon:
                         G ||
                         t.createElement(s, { style: { fontSize: "14px" } }),
@@ -163,12 +163,12 @@ const m = (r) => {
           "div",
           {
             className: `n-input-container ${Y} ${ee} ${
-              r.state && "default" !== r.state ? `n-${V}-border` : ""
+              r.state && "default" !== r.state ? `n-${O}-border` : ""
             }`,
           },
           $ &&
             "textarea" !== f &&
-            t.createElement(l, { prefix: P, onPrefixClick: A }),
+            t.createElement(l, { prefix: P, onPrefixClick: H }),
           "textarea" !== f &&
             t.createElement(
               "input",
@@ -271,7 +271,7 @@ const m = (r) => {
             ),
           "textarea" !== f &&
             N &&
-            t.createElement(i, { suffix: k, onSuffixClick: H })
+            t.createElement(i, { suffix: k, onSuffixClick: _ })
         )
       ),
       t.createElement(
@@ -280,10 +280,10 @@ const m = (r) => {
         "default" !== r.state &&
           t.createElement(p, {
             validationState: r.state,
-            label: z,
+            label: V,
             isHidden: !1,
           }),
-        O && t.createElement("span", { className: "n-helper-text" }, O)
+        z && t.createElement("span", { className: "n-helper-text" }, z)
       )
     )
   );

@@ -1,7 +1,7 @@
 "use strict";
 var e = require("../../../node_modules/tslib/tslib.es6.js"),
   n = require("react"),
-  t = require("../../assets/svg-components/Navigation/index.js");
+  t = require("../../assets/svg-components/Nitrozen/index.js");
 require("./Menu.scss.js");
 var l = require("../../utils/uuids.js");
 function o(e) {
@@ -12,8 +12,8 @@ const i = (t) => {
   const {
       id: o,
       className: i,
-      mode: a,
-      position: c,
+      mode: c,
+      position: a,
       inverted: s,
       icon: u,
       maxHeight: d,
@@ -45,8 +45,8 @@ const i = (t) => {
     ]),
     [y, x] = n.useState(m),
     [N, C] = n.useState(!1);
-  let j = n.useRef(null);
-  const I = n.useRef(null),
+  let I = n.useRef(null);
+  const j = n.useRef(null),
     $ = `n-menu-block-ul-${l()}`;
   n.useEffect(() => {
     x(m);
@@ -68,8 +68,8 @@ const i = (t) => {
         );
     }, []);
   const M = (e) => {
-    !(null == j ? void 0 : j.current) ||
-    j.current.contains(e.target) ||
+    !(null == I ? void 0 : I.current) ||
+    I.current.contains(e.target) ||
     (null == h ? void 0 : h.current)
       ? (null == h ? void 0 : h.current) &&
         !h.current.contains(e.target) &&
@@ -78,16 +78,16 @@ const i = (t) => {
   };
   return r.default.createElement(
     "div",
-    Object.assign({ className: `n-menu-container ${i}`, ref: j, id: o }, E),
+    Object.assign({ className: `n-menu-container ${i}`, ref: I, id: o }, E),
     N
       ? null
       : r.default.createElement(
           "span",
           {
-            ref: I,
+            ref: j,
             "data-testid": "n-menu-block-toggle",
             className: `n-menu-block-toggle \n          ${
-              "horizontal" === a ? "n-menu-block-toggle-horizontal" : ""
+              "horizontal" === c ? "n-menu-block-toggle-horizontal" : ""
             }\n          ${s ? "n-menu-block-toggle-inverted" : ""}`,
             onClick: () => {
               x(!y);
@@ -126,14 +126,14 @@ const i = (t) => {
           var e;
           const n = Object.assign({}, p);
           switch (
-            ((null === (e = null == I ? void 0 : I.current) || void 0 === e
+            ((null === (e = null == j ? void 0 : j.current) || void 0 === e
               ? void 0
               : e.parentElement) && !h
-              ? (I.current.parentElement.style.position = "relative")
+              ? (j.current.parentElement.style.position = "relative")
               : (null == h ? void 0 : h.current) &&
                 ((h.current.style.position = "relative"),
                 (h.current.style.height = "fit-content")),
-            c)
+            a)
           ) {
             case "top":
               n.bottom = "100%";
@@ -141,7 +141,7 @@ const i = (t) => {
             case "bottom":
               n.top = "100%";
           }
-          switch (a) {
+          switch (c) {
             case "horizontal":
               n.left = "100%";
               break;
@@ -164,7 +164,7 @@ i.defaultProps = {
   mode: "vertical",
   position: "bottom",
   inverted: !1,
-  icon: r.default.createElement(t.SvgMoreHoriz, null),
+  icon: r.default.createElement(t.SvgIcMoreHorizontal, null),
   maxHeight: void 0,
   open: !1,
   selectedIndex: 2,
@@ -175,6 +175,6 @@ i.defaultProps = {
   style: {},
   children: r.default.createElement(r.default.Fragment, null),
 };
-var a = n.memo(i);
-module.exports = a;
+var c = n.memo(i);
+module.exports = c;
 //# sourceMappingURL=Menu.js.map
