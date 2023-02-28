@@ -73,7 +73,7 @@ describe("Render a Table component", () => {
       />
     );
     const mainWrapper = screen.getByTestId("table-custom-table");
-    expect(mainWrapper.className).toBe("n-table");
+    expect(mainWrapper.className).toBe("n-table ");
     const tableHeaderValue0 = screen.getByTestId("header-value-0");
     expect(tableHeaderValue0.textContent).toContain("First name");
     const rowValue0 = screen.getByTestId("row-0");
