@@ -122,7 +122,7 @@ const DateInput = (props: DateInputProps) => {
 
   // a default date validation that peforms basic checks
   const defaultErrorValidation = (stateDateObj: any) => {
-    if (stateDateObj.mm && (stateDateObj.mm == 0 || stateDateObj.mm > 12)) {
+    if (stateDateObj.mm && (stateDateObj.mm === 0 || stateDateObj.mm > 12)) {
       setDateError("Invalid Date");
       return;
     }
@@ -162,7 +162,10 @@ const DateInput = (props: DateInputProps) => {
   }
 
   //function to handle backspace event
-  function handleKeyDown(event: any, currentIndex: number) {
+  function handleKeyDown(
+    event: React.KeyboardEvent<HTMLInputElement>,
+    currentIndex: number
+  ) {
     if ([8, 46].includes(event.keyCode)) {
       handleBackSpace(currentIndex, event);
     }
@@ -170,7 +173,7 @@ const DateInput = (props: DateInputProps) => {
 
   const handleDateClicked = (dateValue: string) => {
     setDatePickerDate(dateValue);
-    let dateVal = dateValue.split("/");
+    const dateVal = dateValue.split("/");
     let stateDateObj = { ...date };
     stateDateObj.mm = dateVal[0];
     stateDateObj.dd = dateVal[1];
@@ -214,7 +217,6 @@ const DateInput = (props: DateInputProps) => {
             className={`n-icon-container ${
               useDatePicker ? "n-cursor-pointer" : ""
             }`}
-            onClick={useDatePicker ? () => {} : () => {}}
           >
             <SvgIcCalendar />
           </div>
