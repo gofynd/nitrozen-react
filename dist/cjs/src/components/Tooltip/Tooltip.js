@@ -2,17 +2,17 @@
 var t = require("../../../node_modules/tslib/tslib.es6.js"),
   e = require("react");
 require("./Tooltip.scss.js");
-var o = require("../../assets/svg-components/Action/index.js");
+var o = require("../../assets/svg-components/Nitrozen/index.js");
 function n(t) {
   return t && "object" == typeof t && "default" in t ? t : { default: t };
 }
 var l = n(e);
-const i = (e) => {
+const r = (e) => {
   const {
       position: o,
       tooltipContent: n,
-      children: i,
-      icon: r,
+      children: r,
+      icon: i,
       className: s,
       style: a,
       contentColor: c,
@@ -45,7 +45,7 @@ const i = (e) => {
         },
         p
       ),
-      ((t, e) => t || e || void 0)(i, r),
+      ((t, e) => t || e || void 0)(r, i),
       l.default.createElement(
         "span",
         {
@@ -69,13 +69,13 @@ const i = (e) => {
     )
   );
 };
-i.defaultProps = {
+r.defaultProps = {
   contentBgColor: "#3d3d3d",
   contentColor: "#ffffff",
-  icon: l.default.createElement(o.SvgInfo, null),
+  icon: l.default.createElement(o.SvgIcInfo, null),
   position: "top",
   tooltipContent: "Tooltip text",
 };
-var r = l.default.memo(i);
-module.exports = r;
+var i = l.default.memo(r);
+module.exports = i;
 //# sourceMappingURL=Tooltip.js.map

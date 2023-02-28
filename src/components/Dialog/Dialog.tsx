@@ -1,5 +1,5 @@
 import React from "react";
-import { SvgClose } from "../../assets/svg-components";
+import { SvgIcClose } from "../../assets/svg-components";
 import NitrozenId from "../../utils/uuids";
 import Button from "../Button";
 import "./Dialog.scss";
@@ -128,7 +128,7 @@ const Dialog = (props: DialogProps) => {
                   )}
                 </header>
                 {isClosable && (
-                  <SvgClose className="n-closebtn" onClick={close} />
+                  <SvgIcClose className="n-closebtn" onClick={close} />
                 )}
               </div>
 

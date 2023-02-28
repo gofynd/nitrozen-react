@@ -3,12 +3,12 @@ import t, { useState as n, useRef as a, useEffect as i } from "react";
 import r from "../../utils/uuids.js";
 import l from "../Dropdown/Dropdown.js";
 import "./Pagination.scss.js";
-import { SvgSearchLogo as c } from "../../assets/svg-components/Action/index.js";
+import { usePagination as c } from "./usePagination.js";
 import {
-  SvgLeft as s,
-  SvgRight as o,
-} from "../../assets/svg-components/Navigation/index.js";
-import { usePagination as u } from "./usePagination.js";
+  SvgIcChevronLeft as s,
+  SvgIcSearch as o,
+  SvgIcChevronRight as u,
+} from "../../assets/svg-components/Nitrozen/index.js";
 var m;
 !(function (e) {
   (e.MODE_REGULAR = "regular"), (e.MODE_CURSOR = "cursor");
@@ -46,8 +46,8 @@ const g = (r) => {
     [k, D] = n(["0"]),
     [y, U] = n(0),
     [z, I] = n(1),
-    [A, L] = n(!1),
-    T = a(!0);
+    [L, T] = n(!1),
+    A = a(!0);
   function B() {
     return j.limit && j.limit > 0 ? j.total && Math.ceil(j.total / j.limit) : 0;
   }
@@ -100,16 +100,16 @@ const g = (r) => {
               null === (t = window.screen) || void 0 === t ? void 0 : t.width
             );
           if (Math.min(...n) <= 768) {
-            const e = u(4, j.total, j.limit, 1, j.current);
+            const e = c(4, j.total, j.limit, 1, j.current);
             S(e);
           } else {
-            const e = u(5, j.total, j.limit, 2, j.current);
+            const e = c(5, j.total, j.limit, 2, j.current);
             S(e);
           }
         })();
     }, [j]),
     i(() => {
-      (null == T ? void 0 : T.current) ? (T.current = !1) : null == f || f(j);
+      (null == A ? void 0 : A.current) ? (A.current = !1) : null == f || f(j);
     }, [j]),
     t.createElement(
       "div",
@@ -139,7 +139,7 @@ const g = (r) => {
         t.createElement(
           "div",
           { className: "n-pagination__main" },
-          !A &&
+          !L &&
             t.createElement(
               t.Fragment,
               null,
@@ -198,7 +198,7 @@ const g = (r) => {
                             e
                           )
                         );
-                  L(!0);
+                  T(!0);
                 })(),
                 M
                   ? t.createElement(
@@ -217,7 +217,7 @@ const g = (r) => {
                         t.createElement(
                           "div",
                           { className: "n-pagination__search_logo" },
-                          t.createElement(c, { className: "search-icon" })
+                          t.createElement(o, { className: "search-icon" })
                         ),
                         t.createElement(
                           "div",
@@ -312,7 +312,7 @@ const g = (r) => {
                     ) && "pagination-diabled"
                   } `,
                 },
-                t.createElement(o, null)
+                t.createElement(u, null)
               )
             )
         ),

@@ -5,7 +5,7 @@ import n, {
   useRef as l,
   useEffect as i,
 } from "react";
-import { SvgMoreHoriz as r } from "../../assets/svg-components/Navigation/index.js";
+import { SvgIcMoreHorizontal as r } from "../../assets/svg-components/Nitrozen/index.js";
 import "./Menu.scss.js";
 import c from "../../utils/uuids.js";
 const s = (t) => {
@@ -58,13 +58,13 @@ const s = (t) => {
         "undefined" != typeof document)
       )
         return (
-          document.addEventListener("click", H),
+          document.addEventListener("click", z),
           () => {
-            document.removeEventListener("click", H);
+            document.removeEventListener("click", z);
           }
         );
     }, []);
-  const H = (e) => {
+  const z = (e) => {
     !(null == j ? void 0 : j.current) ||
     j.current.contains(e.target) ||
     (null == k ? void 0 : k.current)

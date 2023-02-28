@@ -1,7 +1,7 @@
 import React from "react";
 import "./Icons.scss";
 import { ComponentStory } from "@storybook/react";
-import { SvgDone, SvgContentCopy } from "../../assets/svg-components";
+import { SvgIcConfirm, SvgIcCopy } from "../../assets/svg-components";
 interface IconProp {
   className?: string;
   color?: string;
@@ -10,7 +10,7 @@ interface IconProp {
 }
 declare const _default: {
   title: string;
-  component: typeof SvgContentCopy;
+  component: typeof SvgIcCopy;
   argTypes: {
     className: {
       control: string;
@@ -29,5 +29,5 @@ declare const _default: {
   };
 };
 export default _default;
-export declare const SvgExample: ComponentStory<typeof SvgDone>;
+export declare const SvgExample: ComponentStory<typeof SvgIcConfirm>;
 export declare const SvgLists: ComponentStory<(props: IconProp) => JSX.Element>;

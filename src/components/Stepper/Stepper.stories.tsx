@@ -1,11 +1,6 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
-import {
-  SvgStore,
-  SvgHourglassEmpty,
-  SvgAddLocation,
-  SvgQuestionMark,
-} from "../../assets/svg-components";
+import { SvgIcExchange } from "../../assets/svg-components";
 import Stepper, { ItemsType, StepperProps, StepState } from "./Stepper";
 
 export default {
@@ -61,46 +56,7 @@ const HORIZONTAL_STEPPER_ITEMS: ItemsType = [
   {
     name: "Step Label 6",
     state: StepState.Current,
-    icon: SvgQuestionMark,
-  },
-];
-
-const VERTICAL_STEPPER_ITEMS = [
-  {
-    name: "Step 1",
-    description:
-      "Lorem ipsum dolor sit amet consectetur Maxime mollitia, Maxime mollitia Maxime mollitia commodi repudiandae",
-    isCompleted: true,
-    buttonText: "View Status",
-  },
-  {
-    name: "Miscellaneous Stepper state with huge text count",
-    buttonText: "Complete",
-  },
-  {
-    name: "Step 2",
-    description:
-      "Lorem ipsum dolor sit amet consectetur Maxime mollitia Maxime mollitia Maxime mollitia, commodi repudiandae",
-    icon: SvgStore,
-  },
-  {
-    name: "Step 3",
-    description:
-      "Lorem ipsum dolor sit amet consectetur Maxime mollitia, commodi repudiandae ",
-    buttonText: "Complete",
-    icon: SvgAddLocation,
-    buttonStyles: {
-      background: "rgba(0, 0, 0, 0.3)",
-      pointerEvents: "none",
-    },
-  },
-  {
-    name: "Step 4",
-    description:
-      "Lorem ipsum dolor sit amet consectetur Maxime mollitia, commodi repudiandae",
-    isInactive: true,
-    buttonText: "Complete",
-    icon: SvgHourglassEmpty,
+    icon: SvgIcExchange,
   },
 ];
 

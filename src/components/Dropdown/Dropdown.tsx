@@ -5,9 +5,9 @@ import Checkbox from "../Checkbox";
 import Validation from "../Validation";
 import "./Dropdown.scss";
 import {
-  SvgAdd,
+  SvgIcAdd,
   SvgIcInfo,
-  SvgKeyboardArrowDown,
+  SvgIcChevronDown,
 } from "../../assets/svg-components";
 
 interface ItemProps {
@@ -353,9 +353,7 @@ const Dropdown = (props: DropdownProps) => {
               )}
 
               <div className="n-dropdown-arrow">
-                <SvgKeyboardArrowDown
-                  style={{ width: "20px", height: "20px" }}
-                />
+                <SvgIcChevronDown style={{ width: "20px", height: "20px" }} />
               </div>
             </div>
           </div>
@@ -469,7 +467,7 @@ const Dropdown = (props: DropdownProps) => {
                       className="n-dropdown-empty"
                       onClick={addOption}
                     >
-                      <SvgAdd />
+                      <SvgIcAdd />
                       <p>Add {searchInput}</p>
                     </div>
                   </div>

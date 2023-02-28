@@ -1,7 +1,7 @@
 import { __rest as e } from "../../../node_modules/tslib/tslib.es6.js";
 import t, { useState as l, useEffect as a } from "react";
 import o from "../Validation/Validation.js";
-import { SvgHelpOutline as i } from "../../assets/svg-components/Action/index.js";
+import { SvgIcHelp as i } from "../../assets/svg-components/Nitrozen/index.js";
 import n from "../Tooltip/Tooltip.js";
 import "./Code.scss.js";
 const d = (d) => {

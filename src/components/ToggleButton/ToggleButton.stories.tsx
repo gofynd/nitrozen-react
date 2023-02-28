@@ -105,14 +105,14 @@ export const iconDemo = () => {
           <ToggleButton
             id={`${size} + 5`}
             showIcon={true}
-            icon={SvgArray.SvgAutoMode}
+            icon={SvgArray.SvgIc4GBarNoNetwork}
             labelText="Text"
             size={size}
           />
           <ToggleButton
             id={`${size} + 6`}
             showIcon={true}
-            icon={SvgArray.SvgAutoMode}
+            icon={SvgArray.SvgIc4GBarNoNetwork}
             labelText="Text"
             size={size}
             value={true}
@@ -120,7 +120,7 @@ export const iconDemo = () => {
           <ToggleButton
             id={`${size} + 7`}
             showIcon={true}
-            icon={SvgArray.SvgAutoMode}
+            icon={SvgArray.SvgIc4GBarNoNetwork}
             labelText="Text"
             size={size}
             disabled={true}
@@ -128,7 +128,7 @@ export const iconDemo = () => {
           <ToggleButton
             id={`${size} + 8`}
             showIcon={true}
-            icon={SvgArray.SvgAutoMode}
+            icon={SvgArray.SvgIc4GBarNoNetwork}
             labelText="Text"
             size={size}
             disabled={true}
@@ -150,7 +150,7 @@ export const stateIconDemo = () => {
           <ToggleButton
             id={`${size} + 9`}
             showIcon={true}
-            icon={SvgArray.SvgAutoMode}
+            icon={SvgArray.SvgIc4GBarNoNetwork}
             labelText="Text"
             size={size}
             state="success"
@@ -159,7 +159,7 @@ export const stateIconDemo = () => {
           <ToggleButton
             id={`${size} + 10`}
             showIcon={true}
-            icon={SvgArray.SvgAutoMode}
+            icon={SvgArray.SvgIc4GBarNoNetwork}
             labelText="Text"
             size={size}
             value={true}
@@ -169,7 +169,7 @@ export const stateIconDemo = () => {
           <ToggleButton
             id={`${size} + 11`}
             showIcon={true}
-            icon={SvgArray.SvgAutoMode}
+            icon={SvgArray.SvgIc4GBarNoNetwork}
             labelText="Text"
             size={size}
             disabled={true}
@@ -179,7 +179,7 @@ export const stateIconDemo = () => {
           <ToggleButton
             id={`${size} + 12`}
             showIcon={true}
-            icon={SvgArray.SvgAutoMode}
+            icon={SvgArray.SvgIc4GBarNoNetwork}
             labelText="Text"
             size={size}
             disabled={true}
