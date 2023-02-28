@@ -137,6 +137,7 @@
       position: absolute;
       cursor: pointer;
       color: $ColorPrimaryGrey80;
+      width: max-content;
 
       &:hover {
         color: $ColorPrimaryGrey100;
