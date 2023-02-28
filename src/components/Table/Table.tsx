@@ -14,12 +14,12 @@ export interface TableProps {
   rowStyle: string;
   headerBackground?: string;
   customSortIcon?: React.ReactNode;
-  checkable?: Boolean;
+  checkable?: boolean;
   onRowClick?: (index: number) => void;
-  allChecked?: Boolean;
+  allChecked?: boolean;
   getCheckedItems?: Function;
   allCheckClicked?: Function;
-  showColumnDivider?: Boolean;
+  showColumnDivider?: boolean;
 }
 
 const Table: React.FC<TableProps> = (props) => {
