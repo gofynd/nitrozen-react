@@ -1,8 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef, ChangeEvent } from "react";
 import NitrozenId from "../../utils/uuids";
 import Dropdown from "../Dropdown";
 import "./Pagination.scss";
-import { SvgChevronLeft, SvgChevronRight } from "../../assets/svg-components";
+import { usePagination } from "./usePagination";
+import {
+  SvgIcSearch,
+  SvgIcChevronLeft,
+  SvgIcChevronRight,
+} from "../../assets/svg-components";
 
 export enum ModeEnum {
   MODE_REGULAR = "regular",
@@ -29,6 +34,12 @@ export interface PaginationProps {
   className?: string;
   style?: React.CSSProperties;
 }
+export interface paginationInterface {
+  totalCount: number;
+  pageSize: number;
+  siblingCount: number;
+  currentPage: number;
+}
 
 const Pagination = (props: PaginationProps) => {
   const {
@@ -45,12 +56,33 @@ const Pagination = (props: PaginationProps) => {
     ...restProps
   } = props;
   const [value, setValue] = useState<ConfigProps>(propValue);
-  const [selectedPageSize, setSelectedPageSize] = useState<any>(
+  const [selectedPageSize, setSelectedPageSize] = useState<number>(
     pageSizeOptions && pageSizeOptions.length > 0 ? pageSizeOptions[0] : 10
   );
+  const refSearchBox = useRef<HTMLDivElement>(null);
+  const [paginationRange, setPaginationRange] = useState<number[]>([
+    1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
+  ]);
+  const [openPopup, setopenPopup] = useState(false);
+  const [searchListPages, setSearchListPages] = useState<string[]>(["0"]);
+  const [searchValue, setSearchValue] = useState(0);
+  const [popupPosition, setPopupPosition] = useState(1);
+  const [showSinglePage, setShowSinglePage] = useState(false);
+  const isFirstRender = useRef<boolean>(true);
+
   useEffect(() => {
     setDefaults();
-  }, []);
+    onPaginationRange();
+  }, [value]);
+
+  useEffect(() => {
+    if (isFirstRender?.current) {
+      isFirstRender.current = false;
+      return;
+    }
+    change();
+  }, [value]);
+
   function setDefaults() {
     if (!value.current) {
       setValue({ ...value, current: 1 });
@@ -67,7 +99,6 @@ const Pagination = (props: PaginationProps) => {
       if (!value.prevPage) return;
       setValue({ ...value, nextPage: "", currentPage: value.prevPage });
     }
-    change();
     onPreviousClick?.();
   }
   function next() {
@@ -88,7 +119,6 @@ const Pagination = (props: PaginationProps) => {
       if (!value.nextPage) return;
       setValue({ ...value, prevPage: "", currentPage: value.nextPage });
     }
-    change();
     onNextClick?.();
   }
   function pageSizeChange(size: number) {
@@ -105,7 +135,6 @@ const Pagination = (props: PaginationProps) => {
       setValue({ ...value, current: 1, limit: size });
     }
     setSelectedPageSize(size);
-    change();
   }
   function change() {
     onChange?.(value);
@@ -117,6 +146,7 @@ const Pagination = (props: PaginationProps) => {
     return 0;
   }
   function pageSizes() {
+    let maxPageCount = 1800;
     const po = pageSizeOptions
       ? pageSizeOptions.map((p) => {
           return { text: p.toString(), value: p.toString() };
@@ -124,7 +154,9 @@ const Pagination = (props: PaginationProps) => {
       : [];
     if (!selectedPageSize) {
       setSelectedPageSize(
-        value.limit ? value.limit : po.length > 0 ? po[0].value : 10
+        Number(
+          value.limit ? value.limit : po.length > 0 ? po[0].value : maxPageCount
+        )
       );
     }
     return po;
@@ -144,11 +176,136 @@ const Pagination = (props: PaginationProps) => {
         : value.total)
     );
   }
+  function onPaginationRange() {
+    // Check if the media query is true
+    const widths = [window.innerWidth];
+    if (window.screen?.width) {
+      widths.push(window.screen?.width);
+    }
+    const width = Math.min(...widths);
+
+    if (width <= 768) {
+      const paginationRange = usePagination(
+        4,
+        value.total,
+        value.limit,
+        1,
+        value.current
+      );
+      setPaginationRange(paginationRange);
+    } else {
+      const paginationRange = usePagination(
+        5,
+        value.total,
+        value.limit,
+        2,
+        value.current
+      );
+      setPaginationRange(paginationRange);
+    }
+  }
+  function listNodeItems() {
+    if (paginationRange.length > 1) {
+      return paginationRange?.map((i: any, index: any) => (
+        <div
+          key={index}
+          id={index + "node"}
+          onClick={(e) => selectedNode(e, i, index)}
+          className={`n-pagination__number_inactive ${
+            i === value.current && "n-pagination__number_active"
+          } ${
+            i === "..." &&
+            popupPosition === index &&
+            openPopup &&
+            "n-pagination__dot_active"
+          }`}
+        >
+          {i}
+        </div>
+      ));
+    } else {
+      setShowSinglePage(true);
+    }
+  }
+  function selectedNode(e: any, i: any, index: any) {
+    if (i == "...") {
+      let totalPage =
+        value.total && value.limit && Math.ceil(value.total / value.limit);
+
+      let rangeStart = paginationRange[index - 1];
+      let rangeEnd = totalPage;
+
+      if (paginationRange[index + 1] == totalPage) {
+        rangeEnd = totalPage;
+      } else {
+        rangeEnd = paginationRange[index + 1];
+      }
+      //calcluate range for search box
+      let rangeList = range(rangeStart, rangeEnd, 1);
+      setPopupPosition(index);
+      setSearchListPages(rangeList);
+      document.addEventListener("click", handleOutsideClick, false);
+      if (index == popupPosition) setopenPopup(!openPopup);
+      else setopenPopup(true);
+    } else {
+      setopenPopup(false);
+      setValue({ ...value, current: i });
+    }
+    return;
+  }
+  function handleOutsideClick(event: any) {
+    if (
+      refSearchBox.current &&
+      !refSearchBox.current.contains(event.target as Node)
+    ) {
+      setopenPopup(false);
+    }
+  }
+  function range(start: any, stop: any, step: any) {
+    let a = [start],
+      b = start;
+    while (b < stop) {
+      a.push((b += step || 1));
+    }
+    return a;
+  }
+  function displaySearchPaginationList() {
+    return searchListPages.map((i: any, index: any) => (
+      <div
+        key={index}
+        id={i}
+        onClick={(e) => selectedNode(e, i, index)}
+        className={`n-pagination__search_number_inactive ${
+          i === searchValue && "n-pagination__search_number_active"
+        }`}
+      >
+        {i}
+      </div>
+    ));
+  }
+  function onSearchInputChnage(e: ChangeEvent<HTMLInputElement>) {
+    let totalPage =
+      value.total && value.limit && Math.ceil(value.total / value.limit);
+    let inputValue = Number(e.target.value);
+    if (inputValue <= (totalPage ? totalPage : 0)) {
+      if (!e.target.value) {
+        const ele = document.getElementById(searchListPages[0]);
+        ele?.scrollIntoView();
+        return;
+      }
+
+      const ele = document.getElementById(e.target.value);
+      ele?.scrollIntoView();
+    } else {
+      e.target.value = e.target.value.slice(0, -1);
+    }
+    return setSearchValue(inputValue);
+  }
   function countsText() {
     let txt = " ";
     if (showTotal()) {
-      txt = `Result ${firstRecord()} - ${lastRecord()}`;
-      txt += ` of ${value.total}`;
+      txt = `Showing ${firstRecord()} - ${lastRecord()}`;
+      txt += ` of ${value.total} results`;
     } else if (value.currentTotal) {
       txt = `Showing ${value.currentTotal} ${name}`;
     } else {
@@ -182,54 +339,95 @@ const Pagination = (props: PaginationProps) => {
   }
   return (
     <div
-      className={`nitrozen-pagination-container ${className ?? ""}`}
+      className={`n-pagination-container ${className ?? ""}`}
       style={style ?? {}}
       id={id}
       {...restProps}
     >
-      <div className="nitrozen-pagination">
-        <div className="nitrozen-pagination__left">
+      <div className="n-pagination">
+        <div className="n-pagination__left">
+          <span className="n-pagination__count" data-testid="pagination-count">
+            {countsText()}
+          </span>
+        </div>
+        <div className="n-pagination__main">
+          {!showSinglePage && (
+            <>
+              <div
+                data-testid="btnPrevious"
+                onClick={previous}
+                className={`n-pagination__prev ${
+                  !showPrev() && "pagination-diabled"
+                }`}
+              >
+                <SvgIcChevronLeft />
+              </div>
+              <div className="n-pagination__number" ref={refSearchBox}>
+                {listNodeItems()}
+                {openPopup ? (
+                  <div
+                    className={`n-pagination__showpopup ${
+                      popupPosition === 1
+                        ? "n-pagination__popup_left"
+                        : "n-pagination__popup_right"
+                    }`}
+                    id="menu"
+                  >
+                    <div className="n-pagination__search_input">
+                      <div className="n-pagination__search_logo">
+                        <SvgIcSearch className="search-icon" />
+                      </div>
+                      <div className="text-input-wrapper">
+                        <input
+                          id="input_box"
+                          type="number"
+                          className="n-input"
+                          placeholder="Search page"
+                          onChange={(e) => onSearchInputChnage(e)}
+                        />
+                      </div>
+                    </div>
+                    <div
+                      className="n-pagination__search_wrapper"
+                      id="search_wrapper"
+                    >
+                      {displaySearchPaginationList()}
+                    </div>
+                  </div>
+                ) : (
+                  ""
+                )}
+              </div>
+              <div
+                data-testid="btnNext"
+                onClick={next}
+                className={`n-pagination__next ${
+                  !showNext() && "pagination-diabled"
+                } `}
+              >
+                <SvgIcChevronRight />
+              </div>
+            </>
+          )}
+        </div>
+        <div className="n-pagination__left mobile_view">
           <span
-            className="nitrozen-pagination__count"
-            data-testid="pagination-count"
+            className="n-pagination__count"
+            data-testid="pagination-count-mobile-view"
           >
             {countsText()}
           </span>
         </div>
-        <div className="nitrozen-pagination__right">
-          <div className="nitrozen-pagination__select">
-            <span className="nitrozen-pagination__select__label">
-              Rows per page
-            </span>
+        <div className="n-pagination__right">
+          <span className="n-pagination__select__label">Rows per page</span>
+          <div className="n-pagination__select">
             <Dropdown
-              className="nitrozen-pagination-page-size"
+              className="n-pagination-page-size"
               items={pageSizes()}
               value={selectedPageSize}
               onChange={pageSizeChange}
             />
           </div>
-          {mode === ModeEnum.MODE_REGULAR && (
-            <>
-              <div
-                data-testid="btnPrevious"
-                onClick={previous}
-                className={`nitrozen-pagination__prev ${
-                  !showPrev() && "pagination-diabled"
-                }`}
-              >
-                <SvgChevronLeft />
-              </div>
-              <div
-                data-testid="btnNext"
-                onClick={next}
-                className={`nitrozen-pagination__next ${
-                  !showNext() && "pagination-diabled"
-                } `}
-              >
-                <SvgChevronRight />
-              </div>
-            </>
-          )}
         </div>
       </div>
     </div>
@@ -237,7 +435,7 @@ const Pagination = (props: PaginationProps) => {
 };
 
 Pagination.defaultProps = {
-  id: `nitrozen-pagination-${NitrozenId()}`,
+  id: `n-pagination-${NitrozenId()}`,
   mode: ModeEnum.MODE_REGULAR,
   pageSizeOptions: [10, 20, 50, 100],
   value: {

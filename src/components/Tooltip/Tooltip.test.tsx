@@ -1,7 +1,7 @@
 import React from "react";
 import { render, cleanup, fireEvent, screen } from "@testing-library/react";
 import Tooltip from "./Tooltip";
-import { SvgInfo } from "../../assets/svg-components/Action";
+import { SvgIcInfo } from "../../assets/svg-components";
 afterEach(cleanup);
 
 describe("Render a Tooltip component", () => {
@@ -10,7 +10,7 @@ describe("Render a Tooltip component", () => {
       <Tooltip
         tooltipContent="heyy I am a tooltip"
         data-testid="icon-component"
-        icon={<SvgInfo />}
+        icon={<SvgIcInfo />}
         position="top"
       />
     );
@@ -32,7 +32,7 @@ describe("Render a Tooltip component", () => {
     render(
       <Tooltip
         tooltipContent="heyy I am a tooltip"
-        icon={<SvgInfo />}
+        icon={<SvgIcInfo />}
         position="top"
         link="https:www/example.com"
         linkText="example.com"

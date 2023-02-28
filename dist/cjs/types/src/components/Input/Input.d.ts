@@ -38,6 +38,9 @@ export interface InputProps {
   onPrefixClick?: React.MouseEventHandler<
     HTMLTextAreaElement | HTMLInputElement
   >;
+  tooltipText?: string;
+  showTooltip?: boolean;
+  tooltipIcon?: React.ReactNode;
 }
 declare const _default: React.MemoExoticComponent<{
   (props: InputProps): JSX.Element;
@@ -64,6 +67,7 @@ declare const _default: React.MemoExoticComponent<{
     stateText: string;
     onSuffixClick: () => void;
     onPrefixClick: () => void;
+    tooltip: null;
   };
 }>;
 export default _default;

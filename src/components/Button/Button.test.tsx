@@ -265,7 +265,7 @@ describe("Button", () => {
         onClick={() => {}}
         id="btn"
         name="btn"
-        icon={SvgArray.Svg124}
+        icon={SvgArray.SvgIc4G}
       >
         Submit
       </Button>
@@ -283,7 +283,7 @@ describe("Button", () => {
         onClick={() => {}}
         id="btn"
         name="btn"
-        iconRight={SvgArray.Svg124}
+        iconRight={SvgArray.SvgIc4G}
       >
         Submit
       </Button>

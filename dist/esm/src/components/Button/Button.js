@@ -1,10 +1,9 @@
 import { __rest as e } from "../../../node_modules/tslib/tslib.es6.js";
 import t from "react";
-import s from "../../assets/loader.gif.js";
 import n from "../../../node_modules/classnames/index.js";
 import "./Button.scss.js";
-const i = (s) => {
-    const i = () =>
+const s = (s) => {
+    const a = () =>
         n({
           "n-button-rounded": s.rounded,
           "n-button-primary": "primary" === s.theme,
@@ -74,50 +73,50 @@ const i = (s) => {
           Object.assign(
             {
               href: s.href,
-              className: `n-button ripple ripple-anchor ${i()} ${
+              className: `n-button ripple ripple-anchor ${a()} ${
                 s.className && s.className
               }`,
             },
             r()
           ),
-          t.createElement(a, Object.assign({}, s))
+          t.createElement(i, Object.assign({}, s))
         )
       : "div" == s.as
       ? t.createElement(
           "div",
           Object.assign(
             {
-              className: `n-button ripple ${i()} ${s.className && s.className}`,
+              className: `n-button ripple ${a()} ${s.className && s.className}`,
             },
             r()
           ),
-          t.createElement(a, Object.assign({}, s))
+          t.createElement(i, Object.assign({}, s))
         )
       : "span" == s.as
       ? t.createElement(
           "span",
           Object.assign(
             {
-              className: `n-button ripple ${i()} ${s.className && s.className}`,
+              className: `n-button ripple ${a()} ${s.className && s.className}`,
             },
             r()
           ),
-          t.createElement(a, Object.assign({}, s))
+          t.createElement(i, Object.assign({}, s))
         )
       : t.createElement(
           "button",
           Object.assign(
             {
-              className: `n-button ripple ${i()} ${s.className && s.className}`,
+              className: `n-button ripple ${a()} ${s.className && s.className}`,
             },
             r()
           ),
-          t.createElement(a, Object.assign({}, s))
+          t.createElement(i, Object.assign({}, s))
         );
   },
-  a = (e) => {
-    const i = e.icon,
-      a = e.iconRight;
+  i = (e) => {
+    const s = e.icon,
+      i = e.iconRight;
     return t.createElement(
       "div",
       { className: "n-button-content" },
@@ -126,7 +125,7 @@ const i = (s) => {
         t.createElement(
           "div",
           { className: "n-btn-social-icon" },
-          t.createElement(i, {
+          t.createElement(s, {
             className: n({
               "n-icon-small": "small" === e.size,
               "n-icon": "medium" === e.size,
@@ -143,7 +142,7 @@ const i = (s) => {
           t.createElement("img", {
             className: "n-btn-spinner",
             style: { width: "50px" },
-            src: s,
+            src: "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyprod/wrkr/misc/general/free/original/loader.gif",
           })
         ),
       !e.showProgress &&
@@ -152,7 +151,7 @@ const i = (s) => {
         t.createElement(
           "div",
           { className: "social-icon-right" },
-          t.createElement(a, {
+          t.createElement(i, {
             className: n({
               "n-icon-small": "small" === e.size,
               "n-icon": "medium" === e.size,
@@ -163,7 +162,7 @@ const i = (s) => {
         )
     );
   };
-i.defaultProps = {
+s.defaultProps = {
   href: null,
   disabled: !1,
   rounded: !0,
@@ -180,6 +179,6 @@ i.defaultProps = {
   icon: null,
   name: null,
 };
-var r = t.memo(i);
-export { r as default };
+var a = t.memo(s);
+export { a as default };
 //# sourceMappingURL=Button.js.map

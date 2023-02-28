@@ -17,6 +17,7 @@ declare const _default: ComponentMeta<{
     onIconClick: () => void;
     checkArray: null;
     ref: null;
+    isIndeterminate: boolean;
   };
 }>;
 export default _default;
@@ -38,6 +39,7 @@ export declare const SingleCheckbox: ComponentStory<{
     onIconClick: () => void;
     checkArray: null;
     ref: null;
+    isIndeterminate: boolean;
   };
 }>;
 export declare const Basic_checkbox: (args: any) => JSX.Element;

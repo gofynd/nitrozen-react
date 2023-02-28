@@ -5,35 +5,35 @@ function e(t) {
 }
 require("./Toast.scss.js");
 var a = e(t);
-const s = (e) => {
+const o = (e) => {
   const {
-    destroy: s,
-    content: i = "Support text",
-    title: o,
-    duration: r,
-    id: n,
+    destroy: o,
+    content: s = "Support text",
+    title: i,
+    duration: n,
+    id: r,
     shouldClose: l,
-    leftIconPosition: c,
-    rightIconPosition: d,
+    leftIconPosition: d,
+    rightIconPosition: c,
     toastWidth: m = "38.4rem",
     leftImage: u,
     rightImage: f,
-    position: g,
+    position: p,
   } = e;
   return (
     t.useEffect(() => {
-      if (!r) return;
+      if (!n) return;
       const t = setTimeout(() => {
-        s();
-      }, r);
+        o();
+      }, n);
       return () => clearTimeout(t);
-    }, [s, r]),
+    }, [o, n]),
     a.default.createElement(
       "div",
       {
         style: { width: m },
-        id: n,
-        className: `n-toast-wrapper n-toast-wrapper-${g}`,
+        id: r,
+        className: `n-toast-wrapper n-toast-wrapper-${p}`,
       },
       a.default.createElement(
         "div",
@@ -41,7 +41,7 @@ const s = (e) => {
         a.default.createElement(
           "div",
           {
-            className: `n-toast-left-image n-toast-${c}`,
+            className: `n-toast-left-image n-toast-${d}`,
             "data-testid": "left-image",
           },
           u
@@ -54,15 +54,15 @@ const s = (e) => {
             {
               className: "n-toast-header " + (l ? "n-toast-space-between" : ""),
             },
-            o
+            i
           ),
-          i &&
+          s &&
             a.default.createElement(
               "div",
               {
                 className: "n-toast-body " + (l ? "n-toast-space-between" : ""),
               },
-              i
+              s
             )
         )
       ),
@@ -70,30 +70,24 @@ const s = (e) => {
         a.default.createElement(
           "div",
           {
-            className: `n-toast-right-image n-toast-${d}`,
+            className: `n-toast-right-image n-toast-${c}`,
             "data-testid": "right-image",
-            onClick: s,
+            onClick: o,
           },
           f
         )
     )
   );
 };
-s.defaultProps = {
+o.defaultProps = {
   title: "Title",
   toastWidth: "38.4rem",
   position: "top-center",
   leftIconPosition: "top-align",
   rightIconPosition: "top-align",
   shouldClose: !1,
-  leftImage: a.default.createElement("img", {
-    src: require("../../assets/left-placeholder.svg"),
-  }),
-  rightImage: a.default.createElement("img", {
-    src: require("../../assets/right-placeholder.svg"),
-  }),
   duration: 2500,
 };
-var i = t.memo(s, (t, e) => t.id === e.id);
-module.exports = i;
+var s = t.memo(o, (t, e) => t.id === e.id);
+module.exports = s;
 //# sourceMappingURL=Toast.js.map

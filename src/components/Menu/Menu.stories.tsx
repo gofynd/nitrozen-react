@@ -4,7 +4,7 @@ import Menu, { MenuProps } from "./Menu";
 import MenuItem from "../MenuItem";
 import "./Menu.scss";
 import Button from "../Button";
-import { SvgAddAlarm } from "../../assets/svg-components";
+import { SvgIcAlarm } from "../../assets/svg-components";
 import NitrozenId from "../../utils/uuids";
 
 export default {
@@ -245,7 +245,7 @@ PrimaryMenu.args = {
   mode: "vertical",
   position: "bottom",
   inverted: false,
-  icon: <SvgAddAlarm />,
+  icon: <SvgIcAlarm />,
   maxHeight: undefined,
   open: false,
   selectedIndex: 2,

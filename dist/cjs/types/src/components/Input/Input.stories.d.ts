@@ -26,6 +26,7 @@ declare const _default: ComponentMeta<
       stateText: string;
       onSuffixClick: () => void;
       onPrefixClick: () => void;
+      tooltip: null;
     };
   }>
 >;
@@ -56,6 +57,7 @@ export declare const Textfield: ComponentStory<
       stateText: string;
       onSuffixClick: () => void;
       onPrefixClick: () => void;
+      tooltip: null;
     };
   }>
 >;
@@ -85,6 +87,7 @@ export declare const Textarea: ComponentStory<
       stateText: string;
       onSuffixClick: () => void;
       onPrefixClick: () => void;
+      tooltip: null;
     };
   }>
 >;

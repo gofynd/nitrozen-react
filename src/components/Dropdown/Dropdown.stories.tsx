@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import Dropdown from "./Dropdown";
 import * as SvgArray from "../../assets/svg-components";
-import { Svg10Mp } from "../../assets/svg-components";
+import { SvgIcFlag } from "../../assets/svg-components";
 
 export default {
   title: "Components/Input/Dropdown",
@@ -227,7 +227,7 @@ export const Search = () => {
               { text: newValue, value: 101 },
             ]);
           }}
-          prefixIcon={SvgArray.Svg10Mp}
+          prefixIcon={SvgIcFlag}
         />
       </div>
     </div>

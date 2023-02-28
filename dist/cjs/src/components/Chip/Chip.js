@@ -2,7 +2,7 @@
 var e = require("../../../node_modules/tslib/tslib.es6.js"),
   t = require("react");
 require("./Chip.scss.js");
-var a = require("../../assets/svg-components/Jio/index.js");
+var a = require("../../assets/svg-components/Nitrozen/index.js");
 function l(e) {
   return e && "object" == typeof e && "default" in e ? e : { default: e };
 }

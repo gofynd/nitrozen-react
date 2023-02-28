@@ -1,6 +1,6 @@
 import React from "react";
 import "./Tooltip.scss";
-import { SvgInfo } from "../../assets/svg-components/Action";
+import { SvgIcInfo } from "../../assets/svg-components";
 export type Position =
   | "top"
   | "bottom"
@@ -96,7 +96,7 @@ const Tooltip = (props: TooltipProps) => {
 Tooltip.defaultProps = {
   contentBgColor: "#3d3d3d",
   contentColor: "#ffffff",
-  icon: <SvgInfo />,
+  icon: <SvgIcInfo />,
   position: "top",
   tooltipContent: "Tooltip text",
 };

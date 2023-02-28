@@ -5,7 +5,7 @@ require("./Input.scss.js");
 var n = require("./InputPrefix.js"),
   a = require("./InputSuffix.js"),
   l = require("../../utils/uuids.js"),
-  o = require("../../assets/svg-components/Action/index.js"),
+  o = require("../../assets/svg-components/Nitrozen/index.js"),
   u = require("../Tooltip/Tooltip.js"),
   i = require("../Validation/Validation.js");
 function r(e) {
@@ -34,22 +34,22 @@ const c = (l) => {
       max: P,
       onKeyUp: k,
       onKeyPress: q,
-      onChange: j,
-      onBlur: w,
-      onFocus: T,
-      onClick: I,
+      onChange: I,
+      onBlur: j,
+      onFocus: w,
+      onClick: T,
       className: K,
       style: F,
       helperText: B,
       state: L,
       stateText: U,
-      onPrefixClick: O,
-      onSuffixClick: _,
+      onPrefixClick: _,
+      onSuffixClick: z,
       tooltipText: H,
-      showTooltip: V,
-      tooltipIcon: z,
+      showTooltip: O,
+      tooltipIcon: V,
     } = l,
-    A = e.__rest(l, [
+    R = e.__rest(l, [
       "autoComplete",
       "type",
       "label",
@@ -85,13 +85,13 @@ const c = (l) => {
       "showTooltip",
       "tooltipIcon",
     ]),
-    [R, D] = t.useState(x || ""),
+    [A, D] = t.useState(x || ""),
     G = t.useRef(null),
     [J, M] = t.useState(""),
     [Q, W] = t.useState(""),
     [X, Y] = t.useState("");
   function Z(e) {
-    D(e.target.value), null == j || j(e);
+    D(e.target.value), null == I || I(e);
   }
   function ee() {
     M("n-focused-label" + (C || h ? "-prefixed" : "")), W("n-border-focused");
@@ -128,7 +128,7 @@ const c = (l) => {
               f,
               " ",
               m ? " *" : "",
-              V &&
+              O &&
                 s.default.createElement(
                   "span",
                   { className: "n-input-tooltip" },
@@ -136,8 +136,8 @@ const c = (l) => {
                     s.default.createElement(u, {
                       tooltipContent: H,
                       icon:
-                        z ||
-                        s.default.createElement(o.SvgHelpOutline, {
+                        V ||
+                        s.default.createElement(o.SvgIcHelp, {
                           style: { fontSize: "14px" },
                         }),
                       position: "top",
@@ -146,12 +146,12 @@ const c = (l) => {
             )
           ),
         g &&
-          "string" == typeof R &&
+          "string" == typeof A &&
           "number" != c &&
           s.default.createElement(
             "label",
             { className: "n-input-label n-input-maxLength" },
-            s.default.createElement(s.default.Fragment, null, R.length, "/", g)
+            s.default.createElement(s.default.Fragment, null, A.length, "/", g)
           )
       ),
       s.default.createElement(
@@ -161,7 +161,7 @@ const c = (l) => {
           s.default.createElement(
             "span",
             { className: "n-search-icon" },
-            s.default.createElement(o.SvgSearch, { className: "search-icon" })
+            s.default.createElement(o.SvgIcSearch, { className: "search-icon" })
           ),
         s.default.createElement(
           "div",
@@ -172,7 +172,7 @@ const c = (l) => {
           },
           C &&
             "textarea" !== c &&
-            s.default.createElement(n, { prefix: y, onPrefixClick: O }),
+            s.default.createElement(n, { prefix: y, onPrefixClick: _ }),
           "textarea" !== c &&
             s.default.createElement(
               "input",
@@ -200,7 +200,7 @@ const c = (l) => {
                     );
                   })()}`,
                   onKeyUp: k,
-                  onChange: j,
+                  onChange: I,
                   onBlur: function (e) {
                     var t;
                     (null === (t = G.current) || void 0 === t
@@ -209,16 +209,16 @@ const c = (l) => {
                       d ||
                       (M(""), W("")),
                       Y(""),
-                      null == w || w(e);
+                      null == j || j(e);
                   },
                   onFocus: (e) => {
-                    ee(), null == T || T(e);
+                    ee(), null == w || w(e);
                   },
                   onClick: (e) => {
-                    Y("n-focused-border"), null == I || I(e);
+                    Y("n-focused-border"), null == T || T(e);
                   },
                   onKeyPress: q,
-                  value: R,
+                  value: A,
                 },
                 (function () {
                   const e = {};
@@ -236,7 +236,7 @@ const c = (l) => {
                   );
                 })(),
                 { onInput: Z },
-                A
+                R
               )
             ),
           "textarea" === c &&
@@ -246,13 +246,13 @@ const c = (l) => {
                 {
                   ref: G,
                   onKeyUp: k,
-                  onChange: j,
-                  onBlur: w,
+                  onChange: I,
+                  onBlur: j,
                   onFocus: (e) => {
-                    ee(), null == T || T(e);
+                    ee(), null == w || w(e);
                   },
                   onClick: (e) => {
-                    Y("n-focused-border"), null == I || I(e);
+                    Y("n-focused-border"), null == T || T(e);
                   },
                   onKeyPress: q,
                   className: `n-input input-text ${
@@ -269,13 +269,13 @@ const c = (l) => {
                     e
                   );
                 })(),
-                { onInput: Z, value: R },
-                A
+                { onInput: Z, value: A },
+                R
               )
             ),
           "textarea" !== c &&
             E &&
-            s.default.createElement(a, { suffix: S, onSuffixClick: _ })
+            s.default.createElement(a, { suffix: S, onSuffixClick: z })
         )
       ),
       s.default.createElement(

@@ -7,4 +7,3 @@ declare const _default: ComponentMeta<
 >;
 export default _default;
 export declare const ShowToast: ComponentStory<typeof Toast>;
-export declare const ToastWithUndo: ComponentStory<typeof Toast>;

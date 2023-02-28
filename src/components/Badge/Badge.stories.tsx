@@ -4,15 +4,15 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import Badge from "./Badge";
 import Alert from "../Alert";
 import {
-  SvgCheck,
-  SvgCheckCircleOutline,
-  SvgClear,
-  SvgError,
-  SvgErrorOutline,
-  SvgGppBad,
-  SvgGppGood,
-  SvgGppMaybe,
-  SvgPriorityHigh,
+  SvgIcCode,
+  SvgIcChevronRightCircle,
+  SvgIcClear,
+  SvgIcError,
+  SvgIcErrorColored,
+  SvgIcShare,
+  SvgIcGasPiped,
+  SvgIcMagic,
+  SvgIcPrimeContent,
 } from "../../assets/svg-components";
 
 export default {
@@ -45,7 +45,7 @@ export default {
 const Template: ComponentStory<typeof Badge> = (args) => (
   <div className="main-div space-between">
     <Badge {...args} />
-    <Badge {...args} icon={<SvgCheck color="#000" />} />
+    <Badge {...args} icon={<SvgIcCode color="#000" />} />
     <Badge
       {...args}
       labelText="Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab dolores vel expedita, praesentium quisquam quia optio nisi in alias laboriosam voluptate ratione error quibusdam inventore. Perspiciatis labore nemo quidem facere."
@@ -100,7 +100,6 @@ export const badge_with_alert_strip = (args: any) => {
         <Alert
           labelText="Your account is still not verified"
           state="error"
-          ctaButtonText="close"
           onClick={inlineStripcloseHandler}
         >
           close
@@ -128,7 +127,7 @@ export const text_badges = (args: any) => {
           <span className="nitrozen-badge-story-row">
             <Badge labelText="CORRECTION" state="error" {...args} />
             <Badge
-              labelText={<SvgPriorityHigh color="#CD0909" />}
+              labelText={<SvgIcPrimeContent color="#CD0909" />}
               state="error"
               {...args}
             />
@@ -137,7 +136,7 @@ export const text_badges = (args: any) => {
           <span className="nitrozen-badge-story-row">
             <Badge labelText="UNVERIFIED" state="warn" {...args} />
             <Badge
-              labelText={<SvgPriorityHigh color="#F5A300" />}
+              labelText={<SvgIcPrimeContent color="#F5A300" />}
               state="warn"
               {...args}
             />
@@ -145,7 +144,7 @@ export const text_badges = (args: any) => {
           <span className="nitrozen-badge-story-row">
             <Badge labelText="PENDING" state="warn" {...args} />
             <Badge
-              labelText={<SvgPriorityHigh color="#F5A300" />}
+              labelText={<SvgIcPrimeContent color="#F5A300" />}
               state="warn"
               {...args}
             />
@@ -156,7 +155,7 @@ export const text_badges = (args: any) => {
           <span className="nitrozen-badge-story-row">
             <Badge labelText="CORRECTION" state="error" {...args} />
             <Badge
-              labelText={<SvgClear color="#CD0909" />}
+              labelText={<SvgIcClear color="#CD0909" />}
               state="error"
               {...args}
             />
@@ -165,7 +164,7 @@ export const text_badges = (args: any) => {
           <span className="nitrozen-badge-story-row">
             <Badge labelText="UNVERIFIED" state="warn" {...args} />
             <Badge
-              labelText={<SvgClear color="#F5A300" />}
+              labelText={<SvgIcClear color="#F5A300" />}
               state="warn"
               {...args}
             />
@@ -173,7 +172,7 @@ export const text_badges = (args: any) => {
           <span className="nitrozen-badge-story-row">
             <Badge labelText="PENDING" state="warn" {...args} />
             <Badge
-              labelText={<SvgClear color="#F5A300" />}
+              labelText={<SvgIcClear color="#F5A300" />}
               state="warn"
               {...args}
             />
@@ -210,24 +209,24 @@ export const icon_badges = (args: any) => {
       <div className="nitrozen-badge-collection">
         <span className="nitrozen-badge-story-row" style={{ gap: "1.6rem" }}>
           <Badge
-            labelText={<SvgGppGood size={19} color="#0A5F23" />}
+            labelText={<SvgIcGasPiped size={19} color="#0A5F23" />}
             style={{ padding: "4px", width: "20px", height: "20px" }}
             {...args}
           />
           <Badge
-            labelText={<SvgGppMaybe size={19} color="#EB5757" />}
+            labelText={<SvgIcMagic size={19} color="#EB5757" />}
             style={{ padding: "4px", width: "20px", height: "20px" }}
             state="error"
             {...args}
           />
           <Badge
-            labelText={<SvgGppMaybe size={19} color="#F5A300" />}
+            labelText={<SvgIcMagic size={19} color="#F5A300" />}
             style={{ padding: "4px", width: "20px", height: "20px" }}
             state="warn"
             {...args}
           />
           <Badge
-            labelText={<SvgGppBad size={19} />}
+            labelText={<SvgIcShare size={19} />}
             style={{ padding: "4px", width: "20px", height: "20px" }}
             state="disable"
             {...args}
@@ -238,7 +237,7 @@ export const icon_badges = (args: any) => {
       <div className="nitrozen-badge-collection">
         <div className="nitrozen-badge-story-icon-collection">
           <Badge
-            labelText={<SvgGppMaybe size={24} color="#F5A300" />}
+            labelText={<SvgIcMagic size={24} color="#F5A300" />}
             state="warn"
             style={{
               backgroundColor: "#FFF7E0",
@@ -251,7 +250,7 @@ export const icon_badges = (args: any) => {
             {...args}
           />
           <Badge
-            labelText={<SvgGppGood size={24} color="#0A5F23" />}
+            labelText={<SvgIcGasPiped size={24} color="#0A5F23" />}
             style={{
               backgroundColor: "#E3F2E9",
               borderRadius: "50px",
@@ -263,7 +262,7 @@ export const icon_badges = (args: any) => {
             {...args}
           />
           <Badge
-            labelText={<SvgGppMaybe size={24} color="#EB5757" />}
+            labelText={<SvgIcMagic size={24} color="#EB5757" />}
             style={{
               backgroundColor: "#FDEDED",
               borderRadius: "50px",
@@ -276,7 +275,7 @@ export const icon_badges = (args: any) => {
             {...args}
           />
           <Badge
-            labelText={<SvgGppBad size={24} />}
+            labelText={<SvgIcShare size={24} />}
             style={{
               backgroundColor: "#F2F2F2",
               borderRadius: "50px",
@@ -290,48 +289,48 @@ export const icon_badges = (args: any) => {
           />
 
           <Badge
-            labelText={<SvgGppMaybe size={32} color="#F5A300" />}
+            labelText={<SvgIcMagic size={32} color="#F5A300" />}
             state="warn"
             style={{ border: "none" }}
             {...args}
           />
           <Badge
-            labelText={<SvgGppGood size={32} color="#0A5F23" />}
+            labelText={<SvgIcGasPiped size={32} color="#0A5F23" />}
             style={{ border: "none" }}
             {...args}
           />
           <Badge
-            labelText={<SvgGppMaybe size={32} color="#EB5757" />}
+            labelText={<SvgIcMagic size={32} color="#EB5757" />}
             style={{ border: "none" }}
             state="error"
             {...args}
           />
           <Badge
-            labelText={<SvgGppBad size={32} />}
+            labelText={<SvgIcShare size={32} />}
             style={{ border: "none" }}
             state="disable"
             {...args}
           />
 
           <Badge
-            labelText={<SvgGppMaybe size={19} color="#F5A300" />}
+            labelText={<SvgIcMagic size={19} color="#F5A300" />}
             state="warn"
             style={{ border: "none" }}
             {...args}
           />
           <Badge
-            labelText={<SvgGppGood size={19} color="#0A5F23" />}
+            labelText={<SvgIcGasPiped size={19} color="#0A5F23" />}
             style={{ border: "none" }}
             {...args}
           />
           <Badge
-            labelText={<SvgGppMaybe size={19} color="#EB5757" />}
+            labelText={<SvgIcMagic size={19} color="#EB5757" />}
             state="error"
             style={{ border: "none" }}
             {...args}
           />
           <Badge
-            labelText={<SvgGppBad size={19} />}
+            labelText={<SvgIcShare size={19} />}
             style={{ border: "none" }}
             state="disable"
             {...args}
@@ -341,20 +340,20 @@ export const icon_badges = (args: any) => {
       <div className="nitrozen-badge-collection">
         <div className="nitrozen-badge-story-icon-collection">
           <Badge
-            labelText={<SvgError size={32} color="#CD0909" />}
+            labelText={<SvgIcError size={32} color="#CD0909" />}
             state="error"
             style={{ borderRadius: "50px", border: "none", padding: "8px" }}
             {...args}
           />
           <Badge
-            labelText={<SvgError size={32} color="#F5A300" />}
+            labelText={<SvgIcError size={32} color="#F5A300" />}
             state="warn"
             style={{ borderRadius: "50px", border: "none", padding: "8px" }}
             {...args}
           />
           <Badge
             labelText={
-              <SvgCheck
+              <SvgIcCode
                 size={26}
                 color={"white"}
                 style={{
@@ -369,7 +368,7 @@ export const icon_badges = (args: any) => {
 
           <Badge
             labelText={
-              <SvgError
+              <SvgIcError
                 size={32}
                 color="#2E31BE
             "
@@ -383,7 +382,7 @@ export const icon_badges = (args: any) => {
 
           <Badge
             labelText={
-              <SvgErrorOutline
+              <SvgIcErrorColored
                 size={32}
                 color={"#CD0909"}
                 style={{
@@ -399,7 +398,7 @@ export const icon_badges = (args: any) => {
           <Badge
             state="warn"
             labelText={
-              <SvgErrorOutline
+              <SvgIcErrorColored
                 size={32}
                 color={"#F5A300"}
                 style={{
@@ -412,14 +411,14 @@ export const icon_badges = (args: any) => {
             {...args}
           />
           <Badge
-            labelText={<SvgCheckCircleOutline size={32} color={"#0A5F23"} />}
+            labelText={<SvgIcChevronRightCircle size={32} color={"#0A5F23"} />}
             style={{ border: "none", marginTop: "7px" }}
             {...args}
           />
 
           <Badge
             labelText={
-              <SvgErrorOutline
+              <SvgIcErrorColored
                 size={32}
                 color={"#2E31BE"}
                 style={{

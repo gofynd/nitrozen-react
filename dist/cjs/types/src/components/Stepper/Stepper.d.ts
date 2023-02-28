@@ -1,8 +1,14 @@
 import React from "react";
 import "./Stepper.scss";
-type ItemsType = Array<{
+export declare enum StepState {
+  "Current" = "Current",
+  "Upcoming" = "Upcoming",
+  "Disabled" = "Disabled",
+  "Issue" = "Issue",
+  "Completed" = "Completed",
+}
+export type ItemType = {
   name: string | number;
-  description?: string | number;
   isInactive?: boolean;
   isCompleted?: boolean;
   icon?: React.ElementType;
@@ -11,18 +17,17 @@ type ItemsType = Array<{
   extraIconProps?: object;
   buttonText?: string;
   buttonStyles?: object;
-}>;
+  state: StepState;
+  content?: string;
+};
+export type ItemsType = Array<ItemType>;
 export interface StepperProps {
-  activeIndex?: number;
-  maxActiveIndex?: number;
   items?: ItemsType;
   onClick?: Function;
   isHorizontal: boolean;
   heading?: string;
-  showProgress?: boolean;
   className?: string;
   style?: React.CSSProperties;
-  progressStrokeColor?: string;
 }
 export interface ProgressCircleProps {
   items?: ItemsType;
@@ -32,10 +37,7 @@ declare const _default: React.MemoExoticComponent<{
   (props: StepperProps): JSX.Element;
   defaultProps: {
     items: never[];
-    maxActiveIndex: number;
-    activeIndex: number;
     isHorizontal: boolean;
-    progressStrokeColor: string;
   };
 }>;
 export default _default;

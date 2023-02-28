@@ -5,7 +5,10 @@ declare const _default: ComponentMeta<
   React.MemoExoticComponent<{
     (props: import("./Badge").BadgeProps): JSX.Element;
     defaultProps: {
+      size: string;
+      kind: string;
       state: string;
+      icon: string;
       fill: boolean;
       labelText: string;
       className: string;
@@ -19,7 +22,10 @@ export declare const Badge_demo: ComponentStory<
   React.MemoExoticComponent<{
     (props: import("./Badge").BadgeProps): JSX.Element;
     defaultProps: {
+      size: string;
+      kind: string;
       state: string;
+      icon: string;
       fill: boolean;
       labelText: string;
       className: string;

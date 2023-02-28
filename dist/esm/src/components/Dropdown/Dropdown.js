@@ -4,9 +4,11 @@ import o from "../Tooltip/Tooltip.js";
 import i from "../Checkbox/Checkbox.js";
 import r from "../Validation/Validation.js";
 import "./Dropdown.scss.js";
-import { SvgAdd as d } from "../../assets/svg-components/Content/index.js";
-import { SvgKeyboardArrowDown as s } from "../../assets/svg-components/Hardware/index.js";
-import { SvgIcInfo as c } from "../../assets/svg-components/Jio/index.js";
+import {
+  SvgIcInfo as d,
+  SvgIcChevronDown as c,
+  SvgIcAdd as s,
+} from "../../assets/svg-components/Nitrozen/index.js";
 const p = { text: "Select All", value: "all" },
   u = (a) => {
     var u;
@@ -20,8 +22,8 @@ const p = { text: "Select All", value: "all" },
       [S, k] = t([]),
       [y, L] = t(),
       [A, j] = t(),
-      [H, G] = t(),
-      [T, z] = t(""),
+      [G, H] = t(),
+      [z, T] = t(""),
       [I, O] = t(a.enableSelectAll || !1);
     function P(e) {
       const l = m.current;
@@ -49,8 +51,10 @@ const p = { text: "Select All", value: "all" },
                 }),
               (e = [...new Set(e)]),
               `${e.join(", ")}`)
+            : a.placeholder
+            ? a.placeholder
             : a.label
-            ? a.placeholder || `Choose ${a.label}`
+            ? `Choose ${a.label}`
             : ""
         );
       }
@@ -59,10 +63,10 @@ const p = { text: "Select All", value: "all" },
         (null === (e = a.items) || void 0 === e ? void 0 : e.length)
       ) {
         const e = a.items.find((e) => e.value == a.value);
-        G(e), N((null == H ? void 0 : H.text) ? H.text : "");
+        H(e), N((null == G ? void 0 : G.text) ? G.text : "");
       }
-      return (null == H ? void 0 : H.text)
-        ? H.text
+      return (null == G ? void 0 : G.text)
+        ? G.text
         : a.label
         ? a.placeholder || `Choose ${a.label}`
         : a.placeholder
@@ -113,7 +117,7 @@ const p = { text: "Select All", value: "all" },
                 : k([...S, l.value]),
               t.stopPropagation(),
               j(y))
-          : (G(l),
+          : (H(l),
             l.text && N(l.text),
             null === (n = a.onChange) || void 0 === n || n.call(a, l.value)));
     }
@@ -145,11 +149,11 @@ const p = { text: "Select All", value: "all" },
     }, []),
       n(() => {
         a.multiple && a.onChange && a.onChange(S), C(D());
-      }, [S, H]),
+      }, [S, G]),
       n(() => {
         _();
       }, [g]);
-    const J = a.prefixIcon;
+    const R = a.prefixIcon;
     return e.createElement(
       "div",
       {
@@ -169,7 +173,7 @@ const p = { text: "Select All", value: "all" },
               "data-testid": "icon-component",
               tooltipContent: a.tooltip,
               position: "top",
-              icon: e.createElement(c, { style: { fontSize: "14px" } }),
+              icon: e.createElement(d, { style: { fontSize: "14px" } }),
             })
         ),
       e.createElement(
@@ -193,13 +197,13 @@ const p = { text: "Select All", value: "all" },
             {
               className: `n-select__trigger ${
                 a.disabled ? "cursor-disabled" : ""
-              } ${a.validationState ? `n-${a.validationState}-border` : T}`,
+              } ${a.validationState ? `n-${a.validationState}-border` : z}`,
             },
             a.prefixIcon
               ? e.createElement(
                   "div",
                   { className: "n-dropdown-prefix-icon-wrapper" },
-                  e.createElement(J, { className: "n-dropdown-prefix" })
+                  e.createElement(R, { className: "n-dropdown-prefix" })
                 )
               : null,
             e.createElement(
@@ -229,8 +233,8 @@ const p = { text: "Select All", value: "all" },
                             ? `All ${a.label}(s) selected`
                             : `${S.length} ${a.label}(s) selected`
                           : a.placeholder || `Search ${a.label}`,
-                      onClick: () => z("n-focused-border"),
-                      onBlur: () => z(""),
+                      onClick: () => T("n-focused-border"),
+                      onBlur: () => T(""),
                       className: "n-dropdown-search",
                     })
                   )
@@ -240,7 +244,7 @@ const p = { text: "Select All", value: "all" },
               e.createElement(
                 "div",
                 { className: "n-dropdown-arrow" },
-                e.createElement(s, { style: { width: "20px", height: "20px" } })
+                e.createElement(c, { style: { width: "20px", height: "20px" } })
               )
             )
           ),
@@ -298,7 +302,7 @@ const p = { text: "Select All", value: "all" },
                       {
                         key: t,
                         "data-value": l.value,
-                        className: `n-option ripple ${l === H && "selected"} ${
+                        className: `n-option ripple ${l === G && "selected"} ${
                           (null == l ? void 0 : l.isGroupLabel) &&
                           "n-option-group-label"
                         }`,
@@ -402,7 +406,7 @@ const p = { text: "Select All", value: "all" },
                             M();
                         },
                       },
-                      e.createElement(d, null),
+                      e.createElement(s, null),
                       e.createElement("p", null, "Add ", x)
                     )
                   )

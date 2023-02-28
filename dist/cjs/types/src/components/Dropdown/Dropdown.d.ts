@@ -1,9 +1,11 @@
+import React from "react";
 import "./Dropdown.scss";
 interface ItemProps {
   logo?: string;
   text?: string;
   value: string | number | boolean | Object;
   isGroupLabel?: Boolean;
+  sub_text?: string;
 }
 export interface DropdownProps {
   id?: string;
@@ -26,6 +28,7 @@ export interface DropdownProps {
   helperText?: string;
   validationState?: string;
   validationLabel?: string;
+  prefixIcon?: React.ReactNode;
 }
 declare const Dropdown: {
   (props: DropdownProps): JSX.Element;
@@ -45,6 +48,7 @@ declare const Dropdown: {
     className: string;
     validationState: string;
     validationLabel: string;
+    prefixIcon: string;
   };
 };
 export default Dropdown;

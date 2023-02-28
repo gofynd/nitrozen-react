@@ -17,6 +17,7 @@ declare const _default: ComponentMeta<{
     className: string;
     validationState: string;
     validationLabel: string;
+    prefixIcon: string;
   };
 }>;
 export default _default;
@@ -38,6 +39,7 @@ export declare const SingleSelect: ComponentStory<{
     className: string;
     validationState: string;
     validationLabel: string;
+    prefixIcon: string;
   };
 }>;
 export declare const MultiSelect: ComponentStory<{
@@ -58,6 +60,7 @@ export declare const MultiSelect: ComponentStory<{
     className: string;
     validationState: string;
     validationLabel: string;
+    prefixIcon: string;
   };
 }>;
 export declare const Search: () => JSX.Element;

@@ -98,8 +98,6 @@ Toast.defaultProps = {
   leftIconPosition: "top-align",
   rightIconPosition: "top-align",
   shouldClose: false,
-  leftImage: <img src={require("../../assets/left-placeholder.svg")} />,
-  rightImage: <img src={require("../../assets/right-placeholder.svg")} />,
   duration: 2500,
 };
 

@@ -21,6 +21,9 @@
     justify-content: space-between;
     padding: 1.2rem;
     font-family: $PrimaryFont;
+    @media screen and (max-width: 425px) {
+      width: 32.8rem !important;
+    }
     .n-toast-left-container {
       display: flex;
       width: 90%;
@@ -121,8 +124,6 @@
   top: 10%;
   left: 50%;
   transform: translateX(-50%);
-  // transition: transform 0.6s ease-in-out;
-  // animation: toast-in-center 0.7s;
 }
 
 .n-toast-top-left {
