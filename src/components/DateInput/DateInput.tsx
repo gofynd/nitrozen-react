@@ -129,23 +129,20 @@ const DateInput = (props: DateInputProps) => {
   const defaultErrorValidation = (stateDateObj: any) => {
     if (defaultValidation) {
       if (stateDateObj.mm && (stateDateObj.mm === 0 || stateDateObj.mm > 12)) {
-        setDateError("Invalid Date");
-        return;
+        return setDateError("Invalid Date");
       }
       if (
         (stateDateObj.yyyy && stateDateObj.yyyy.length < 4) ||
         ["0000", "9999"].includes(stateDateObj.yyyy)
       ) {
-        setDateError("Invalid Date");
-        return;
+        return setDateError("Invalid Date");
       }
       let availableMonths = daysInMonth(stateDateObj.mm, stateDateObj.yyyy);
       if (
         stateDateObj.dd &&
         (stateDateObj.dd == 0 || stateDateObj.dd > availableMonths)
       ) {
-        setDateError("Invalid Date");
-        return;
+        return setDateError("Invalid Date");
       }
       // if no errors then set the error state as empty
       setDateError("");

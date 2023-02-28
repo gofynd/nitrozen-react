@@ -244,45 +244,41 @@ const DatePicker = (props: DatePickerProps) => {
     let convertedDate = new Date(dateValue);
     if (startDate == dateValue) {
       setStartDate("");
-      getRange?.({
+      return getRange?.({
         start: "",
         end: new Date(endDate),
         min: rangeConfig?.min,
         max: rangeConfig?.max,
       });
-      return;
     }
     if (endDate == dateValue) {
       setEndDate("");
-      getRange?.({
+      return getRange?.({
         start: new Date(startDate),
         end: "",
         min: rangeConfig?.min,
         max: rangeConfig?.max,
       });
-      return;
     }
     // case if start date exists
     if (startDate) {
       if (new Date(startDate) > convertedDate) {
         setEndDate(startDate);
         setStartDate(dateValue);
-        getRange?.({
+        return getRange?.({
           start: new Date(dateValue),
           end: new Date(startDate),
           min: rangeConfig?.min,
           max: rangeConfig?.max,
         });
-        return;
       } else {
         setEndDate(dateValue);
-        getRange?.({
+        return getRange?.({
           start: new Date(startDate),
           end: new Date(dateValue),
           min: rangeConfig?.min,
           max: rangeConfig?.max,
         });
-        return;
       }
     }
     setStartDate(dateValue);
