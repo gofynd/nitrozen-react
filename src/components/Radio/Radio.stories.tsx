@@ -88,7 +88,7 @@ export const radioSample = (args: RadioProps) => {
         onChange={SelectedchangeHandler}
         name="basic"
         showIcon={true}
-        icon={SvgArray.SvgGirl}
+        icon={SvgArray.SvgIcFemale}
         onIconClick={() => {
           console.log("I am a Girl");
         }}
@@ -101,7 +101,7 @@ export const radioSample = (args: RadioProps) => {
         onChange={SelectedchangeHandler}
         name="basic"
         showIcon={true}
-        icon={SvgArray.SvgBoy}
+        icon={SvgArray.SvgIcMale}
         onIconClick={() => {
           console.log("I am a Boy");
         }}
@@ -136,7 +136,7 @@ export const stateSample = (args: RadioProps) => {
         onChange={SelectedchangeHandler}
         name="basic2"
         showIcon={true}
-        icon={SvgArray.SvgAutoMode}
+        icon={SvgArray.SvgIcFemale}
       />
       <Radio
         labelText="Male"
@@ -148,7 +148,7 @@ export const stateSample = (args: RadioProps) => {
         onChange={SelectedchangeHandler}
         name="basic2"
         showIcon={true}
-        icon={SvgArray.SvgAutoMode}
+        icon={SvgArray.SvgIcMale}
       />
       <Radio
         labelText="Other"
@@ -183,7 +183,7 @@ export const disabledRadioSample = (args: RadioProps) => {
         name="basic3"
         disabled
         showIcon={true}
-        icon={SvgArray.SvgAutoMode}
+        icon={SvgArray.SvgIcFemale}
       />
       <Radio
         labelText="Male"
@@ -196,7 +196,7 @@ export const disabledRadioSample = (args: RadioProps) => {
         name="basic3"
         disabled
         showIcon={true}
-        icon={SvgArray.SvgAutoMode}
+        icon={SvgArray.SvgIcMale}
       />
       <Radio
         labelText="Other"

@@ -2,7 +2,7 @@ import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import Tab from "./Tab";
 import "../Menu/Menu.scss";
-import { SvgError } from "../../assets/svg-components";
+import { SvgIcBiology } from "../../assets/svg-components";
 export default {
   title: "Components/Tab",
   component: Tab,
@@ -34,7 +34,7 @@ ObjectTabItems.args = {
     {
       name: "lemon",
       value: 4,
-      icon: <SvgError size={16} className="error-icon" />,
+      icon: <SvgIcBiology size={16} className="error-icon" />,
     },
     {
       name: "Cold Coffee",

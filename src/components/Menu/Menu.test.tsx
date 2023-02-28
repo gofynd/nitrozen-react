@@ -5,7 +5,7 @@ import Menu from "./Menu";
 import MenuItem from "../MenuItem";
 import Button from "../Button";
 import NitrozenId from "../../utils/uuids";
-import { SvgMoreHoriz } from "../../assets/svg-components";
+import { SvgIcMoreHorizontal } from "../../assets/svg-components";
 export const menuItems = [
   {
     label: "Fruits for thought",
@@ -111,7 +111,7 @@ describe("Primary Menu", () => {
     args.mode = "horizontal";
     args.position = "top";
     args.inverted = true;
-    args.icon = (<SvgMoreHoriz />) as ReactSVGElement;
+    args.icon = (<SvgIcMoreHorizontal />) as ReactSVGElement;
     args.maxHeight = 200;
     const { getByTestId } = render(primaryMenu(args));
     const menuToggle = getByTestId("n-menu-block-toggle");

@@ -1,13 +1,13 @@
 import React from "react";
 import { render, cleanup, fireEvent, screen } from "@testing-library/react";
 import Table from "./Table";
-import { SvgInfo } from "../../assets/svg-components/Action";
+import { SvgIcInfo } from "../../assets/svg-components";
 
 describe("Render a Table component", () => {
   test("Show table and its values check first row", async () => {
     render(
       <Table
-        customSortIcon={<SvgInfo />}
+        customSortIcon={<SvgIcInfo />}
         tableRow={[
           {
             age: 45,
@@ -91,7 +91,7 @@ describe("Render a Table component", () => {
   test("Show table and check on click", async () => {
     render(
       <Table
-        customSortIcon={<SvgInfo />}
+        customSortIcon={<SvgIcInfo />}
         tableRow={[
           {
             age: 45,
@@ -175,7 +175,7 @@ describe("Render a Table component", () => {
     };
     render(
       <Table
-        customSortIcon={<SvgInfo />}
+        customSortIcon={<SvgIcInfo />}
         tableRow={[
           {
             age: 45,
@@ -279,7 +279,7 @@ describe("Render a Table component", () => {
     let items: any = [];
     render(
       <Table
-        customSortIcon={<SvgInfo />}
+        customSortIcon={<SvgIcInfo />}
         tableRow={[
           {
             age: 36,
@@ -331,7 +331,7 @@ describe("Render a Table component", () => {
   test("Show table and its values check first row and a class name for hiding the column divider border", async () => {
     render(
       <Table
-        customSortIcon={<SvgInfo />}
+        customSortIcon={<SvgIcInfo />}
         tableRow={[
           {
             age: 45,

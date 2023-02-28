@@ -2,7 +2,7 @@
 var e = require("../../../node_modules/tslib/tslib.es6.js"),
   t = require("react"),
   l = require("../Validation/Validation.js"),
-  a = require("../../assets/svg-components/Action/index.js"),
+  a = require("../../assets/svg-components/Nitrozen/index.js"),
   i = require("../Tooltip/Tooltip.js");
 function n(e) {
   return e && "object" == typeof e && "default" in e ? e : { default: e };
@@ -14,8 +14,8 @@ const d = (n) => {
     fields: d,
     getCode: s,
     label: c,
-    codeId: u,
-    type: r,
+    codeId: r,
+    type: u,
     hideValidation: f,
     validationLabel: p,
     validationState: m,
@@ -45,7 +45,7 @@ const d = (n) => {
   const [h, C] = t.useState([]);
   function $(e) {
     if (e + 1 <= d - 1) {
-      let t = document.getElementById(`code-input-${u}-${e + 1}`);
+      let t = document.getElementById(`code-input-${r}-${e + 1}`);
       null == t || t.focus();
     }
   }
@@ -55,7 +55,7 @@ const d = (n) => {
         if (e >= 0 && e <= d - 1) {
           let t = [...h];
           (t[e] = ""), C(t), s(t.join(""));
-          let l = document.getElementById(`code-input-${u}-${e - 1}`);
+          let l = document.getElementById(`code-input-${r}-${e - 1}`);
           null == l || l.focus();
         }
       })(t);
@@ -70,10 +70,10 @@ const d = (n) => {
       { className: "n-code-main" },
       o.default.createElement(
         "div",
-        { className: "n-code-label-container", "data-testid": `label-id-${u}` },
+        { className: "n-code-label-container", "data-testid": `label-id-${r}` },
         o.default.createElement(
           "label",
-          { className: "n-code-label", "data-testid": `code-label-${u}` },
+          { className: "n-code-label", "data-testid": `code-label-${r}` },
           c,
           " ",
           E ? "*" : "",
@@ -86,7 +86,7 @@ const d = (n) => {
                   tooltipContent: N,
                   icon:
                     g ||
-                    o.default.createElement(a.SvgHelpOutline, {
+                    o.default.createElement(a.SvgIcHelp, {
                       style: { fontSize: "14px" },
                     }),
                   position: "top",
@@ -100,11 +100,11 @@ const d = (n) => {
         h.map((e, t) =>
           o.default.createElement("input", {
             autoComplete: "off",
-            id: `code-input-${u}-` + t,
-            key: `code-input-${u}-` + t,
-            "data-testid": `code-input-${u}-` + t,
+            id: `code-input-${r}-` + t,
+            key: `code-input-${r}-` + t,
+            "data-testid": `code-input-${r}-` + t,
             value: e,
-            type: r,
+            type: u,
             onChange: (e) =>
               (function (e, t) {
                 let l = e.target.value.replace(/[^0-9]+/g, "");

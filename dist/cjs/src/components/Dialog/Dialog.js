@@ -1,7 +1,7 @@
 "use strict";
 var e = require("../../../node_modules/tslib/tslib.es6.js"),
   t = require("react"),
-  a = require("../../assets/svg-components/Navigation/index.js"),
+  a = require("../../assets/svg-components/Nitrozen/index.js"),
   l = require("../../utils/uuids.js"),
   i = require("../Button/Button.js");
 function n(e) {
@@ -113,7 +113,7 @@ const d = (t) => {
                     )
               ),
               h &&
-                s.default.createElement(a.SvgClose, {
+                s.default.createElement(a.SvgIcClose, {
                   className: "n-closebtn",
                   onClick: k,
                 })

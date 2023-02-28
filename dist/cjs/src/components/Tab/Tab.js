@@ -5,7 +5,7 @@ var e = require("../../../node_modules/tslib/tslib.es6.js"),
   n = require("../TabItem/TabItem.js"),
   l = require("../../../node_modules/classnames/index.js");
 require("./Tab.scss.js");
-var c = require("../../assets/svg-components/Jio/index.js");
+var c = require("../../assets/svg-components/Nitrozen/index.js");
 function u(e) {
   return e && "object" == typeof e && "default" in e ? e : { default: e };
 }
@@ -38,8 +38,8 @@ const i = (u) => {
         "overflow",
         "tabs",
       ]),
-      [W, I] = t.useState(m),
-      N = t.useRef(!1),
+      [W, N] = t.useState(m),
+      I = t.useRef(!1),
       x = t.useRef(null),
       R = t.useRef(null),
       C = t.useRef(null),
@@ -47,13 +47,13 @@ const i = (u) => {
       j = t.useRef([]),
       q = t.useRef(null),
       _ = () => {
-        N.current = !0;
+        I.current = !0;
       },
       k = () => {
-        R.current && R.current.classList.remove("n-dragging"), (N.current = !1);
+        R.current && R.current.classList.remove("n-dragging"), (I.current = !1);
       },
       S = (e) => {
-        if (N.current && R.current) {
+        if (I.current && R.current) {
           R.current.classList.add("n-dragging");
           let t = R.current.scrollLeft - e.movementX;
           (R.current.scrollLeft = t), X(t);
@@ -68,7 +68,7 @@ const i = (u) => {
       };
     if (
       (t.useEffect(() => {
-        I(m);
+        N(m);
       }, [m]),
       W > (null == f ? void 0 : f.length))
     )
@@ -76,7 +76,7 @@ const i = (u) => {
         "Active Tab index cannot be greater than TabItem array length !"
       );
     const M = (e, t) => () => {
-        I(e), null == g || g(t);
+        N(e), null == g || g(t);
       },
       X = (e) => {
         var t, r;

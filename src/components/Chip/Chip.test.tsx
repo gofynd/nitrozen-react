@@ -2,7 +2,7 @@ import React from "react";
 import { render } from "@testing-library/react";
 import Chip from "./Chip";
 import userEvent from "@testing-library/user-event";
-import { SvgDelete } from "../../assets/svg-components";
+import { SvgIcCloseRemove } from "../../assets/svg-components";
 
 describe("Chips", () => {
   const onHandlerMock = jest.fn().mockImplementation((e) => {});
@@ -35,7 +35,7 @@ describe("Chips", () => {
   test("Renders chip with custom icon", () => {
     const onHandlerMock = jest.fn().mockImplementation((e) => {});
     const screen = render(
-      <Chip icon={SvgDelete} onIconClick={onHandlerMock}>
+      <Chip icon={SvgIcCloseRemove} onIconClick={onHandlerMock}>
         Rounded chip
       </Chip>
     );

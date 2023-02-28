@@ -2,9 +2,9 @@ import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import Chip from "./Chip";
 import {
-  SvgLocalFireDepartment,
-  SvgDelete,
-  SvgColorLens,
+  SvgIcFire,
+  SvgIcCloseRemove,
+  SvgIcColourPalette,
 } from "../../assets/svg-components";
 import * as SvgArray from "../../assets/svg-components";
 
@@ -122,14 +122,14 @@ export const ChipsDemo = () => {
         <Chip isRounded={true}>Rounded Chip</Chip>
         <Chip deletable={true}>Deletable Chip</Chip>
         <Chip disabled={true}>Disabled Chip</Chip>
-        <Chip icon={SvgLocalFireDepartment} iconStyle={{ color: "red" }}>
+        <Chip icon={SvgIcFire} iconStyle={{ color: "red" }}>
           Chip with Custom Icon
         </Chip>
-        <Chip deletable={true} icon={SvgDelete} state="secondary">
+        <Chip deletable={true} icon={SvgIcCloseRemove} state="secondary">
           Deletable Chip Custom Icon
         </Chip>
         <Chip
-          icon={SvgColorLens}
+          icon={SvgIcColourPalette}
           state="secondary"
           style={{ borderColor: "green", color: "green" }}
           iconStyle={{ color: "green" }}

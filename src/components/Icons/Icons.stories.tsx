@@ -2,32 +2,8 @@ import React, { useState, useMemo, useCallback } from "react";
 import "./Icons.scss";
 import Input from "../Input";
 import { ComponentStory } from "@storybook/react";
-import {
-  SvgDone,
-  SvgContentCopy,
-  SvgAdsClick,
-} from "../../assets/svg-components";
-import SvgComponentDemo from "../../assets/svg-component-demo.png";
-// All Icon modules
-import * as ActionComponents from "../../assets/svg-components/Action";
-import * as AlertComponents from "../../assets/svg-components/Alert";
-import * as ToggleComponents from "../../assets/svg-components/Toggle";
-import * as AudioVisualComponents from "../../assets/svg-components/AudioVisual";
-import * as CommunicationComponents from "../../assets/svg-components/Communication";
-import * as ContentComponents from "../../assets/svg-components/Content";
-import * as DeviceComponents from "../../assets/svg-components/Device";
-import * as EditorComponents from "../../assets/svg-components/Editor";
-import * as FileComponents from "../../assets/svg-components/File";
-import * as JioComponents from "../../assets/svg-components/Jio";
-import * as HardwareComponents from "../../assets/svg-components/Hardware";
-import * as HomeComponents from "../../assets/svg-components/Home";
-import * as MapsComponents from "../../assets/svg-components/Maps";
-import * as NavigationComponents from "../../assets/svg-components/Navigation";
-import * as NotificationComponents from "../../assets/svg-components/Notification";
-import * as OthersComponents from "../../assets/svg-components/Others";
-import * as PhotographyComponents from "../../assets/svg-components/Photography";
-import * as PlacesComponents from "../../assets/svg-components/Places";
-import * as SocialComponents from "../../assets/svg-components/Social";
+import { SvgIcConfirm, SvgIcCopy, SvgIcAdd } from "../../assets/svg-components";
+import * as NitrozenIcons from "../../assets/svg-components/Nitrozen";
 
 type IconsListType = Function[];
 
@@ -56,47 +32,9 @@ interface IconButtonType {
 }
 
 const IconsList = (props: IconProp) => {
-  const categories: string[] = [
-    "action",
-    "alert",
-    "toggle",
-    "audio-visual",
-    "communication",
-    "content",
-    "device",
-    "editor",
-    "file",
-    "jio",
-    "hardware",
-    "home",
-    "maps",
-    "navigation",
-    "notification",
-    "others",
-    "photography",
-    "places",
-    "social",
-  ];
+  const categories: string[] = ["nitrozen"];
   const modules: { [key: string]: object } = {
-    action: ActionComponents,
-    alert: AlertComponents,
-    toggle: ToggleComponents,
-    "audio-visual": AudioVisualComponents,
-    communication: CommunicationComponents,
-    content: ContentComponents,
-    device: DeviceComponents,
-    editor: EditorComponents,
-    file: FileComponents,
-    jio: JioComponents,
-    hardware: HardwareComponents,
-    home: HomeComponents,
-    maps: MapsComponents,
-    navigation: NavigationComponents,
-    notification: NotificationComponents,
-    others: OthersComponents,
-    photography: PhotographyComponents,
-    places: PlacesComponents,
-    social: SocialComponents,
+    nitrozen: NitrozenIcons,
   };
 
   const getRefactoredArray = useCallback((module, filterQuery: string = "") => {
@@ -162,13 +100,13 @@ const IconsList = (props: IconProp) => {
         <h1>Nitrozen SVG Component Demo</h1>
         <img
           className="svgr-demo-snippet"
-          src={SvgComponentDemo}
+          src={require("../../assets/svg-component-demo.png")}
           alt="svg components demo"
         />
         <span className="demo-description">
-          <SvgAdsClick size={16} color="white" />
+          <SvgIcAdd size={16} color="white" />
           <span>Click the Icon to Copy</span>
-          <SvgContentCopy size={16} color="white" />
+          <SvgIcCopy size={16} color="white" />
           <span>the JSX to Clipboard</span>
         </span>
       </div>
@@ -247,7 +185,7 @@ const IconsList = (props: IconProp) => {
         </span>
         <span className={`copy-alert ${copied ? "copied" : ""}`}>
           {<span>{copied ? "Copied" : "Copy"}</span>}
-          {copied ? <SvgDone /> : <SvgContentCopy />}
+          {copied ? <SvgIcConfirm /> : <SvgIcCopy />}
         </span>
       </button>
     );
@@ -256,7 +194,7 @@ const IconsList = (props: IconProp) => {
 
 export default {
   title: "Assets/Icons",
-  component: SvgContentCopy,
+  component: SvgIcCopy,
   argTypes: {
     className: { control: "text" },
     color: { control: "color", defaultValue: "#8f8f8f" },
@@ -265,9 +203,9 @@ export default {
   },
 };
 
-const Template: ComponentStory<typeof SvgDone> = (args) => (
+const Template: ComponentStory<typeof SvgIcConfirm> = (args) => (
   <div className="storybook-svg-container">
-    <SvgDone {...args} />
+    <SvgIcConfirm {...args} />
   </div>
 );
 export const SvgExample = Template.bind({});

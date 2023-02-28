@@ -12,7 +12,7 @@ import "./Tab.scss.js";
 import {
   SvgIcChevronLeft as s,
   SvgIcChevronRight as u,
-} from "../../assets/svg-components/Jio/index.js";
+} from "../../assets/svg-components/Nitrozen/index.js";
 const d = (t) => {
     var d;
     const {
@@ -59,14 +59,14 @@ const d = (t) => {
         if (j.current && k.current) {
           k.current.classList.add("n-dragging");
           let r = k.current.scrollLeft - e.movementX;
-          (k.current.scrollLeft = r), G(r);
+          (k.current.scrollLeft = r), D(r);
         }
       },
       F = (e) => {
         if ((e.preventDefault(), k.current)) {
           k.current.classList.add("n-dragging");
           let r = k.current.scrollLeft + e.deltaX;
-          (k.current.scrollLeft = r), G(r);
+          (k.current.scrollLeft = r), D(r);
         }
       };
     if (
@@ -78,10 +78,10 @@ const d = (t) => {
       throw new Error(
         "Active Tab index cannot be greater than TabItem array length !"
       );
-    const D = (e, r) => () => {
+    const z = (e, r) => () => {
         T(e), null == L || L(r);
       },
-      G = (e) => {
+      D = (e) => {
         var r, t;
         if (k.current && _.current && A.current) {
           e > 0 && k.current.scrollWidth > k.current.clientWidth
@@ -97,10 +97,10 @@ const d = (t) => {
             : (A.current.style.display = "flex");
         }
       },
-      J = (e) => () => {
+      G = (e) => () => {
         if (k.current) {
           let r = k.current.scrollLeft + ("left" === e ? -250 : 250);
-          G(r), (k.current.scrollLeft = r);
+          D(r), (k.current.scrollLeft = r);
         }
       };
     return (
@@ -120,7 +120,7 @@ const d = (t) => {
               }),
                 k.current.scrollWidth > k.current.clientWidth &&
                   ((k.current.scrollLeft = e),
-                  G(Math.min(e, r || Number.MAX_SAFE_INTEGER))),
+                  D(Math.min(e, r || Number.MAX_SAFE_INTEGER))),
                 R.current &&
                   ((R.current.style.left = e + "px"),
                   (R.current.style.width = t + "px"));
@@ -130,7 +130,7 @@ const d = (t) => {
       c(() => {
         if (k.current && k.current.scrollWidth > k.current.clientWidth) {
           let e = k.current.scrollLeft;
-          G(e),
+          D(e),
             k.current.addEventListener("pointerdown", X),
             k.current.addEventListener("pointerup", $),
             k.current.addEventListener("pointerout", $),
@@ -177,7 +177,7 @@ const d = (t) => {
               "button",
               {
                 className: "n-nav-btn n-icon-btn-left",
-                onClick: J("left"),
+                onClick: G("left"),
                 ref: _,
               },
               r.createElement(s, { className: "n-scroll-left-icon" })
@@ -193,7 +193,7 @@ const d = (t) => {
                   r.createElement(
                     a,
                     {
-                      onClick: D(t, e),
+                      onClick: z(t, e),
                       ref: (e) => (M.current[t] = e),
                       className: o({ "n-tab-active": I === t }),
                       key: m(e, b) + t + i(),
@@ -209,7 +209,7 @@ const d = (t) => {
               "button",
               {
                 className: "n-nav-btn n-icon-btn-right",
-                onClick: J("right"),
+                onClick: G("right"),
                 ref: A,
               },
               r.createElement(u, { className: "n-scroll-right-icon" })

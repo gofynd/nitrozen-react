@@ -2,8 +2,8 @@ import React, { memo, useState, useEffect } from "react";
 import NitrozenId from "../../utils/uuids";
 import "./Table.scss";
 import {
-  SvgKeyboardArrowDown,
-  SvgKeyboardArrowRight,
+  SvgIcChevronDown,
+  SvgIcChevronRight,
 } from "../../assets/svg-components";
 import Checkbox from "../Checkbox/Checkbox";
 export interface TableProps {
@@ -126,12 +126,12 @@ const Table: React.FC<TableProps> = (props) => {
                           props.customSortIcon ? (
                             props.customSortIcon
                           ) : (
-                            <SvgKeyboardArrowDown className="n-action-icon" />
+                            <SvgIcChevronDown className="n-action-icon" />
                           )
                         ) : props.customSortIcon ? (
                           props.customSortIcon
                         ) : (
-                          <SvgKeyboardArrowRight className="n-action-icon" />
+                          <SvgIcChevronRight className="n-action-icon" />
                         )}
                       </>
                     ) : (
