@@ -9,8 +9,18 @@ export default {
 
 const Template: ComponentStory<typeof Pagination> = (args) => {
   return (
-    <div className="sb-pagination">
-      <Pagination {...args} />
+    <div
+      style={{
+        height: "300px",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        width: "100%",
+      }}
+    >
+      <div className="sb-pagination">
+        <Pagination {...args} />
+      </div>
     </div>
   );
 };
@@ -28,7 +38,7 @@ BasicPagination.args = {
     currentPage: "",
     currentTotal: 100,
   },
-  pageSizeOptions: [10, 20],
+  pageSizeOptions: [10, 20, 50, 100],
   onChange: (event: any) => {},
   onPreviousClick: (event: any) => {},
   onNextClick: (event: any) => {},

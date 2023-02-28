@@ -73,9 +73,6 @@ const Pagination = (props: PaginationProps) => {
   useEffect(() => {
     setDefaults();
     onPaginationRange();
-  }, [value]);
-
-  useEffect(() => {
     if (isFirstRender?.current) {
       isFirstRender.current = false;
       return;
@@ -192,7 +189,7 @@ const Pagination = (props: PaginationProps) => {
         1,
         value.current
       );
-      setPaginationRange(paginationRange);
+      setPaginationRange([...paginationRange]);
     } else {
       const paginationRange = usePagination(
         5,
@@ -201,31 +198,27 @@ const Pagination = (props: PaginationProps) => {
         2,
         value.current
       );
-      setPaginationRange(paginationRange);
+      setPaginationRange([...paginationRange]);
     }
   }
   function listNodeItems() {
-    if (paginationRange.length > 1) {
-      return paginationRange?.map((i: any, index: any) => (
-        <div
-          key={index}
-          id={index + "node"}
-          onClick={(e) => selectedNode(e, i, index)}
-          className={`n-pagination__number_inactive ${
-            i === value.current && "n-pagination__number_active"
-          } ${
-            i === "..." &&
-            popupPosition === index &&
-            openPopup &&
-            "n-pagination__dot_active"
-          }`}
-        >
-          {i}
-        </div>
-      ));
-    } else {
-      setShowSinglePage(true);
-    }
+    return paginationRange?.map((i: any, index: any) => (
+      <div
+        key={index}
+        id={index + "node"}
+        onClick={(e) => selectedNode(e, i, index)}
+        className={`n-pagination__number_inactive ${
+          i === value.current && "n-pagination__number_active"
+        } ${
+          i === "..." &&
+          popupPosition === index &&
+          openPopup &&
+          "n-pagination__dot_active"
+        }`}
+      >
+        {i}
+      </div>
+    ));
   }
   function selectedNode(e: any, i: any, index: any) {
     if (i == "...") {
@@ -351,7 +344,7 @@ const Pagination = (props: PaginationProps) => {
           </span>
         </div>
         <div className="n-pagination__main">
-          {!showSinglePage && (
+          {paginationRange.length > 1 ? (
             <>
               <div
                 data-testid="btnPrevious"
@@ -408,7 +401,7 @@ const Pagination = (props: PaginationProps) => {
                 <SvgIcChevronRight />
               </div>
             </>
-          )}
+          ) : null}
         </div>
         <div className="n-pagination__left mobile_view">
           <span
