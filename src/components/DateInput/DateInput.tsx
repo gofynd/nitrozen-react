@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Validation from "../Validation";
-import { SvgIcCloseRemove, SvgIcCalendar } from "../../assets/svg-components";
+import {
+  SvgIcCloseRemove,
+  SvgIcCalendar,
+} from "../../assets/svg-components/Nitrozen";
 import "./DateInput.scss";
 import DatePicker from "../DatePicker/DatePicker";
 import { getFormattedDate } from "../../utils/dateHandler";
@@ -26,6 +29,7 @@ export interface DateInputProps {
   isRange?: boolean;
   rangeConfig?: RangeConfigProps;
   onConfirmRange?: Function;
+  defaultValidation?: boolean;
 }
 
 const DateInput = (props: DateInputProps) => {
@@ -45,6 +49,7 @@ const DateInput = (props: DateInputProps) => {
     isRange,
     rangeConfig,
     onConfirmRange,
+    defaultValidation,
   } = props;
   const [date, setDate] = useState<any>({ mm: "", dd: "", yyyy: "" });
   const [dateError, setDateError] = useState("");
@@ -122,27 +127,29 @@ const DateInput = (props: DateInputProps) => {
 
   // a default date validation that peforms basic checks
   const defaultErrorValidation = (stateDateObj: any) => {
-    if (stateDateObj.mm && (stateDateObj.mm === 0 || stateDateObj.mm > 12)) {
-      setDateError("Invalid Date");
-      return;
+    if (defaultValidation) {
+      if (stateDateObj.mm && (stateDateObj.mm === 0 || stateDateObj.mm > 12)) {
+        setDateError("Invalid Date");
+        return;
+      }
+      if (
+        (stateDateObj.yyyy && stateDateObj.yyyy.length < 4) ||
+        ["0000", "9999"].includes(stateDateObj.yyyy)
+      ) {
+        setDateError("Invalid Date");
+        return;
+      }
+      let availableMonths = daysInMonth(stateDateObj.mm, stateDateObj.yyyy);
+      if (
+        stateDateObj.dd &&
+        (stateDateObj.dd == 0 || stateDateObj.dd > availableMonths)
+      ) {
+        setDateError("Invalid Date");
+        return;
+      }
+      // if no errors then set the error state as empty
+      setDateError("");
     }
-    if (
-      (stateDateObj.yyyy && stateDateObj.yyyy.length < 4) ||
-      ["0000", "9999"].includes(stateDateObj.yyyy)
-    ) {
-      setDateError("Invalid Date");
-      return;
-    }
-    let availableMonths = daysInMonth(stateDateObj.mm, stateDateObj.yyyy);
-    if (
-      stateDateObj.dd &&
-      (stateDateObj.dd == 0 || stateDateObj.dd > availableMonths)
-    ) {
-      setDateError("Invalid Date");
-      return;
-    }
-    // if no errors then set the error state as empty
-    setDateError("");
   };
 
   // Function to get number of days available in a mont
@@ -340,6 +347,7 @@ DateInput.defaulProps = {
   isRange: false,
   rangeConfig: {},
   onConfirmRange: () => {},
+  defaultValidation: true,
 };
 
 export default React.memo(DateInput);

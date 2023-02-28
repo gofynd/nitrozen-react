@@ -52,6 +52,11 @@ export default {
       description:
         "Contains data of the range and min and max values of the calendar",
     },
+    defaultValidation: {
+      control: { type: "boolean" },
+      description: "Flag to disable default validation",
+      defaultValue: true,
+    },
   },
 } as ComponentMeta<typeof DateInput>;
 

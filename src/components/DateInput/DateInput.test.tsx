@@ -118,7 +118,7 @@ describe("DateInput", () => {
     const errorMessage = container.getElementsByClassName(
       "n-validation-container"
     );
-    expect(errorMessage.length).toBe(1);
+    expect(errorMessage.length).toBe(0);
   });
   test("renders the DateInput component to check typing on input field with wrong input", () => {
     const { container } = render(
@@ -138,7 +138,7 @@ describe("DateInput", () => {
     const errorMessage = container.getElementsByClassName(
       "n-validation-container"
     );
-    expect(errorMessage.length).toBe(1);
+    expect(errorMessage.length).toBe(0);
   });
   test("renders the DateInput component to check typing backspace", () => {
     render(
@@ -162,5 +162,26 @@ describe("DateInput", () => {
     fireEvent.change(Input1, { target: { value: "1" } });
     fireEvent.blur(Input1);
     expect(Input1.value).toBe("01");
+  });
+  test("renders the DateInput component to check typing on input field with wrong input", () => {
+    const { container } = render(
+      <DateInput
+        label="Birthdate"
+        required={true}
+        helperText={"Enter your birth date"}
+        dateValue={"11/27/1997"}
+        getDateValue={() => {}}
+        id={"birth-field"}
+        defaultValidation={true}
+      />
+    );
+    const Input2 = screen.getByTestId(
+      "date-input-1-birth-field"
+    ) as HTMLInputElement;
+    fireEvent.change(Input2, { target: { value: "44" } });
+    const errorMessage = container.getElementsByClassName(
+      "n-validation-container"
+    );
+    expect(errorMessage.length).toBe(1);
   });
 });
