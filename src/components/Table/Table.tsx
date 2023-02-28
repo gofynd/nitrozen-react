@@ -20,10 +20,19 @@ export interface TableProps {
   getCheckedItems?: Function;
   allCheckClicked?: Function;
   showColumnDivider?: boolean;
+  customClassName?: string;
+  customStyle?: React.CSSProperties;
 }
 
 const Table: React.FC<TableProps> = (props) => {
-  const { id, tableRow, tableHeader, showColumnDivider } = props;
+  const {
+    id,
+    tableRow,
+    tableHeader,
+    showColumnDivider,
+    customStyle,
+    customClassName,
+  } = props;
   const [clickedIds, setClickedIds] = useState<number[]>([]);
 
   /**
@@ -71,7 +80,11 @@ const Table: React.FC<TableProps> = (props) => {
   };
 
   return (
-    <div className="n-table" data-testid={`table-${id}`}>
+    <div
+      className={`n-table ${customClassName ? customClassName : ""}`}
+      data-testid={`table-${id}`}
+      style={customStyle ?? {}}
+    >
       <table className="n-main-table">
         <thead>
           <tr className="n-table-header-tr">
