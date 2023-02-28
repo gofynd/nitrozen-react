@@ -92,6 +92,7 @@ export default {
       options: SvgArray,
     },
     checkable: { control: "boolean", defaultValue: false },
+    showColumnDivider: { control: "boolean", defaultValue: true },
   },
 } as ComponentMeta<typeof Table>;
 
