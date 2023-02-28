@@ -4,7 +4,6 @@ import Table from "./Table";
 import "./Table.scss";
 import * as SvgArray from "../../assets/svg-components";
 import { SvgDirections, SvgSortByAlpha } from "../../assets/svg-components";
-import Badge from "../Badge/Badge";
 
 export default {
   title: "Components/Table",
@@ -93,6 +92,7 @@ export default {
       options: SvgArray,
     },
     checkable: { control: "boolean", defaultValue: false },
+    showColumnDivider: { control: "boolean", defaultValue: true },
   },
 } as ComponentMeta<typeof Table>;
 

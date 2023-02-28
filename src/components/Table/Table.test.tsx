@@ -86,6 +86,7 @@ describe("Render a Table component", () => {
     expect(rowValue2Text.textContent).toContain("Yang");
     const rowValue3Text = screen.getByTestId("n-row-data-0-2");
     expect(rowValue3Text.textContent).toContain("45");
+    expect(rowValue0Text.className).toBe("n-row-data ");
   });
   test("Show table and check on click", async () => {
     render(
@@ -326,5 +327,53 @@ describe("Render a Table component", () => {
     expect(rowValue0.className).toContain("n-table-row-item-clickable");
     fireEvent.click(rowValue0);
     expect(onRowClick).toBeCalledTimes(1);
+  });
+  test("Show table and its values check first row and a class name for hiding the column divider border", async () => {
+    render(
+      <Table
+        customSortIcon={<SvgInfo />}
+        tableRow={[
+          {
+            age: 45,
+            firstName: "John",
+            lastName: "Yang",
+          },
+          {
+            age: 16,
+            firstName: "Robert",
+            lastName: "Peterson",
+          },
+        ]}
+        tableHeader={[
+          {
+            customSort: () => {},
+            name: "firstName",
+            sortable: true,
+            value: "First name",
+            width: "50%",
+          },
+          {
+            name: "lastName",
+            sortable: false,
+            value: "Last name",
+            width: "20%",
+          },
+          {
+            customSort: () => {},
+            name: "age",
+            sortable: true,
+            type: "number",
+            value: "Age",
+            width: "100px",
+          },
+        ]}
+        rowStyle="simple"
+        id="custom-table"
+        showColumnDivider={false}
+      />
+    );
+    const rowValue0Text = screen.getByTestId("n-row-data-0-0");
+    expect(rowValue0Text.textContent).toContain("John");
+    expect(rowValue0Text.className).toBe("n-row-data n-table-no-divider");
   });
 });

@@ -19,10 +19,11 @@ export interface TableProps {
   allChecked?: Boolean;
   getCheckedItems?: Function;
   allCheckClicked?: Function;
+  showColumnDivider?: Boolean;
 }
 
 const Table: React.FC<TableProps> = (props) => {
-  const { id, tableRow, tableHeader } = props;
+  const { id, tableRow, tableHeader, showColumnDivider } = props;
   const [clickedIds, setClickedIds] = useState<number[]>([]);
 
   /**
@@ -75,7 +76,12 @@ const Table: React.FC<TableProps> = (props) => {
         <thead>
           <tr className="n-table-header-tr">
             {props.checkable ? (
-              <th className="n-table-header-checkbox">
+              <th
+                className="n-table-header-checkbox"
+                style={{
+                  backgroundColor: props.headerBackground,
+                }}
+              >
                 <div className="n-table-checbox-wrapper">
                   <Checkbox
                     id="header-checkbox"
@@ -175,7 +181,9 @@ const Table: React.FC<TableProps> = (props) => {
                 {tableHeader.map((headerElement, headerIndex) => {
                   return (
                     <td
-                      className="n-row-data"
+                      className={`n-row-data ${
+                        !showColumnDivider ? "n-table-no-divider" : ""
+                      }`}
                       data-testid={`n-row-data-${rowIndex}-${headerIndex}`}
                       key={`n-row-data-${rowIndex}-${headerIndex}`}
                     >
@@ -217,6 +225,7 @@ Table.defaultProps = {
   allChecked: false,
   getCheckedItems: () => {},
   allCheckClicked: () => {},
+  showColumnDivider: true,
 };
 
 export default memo(Table);

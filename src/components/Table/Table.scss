@@ -47,7 +47,9 @@
     border-top-right-radius: $RadiusMedium;
   }
 }
-
+.n-table-no-divider {
+  border-left: none !important;
+}
 .n-table-row-item {
   td {
     border-radius: 0;
