@@ -24,6 +24,7 @@ export interface PaginationProps {
   onNextClick?: Function;
   className?: string;
   style?: React.CSSProperties;
+  visiblePagesNodeCount?: number;
 }
 export interface paginationInterface {
   totalCount: number;

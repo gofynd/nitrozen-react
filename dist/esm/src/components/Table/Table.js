@@ -7,11 +7,22 @@ import {
 } from "../../assets/svg-components/Nitrozen/index.js";
 import n from "../Checkbox/Checkbox.js";
 const o = (t) => {
-  const { id: l, tableRow: o, tableHeader: s } = t,
-    [m, d] = a([]);
+  const {
+      id: l,
+      tableRow: o,
+      tableHeader: s,
+      showColumnDivider: d,
+      customStyle: m,
+      customClassName: i,
+    } = t,
+    [h, b] = a([]);
   return e.createElement(
     "div",
-    { className: "n-table", "data-testid": `table-${l}` },
+    {
+      className: `n-table ${i || ""}`,
+      "data-testid": `table-${l}`,
+      style: null != m ? m : {},
+    },
     e.createElement(
       "table",
       { className: "n-main-table" },
@@ -24,7 +35,10 @@ const o = (t) => {
           t.checkable
             ? e.createElement(
                 "th",
-                { className: "n-table-header-checkbox" },
+                {
+                  className: "n-table-header-checkbox",
+                  style: { backgroundColor: t.headerBackground },
+                },
                 e.createElement(
                   "div",
                   { className: "n-table-checbox-wrapper" },
@@ -56,7 +70,7 @@ const o = (t) => {
                 onClick: () =>
                   ((e) => {
                     let t = s[e],
-                      a = [...m];
+                      a = [...h];
                     if (a.includes(e)) {
                       let l = a.indexOf(e);
                       l > -1 &&
@@ -73,7 +87,7 @@ const o = (t) => {
                           headerIndex: e,
                           headerName: t.name,
                         });
-                    d(a);
+                    b(a);
                   })(l),
                 key: `n-table-header-${l}`,
               },
@@ -93,7 +107,7 @@ const o = (t) => {
                   ? e.createElement(
                       e.Fragment,
                       null,
-                      m.includes(l)
+                      h.includes(l)
                         ? t.customSortIcon
                           ? t.customSortIcon
                           : e.createElement(c, { className: "n-action-icon" })
@@ -164,7 +178,7 @@ const o = (t) => {
               e.createElement(
                 "td",
                 {
-                  className: "n-row-data",
+                  className: "n-row-data " + (d ? "" : "n-table-no-divider"),
                   "data-testid": `n-row-data-${l}-${c}`,
                   key: `n-row-data-${l}-${c}`,
                 },
@@ -207,6 +221,7 @@ o.defaultProps = {
   allChecked: !1,
   getCheckedItems: () => {},
   allCheckClicked: () => {},
+  showColumnDivider: !0,
 };
 var s = t(o);
 export { s as default };

@@ -8,11 +8,14 @@ export interface TableProps {
   rowStyle: string;
   headerBackground?: string;
   customSortIcon?: React.ReactNode;
-  checkable?: Boolean;
+  checkable?: boolean;
   onRowClick?: (index: number) => void;
-  allChecked?: Boolean;
+  allChecked?: boolean;
   getCheckedItems?: Function;
   allCheckClicked?: Function;
+  showColumnDivider?: boolean;
+  customClassName?: string;
+  customStyle?: React.CSSProperties;
 }
 declare const _default: React.NamedExoticComponent<TableProps>;
 export default _default;

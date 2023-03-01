@@ -1,5 +1,8 @@
 import React from "react";
 import "./Validation.scss";
+import errorSvg from "../../assets/error-badge.svg";
+import warningSvg from "../../assets/warning-badge.svg";
+import correctSvg from "../../assets/tick-green-badge.svg";
 export interface ValidationProps {
   validationState: string;
   isHidden?: boolean;
@@ -18,15 +21,15 @@ const Validation = (props: ValidationProps) => {
     switch (validationState) {
       case "error":
         customClass = "n-field-error";
-        icon = require("../../assets/error-badge.svg");
+        icon = errorSvg;
         break;
       case "success":
         customClass = "n-field-success";
-        icon = require("../../assets/tick-green-badge.svg");
+        icon = correctSvg;
         break;
       case "warning":
         customClass = "n-field-warning";
-        icon = require("../../assets/warning-badge.svg");
+        icon = warningSvg;
         break;
       default:
         break;

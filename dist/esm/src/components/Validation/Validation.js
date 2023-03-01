@@ -1,55 +1,55 @@
 import { __rest as e } from "../../../node_modules/tslib/tslib.es6.js";
-import a from "react";
+import s from "react";
 import "./Validation.scss.js";
-const s = (s) => {
+import a from "../../assets/error-badge.svg.js";
+import t from "../../assets/warning-badge.svg.js";
+import r from "../../assets/tick-green-badge.svg.js";
+const n = (n) => {
   const {
-    validationState: t,
-    label: r,
-    isHidden: n,
-    className: i,
-    style: l,
-  } = s;
+    validationState: i,
+    label: l,
+    isHidden: c,
+    className: o,
+    style: m,
+  } = n;
   return (
-    e(s, ["validationState", "label", "isHidden", "className", "style"]),
-    n
-      ? a.createElement(a.Fragment, null)
-      : a.createElement(
+    e(n, ["validationState", "label", "isHidden", "className", "style"]),
+    c
+      ? s.createElement(s.Fragment, null)
+      : s.createElement(
           "div",
           { className: "n-validation-container" },
           (function () {
-            let e, s;
-            switch (t) {
+            let e, n;
+            switch (i) {
               case "error":
-                (e = "n-field-error"),
-                  (s = require("../../assets/error-badge.svg"));
+                (e = "n-field-error"), (n = a);
                 break;
               case "success":
-                (e = "n-field-success"),
-                  (s = require("../../assets/tick-green-badge.svg"));
+                (e = "n-field-success"), (n = r);
                 break;
               case "warning":
-                (e = "n-field-warning"),
-                  (s = require("../../assets/warning-badge.svg"));
+                (e = "n-field-warning"), (n = t);
             }
-            return a.createElement(
+            return s.createElement(
               "div",
               {
-                className: `n-state-container ${e} ${null != i ? i : ""}`,
-                style: null != l ? l : {},
+                className: `n-state-container ${e} ${null != o ? o : ""}`,
+                style: null != m ? m : {},
               },
-              a.createElement(
+              s.createElement(
                 "div",
                 { className: "n-svg-container" },
                 " ",
-                a.createElement("img", { src: s, alt: `${t} badge` })
+                s.createElement("img", { src: n, alt: `${i} badge` })
               ),
-              r
+              l
             );
           })()
         )
   );
 };
-s.defaultProps = { validationState: "success", label: "", isHidden: !1 };
-var t = a.memo(s);
-export { t as default };
+n.defaultProps = { validationState: "success", label: "", isHidden: !1 };
+var i = s.memo(n);
+export { i as default };
 //# sourceMappingURL=Validation.js.map
