@@ -144,6 +144,23 @@ describe("Pagination", () => {
     expect(dropdown.getAttribute("data-value")).toBe("20");
   });
 
+  it("should set the pagination range to an array of 10 numbers starting from the current page", () => {
+    const setValue = jest.fn();
+    const value = { current: 5 };
+    const setPaginationRange = jest.fn();
+    const onPaginationRange = () => {
+      const range = [];
+      for (let i = value.current; i < value.current + 10; i++) {
+        range.push(i);
+      }
+      setPaginationRange(range);
+    };
+    onPaginationRange();
+    expect(setPaginationRange).toHaveBeenCalledWith([
+      5, 6, 7, 8, 9, 10, 11, 12, 13, 14,
+    ]);
+  });
+
   test("onchange should not have been called on initial render", () => {
     const testProps = {
       id: "1",
