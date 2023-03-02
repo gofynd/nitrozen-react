@@ -1,0 +1,323 @@
+@import "./../../base/base.scss";
+
+.n-picker {
+  &-right-container {
+    left: 0;
+  }
+  &-left-container {
+    right: 0;
+  }
+  &-calendar-wrapper {
+    width: 100%;
+  }
+
+  &-calendar-group {
+    display: flex;
+    gap: 1.2rem;
+    height: 48.4rem;
+    @media screen and (max-width: 425px) {
+      display: block;
+      height: unset;
+      position: relative;
+    }
+  }
+
+  &-divider {
+    border-left: 0.1rem solid $ColorPrimaryGrey40;
+  }
+
+  &-wrapper {
+    position: absolute;
+    background: $WhiteColor;
+    box-shadow: $ShadowM;
+    border-radius: 2.4rem;
+    padding: 1.6rem;
+    z-index: $ZIndex3;
+    @media screen and (max-width: 425px) {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: calc(100% - 3.2rem);
+      height: calc(100% - 3.2rem);
+      overflow-y: scroll;
+      display: flex;
+      flex-direction: column;
+      border-radius: 0;
+    }
+  }
+
+  &-wrapper-width {
+    width: calc(100% - 3.2rem);
+    max-width: 38.4rem;
+
+    @media screen and (max-width: 425px) {
+      height: 100vh;
+      max-width: unset;
+    }
+  }
+
+  &-my-wrapper {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    gap: 3.2rem;
+    margin-top: 2.2rem;
+  }
+
+  &-btn {
+    width: 10.2rem;
+    height: 4.8rem;
+    border: 0.1rem solid $ColorPrimaryGrey40;
+    color: $ColorPrimary60;
+    border-radius: 50%;
+    display: flex;
+    font-size: 1.6rem;
+    align-items: center;
+    justify-content: space-around;
+    border-radius: 100rem;
+    cursor: pointer;
+
+    span {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      svg {
+        color: $ColorPrimary60;
+      }
+    }
+  }
+  &-btn-active {
+    background-color: $ColorPrimary20;
+    border-color: $ColorPrimary60;
+  }
+
+  &-month-year {
+    display: flex;
+    gap: 1.2rem;
+  }
+
+  &-toggle-icon {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    cursor: pointer;
+
+    svg {
+      height: 2.4rem;
+      width: 2.4rem;
+      color: $ColorPrimary60;
+    }
+  }
+
+  &-day-row {
+    color: $TypographyPrimaryColor;
+    font-size: 1.6rem;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2.4rem 0;
+    position: relative;
+
+    span {
+      width: 4.8rem;
+      text-align: center;
+    }
+  }
+
+  &-calendar-grid {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 4.8rem 4.8rem 4.8rem 4.8rem 4.8rem 4.8rem 4.8rem;
+    justify-content: space-between;
+    height: auto;
+
+    @media screen and (max-width: 425px) {
+      grid-template-columns: 4.4rem 4.4rem 4.4rem 4.4rem 4.4rem 4.4rem 4.4rem;
+    }
+  }
+
+  &-calendar-griditem {
+    font-size: 1.6rem;
+    color: $ColorPrimary60;
+    width: 4.8rem;
+    height: 4.8rem;
+    text-align: center;
+    cursor: default;
+    padding-bottom: 0.8rem;
+    cursor: pointer;
+
+    div {
+      height: 100%;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    &-range {
+      background: $ColorPrimary20;
+    }
+
+    &-disabled {
+      color: $ColorPrimary60;
+      opacity: 50%;
+      cursor: not-allowed;
+      border-radius: 100rem;
+    }
+
+    &-rangestart {
+      background-color: $ColorPrimary50;
+      color: $WhiteColor;
+      border-bottom-left-radius: 25em;
+      border-top-left-radius: 25em;
+    }
+
+    &-rangeend {
+      background-color: $ColorPrimary50;
+      color: $WhiteColor;
+      border-bottom-right-radius: 25em;
+      border-top-right-radius: 25em;
+    }
+
+    &-selected {
+      background-color: $ColorPrimary50;
+      color: $WhiteColor;
+      border-radius: 100rem;
+    }
+
+    &-hover {
+      &:hover {
+        background-color: $ColorPrimaryGrey20;
+        border-radius: 100rem;
+      }
+    }
+
+    &-today {
+      border-radius: 100rem;
+      background-color: $ColorPrimary20;
+    }
+  }
+
+  &-monthlist {
+    position: absolute;
+    overflow-y: scroll;
+    background-color: $WhiteColor;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-top: 0.1rem solid $ColorPrimaryGrey40;
+    padding-top: 0.8rem;
+
+    &-width {
+      width: calc(100% - 3.2rem);
+      height: calc(100% - 15rem);
+      top: 24%;
+      @media screen and (max-width: 425px) {
+        width: calc(100%);
+        height: calc(100% - 1rem);
+        top: 22%;
+      }
+    }
+
+    &-semiwidth {
+      width: calc(50% - 2.8rem);
+      height: calc(100% - 22rem);
+      top: 20%;
+      @media screen and (max-width: 425px) {
+        width: 100%;
+        height: calc(100% - 50rem);
+        top: 10%;
+      }
+    }
+
+    &-item {
+      color: $ColorPrimary60;
+      font-size: 1.8rem;
+      padding: 1.2rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 25rem;
+    }
+
+    &-selected {
+      background-color: $ColorPrimary60;
+      color: $WhiteColor;
+    }
+  }
+
+  &-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 0.1rem solid $ColorPrimaryGrey40;
+    padding-top: 1.2rem;
+    &-date-group {
+      display: flex;
+      gap: 2.4rem;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    &-date-item {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+
+      span {
+        font-size: 1.4rem;
+        color: $ColorPrimaryGrey80;
+
+        &:last-child {
+          color: $ColorPrimaryGrey100;
+          font-size: 1.6rem;
+        }
+      }
+    }
+  }
+  &-single-footer {
+    display: none;
+    @media screen and (max-width: 425px) {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: calc(100% - 3.2rem);
+      border-top: 1px solid $ColorPrimaryGrey40;
+      position: absolute;
+      bottom: 0;
+    }
+    &-date-item {
+      font-size: 1.6rem;
+      color: $TypographyPrimaryColor;
+      line-height: 2.4rem;
+      font-weight: 700;
+      padding: 2.4rem 0;
+      width: 100%;
+    }
+    &-button {
+      width: 100%;
+      z-index: $ZIndex3;
+      .n-button {
+        width: 100%;
+      }
+    }
+  }
+}
+
+.n-closeicon-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  cursor: pointer;
+
+  svg {
+    height: 2.4rem;
+    width: 2.4rem;
+    color: $ColorPrimary60;
+  }
+}

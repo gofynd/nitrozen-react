@@ -1,5 +1,4 @@
 import React from "react";
-import loader from "./../../assets/loader.gif";
 import classnames from "classnames";
 import "./Button.scss";
 export interface ButtonProps {
@@ -154,7 +153,9 @@ const ButtonContent = (props: ButtonProps) => {
           <img
             className="n-btn-spinner"
             style={{ width: "50px" }}
-            src={loader}
+            src={
+              "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyprod/wrkr/misc/general/free/original/loader.gif"
+            }
           />
         </div>
       )}

@@ -2,9 +2,12 @@ import React, { useState, useEffect, useRef, ChangeEvent } from "react";
 import NitrozenId from "../../utils/uuids";
 import Dropdown from "../Dropdown";
 import "./Pagination.scss";
-import { SvgLeft, SvgRight } from "../../assets/svg-components";
 import { usePagination } from "./usePagination";
-import { SvgSearchLogo } from "../../assets/svg-components/Action";
+import {
+  SvgIcSearch,
+  SvgIcChevronLeft,
+  SvgIcChevronRight,
+} from "../../assets/svg-components";
 
 export enum ModeEnum {
   MODE_REGULAR = "regular",
@@ -30,6 +33,7 @@ export interface PaginationProps {
   onNextClick?: Function;
   className?: string;
   style?: React.CSSProperties;
+  visiblePagesNodeCount?: number;
 }
 export interface paginationInterface {
   totalCount: number;
@@ -50,6 +54,7 @@ const Pagination = (props: PaginationProps) => {
     onNextClick,
     className,
     style,
+    visiblePagesNodeCount,
     ...restProps
   } = props;
   const [value, setValue] = useState<ConfigProps>(propValue);
@@ -70,15 +75,12 @@ const Pagination = (props: PaginationProps) => {
   useEffect(() => {
     setDefaults();
     onPaginationRange();
-  }, [value]);
-
-  useEffect(() => {
     if (isFirstRender?.current) {
       isFirstRender.current = false;
       return;
     }
     change();
-  }, [value]);
+  }, [value, visiblePagesNodeCount]);
 
   function setDefaults() {
     if (!value.current) {
@@ -146,8 +148,8 @@ const Pagination = (props: PaginationProps) => {
     let maxPageCount = 1800;
     const po = pageSizeOptions
       ? pageSizeOptions.map((p) => {
-          return { text: p.toString(), value: p.toString() };
-        })
+        return { text: p.toString(), value: p.toString() };
+      })
       : [];
     if (!selectedPageSize) {
       setSelectedPageSize(
@@ -181,6 +183,20 @@ const Pagination = (props: PaginationProps) => {
     }
     const width = Math.min(...widths);
 
+    if (visiblePagesNodeCount && visiblePagesNodeCount > 4) {
+      const siblingCount =
+        Math.floor(visiblePagesNodeCount / 2) -
+        (visiblePagesNodeCount % 2 === 0 ? 3 : 2);
+      const paginationRange = usePagination(
+        visiblePagesNodeCount,
+        value.total,
+        value.limit,
+        siblingCount,
+        value.current
+      );
+      setPaginationRange([...paginationRange]);
+      return;
+    }
     if (width <= 768) {
       const paginationRange = usePagination(
         4,
@@ -189,7 +205,7 @@ const Pagination = (props: PaginationProps) => {
         1,
         value.current
       );
-      setPaginationRange(paginationRange);
+      setPaginationRange([...paginationRange]);
     } else {
       const paginationRange = usePagination(
         5,
@@ -198,31 +214,25 @@ const Pagination = (props: PaginationProps) => {
         2,
         value.current
       );
-      setPaginationRange(paginationRange);
+      setPaginationRange([...paginationRange]);
     }
   }
   function listNodeItems() {
-    if (paginationRange.length > 1) {
-      return paginationRange?.map((i: any, index: any) => (
-        <div
-          key={index}
-          id={index + "node"}
-          onClick={(e) => selectedNode(e, i, index)}
-          className={`n-pagination__number_inactive ${
-            i === value.current && "n-pagination__number_active"
-          } ${
-            i === "..." &&
-            popupPosition === index &&
-            openPopup &&
-            "n-pagination__dot_active"
+    return paginationRange?.map((i: any, index: any) => (
+      <div
+        key={index}
+        id={index + "node"}
+        onClick={(e) => selectedNode(e, i, index)}
+        className={`n-pagination__number_inactive ${i === value.current && "n-pagination__number_active"
+          } ${i === "..." &&
+          popupPosition === index &&
+          openPopup &&
+          "n-pagination__dot_active"
           }`}
-        >
-          {i}
-        </div>
-      ));
-    } else {
-      setShowSinglePage(true);
-    }
+      >
+        {i}
+      </div>
+    ));
   }
   function selectedNode(e: any, i: any, index: any) {
     if (i == "...") {
@@ -272,9 +282,8 @@ const Pagination = (props: PaginationProps) => {
         key={index}
         id={i}
         onClick={(e) => selectedNode(e, i, index)}
-        className={`n-pagination__search_number_inactive ${
-          i === searchValue && "n-pagination__search_number_active"
-        }`}
+        className={`n-pagination__search_number_inactive ${i === searchValue && "n-pagination__search_number_active"
+          }`}
       >
         {i}
       </div>
@@ -348,31 +357,29 @@ const Pagination = (props: PaginationProps) => {
           </span>
         </div>
         <div className="n-pagination__main">
-          {!showSinglePage && (
+          {paginationRange.length > 1 ? (
             <>
               <div
                 data-testid="btnPrevious"
                 onClick={previous}
-                className={`n-pagination__prev ${
-                  !showPrev() && "pagination-diabled"
-                }`}
+                className={`n-pagination__prev ${!showPrev() && "pagination-diabled"
+                  }`}
               >
-                <SvgLeft />
+                <SvgIcChevronLeft />
               </div>
               <div className="n-pagination__number" ref={refSearchBox}>
                 {listNodeItems()}
                 {openPopup ? (
                   <div
-                    className={`n-pagination__showpopup ${
-                      popupPosition === 1
-                        ? "n-pagination__popup_left"
-                        : "n-pagination__popup_right"
-                    }`}
+                    className={`n-pagination__showpopup ${popupPosition === 1
+                      ? "n-pagination__popup_left"
+                      : "n-pagination__popup_right"
+                      }`}
                     id="menu"
                   >
                     <div className="n-pagination__search_input">
                       <div className="n-pagination__search_logo">
-                        <SvgSearchLogo className="search-icon" />
+                        <SvgIcSearch className="search-icon" />
                       </div>
                       <div className="text-input-wrapper">
                         <input
@@ -398,14 +405,13 @@ const Pagination = (props: PaginationProps) => {
               <div
                 data-testid="btnNext"
                 onClick={next}
-                className={`n-pagination__next ${
-                  !showNext() && "pagination-diabled"
-                } `}
+                className={`n-pagination__next ${!showNext() && "pagination-diabled"
+                  } `}
               >
-                <SvgRight />
+                <SvgIcChevronRight />
               </div>
             </>
-          )}
+          ) : null}
         </div>
         <div className="n-pagination__left mobile_view">
           <span

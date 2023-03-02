@@ -1,7 +1,7 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import Tooltip from "./Tooltip";
-import { SvgInfo, SvgHelp } from "../../assets/svg-components/Action";
+import { SvgIcInfo, SvgIcHelp } from "../../assets/svg-components";
 export default {
   title: "Components/Tooltip",
   component: Tooltip,
@@ -76,7 +76,7 @@ const Template: ComponentStory<typeof Tooltip> = (args) => (
 export const tooltipSuccess = Template.bind({});
 tooltipSuccess.args = {
   position: "bottom",
-  icon: <SvgInfo />,
+  icon: <SvgIcInfo />,
   tooltipContent:
     "This is a tooltip that shows helpful information when we hover over an icon.",
 };
@@ -84,7 +84,7 @@ tooltipSuccess.args = {
 export const tooltipWithLink = Template.bind({});
 tooltipWithLink.args = {
   link: "https://www.example.com",
-  icon: <SvgHelp />,
+  icon: <SvgIcHelp />,
   tooltipContent:
     "This is a tooltip that shows helpful information when we hover over an icon.",
 };

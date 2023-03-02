@@ -2,11 +2,25 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 2.0.1 (2023-03-01)
+
+### Features
+
+- Date Picker component added([5621f49](https://github.com/gofynd/nitrozen-react/pull/54))
+- Support for column divider in Table ([2305ce0](https://github.com/gofynd/nitrozen-react/pull/62))
+- Support for custom node values in Paginaton ([a653eca](https://github.com/gofynd/nitrozen-react/pull/65))
+- Bundle size reduced ([c8620e4](https://github.com/gofynd/nitrozen-react/pull/61))
+
+### Bugfixes
+
+- Table Component bugfixes([2305ce0](https://github.com/gofynd/nitrozen-react/pull/62))
+- Pagination bugfixes ([b00f302](https://github.com/gofynd/nitrozen-react/pull/63))
+
 ## 2.0.0 (2023-02-10)
 
 ### Features
 
-- Design system upgrade([5621f49][https://github.com/gofynd/nitrozen-react/pull/54])
+- Design system upgrade([5621f49](https://github.com/gofynd/nitrozen-react/pull/54))
 
 ## 1.1.1 (2022-12-20)
 

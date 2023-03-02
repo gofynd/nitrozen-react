@@ -3,8 +3,7 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import Table from "./Table";
 import "./Table.scss";
 import * as SvgArray from "../../assets/svg-components";
-import { SvgDirections, SvgSortByAlpha } from "../../assets/svg-components";
-import Badge from "../Badge/Badge";
+import { SvgIcSort } from "../../assets/svg-components";
 
 export default {
   title: "Components/Table",
@@ -93,6 +92,7 @@ export default {
       options: SvgArray,
     },
     checkable: { control: "boolean", defaultValue: false },
+    showColumnDivider: { control: "boolean", defaultValue: true },
   },
 } as ComponentMeta<typeof Table>;
 
@@ -253,7 +253,7 @@ export const sortableTable = (args: any) => {
       <Table
         {...args}
         tableRow={rowItem}
-        customSortIcon={<SvgSortByAlpha color="white" />}
+        customSortIcon={<SvgIcSort color="white" />}
         tableHeader={tableHeader}
       />
     </div>
@@ -302,20 +302,17 @@ ShowTable.args = {
     {
       customSort: () => {},
       name: "firstName",
-      sortable: true,
       value: "First name",
       width: "50%",
     },
     {
       name: "lastName",
-      sortable: false,
       value: "Last name",
       width: "20%",
     },
     {
       customSort: () => {},
       name: "age",
-      sortable: true,
       type: "number",
       value: "Age",
       width: "100px",
@@ -324,5 +321,5 @@ ShowTable.args = {
   id: "table-custom",
   footer: "Default footer",
   rowStyle: "zebra",
-  customSortIcon: <SvgDirections color="white" />,
+  customSortIcon: <SvgIcSort color="white" />,
 };

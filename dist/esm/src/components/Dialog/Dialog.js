@@ -1,6 +1,6 @@
 import { __rest as e } from "../../../node_modules/tslib/tslib.es6.js";
 import t from "react";
-import { SvgClose as a } from "../../assets/svg-components/Navigation/index.js";
+import { SvgIcClose as a } from "../../assets/svg-components/Nitrozen/index.js";
 import l from "../../utils/uuids.js";
 import i from "../Button/Button.js";
 import "./Dialog.scss.js";

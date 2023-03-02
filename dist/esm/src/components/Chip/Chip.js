@@ -1,7 +1,7 @@
 import { __rest as e } from "../../../node_modules/tslib/tslib.es6.js";
 import t, { useState as n, useCallback as s } from "react";
 import "./Chip.scss.js";
-import { SvgIcClose as a } from "../../assets/svg-components/Jio/index.js";
+import { SvgIcClose as a } from "../../assets/svg-components/Nitrozen/index.js";
 const l = (l) => {
   const {
       deletable: i,
@@ -38,12 +38,12 @@ const l = (l) => {
       "label",
     ]),
     [C, E] = n(!1),
-    k = l.icon,
-    v = {
+    N = l.icon,
+    k = {
       color: "secondary" === l.state ? "#2e31be" : "#8F8F8F",
       fontSize: "16px",
     },
-    N = s(
+    v = s(
       (e) => {
         l.disabled ||
           (e.stopPropagation(),
@@ -124,15 +124,15 @@ const l = (l) => {
               onClick: O,
             },
             t.createElement(a, {
-              style: Object.assign(Object.assign({}, v), y),
+              style: Object.assign(Object.assign({}, k), y),
             })
           ),
         g &&
           t.createElement(
             "span",
-            { "data-testid": "prop-icon", className: "n-icon", onClick: N },
-            t.createElement(k, {
-              style: Object.assign(Object.assign({}, v), y),
+            { "data-testid": "prop-icon", className: "n-icon", onClick: v },
+            t.createElement(N, {
+              style: Object.assign(Object.assign({}, k), y),
             })
           )
       );

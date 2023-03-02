@@ -165,19 +165,55 @@ export const AllDisbledThemes = () => (
 export const IconButton = () => (
   <div className="main-div">
     <div className="sb-display-grid">
-      <Button theme="primary" size="small" icon={SvgArray.SvgStore}></Button>
-      <Button theme="primary" size="medium" icon={SvgArray.SvgStore}></Button>
-      <Button theme="primary" size="large" icon={SvgArray.SvgStore}></Button>
+      <Button
+        theme="primary"
+        size="small"
+        icon={SvgArray.SvgIcAlarmOff}
+      ></Button>
+      <Button
+        theme="primary"
+        size="medium"
+        icon={SvgArray.SvgIcAlarmOff}
+      ></Button>
+      <Button
+        theme="primary"
+        size="large"
+        icon={SvgArray.SvgIcAlarmOff}
+      ></Button>
     </div>
     <div className="sb-display-grid">
-      <Button theme="secondary" size="small" icon={SvgArray.SvgStore}></Button>
-      <Button theme="secondary" size="medium" icon={SvgArray.SvgStore}></Button>
-      <Button theme="secondary" size="large" icon={SvgArray.SvgStore}></Button>
+      <Button
+        theme="secondary"
+        size="small"
+        icon={SvgArray.SvgIcAlarmOff}
+      ></Button>
+      <Button
+        theme="secondary"
+        size="medium"
+        icon={SvgArray.SvgIcAlarmOff}
+      ></Button>
+      <Button
+        theme="secondary"
+        size="large"
+        icon={SvgArray.SvgIcAlarmOff}
+      ></Button>
     </div>
     <div className="sb-display-grid">
-      <Button theme="tertiary" size="small" icon={SvgArray.SvgStore}></Button>
-      <Button theme="tertiary" size="medium" icon={SvgArray.SvgStore}></Button>
-      <Button theme="tertiary" size="large" icon={SvgArray.SvgStore}></Button>
+      <Button
+        theme="tertiary"
+        size="small"
+        icon={SvgArray.SvgIcAlarmOff}
+      ></Button>
+      <Button
+        theme="tertiary"
+        size="medium"
+        icon={SvgArray.SvgIcAlarmOff}
+      ></Button>
+      <Button
+        theme="tertiary"
+        size="large"
+        icon={SvgArray.SvgIcAlarmOff}
+      ></Button>
     </div>
   </div>
 );
@@ -185,35 +221,35 @@ export const IconButton = () => (
 export const ButtonWithIconLeft = () => (
   <div className="main-div">
     <div className="sb-display-grid">
-      <Button theme="primary" size="small" icon={SvgArray.SvgStore}>
+      <Button theme="primary" size="small" icon={SvgArray.SvgIcAlarmOff}>
         Button
       </Button>
-      <Button theme="primary" size="medium" icon={SvgArray.SvgStore}>
+      <Button theme="primary" size="medium" icon={SvgArray.SvgIcAlarmOff}>
         Button
       </Button>
-      <Button theme="primary" size="large" icon={SvgArray.SvgStore}>
-        Button
-      </Button>
-    </div>
-    <div className="sb-display-grid">
-      <Button theme="secondary" size="small" icon={SvgArray.SvgStore}>
-        Button
-      </Button>
-      <Button theme="secondary" size="medium" icon={SvgArray.SvgStore}>
-        Button
-      </Button>
-      <Button theme="secondary" size="large" icon={SvgArray.SvgStore}>
+      <Button theme="primary" size="large" icon={SvgArray.SvgIcAlarmOff}>
         Button
       </Button>
     </div>
     <div className="sb-display-grid">
-      <Button theme="tertiary" size="small" icon={SvgArray.SvgStore}>
+      <Button theme="secondary" size="small" icon={SvgArray.SvgIcAlarmOff}>
         Button
       </Button>
-      <Button theme="tertiary" size="medium" icon={SvgArray.SvgStore}>
+      <Button theme="secondary" size="medium" icon={SvgArray.SvgIcAlarmOff}>
         Button
       </Button>
-      <Button theme="tertiary" size="large" icon={SvgArray.SvgStore}>
+      <Button theme="secondary" size="large" icon={SvgArray.SvgIcAlarmOff}>
+        Button
+      </Button>
+    </div>
+    <div className="sb-display-grid">
+      <Button theme="tertiary" size="small" icon={SvgArray.SvgIcAlarmOff}>
+        Button
+      </Button>
+      <Button theme="tertiary" size="medium" icon={SvgArray.SvgIcAlarmOff}>
+        Button
+      </Button>
+      <Button theme="tertiary" size="large" icon={SvgArray.SvgIcAlarmOff}>
         Button
       </Button>
     </div>
@@ -223,35 +259,39 @@ export const ButtonWithIconLeft = () => (
 export const ButtonWithIconRight = () => (
   <div className="main-div">
     <div className="sb-display-grid">
-      <Button theme="primary" size="small" iconRight={SvgArray.SvgStore}>
+      <Button theme="primary" size="small" iconRight={SvgArray.SvgIcAlarmOff}>
         Button
       </Button>
-      <Button theme="primary" size="medium" iconRight={SvgArray.SvgStore}>
+      <Button theme="primary" size="medium" iconRight={SvgArray.SvgIcAlarmOff}>
         Button
       </Button>
-      <Button theme="primary" size="large" iconRight={SvgArray.SvgStore}>
-        Button
-      </Button>
-    </div>
-    <div className="sb-display-grid">
-      <Button theme="secondary" size="small" iconRight={SvgArray.SvgStore}>
-        Button
-      </Button>
-      <Button theme="secondary" size="medium" iconRight={SvgArray.SvgStore}>
-        Button
-      </Button>
-      <Button theme="secondary" size="large" iconRight={SvgArray.SvgStore}>
+      <Button theme="primary" size="large" iconRight={SvgArray.SvgIcAlarmOff}>
         Button
       </Button>
     </div>
     <div className="sb-display-grid">
-      <Button theme="tertiary" size="small" iconRight={SvgArray.SvgStore}>
+      <Button theme="secondary" size="small" iconRight={SvgArray.SvgIcAlarmOff}>
         Button
       </Button>
-      <Button theme="tertiary" size="medium" iconRight={SvgArray.SvgStore}>
+      <Button
+        theme="secondary"
+        size="medium"
+        iconRight={SvgArray.SvgIcAlarmOff}
+      >
         Button
       </Button>
-      <Button theme="tertiary" size="large" iconRight={SvgArray.SvgStore}>
+      <Button theme="secondary" size="large" iconRight={SvgArray.SvgIcAlarmOff}>
+        Button
+      </Button>
+    </div>
+    <div className="sb-display-grid">
+      <Button theme="tertiary" size="small" iconRight={SvgArray.SvgIcAlarmOff}>
+        Button
+      </Button>
+      <Button theme="tertiary" size="medium" iconRight={SvgArray.SvgIcAlarmOff}>
+        Button
+      </Button>
+      <Button theme="tertiary" size="large" iconRight={SvgArray.SvgIcAlarmOff}>
         Button
       </Button>
     </div>
@@ -264,24 +304,24 @@ export const ButtonWithBothIcon = () => (
       <Button
         theme="primary"
         size="small"
-        icon={SvgArray.SvgStore}
-        iconRight={SvgArray.SvgArrowRight}
+        icon={SvgArray.SvgIcAlarmOff}
+        iconRight={SvgArray.SvgIcChevronRight}
       >
         Button
       </Button>
       <Button
         theme="primary"
         size="medium"
-        icon={SvgArray.SvgStore}
-        iconRight={SvgArray.SvgArrowRight}
+        icon={SvgArray.SvgIcAlarmOff}
+        iconRight={SvgArray.SvgIcChevronRight}
       >
         Button
       </Button>
       <Button
         theme="primary"
         size="large"
-        icon={SvgArray.SvgStore}
-        iconRight={SvgArray.SvgArrowRight}
+        icon={SvgArray.SvgIcAlarmOff}
+        iconRight={SvgArray.SvgIcChevronRight}
       >
         Button
       </Button>
@@ -290,24 +330,24 @@ export const ButtonWithBothIcon = () => (
       <Button
         theme="secondary"
         size="small"
-        icon={SvgArray.SvgStore}
-        iconRight={SvgArray.SvgArrowRight}
+        icon={SvgArray.SvgIcAlarmOff}
+        iconRight={SvgArray.SvgIcChevronRight}
       >
         Button
       </Button>
       <Button
         theme="secondary"
         size="medium"
-        icon={SvgArray.SvgStore}
-        iconRight={SvgArray.SvgArrowRight}
+        icon={SvgArray.SvgIcAlarmOff}
+        iconRight={SvgArray.SvgIcChevronRight}
       >
         Button
       </Button>
       <Button
         theme="secondary"
         size="large"
-        icon={SvgArray.SvgStore}
-        iconRight={SvgArray.SvgArrowRight}
+        icon={SvgArray.SvgIcAlarmOff}
+        iconRight={SvgArray.SvgIcChevronRight}
       >
         Button
       </Button>
@@ -316,24 +356,24 @@ export const ButtonWithBothIcon = () => (
       <Button
         theme="tertiary"
         size="small"
-        icon={SvgArray.SvgStore}
-        iconRight={SvgArray.SvgArrowRight}
+        icon={SvgArray.SvgIcAlarmOff}
+        iconRight={SvgArray.SvgIcChevronRight}
       >
         Button
       </Button>
       <Button
         theme="tertiary"
         size="medium"
-        icon={SvgArray.SvgStore}
-        iconRight={SvgArray.SvgArrowRight}
+        icon={SvgArray.SvgIcAlarmOff}
+        iconRight={SvgArray.SvgIcChevronRight}
       >
         Button
       </Button>
       <Button
         theme="tertiary"
         size="large"
-        icon={SvgArray.SvgStore}
-        iconRight={SvgArray.SvgArrowRight}
+        icon={SvgArray.SvgIcAlarmOff}
+        iconRight={SvgArray.SvgIcChevronRight}
       >
         Button
       </Button>

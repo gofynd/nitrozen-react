@@ -3,35 +3,32 @@ var e = require("../../../node_modules/tslib/tslib.es6.js"),
   t = require("react");
 require("./Alert.scss.js");
 var n = require("../Button/Button.js"),
-  a = require("../../assets/svg-components/Alert/index.js"),
-  l = require("../../assets/svg-components/Navigation/index.js"),
-  r = require("../../assets/svg-components/Jio/index.js"),
-  s = require("../../assets/loader.gif.js");
-function o(e) {
+  a = require("../../assets/svg-components/Nitrozen/index.js");
+function l(e) {
   return e && "object" == typeof e && "default" in e ? e : { default: e };
 }
-var c = o(t);
-const i = (o) => {
-  var i;
+var r = l(t);
+const o = (l) => {
+  var o;
   const {
-      alertWidth: u,
-      buttonText: d,
-      buttonType: b,
-      children: f,
-      className: m,
-      displayButton: v,
-      extendedAlert: x,
-      fullWidth: k,
-      href: h,
-      Icon: g,
-      labelText: p,
-      linkText: E,
-      loader: N,
-      onClick: j,
-      state: w,
-      style: y,
-    } = o,
-    $ = e.__rest(o, [
+      alertWidth: s,
+      buttonText: c,
+      buttonType: i,
+      children: u,
+      className: d,
+      displayButton: b,
+      extendedAlert: f,
+      fullWidth: m,
+      href: v,
+      Icon: x,
+      labelText: k,
+      linkText: h,
+      loader: p,
+      onClick: g,
+      state: E,
+      style: N,
+    } = l,
+    w = e.__rest(l, [
       "alertWidth",
       "buttonText",
       "buttonType",
@@ -49,25 +46,25 @@ const i = (o) => {
       "state",
       "style",
     ]),
-    T = {
-      info: r.SvgIcInfo,
-      success: l.SvgCheck,
-      warn: a.SvgError,
-      error: r.SvgIcErrorColored,
+    y = {
+      info: a.SvgIcInfo,
+      success: a.SvgIcConfirm,
+      warn: a.SvgIcError,
+      error: a.SvgIcErrorColored,
     },
-    [q, C] = t.useState({
+    [$, T] = t.useState({
       container: "",
       icon: "",
       button: "",
       buttonLabel: "",
     }),
-    [S, I] = t.useState(() => T.info),
-    [L, A] = t.useState("fit-content");
+    [j, I] = t.useState(() => y.info),
+    [C, S] = t.useState("fit-content");
   return (
     t.useEffect(() => {
-      switch (w) {
+      switch (E) {
         case "info":
-          C({
+          T({
             container: "n-alert-info",
             icon: "n-alert-icon-info",
             button: "",
@@ -75,7 +72,7 @@ const i = (o) => {
           });
           break;
         case "success":
-          C({
+          T({
             container: "n-alert-success",
             icon: "n-alert-icon-success",
             button: "n-alert-button-success",
@@ -83,7 +80,7 @@ const i = (o) => {
           });
           break;
         case "warn":
-          C({
+          T({
             container: "n-alert-warn",
             icon: "n-alert-icon-warn",
             button: "n-alert-button-warn",
@@ -91,94 +88,94 @@ const i = (o) => {
           });
           break;
         case "error":
-          C({
+          T({
             container: "n-alert-error",
             icon: "n-alert-icon-error",
             button: "n-alert-button-error",
             buttonLabel: "n-alert-button-link-error",
           });
       }
-      void 0 !== w && I(() => T[w]);
-    }, [w]),
+      void 0 !== E && I(() => y[E]);
+    }, [E]),
     t.useEffect(() => {
-      A(void 0 !== u ? u : !u && k ? "100%" : "fit-content");
-    }, [u, k]),
-    c.default.createElement(
+      S(void 0 !== s ? s : !s && m ? "100%" : "fit-content");
+    }, [s, m]),
+    r.default.createElement(
       "div",
       Object.assign(
         {
           style:
             null !==
-              (i = Object.assign(Object.assign({}, y), {
-                width: L,
-                height: x ? "auto" : "48px",
-              })) && void 0 !== i
-              ? i
+              (o = Object.assign(Object.assign({}, N), {
+                width: C,
+                height: f ? "auto" : "48px",
+              })) && void 0 !== o
+              ? o
               : {},
-          className: `n-alert ${q.container} ${m} ${
-            k && "n-alert-full-width"
-          } ${"link" === b && "n-alert-link-button-container"} ${
-            N && "n-alert-loader-container"
+          className: `n-alert ${$.container} ${d} ${
+            m && "n-alert-full-width"
+          } ${"link" === i && "n-alert-link-button-container"} ${
+            p && "n-alert-loader-container"
           }`,
         },
-        $
+        w
       ),
-      c.default.createElement(
+      r.default.createElement(
         "div",
-        { className: `n-alert-flex ${x && "n-alert-extended"}` },
-        c.default.createElement(
+        { className: `n-alert-flex ${f && "n-alert-extended"}` },
+        r.default.createElement(
           "div",
           { className: "n-alert-text-icon-wrapper" },
-          N
-            ? c.default.createElement("img", {
-                src: s,
+          p
+            ? r.default.createElement("img", {
+                src: "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyprod/wrkr/misc/general/free/original/loader.gif",
                 className: "n-alert-icon n-alert-loader",
               })
-            : g ||
-                c.default.createElement(S, {
+            : x ||
+                r.default.createElement(j, {
                   className: `\n                                        n-alert-icon \n                                        ${
-                    q.icon
+                    $.icon
                   } \n                                        ${
-                    N && "n-alert-loader"
+                    p && "n-alert-loader"
                   }\n                                    `,
                 }),
-          c.default.createElement(
+          r.default.createElement(
             "div",
             { className: "n-alert-label-text" },
-            p
+            k
           ),
-          c.default.createElement("div", { className: "n-alert-text" }, f)
+          r.default.createElement("div", { className: "n-alert-text" }, u)
         ),
-        v &&
-          !N &&
-          c.default.createElement(
+        b &&
+          !p &&
+          r.default.createElement(
             "div",
             { className: "n-alert-button-container" },
-            "default" === b || "button" === b
-              ? c.default.createElement(
+            "default" === i || "button" === i
+              ? r.default.createElement(
                   n,
                   {
                     size: "small",
-                    className: `n-alert-button ${q.button}`,
-                    onClick: j,
+                    className: `n-alert-button ${$.button}`,
+                    onClick: g,
                   },
-                  d
+                  c
                 )
-              : c.default.createElement(
+              : r.default.createElement(
                   "a",
                   {
-                    className: `n-alert-link ${q.buttonLabel}`,
-                    onClick: j,
-                    href: h,
+                    className: `n-alert-link ${$.buttonLabel}`,
+                    onClick: g,
+                    href: v,
                   },
-                  E || d || "Click"
+                  h || c || "Click"
                 )
           )
       )
     )
   );
 };
-(i.defaultProps = {
+(o.defaultProps = {
   className: "",
   displayButton: !1,
   extendedAlert: !1,
@@ -189,5 +186,5 @@ const i = (o) => {
   state: "info",
   style: {},
 }),
-  (module.exports = i);
+  (module.exports = o);
 //# sourceMappingURL=Alert.js.map

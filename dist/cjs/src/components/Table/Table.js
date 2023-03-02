@@ -1,23 +1,34 @@
 "use strict";
 var e = require("react"),
-  a = require("../../utils/uuids.js");
+  t = require("../../utils/uuids.js");
 require("./Table.scss.js");
-var t = require("../../assets/svg-components/Hardware/index.js"),
+var a = require("../../assets/svg-components/Nitrozen/index.js"),
   l = require("../Checkbox/Checkbox.js");
 function r(e) {
   return e && "object" == typeof e && "default" in e ? e : { default: e };
 }
 var c = r(e);
-const n = (a) => {
-  const { id: r, tableRow: n, tableHeader: d } = a,
-    [o, s] = e.useState([]),
-    u = (e) => () => {
-      var t;
-      null === (t = a.onRowClick) || void 0 === t || t.call(a, e);
+const n = (t) => {
+  const {
+      id: r,
+      tableRow: n,
+      tableHeader: o,
+      showColumnDivider: d,
+      customStyle: s,
+      customClassName: u,
+    } = t,
+    [m, i] = e.useState([]),
+    h = (e) => () => {
+      var a;
+      null === (a = t.onRowClick) || void 0 === a || a.call(t, e);
     };
   return c.default.createElement(
     "div",
-    { className: "n-table", "data-testid": `table-${r}` },
+    {
+      className: `n-table ${u || ""}`,
+      "data-testid": `table-${r}`,
+      style: null != s ? s : {},
+    },
     c.default.createElement(
       "table",
       { className: "n-main-table" },
@@ -27,28 +38,31 @@ const n = (a) => {
         c.default.createElement(
           "tr",
           { className: "n-table-header-tr" },
-          a.checkable
+          t.checkable
             ? c.default.createElement(
                 "th",
-                { className: "n-table-header-checkbox" },
+                {
+                  className: "n-table-header-checkbox",
+                  style: { backgroundColor: t.headerBackground },
+                },
                 c.default.createElement(
                   "div",
                   { className: "n-table-checbox-wrapper" },
                   c.default.createElement(l, {
                     id: "header-checkbox",
-                    value: a.allChecked,
+                    value: t.allChecked,
                     onChange: (e) => {
-                      var t;
-                      null === (t = a.allCheckClicked) ||
-                        void 0 === t ||
-                        t.call(a, e);
+                      var a;
+                      null === (a = t.allCheckClicked) ||
+                        void 0 === a ||
+                        a.call(t, e);
                     },
-                    checkboxValue: a.allChecked,
+                    checkboxValue: t.allChecked,
                   })
                 )
               )
             : c.default.createElement(c.default.Fragment, null),
-          d.map((e, l) =>
+          o.map((e, l) =>
             c.default.createElement(
               "th",
               {
@@ -57,29 +71,29 @@ const n = (a) => {
                 "data-testid": `n-table-header-${l}`,
                 style: {
                   width: e.width ? e.width : "auto",
-                  backgroundColor: a.headerBackground,
+                  backgroundColor: t.headerBackground,
                 },
                 onClick: () =>
                   ((e) => {
-                    let a = d[e],
-                      t = [...o];
-                    if (t.includes(e)) {
-                      let l = t.indexOf(e);
+                    let t = o[e],
+                      a = [...m];
+                    if (a.includes(e)) {
+                      let l = a.indexOf(e);
                       l > -1 &&
-                        (t.splice(l, 1),
-                        a.customSort({
+                        (a.splice(l, 1),
+                        t.customSort({
                           sort: !1,
                           headerIndex: e,
-                          headerName: a.name,
+                          headerName: t.name,
                         }));
                     } else
-                      t.push(e),
-                        a.customSort({
+                      a.push(e),
+                        t.customSort({
                           sort: !0,
                           headerIndex: e,
-                          headerName: a.name,
+                          headerName: t.name,
                         });
-                    s(t);
+                    i(a);
                   })(l),
                 key: `n-table-header-${l}`,
               },
@@ -99,15 +113,15 @@ const n = (a) => {
                   ? c.default.createElement(
                       c.default.Fragment,
                       null,
-                      o.includes(l)
-                        ? a.customSortIcon
-                          ? a.customSortIcon
-                          : c.default.createElement(t.SvgKeyboardArrowDown, {
+                      m.includes(l)
+                        ? t.customSortIcon
+                          ? t.customSortIcon
+                          : c.default.createElement(a.SvgIcChevronDown, {
                               className: "n-action-icon",
                             })
-                        : a.customSortIcon
-                        ? a.customSortIcon
-                        : c.default.createElement(t.SvgKeyboardArrowRight, {
+                        : t.customSortIcon
+                        ? t.customSortIcon
+                        : c.default.createElement(a.SvgIcChevronRight, {
                             className: "n-action-icon",
                           })
                     )
@@ -120,22 +134,22 @@ const n = (a) => {
       c.default.createElement(
         "tbody",
         null,
-        n.map((e, t) =>
+        n.map((e, a) =>
           c.default.createElement(
             "tr",
             Object.assign(
               {
-                "data-testid": `row-${t}`,
+                "data-testid": `row-${a}`,
                 className: `n-table-row-item ${
-                  a.footer ? "" : "n-table-row-item-nofooter"
-                } ${"zebra" == a.rowStyle ? "n-table-row-zebra" : ""} ${
-                  a.checkable ? "n-table-row-item-checkbox" : ""
-                } ${a.onRowClick ? "n-table-row-item-clickable" : ""}`,
-                key: `row-${t}`,
+                  t.footer ? "" : "n-table-row-item-nofooter"
+                } ${"zebra" == t.rowStyle ? "n-table-row-zebra" : ""} ${
+                  t.checkable ? "n-table-row-item-checkbox" : ""
+                } ${t.onRowClick ? "n-table-row-item-clickable" : ""}`,
+                key: `row-${a}`,
               },
-              a.onRowClick ? { onClick: u(t) } : {}
+              t.onRowClick ? { onClick: h(a) } : {}
             ),
-            a.checkable
+            t.checkable
               ? c.default.createElement(
                   "td",
                   { className: "n-row-data" },
@@ -143,37 +157,37 @@ const n = (a) => {
                     "div",
                     { className: "n-table-checbox-wrapper" },
                     c.default.createElement(l, {
-                      id: `n-row-checkbox-${t}`,
+                      id: `n-row-checkbox-${a}`,
                       value: e.isChecked,
                       onChange: (e) =>
-                        ((e, t) => {
+                        ((e, a) => {
                           var l;
                           let r = [...n];
-                          (r[t].isChecked = e),
-                            null === (l = a.getCheckedItems) ||
+                          (r[a].isChecked = e),
+                            null === (l = t.getCheckedItems) ||
                               void 0 === l ||
-                              l.call(a, r);
-                        })(e, t),
+                              l.call(t, r);
+                        })(e, a),
                       checkboxValue: e.isChecked,
                     })
                   )
                 )
               : c.default.createElement(c.default.Fragment, null),
-            d.map((a, l) =>
+            o.map((t, l) =>
               c.default.createElement(
                 "td",
                 {
-                  className: "n-row-data",
-                  "data-testid": `n-row-data-${t}-${l}`,
-                  key: `n-row-data-${t}-${l}`,
+                  className: "n-row-data " + (d ? "" : "n-table-no-divider"),
+                  "data-testid": `n-row-data-${a}-${l}`,
+                  key: `n-row-data-${a}-${l}`,
                 },
-                e[a.name]
+                e[t.name]
               )
             )
           )
         )
       ),
-      a.footer
+      t.footer
         ? c.default.createElement(
             "tfoot",
             null,
@@ -183,10 +197,10 @@ const n = (a) => {
               c.default.createElement(
                 "td",
                 {
-                  colSpan: a.checkable ? 1 + d.length : d.length,
+                  colSpan: t.checkable ? 1 + o.length : o.length,
                   "data-testid": "footer-data",
                 },
-                a.footer
+                t.footer
               )
             )
           )
@@ -195,7 +209,7 @@ const n = (a) => {
   );
 };
 n.defaultProps = {
-  id: `nitrozen-dialog-${a()}`,
+  id: `nitrozen-dialog-${t()}`,
   tableHeader: [],
   tableRow: [],
   rowStyle: "simple",
@@ -205,7 +219,8 @@ n.defaultProps = {
   allChecked: !1,
   getCheckedItems: () => {},
   allCheckClicked: () => {},
+  showColumnDivider: !0,
 };
-var d = e.memo(n);
-module.exports = d;
+var o = e.memo(n);
+module.exports = o;
 //# sourceMappingURL=Table.js.map

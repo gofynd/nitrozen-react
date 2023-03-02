@@ -2,8 +2,8 @@ import React, { memo, useState, useEffect } from "react";
 import NitrozenId from "../../utils/uuids";
 import "./Table.scss";
 import {
-  SvgKeyboardArrowDown,
-  SvgKeyboardArrowRight,
+  SvgIcChevronDown,
+  SvgIcChevronRight,
 } from "../../assets/svg-components";
 import Checkbox from "../Checkbox/Checkbox";
 export interface TableProps {
@@ -14,15 +14,25 @@ export interface TableProps {
   rowStyle: string;
   headerBackground?: string;
   customSortIcon?: React.ReactNode;
-  checkable?: Boolean;
+  checkable?: boolean;
   onRowClick?: (index: number) => void;
-  allChecked?: Boolean;
+  allChecked?: boolean;
   getCheckedItems?: Function;
   allCheckClicked?: Function;
+  showColumnDivider?: boolean;
+  customClassName?: string;
+  customStyle?: React.CSSProperties;
 }
 
 const Table: React.FC<TableProps> = (props) => {
-  const { id, tableRow, tableHeader } = props;
+  const {
+    id,
+    tableRow,
+    tableHeader,
+    showColumnDivider,
+    customStyle,
+    customClassName,
+  } = props;
   const [clickedIds, setClickedIds] = useState<number[]>([]);
 
   /**
@@ -70,12 +80,21 @@ const Table: React.FC<TableProps> = (props) => {
   };
 
   return (
-    <div className="n-table" data-testid={`table-${id}`}>
+    <div
+      className={`n-table ${customClassName ? customClassName : ""}`}
+      data-testid={`table-${id}`}
+      style={customStyle ?? {}}
+    >
       <table className="n-main-table">
         <thead>
           <tr className="n-table-header-tr">
             {props.checkable ? (
-              <th className="n-table-header-checkbox">
+              <th
+                className="n-table-header-checkbox"
+                style={{
+                  backgroundColor: props.headerBackground,
+                }}
+              >
                 <div className="n-table-checbox-wrapper">
                   <Checkbox
                     id="header-checkbox"
@@ -120,12 +139,12 @@ const Table: React.FC<TableProps> = (props) => {
                           props.customSortIcon ? (
                             props.customSortIcon
                           ) : (
-                            <SvgKeyboardArrowDown className="n-action-icon" />
+                            <SvgIcChevronDown className="n-action-icon" />
                           )
                         ) : props.customSortIcon ? (
                           props.customSortIcon
                         ) : (
-                          <SvgKeyboardArrowRight className="n-action-icon" />
+                          <SvgIcChevronRight className="n-action-icon" />
                         )}
                       </>
                     ) : (
@@ -175,7 +194,9 @@ const Table: React.FC<TableProps> = (props) => {
                 {tableHeader.map((headerElement, headerIndex) => {
                   return (
                     <td
-                      className="n-row-data"
+                      className={`n-row-data ${
+                        !showColumnDivider ? "n-table-no-divider" : ""
+                      }`}
                       data-testid={`n-row-data-${rowIndex}-${headerIndex}`}
                       key={`n-row-data-${rowIndex}-${headerIndex}`}
                     >
@@ -217,6 +238,7 @@ Table.defaultProps = {
   allChecked: false,
   getCheckedItems: () => {},
   allCheckClicked: () => {},
+  showColumnDivider: true,
 };
 
 export default memo(Table);

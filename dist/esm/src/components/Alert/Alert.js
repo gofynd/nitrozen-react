@@ -1,35 +1,34 @@
-import { __rest as t } from "../../../node_modules/tslib/tslib.es6.js";
-import e, { useState as n, useEffect as a } from "react";
+import { __rest as e } from "../../../node_modules/tslib/tslib.es6.js";
+import t, { useState as n, useEffect as a } from "react";
 import "./Alert.scss.js";
 import l from "../Button/Button.js";
-import { SvgError as r } from "../../assets/svg-components/Alert/index.js";
-import { SvgCheck as o } from "../../assets/svg-components/Navigation/index.js";
 import {
-  SvgIcInfo as s,
+  SvgIcInfo as r,
+  SvgIcConfirm as o,
+  SvgIcError as s,
   SvgIcErrorColored as i,
-} from "../../assets/svg-components/Jio/index.js";
-import c from "../../assets/loader.gif.js";
-const u = (u) => {
-  var b;
+} from "../../assets/svg-components/Nitrozen/index.js";
+const c = (c) => {
+  var u;
   const {
-      alertWidth: d,
-      buttonText: m,
-      buttonType: f,
-      children: p,
-      className: x,
-      displayButton: k,
-      extendedAlert: h,
-      fullWidth: v,
+      alertWidth: b,
+      buttonText: d,
+      buttonType: m,
+      children: f,
+      className: p,
+      displayButton: x,
+      extendedAlert: k,
+      fullWidth: h,
       href: N,
-      Icon: g,
-      labelText: j,
-      linkText: w,
-      loader: E,
-      onClick: $,
-      state: y,
+      Icon: v,
+      labelText: w,
+      linkText: g,
+      loader: y,
+      onClick: E,
+      state: $,
       style: T,
-    } = u,
-    L = t(u, [
+    } = c,
+    j = e(c, [
       "alertWidth",
       "buttonText",
       "buttonType",
@@ -47,13 +46,13 @@ const u = (u) => {
       "state",
       "style",
     ]),
-    A = { info: s, success: o, warn: r, error: i },
+    L = { info: r, success: o, warn: s, error: i },
     [B, C] = n({ container: "", icon: "", button: "", buttonLabel: "" }),
-    [W, I] = n(() => A.info),
-    [O, z] = n("fit-content");
+    [W, A] = n(() => L.info),
+    [I, O] = n("fit-content");
   return (
     a(() => {
-      switch (y) {
+      switch ($) {
         case "info":
           C({
             container: "n-alert-info",
@@ -86,83 +85,83 @@ const u = (u) => {
             buttonLabel: "n-alert-button-link-error",
           });
       }
-      void 0 !== y && I(() => A[y]);
-    }, [y]),
+      void 0 !== $ && A(() => L[$]);
+    }, [$]),
     a(() => {
-      z(void 0 !== d ? d : !d && v ? "100%" : "fit-content");
-    }, [d, v]),
-    e.createElement(
+      O(void 0 !== b ? b : !b && h ? "100%" : "fit-content");
+    }, [b, h]),
+    t.createElement(
       "div",
       Object.assign(
         {
           style:
             null !==
-              (b = Object.assign(Object.assign({}, T), {
-                width: O,
-                height: h ? "auto" : "48px",
-              })) && void 0 !== b
-              ? b
+              (u = Object.assign(Object.assign({}, T), {
+                width: I,
+                height: k ? "auto" : "48px",
+              })) && void 0 !== u
+              ? u
               : {},
-          className: `n-alert ${B.container} ${x} ${
-            v && "n-alert-full-width"
-          } ${"link" === f && "n-alert-link-button-container"} ${
-            E && "n-alert-loader-container"
+          className: `n-alert ${B.container} ${p} ${
+            h && "n-alert-full-width"
+          } ${"link" === m && "n-alert-link-button-container"} ${
+            y && "n-alert-loader-container"
           }`,
         },
-        L
+        j
       ),
-      e.createElement(
+      t.createElement(
         "div",
-        { className: `n-alert-flex ${h && "n-alert-extended"}` },
-        e.createElement(
+        { className: `n-alert-flex ${k && "n-alert-extended"}` },
+        t.createElement(
           "div",
           { className: "n-alert-text-icon-wrapper" },
-          E
-            ? e.createElement("img", {
-                src: c,
+          y
+            ? t.createElement("img", {
+                src: "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyprod/wrkr/misc/general/free/original/loader.gif",
                 className: "n-alert-icon n-alert-loader",
               })
-            : g ||
-                e.createElement(W, {
+            : v ||
+                t.createElement(W, {
                   className: `\n                                        n-alert-icon \n                                        ${
                     B.icon
                   } \n                                        ${
-                    E && "n-alert-loader"
+                    y && "n-alert-loader"
                   }\n                                    `,
                 }),
-          e.createElement("div", { className: "n-alert-label-text" }, j),
-          e.createElement("div", { className: "n-alert-text" }, p)
+          t.createElement("div", { className: "n-alert-label-text" }, w),
+          t.createElement("div", { className: "n-alert-text" }, f)
         ),
-        k &&
-          !E &&
-          e.createElement(
+        x &&
+          !y &&
+          t.createElement(
             "div",
             { className: "n-alert-button-container" },
-            "default" === f || "button" === f
-              ? e.createElement(
+            "default" === m || "button" === m
+              ? t.createElement(
                   l,
                   {
                     size: "small",
                     className: `n-alert-button ${B.button}`,
-                    onClick: $,
+                    onClick: E,
                   },
-                  m
+                  d
                 )
-              : e.createElement(
+              : t.createElement(
                   "a",
                   {
                     className: `n-alert-link ${B.buttonLabel}`,
-                    onClick: $,
+                    onClick: E,
                     href: N,
                   },
-                  w || m || "Click"
+                  g || d || "Click"
                 )
           )
       )
     )
   );
 };
-u.defaultProps = {
+c.defaultProps = {
   className: "",
   displayButton: !1,
   extendedAlert: !1,
@@ -173,5 +172,5 @@ u.defaultProps = {
   state: "info",
   style: {},
 };
-export { u as default };
+export { c as default };
 //# sourceMappingURL=Alert.js.map

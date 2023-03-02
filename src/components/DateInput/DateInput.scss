@@ -1,0 +1,146 @@
+@import "./../../base/base.scss";
+
+.n-date {
+  &-picker-container {
+    position: relative;
+    width: 100%;
+  }
+
+  &-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &-inputfield {
+    width: 100%;
+    border: 1px solid $ColorPrimaryGrey60;
+    border-radius: 16px;
+    height: 4.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+
+    &:hover {
+      border: 1px solid $ColorPrimary60;
+    }
+
+    &:active {
+      background-color: $ColorPrimaryGrey20;
+    }
+  }
+
+  &-left-group {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding-left: 1.2rem;
+    flex-direction: row;
+    width: 80%;
+  }
+
+  &-input-group {
+    width: 80%;
+    display: flex;
+    padding-left: 1.2rem;
+    align-items: center;
+
+    @media screen and (max-width: 425px) {
+      width: 90%;
+    }
+  }
+
+  &-single-field {
+    width: 10%;
+    border: 0px;
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
+    font-size: 1.6rem;
+    background: transparent;
+
+    &:last-of-type {
+      width: 20%;
+    }
+  }
+
+  &-divider {
+    font-size: 1.6rem;
+
+    &:last-child {
+      display: none;
+    }
+  }
+
+  &-range-field {
+    color: $ColorPrimaryGrey60;
+    font-size: 1.6rem;
+    width: 90%;
+    justify-content: space-between;
+    display: flex;
+    align-items: center;
+  }
+}
+
+.n-icon-container {
+  height: 2.4rem;
+  width: 2.4rem;
+
+  svg {
+    height: 100%;
+    width: 100%;
+  }
+}
+
+.n-input-close-btn {
+  height: 100%;
+  padding-right: 1.2rem;
+  display: flex;
+  align-items: center;
+  width: 2.4rem;
+}
+
+.n-date-error {
+  border-color: $ColorFeedbackError50 !important;
+}
+
+.n-error-field {
+  border-color: $ColorFeedbackError50 !important;
+}
+
+.n-warning-field {
+  border-color: $ColorFeedbackWarning50 !important;
+}
+
+.n-success-field {
+  border-color: $ColorFeedbackSuccess50 !important;
+}
+
+.n-date-single-field::placeholder {
+  font-size: 1.4rem;
+  padding: 0;
+}
+
+.date-input-wrapper {
+  width: 37.6rem;
+  @media screen and (max-width: 425px) {
+    width: 30.6rem;
+  }
+}
+
+.n-date-inputfield:hover .n-date-single-field::placeholder {
+  color: $ColorPrimaryGrey80;
+  font-weight: 500;
+}
+
+.custom-date-story {
+  flex-direction: column;
+  align-items: center;
+}
+
+.state-date {
+  font-size: 1.4rem;
+  text-align: left;
+  width: 37.6rem;
+  margin-bottom: 1.2rem;
+}

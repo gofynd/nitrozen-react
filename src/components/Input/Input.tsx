@@ -3,9 +3,8 @@ import "./Input.scss";
 import InputPrefix from "./InputPrefix";
 import InputSuffix from "./InputSuffix";
 import NId from "../../utils/uuids";
-import { SvgSearch } from "../../assets/svg-components/Action";
+import { SvgIcSearch, SvgIcHelp } from "../../assets/svg-components";
 import Tooltip from "../Tooltip";
-import { SvgHelpOutline } from "../../assets/svg-components";
 import Validation from "../Validation";
 export interface InputProps {
   autoComplete?: string;
@@ -196,7 +195,7 @@ const Input = (props: InputProps) => {
                       tooltipContent={tooltipText}
                       icon={
                         tooltipIcon || (
-                          <SvgHelpOutline style={{ fontSize: "14px" }} />
+                          <SvgIcHelp style={{ fontSize: "14px" }} />
                         )
                       }
                       position="top"
@@ -218,7 +217,7 @@ const Input = (props: InputProps) => {
       <div className={`n-input-grp`}>
         {showSearchIcon && (
           <span className="n-search-icon">
-            <SvgSearch className="search-icon" />
+            <SvgIcSearch className="search-icon" />
           </span>
         )}
         {/* <!-- Input --> */}
