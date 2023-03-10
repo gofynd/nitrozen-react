@@ -1,0 +1,59 @@
+@import "./../../base/base.scss";
+
+.n-grid-container {
+  width: 100%;
+  display: grid;
+  gap: 1.5rem;
+  overflow: hidden;
+}
+
+@media screen and (max-width: 768px) {
+  .n-grid-container {
+    gap: 1rem;
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
+    scrollbar-width: none; /* Firefox */
+  }
+  .n-grid-container::-webkit-scrollbar {
+    display: none; /* Safari and Chrome */
+  }
+
+  .overflow {
+    overflow: scroll;
+    gap: 0.75rem;
+  }
+  .overflow > * {
+    grid-row: 1;
+  }
+}
+
+.n-grid-block-1 {
+  grid-template-columns: repeat(1, 1fr);
+}
+
+.n-grid-block-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.n-grid-block-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.n-grid-block-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.n-grid-block-6 {
+  grid-template-columns: repeat(6, 1fr);
+}
+
+// If we want 8 column or 10 colum or 12 we can just add a new class here and it will automatically get added
+
+.testing-child-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  color: $TypographyPrimaryColor;
+  background-color: rgb(187, 208, 226);
+  padding: 10px;
+}
