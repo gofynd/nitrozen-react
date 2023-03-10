@@ -21,16 +21,5 @@ export interface GridProps {
   overflow?: {
     [ScreenTypes.MOBILE]: boolean;
   };
-  // justifyContent?: {
-  //   [ScreenTypes.MOBILE]?: 'start' | 'end' | 'center';
-  //   [ScreenTypes.TABLET]?: 'start' | 'end' | 'center';
-  //   [ScreenTypes.DESKTOP]?: 'start' | 'end' | 'center';
-  // };
-  // alignItems?: {
-  //   [ScreenTypes.MOBILE]?: 'start' | 'end' | 'center';
-  //   [ScreenTypes.TABLET]?: 'start' | 'end' | 'center';
-  //   [ScreenTypes.DESKTOP]?: 'start' | 'end' | 'center';
-  // };
-  // They can Directly Pass in the Style Props of the Component But need to Confirm if we need we can use this
   customWidth?: CustomWidthObject[];
 }

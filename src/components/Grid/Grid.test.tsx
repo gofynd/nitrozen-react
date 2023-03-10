@@ -23,7 +23,9 @@ describe("Render a Grid Component", () => {
     );
 
     const gridContainer = screen.getByTestId("grid-container");
-    expect(gridContainer.className).toContain(`n-grid-block-6`);
+    expect(gridContainer).toHaveStyle({
+      "grid-template-columns": "repeat(6,1fr)",
+    });
     expect(gridContainer.className).toContain(`n-grid-container`);
     fireEvent.click(gridContainer);
     expect(getByText("Child 1")).toBeInTheDocument();
@@ -57,7 +59,6 @@ describe("Render a Grid Component", () => {
     );
 
     const gridContainer = screen.getByTestId("grid-container");
-    expect(gridContainer.className).not.toContain(`n-grid-block-4`);
     expect(gridContainer.className).toContain(`n-grid-container`);
     expect(gridContainer).toHaveStyle({
       "grid-template-columns": "1fr 150px 1fr 40%",

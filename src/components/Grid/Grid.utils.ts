@@ -29,6 +29,10 @@ export const calculateCustomGridCss = (
       }
     }
     currentCustomStyles.gridTemplateColumns = gridColumns;
+  } else {
+    currentCustomStyles.gridTemplateColumns = `repeat(${
+      props.columns[deviceType] || props.columns[ScreenTypes.DESKTOP] || 1
+    },1fr)`;
   }
   return currentCustomStyles;
 };

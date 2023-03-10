@@ -28,11 +28,7 @@ export const useGridStyles = (props: GridProps) => {
   }, [updateDeviceType]);
 
   useEffect(() => {
-    if (props.customWidth && props.customWidth.length > 0) {
-      setCustomStyles(calculateCustomGridCss(props, deviceType));
-    } else if (Object.keys(customStyles).length > 0) {
-      setCustomStyles({});
-    }
+    setCustomStyles(calculateCustomGridCss(props, deviceType));
   }, [props, deviceType]);
 
   return {
