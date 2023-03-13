@@ -111,14 +111,26 @@
 
     &.n-alert-button-success {
       background-color: $SuccessColor;
+
+      &:hover {
+        background-color: darken($color: $SuccessColor, $amount: 5%);
+      }
     }
 
     &.n-alert-button-warn {
       background-color: $ColorFeedbackWarning50;
+
+      &:hover {
+        background-color: darken($color: #f06d0f, $amount: 5%);
+      }
     }
 
     &.n-alert-button-error {
       background-color: $ColorFeedbackError50;
+
+      &:hover {
+        background-color: darken($color: #f50031, $amount: 5%);
+      }
     }
   }
 
