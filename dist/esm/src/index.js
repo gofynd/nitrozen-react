@@ -26,6 +26,7 @@ import "./components/Nudge/Nudge.js";
 export { default as Table } from "./components/Table/Table.js";
 export { default as DateInput } from "./components/DateInput/DateInput.js";
 export { default as Alert } from "./components/Alert/Alert.js";
+export { default as Grid } from "./components/Grid/Grid.js";
 export {
   SvgIc404Error,
   SvgIc4G,

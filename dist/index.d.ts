@@ -1,4 +1,4 @@
-import React, { RefObject, CSSProperties } from "react";
+import React$1, { RefObject, CSSProperties } from "react";
 
 interface AutocompleteProps {
   className?: string;
@@ -9,7 +9,7 @@ interface AutocompleteProps {
   onBlur?: Function;
   onChange?: Function;
   onFocus?: Function;
-  loader?: React.ReactNode;
+  loader?: React$1.ReactNode;
   placeholder?: string;
   renderItem?: (item: any, index: number) => JSX.Element;
   resultStringKeyName?: string;
@@ -17,7 +17,7 @@ interface AutocompleteProps {
   showLoader?: boolean;
   showItems?: boolean;
   showSearchIcon?: boolean;
-  style?: React.CSSProperties;
+  style?: React$1.CSSProperties;
 }
 declare const Autocomplete: {
   (props: AutocompleteProps): JSX.Element;
@@ -36,10 +36,10 @@ interface BadgeProps {
   fill?: Boolean;
   labelText?: string;
   className?: string;
-  style?: React.CSSProperties;
-  onClickHandler?: React.MouseEventHandler<HTMLDivElement>;
+  style?: React$1.CSSProperties;
+  onClickHandler?: React$1.MouseEventHandler<HTMLDivElement>;
 }
-declare const _default$f: React.MemoExoticComponent<{
+declare const _default$g: React$1.MemoExoticComponent<{
   (props: BadgeProps): JSX.Element;
   defaultProps: {
     size: string;
@@ -65,18 +65,18 @@ interface ButtonProps {
   focused?: boolean;
   showProgress?: boolean;
   fullWidth?: boolean;
-  children: React.ReactNode;
-  onClick?: React.MouseEventHandler<
+  children: React$1.ReactNode;
+  onClick?: React$1.MouseEventHandler<
     HTMLButtonElement | HTMLAnchorElement | HTMLDivElement
   >;
   className?: string;
   id?: string;
-  icon?: React.ReactNode;
-  iconRight?: React.ReactNode;
+  icon?: React$1.ReactNode;
+  iconRight?: React$1.ReactNode;
   name?: string;
-  style?: React.CSSProperties;
+  style?: React$1.CSSProperties;
 }
-declare const _default$e: React.MemoExoticComponent<{
+declare const _default$f: React$1.MemoExoticComponent<{
   (props: ButtonProps): JSX.Element;
   defaultProps: {
     href: null;
@@ -130,14 +130,14 @@ interface CheckboxProps {
   checkboxValue: string | number | boolean | Object;
   id?: string;
   labelText?: string;
-  children?: React.ReactNode;
+  children?: React$1.ReactNode;
   onChange: Function;
   checkArray?: Array<string | number | boolean | Object>;
   ref?: any;
   className?: string;
-  style?: React.CSSProperties;
-  labelStyle?: React.CSSProperties;
-  icon?: React.ReactNode;
+  style?: React$1.CSSProperties;
+  labelStyle?: React$1.CSSProperties;
+  icon?: React$1.ReactNode;
   showIcon?: Boolean;
   onIconClick?: Function;
   isIndeterminate?: Boolean;
@@ -173,15 +173,15 @@ interface ChipProps {
   children?: string;
   onClick?: Function;
   onDelete?: Function;
-  icon?: React.ElementType;
-  iconStyle?: React.CSSProperties;
+  icon?: React$1.ElementType;
+  iconStyle?: React$1.CSSProperties;
   onIconClick?: Function;
   className?: string;
-  style?: React.CSSProperties;
+  style?: React$1.CSSProperties;
   maxWidth?: string | number;
   label?: string | number;
 }
-declare const _default$d: React.MemoExoticComponent<{
+declare const _default$e: React$1.MemoExoticComponent<{
   (props: ChipProps): JSX.Element;
   defaultProps: {
     deletable: boolean;
@@ -222,7 +222,7 @@ interface DropdownProps {
   helperText?: string;
   validationState?: string;
   validationLabel?: string;
-  prefixIcon?: React.ReactNode;
+  prefixIcon?: React$1.ReactNode;
 }
 declare const Dropdown: {
   (props: DropdownProps): JSX.Element;
@@ -251,9 +251,9 @@ interface ValidationProps {
   isHidden?: boolean;
   label: string;
   className?: string;
-  style?: React.CSSProperties;
+  style?: React$1.CSSProperties;
 }
-declare const _default$c: React.MemoExoticComponent<{
+declare const _default$d: React$1.MemoExoticComponent<{
   (props: ValidationProps): JSX.Element;
   defaultProps: {
     validationState: string;
@@ -281,30 +281,32 @@ interface InputProps {
   autofocus?: Boolean;
   min?: Number;
   max?: Number;
-  onKeyUp?: React.KeyboardEventHandler<HTMLTextAreaElement | HTMLInputElement>;
-  onKeyPress?: React.KeyboardEventHandler<
+  onKeyUp?: React$1.KeyboardEventHandler<
     HTMLTextAreaElement | HTMLInputElement
   >;
-  onChange?: React.ChangeEventHandler<HTMLTextAreaElement | HTMLInputElement>;
-  onBlur?: React.FocusEventHandler<HTMLTextAreaElement | HTMLInputElement>;
-  onFocus?: React.FocusEventHandler<HTMLTextAreaElement | HTMLInputElement>;
-  onClick?: React.MouseEventHandler<HTMLTextAreaElement | HTMLInputElement>;
+  onKeyPress?: React$1.KeyboardEventHandler<
+    HTMLTextAreaElement | HTMLInputElement
+  >;
+  onChange?: React$1.ChangeEventHandler<HTMLTextAreaElement | HTMLInputElement>;
+  onBlur?: React$1.FocusEventHandler<HTMLTextAreaElement | HTMLInputElement>;
+  onFocus?: React$1.FocusEventHandler<HTMLTextAreaElement | HTMLInputElement>;
+  onClick?: React$1.MouseEventHandler<HTMLTextAreaElement | HTMLInputElement>;
   className?: string;
-  style?: React.CSSProperties;
+  style?: React$1.CSSProperties;
   helperText?: string;
   state?: "error" | "success" | "warning" | "default";
   stateText?: string;
-  onSuffixClick?: React.MouseEventHandler<
+  onSuffixClick?: React$1.MouseEventHandler<
     HTMLTextAreaElement | HTMLInputElement
   >;
-  onPrefixClick?: React.MouseEventHandler<
+  onPrefixClick?: React$1.MouseEventHandler<
     HTMLTextAreaElement | HTMLInputElement
   >;
   tooltipText?: string;
   showTooltip?: boolean;
-  tooltipIcon?: React.ReactNode;
+  tooltipIcon?: React$1.ReactNode;
 }
-declare const _default$b: React.MemoExoticComponent<{
+declare const _default$c: React$1.MemoExoticComponent<{
   (props: InputProps): JSX.Element;
   defaultProps: {
     autoComplete: string;
@@ -339,7 +341,7 @@ interface MenuProps {
   mode?: string;
   position?: string;
   inverted?: boolean;
-  icon?: React.ReactSVGElement;
+  icon?: React$1.ReactSVGElement;
   maxHeight?: number;
   open?: boolean;
   selectedIndex?: number;
@@ -348,9 +350,9 @@ interface MenuProps {
   onClose?: Function;
   anchorEl?: RefObject<HTMLDivElement>;
   style?: CSSProperties;
-  children?: React.ReactNode;
+  children?: React$1.ReactNode;
 }
-declare const _default$a: React.MemoExoticComponent<{
+declare const _default$b: React$1.MemoExoticComponent<{
   (props: MenuProps): JSX.Element;
   defaultProps: {
     id: string;
@@ -374,8 +376,8 @@ declare const _default$a: React.MemoExoticComponent<{
 interface MenuItemProps {
   id: number | string;
   className?: string;
-  style?: React.CSSProperties;
-  children?: React.ReactNode;
+  style?: React$1.CSSProperties;
+  children?: React$1.ReactNode;
   disabled?: boolean;
   linkConfig?: {
     href: string;
@@ -387,7 +389,7 @@ interface MenuItemProps {
   key?: string;
   index?: number;
 }
-declare const _default$9: React.MemoExoticComponent<{
+declare const _default$a: React$1.MemoExoticComponent<{
   (props: MenuItemProps): JSX.Element;
   defaultProps: {
     id: string;
@@ -421,20 +423,22 @@ interface PaginationProps {
   name?: string;
   mode?: ModeEnum;
   pageSizeOptions?: number[];
+  defaultPageSize?: number;
   value: ConfigProps;
   onChange?: Function;
   onPreviousClick?: Function;
   onNextClick?: Function;
   className?: string;
-  style?: React.CSSProperties;
+  style?: React$1.CSSProperties;
   visiblePagesNodeCount?: number;
 }
-declare const _default$8: React.MemoExoticComponent<{
+declare const _default$9: React$1.MemoExoticComponent<{
   (props: PaginationProps): JSX.Element;
   defaultProps: {
     id: string;
     mode: ModeEnum;
     pageSizeOptions: number[];
+    defaultPageSize: number;
     value: {
       limit: number;
       total: number;
@@ -456,10 +460,10 @@ interface RadioProps {
   labelText?: string;
   onChange?: Function;
   className?: string;
-  style?: React.CSSProperties;
+  style?: React$1.CSSProperties;
   state?: "error" | "success" | "warning";
   stateMessage?: string;
-  icon?: React.ReactNode;
+  icon?: React$1.ReactNode;
   showIcon?: Boolean;
   onIconClick?: Function;
 }
@@ -494,7 +498,7 @@ type ItemType = {
   name: string | number;
   isInactive?: boolean;
   isCompleted?: boolean;
-  icon?: React.ElementType;
+  icon?: React$1.ElementType;
   iconSize?: string;
   iconColor?: string;
   extraIconProps?: object;
@@ -510,9 +514,9 @@ interface StepperProps {
   isHorizontal: boolean;
   heading?: string;
   className?: string;
-  style?: React.CSSProperties;
+  style?: React$1.CSSProperties;
 }
-declare const _default$7: React.MemoExoticComponent<{
+declare const _default$8: React$1.MemoExoticComponent<{
   (props: StepperProps): JSX.Element;
   defaultProps: {
     items: never[];
@@ -534,18 +538,18 @@ type Position =
   | "top-start"
   | "top-end";
 interface TooltipProps {
-  children?: React.ReactNode;
+  children?: React$1.ReactNode;
   className?: string;
   contentBgColor?: string;
   contentColor?: string;
-  icon?: React.ReactNode;
+  icon?: React$1.ReactNode;
   link?: string;
   linkText?: string;
   position?: Position;
-  style?: React.CSSProperties;
-  tooltipContent: JSX.Element | React.ReactNode | string;
+  style?: React$1.CSSProperties;
+  tooltipContent: JSX.Element | React$1.ReactNode | string;
 }
-declare const _default$6: React.MemoExoticComponent<{
+declare const _default$7: React$1.MemoExoticComponent<{
   (props: TooltipProps): JSX.Element;
   defaultProps: {
     contentBgColor: string;
@@ -558,18 +562,18 @@ declare const _default$6: React.MemoExoticComponent<{
 
 interface TabProps {
   id?: string;
-  children?: React.ReactChild;
+  children?: React$1.ReactChild;
   tabItem: Object[] | string[];
   label?: string;
   activeIndex: number;
   onTabChange?: (tab: {} | string) => void;
   className?: string;
-  style?: React.CSSProperties;
+  style?: React$1.CSSProperties;
   appearance: "normal" | "navbar";
   overflow: "fit" | "scroll" | "arrow";
   tabs?: number;
 }
-declare const _default$5: React.MemoExoticComponent<{
+declare const _default$6: React$1.MemoExoticComponent<{
   (props: TabProps): JSX.Element;
   defaultProps: {
     id: string;
@@ -582,15 +586,15 @@ declare const _default$5: React.MemoExoticComponent<{
 
 interface TabItemProps {
   id?: string;
-  children?: React.ReactNode;
-  onClick: React.MouseEventHandler;
-  icon?: React.ReactElement;
+  children?: React$1.ReactNode;
+  onClick: React$1.MouseEventHandler;
+  icon?: React$1.ReactElement;
   className?: string;
-  style?: React.CSSProperties;
+  style?: React$1.CSSProperties;
 }
-declare const _default$4: React.MemoExoticComponent<
-  React.ForwardRefExoticComponent<
-    TabItemProps & React.RefAttributes<HTMLLIElement>
+declare const _default$5: React$1.MemoExoticComponent<
+  React$1.ForwardRefExoticComponent<
+    TabItemProps & React$1.RefAttributes<HTMLLIElement>
   >
 >;
 
@@ -599,17 +603,17 @@ interface ToggleButtonProps {
   onToggle?: Function;
   value: boolean;
   className?: string;
-  style?: React.CSSProperties;
+  style?: React$1.CSSProperties;
   size?: string;
   id?: string;
   labelText?: string;
   state?: "error" | "success" | "warning";
   stateMessage?: string;
-  icon?: React.ReactNode;
+  icon?: React$1.ReactNode;
   showIcon?: Boolean;
   onIconClick?: Function;
 }
-declare const _default$3: React.MemoExoticComponent<{
+declare const _default$4: React$1.MemoExoticComponent<{
   (props: ToggleButtonProps): JSX.Element;
   defaultProps: {
     id: string;
@@ -627,10 +631,10 @@ declare const _default$3: React.MemoExoticComponent<{
 
 interface dialogTitle {
   helperBlock: {
-    text: React.ReactNode;
+    text: React$1.ReactNode;
   };
   titleBlock: {
-    text: React.ReactNode;
+    text: React$1.ReactNode;
   };
 }
 interface DialogProps {
@@ -639,7 +643,7 @@ interface DialogProps {
   kind: "dialog" | "acknowledgement" | "informational";
   size: "s" | "m";
   theme?: string;
-  children?: React.ReactNode;
+  children?: React$1.ReactNode;
   positiveButtonLabel?: string | boolean;
   negativeButtonLabel?: string | boolean;
   onPositiveResponse?: Function;
@@ -647,7 +651,7 @@ interface DialogProps {
   isVisible?: boolean;
   isClosable?: boolean;
   className?: string;
-  style?: React.CSSProperties;
+  style?: React$1.CSSProperties;
   closeHandle?: Function;
 }
 declare const Dialog: {
@@ -671,8 +675,8 @@ interface ToastOptions {
   shouldClose?: boolean;
   leftIconPosition: string;
   rightIconPosition: string;
-  leftImage: React.ReactNode;
-  rightImage: React.ReactNode;
+  leftImage: React$1.ReactNode;
+  rightImage: React$1.ReactNode;
   position: string;
 }
 declare class ToastManager {
@@ -695,13 +699,13 @@ interface CodeProps {
   hideValidation?: boolean;
   validationLabel?: string;
   validationClassName?: string;
-  validationStyle?: React.CSSProperties;
+  validationStyle?: React$1.CSSProperties;
   helperText?: string;
   required?: boolean;
   tooltip?: string;
-  tooltipIcon?: React.ReactNode;
+  tooltipIcon?: React$1.ReactNode;
 }
-declare const _default$2: React.MemoExoticComponent<{
+declare const _default$3: React$1.MemoExoticComponent<{
   (props: CodeProps): JSX.Element;
   defaulProps: {
     fields: number;
@@ -728,8 +732,8 @@ interface NudgeOptions {
   cta2?: string;
   cta1OnClick?: Function;
   cta2OnClick?: Function;
-  leftImage: React.ReactNode;
-  rightImage: React.ReactNode;
+  leftImage: React$1.ReactNode;
+  rightImage: React$1.ReactNode;
   className?: string;
   position: "top-right" | "top-bottom";
 }
@@ -750,7 +754,7 @@ interface TableProps {
   footer?: String;
   rowStyle: string;
   headerBackground?: string;
-  customSortIcon?: React.ReactNode;
+  customSortIcon?: React$1.ReactNode;
   checkable?: boolean;
   onRowClick?: (index: number) => void;
   allChecked?: boolean;
@@ -758,9 +762,9 @@ interface TableProps {
   allCheckClicked?: Function;
   showColumnDivider?: boolean;
   customClassName?: string;
-  customStyle?: React.CSSProperties;
+  customStyle?: React$1.CSSProperties;
 }
-declare const _default$1: React.NamedExoticComponent<TableProps>;
+declare const _default$2: React$1.NamedExoticComponent<TableProps>;
 
 interface RangeConfigProps {
   start: string | Date;
@@ -777,7 +781,7 @@ interface DateInputProps {
   helperText?: string;
   validationState?: string;
   validationText?: string;
-  validationStyle?: React.CSSProperties;
+  validationStyle?: React$1.CSSProperties;
   validationClassName?: string;
   getDateValue?: Function;
   closeClicked?: Function;
@@ -786,7 +790,7 @@ interface DateInputProps {
   onConfirmRange?: Function;
   defaultValidation?: boolean;
 }
-declare const _default: React.MemoExoticComponent<{
+declare const _default$1: React$1.MemoExoticComponent<{
   (props: DateInputProps): JSX.Element;
   defaulProps: {
     useDatePicker: boolean;
@@ -806,19 +810,19 @@ interface AlertProps {
   alertWidth?: string;
   buttonText?: string;
   buttonType?: "button" | "default" | "link";
-  children?: React.ReactNode;
+  children?: React$1.ReactNode;
   className?: string;
   displayButton?: boolean;
   extendedAlert?: boolean;
   fullWidth?: boolean;
   href?: string;
-  Icon?: React.ReactNode;
+  Icon?: React$1.ReactNode;
   labelText?: string;
   linkText?: string;
   loader?: boolean;
-  onClick?: React.MouseEventHandler<HTMLButtonElement | HTMLAnchorElement>;
+  onClick?: React$1.MouseEventHandler<HTMLButtonElement | HTMLAnchorElement>;
   state?: string;
-  style?: React.CSSProperties;
+  style?: React$1.CSSProperties;
 }
 declare const Alert: {
   (props: AlertProps): JSX.Element;
@@ -835,8 +839,34 @@ declare const Alert: {
   };
 };
 
-interface IconBaseProps extends React.SVGAttributes<SVGElement> {
+declare enum ScreenTypes {
+  DESKTOP = "desktop",
+  TABLET = "tablet",
+  MOBILE = "mobile",
+}
+interface CustomWidthObject {
+  columnNumber: 1 | 2 | 3 | 4 | 6;
+  customWidth: number | string;
+}
+interface GridProps {
   children?: React.ReactNode;
+  style?: React.CSSProperties;
+  onGridContainerClick?: React.MouseEventHandler;
+  columns: {
+    [ScreenTypes.MOBILE]?: 1 | 2 | 3 | 4 | 6;
+    [ScreenTypes.TABLET]?: 1 | 2 | 3 | 4 | 6;
+    [ScreenTypes.DESKTOP]: 1 | 2 | 3 | 4 | 6;
+  };
+  overflow?: {
+    [ScreenTypes.MOBILE]: boolean;
+  };
+  customWidth?: CustomWidthObject[];
+}
+
+declare const _default: React$1.NamedExoticComponent<GridProps>;
+
+interface IconBaseProps extends React$1.SVGAttributes<SVGElement> {
+  children?: React$1.ReactNode;
   size?: string | number;
   color?: string;
   title?: string;
@@ -2184,22 +2214,23 @@ declare function SvgIcZombie(props: IconBaseProps): JSX.Element;
 export {
   Alert,
   Autocomplete,
-  _default$f as Badge,
-  _default$e as Button,
+  _default$g as Badge,
+  _default$f as Button,
   Card,
   Checkbox,
-  _default$d as Chip,
-  _default$2 as Code,
-  _default as DateInput,
+  _default$e as Chip,
+  _default$3 as Code,
+  _default$1 as DateInput,
   Dialog,
   Dropdown,
-  _default$b as Input,
-  _default$a as Menu,
-  _default$9 as MenuItem,
+  _default as Grid,
+  _default$c as Input,
+  _default$b as Menu,
+  _default$a as MenuItem,
   NudgeManager,
-  _default$8 as Pagination,
+  _default$9 as Pagination,
   Radio,
-  _default$7 as Stepper,
+  _default$8 as Stepper,
   SvgIc404Error,
   SvgIc4G,
   SvgIc4GBarFour,
@@ -3526,12 +3557,12 @@ export {
   SvgIcYogaMeditation,
   SvgIcYoutube,
   SvgIcZombie,
-  _default$5 as Tab,
-  _default$4 as TabItem,
-  _default$1 as Table,
+  _default$6 as Tab,
+  _default$5 as TabItem,
+  _default$2 as Table,
   ToastManager,
-  _default$3 as ToggleButton,
-  _default$6 as Tooltip,
-  _default$c as Validation,
+  _default$4 as ToggleButton,
+  _default$7 as Tooltip,
+  _default$d as Validation,
 };
 //# sourceMappingURL=index.d.ts.map

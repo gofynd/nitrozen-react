@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 2.0.2(2023-03-13)
+
+### Features
+
+- Grid Layout component added([f8d652e](https://github.com/gofynd/nitrozen-react/pull/69))
+
+### Bugfixes
+
+- Pagination bugfixes ([8173376](https://github.com/gofynd/nitrozen-react/pull/68))
+- Alert component bugfixes ([1b66769](https://github.com/gofynd/nitrozen-react/pull/71))
+
 ## 2.0.1 (2023-03-01)
 
 ### Features

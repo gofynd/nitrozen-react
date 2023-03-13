@@ -8,6 +8,7 @@ declare const _default: ComponentMeta<
       id: string;
       mode: ModeEnum;
       pageSizeOptions: number[];
+      defaultPageSize: number;
       value: {
         limit: number;
         total: number;
@@ -28,6 +29,7 @@ export declare const BasicPagination: ComponentStory<
       id: string;
       mode: ModeEnum;
       pageSizeOptions: number[];
+      defaultPageSize: number;
       value: {
         limit: number;
         total: number;
@@ -47,6 +49,7 @@ export declare const Secondary: ComponentStory<
       id: string;
       mode: ModeEnum;
       pageSizeOptions: number[];
+      defaultPageSize: number;
       value: {
         limit: number;
         total: number;

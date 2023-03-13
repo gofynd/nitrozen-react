@@ -19,19 +19,21 @@ const g = (r) => {
       name: p,
       mode: d,
       pageSizeOptions: _,
-      value: v,
-      onChange: f,
-      onPreviousClick: b,
-      onNextClick: E,
-      className: O,
-      style: N,
-      visiblePagesNodeCount: h,
+      defaultPageSize: v,
+      value: f,
+      onChange: b,
+      onPreviousClick: E,
+      onNextClick: O,
+      className: N,
+      style: h,
+      visiblePagesNodeCount: j,
     } = r,
-    j = e(r, [
+    P = e(r, [
       "id",
       "name",
       "mode",
       "pageSizeOptions",
+      "defaultPageSize",
       "value",
       "onChange",
       "onPreviousClick",
@@ -40,60 +42,63 @@ const g = (r) => {
       "style",
       "visiblePagesNodeCount",
     ]),
-    [P, w] = n(v),
-    [C, R] = n(_ && _.length > 0 ? _[0] : 10),
-    x = a(null),
-    [S, M] = n([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]),
-    [$, k] = n(!1),
-    [D, y] = n(["0"]),
-    [U, z] = n(0),
-    [I, L] = n(1);
+    [w, C] = n(f),
+    [S, x] = n(v || (_ && _.length > 0 ? _[0] : 10)),
+    R = a(null),
+    [$, k] = n([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]),
+    [M, y] = n(!1),
+    [z, D] = n(["0"]),
+    [U, I] = n(0),
+    [L, T] = n(1);
   n(!1);
-  const T = a(!0);
-  function A() {
-    return P.limit && P.limit > 0 ? P.total && Math.ceil(P.total / P.limit) : 0;
+  const A = a(!0);
+  function B() {
+    return w.limit && w.limit > 0 ? w.total && Math.ceil(w.total / w.limit) : 0;
   }
-  function B(e, t, n) {
+  function G(e, t, n) {
     if ("..." == t) {
-      let e = P.total && P.limit && Math.ceil(P.total / P.limit),
-        t = S[n - 1],
+      let e = w.total && w.limit && Math.ceil(w.total / w.limit),
+        t = $[n - 1],
         a = e;
-      a = S[n + 1] == e ? e : S[n + 1];
+      a = $[n + 1] == e ? e : $[n + 1];
       let i = (function (e, t, n) {
         let a = [e],
           i = e;
         for (; i < t; ) a.push((i += n || 1));
         return a;
       })(t, a, 1);
-      L(n), y(i), document.addEventListener("click", G, !1), k(n != I || !$);
-    } else k(!1), w(Object.assign(Object.assign({}, P), { current: t }));
+      T(n), D(i), document.addEventListener("click", V, !1), y(n != L || !M);
+    } else y(!1), C(Object.assign(Object.assign({}, w), { current: t }));
   }
-  function G(e) {
-    x.current && !x.current.contains(e.target) && k(!1);
+  function V(e) {
+    R.current && !R.current.contains(e.target) && y(!1);
   }
-  function V() {
+  function F() {
     let e = " ";
     return (
       !(function () {
-        if (P.total) return !0;
+        if (w.total) return !0;
         return !1;
       })()
-        ? (e = P.currentTotal ? `Showing ${P.currentTotal} ${p}` : "")
+        ? (e = w.currentTotal ? `Showing ${w.currentTotal} ${p}` : "")
         : ((e = `Showing ${
-            P.limit && P.limit * (P.current ? P.current - 1 : 0) + 1
+            w.limit && w.limit * (w.current ? w.current - 1 : 0) + 1
           } - ${
-            P.limit &&
-            P.current &&
-            P.total &&
-            (P.limit * P.current < P.total ? P.limit * P.current : P.total)
+            w.limit &&
+            w.current &&
+            w.total &&
+            (w.limit * w.current < w.total ? w.limit * w.current : w.total)
           }`),
-          (e += ` of ${P.total} results`)),
+          (e += ` of ${w.total} results`)),
       e
     );
   }
   return (
     i(() => {
-      P.current || w(Object.assign(Object.assign({}, P), { current: 1 })),
+      C(f);
+    }, [f]),
+    i(() => {
+      w.current || C(Object.assign(Object.assign({}, w), { current: 1 })),
         (function () {
           var e, t;
           const n = [window.innerWidth];
@@ -102,30 +107,30 @@ const g = (r) => {
               null === (t = window.screen) || void 0 === t ? void 0 : t.width
             );
           const a = Math.min(...n);
-          if (h && h > 4) {
-            const e = Math.floor(h / 2) - (h % 2 == 0 ? 3 : 2),
-              t = c(h, P.total, P.limit, e, P.current);
-            return void M([...t]);
+          if (j && j > 4) {
+            const e = Math.floor(j / 2) - (j % 2 == 0 ? 3 : 2),
+              t = c(j, w.total, w.limit, e, w.current);
+            return void k([...t]);
           }
           if (a <= 768) {
-            const e = c(4, P.total, P.limit, 1, P.current);
-            M([...e]);
+            const e = c(4, w.total, w.limit, 1, w.current);
+            k([...e]);
           } else {
-            const e = c(5, P.total, P.limit, 2, P.current);
-            M([...e]);
+            const e = c(5, w.total, w.limit, 2, w.current);
+            k([...e]);
           }
         })(),
-        (null == T ? void 0 : T.current) ? (T.current = !1) : null == f || f(P);
-    }, [P, h]),
+        (null == A ? void 0 : A.current) ? (A.current = !1) : null == b || b(w);
+    }, [w, j]),
     t.createElement(
       "div",
       Object.assign(
         {
-          className: `n-pagination-container ${null != O ? O : ""}`,
-          style: null != N ? N : {},
+          className: `n-pagination-container ${null != N ? N : ""}`,
+          style: null != h ? h : {},
           id: g,
         },
-        j
+        P
       ),
       t.createElement(
         "div",
@@ -139,13 +144,13 @@ const g = (r) => {
               className: "n-pagination__count",
               "data-testid": "pagination-count",
             },
-            V()
+            F()
           )
         ),
         t.createElement(
           "div",
           { className: "n-pagination__main" },
-          S.length > 1
+          $.length > 1
             ? t.createElement(
                 t.Fragment,
                 null,
@@ -154,61 +159,58 @@ const g = (r) => {
                   {
                     "data-testid": "btnPrevious",
                     onClick: function () {
-                      if (P.total) {
-                        if (1 === P.current) return;
-                        const e = P.current ? P.current - 1 : 0;
-                        w(Object.assign(Object.assign({}, P), { current: e }));
+                      if (w.total) {
+                        if (1 === w.current) return;
+                        const e = w.current ? w.current - 1 : 0;
+                        C(Object.assign(Object.assign({}, w), { current: e }));
                       } else if (d === m.MODE_CURSOR) {
-                        if (!P.prevPage) return;
-                        w(
-                          Object.assign(Object.assign({}, P), {
+                        if (!w.prevPage) return;
+                        C(
+                          Object.assign(Object.assign({}, w), {
                             nextPage: "",
-                            currentPage: P.prevPage,
+                            currentPage: w.prevPage,
                           })
                         );
                       }
-                      null == b || b();
+                      null == E || E();
                     },
                     className: `n-pagination__prev ${
-                      !!(
-                        (P.total && 1 === P.current) ||
-                        (d === m.MODE_CURSOR && !P.prevPage)
-                      ) && "pagination-diabled"
+                      !(!w.total || 1 !== w.current) && "pagination-diabled"
                     }`,
                   },
                   t.createElement(o, null)
                 ),
                 t.createElement(
                   "div",
-                  { className: "n-pagination__number", ref: x },
-                  null == S
+                  { className: "n-pagination__number", ref: R },
+                  null == $
                     ? void 0
-                    : S.map((e, n) =>
+                    : $.map((e, n) =>
                         t.createElement(
                           "div",
                           {
                             key: n,
                             id: n + "node",
-                            onClick: (t) => B(0, e, n),
+                            onClick: (t) => G(0, e, n),
                             className: `n-pagination__number_inactive ${
-                              e === P.current && "n-pagination__number_active"
+                              e === w.current && "n-pagination__number_active"
                             } ${
                               "..." === e &&
-                              I === n &&
-                              $ &&
+                              L === n &&
+                              M &&
                               "n-pagination__dot_active"
                             }`,
                           },
                           e
                         )
                       ),
-                  $
+                  M
                     ? t.createElement(
                         "div",
                         {
                           className:
                             "n-pagination__showpopup " +
-                            (1 === I
+                            (1 === L
                               ? "n-pagination__popup_left"
                               : "n-pagination__popup_right"),
                           id: "menu",
@@ -232,13 +234,13 @@ const g = (r) => {
                               onChange: (e) =>
                                 (function (e) {
                                   let t =
-                                      P.total &&
-                                      P.limit &&
-                                      Math.ceil(P.total / P.limit),
+                                      w.total &&
+                                      w.limit &&
+                                      Math.ceil(w.total / w.limit),
                                     n = Number(e.target.value);
                                   if (n <= (t || 0)) {
                                     if (!e.target.value) {
-                                      const e = document.getElementById(D[0]);
+                                      const e = document.getElementById(z[0]);
                                       return void (
                                         null == e || e.scrollIntoView()
                                       );
@@ -252,7 +254,7 @@ const g = (r) => {
                                       0,
                                       -1
                                     );
-                                  return z(n);
+                                  return I(n);
                                 })(e),
                             })
                           )
@@ -263,13 +265,13 @@ const g = (r) => {
                             className: "n-pagination__search_wrapper",
                             id: "search_wrapper",
                           },
-                          D.map((e, n) =>
+                          z.map((e, n) =>
                             t.createElement(
                               "div",
                               {
                                 key: n,
                                 id: e,
-                                onClick: (t) => B(0, e, n),
+                                onClick: (t) => G(0, e, n),
                                 className: `n-pagination__search_number_inactive ${
                                   e === U &&
                                   "n-pagination__search_number_active"
@@ -287,35 +289,33 @@ const g = (r) => {
                   {
                     "data-testid": "btnNext",
                     onClick: function () {
-                      if (P.total) {
-                        const e = A() || 1;
-                        if (P.current && P.current >= e)
-                          return void w(
-                            Object.assign(Object.assign({}, P), { current: e })
+                      if (w.total) {
+                        const e = B() || 1;
+                        if (w.current && w.current >= e)
+                          return void C(
+                            Object.assign(Object.assign({}, w), { current: e })
                           );
                         if (0 === e)
-                          return void w(
-                            Object.assign(Object.assign({}, P), { current: 0 })
+                          return void C(
+                            Object.assign(Object.assign({}, w), { current: 0 })
                           );
-                        const t = P.current ? P.current + 1 : 1;
-                        w(Object.assign(Object.assign({}, P), { current: t }));
+                        const t = w.current ? w.current + 1 : 1;
+                        C(Object.assign(Object.assign({}, w), { current: t }));
                       }
                       if (d === m.MODE_CURSOR) {
-                        if (!P.nextPage) return;
-                        w(
-                          Object.assign(Object.assign({}, P), {
+                        if (!w.nextPage) return;
+                        C(
+                          Object.assign(Object.assign({}, w), {
                             prevPage: "",
-                            currentPage: P.nextPage,
+                            currentPage: w.nextPage,
                           })
                         );
                       }
-                      null == E || E();
+                      null == O || O();
                     },
                     className: `n-pagination__next ${
-                      !!(
-                        (P.total && P.current && P.current >= (A() || 0)) ||
-                        (d === m.MODE_CURSOR && !P.nextPage)
-                      ) && "pagination-diabled"
+                      !!(w.total && w.current && w.current >= (B() || 0)) &&
+                      "pagination-diabled"
                     } `,
                   },
                   t.createElement(u, null)
@@ -332,7 +332,7 @@ const g = (r) => {
               className: "n-pagination__count",
               "data-testid": "pagination-count-mobile-view",
             },
-            V()
+            F()
           )
         ),
         t.createElement(
@@ -353,20 +353,20 @@ const g = (r) => {
                   ? _.map((e) => ({ text: e.toString(), value: e.toString() }))
                   : [];
                 return (
-                  C ||
-                    R(
+                  S ||
+                    x(
                       Number(
-                        P.limit ? P.limit : e.length > 0 ? e[0].value : 1800
+                        w.limit ? w.limit : e.length > 0 ? e[0].value : 1800
                       )
                     ),
                   e
                 );
               })(),
-              value: C,
+              value: S,
               onChange: function (e) {
                 d === m.MODE_CURSOR
-                  ? w(
-                      Object.assign(Object.assign({}, P), {
+                  ? C(
+                      Object.assign(Object.assign({}, w), {
                         current: 1,
                         limit: e,
                         nextPage: "",
@@ -374,13 +374,13 @@ const g = (r) => {
                         currentPage: "",
                       })
                     )
-                  : w(
-                      Object.assign(Object.assign({}, P), {
+                  : C(
+                      Object.assign(Object.assign({}, w), {
                         current: 1,
                         limit: e,
                       })
                     ),
-                  R(e);
+                  x(e);
               },
             })
           )
@@ -393,6 +393,7 @@ g.defaultProps = {
   id: `n-pagination-${r()}`,
   mode: m.MODE_REGULAR,
   pageSizeOptions: [10, 20, 50, 100],
+  defaultPageSize: 10,
   value: {
     limit: 0,
     total: 0,

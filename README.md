@@ -68,15 +68,11 @@ function MyComponent() {
 - [Tooltip](https://gofynd.io/nitrozen-react/?path=/docs/components-tooltip--tooltip-success)
 - [Toast](https://gofynd.io/nitrozen-react/?path=/docs/components-toast--show-toast)
 - [Table](https://gofynd.io/nitrozen-react/?path=/docs/components-table--template)
+- [Grid](https://gofynd.io/nitrozen-react/?path=/docs/components-grid--custom-grid)
+- [Typography](https://gofynd.io/nitrozen-react/?path=/docs/tokens-typography--typography)
 
 > For a full list of components available & it's detailed documentation, checkout our
 > [Storybook](https://gofynd.io/nitrozen-react/?path=/story/introduction-welcome--welcome).
-
-## 🚧 Coming soon
-
-- Grid Layouts
-- Date Picker
-- Custom Typography
 
 ## 🏆 Contributors
 
@@ -95,6 +91,7 @@ function MyComponent() {
 - [Saurabh Mamidwar](https://github.com/Saurabhm-fynd)
 - [Rupesh Aagde](https://github.com/RupeshAagde)
 - [Zissan Chowdhary](https://github.com/Zissan)
+- [Pooran Suthar](https://github.com/Pooran8898)
 
 ## 📖 API Documentation
 
