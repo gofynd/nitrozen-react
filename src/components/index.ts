@@ -23,3 +23,4 @@ export { NudgeManager } from "./Nudge";
 export { default as Table } from "./Table";
 export { default as DateInput } from "./DateInput";
 export { default as Alert } from "./Alert";
+export {default as Grid} from "./Grid";
