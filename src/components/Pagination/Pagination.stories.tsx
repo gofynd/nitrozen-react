@@ -39,6 +39,7 @@ BasicPagination.args = {
     currentTotal: 100,
   },
   pageSizeOptions: [10, 20, 50, 100],
+  defaultPageSize: 50,
   onChange: (event: any) => {},
   onPreviousClick: (event: any) => {},
   onNextClick: (event: any) => {},
@@ -58,4 +59,5 @@ Secondary.args = {
   },
   mode: ModeEnum.MODE_CURSOR,
   pageSizeOptions: [10, 20],
+  defaultPageSize: 20,
 };

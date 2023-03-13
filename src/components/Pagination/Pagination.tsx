@@ -27,6 +27,7 @@ export interface PaginationProps {
   name?: string;
   mode?: ModeEnum;
   pageSizeOptions?: number[];
+  defaultPageSize?: number;
   value: ConfigProps;
   onChange?: Function;
   onPreviousClick?: Function;
@@ -48,6 +49,7 @@ const Pagination = (props: PaginationProps) => {
     name,
     mode,
     pageSizeOptions,
+    defaultPageSize,
     value: propValue,
     onChange,
     onPreviousClick,
@@ -59,7 +61,11 @@ const Pagination = (props: PaginationProps) => {
   } = props;
   const [value, setValue] = useState<ConfigProps>(propValue);
   const [selectedPageSize, setSelectedPageSize] = useState<number>(
-    pageSizeOptions && pageSizeOptions.length > 0 ? pageSizeOptions[0] : 10
+    defaultPageSize
+      ? defaultPageSize
+      : pageSizeOptions && pageSizeOptions.length > 0
+      ? pageSizeOptions[0]
+      : 10
   );
   const refSearchBox = useRef<HTMLDivElement>(null);
   const [paginationRange, setPaginationRange] = useState<number[]>([
@@ -71,6 +77,10 @@ const Pagination = (props: PaginationProps) => {
   const [popupPosition, setPopupPosition] = useState(1);
   const [showSinglePage, setShowSinglePage] = useState(false);
   const isFirstRender = useRef<boolean>(true);
+
+  useEffect(() => {
+    setValue(propValue);
+  }, [propValue]);
 
   useEffect(() => {
     setDefaults();
@@ -148,8 +158,8 @@ const Pagination = (props: PaginationProps) => {
     let maxPageCount = 1800;
     const po = pageSizeOptions
       ? pageSizeOptions.map((p) => {
-        return { text: p.toString(), value: p.toString() };
-      })
+          return { text: p.toString(), value: p.toString() };
+        })
       : [];
     if (!selectedPageSize) {
       setSelectedPageSize(
@@ -223,12 +233,14 @@ const Pagination = (props: PaginationProps) => {
         key={index}
         id={index + "node"}
         onClick={(e) => selectedNode(e, i, index)}
-        className={`n-pagination__number_inactive ${i === value.current && "n-pagination__number_active"
-          } ${i === "..." &&
+        className={`n-pagination__number_inactive ${
+          i === value.current && "n-pagination__number_active"
+        } ${
+          i === "..." &&
           popupPosition === index &&
           openPopup &&
           "n-pagination__dot_active"
-          }`}
+        }`}
       >
         {i}
       </div>
@@ -282,8 +294,9 @@ const Pagination = (props: PaginationProps) => {
         key={index}
         id={i}
         onClick={(e) => selectedNode(e, i, index)}
-        className={`n-pagination__search_number_inactive ${i === searchValue && "n-pagination__search_number_active"
-          }`}
+        className={`n-pagination__search_number_inactive ${
+          i === searchValue && "n-pagination__search_number_active"
+        }`}
       >
         {i}
       </div>
@@ -329,16 +342,10 @@ const Pagination = (props: PaginationProps) => {
     if (value.total && value.current === 1) {
       return false;
     }
-    if (mode === ModeEnum.MODE_CURSOR && !value.prevPage) {
-      return false;
-    }
     return true;
   }
   function showNext() {
     if (value.total && value.current && value.current >= (pages() || 0)) {
-      return false;
-    }
-    if (mode === ModeEnum.MODE_CURSOR && !value.nextPage) {
       return false;
     }
     return true;
@@ -362,8 +369,9 @@ const Pagination = (props: PaginationProps) => {
               <div
                 data-testid="btnPrevious"
                 onClick={previous}
-                className={`n-pagination__prev ${!showPrev() && "pagination-diabled"
-                  }`}
+                className={`n-pagination__prev ${
+                  !showPrev() && "pagination-diabled"
+                }`}
               >
                 <SvgIcChevronLeft />
               </div>
@@ -371,10 +379,11 @@ const Pagination = (props: PaginationProps) => {
                 {listNodeItems()}
                 {openPopup ? (
                   <div
-                    className={`n-pagination__showpopup ${popupPosition === 1
-                      ? "n-pagination__popup_left"
-                      : "n-pagination__popup_right"
-                      }`}
+                    className={`n-pagination__showpopup ${
+                      popupPosition === 1
+                        ? "n-pagination__popup_left"
+                        : "n-pagination__popup_right"
+                    }`}
                     id="menu"
                   >
                     <div className="n-pagination__search_input">
@@ -405,8 +414,9 @@ const Pagination = (props: PaginationProps) => {
               <div
                 data-testid="btnNext"
                 onClick={next}
-                className={`n-pagination__next ${!showNext() && "pagination-diabled"
-                  } `}
+                className={`n-pagination__next ${
+                  !showNext() && "pagination-diabled"
+                } `}
               >
                 <SvgIcChevronRight />
               </div>
@@ -441,6 +451,7 @@ Pagination.defaultProps = {
   id: `n-pagination-${NitrozenId()}`,
   mode: ModeEnum.MODE_REGULAR,
   pageSizeOptions: [10, 20, 50, 100],
+  defaultPageSize: 10,
   value: {
     limit: 0,
     total: 0,
