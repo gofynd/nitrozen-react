@@ -92,6 +92,7 @@ function MyComponent() {
 - [Rupesh Aagde](https://github.com/RupeshAagde)
 - [Zissan Chowdhary](https://github.com/Zissan)
 - [Pooran Suthar](https://github.com/Pooran8898)
+- [Rakesh Yadav](https://github.com/ryadav96-fynd)
 
 ## 📖 API Documentation
 
