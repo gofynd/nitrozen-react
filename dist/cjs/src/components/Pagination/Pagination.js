@@ -15,25 +15,27 @@ var s,
 (exports.ModeEnum = void 0),
   ((s = exports.ModeEnum || (exports.ModeEnum = {})).MODE_REGULAR = "regular"),
   (s.MODE_CURSOR = "cursor");
-const o = (n) => {
+const c = (n) => {
   const {
       id: l,
       name: s,
-      mode: o,
-      pageSizeOptions: c,
-      value: d,
+      mode: c,
+      pageSizeOptions: o,
+      defaultPageSize: d,
+      value: g,
       onChange: m,
-      onPreviousClick: g,
-      onNextClick: p,
-      className: f,
-      style: _,
-      visiblePagesNodeCount: v,
+      onPreviousClick: p,
+      onNextClick: f,
+      className: _,
+      style: v,
+      visiblePagesNodeCount: E,
     } = n,
-    E = e.__rest(n, [
+    b = e.__rest(n, [
       "id",
       "name",
       "mode",
       "pageSizeOptions",
+      "defaultPageSize",
       "value",
       "onChange",
       "onPreviousClick",
@@ -42,60 +44,63 @@ const o = (n) => {
       "style",
       "visiblePagesNodeCount",
     ]),
-    [b, O] = t.useState(d),
-    [h, N] = t.useState(c && c.length > 0 ? c[0] : 10),
-    j = t.useRef(null),
-    [P, S] = t.useState([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]),
-    [x, M] = t.useState(!1),
-    [C, w] = t.useState(["0"]),
-    [R, $] = t.useState(0),
-    [k, y] = t.useState(1);
+    [h, O] = t.useState(g),
+    [N, j] = t.useState(d || (o && o.length > 0 ? o[0] : 10)),
+    P = t.useRef(null),
+    [S, x] = t.useState([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]),
+    [w, C] = t.useState(!1),
+    [M, R] = t.useState(["0"]),
+    [$, k] = t.useState(0),
+    [y, z] = t.useState(1);
   t.useState(!1);
   const D = t.useRef(!0);
-  function U() {
-    return b.limit && b.limit > 0 ? b.total && Math.ceil(b.total / b.limit) : 0;
+  function q() {
+    return h.limit && h.limit > 0 ? h.total && Math.ceil(h.total / h.limit) : 0;
   }
-  function q(e, t, n) {
+  function I(e, t, n) {
     if ("..." == t) {
-      let e = b.total && b.limit && Math.ceil(b.total / b.limit),
-        t = P[n - 1],
+      let e = h.total && h.limit && Math.ceil(h.total / h.limit),
+        t = S[n - 1],
         a = e;
-      a = P[n + 1] == e ? e : P[n + 1];
+      a = S[n + 1] == e ? e : S[n + 1];
       let i = (function (e, t, n) {
         let a = [e],
           i = e;
         for (; i < t; ) a.push((i += n || 1));
         return a;
       })(t, a, 1);
-      y(n), w(i), document.addEventListener("click", I, !1), M(n != k || !x);
-    } else M(!1), O(Object.assign(Object.assign({}, b), { current: t }));
+      z(n), R(i), document.addEventListener("click", U, !1), C(n != y || !w);
+    } else C(!1), O(Object.assign(Object.assign({}, h), { current: t }));
   }
-  function I(e) {
-    j.current && !j.current.contains(e.target) && M(!1);
+  function U(e) {
+    P.current && !P.current.contains(e.target) && C(!1);
   }
-  function z() {
+  function L() {
     let e = " ";
     return (
       !(function () {
-        if (b.total) return !0;
+        if (h.total) return !0;
         return !1;
       })()
-        ? (e = b.currentTotal ? `Showing ${b.currentTotal} ${s}` : "")
+        ? (e = h.currentTotal ? `Showing ${h.currentTotal} ${s}` : "")
         : ((e = `Showing ${
-            b.limit && b.limit * (b.current ? b.current - 1 : 0) + 1
+            h.limit && h.limit * (h.current ? h.current - 1 : 0) + 1
           } - ${
-            b.limit &&
-            b.current &&
-            b.total &&
-            (b.limit * b.current < b.total ? b.limit * b.current : b.total)
+            h.limit &&
+            h.current &&
+            h.total &&
+            (h.limit * h.current < h.total ? h.limit * h.current : h.total)
           }`),
-          (e += ` of ${b.total} results`)),
+          (e += ` of ${h.total} results`)),
       e
     );
   }
   return (
     t.useEffect(() => {
-      b.current || O(Object.assign(Object.assign({}, b), { current: 1 })),
+      O(g);
+    }, [g]),
+    t.useEffect(() => {
+      h.current || O(Object.assign(Object.assign({}, h), { current: 1 })),
         (function () {
           var e, t;
           const n = [window.innerWidth];
@@ -104,30 +109,30 @@ const o = (n) => {
               null === (t = window.screen) || void 0 === t ? void 0 : t.width
             );
           const a = Math.min(...n);
-          if (v && v > 4) {
-            const e = Math.floor(v / 2) - (v % 2 == 0 ? 3 : 2),
-              t = i.usePagination(v, b.total, b.limit, e, b.current);
-            return void S([...t]);
+          if (E && E > 4) {
+            const e = Math.floor(E / 2) - (E % 2 == 0 ? 3 : 2),
+              t = i.usePagination(E, h.total, h.limit, e, h.current);
+            return void x([...t]);
           }
           if (a <= 768) {
-            const e = i.usePagination(4, b.total, b.limit, 1, b.current);
-            S([...e]);
+            const e = i.usePagination(4, h.total, h.limit, 1, h.current);
+            x([...e]);
           } else {
-            const e = i.usePagination(5, b.total, b.limit, 2, b.current);
-            S([...e]);
+            const e = i.usePagination(5, h.total, h.limit, 2, h.current);
+            x([...e]);
           }
         })(),
-        (null == D ? void 0 : D.current) ? (D.current = !1) : null == m || m(b);
-    }, [b, v]),
+        (null == D ? void 0 : D.current) ? (D.current = !1) : null == m || m(h);
+    }, [h, E]),
     u.default.createElement(
       "div",
       Object.assign(
         {
-          className: `n-pagination-container ${null != f ? f : ""}`,
-          style: null != _ ? _ : {},
+          className: `n-pagination-container ${null != _ ? _ : ""}`,
+          style: null != v ? v : {},
           id: l,
         },
-        E
+        b
       ),
       u.default.createElement(
         "div",
@@ -141,13 +146,13 @@ const o = (n) => {
               className: "n-pagination__count",
               "data-testid": "pagination-count",
             },
-            z()
+            L()
           )
         ),
         u.default.createElement(
           "div",
           { className: "n-pagination__main" },
-          P.length > 1
+          S.length > 1
             ? u.default.createElement(
                 u.default.Fragment,
                 null,
@@ -156,61 +161,58 @@ const o = (n) => {
                   {
                     "data-testid": "btnPrevious",
                     onClick: function () {
-                      if (b.total) {
-                        if (1 === b.current) return;
-                        const e = b.current ? b.current - 1 : 0;
-                        O(Object.assign(Object.assign({}, b), { current: e }));
-                      } else if (o === exports.ModeEnum.MODE_CURSOR) {
-                        if (!b.prevPage) return;
+                      if (h.total) {
+                        if (1 === h.current) return;
+                        const e = h.current ? h.current - 1 : 0;
+                        O(Object.assign(Object.assign({}, h), { current: e }));
+                      } else if (c === exports.ModeEnum.MODE_CURSOR) {
+                        if (!h.prevPage) return;
                         O(
-                          Object.assign(Object.assign({}, b), {
+                          Object.assign(Object.assign({}, h), {
                             nextPage: "",
-                            currentPage: b.prevPage,
+                            currentPage: h.prevPage,
                           })
                         );
                       }
-                      null == g || g();
+                      null == p || p();
                     },
                     className: `n-pagination__prev ${
-                      !!(
-                        (b.total && 1 === b.current) ||
-                        (o === exports.ModeEnum.MODE_CURSOR && !b.prevPage)
-                      ) && "pagination-diabled"
+                      !(!h.total || 1 !== h.current) && "pagination-diabled"
                     }`,
                   },
                   u.default.createElement(r.SvgIcChevronLeft, null)
                 ),
                 u.default.createElement(
                   "div",
-                  { className: "n-pagination__number", ref: j },
-                  null == P
+                  { className: "n-pagination__number", ref: P },
+                  null == S
                     ? void 0
-                    : P.map((e, t) =>
+                    : S.map((e, t) =>
                         u.default.createElement(
                           "div",
                           {
                             key: t,
                             id: t + "node",
-                            onClick: (n) => q(0, e, t),
+                            onClick: (n) => I(0, e, t),
                             className: `n-pagination__number_inactive ${
-                              e === b.current && "n-pagination__number_active"
+                              e === h.current && "n-pagination__number_active"
                             } ${
                               "..." === e &&
-                              k === t &&
-                              x &&
+                              y === t &&
+                              w &&
                               "n-pagination__dot_active"
                             }`,
                           },
                           e
                         )
                       ),
-                  x
+                  w
                     ? u.default.createElement(
                         "div",
                         {
                           className:
                             "n-pagination__showpopup " +
-                            (1 === k
+                            (1 === y
                               ? "n-pagination__popup_left"
                               : "n-pagination__popup_right"),
                           id: "menu",
@@ -236,13 +238,13 @@ const o = (n) => {
                               onChange: (e) =>
                                 (function (e) {
                                   let t =
-                                      b.total &&
-                                      b.limit &&
-                                      Math.ceil(b.total / b.limit),
+                                      h.total &&
+                                      h.limit &&
+                                      Math.ceil(h.total / h.limit),
                                     n = Number(e.target.value);
                                   if (n <= (t || 0)) {
                                     if (!e.target.value) {
-                                      const e = document.getElementById(C[0]);
+                                      const e = document.getElementById(M[0]);
                                       return void (
                                         null == e || e.scrollIntoView()
                                       );
@@ -256,7 +258,7 @@ const o = (n) => {
                                       0,
                                       -1
                                     );
-                                  return $(n);
+                                  return k(n);
                                 })(e),
                             })
                           )
@@ -267,15 +269,15 @@ const o = (n) => {
                             className: "n-pagination__search_wrapper",
                             id: "search_wrapper",
                           },
-                          C.map((e, t) =>
+                          M.map((e, t) =>
                             u.default.createElement(
                               "div",
                               {
                                 key: t,
                                 id: e,
-                                onClick: (n) => q(0, e, t),
+                                onClick: (n) => I(0, e, t),
                                 className: `n-pagination__search_number_inactive ${
-                                  e === R &&
+                                  e === $ &&
                                   "n-pagination__search_number_active"
                                 }`,
                               },
@@ -291,35 +293,33 @@ const o = (n) => {
                   {
                     "data-testid": "btnNext",
                     onClick: function () {
-                      if (b.total) {
-                        const e = U() || 1;
-                        if (b.current && b.current >= e)
+                      if (h.total) {
+                        const e = q() || 1;
+                        if (h.current && h.current >= e)
                           return void O(
-                            Object.assign(Object.assign({}, b), { current: e })
+                            Object.assign(Object.assign({}, h), { current: e })
                           );
                         if (0 === e)
                           return void O(
-                            Object.assign(Object.assign({}, b), { current: 0 })
+                            Object.assign(Object.assign({}, h), { current: 0 })
                           );
-                        const t = b.current ? b.current + 1 : 1;
-                        O(Object.assign(Object.assign({}, b), { current: t }));
+                        const t = h.current ? h.current + 1 : 1;
+                        O(Object.assign(Object.assign({}, h), { current: t }));
                       }
-                      if (o === exports.ModeEnum.MODE_CURSOR) {
-                        if (!b.nextPage) return;
+                      if (c === exports.ModeEnum.MODE_CURSOR) {
+                        if (!h.nextPage) return;
                         O(
-                          Object.assign(Object.assign({}, b), {
+                          Object.assign(Object.assign({}, h), {
                             prevPage: "",
-                            currentPage: b.nextPage,
+                            currentPage: h.nextPage,
                           })
                         );
                       }
-                      null == p || p();
+                      null == f || f();
                     },
                     className: `n-pagination__next ${
-                      !!(
-                        (b.total && b.current && b.current >= (U() || 0)) ||
-                        (o === exports.ModeEnum.MODE_CURSOR && !b.nextPage)
-                      ) && "pagination-diabled"
+                      !!(h.total && h.current && h.current >= (q() || 0)) &&
+                      "pagination-diabled"
                     } `,
                   },
                   u.default.createElement(r.SvgIcChevronRight, null)
@@ -336,7 +336,7 @@ const o = (n) => {
               className: "n-pagination__count",
               "data-testid": "pagination-count-mobile-view",
             },
-            z()
+            L()
           )
         ),
         u.default.createElement(
@@ -353,24 +353,24 @@ const o = (n) => {
             u.default.createElement(a, {
               className: "n-pagination-page-size",
               items: (function () {
-                const e = c
-                  ? c.map((e) => ({ text: e.toString(), value: e.toString() }))
+                const e = o
+                  ? o.map((e) => ({ text: e.toString(), value: e.toString() }))
                   : [];
                 return (
-                  h ||
-                    N(
+                  N ||
+                    j(
                       Number(
-                        b.limit ? b.limit : e.length > 0 ? e[0].value : 1800
+                        h.limit ? h.limit : e.length > 0 ? e[0].value : 1800
                       )
                     ),
                   e
                 );
               })(),
-              value: h,
+              value: N,
               onChange: function (e) {
-                o === exports.ModeEnum.MODE_CURSOR
+                c === exports.ModeEnum.MODE_CURSOR
                   ? O(
-                      Object.assign(Object.assign({}, b), {
+                      Object.assign(Object.assign({}, h), {
                         current: 1,
                         limit: e,
                         nextPage: "",
@@ -379,12 +379,12 @@ const o = (n) => {
                       })
                     )
                   : O(
-                      Object.assign(Object.assign({}, b), {
+                      Object.assign(Object.assign({}, h), {
                         current: 1,
                         limit: e,
                       })
                     ),
-                  N(e);
+                  j(e);
               },
             })
           )
@@ -393,10 +393,11 @@ const o = (n) => {
     )
   );
 };
-o.defaultProps = {
+c.defaultProps = {
   id: `n-pagination-${n()}`,
   mode: exports.ModeEnum.MODE_REGULAR,
   pageSizeOptions: [10, 20, 50, 100],
+  defaultPageSize: 10,
   value: {
     limit: 0,
     total: 0,
@@ -407,6 +408,6 @@ o.defaultProps = {
     currentTotal: 0,
   },
 };
-var c = u.default.memo(o);
-exports.default = c;
+var o = u.default.memo(c);
+exports.default = o;
 //# sourceMappingURL=Pagination.js.map

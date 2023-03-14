@@ -1,37 +1,304 @@
 @import "./variable.scss";
 
-h1 {
-  font-size: $BaseFontSize + 50;
-  font-family: $PrimaryFont;
-  color: $TypographyPrimaryColor;
+h1,
+.heading-xl {
+  font-family: "NitrozenType";
+  font-style: normal;
+  font-weight: 900;
+  font-size: 8.8rem;
+  line-height: 8.8rem;
+  letter-spacing: -0.03em;
+  color: $ColorPrimaryGrey100;
+  @media screen and (max-width: 425px) {
+    font-size: 6.4rem;
+    line-height: 6.4rem;
+  }
+}
+h2,
+.heading-l {
+  font-family: "NitrozenType";
+  font-style: normal;
+  font-weight: 900;
+  font-size: 6.4rem;
+  line-height: 6.4rem;
+  letter-spacing: -0.03em;
+  color: $ColorPrimaryGrey100;
+  @media screen and (max-width: 425px) {
+    font-size: 4.8rem;
+    line-height: 4.8rem;
+  }
+}
+h3,
+.heading-m {
+  font-family: "NitrozenType";
+  font-style: normal;
+  font-weight: 900;
+  font-size: 4rem;
+  line-height: 4rem;
+  letter-spacing: -0.03em;
+  color: $ColorPrimaryGrey100;
+  @media screen and (max-width: 425px) {
+    font-size: 4rem;
+    line-height: 4rem;
+  }
+}
+h4,
+.heading-s {
+  font-family: "NitrozenType";
+  font-style: normal;
+  font-weight: 900;
+  font-size: 3.2rem;
+  line-height: 3.2rem;
+  letter-spacing: -0.03em;
+  color: $ColorPrimaryGrey100;
+  @media screen and (max-width: 425px) {
+    font-size: 3.2rem;
+    line-height: 3.2rem;
+  }
+}
+h5,
+.heading-xs {
+  font-family: "NitrozenType";
+  font-style: normal;
+  font-weight: 900;
+  font-size: 2.4rem;
+  line-height: 2.8rem;
+  letter-spacing: -0.03em;
+  color: $ColorPrimaryGrey100;
+  @media screen and (max-width: 425px) {
+    font-size: 2.4rem;
+    line-height: 2.8rem;
+  }
+}
+h6,
+.heading-xxs {
+  font-family: "NitrozenType";
+  font-style: normal;
+  font-weight: 900;
+  font-size: 1.6rem;
+  line-height: 2rem;
+  letter-spacing: -0.03em;
+  color: $ColorPrimaryGrey100;
+  @media screen and (max-width: 425px) {
+    font-size: 1.6rem;
+    line-height: 2rem;
+  }
 }
 
-h2 {
-  font-size: $BaseFontSize + 32;
-  font-family: $PrimaryFont;
-  color: $TypographyPrimaryColor;
+.overline {
+  font-family: "NitrozenType";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 1.2rem;
+  line-height: 1.6rem;
+  letter-spacing: 0.005em;
+  text-transform: uppercase;
+  color: $ColorPrimaryGrey100;
 }
 
-h3 {
-  font-size: $BaseFontSize + 20;
-  font-family: $PrimaryFont;
-  color: $TypographyPrimaryColor;
+.body-l {
+  font-family: "NitrozenType";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 2.4rem;
+  line-height: 3.2rem;
+  letter-spacing: -0.005em;
+  color: $ColorPrimaryGrey100;
 }
 
-h4 {
-  font-size: $BaseFontSize + 14;
-  font-family: $PrimaryFont;
-  color: $TypographyPrimaryColor;
+.body-l-link {
+  font-family: "NitrozenType";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 2.4rem;
+  line-height: 3.2rem;
+  letter-spacing: -0.005em;
+  color: $ColorPrimary60;
 }
 
-h5 {
-  font-size: $BaseFontSize + 8;
-  font-family: $PrimaryFont;
-  color: $TypographyPrimaryColor;
+.body-m {
+  font-family: "NitrozenType";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 1.8rem;
+  line-height: 2.4rem;
+  letter-spacing: -0.005em;
+  color: $ColorPrimaryGrey100;
+}
+.body-m-regular {
+  font-family: "NitrozenType";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1.8rem;
+  line-height: 2.4rem;
+  letter-spacing: -0.005em;
+  color: $ColorPrimaryGrey100;
+}
+.body-m-bold {
+  font-family: "NitrozenType";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 1.8rem;
+  line-height: 2.4rem;
+  letter-spacing: -0.005em;
+  color: $ColorPrimaryGrey100;
 }
 
-h6 {
-  font-size: $BaseFontSize + 4;
-  font-family: $PrimaryFont;
-  color: $TypographyPrimaryColor;
+.body-m-link {
+  font-family: "NitrozenType";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 1.8rem;
+  line-height: 2.4rem;
+  letter-spacing: -0.005em;
+  color: $ColorPrimary60;
+}
+
+.body-s {
+  font-family: "NitrozenType";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 1.6rem;
+  line-height: 2.4rem;
+  letter-spacing: -0.005em;
+  color: $ColorPrimaryGrey100;
+}
+
+.body-s-regular {
+  font-family: "NitrozenType";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1.6rem;
+  line-height: 2.4rem;
+  letter-spacing: -0.005em;
+  color: $ColorPrimaryGrey100;
+}
+
+.body-s-bold {
+  font-family: "NitrozenType";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 1.6rem;
+  line-height: 2.4rem;
+  letter-spacing: -0.005em;
+  color: $ColorPrimaryGrey100;
+}
+
+.body-s-link {
+  font-family: "NitrozenType";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 1.6rem;
+  line-height: 2.4rem;
+  letter-spacing: -0.005em;
+  color: $ColorPrimary60;
+}
+
+.body-xs {
+  font-family: "NitrozenType";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 1.4rem;
+  line-height: 2rem;
+  letter-spacing: -0.05em;
+  color: $ColorPrimaryGrey100;
+}
+
+.body-xs-regular {
+  font-family: "NitrozenType";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1.4rem;
+  line-height: 2rem;
+  letter-spacing: -0.05em;
+  color: $ColorPrimaryGrey100;
+}
+
+.body-xs-bold {
+  font-family: "NitrozenType";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 1.4rem;
+  line-height: 2rem;
+  letter-spacing: -0.05em;
+  color: $ColorPrimaryGrey100;
+}
+
+.body-xs-link {
+  font-family: "NitrozenType";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 1.4rem;
+  line-height: 2rem;
+  letter-spacing: -0.005em;
+  color: $ColorPrimary60;
+}
+
+.body-xxs {
+  font-family: "NitrozenType";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 1.2rem;
+  line-height: 1.6rem;
+  letter-spacing: -0.005em;
+  color: $ColorPrimaryGrey100;
+}
+
+.body-xxs-regular {
+  font-family: "NitrozenType";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1.2rem;
+  line-height: 1.6rem;
+  letter-spacing: -0.005em;
+  color: $ColorPrimaryGrey100;
+}
+
+.body-xxs-bold {
+  font-family: "NitrozenType";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 1.2rem;
+  line-height: 1.6rem;
+  letter-spacing: -0.005em;
+  color: $ColorPrimaryGrey100;
+}
+
+.body-xxs-link {
+  font-family: "NitrozenType";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 1.2rem;
+  line-height: 1.6rem;
+  letter-spacing: -0.005em;
+  color: $ColorPrimary60;
+}
+
+.list-title {
+  font-family: "NitrozenType";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 1.6rem;
+  line-height: 2rem;
+  letter-spacing: -0.005em;
+  color: $ColorPrimaryGrey100;
+}
+
+.button {
+  font-family: "NitrozenType";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 1.6rem;
+  line-height: 2.4rem;
+  letter-spacing: -0.05rem;
+  color: $ColorPrimaryGrey100;
+}
+
+.code {
+  font-family: "JetBrains Mono";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 1.2rem;
+  line-height: 1.6rem;
+  color: $ColorPrimaryGrey100;
 }

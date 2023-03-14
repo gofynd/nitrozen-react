@@ -18,6 +18,7 @@ export interface PaginationProps {
   name?: string;
   mode?: ModeEnum;
   pageSizeOptions?: number[];
+  defaultPageSize?: number;
   value: ConfigProps;
   onChange?: Function;
   onPreviousClick?: Function;
@@ -38,6 +39,7 @@ declare const _default: React.MemoExoticComponent<{
     id: string;
     mode: ModeEnum;
     pageSizeOptions: number[];
+    defaultPageSize: number;
     value: {
       limit: number;
       total: number;
