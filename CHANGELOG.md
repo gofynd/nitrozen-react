@@ -7,6 +7,7 @@ All notable changes to this project will be documented in this file. See [standa
 ### Features
 
 - Grid Layout component added([f8d652e](https://github.com/gofynd/nitrozen-react/pull/69))
+- Typography Support added ([5f8505e](https://github.com/gofynd/nitrozen-react/pull/67))
 
 ### Bugfixes
 
