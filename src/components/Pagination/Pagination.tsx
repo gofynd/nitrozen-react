@@ -246,7 +246,7 @@ const Pagination = (props: PaginationProps) => {
       </div>
     ));
   }
-  function selectedNode(e: any, i: any, index: number) {
+  function selectedNode(e: React.MouseEvent, i: number | "...", index: number) {
     if (i == "...") {
       let totalPage =
         value.total && value.limit && Math.ceil(value.total / value.limit);
@@ -277,7 +277,7 @@ const Pagination = (props: PaginationProps) => {
     }
     return;
   }
-  function handleOutsideClick(event: any) {
+  function handleOutsideClick(event: globalThis.MouseEvent) {
     if (
       refSearchBox.current &&
       !refSearchBox.current.contains(event.target as Node)
@@ -294,10 +294,10 @@ const Pagination = (props: PaginationProps) => {
     return a;
   }
   function displaySearchPaginationList() {
-    return searchListPages.map((i: any, index) => (
+    return searchListPages.map((i, index) => (
       <div
         key={index}
-        id={i}
+        id={i?.toString()}
         onClick={(e) => selectedNode(e, i, index)}
         className={`n-pagination__search_number_inactive ${
           i === searchValue && "n-pagination__search_number_active"
