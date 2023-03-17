@@ -29,9 +29,9 @@ export interface PaginationProps {
   pageSizeOptions?: number[];
   defaultPageSize?: number;
   value: ConfigProps;
-  onChange?: Function;
-  onPreviousClick?: Function;
-  onNextClick?: Function;
+  onChange?: (paginationData: ConfigProps) => any;
+  onPreviousClick?: () => any;
+  onNextClick?: () => any;
   className?: string;
   style?: React.CSSProperties;
   visiblePagesNodeCount?: number;
@@ -68,11 +68,11 @@ const Pagination = (props: PaginationProps) => {
       : 10
   );
   const refSearchBox = useRef<HTMLDivElement>(null);
-  const [paginationRange, setPaginationRange] = useState<number[]>([
-    1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
-  ]);
-  const [openPopup, setopenPopup] = useState(false);
-  const [searchListPages, setSearchListPages] = useState<string[]>(["0"]);
+  const [paginationRange, setPaginationRange] = useState<Array<number | "...">>(
+    [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+  );
+  const [openPopup, setOpenPopup] = useState(false);
+  const [searchListPages, setSearchListPages] = useState<number[]>([0]);
   const [searchValue, setSearchValue] = useState(0);
   const [popupPosition, setPopupPosition] = useState(1);
   const [showSinglePage, setShowSinglePage] = useState(false);
@@ -228,46 +228,51 @@ const Pagination = (props: PaginationProps) => {
     }
   }
   function listNodeItems() {
-    return paginationRange?.map((i: any, index: any) => (
+    return paginationRange?.map((pageRangeElement, index) => (
       <div
         key={index}
         id={index + "node"}
-        onClick={(e) => selectedNode(e, i, index)}
+        onClick={(e) => selectedNode(e, pageRangeElement, index)}
         className={`n-pagination__number_inactive ${
-          i === value.current && "n-pagination__number_active"
+          pageRangeElement === value.current && "n-pagination__number_active"
         } ${
-          i === "..." &&
+          pageRangeElement === "..." &&
           popupPosition === index &&
           openPopup &&
           "n-pagination__dot_active"
         }`}
       >
-        {i}
+        {pageRangeElement}
       </div>
     ));
   }
-  function selectedNode(e: any, i: any, index: any) {
+  function selectedNode(e: any, i: any, index: number) {
     if (i == "...") {
       let totalPage =
         value.total && value.limit && Math.ceil(value.total / value.limit);
 
       let rangeStart = paginationRange[index - 1];
-      let rangeEnd = totalPage;
+      let rangeEnd: number | "..." | undefined = totalPage;
 
       if (paginationRange[index + 1] == totalPage) {
         rangeEnd = totalPage;
       } else {
         rangeEnd = paginationRange[index + 1];
       }
-      //calcluate range for search box
-      let rangeList = range(rangeStart, rangeEnd, 1);
+      //calculate range for search box
+      /**
+       * @todo type assertions can cause bugs
+       * leaving for maintainers to decide what to do
+       * when the value of `rangeStart` and `rangeEnd` is '...'
+       */
+      const rangeList = range(rangeStart as number, rangeEnd as number, 1);
       setPopupPosition(index);
       setSearchListPages(rangeList);
       document.addEventListener("click", handleOutsideClick, false);
-      if (index == popupPosition) setopenPopup(!openPopup);
-      else setopenPopup(true);
+      if (index == popupPosition) setOpenPopup(!openPopup);
+      else setOpenPopup(true);
     } else {
-      setopenPopup(false);
+      setOpenPopup(false);
       setValue({ ...value, current: i });
     }
     return;
@@ -277,10 +282,10 @@ const Pagination = (props: PaginationProps) => {
       refSearchBox.current &&
       !refSearchBox.current.contains(event.target as Node)
     ) {
-      setopenPopup(false);
+      setOpenPopup(false);
     }
   }
-  function range(start: any, stop: any, step: any) {
+  function range(start: number, stop: number, step: number) {
     let a = [start],
       b = start;
     while (b < stop) {
@@ -289,7 +294,7 @@ const Pagination = (props: PaginationProps) => {
     return a;
   }
   function displaySearchPaginationList() {
-    return searchListPages.map((i: any, index: any) => (
+    return searchListPages.map((i: any, index) => (
       <div
         key={index}
         id={i}
@@ -302,13 +307,13 @@ const Pagination = (props: PaginationProps) => {
       </div>
     ));
   }
-  function onSearchInputChnage(e: ChangeEvent<HTMLInputElement>) {
+  function onSearchInputChange(e: ChangeEvent<HTMLInputElement>) {
     let totalPage =
       value.total && value.limit && Math.ceil(value.total / value.limit);
     let inputValue = Number(e.target.value);
     if (inputValue <= (totalPage ? totalPage : 0)) {
       if (!e.target.value) {
-        const ele = document.getElementById(searchListPages[0]);
+        const ele = document.getElementById(searchListPages[0].toString());
         ele?.scrollIntoView();
         return;
       }
@@ -396,7 +401,7 @@ const Pagination = (props: PaginationProps) => {
                           type="number"
                           className="n-input"
                           placeholder="Search page"
-                          onChange={(e) => onSearchInputChnage(e)}
+                          onChange={(e) => onSearchInputChange(e)}
                         />
                       </div>
                     </div>
