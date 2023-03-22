@@ -93,7 +93,7 @@ const Dropdown = (props: DropdownProps) => {
         setAllOptions(true);
       }
     }
-  }, []);
+  }, [props.value]);
   useEffect(() => {
     props.multiple && props.onChange && props.onChange(selectedItems);
     setSelectedText(generateSelectedText());
