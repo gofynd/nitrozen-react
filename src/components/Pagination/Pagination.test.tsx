@@ -33,9 +33,15 @@ describe("Pagination", () => {
           currentTotal: 100,
         }}
         pageSizeOptions={[10, 20]}
-        onChange={(event: any) => {}}
-        onPreviousClick={(event: any) => {}}
-        onNextClick={(event: any) => {}}
+        onChange={(event) => {
+          /* nothing */
+        }}
+        onPreviousClick={() => {
+          /* nothing */
+        }}
+        onNextClick={() => {
+          /* nothing */
+        }}
       />
     );
     const prevBtn = getByTestId("btnPrevious");
@@ -58,9 +64,15 @@ describe("Pagination", () => {
           currentTotal: 200,
         }}
         pageSizeOptions={[10, 20]}
-        onChange={(event: any) => {}}
-        onPreviousClick={(event: any) => {}}
-        onNextClick={(event: any) => {}}
+        onChange={(event) => {
+          /* nothing */
+        }}
+        onPreviousClick={() => {
+          /* nothing */
+        }}
+        onNextClick={() => {
+          /* nothing */
+        }}
       />
     );
 
@@ -78,9 +90,15 @@ describe("Pagination", () => {
           currentTotal: 200,
         }}
         pageSizeOptions={[10, 20]}
-        onChange={(event: any) => {}}
-        onPreviousClick={(event: any) => {}}
-        onNextClick={(event: any) => {}}
+        onChange={(event) => {
+          /* nothing */
+        }}
+        onPreviousClick={() => {
+          /* nothing */
+        }}
+        onNextClick={() => {
+          /* nothing */
+        }}
       />
     );
 
@@ -105,9 +123,15 @@ describe("Pagination", () => {
           currentTotal: 100,
         }}
         pageSizeOptions={[10, 20]}
-        onChange={(event: any) => {}}
-        onPreviousClick={(event: any) => {}}
-        onNextClick={(event: any) => {}}
+        onChange={(event) => {
+          /* nothing */
+        }}
+        onPreviousClick={() => {
+          /* nothing */
+        }}
+        onNextClick={() => {
+          /* nothing */
+        }}
       />
     );
     const prevBtn = getByTestId("btnPrevious");
@@ -132,9 +156,15 @@ describe("Pagination", () => {
           currentTotal: 200,
         }}
         pageSizeOptions={[10, 20]}
-        onChange={(event: any) => {}}
-        onPreviousClick={(event: any) => {}}
-        onNextClick={(event: any) => {}}
+        onChange={(event) => {
+          /* nothing */
+        }}
+        onPreviousClick={() => {
+          /* nothing */
+        }}
+        onNextClick={() => {
+          /* nothing */
+        }}
       />
     );
 
@@ -176,8 +206,12 @@ describe("Pagination", () => {
       },
       pageSizeOptions: [10, 20],
       onChange: jest.fn(),
-      onPreviousClick: (event: any) => {},
-      onNextClick: (event: any) => {},
+      onPreviousClick: () => {
+        /* not implemented */
+      },
+      onNextClick: () => {
+        /* not implemented */
+      },
     };
 
     render(<Pagination {...testProps} />);
@@ -200,8 +234,12 @@ describe("Pagination", () => {
       },
       pageSizeOptions: [10, 20],
       onChange: jest.fn(),
-      onPreviousClick: (event: any) => {},
-      onNextClick: (event: any) => {},
+      onPreviousClick: () => {
+        /* not implemented */
+      },
+      onNextClick: () => {
+        /* not implemented */
+      },
     };
 
     const { getByTestId } = render(<Pagination {...testProps} />);
@@ -227,8 +265,12 @@ describe("Pagination", () => {
       },
       pageSizeOptions: [10, 20],
       onChange: jest.fn(),
-      onPreviousClick: (event: any) => {},
-      onNextClick: (event: any) => {},
+      onPreviousClick: () => {
+        /* not implemented */
+      },
+      onNextClick: () => {
+        /* not implemented */
+      },
     };
 
     const { getByTestId } = render(<Pagination {...testProps} />);
@@ -254,8 +296,12 @@ describe("Pagination", () => {
       },
       pageSizeOptions: [10, 20],
       onChange: jest.fn(),
-      onPreviousClick: (event: any) => {},
-      onNextClick: (event: any) => {},
+      onPreviousClick: () => {
+        /* not implemented */
+      },
+      onNextClick: () => {
+        /* not implemented */
+      },
     };
 
     const screen = render(<Pagination {...testProps} />);
