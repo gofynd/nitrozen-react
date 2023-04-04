@@ -82,16 +82,17 @@ const Dropdown = (props: DropdownProps) => {
     if (!props.multiple) {
       setEnableSelectAll(false);
       if (props.value) {
-        const selected = props.items?.find(
-          (i: ItemProps) => i.value === props.value
-        );
-        setSearchInput(selected?.text ? selected.text : "");
-        setSelected(selected);
+        if (props.value !== selected?.value) {
+          const data = props.items?.find(
+            (i: ItemProps) => i.value === props.value
+          );
+          setSearchInput(data?.text ? data.text : "");
+          setSelected(data);
+        }
       } else {
         setSelected(undefined);
-        setSearchInput("");
-        setSelectedText("");
       }
+      setSelectedText(generateSelectedText());
     } else {
       if (props.value) {
         setSelectedItems(
@@ -99,26 +100,30 @@ const Dropdown = (props: DropdownProps) => {
         );
       } else {
         setSelectedItems([]);
-        setSearchInput("");
-        setSelectedText("");
       }
+      setSelectedText(generateSelectedText());
       setAllOptions();
     }
-  }, [props.value]);
+  }, [props.value, props.items]);
 
   useEffect(() => {
     if (!initialRender.current) {
-      if (!props.multiple)
-        props.value !== selected?.value && props.onChange?.(selected?.value);
-      else {
-        JSON.stringify(props.value ?? []) !== JSON.stringify(selectedItems) &&
-          props.onChange?.(selectedItems);
+      if (!props.multiple) {
+        if (props.value !== selected?.value) {
+          props.onChange?.(selected?.value);
+        }
+        setSelectedText(generateSelectedText());
+      } else if (
+        JSON.stringify(props.value ?? []) !== JSON.stringify(selectedItems)
+      ) {
+        props.onChange?.(selectedItems);
+        setSelectedText(generateSelectedText());
       }
-
       setAllOptions();
+    } else {
+      setSelectedText(generateSelectedText());
     }
     initialRender.current = false;
-    setSelectedText(generateSelectedText());
   }, [selectedItems, selected]);
   useEffect(() => {
     calculateDropUpDown();
@@ -147,11 +152,6 @@ const Dropdown = (props: DropdownProps) => {
     if (!props.multiple) {
       if (props.value) {
         if (props.items?.length) {
-          // eslint-disable-next-line
-          const currentSelected = props.items.find(
-            (i) => i.value == props.value
-          );
-          setSelected(currentSelected);
           setSearchInput(selected?.text ? selected.text : "");
         }
       }
@@ -361,12 +361,14 @@ const Dropdown = (props: DropdownProps) => {
                     onChange={searchInputChange}
                     placeholder={searchInputPlaceholder()}
                     onClick={() => setFocusBorder("n-focused-border")}
-                    onBlur={() => setFocusBorder("")}
+                    onBlur={() => {
+                      setFocusBorder("");
+                      if (searchInput === "")
+                        setSelectedText(generateSelectedText());
+                    }}
                     className={"n-dropdown-search"}
                   />
                 </span>
-              ) : props.disabled ? (
-                <span>Disabled</span>
               ) : (
                 <span>{selectedText}</span>
               )}
@@ -388,6 +390,7 @@ const Dropdown = (props: DropdownProps) => {
                 onClick={(e) => {
                   selectItem("all", ALL_OPTION, e);
                 }}
+                key={`all_${props.items?.length}`}
               >
                 <div className="n-option-container">
                   <Checkbox
@@ -413,8 +416,8 @@ const Dropdown = (props: DropdownProps) => {
               props.items.length > 0 &&
               props?.items?.map((item: ItemProps, index: number) => (
                 <span
-                  key={index}
-                  data-value={item.value}
+                  key={`${index}_${props.items?.length}`}
+                  data-value={item?.value}
                   className={`n-option ripple ${
                     item === selected && "selected"
                   } ${item?.isGroupLabel && "n-option-group-label"}`}
@@ -423,25 +426,25 @@ const Dropdown = (props: DropdownProps) => {
                   <div className="n-option-container">
                     {props.multiple && !item?.isGroupLabel ? (
                       <Checkbox
-                        checkboxValue={item.value}
+                        checkboxValue={item?.value}
                         checkArray={[...selectedItems]}
                         onChange={setCheckedItem}
-                        value={item.value}
+                        value={item?.value}
                       >
                         <span
                           className={`n-option-image ${
-                            selectedItems.includes(item.value) &&
+                            selectedItems.includes(item?.value) &&
                             "n-dropdown-multicheckbox-selected"
                           }`}
                         >
                           {item.logo && (
                             <img
                               className="n-option-logo"
-                              src={item.logo}
+                              src={item?.logo}
                               alt="logo"
                             />
                           )}{" "}
-                          {item.text}
+                          {item?.text}
                         </span>
                       </Checkbox>
                     ) : (
