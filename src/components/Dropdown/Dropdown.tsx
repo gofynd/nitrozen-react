@@ -44,6 +44,7 @@ const ALL_OPTION = { text: "Select All", value: "all" };
 
 const Dropdown = (props: DropdownProps) => {
   const dropdownRef = useRef<any>(null);
+  const initialRender = useRef(true);
   const nitrozenSelectOptionRef = useRef<HTMLDivElement>(null);
   const [showOptions, setShowOptions] = useState<Boolean>(false);
   const [viewport, setViewport] = useState<{
@@ -66,7 +67,6 @@ const Dropdown = (props: DropdownProps) => {
     props.enableSelectAll || false
   );
   useEffect(() => {
-    calculateViewport();
     if (typeof document !== "undefined") {
       document.addEventListener("click", documentClick);
       document.addEventListener("keydown", handleTABKey);
@@ -75,6 +75,10 @@ const Dropdown = (props: DropdownProps) => {
       window.addEventListener("resize", calculateViewport);
       window.addEventListener("scroll", calculateViewport);
     }
+  }, []);
+
+  useEffect(() => {
+    calculateViewport();
     if (!props.multiple) {
       setEnableSelectAll(false);
       if (props.value) {
@@ -82,20 +86,38 @@ const Dropdown = (props: DropdownProps) => {
           (i: ItemProps) => i.value === props.value
         );
         setSearchInput(selected?.text ? selected.text : "");
-        setSelectedItems([props.value]);
+        setSelected(selected);
+      } else {
+        setSelected(undefined);
+        setSearchInput("");
+        setSelectedText("");
       }
     } else {
       if (props.value) {
         setSelectedItems(
           Array.isArray(props.value) ? [...props.value] : [props.value]
         );
+      } else {
+        setSelectedItems([]);
         setSearchInput("");
-        setAllOptions(true);
+        setSelectedText("");
       }
+      setAllOptions();
     }
   }, [props.value]);
+
   useEffect(() => {
-    props.multiple && props.onChange && props.onChange(selectedItems);
+    if (!initialRender.current) {
+      if (!props.multiple)
+        props.value !== selected?.value && props.onChange?.(selected?.value);
+      else {
+        JSON.stringify(props.value ?? []) !== JSON.stringify(selectedItems) &&
+          props.onChange?.(selectedItems);
+      }
+
+      setAllOptions();
+    }
+    initialRender.current = false;
     setSelectedText(generateSelectedText());
   }, [selectedItems, selected]);
   useEffect(() => {
@@ -125,7 +147,7 @@ const Dropdown = (props: DropdownProps) => {
     if (!props.multiple) {
       if (props.value) {
         if (props.items?.length) {
-          // eslint-disable-next-line eqeqeq
+          // eslint-disable-next-line
           const currentSelected = props.items.find(
             (i) => i.value == props.value
           );
@@ -208,7 +230,7 @@ const Dropdown = (props: DropdownProps) => {
     props.onSearchInputChange?.(obj);
     calculateViewport();
   }
-  function setAllOptions(mounted = false) {
+  function setAllOptions() {
     const items = props.items ? [...props.items] : [];
     if (props.multiple && enableSelectAll) {
       const allSelectedOptions =
@@ -253,7 +275,6 @@ const Dropdown = (props: DropdownProps) => {
       if (item.text) {
         setSearchInput(item.text);
       }
-      props.onChange?.(item.value);
     } else {
       if (index === "all") {
         if (!allSelected) {
@@ -261,7 +282,6 @@ const Dropdown = (props: DropdownProps) => {
         } else {
           setSelectedItems([]);
         }
-        setAllSelected(!allSelected);
         event.stopPropagation();
       } else {
         if (selectedItems.includes(item.value)) {
@@ -275,7 +295,6 @@ const Dropdown = (props: DropdownProps) => {
           setSelectedItems([...selectedItems, item.value]);
         }
         event.stopPropagation();
-        setAllSelected(allOptionsSelected);
       }
     }
   }
