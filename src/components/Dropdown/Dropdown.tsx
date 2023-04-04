@@ -100,8 +100,8 @@ const Dropdown = (props: DropdownProps) => {
         );
       } else {
         setSelectedItems([]);
+        setSelectedText(generateSelectedText());
       }
-      setSelectedText(generateSelectedText());
       setAllOptions();
     }
   }, [props.value, props.items]);
