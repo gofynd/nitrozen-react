@@ -384,33 +384,33 @@ const Dropdown = (props: DropdownProps) => {
             data-testid="dropdown-scroll"
             onScroll={handleScroll}
           >
-            {enableSelectAll && !searchInput && (
-              <span
-                className="n-option ripple"
-                onClick={(e) => {
-                  selectItem("all", ALL_OPTION, e);
-                }}
-                key={`all_${props.items?.length}`}
-              >
-                <div className="n-option-container">
-                  <Checkbox
-                    checkboxValue={allSelected}
-                    value={allSelected}
-                    onChange={setCheckedItem}
-                  >
-                    <span
-                      className={`n-option-image ${
-                        allSelected && "n-dropdown-multicheckbox-selected"
-                      }`}
+            {enableSelectAll && !searchInput && props.items?.length !== 0 && (
+              <>
+                <span
+                  className="n-option ripple"
+                  onClick={(e) => {
+                    selectItem("all", ALL_OPTION, e);
+                  }}
+                  key={`all_${props.items?.length}`}
+                >
+                  <div className="n-option-container">
+                    <Checkbox
+                      checkboxValue={allSelected}
+                      value={allSelected}
+                      onChange={setCheckedItem}
                     >
-                      All
-                    </span>
-                  </Checkbox>
-                </div>
-              </span>
-            )}
-            {enableSelectAll && !searchInput && (
-              <div className="horizantal-divider" />
+                      <span
+                        className={`n-option-image ${
+                          allSelected && "n-dropdown-multicheckbox-selected"
+                        }`}
+                      >
+                        All
+                      </span>
+                    </Checkbox>
+                  </div>
+                </span>
+                <div className="horizantal-divider" />
+              </>
             )}
             {props.items &&
               props.items.length > 0 &&
