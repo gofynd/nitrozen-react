@@ -374,7 +374,9 @@ const Dropdown = (props: DropdownProps) => {
               )}
 
               <div className="n-dropdown-arrow">
-                <SvgIcChevronDown style={{ width: "20px", height: "20px" }} />
+                <SvgIcChevronDown
+                  style={{ width: "20px", height: "20px", color: "black" }}
+                />
               </div>
             </div>
           </div>
