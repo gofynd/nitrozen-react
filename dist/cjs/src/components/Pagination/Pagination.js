@@ -49,7 +49,7 @@ const c = (n) => {
     P = t.useRef(null),
     [S, x] = t.useState([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]),
     [w, C] = t.useState(!1),
-    [M, R] = t.useState(["0"]),
+    [M, R] = t.useState([0]),
     [$, k] = t.useState(0),
     [y, z] = t.useState(1);
   t.useState(!1);
@@ -63,7 +63,7 @@ const c = (n) => {
         t = S[n - 1],
         a = e;
       a = S[n + 1] == e ? e : S[n + 1];
-      let i = (function (e, t, n) {
+      const i = (function (e, t, n) {
         let a = [e],
           i = e;
         for (; i < t; ) a.push((i += n || 1));
@@ -244,7 +244,9 @@ const c = (n) => {
                                     n = Number(e.target.value);
                                   if (n <= (t || 0)) {
                                     if (!e.target.value) {
-                                      const e = document.getElementById(M[0]);
+                                      const e = document.getElementById(
+                                        M[0].toString()
+                                      );
                                       return void (
                                         null == e || e.scrollIntoView()
                                       );
@@ -274,7 +276,7 @@ const c = (n) => {
                               "div",
                               {
                                 key: t,
-                                id: e,
+                                id: null == e ? void 0 : e.toString(),
                                 onClick: (n) => I(0, e, t),
                                 className: `n-pagination__search_number_inactive ${
                                   e === $ &&

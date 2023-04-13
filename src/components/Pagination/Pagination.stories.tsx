@@ -41,8 +41,8 @@ BasicPagination.args = {
   pageSizeOptions: [10, 20, 50, 100],
   defaultPageSize: 50,
   onChange: (event: any) => {},
-  onPreviousClick: (event: any) => {},
-  onNextClick: (event: any) => {},
+  onPreviousClick: () => {},
+  onNextClick: () => {},
 };
 export const Secondary = Template.bind({});
 Secondary.args = {

@@ -1,26 +1,26 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: !0 });
-const t = (t, e) => {
-  let r = e - t + 1;
-  return Array.from({ length: r }, (e, r) => r + t);
+const t = (t, r) => {
+  const e = r - t + 1;
+  return Array.from({ length: e }, (r, e) => e + t);
 };
-exports.usePagination = (e, r = 0, n = 0, i, u = 0) => {
-  const o = "...",
-    s = Math.ceil(r / n);
-  if (i + e >= s) return t(1, s);
-  const a = Math.max(u - i, 1),
-    c = Math.min(u + i, s),
+exports.usePagination = (r, e = 0, n = 0, i, o = 0) => {
+  const s = "...",
+    u = Math.ceil(e / n);
+  if (i + r >= u) return t(1, u);
+  const a = Math.max(o - i, 1),
+    c = Math.min(o + i, u),
     f = a > 2,
-    l = c < s - 2,
-    h = s;
-  if (!f && l) {
-    return [...t(1, 3 + 2 * i), o, s];
+    h = c < u - 2,
+    l = u;
+  if (!f && h) {
+    return [...t(1, 3 + 2 * i), s, u];
   }
-  if (f && !l) {
-    return [1, o, ...t(s - (3 + 2 * i) + 1, s)];
+  if (f && !h) {
+    return [1, s, ...t(u - (3 + 2 * i) + 1, u)];
   }
-  if (f && l) {
-    return [1, o, ...t(a, c), o, h];
+  if (f && h) {
+    return [1, s, ...t(a, c), s, l];
   }
   return [];
 };

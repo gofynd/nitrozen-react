@@ -125,7 +125,7 @@ const m = (r) => {
               null,
               d,
               " ",
-              b ? " *" : "",
+              b ? "*" : "",
               D &&
                 t.createElement(
                   "span",
