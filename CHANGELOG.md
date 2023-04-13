@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 2.0.3(2023-04-13)
+
+### Bugfixes
+
+- Pagination type fixes ([fb26553](https://github.com/gofynd/nitrozen-react/pull/74))
+- Bugfixes in Button component for disabled states ([39a5614](https://github.com/gofynd/nitrozen-react/pull/75))
+- Dropdown bugfixes ([0456b45](https://github.com/gofynd/nitrozen-react/pull/77))
+
 ## 2.0.2(2023-03-13)
 
 ### Features

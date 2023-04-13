@@ -425,9 +425,9 @@ interface PaginationProps {
   pageSizeOptions?: number[];
   defaultPageSize?: number;
   value: ConfigProps;
-  onChange?: Function;
-  onPreviousClick?: Function;
-  onNextClick?: Function;
+  onChange?: (paginationData: ConfigProps) => any;
+  onPreviousClick?: () => any;
+  onNextClick?: () => any;
   className?: string;
   style?: React$1.CSSProperties;
   visiblePagesNodeCount?: number;

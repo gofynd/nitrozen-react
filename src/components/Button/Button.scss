@@ -39,17 +39,17 @@
   }
 
   &-primary:disabled {
-    background-color: $ColorFeedbackError20;
-    color: $ColorFeedbackError80;
+    // background-color: $ColorFeedbackError20;
+    // color: $ColorFeedbackError80;
   }
 
   &-secondary:disabled {
-    border-color: $ColorSecondaryGrey80;
-    color: $ColorFeedbackError80;
+    // border-color: $ColorSecondaryGrey80;
+    // color: $ColorFeedbackError80;
   }
 
   &-tertiary:disabled {
-    color: $ColorFeedbackError80;
+    // color: $ColorFeedbackError80;
   }
 }
 

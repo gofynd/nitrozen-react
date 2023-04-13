@@ -1,5 +1,5 @@
-const range = (start: any, end: any) => {
-  let length = end - start + 1;
+const range = (start: number, end: number) => {
+  const length = end - start + 1;
   return Array.from({ length }, (_, idx) => idx + start);
 };
 
@@ -9,8 +9,8 @@ export const usePagination = (
   pageSize = 0,
   siblingNode: number,
   currentPage = 0
-): number[] => {
-  const DOTS = "...";
+): Array<"..." | number> => {
+  const DOTS = "..." as const;
   const totalPageCount = Math.ceil(totalCount / pageSize);
 
   // Pages count is determined as siblingNode + firstPage + lastPage + currentPage + 2*DOTS
@@ -28,7 +28,7 @@ export const usePagination = (
   const rightSiblingIndex = Math.min(currentPage + siblingNode, totalPageCount);
 
   /*
-      We do not want to show dots if there is only one position left 
+      We do not want to show dots if there is only one position left
       after/before the left/right page count as that would lead to a change if our Pagination
       component size which we do not want
     */
@@ -39,20 +39,23 @@ export const usePagination = (
   const lastPageIndex = totalPageCount;
 
   if (!shouldShowLeftDots && shouldShowRightDots) {
-    let leftItemCount = 3 + 2 * siblingNode;
-    let leftRange = range(1, leftItemCount);
+    const leftItemCount = 3 + 2 * siblingNode;
+    const leftRange = range(1, leftItemCount);
 
     return [...leftRange, DOTS, totalPageCount];
   }
 
   if (shouldShowLeftDots && !shouldShowRightDots) {
-    let rightItemCount = 3 + 2 * siblingNode;
-    let rightRange = range(totalPageCount - rightItemCount + 1, totalPageCount);
+    const rightItemCount = 3 + 2 * siblingNode;
+    const rightRange = range(
+      totalPageCount - rightItemCount + 1,
+      totalPageCount
+    );
     return [firstPageIndex, DOTS, ...rightRange];
   }
 
   if (shouldShowLeftDots && shouldShowRightDots) {
-    let middleRange = range(leftSiblingIndex, rightSiblingIndex);
+    const middleRange = range(leftSiblingIndex, rightSiblingIndex);
     return [firstPageIndex, DOTS, ...middleRange, DOTS, lastPageIndex];
   }
   return [];

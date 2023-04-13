@@ -47,7 +47,7 @@ const g = (r) => {
     R = a(null),
     [$, k] = n([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]),
     [M, y] = n(!1),
-    [z, D] = n(["0"]),
+    [z, D] = n([0]),
     [U, I] = n(0),
     [L, T] = n(1);
   n(!1);
@@ -61,7 +61,7 @@ const g = (r) => {
         t = $[n - 1],
         a = e;
       a = $[n + 1] == e ? e : $[n + 1];
-      let i = (function (e, t, n) {
+      const i = (function (e, t, n) {
         let a = [e],
           i = e;
         for (; i < t; ) a.push((i += n || 1));
@@ -240,7 +240,9 @@ const g = (r) => {
                                     n = Number(e.target.value);
                                   if (n <= (t || 0)) {
                                     if (!e.target.value) {
-                                      const e = document.getElementById(z[0]);
+                                      const e = document.getElementById(
+                                        z[0].toString()
+                                      );
                                       return void (
                                         null == e || e.scrollIntoView()
                                       );
@@ -270,7 +272,7 @@ const g = (r) => {
                               "div",
                               {
                                 key: n,
-                                id: e,
+                                id: null == e ? void 0 : e.toString(),
                                 onClick: (t) => G(0, e, n),
                                 className: `n-pagination__search_number_inactive ${
                                   e === U &&

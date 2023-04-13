@@ -4,4 +4,4 @@ export declare const usePagination: (
   pageSize: number | undefined,
   siblingNode: number,
   currentPage?: number
-) => number[];
+) => Array<"..." | number>;

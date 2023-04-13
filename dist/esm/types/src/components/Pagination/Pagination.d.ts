@@ -20,9 +20,9 @@ export interface PaginationProps {
   pageSizeOptions?: number[];
   defaultPageSize?: number;
   value: ConfigProps;
-  onChange?: Function;
-  onPreviousClick?: Function;
-  onNextClick?: Function;
+  onChange?: (paginationData: ConfigProps) => any;
+  onPreviousClick?: () => any;
+  onNextClick?: () => any;
   className?: string;
   style?: React.CSSProperties;
   visiblePagesNodeCount?: number;

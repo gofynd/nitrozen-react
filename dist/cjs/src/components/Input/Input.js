@@ -127,7 +127,7 @@ const c = (l) => {
               null,
               f,
               " ",
-              m ? " *" : "",
+              m ? "*" : "",
               O &&
                 s.default.createElement(
                   "span",
