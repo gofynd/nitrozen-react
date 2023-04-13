@@ -44,6 +44,7 @@ const ALL_OPTION = { text: "Select All", value: "all" };
 
 const Dropdown = (props: DropdownProps) => {
   const dropdownRef = useRef<any>(null);
+  const initialRender = useRef(true);
   const nitrozenSelectOptionRef = useRef<HTMLDivElement>(null);
   const [showOptions, setShowOptions] = useState<Boolean>(false);
   const [viewport, setViewport] = useState<{
@@ -66,7 +67,6 @@ const Dropdown = (props: DropdownProps) => {
     props.enableSelectAll || false
   );
   useEffect(() => {
-    calculateViewport();
     if (typeof document !== "undefined") {
       document.addEventListener("click", documentClick);
       document.addEventListener("keydown", handleTABKey);
@@ -75,28 +75,55 @@ const Dropdown = (props: DropdownProps) => {
       window.addEventListener("resize", calculateViewport);
       window.addEventListener("scroll", calculateViewport);
     }
+  }, []);
+
+  useEffect(() => {
+    calculateViewport();
     if (!props.multiple) {
       setEnableSelectAll(false);
       if (props.value) {
-        const selected = props.items?.find(
-          (i: ItemProps) => i.value === props.value
-        );
-        setSearchInput(selected?.text ? selected.text : "");
-        setSelectedItems([props.value]);
+        if (props.value !== selected?.value) {
+          const data = props.items?.find(
+            (i: ItemProps) => i.value === props.value
+          );
+          setSearchInput(data?.text ? data.text : "");
+          setSelected(data);
+        }
+      } else {
+        setSelected(undefined);
       }
+      setSelectedText(generateSelectedText());
     } else {
       if (props.value) {
         setSelectedItems(
           Array.isArray(props.value) ? [...props.value] : [props.value]
         );
-        setSearchInput("");
-        setAllOptions(true);
+      } else {
+        setSelectedItems([]);
+        setSelectedText(generateSelectedText());
       }
+      setAllOptions();
     }
-  }, [props.value]);
+  }, [props.value, props.items]);
+
   useEffect(() => {
-    props.multiple && props.onChange && props.onChange(selectedItems);
-    setSelectedText(generateSelectedText());
+    if (!initialRender.current) {
+      if (!props.multiple) {
+        if (props.value !== selected?.value) {
+          props.onChange?.(selected?.value);
+        }
+        setSelectedText(generateSelectedText());
+      } else if (
+        JSON.stringify(props.value ?? []) !== JSON.stringify(selectedItems)
+      ) {
+        props.onChange?.(selectedItems);
+        setSelectedText(generateSelectedText());
+      }
+      setAllOptions();
+    } else {
+      setSelectedText(generateSelectedText());
+    }
+    initialRender.current = false;
   }, [selectedItems, selected]);
   useEffect(() => {
     calculateDropUpDown();
@@ -125,11 +152,6 @@ const Dropdown = (props: DropdownProps) => {
     if (!props.multiple) {
       if (props.value) {
         if (props.items?.length) {
-          // eslint-disable-next-line eqeqeq
-          const currentSelected = props.items.find(
-            (i) => i.value == props.value
-          );
-          setSelected(currentSelected);
           setSearchInput(selected?.text ? selected.text : "");
         }
       }
@@ -208,7 +230,7 @@ const Dropdown = (props: DropdownProps) => {
     props.onSearchInputChange?.(obj);
     calculateViewport();
   }
-  function setAllOptions(mounted = false) {
+  function setAllOptions() {
     const items = props.items ? [...props.items] : [];
     if (props.multiple && enableSelectAll) {
       const allSelectedOptions =
@@ -253,7 +275,6 @@ const Dropdown = (props: DropdownProps) => {
       if (item.text) {
         setSearchInput(item.text);
       }
-      props.onChange?.(item.value);
     } else {
       if (index === "all") {
         if (!allSelected) {
@@ -261,7 +282,6 @@ const Dropdown = (props: DropdownProps) => {
         } else {
           setSelectedItems([]);
         }
-        setAllSelected(!allSelected);
         event.stopPropagation();
       } else {
         if (selectedItems.includes(item.value)) {
@@ -275,7 +295,6 @@ const Dropdown = (props: DropdownProps) => {
           setSelectedItems([...selectedItems, item.value]);
         }
         event.stopPropagation();
-        setAllSelected(allOptionsSelected);
       }
     }
   }
@@ -342,18 +361,23 @@ const Dropdown = (props: DropdownProps) => {
                     onChange={searchInputChange}
                     placeholder={searchInputPlaceholder()}
                     onClick={() => setFocusBorder("n-focused-border")}
-                    onBlur={() => setFocusBorder("")}
+                    onBlur={() => {
+                      setFocusBorder("");
+                      if (searchInput === "")
+                        setSelectedText(generateSelectedText());
+                    }}
                     className={"n-dropdown-search"}
                   />
                 </span>
-              ) : props.disabled ? (
-                <span>Disabled</span>
               ) : (
-                <span>{selectedText}</span>
+                <span data-testid="dropdown-selected-text">{selectedText}</span>
               )}
 
               <div className="n-dropdown-arrow">
-                <SvgIcChevronDown style={{ width: "20px", height: "20px" }} />
+                <SvgIcChevronDown
+                  data-testid="dropdown-arrow-icon"
+                  style={{ width: "20px", height: "20px", color: "black" }}
+                />
               </div>
             </div>
           </div>
@@ -363,39 +387,41 @@ const Dropdown = (props: DropdownProps) => {
             data-testid="dropdown-scroll"
             onScroll={handleScroll}
           >
-            {enableSelectAll && !searchInput && (
-              <span
-                className="n-option ripple"
-                onClick={(e) => {
-                  selectItem("all", ALL_OPTION, e);
-                }}
-              >
-                <div className="n-option-container">
-                  <Checkbox
-                    checkboxValue={allSelected}
-                    value={allSelected}
-                    onChange={setCheckedItem}
-                  >
-                    <span
-                      className={`n-option-image ${
-                        allSelected && "n-dropdown-multicheckbox-selected"
-                      }`}
+            {enableSelectAll && !searchInput && props.items?.length !== 0 && (
+              <>
+                <span
+                  data-testid="all-option"
+                  className="n-option ripple"
+                  onClick={(e) => {
+                    selectItem("all", ALL_OPTION, e);
+                  }}
+                  key={`all_${props.items?.length}`}
+                >
+                  <div className="n-option-container">
+                    <Checkbox
+                      checkboxValue={allSelected}
+                      value={allSelected}
+                      onChange={setCheckedItem}
                     >
-                      All
-                    </span>
-                  </Checkbox>
-                </div>
-              </span>
-            )}
-            {enableSelectAll && !searchInput && (
-              <div className="horizantal-divider" />
+                      <span
+                        className={`n-option-image ${
+                          allSelected && "n-dropdown-multicheckbox-selected"
+                        }`}
+                      >
+                        All
+                      </span>
+                    </Checkbox>
+                  </div>
+                </span>
+                <div className="horizantal-divider" />
+              </>
             )}
             {props.items &&
               props.items.length > 0 &&
               props?.items?.map((item: ItemProps, index: number) => (
                 <span
-                  key={index}
-                  data-value={item.value}
+                  key={`${index}_${props.items?.length}`}
+                  data-value={item?.value}
                   className={`n-option ripple ${
                     item === selected && "selected"
                   } ${item?.isGroupLabel && "n-option-group-label"}`}
@@ -404,25 +430,25 @@ const Dropdown = (props: DropdownProps) => {
                   <div className="n-option-container">
                     {props.multiple && !item?.isGroupLabel ? (
                       <Checkbox
-                        checkboxValue={item.value}
+                        checkboxValue={item?.value}
                         checkArray={[...selectedItems]}
                         onChange={setCheckedItem}
-                        value={item.value}
+                        value={item?.value}
                       >
                         <span
                           className={`n-option-image ${
-                            selectedItems.includes(item.value) &&
+                            selectedItems.includes(item?.value) &&
                             "n-dropdown-multicheckbox-selected"
                           }`}
                         >
                           {item.logo && (
                             <img
                               className="n-option-logo"
-                              src={item.logo}
+                              src={item?.logo}
                               alt="logo"
                             />
                           )}{" "}
-                          {item.text}
+                          {item?.text}
                         </span>
                       </Checkbox>
                     ) : (
@@ -480,6 +506,7 @@ const Dropdown = (props: DropdownProps) => {
       {props.validationState && (
         <Validation
           className="n-dropdown-validation"
+          data-testid="dropdown-validation"
           isHidden={props.validationState ? false : true}
           label={props.validationLabel}
           validationState={props.validationState}
