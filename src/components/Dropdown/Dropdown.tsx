@@ -370,11 +370,12 @@ const Dropdown = (props: DropdownProps) => {
                   />
                 </span>
               ) : (
-                <span>{selectedText}</span>
+                <span data-testid="dropdown-selected-text">{selectedText}</span>
               )}
 
               <div className="n-dropdown-arrow">
                 <SvgIcChevronDown
+                  data-testid="dropdown-arrow-icon"
                   style={{ width: "20px", height: "20px", color: "black" }}
                 />
               </div>
@@ -389,6 +390,7 @@ const Dropdown = (props: DropdownProps) => {
             {enableSelectAll && !searchInput && props.items?.length !== 0 && (
               <>
                 <span
+                  data-testid="all-option"
                   className="n-option ripple"
                   onClick={(e) => {
                     selectItem("all", ALL_OPTION, e);
@@ -504,6 +506,7 @@ const Dropdown = (props: DropdownProps) => {
       {props.validationState && (
         <Validation
           className="n-dropdown-validation"
+          data-testid="dropdown-validation"
           isHidden={props.validationState ? false : true}
           label={props.validationLabel}
           validationState={props.validationState}

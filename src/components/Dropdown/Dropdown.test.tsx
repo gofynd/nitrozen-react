@@ -130,4 +130,99 @@ describe("Dropdown", () => {
     const dropdownScroll = getByTestId("dropdown-scroll");
     fireEvent.scroll(dropdownScroll);
   });
+  test("should display the initial selected option", () => {
+    // Arrange
+    const { getByTestId } = render(
+      <Dropdown
+        value={1}
+        label="States"
+        items={DropdownDatasource}
+        onChange={() => {}}
+      />
+    );
+    const dropdown = getByTestId("dropdown-selected-text");
+
+    // Act & Assert
+    expect(dropdown).toHaveTextContent("Maharashtra");
+  });
+
+  test("should update the selected option when the value prop changes", () => {
+    // Arrange
+    const { getByTestId, rerender } = render(
+      <Dropdown
+        value={1}
+        label="States"
+        items={DropdownDatasource}
+        onChange={() => {}}
+      />
+    );
+    const dropdown = getByTestId("dropdown-selected-text");
+
+    // Act
+    rerender(
+      <Dropdown
+        value={2}
+        label="States"
+        items={DropdownDatasource}
+        onChange={() => {}}
+      />
+    );
+
+    // Assert
+    expect(dropdown).toHaveTextContent("Andhra Pradesh");
+  });
+
+  test("should have black arrow icon", () => {
+    // Arrange
+    const { getByTestId } = render(
+      <Dropdown
+        value={1}
+        label="States"
+        items={DropdownDatasource}
+        onChange={() => {}}
+      />
+    );
+    const dropdown = getByTestId("dropdown-arrow-icon");
+
+    // Act
+    const computedStyle = getComputedStyle(dropdown);
+    const color = computedStyle.color;
+
+    // Assert
+    expect(color).toBe("black");
+  });
+  test("should have validation", () => {
+    // Arrange
+    const { getByText } = render(
+      <Dropdown
+        value={1}
+        label="States"
+        items={DropdownDatasource}
+        onChange={() => {}}
+        validationLabel="Error validation message"
+        validationState="error"
+      />
+    );
+    const validation = getByText("Error validation message");
+
+    // Assert
+    expect(validation).toBeInTheDocument();
+  });
+  test("should not show 'All' option, if items prop value is empty and enableSelectAll & multiple is true", () => {
+    // Arrange
+    const { queryByTestId } = render(
+      <Dropdown
+        value={""}
+        label="States"
+        items={[]}
+        onChange={() => {}}
+        enableSelectAll
+        multiple
+      />
+    );
+    const allOption = queryByTestId("all-option");
+
+    // Assert
+    expect(allOption).toBeFalsy();
+  });
 });
