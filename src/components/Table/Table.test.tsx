@@ -376,4 +376,64 @@ describe("Render a Table component", () => {
     expect(rowValue0Text.textContent).toContain("John");
     expect(rowValue0Text.className).toBe("n-row-data n-table-no-divider");
   });
+  test("Table checkbox clickable but row is not clicked", async () => {
+    let status = false;
+    const onRowClick = jest.fn().mockImplementation(() => {});
+    const onRowCheckboxClick = jest.fn().mockImplementation(() => {});
+    let items: any = [];
+    render(
+      <Table
+        customSortIcon={<SvgIcInfo />}
+        tableRow={[
+          {
+            age: 36,
+            firstName: "Sasha",
+            lastName: "Brecher",
+          },
+          {
+            age: 12,
+            firstName: "Harvey",
+            lastName: "Jefferson",
+          },
+        ]}
+        tableHeader={[
+          {
+            customSort: () => {},
+            name: "firstName",
+            sortable: true,
+            value: "First name",
+            width: "50%",
+          },
+          {
+            name: "lastName",
+            sortable: false,
+            value: "Last name",
+            width: "20%",
+          },
+          {
+            customSort: () => {},
+            name: "age",
+            sortable: true,
+            type: "number",
+            value: "Age",
+            width: "100px",
+          },
+        ]}
+        rowStyle="zebra"
+        id="custom-table"
+        footer={"Default footer"}
+        checkable={true}
+        allChecked={false}
+        onRowClick={onRowClick}
+        getCheckedItems={onRowCheckboxClick}
+      />
+    );
+    const rowValue0 = screen.getByTestId("row-0");
+    expect(rowValue0.className).toContain("n-table-row-item-clickable");
+    const rowCheckboxValue0 = screen.getByTestId("n-row-checkbox-0");
+    console.log(rowCheckboxValue0);
+    fireEvent.click(rowCheckboxValue0);
+    expect(onRowClick).toBeCalledTimes(0);
+    expect(onRowCheckboxClick).toBeCalledTimes(1);
+  });
 });
