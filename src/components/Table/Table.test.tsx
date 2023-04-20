@@ -376,7 +376,7 @@ describe("Render a Table component", () => {
     expect(rowValue0Text.textContent).toContain("John");
     expect(rowValue0Text.className).toBe("n-row-data n-table-no-divider");
   });
-  test("Table checkbox clickable but row is not clicked", async () => {
+  test("on clicking checkbox event should not be propagated to rowClick", async () => {
     let status = false;
     const onRowClick = jest.fn().mockImplementation(() => {});
     const onRowCheckboxClick = jest.fn().mockImplementation(() => {});
