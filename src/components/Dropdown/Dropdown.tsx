@@ -88,21 +88,27 @@ const Dropdown = (props: DropdownProps) => {
           );
           setSearchInput(data?.text ? data.text : "");
           setSelected(data);
+          setSelectedText(generateSelectedText());
         }
       } else {
         setSelected(undefined);
+        setSelectedText(generateSelectedText());
       }
-      setSelectedText(generateSelectedText());
     } else {
       if (props.value) {
-        setSelectedItems(
-          Array.isArray(props.value) ? [...props.value] : [props.value]
-        );
+        if (
+          JSON.stringify(props.value ?? []) !== JSON.stringify(selectedItems)
+        ) {
+          setSelectedItems(
+            Array.isArray(props.value) ? [...props.value] : [props.value]
+          );
+          setAllOptions();
+        }
       } else {
         setSelectedItems([]);
         setSelectedText(generateSelectedText());
+        setAllOptions();
       }
-      setAllOptions();
     }
   }, [props.value, props.items]);
 
@@ -441,7 +447,7 @@ const Dropdown = (props: DropdownProps) => {
                             "n-dropdown-multicheckbox-selected"
                           }`}
                         >
-                          {item.logo && (
+                          {item?.logo && (
                             <img
                               className="n-option-logo"
                               src={item?.logo}
@@ -461,17 +467,17 @@ const Dropdown = (props: DropdownProps) => {
                             : ""
                         }`}
                       >
-                        {item.logo && (
+                        {item?.logo && (
                           <img
                             className="n-option-logo"
-                            src={item.logo}
+                            src={item?.logo}
                             alt="logo"
                           />
                         )}
                         <div className="n-option-wrapper">
-                          <span>{item.text}</span>
+                          <span>{item?.text}</span>
                           <span className="n-option-subtext">
-                            {item.sub_text}
+                            {item?.sub_text}
                           </span>
                         </div>
                       </span>
