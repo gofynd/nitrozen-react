@@ -92,6 +92,7 @@ const Dropdown = (props: DropdownProps) => {
         }
       } else {
         setSelected(undefined);
+        setSearchInput("");
         setSelectedText(generateSelectedText());
       }
     } else {
@@ -106,6 +107,7 @@ const Dropdown = (props: DropdownProps) => {
         }
       } else {
         setSelectedItems([]);
+        setSearchInput("");
         setSelectedText(generateSelectedText());
         setAllOptions();
       }
