@@ -311,4 +311,28 @@ describe("Pagination", () => {
 
     expect(testProps?.onChange).toBeCalledTimes(1);
   });
+
+  test("page size dropdown should show initial state value", () => {
+    const testProps = {
+      id: "1",
+      name: "Pages",
+      value: {
+        limit: 10,
+        total: 100,
+        current: 2,
+        prevPage: "",
+        nextPage: "",
+        currentPage: "",
+        currentTotal: 100,
+      },
+      defaultPageSize: 20,
+      pageSizeOptions: [10, 20],
+    };
+
+    const { getByTestId } = render(<Pagination {...testProps} />);
+
+    const dropdown = getByTestId("dropdown-selected-text");
+
+    expect(dropdown).toHaveTextContent("20");
+  });
 });
