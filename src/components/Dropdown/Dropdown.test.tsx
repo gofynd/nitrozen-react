@@ -225,4 +225,42 @@ describe("Dropdown", () => {
     // Assert
     expect(allOption).toBeFalsy();
   });
+  test("should clear searchText if current value is falsy", () => {
+    // Arrange
+    const { getByTestId, rerender } = render(
+      <Dropdown
+        items={DropdownDatasource}
+        disabled={false}
+        label="States"
+        placeholder="States"
+        required={false}
+        searchable={true}
+        tooltip="Tooltip is working"
+        onChange={(item: { text: string; value: string; icon?: string }) => {}}
+        onSearchInputChange={(e: Element) => {}}
+        value={1}
+      />
+    );
+    const search = getByTestId("dropdown-search");
+    fireEvent.change(search, { target: { value: "testing" } });
+
+    expect(search).toHaveValue("testing");
+
+    rerender(
+      <Dropdown
+        items={DropdownDatasource}
+        disabled={false}
+        label="States"
+        placeholder="States"
+        required={false}
+        searchable={true}
+        tooltip="Tooltip is working"
+        onChange={(item: { text: string; value: string; icon?: string }) => {}}
+        onSearchInputChange={(e: Element) => {}}
+        value={""}
+      />
+    );
+    // Assert
+    expect(search).toHaveValue("");
+  });
 });
