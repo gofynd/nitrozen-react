@@ -5,11 +5,11 @@ import {
   SvgIcChevronDown as c,
   SvgIcChevronRight as r,
 } from "../../assets/svg-components/Nitrozen/index.js";
-import n from "../Checkbox/Checkbox.js";
-const o = (t) => {
+import o from "../Checkbox/Checkbox.js";
+const n = (t) => {
   const {
       id: l,
-      tableRow: o,
+      tableRow: n,
       tableHeader: s,
       showColumnDivider: d,
       customStyle: m,
@@ -41,8 +41,8 @@ const o = (t) => {
                 },
                 e.createElement(
                   "div",
-                  { className: "n-table-checbox-wrapper" },
-                  e.createElement(n, {
+                  { className: "n-table-checkbox-wrapper" },
+                  e.createElement(o, {
                     id: "header-checkbox",
                     value: t.allChecked,
                     onChange: (e) => {
@@ -124,7 +124,7 @@ const o = (t) => {
       e.createElement(
         "tbody",
         null,
-        o.map((a, l) => {
+        n.map((a, l) => {
           return e.createElement(
             "tr",
             Object.assign(
@@ -156,14 +156,19 @@ const o = (t) => {
                   { className: "n-row-data" },
                   e.createElement(
                     "div",
-                    { className: "n-table-checbox-wrapper" },
-                    e.createElement(n, {
+                    {
+                      className: "n-table-checkbox-wrapper",
+                      onClick: (e) => {
+                        e.stopPropagation();
+                      },
+                    },
+                    e.createElement(o, {
                       id: `n-row-checkbox-${l}`,
                       value: a.isChecked,
                       onChange: (e) =>
                         ((e, a) => {
                           var l;
-                          let c = [...o];
+                          let c = [...n];
                           (c[a].isChecked = e),
                             null === (l = t.getCheckedItems) ||
                               void 0 === l ||
@@ -210,7 +215,7 @@ const o = (t) => {
     )
   );
 };
-o.defaultProps = {
+n.defaultProps = {
   id: `nitrozen-dialog-${l()}`,
   tableHeader: [],
   tableRow: [],
@@ -223,6 +228,6 @@ o.defaultProps = {
   allCheckClicked: () => {},
   showColumnDivider: !0,
 };
-var s = t(o);
+var s = t(n);
 export { s as default };
 //# sourceMappingURL=Table.js.map

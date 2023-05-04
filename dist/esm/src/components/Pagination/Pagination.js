@@ -364,7 +364,7 @@ const g = (r) => {
                   e
                 );
               })(),
-              value: S,
+              value: S.toString(),
               onChange: function (e) {
                 d === m.MODE_CURSOR
                   ? C(

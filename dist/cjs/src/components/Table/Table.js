@@ -47,7 +47,7 @@ const n = (t) => {
                 },
                 c.default.createElement(
                   "div",
-                  { className: "n-table-checbox-wrapper" },
+                  { className: "n-table-checkbox-wrapper" },
                   c.default.createElement(l, {
                     id: "header-checkbox",
                     value: t.allChecked,
@@ -155,7 +155,12 @@ const n = (t) => {
                   { className: "n-row-data" },
                   c.default.createElement(
                     "div",
-                    { className: "n-table-checbox-wrapper" },
+                    {
+                      className: "n-table-checkbox-wrapper",
+                      onClick: (e) => {
+                        e.stopPropagation();
+                      },
+                    },
                     c.default.createElement(l, {
                       id: `n-row-checkbox-${a}`,
                       value: e.isChecked,
