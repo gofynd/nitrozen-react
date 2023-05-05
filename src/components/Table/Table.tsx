@@ -95,7 +95,7 @@ const Table: React.FC<TableProps> = (props) => {
                   backgroundColor: props.headerBackground,
                 }}
               >
-                <div className="n-table-checbox-wrapper">
+                <div className="n-table-checkbox-wrapper">
                   <Checkbox
                     id="header-checkbox"
                     value={props.allChecked}
@@ -177,7 +177,12 @@ const Table: React.FC<TableProps> = (props) => {
               >
                 {props.checkable ? (
                   <td className="n-row-data">
-                    <div className="n-table-checbox-wrapper">
+                    <div
+                      className="n-table-checkbox-wrapper"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                      }}
+                    >
                       <Checkbox
                         id={`n-row-checkbox-${rowIndex}`}
                         value={rowItem.isChecked}

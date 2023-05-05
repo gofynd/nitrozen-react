@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 2.0.4(2023-05-04)
+
+### Bugfixes
+
+- Dropdown bugfixes for pagination state updates ([19b534](https://github.com/gofynd/nitrozen-react/pull/83))
+- Table event propagation bugfixes ([3bcda4b](https://github.com/gofynd/nitrozen-react/pull/82))
+
 ## 2.0.3(2023-04-13)
 
 ### Bugfixes

@@ -45,9 +45,9 @@ const c = (n) => {
       "visiblePagesNodeCount",
     ]),
     [h, O] = t.useState(g),
-    [N, j] = t.useState(d || (o && o.length > 0 ? o[0] : 10)),
-    P = t.useRef(null),
-    [S, x] = t.useState([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]),
+    [N, S] = t.useState(d || (o && o.length > 0 ? o[0] : 10)),
+    j = t.useRef(null),
+    [P, x] = t.useState([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]),
     [w, C] = t.useState(!1),
     [M, R] = t.useState([0]),
     [$, k] = t.useState(0),
@@ -60,9 +60,9 @@ const c = (n) => {
   function I(e, t, n) {
     if ("..." == t) {
       let e = h.total && h.limit && Math.ceil(h.total / h.limit),
-        t = S[n - 1],
+        t = P[n - 1],
         a = e;
-      a = S[n + 1] == e ? e : S[n + 1];
+      a = P[n + 1] == e ? e : P[n + 1];
       const i = (function (e, t, n) {
         let a = [e],
           i = e;
@@ -73,7 +73,7 @@ const c = (n) => {
     } else C(!1), O(Object.assign(Object.assign({}, h), { current: t }));
   }
   function U(e) {
-    P.current && !P.current.contains(e.target) && C(!1);
+    j.current && !j.current.contains(e.target) && C(!1);
   }
   function L() {
     let e = " ";
@@ -152,7 +152,7 @@ const c = (n) => {
         u.default.createElement(
           "div",
           { className: "n-pagination__main" },
-          S.length > 1
+          P.length > 1
             ? u.default.createElement(
                 u.default.Fragment,
                 null,
@@ -184,10 +184,10 @@ const c = (n) => {
                 ),
                 u.default.createElement(
                   "div",
-                  { className: "n-pagination__number", ref: P },
-                  null == S
+                  { className: "n-pagination__number", ref: j },
+                  null == P
                     ? void 0
-                    : S.map((e, t) =>
+                    : P.map((e, t) =>
                         u.default.createElement(
                           "div",
                           {
@@ -360,7 +360,7 @@ const c = (n) => {
                   : [];
                 return (
                   N ||
-                    j(
+                    S(
                       Number(
                         h.limit ? h.limit : e.length > 0 ? e[0].value : 1800
                       )
@@ -368,7 +368,7 @@ const c = (n) => {
                   e
                 );
               })(),
-              value: N,
+              value: N.toString(),
               onChange: function (e) {
                 c === exports.ModeEnum.MODE_CURSOR
                   ? O(
@@ -386,7 +386,7 @@ const c = (n) => {
                         limit: e,
                       })
                     ),
-                  j(e);
+                  S(e);
               },
             })
           )

@@ -16,31 +16,31 @@ const u = { text: "Select All", value: "all" },
       g = l(!0),
       f = l(null),
       [b, E] = t(!1),
-      [w, x] = t({ height: null, width: null }),
-      [N, $] = t(!1),
-      [C, S] = t(""),
+      [w, N] = t({ height: null, width: null }),
+      [x, $] = t(!1),
+      [S, C] = t(""),
       [k, y] = t(),
       [L, A] = t([]),
-      [j, G] = t(),
-      [H, O] = t(),
+      [O, j] = t(),
+      [G, H] = t(),
       [z, T] = t(),
       [_, I] = t(""),
-      [P, V] = t(a.enableSelectAll || !1);
-    function q(e) {
+      [J, P] = t(a.enableSelectAll || !1);
+    function V(e) {
       const l = h.current;
       l && !l.contains(e.target) && E(!1);
     }
-    function B(e) {
+    function q(e) {
       9 === e.keyCode && b && (e.preventDefault(), e.stopPropagation(), E(!1));
     }
-    function D() {
+    function B() {
       var e, l;
       if (a.multiple) {
-        if (j) return `All ${L.length} ${a.label} selected`;
+        if (O) return `All ${L.length} ${a.label} selected`;
         let e = [];
         const t = {};
         return (
-          a.value && S(""),
+          a.value && C(""),
           L.length
             ? (L.forEach((e) => {
                 t[e] || (t[e] = !0);
@@ -62,7 +62,7 @@ const u = { text: "Select All", value: "all" },
       return (
         a.value &&
           (null === (e = a.items) || void 0 === e ? void 0 : e.length) &&
-          S((null == z ? void 0 : z.text) ? z.text : ""),
+          C((null == z ? void 0 : z.text) ? z.text : ""),
         (null == z ? void 0 : z.text)
           ? z.text
           : a.label
@@ -72,7 +72,7 @@ const u = { text: "Select All", value: "all" },
           : ""
       );
     }
-    function F() {
+    function D() {
       const e = null == h ? void 0 : h.current;
       if (!e) return;
       const l = e.getBoundingClientRect(),
@@ -80,11 +80,11 @@ const u = { text: "Select All", value: "all" },
         n = e.children[1].offsetHeight || 0;
       $(!(n < t));
     }
-    function J() {
+    function F() {
       const e = a.items ? [...a.items] : [];
-      if (a.multiple && P) {
-        const l = L.length === M(e).length && P;
-        G(l), O(l);
+      if (a.multiple && J) {
+        const l = L.length === M(e).length && J;
+        j(l), H(l);
       }
     }
     function M(e) {
@@ -103,71 +103,70 @@ const u = { text: "Select All", value: "all" },
           document.documentElement.clientHeight,
           window.innerHeight || 0
         );
-      x({ width: e, height: l });
+      N({ width: e, height: l });
     }
     function R(e, l, t) {
       l.isGroupLabel ||
         (a.multiple
           ? "all" === e
-            ? (A(H ? [] : M(a.items)), t.stopPropagation())
+            ? (A(G ? [] : M(a.items)), t.stopPropagation())
             : (L.includes(l.value)
                 ? A((e) => e.filter((e) => e !== l.value))
                 : A([...L, l.value]),
               t.stopPropagation())
-          : (T(l), l.text && S(l.text)));
+          : (T(l), l.text && C(l.text)));
     }
     function K() {
       var e;
-      null === (e = a.onChange) || void 0 === e || e.call(a, L), y(D());
+      null === (e = a.onChange) || void 0 === e || e.call(a, L), y(B());
     }
     n(() => {
       "undefined" != typeof document &&
-        (document.addEventListener("click", q),
-        document.addEventListener("keydown", B)),
+        (document.addEventListener("click", V),
+        document.addEventListener("keydown", q)),
         "undefined" != typeof window &&
           (window.addEventListener("resize", W),
           window.addEventListener("scroll", W));
     }, []),
       n(() => {
-        var e;
+        var e, l;
         if ((W(), a.multiple))
           a.value
-            ? A(Array.isArray(a.value) ? [...a.value] : [a.value])
-            : (A([]), y(D())),
-            J();
-        else {
-          if ((V(!1), a.value)) {
-            if (a.value !== (null == z ? void 0 : z.value)) {
-              const l =
-                null === (e = a.items) || void 0 === e
-                  ? void 0
-                  : e.find((e) => e.value === a.value);
-              S((null == l ? void 0 : l.text) ? l.text : ""), T(l);
-            }
-          } else T(void 0);
-          y(D());
-        }
+            ? JSON.stringify(
+                null !== (l = a.value) && void 0 !== l ? l : []
+              ) !== JSON.stringify(L) &&
+              (A(Array.isArray(a.value) ? [...a.value] : [a.value]), F())
+            : (A([]), C(""), y(B()), F());
+        else if ((P(!1), a.value)) {
+          if (a.value !== (null == z ? void 0 : z.value)) {
+            const l =
+              null === (e = a.items) || void 0 === e
+                ? void 0
+                : e.find((e) => e.value === a.value);
+            C((null == l ? void 0 : l.text) ? l.text : ""), T(l), y(B());
+          }
+        } else T(void 0), C(""), y(B());
       }, [a.value, a.items]),
       n(() => {
         var e, l, t;
         g.current
-          ? y(D())
+          ? y(B())
           : (a.multiple
               ? JSON.stringify(
                   null !== (l = a.value) && void 0 !== l ? l : []
                 ) !== JSON.stringify(L) &&
                 (null === (t = a.onChange) || void 0 === t || t.call(a, L),
-                y(D()))
+                y(B()))
               : (a.value !== (null == z ? void 0 : z.value) &&
                   (null === (e = a.onChange) ||
                     void 0 === e ||
                     e.call(a, null == z ? void 0 : z.value)),
-                y(D())),
-            J()),
+                y(B())),
+            F()),
           (g.current = !1);
       }, [L, z]),
       n(() => {
-        F();
+        D();
       }, [w]);
     const Q = a.prefixIcon;
     return e.createElement(
@@ -197,7 +196,7 @@ const u = { text: "Select All", value: "all" },
         {
           className: "n-select-wrapper",
           onClick: function () {
-            a.disabled || (E(!b), b && F());
+            a.disabled || (E(!b), b && D());
           },
         },
         e.createElement(
@@ -232,12 +231,12 @@ const u = { text: "Select All", value: "all" },
                     e.createElement("input", {
                       "data-testid": "dropdown-search",
                       type: "search",
-                      value: C,
+                      value: S,
                       onChange: function (e) {
                         var l;
-                        E(!0), S(e.target.value);
+                        E(!0), C(e.target.value);
                         const t = { id: a.id, text: e.target.value };
-                        C || J(),
+                        S || F(),
                           null === (l = a.onSearchInputChange) ||
                             void 0 === l ||
                             l.call(a, t),
@@ -251,7 +250,7 @@ const u = { text: "Select All", value: "all" },
                           : a.placeholder || `Search ${a.label}`,
                       onClick: () => I("n-focused-border"),
                       onBlur: () => {
-                        I(""), "" === C && y(D());
+                        I(""), "" === S && y(B());
                       },
                       className: "n-dropdown-search",
                     })
@@ -274,7 +273,7 @@ const u = { text: "Select All", value: "all" },
           e.createElement(
             "div",
             {
-              className: `n-options ${N && "n-dropup"}`,
+              className: `n-options ${x && "n-dropup"}`,
               ref: f,
               "data-testid": "dropdown-scroll",
               onScroll: function (e) {
@@ -283,8 +282,8 @@ const u = { text: "Select All", value: "all" },
                 null === (l = a.onScroll) || void 0 === l || l.call(a, t);
               },
             },
-            P &&
-              !C &&
+            J &&
+              !S &&
               0 !==
                 (null === (p = a.items) || void 0 === p ? void 0 : p.length) &&
               e.createElement(
@@ -307,12 +306,12 @@ const u = { text: "Select All", value: "all" },
                     { className: "n-option-container" },
                     e.createElement(
                       i,
-                      { checkboxValue: H, value: H, onChange: K },
+                      { checkboxValue: G, value: G, onChange: K },
                       e.createElement(
                         "span",
                         {
                           className: `n-option-image ${
-                            H && "n-dropdown-multicheckbox-selected"
+                            G && "n-dropdown-multicheckbox-selected"
                           }`,
                         },
                         "All"
@@ -363,7 +362,7 @@ const u = { text: "Select All", value: "all" },
                                     "n-dropdown-multicheckbox-selected"
                                   }`,
                                 },
-                                l.logo &&
+                                (null == l ? void 0 : l.logo) &&
                                   e.createElement("img", {
                                     className: "n-option-logo",
                                     src: null == l ? void 0 : l.logo,
@@ -387,20 +386,24 @@ const u = { text: "Select All", value: "all" },
                                     ? "n-option-child-label"
                                     : ""),
                               },
-                              l.logo &&
+                              (null == l ? void 0 : l.logo) &&
                                 e.createElement("img", {
                                   className: "n-option-logo",
-                                  src: l.logo,
+                                  src: null == l ? void 0 : l.logo,
                                   alt: "logo",
                                 }),
                               e.createElement(
                                 "div",
                                 { className: "n-option-wrapper" },
-                                e.createElement("span", null, l.text),
+                                e.createElement(
+                                  "span",
+                                  null,
+                                  null == l ? void 0 : l.text
+                                ),
                                 e.createElement(
                                   "span",
                                   { className: "n-option-subtext" },
-                                  l.sub_text
+                                  null == l ? void 0 : l.sub_text
                                 )
                               )
                             )
@@ -422,7 +425,7 @@ const u = { text: "Select All", value: "all" },
                     " Found"
                   ),
                 a.addOption &&
-                  (null == C ? void 0 : C.length) > 0 &&
+                  (null == S ? void 0 : S.length) > 0 &&
                   e.createElement(
                     "div",
                     { className: "n-option-container" },
@@ -433,8 +436,8 @@ const u = { text: "Select All", value: "all" },
                         className: "n-dropdown-empty",
                         onClick: function () {
                           var e;
-                          const l = C;
-                          S(""),
+                          const l = S;
+                          C(""),
                             null === (e = a.addOptionHandler) ||
                               void 0 === e ||
                               e.call(a, l),
@@ -442,7 +445,7 @@ const u = { text: "Select All", value: "all" },
                         },
                       },
                       e.createElement(s, null),
-                      e.createElement("p", null, "Add ", C)
+                      e.createElement("p", null, "Add ", S)
                     )
                   )
               )

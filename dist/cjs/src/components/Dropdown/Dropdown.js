@@ -19,14 +19,14 @@ const r = { text: "Select All", value: "all" },
       [m, f] = e.useState(!1),
       [h, g] = e.useState({ height: null, width: null }),
       [b, E] = e.useState(!1),
-      [w, x] = e.useState(""),
-      [N, S] = e.useState(),
+      [w, N] = e.useState(""),
+      [x, S] = e.useState(),
       [$, C] = e.useState([]),
       [k, y] = e.useState(),
       [A, L] = e.useState(),
       [q, j] = e.useState(),
-      [I, G] = e.useState(""),
-      [H, O] = e.useState(l.enableSelectAll || !1);
+      [I, O] = e.useState(""),
+      [G, H] = e.useState(l.enableSelectAll || !1);
     function z(e) {
       const l = c.current;
       l && !l.contains(e.target) && f(!1);
@@ -41,7 +41,7 @@ const r = { text: "Select All", value: "all" },
         let e = [];
         const a = {};
         return (
-          l.value && x(""),
+          l.value && N(""),
           $.length
             ? ($.forEach((e) => {
                 a[e] || (a[e] = !0);
@@ -63,7 +63,7 @@ const r = { text: "Select All", value: "all" },
       return (
         l.value &&
           (null === (e = l.items) || void 0 === e ? void 0 : e.length) &&
-          x((null == q ? void 0 : q.text) ? q.text : ""),
+          N((null == q ? void 0 : q.text) ? q.text : ""),
         (null == q ? void 0 : q.text)
           ? q.text
           : l.label
@@ -73,7 +73,7 @@ const r = { text: "Select All", value: "all" },
           : ""
       );
     }
-    function P() {
+    function J() {
       const e = null == c ? void 0 : c.current;
       if (!e) return;
       const l = e.getBoundingClientRect(),
@@ -81,21 +81,21 @@ const r = { text: "Select All", value: "all" },
         a = e.children[1].offsetHeight || 0;
       E(!(a < t));
     }
-    function R() {
+    function P() {
       const e = l.items ? [...l.items] : [];
-      if (l.multiple && H) {
-        const l = $.length === V(e).length && H;
+      if (l.multiple && G) {
+        const l = $.length === R(e).length && G;
         y(l), L(l);
       }
     }
-    function V(e) {
+    function R(e) {
       return e
         .filter(function (e) {
           return !e.isGroupLabel;
         })
         .map((e) => e.value);
     }
-    function D() {
+    function V() {
       const e = Math.max(
           document.documentElement.clientWidth,
           window.innerWidth || 0
@@ -106,18 +106,18 @@ const r = { text: "Select All", value: "all" },
         );
       g({ width: e, height: l });
     }
-    function B(e, t, a) {
+    function D(e, t, a) {
       t.isGroupLabel ||
         (l.multiple
           ? "all" === e
-            ? (C(A ? [] : V(l.items)), a.stopPropagation())
+            ? (C(A ? [] : R(l.items)), a.stopPropagation())
             : ($.includes(t.value)
                 ? C((e) => e.filter((e) => e !== t.value))
                 : C([...$, t.value]),
               a.stopPropagation())
-          : (j(t), t.text && x(t.text)));
+          : (j(t), t.text && N(t.text)));
     }
-    function F() {
+    function B() {
       var e;
       null === (e = l.onChange) || void 0 === e || e.call(l, $), S(_());
     }
@@ -126,28 +126,27 @@ const r = { text: "Select All", value: "all" },
         (document.addEventListener("click", z),
         document.addEventListener("keydown", T)),
         "undefined" != typeof window &&
-          (window.addEventListener("resize", D),
-          window.addEventListener("scroll", D));
+          (window.addEventListener("resize", V),
+          window.addEventListener("scroll", V));
     }, []),
       e.useEffect(() => {
-        var e;
-        if ((D(), l.multiple))
+        var e, t;
+        if ((V(), l.multiple))
           l.value
-            ? C(Array.isArray(l.value) ? [...l.value] : [l.value])
-            : (C([]), S(_())),
-            R();
-        else {
-          if ((O(!1), l.value)) {
-            if (l.value !== (null == q ? void 0 : q.value)) {
-              const t =
-                null === (e = l.items) || void 0 === e
-                  ? void 0
-                  : e.find((e) => e.value === l.value);
-              x((null == t ? void 0 : t.text) ? t.text : ""), j(t);
-            }
-          } else j(void 0);
-          S(_());
-        }
+            ? JSON.stringify(
+                null !== (t = l.value) && void 0 !== t ? t : []
+              ) !== JSON.stringify($) &&
+              (C(Array.isArray(l.value) ? [...l.value] : [l.value]), P())
+            : (C([]), N(""), S(_()), P());
+        else if ((H(!1), l.value)) {
+          if (l.value !== (null == q ? void 0 : q.value)) {
+            const t =
+              null === (e = l.items) || void 0 === e
+                ? void 0
+                : e.find((e) => e.value === l.value);
+            N((null == t ? void 0 : t.text) ? t.text : ""), j(t), S(_());
+          }
+        } else j(void 0), N(""), S(_());
       }, [l.value, l.items]),
       e.useEffect(() => {
         var e, t, a;
@@ -164,13 +163,13 @@ const r = { text: "Select All", value: "all" },
                     void 0 === e ||
                     e.call(l, null == q ? void 0 : q.value)),
                 S(_())),
-            R()),
+            P()),
           (p.current = !1);
       }, [$, q]),
       e.useEffect(() => {
-        P();
+        J();
       }, [h]);
-    const J = l.prefixIcon;
+    const F = l.prefixIcon;
     return d.default.createElement(
       "div",
       {
@@ -200,7 +199,7 @@ const r = { text: "Select All", value: "all" },
         {
           className: "n-select-wrapper",
           onClick: function () {
-            l.disabled || (f(!m), m && P());
+            l.disabled || (f(!m), m && J());
           },
         },
         d.default.createElement(
@@ -222,7 +221,7 @@ const r = { text: "Select All", value: "all" },
               ? d.default.createElement(
                   "div",
                   { className: "n-dropdown-prefix-icon-wrapper" },
-                  d.default.createElement(J, { className: "n-dropdown-prefix" })
+                  d.default.createElement(F, { className: "n-dropdown-prefix" })
                 )
               : null,
             d.default.createElement(
@@ -238,23 +237,23 @@ const r = { text: "Select All", value: "all" },
                       value: w,
                       onChange: function (e) {
                         var t;
-                        f(!0), x(e.target.value);
+                        f(!0), N(e.target.value);
                         const a = { id: l.id, text: e.target.value };
-                        w || R(),
+                        w || P(),
                           null === (t = l.onSearchInputChange) ||
                             void 0 === t ||
                             t.call(l, a),
-                          D();
+                          V();
                       },
                       placeholder:
                         l.enableSelectAll && $.length
-                          ? $.length === V(null == l ? void 0 : l.items).length
+                          ? $.length === R(null == l ? void 0 : l.items).length
                             ? `All ${l.label}(s) selected`
                             : `${$.length} ${l.label}(s) selected`
                           : l.placeholder || `Search ${l.label}`,
-                      onClick: () => G("n-focused-border"),
+                      onClick: () => O("n-focused-border"),
                       onBlur: () => {
-                        G(""), "" === w && S(_());
+                        O(""), "" === w && S(_());
                       },
                       className: "n-dropdown-search",
                     })
@@ -262,7 +261,7 @@ const r = { text: "Select All", value: "all" },
                 : d.default.createElement(
                     "span",
                     { "data-testid": "dropdown-selected-text" },
-                    N
+                    x
                   ),
               d.default.createElement(
                 "div",
@@ -286,7 +285,7 @@ const r = { text: "Select All", value: "all" },
                 null === (t = l.onScroll) || void 0 === t || t.call(l, a);
               },
             },
-            H &&
+            G &&
               !w &&
               0 !==
                 (null === (i = l.items) || void 0 === i ? void 0 : i.length) &&
@@ -299,7 +298,7 @@ const r = { text: "Select All", value: "all" },
                     "data-testid": "all-option",
                     className: "n-option ripple",
                     onClick: (e) => {
-                      B("all", r, e);
+                      D("all", r, e);
                     },
                     key: `all_${
                       null === (u = l.items) || void 0 === u ? void 0 : u.length
@@ -310,7 +309,7 @@ const r = { text: "Select All", value: "all" },
                     { className: "n-option-container" },
                     d.default.createElement(
                       a,
-                      { checkboxValue: A, value: A, onChange: F },
+                      { checkboxValue: A, value: A, onChange: B },
                       d.default.createElement(
                         "span",
                         {
@@ -346,7 +345,7 @@ const r = { text: "Select All", value: "all" },
                           (null == e ? void 0 : e.isGroupLabel) &&
                           "n-option-group-label"
                         }`,
-                        onClick: (l) => B(t, e, l),
+                        onClick: (l) => D(t, e, l),
                       },
                       d.default.createElement(
                         "div",
@@ -357,7 +356,7 @@ const r = { text: "Select All", value: "all" },
                               {
                                 checkboxValue: null == e ? void 0 : e.value,
                                 checkArray: [...$],
-                                onChange: F,
+                                onChange: B,
                                 value: null == e ? void 0 : e.value,
                               },
                               d.default.createElement(
@@ -368,7 +367,7 @@ const r = { text: "Select All", value: "all" },
                                     "n-dropdown-multicheckbox-selected"
                                   }`,
                                 },
-                                e.logo &&
+                                (null == e ? void 0 : e.logo) &&
                                   d.default.createElement("img", {
                                     className: "n-option-logo",
                                     src: null == e ? void 0 : e.logo,
@@ -392,20 +391,24 @@ const r = { text: "Select All", value: "all" },
                                     ? "n-option-child-label"
                                     : ""),
                               },
-                              e.logo &&
+                              (null == e ? void 0 : e.logo) &&
                                 d.default.createElement("img", {
                                   className: "n-option-logo",
-                                  src: e.logo,
+                                  src: null == e ? void 0 : e.logo,
                                   alt: "logo",
                                 }),
                               d.default.createElement(
                                 "div",
                                 { className: "n-option-wrapper" },
-                                d.default.createElement("span", null, e.text),
+                                d.default.createElement(
+                                  "span",
+                                  null,
+                                  null == e ? void 0 : e.text
+                                ),
                                 d.default.createElement(
                                   "span",
                                   { className: "n-option-subtext" },
-                                  e.sub_text
+                                  null == e ? void 0 : e.sub_text
                                 )
                               )
                             )
@@ -439,11 +442,11 @@ const r = { text: "Select All", value: "all" },
                         onClick: function () {
                           var e;
                           const t = w;
-                          x(""),
+                          N(""),
                             null === (e = l.addOptionHandler) ||
                               void 0 === e ||
                               e.call(l, t),
-                            D();
+                            V();
                         },
                       },
                       d.default.createElement(o.SvgIcAdd, null),

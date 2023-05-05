@@ -442,7 +442,7 @@ const Pagination = (props: PaginationProps) => {
             <Dropdown
               className="n-pagination-page-size"
               items={pageSizes()}
-              value={selectedPageSize}
+              value={selectedPageSize.toString()}
               onChange={pageSizeChange}
             />
           </div>
