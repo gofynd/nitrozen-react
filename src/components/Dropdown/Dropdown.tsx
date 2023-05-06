@@ -66,6 +66,7 @@ const Dropdown = (props: DropdownProps) => {
   const [enableSelectAll, setEnableSelectAll] = useState(
     props.enableSelectAll || false
   );
+  const valuePropRef = useRef<any>(null);
   useEffect(() => {
     if (typeof document !== "undefined") {
       document.addEventListener("click", documentClick);
@@ -81,20 +82,23 @@ const Dropdown = (props: DropdownProps) => {
     calculateViewport();
     if (!props.multiple) {
       setEnableSelectAll(false);
-      if (props.value) {
-        if (props.value !== selected?.value) {
-          const data = props.items?.find(
-            (i: ItemProps) => i.value === props.value
-          );
-          setSearchInput(data?.text ? data.text : "");
-          setSelected(data);
+      if (valuePropRef.current !== props.value) {
+        if (props.value) {
+          if (props.value !== selected?.value) {
+            const data = props.items?.find(
+              (i: ItemProps) => i.value === props.value
+            );
+            setSearchInput(data?.text ? data.text : "");
+            setSelected(data);
+            setSelectedText(generateSelectedText());
+          }
+        } else {
+          setSelected(undefined);
+          setSearchInput("");
           setSelectedText(generateSelectedText());
         }
-      } else {
-        setSelected(undefined);
-        setSearchInput("");
-        setSelectedText(generateSelectedText());
       }
+      valuePropRef.current = props.value;
     } else {
       if (props.value) {
         if (
