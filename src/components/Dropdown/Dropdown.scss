@@ -88,8 +88,9 @@
   }
 
   .n-dropup {
-    transform: translate3d(0rem, 0rem, 0rem);
-    bottom: 4.2rem;
+    transform: translate3d(0rem, -4.2rem, 0rem);
+    bottom: 18px;
+    top: unset;
     z-index: $ZIndex2;
   }
 
