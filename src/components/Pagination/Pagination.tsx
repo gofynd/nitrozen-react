@@ -542,7 +542,7 @@ const Pagination = (props: PaginationProps) => {
               onKeyDown={handleNumberkeyDown}
               onBlur={handleInputBlur}
               min={1}
-              // max={value.total && value.total / selectedPageSize}
+              max={value.total && value.total / selectedPageSize}
               data-testid="pageInput"
             />
             <Button

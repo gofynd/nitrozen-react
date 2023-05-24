@@ -244,17 +244,6 @@
   gap: 0.8rem;
 
   .n-pagination__select {
-    position: relative;
-    .n-select-wrapper {
-      position: unset;
-    }
-    .n-select-wrapper .n-select {
-      position: unset;
-    }
-    .n-select-wrapper .n-options {
-      bottom: 1rem;
-      top: auto;
-    }
     .n-select-wrapper .n-select__trigger {
       background: $ColorPrimaryBackground;
       color: var(--TypographyPrimaryColor, $ColorPrimaryGrey80);
