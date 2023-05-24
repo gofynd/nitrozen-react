@@ -173,6 +173,7 @@ export const CheckableTable = (args: any) => {
       <Table
         {...args}
         checkable={true}
+        allChecked={countVal === rowItem.length}
         getCheckedItems={getCheckedItems}
         allCheckClicked={allCheckClicked}
         tableRow={rowItem}
