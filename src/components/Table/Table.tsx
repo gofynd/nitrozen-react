@@ -184,6 +184,12 @@ const Table: React.FC<TableProps> = (props) => {
 
   useLayoutEffect(() => {
     handleScroll();
+    if (typeof window !== undefined)
+      window.addEventListener("resize", handleScroll);
+    return () => {
+      if (typeof window !== undefined)
+        window.removeEventListener("resize", handleScroll);
+    };
   }, []);
 
   return (
