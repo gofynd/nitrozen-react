@@ -79,6 +79,12 @@ const Table: React.FC<TableProps> = (props) => {
     };
   };
 
+  const isAllChecked = () => {
+    const checkedItemsLength = tableRow.filter((item) => item.isChecked).length;
+    if (checkedItemsLength < 1) return false;
+    return true;
+  };
+
   return (
     <div
       className={`n-table ${customClassName ? customClassName : ""}`}
@@ -98,11 +104,12 @@ const Table: React.FC<TableProps> = (props) => {
                 <div className="n-table-checkbox-wrapper">
                   <Checkbox
                     id="header-checkbox"
-                    value={props.allChecked}
+                    value={isAllChecked()}
                     onChange={(status: boolean) => {
                       props.allCheckClicked?.(status);
                     }}
-                    checkboxValue={props.allChecked}
+                    checkboxValue={isAllChecked()}
+                    isIndeterminate={!props.allChecked}
                   />
                 </div>
               </th>

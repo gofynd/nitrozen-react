@@ -125,7 +125,7 @@
         justify-self: center;
 
         &.completed-bar {
-          display: none;
+          visibility: hidden;
         }
       }
       .n-circle-content {

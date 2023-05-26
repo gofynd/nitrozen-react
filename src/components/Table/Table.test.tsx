@@ -436,4 +436,68 @@ describe("Render a Table component", () => {
     expect(onRowClick).toBeCalledTimes(0);
     expect(onRowCheckboxClick).toBeCalledTimes(1);
   });
+  test("No row selected", () => {
+    const tableRow = [
+      { id: 1, name: "Row 1", isChecked: false },
+      { id: 2, name: "Row 2", isChecked: false },
+      { id: 3, name: "Row 3", isChecked: false },
+    ];
+
+    render(
+      <Table
+        rowStyle="zebra"
+        id="custom-table"
+        tableRow={tableRow}
+        tableHeader={[]}
+        checkable={true}
+      />
+    );
+
+    const headerCheckbox = screen.getByTestId("header-checkbox");
+    expect(headerCheckbox).not.toBeChecked();
+  });
+
+  test("Few rows selected (Indeterminate state)", () => {
+    const tableRow = [
+      { id: 1, name: "Row 1", isChecked: true },
+      { id: 2, name: "Row 2", isChecked: false },
+      { id: 3, name: "Row 3", isChecked: true },
+    ];
+
+    render(
+      <Table
+        rowStyle="zebra"
+        id="custom-table"
+        tableRow={tableRow}
+        tableHeader={[]}
+        checkable={true}
+      />
+    );
+
+    const headerCheckbox = screen.getByTestId("n-checkbox-header-checkbox");
+    expect(headerCheckbox.className).toBe(
+      "n-checkbox n-checkbox-indeterminate"
+    );
+  });
+
+  test("All rows checked", () => {
+    const tableRow = [
+      { id: 1, name: "Row 1", isChecked: true },
+      { id: 2, name: "Row 2", isChecked: true },
+      { id: 3, name: "Row 3", isChecked: true },
+    ];
+
+    render(
+      <Table
+        rowStyle="zebra"
+        id="custom-table"
+        tableRow={tableRow}
+        tableHeader={[]}
+        checkable={true}
+      />
+    );
+
+    const headerCheckbox = screen.getByTestId("header-checkbox");
+    expect(headerCheckbox).toBeChecked();
+  });
 });

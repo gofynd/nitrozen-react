@@ -334,7 +334,7 @@ const Dropdown = (props: DropdownProps) => {
     >
       {props.label && (
         <label className="n-dropdown-label">
-          {` ${props.label} ${props.required ? " *" : ""} `}
+          {` ${props.label}${props.required ? "*" : ""} `}
           {props.tooltip && (
             <Tooltip
               className="n-dropdown-tooltip"

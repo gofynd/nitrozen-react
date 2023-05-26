@@ -187,7 +187,8 @@ const Input = (props: InputProps) => {
         {label && (
           <label className="n-input-label">
             <>
-              {label} {required ? "*" : ""}
+              {label}
+              {required ? "*" : ""}
               {showTooltip && (
                 <span className="n-input-tooltip">
                   {tooltipText && (

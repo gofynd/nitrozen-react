@@ -32,7 +32,7 @@ describe("DateInput", () => {
       "n-date-label"
     ) as HTMLInputElement;
     expect(labelContainer.className).toBe("n-input-label");
-    expect(labelContainer.textContent).toContain("Birthdate  *");
+    expect(labelContainer.textContent).toContain("Birthdate*");
     const wrapper = screen.getByTestId("n-date-inputfield") as HTMLInputElement;
     expect(wrapper.className).toBe("n-date-inputfield ");
     const datePickerIcon = screen.getByTestId(
