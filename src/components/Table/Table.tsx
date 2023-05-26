@@ -1,4 +1,4 @@
-import React, { memo, useState, useRef, useLayoutEffect } from "react";
+import React, { memo, useState, useRef, useEffect } from "react";
 import NitrozenId from "../../utils/uuids";
 import "./Table.scss";
 import {
@@ -182,7 +182,7 @@ const Table: React.FC<TableProps> = (props) => {
       throttledFreezeRight();
   };
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     handleScroll();
     if (typeof window !== undefined)
       window.addEventListener("resize", handleScroll);
@@ -190,7 +190,7 @@ const Table: React.FC<TableProps> = (props) => {
       if (typeof window !== undefined)
         window.removeEventListener("resize", handleScroll);
     };
-  }, []);
+  }, [tableRow]);
 
   return (
     <div
