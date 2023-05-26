@@ -9,6 +9,7 @@ import {
   SvgIcInfo,
   SvgIcChevronDown,
 } from "../../assets/svg-components";
+import { Position } from "../Tooltip/Tooltip";
 
 interface ItemProps {
   logo?: string;
@@ -27,6 +28,8 @@ export interface DropdownProps {
   required?: Boolean;
   searchable?: Boolean;
   tooltip?: string;
+  tooltipPosition?: Position;
+  tooltipIcon?: React.ReactNode;
   value?: string | number | boolean | any[];
   addOption?: Boolean;
   addOptionHandler?: Function;
@@ -66,6 +69,7 @@ const Dropdown = (props: DropdownProps) => {
   const [enableSelectAll, setEnableSelectAll] = useState(
     props.enableSelectAll || false
   );
+  const valuePropRef = useRef<any>(null);
   useEffect(() => {
     if (typeof document !== "undefined") {
       document.addEventListener("click", documentClick);
@@ -81,20 +85,23 @@ const Dropdown = (props: DropdownProps) => {
     calculateViewport();
     if (!props.multiple) {
       setEnableSelectAll(false);
-      if (props.value) {
-        if (props.value !== selected?.value) {
-          const data = props.items?.find(
-            (i: ItemProps) => i.value === props.value
-          );
-          setSearchInput(data?.text ? data.text : "");
-          setSelected(data);
+      if (valuePropRef.current !== props.value) {
+        if (props.value) {
+          if (JSON.stringify(props.value) !== JSON.stringify(selected?.value)) {
+            const data = props.items?.find(
+              (i: ItemProps) => i.value === props.value
+            );
+            setSearchInput(data?.text ? data.text : "");
+            setSelected(data);
+            setSelectedText(generateSelectedText());
+          }
+        } else {
+          setSelected(undefined);
+          setSearchInput("");
           setSelectedText(generateSelectedText());
         }
-      } else {
-        setSelected(undefined);
-        setSearchInput("");
-        setSelectedText(generateSelectedText());
       }
+      valuePropRef.current = props.value;
     } else {
       if (props.value) {
         if (
@@ -104,6 +111,7 @@ const Dropdown = (props: DropdownProps) => {
             Array.isArray(props.value) ? [...props.value] : [props.value]
           );
           setAllOptions();
+          setSelectedText(generateSelectedText());
         }
       } else {
         setSelectedItems([]);
@@ -117,7 +125,7 @@ const Dropdown = (props: DropdownProps) => {
   useEffect(() => {
     if (!initialRender.current) {
       if (!props.multiple) {
-        if (props.value !== selected?.value) {
+        if (JSON.stringify(props.value) !== JSON.stringify(selected?.value)) {
           props.onChange?.(selected?.value);
         }
         setSelectedText(generateSelectedText());
@@ -332,8 +340,10 @@ const Dropdown = (props: DropdownProps) => {
               className="n-dropdown-tooltip"
               data-testid="icon-component"
               tooltipContent={props.tooltip}
-              position="top"
-              icon={<SvgIcInfo style={{ fontSize: "14px" }} />}
+              position={props?.tooltipPosition ?? "top"}
+              icon={
+                props?.tooltipIcon ?? <SvgIcInfo style={{ fontSize: "14px" }} />
+              }
             />
           )}
         </label>

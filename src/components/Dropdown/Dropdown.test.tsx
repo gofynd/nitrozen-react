@@ -1,16 +1,38 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { fireEvent, render } from "@testing-library/react";
 import Dropdown from "./Dropdown";
 
 const DropdownDatasource = [
   {
     text: "Maharashtra",
+    sub_text: "SUB TEXT",
     value: 1,
     logo: "https://hdn-1.jiox0.de/jioecomm/seller/pictures/logo/original/gionee-56405d/Gionee_Logo_20190919.jpg",
   },
   {
     text: "Andhra Pradesh",
+    sub_text: "SUB TEXT",
     value: 2,
+    logo: "https://hdn-1.jiox0.de/jioecomm/seller/pictures/logo/original/gionee-56405d/Gionee_Logo_20190919.jpg",
+  },
+  {
+    text: "West Bengal",
+    value: 3,
+    logo: "https://hdn-1.jiox0.de/jioecomm/seller/pictures/logo/original/gionee-56405d/Gionee_Logo_20190919.jpg",
+  },
+  {
+    text: "Madhya Pradesh",
+    value: 4,
+    logo: "https://hdn-1.jiox0.de/jioecomm/seller/pictures/logo/original/gionee-56405d/Gionee_Logo_20190919.jpg",
+  },
+  {
+    text: "Tamil Nadu",
+    value: 5,
+    logo: "https://hdn-1.jiox0.de/jioecomm/seller/pictures/logo/original/gionee-56405d/Gionee_Logo_20190919.jpg",
+  },
+  {
+    text: "Himachal Pradesh",
+    value: 6,
     logo: "https://hdn-1.jiox0.de/jioecomm/seller/pictures/logo/original/gionee-56405d/Gionee_Logo_20190919.jpg",
   },
 ];
@@ -225,7 +247,7 @@ describe("Dropdown", () => {
     // Assert
     expect(allOption).toBeFalsy();
   });
-  test("should clear searchText if current value is falsy", () => {
+  test("should clear searchText if value prop is updated to any falsy value", () => {
     // Arrange
     const { getByTestId, rerender } = render(
       <Dropdown
@@ -262,5 +284,51 @@ describe("Dropdown", () => {
     );
     // Assert
     expect(search).toHaveValue("");
+  });
+  test("should not clear searchText if items is updated", () => {
+    const Component = () => {
+      const [items, setItems] = useState(DropdownDatasource);
+
+      const handleClick = () => {
+        setItems(DropdownDatasource.slice(0, 3));
+      };
+
+      return (
+        <div
+          id="test-component"
+          data-testid="test-component"
+          onClick={handleClick}
+        >
+          <Dropdown
+            items={items}
+            disabled={false}
+            label="States"
+            placeholder="States"
+            required={false}
+            searchable={true}
+            tooltip="Tooltip is working"
+            onChange={(item: {
+              text: string;
+              value: string;
+              icon?: string;
+            }) => {}}
+            onSearchInputChange={(e: Element) => {}}
+            value={1}
+          />
+        </div>
+      );
+    };
+    // Arrange
+    const { getByTestId } = render(<Component />);
+
+    const search = getByTestId("dropdown-search");
+    fireEvent.change(search, { target: { value: "testing" } });
+    expect(search).toHaveValue("testing");
+
+    const component = getByTestId("test-component");
+    fireEvent.click(component);
+
+    // Assert
+    expect(search).toHaveValue("testing");
   });
 });

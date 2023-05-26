@@ -54,6 +54,27 @@ export default {
     tooltip: {
       description: "Assign tooltip value to dropdown",
     },
+    tooltipPosition: {
+      control: "select",
+      options: [
+        "top",
+        "right",
+        "left",
+        "bottom",
+        "right-start",
+        "right-end",
+        "left-start",
+        "left-end",
+        "bottom-start",
+        "bottom-end",
+        "top-start",
+        "top-end",
+      ],
+    },
+    tooltipIcon: {
+      description: "Set the custom icon element of tooltip",
+      options: SvgArray,
+    },
     addOption: {
       control: { type: "boolean" },
       description: "Used to assign additional custom options",
