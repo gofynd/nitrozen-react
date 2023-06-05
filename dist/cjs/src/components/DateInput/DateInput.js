@@ -91,13 +91,7 @@ const r = (d) => {
         i.default.createElement(
           "label",
           { className: "n-input-label", "data-testid": "n-date-label" },
-          i.default.createElement(
-            i.default.Fragment,
-            null,
-            r,
-            " ",
-            u ? " *" : ""
-          )
+          i.default.createElement(i.default.Fragment, null, r, u ? "*" : "")
         )
     ),
     i.default.createElement(

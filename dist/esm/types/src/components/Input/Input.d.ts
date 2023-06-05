@@ -20,6 +20,9 @@ export interface InputProps {
   min?: Number;
   max?: Number;
   onKeyUp?: React.KeyboardEventHandler<HTMLTextAreaElement | HTMLInputElement>;
+  onKeyDown?: React.KeyboardEventHandler<
+    HTMLTextAreaElement | HTMLInputElement
+  >;
   onKeyPress?: React.KeyboardEventHandler<
     HTMLTextAreaElement | HTMLInputElement
   >;

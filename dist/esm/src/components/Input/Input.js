@@ -19,35 +19,36 @@ const m = (r) => {
       disabled: h,
       required: b,
       value: v,
-      showSearchIcon: C,
-      id: g,
-      name: y,
+      showSearchIcon: y,
+      id: C,
+      name: g,
       maxLength: E,
       showPrefix: $,
       showSuffix: N,
-      prefix: P,
-      suffix: k,
-      autofocus: S,
-      min: w,
-      max: T,
-      onKeyUp: j,
+      prefix: w,
+      suffix: P,
+      autofocus: k,
+      min: K,
+      max: S,
+      onKeyUp: T,
+      onKeyDown: j,
       onKeyPress: I,
-      onChange: K,
-      onBlur: F,
-      onFocus: B,
-      onClick: L,
-      className: U,
-      style: q,
+      onChange: F,
+      onBlur: B,
+      onFocus: L,
+      onClick: U,
+      className: q,
+      style: D,
       helperText: z,
       state: O,
       stateText: V,
       onPrefixClick: H,
       onSuffixClick: _,
       tooltipText: A,
-      showTooltip: D,
-      tooltipIcon: G,
+      showTooltip: G,
+      tooltipIcon: J,
     } = r,
-    J = e(r, [
+    M = e(r, [
       "autoComplete",
       "type",
       "label",
@@ -67,6 +68,7 @@ const m = (r) => {
       "min",
       "max",
       "onKeyUp",
+      "onKeyDown",
       "onKeyPress",
       "onChange",
       "onBlur",
@@ -83,28 +85,28 @@ const m = (r) => {
       "showTooltip",
       "tooltipIcon",
     ]),
-    [M, Q] = n(v || ""),
-    R = o(null),
-    [W, X] = n(""),
-    [Y, Z] = n(""),
-    [ee, te] = n("");
-  function ne(e) {
-    Q(e.target.value), null == K || K(e);
+    [Q, R] = n(v || ""),
+    W = o(null),
+    [X, Y] = n(""),
+    [Z, ee] = n(""),
+    [te, ne] = n("");
+  function oe(e) {
+    R(e.target.value), null == F || F(e);
   }
-  function oe() {
-    X("n-focused-label" + ($ || C ? "-prefixed" : "")), Z("n-border-focused");
+  function ae() {
+    Y("n-focused-label" + ($ || y ? "-prefixed" : "")), ee("n-border-focused");
   }
   return (
     a(() => {
       var e;
       r.autofocus &&
-        (null === (e = null == R ? void 0 : R.current) ||
+        (null === (e = null == W ? void 0 : W.current) ||
           void 0 === e ||
           e.focus()),
-        (v || x) && oe();
+        (v || x) && ae();
     }, []),
     a(() => {
-      Q(v || "");
+      R(v || "");
     }, [v]),
     t.createElement(
       "div",
@@ -113,8 +115,8 @@ const m = (r) => {
         "div",
         {
           className: `n-input-label-container ${
-            $ || C ? "n-input-label-prefixed" : ""
-          } ${W}`,
+            $ || y ? "n-input-label-prefixed" : ""
+          } ${X}`,
         },
         d &&
           t.createElement(
@@ -124,9 +126,8 @@ const m = (r) => {
               t.Fragment,
               null,
               d,
-              " ",
               b ? "*" : "",
-              D &&
+              G &&
                 t.createElement(
                   "span",
                   { className: "n-input-tooltip" },
@@ -134,7 +135,7 @@ const m = (r) => {
                     t.createElement(c, {
                       tooltipContent: A,
                       icon:
-                        G ||
+                        J ||
                         t.createElement(s, { style: { fontSize: "14px" } }),
                       position: "top",
                     })
@@ -142,18 +143,18 @@ const m = (r) => {
             )
           ),
         E &&
-          "string" == typeof M &&
+          "string" == typeof Q &&
           "number" != f &&
           t.createElement(
             "label",
             { className: "n-input-label n-input-maxLength" },
-            t.createElement(t.Fragment, null, M.length, "/", E)
+            t.createElement(t.Fragment, null, Q.length, "/", E)
           )
       ),
       t.createElement(
         "div",
         { className: "n-input-grp" },
-        C &&
+        y &&
           t.createElement(
             "span",
             { className: "n-search-icon" },
@@ -162,28 +163,28 @@ const m = (r) => {
         t.createElement(
           "div",
           {
-            className: `n-input-container ${Y} ${ee} ${
+            className: `n-input-container ${Z} ${te} ${
               r.state && "default" !== r.state ? `n-${O}-border` : ""
             }`,
           },
           $ &&
             "textarea" !== f &&
-            t.createElement(l, { prefix: P, onPrefixClick: H }),
+            t.createElement(l, { prefix: w, onPrefixClick: H }),
           "textarea" !== f &&
             t.createElement(
               "input",
               Object.assign(
                 {
-                  ref: R,
+                  ref: W,
                   className: `n-input ${(function () {
                     let e = "";
                     return (
                       (e = `${e} ${
-                        C && "textarea" !== f
+                        y && "textarea" !== f
                           ? "n-search-input-padding input-prefixed"
                           : ""
                       }`),
-                      (e = `${e} ${U || ""}`),
+                      (e = `${e} ${q || ""}`),
                       $ && N
                         ? (e = `${e} input-contained`)
                         : ((e = `${e} ${
@@ -195,44 +196,45 @@ const m = (r) => {
                       e
                     );
                   })()}`,
-                  onKeyUp: j,
-                  onChange: K,
+                  onKeyUp: T,
+                  onKeyDown: j,
+                  onChange: F,
                   onBlur: function (e) {
                     var t;
-                    (null === (t = R.current) || void 0 === t
+                    (null === (t = W.current) || void 0 === t
                       ? void 0
                       : t.value) ||
                       x ||
-                      (X(""), Z("")),
-                      te(""),
-                      null == F || F(e);
+                      (Y(""), ee("")),
+                      ne(""),
+                      null == B || B(e);
                   },
                   onFocus: (e) => {
-                    oe(), null == B || B(e);
+                    ae(), null == L || L(e);
                   },
                   onClick: (e) => {
-                    te("n-focused-border"), null == L || L(e);
+                    ne("n-focused-border"), null == U || U(e);
                   },
                   onKeyPress: I,
-                  value: M,
+                  value: Q,
                 },
                 (function () {
                   const e = {};
                   return (
-                    w && (e.min = w),
-                    T && (e.max = T),
+                    K && (e.min = K),
+                    S && (e.max = S),
                     void 0 !== E && (e.maxLength = E),
                     m && (e.autoComplete = m),
-                    g && (e.id = g),
+                    C && (e.id = C),
                     f && (e.type = f),
                     h && (e.disabled = h),
                     x && (e.placeholder = x),
-                    q && (e.style = q),
+                    D && (e.style = D),
                     e
                   );
                 })(),
-                { onInput: ne },
-                J
+                { onInput: oe },
+                M
               )
             ),
           "textarea" === f &&
@@ -240,15 +242,15 @@ const m = (r) => {
               "textarea",
               Object.assign(
                 {
-                  ref: R,
-                  onKeyUp: j,
-                  onChange: K,
-                  onBlur: F,
+                  ref: W,
+                  onKeyUp: T,
+                  onChange: F,
+                  onBlur: B,
                   onFocus: (e) => {
-                    oe(), null == B || B(e);
+                    ae(), null == L || L(e);
                   },
                   onClick: (e) => {
-                    te("n-focused-border"), null == L || L(e);
+                    ne("n-focused-border"), null == U || U(e);
                   },
                   onKeyPress: I,
                   className: `n-input input-text ${
@@ -261,17 +263,17 @@ const m = (r) => {
                     void 0 !== E && (e.maxLength = E),
                     h && (e.disabled = h),
                     x && (e.placeholder = x),
-                    q && (e.style = q),
+                    D && (e.style = D),
                     e
                   );
                 })(),
-                { onInput: ne, value: M },
-                J
+                { onInput: oe, value: Q },
+                M
               )
             ),
           "textarea" !== f &&
             N &&
-            t.createElement(i, { suffix: k, onSuffixClick: _ })
+            t.createElement(i, { suffix: P, onSuffixClick: _ })
         )
       ),
       t.createElement(

@@ -194,6 +194,42 @@ declare const _default$e: React$1.MemoExoticComponent<{
   };
 }>;
 
+type Position =
+  | "top"
+  | "bottom"
+  | "left"
+  | "right"
+  | "right-start"
+  | "right-end"
+  | "bottom-start"
+  | "bottom-end"
+  | "left-start"
+  | "left-end"
+  | "top-start"
+  | "top-end";
+interface TooltipProps {
+  children?: React$1.ReactNode;
+  className?: string;
+  contentBgColor?: string;
+  contentColor?: string;
+  icon?: React$1.ReactNode;
+  link?: string;
+  linkText?: string;
+  position?: Position;
+  style?: React$1.CSSProperties;
+  tooltipContent: JSX.Element | React$1.ReactNode | string;
+}
+declare const _default$d: React$1.MemoExoticComponent<{
+  (props: TooltipProps): JSX.Element;
+  defaultProps: {
+    contentBgColor: string;
+    contentColor: string;
+    icon: JSX.Element;
+    position: string;
+    tooltipContent: string;
+  };
+}>;
+
 interface ItemProps {
   logo?: string;
   text?: string;
@@ -211,6 +247,8 @@ interface DropdownProps {
   required?: Boolean;
   searchable?: Boolean;
   tooltip?: string;
+  tooltipPosition?: Position;
+  tooltipIcon?: React$1.ReactNode;
   value?: string | number | boolean | any[];
   addOption?: Boolean;
   addOptionHandler?: Function;
@@ -253,7 +291,7 @@ interface ValidationProps {
   className?: string;
   style?: React$1.CSSProperties;
 }
-declare const _default$d: React$1.MemoExoticComponent<{
+declare const _default$c: React$1.MemoExoticComponent<{
   (props: ValidationProps): JSX.Element;
   defaultProps: {
     validationState: string;
@@ -284,6 +322,9 @@ interface InputProps {
   onKeyUp?: React$1.KeyboardEventHandler<
     HTMLTextAreaElement | HTMLInputElement
   >;
+  onKeyDown?: React$1.KeyboardEventHandler<
+    HTMLTextAreaElement | HTMLInputElement
+  >;
   onKeyPress?: React$1.KeyboardEventHandler<
     HTMLTextAreaElement | HTMLInputElement
   >;
@@ -306,7 +347,7 @@ interface InputProps {
   showTooltip?: boolean;
   tooltipIcon?: React$1.ReactNode;
 }
-declare const _default$c: React$1.MemoExoticComponent<{
+declare const _default$b: React$1.MemoExoticComponent<{
   (props: InputProps): JSX.Element;
   defaultProps: {
     autoComplete: string;
@@ -352,7 +393,7 @@ interface MenuProps {
   style?: CSSProperties;
   children?: React$1.ReactNode;
 }
-declare const _default$b: React$1.MemoExoticComponent<{
+declare const _default$a: React$1.MemoExoticComponent<{
   (props: MenuProps): JSX.Element;
   defaultProps: {
     id: string;
@@ -389,7 +430,7 @@ interface MenuItemProps {
   key?: string;
   index?: number;
 }
-declare const _default$a: React$1.MemoExoticComponent<{
+declare const _default$9: React$1.MemoExoticComponent<{
   (props: MenuItemProps): JSX.Element;
   defaultProps: {
     id: string;
@@ -409,6 +450,14 @@ declare enum ModeEnum {
   MODE_REGULAR = "regular",
   MODE_CURSOR = "cursor",
 }
+declare enum TypeEnum {
+  TYPE_DEFAULT = "default",
+  TYPE_TOP = "top",
+}
+declare enum SizeEnum {
+  SIZE_LARGE = "large",
+  SIZE_SMALL = "small",
+}
 interface ConfigProps {
   limit?: number;
   total?: number;
@@ -422,6 +471,8 @@ interface PaginationProps {
   id?: string;
   name?: string;
   mode?: ModeEnum;
+  type?: TypeEnum;
+  size?: SizeEnum;
   pageSizeOptions?: number[];
   defaultPageSize?: number;
   value: ConfigProps;
@@ -432,11 +483,13 @@ interface PaginationProps {
   style?: React$1.CSSProperties;
   visiblePagesNodeCount?: number;
 }
-declare const _default$9: React$1.MemoExoticComponent<{
+declare const _default$8: React$1.MemoExoticComponent<{
   (props: PaginationProps): JSX.Element;
   defaultProps: {
     id: string;
     mode: ModeEnum;
+    type: TypeEnum;
+    size: SizeEnum;
     pageSizeOptions: number[];
     defaultPageSize: number;
     value: {
@@ -516,47 +569,11 @@ interface StepperProps {
   className?: string;
   style?: React$1.CSSProperties;
 }
-declare const _default$8: React$1.MemoExoticComponent<{
+declare const _default$7: React$1.MemoExoticComponent<{
   (props: StepperProps): JSX.Element;
   defaultProps: {
     items: never[];
     isHorizontal: boolean;
-  };
-}>;
-
-type Position =
-  | "top"
-  | "bottom"
-  | "left"
-  | "right"
-  | "right-start"
-  | "right-end"
-  | "bottom-start"
-  | "bottom-end"
-  | "left-start"
-  | "left-end"
-  | "top-start"
-  | "top-end";
-interface TooltipProps {
-  children?: React$1.ReactNode;
-  className?: string;
-  contentBgColor?: string;
-  contentColor?: string;
-  icon?: React$1.ReactNode;
-  link?: string;
-  linkText?: string;
-  position?: Position;
-  style?: React$1.CSSProperties;
-  tooltipContent: JSX.Element | React$1.ReactNode | string;
-}
-declare const _default$7: React$1.MemoExoticComponent<{
-  (props: TooltipProps): JSX.Element;
-  defaultProps: {
-    contentBgColor: string;
-    contentColor: string;
-    icon: JSX.Element;
-    position: string;
-    tooltipContent: string;
   };
 }>;
 
@@ -763,6 +780,8 @@ interface TableProps {
   showColumnDivider?: boolean;
   customClassName?: string;
   customStyle?: React$1.CSSProperties;
+  freezeLeftColumns?: number;
+  freezeRightColumns?: number;
 }
 declare const _default$2: React$1.NamedExoticComponent<TableProps>;
 
@@ -2224,13 +2243,13 @@ export {
   Dialog,
   Dropdown,
   _default as Grid,
-  _default$c as Input,
-  _default$b as Menu,
-  _default$a as MenuItem,
+  _default$b as Input,
+  _default$a as Menu,
+  _default$9 as MenuItem,
   NudgeManager,
-  _default$9 as Pagination,
+  _default$8 as Pagination,
   Radio,
-  _default$8 as Stepper,
+  _default$7 as Stepper,
   SvgIc404Error,
   SvgIc4G,
   SvgIc4GBarFour,
@@ -3562,7 +3581,7 @@ export {
   _default$2 as Table,
   ToastManager,
   _default$4 as ToggleButton,
-  _default$7 as Tooltip,
-  _default$d as Validation,
+  _default$d as Tooltip,
+  _default$c as Validation,
 };
 //# sourceMappingURL=index.d.ts.map

@@ -4,6 +4,14 @@ export declare enum ModeEnum {
   MODE_REGULAR = "regular",
   MODE_CURSOR = "cursor",
 }
+export declare enum TypeEnum {
+  TYPE_DEFAULT = "default",
+  TYPE_TOP = "top",
+}
+export declare enum SizeEnum {
+  SIZE_LARGE = "large",
+  SIZE_SMALL = "small",
+}
 export interface ConfigProps {
   limit?: number;
   total?: number;
@@ -17,6 +25,8 @@ export interface PaginationProps {
   id?: string;
   name?: string;
   mode?: ModeEnum;
+  type?: TypeEnum;
+  size?: SizeEnum;
   pageSizeOptions?: number[];
   defaultPageSize?: number;
   value: ConfigProps;
@@ -38,6 +48,8 @@ declare const _default: React.MemoExoticComponent<{
   defaultProps: {
     id: string;
     mode: ModeEnum;
+    type: TypeEnum;
+    size: SizeEnum;
     pageSizeOptions: number[];
     defaultPageSize: number;
     value: {

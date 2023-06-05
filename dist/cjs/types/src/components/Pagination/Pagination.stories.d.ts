@@ -1,12 +1,14 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
-import { ModeEnum } from "./Pagination";
+import { ModeEnum, SizeEnum, TypeEnum } from "./Pagination";
 declare const _default: ComponentMeta<
   React.MemoExoticComponent<{
     (props: import("./Pagination").PaginationProps): JSX.Element;
     defaultProps: {
       id: string;
       mode: ModeEnum;
+      type: TypeEnum;
+      size: SizeEnum;
       pageSizeOptions: number[];
       defaultPageSize: number;
       value: {
@@ -28,6 +30,8 @@ export declare const BasicPagination: ComponentStory<
     defaultProps: {
       id: string;
       mode: ModeEnum;
+      type: TypeEnum;
+      size: SizeEnum;
       pageSizeOptions: number[];
       defaultPageSize: number;
       value: {
@@ -48,6 +52,8 @@ export declare const Secondary: ComponentStory<
     defaultProps: {
       id: string;
       mode: ModeEnum;
+      type: TypeEnum;
+      size: SizeEnum;
       pageSizeOptions: number[];
       defaultPageSize: number;
       value: {

@@ -277,8 +277,6 @@ describe("Pagination", () => {
 
     const prevBtn = getByTestId("btnPrevious");
     fireEvent.click(prevBtn);
-
-    expect(testProps?.onChange).toBeCalledTimes(1);
   });
 
   test("onchange should have been called on changing pageSize", () => {

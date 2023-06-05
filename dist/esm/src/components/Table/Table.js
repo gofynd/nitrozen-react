@@ -1,27 +1,142 @@
-import e, { memo as t, useState as a } from "react";
-import l from "../../utils/uuids.js";
+import e, {
+  memo as t,
+  useState as l,
+  useRef as r,
+  useEffect as a,
+} from "react";
+import o from "../../utils/uuids.js";
 import "./Table.scss.js";
 import {
-  SvgIcChevronDown as c,
-  SvgIcChevronRight as r,
+  SvgIcChevronDown as n,
+  SvgIcChevronRight as c,
 } from "../../assets/svg-components/Nitrozen/index.js";
-import o from "../Checkbox/Checkbox.js";
-const n = (t) => {
+import s from "../Checkbox/Checkbox.js";
+const i = (t) => {
   const {
-      id: l,
-      tableRow: n,
-      tableHeader: s,
-      showColumnDivider: d,
-      customStyle: m,
-      customClassName: i,
+      id: o,
+      tableRow: i,
+      tableHeader: d,
+      showColumnDivider: m,
+      customStyle: u,
+      customClassName: h,
     } = t,
-    [h, b] = a([]);
+    [f, b] = l([]),
+    k = r(null),
+    v = (e) => {
+      let t;
+      return () => {
+        cancelAnimationFrame(t), (t = requestAnimationFrame(e));
+      };
+    },
+    C = v(() => {
+      var e;
+      const l = k.current;
+      if (!l) return;
+      const { scrollLeft: r } = l,
+        a =
+          null == l
+            ? void 0
+            : l.querySelectorAll(
+                "th:nth-child(-n+" + t.freezeLeftColumns + ")"
+              );
+      let o = 0;
+      null === (e = Array.from(a)) ||
+        void 0 === e ||
+        e.forEach((e) => {
+          (e.style.position = "sticky"),
+            (e.style.left = o + "px"),
+            (o += e.getBoundingClientRect().width);
+        });
+      const n = null == l ? void 0 : l.querySelectorAll("tbody > tr");
+      null == n ||
+        n.forEach((e) => {
+          var l;
+          const r =
+            null == e
+              ? void 0
+              : e.querySelectorAll(
+                  "td:nth-child(-n+" + t.freezeLeftColumns + ")"
+                );
+          let a = 0;
+          null === (l = Array.from(r)) ||
+            void 0 === l ||
+            l.forEach((e) => {
+              (e.style.position = "sticky"),
+                (e.style.left = a + "px"),
+                (a += e.getBoundingClientRect().width);
+            });
+        });
+      (null == l
+        ? void 0
+        : l.querySelector(".left-freezed-border")
+      ).style.left = o + r + "px";
+    }),
+    y = v(() => {
+      var e;
+      const l = k.current;
+      if (!l) return;
+      const { scrollLeft: r } = l,
+        a =
+          null == l
+            ? void 0
+            : l.querySelectorAll(
+                "th:nth-last-child(-n+" + t.freezeRightColumns + ")"
+              );
+      let o = 0;
+      null === (e = Array.from(a)) ||
+        void 0 === e ||
+        e.reverse().forEach((e) => {
+          (e.style.position = "sticky"),
+            (e.style.right = o + "px"),
+            (o += e.getBoundingClientRect().width);
+        });
+      const n = null == l ? void 0 : l.querySelectorAll("tbody > tr");
+      null == n ||
+        n.forEach((e) => {
+          var l;
+          const r =
+            null == e
+              ? void 0
+              : e.querySelectorAll(
+                  "td:nth-last-child(-n+" + t.freezeRightColumns + ")"
+                );
+          let a = 0;
+          null === (l = Array.from(r)) ||
+            void 0 === l ||
+            l.reverse().forEach((e) => {
+              (e.style.position = "sticky"),
+                (e.style.right = a + "px"),
+                (a += e.getBoundingClientRect().width);
+            });
+        });
+      (null == l
+        ? void 0
+        : l.querySelector(".right-freezed-border")
+      ).style.right = o - r + "px";
+    }),
+    g = () => {
+      t.freezeLeftColumns && Number(t.freezeLeftColumns) > 0 && C(),
+        t.freezeRightColumns && Number(t.freezeRightColumns) > 0 && y();
+    };
+  a(
+    () => (
+      g(),
+      void 0 !== typeof window && window.addEventListener("resize", g),
+      () => {
+        void 0 !== typeof window && window.removeEventListener("resize", g);
+      }
+    ),
+    [i]
+  );
+  const w = () => !(i.filter((e) => e.isChecked).length < 1);
   return e.createElement(
     "div",
     {
-      className: `n-table ${i || ""}`,
-      "data-testid": `table-${l}`,
-      style: null != m ? m : {},
+      className: `n-table ${h || ""}`,
+      "data-testid": `table-${o}`,
+      style: null != u ? u : {},
+      ref: k,
+      onScroll: g,
     },
     e.createElement(
       "table",
@@ -42,54 +157,55 @@ const n = (t) => {
                 e.createElement(
                   "div",
                   { className: "n-table-checkbox-wrapper" },
-                  e.createElement(o, {
+                  e.createElement(s, {
                     id: "header-checkbox",
-                    value: t.allChecked,
+                    value: w(),
                     onChange: (e) => {
-                      var a;
-                      null === (a = t.allCheckClicked) ||
-                        void 0 === a ||
-                        a.call(t, e);
+                      var l;
+                      null === (l = t.allCheckClicked) ||
+                        void 0 === l ||
+                        l.call(t, e);
                     },
-                    checkboxValue: t.allChecked,
+                    checkboxValue: w(),
+                    isIndeterminate: !t.allChecked,
                   })
                 )
               )
             : e.createElement(e.Fragment, null),
-          s.map((a, l) =>
+          d.map((l, r) =>
             e.createElement(
               "th",
               {
                 className:
-                  "n-table-header " + (a.sortable ? "n-cursor-pointer" : ""),
-                "data-testid": `n-table-header-${l}`,
+                  "n-table-header " + (l.sortable ? "n-cursor-pointer" : ""),
+                "data-testid": `n-table-header-${r}`,
                 style: {
-                  width: a.width ? a.width : "auto",
+                  width: l.width ? l.width : "auto",
                   backgroundColor: t.headerBackground,
                 },
                 onClick: () =>
                   ((e) => {
-                    let t = s[e],
-                      a = [...h];
-                    if (a.includes(e)) {
-                      let l = a.indexOf(e);
-                      l > -1 &&
-                        (a.splice(l, 1),
+                    let t = d[e],
+                      l = [...f];
+                    if (l.includes(e)) {
+                      let r = l.indexOf(e);
+                      r > -1 &&
+                        (l.splice(r, 1),
                         t.customSort({
                           sort: !1,
                           headerIndex: e,
                           headerName: t.name,
                         }));
                     } else
-                      a.push(e),
+                      l.push(e),
                         t.customSort({
                           sort: !0,
                           headerIndex: e,
                           headerName: t.name,
                         });
-                    b(a);
-                  })(l),
-                key: `n-table-header-${l}`,
+                    b(l);
+                  })(r),
+                key: `n-table-header-${r}`,
               },
               e.createElement(
                 "div",
@@ -98,22 +214,22 @@ const n = (t) => {
                   "span",
                   {
                     className: "n-table-header-text",
-                    "data-testid": `header-value-${l}`,
+                    "data-testid": `header-value-${r}`,
                   },
                   " ",
-                  a.value
+                  l.value
                 ),
-                a.sortable
+                l.sortable
                   ? e.createElement(
                       e.Fragment,
                       null,
-                      h.includes(l)
+                      f.includes(r)
                         ? t.customSortIcon
                           ? t.customSortIcon
-                          : e.createElement(c, { className: "n-action-icon" })
+                          : e.createElement(n, { className: "n-action-icon" })
                         : t.customSortIcon
                         ? t.customSortIcon
-                        : e.createElement(r, { className: "n-action-icon" })
+                        : e.createElement(c, { className: "n-action-icon" })
                     )
                   : e.createElement(e.Fragment, null)
               )
@@ -124,28 +240,28 @@ const n = (t) => {
       e.createElement(
         "tbody",
         null,
-        n.map((a, l) => {
+        i.map((l, r) => {
           return e.createElement(
             "tr",
             Object.assign(
               {
-                "data-testid": `row-${l}`,
+                "data-testid": `row-${r}`,
                 className: `n-table-row-item ${
                   t.footer ? "" : "n-table-row-item-nofooter"
                 } ${"zebra" == t.rowStyle ? "n-table-row-zebra" : ""} ${
                   t.checkable ? "n-table-row-item-checkbox" : ""
                 } ${t.onRowClick ? "n-table-row-item-clickable" : ""}`,
-                key: `row-${l}`,
+                key: `row-${r}`,
               },
               t.onRowClick
                 ? {
                     onClick:
-                      ((c = l),
+                      ((a = r),
                       () => {
                         var e;
                         null === (e = t.onRowClick) ||
                           void 0 === e ||
-                          e.call(t, c);
+                          e.call(t, a);
                       }),
                   }
                 : {}
@@ -162,36 +278,36 @@ const n = (t) => {
                         e.stopPropagation();
                       },
                     },
-                    e.createElement(o, {
-                      id: `n-row-checkbox-${l}`,
-                      value: a.isChecked,
+                    e.createElement(s, {
+                      id: `n-row-checkbox-${r}`,
+                      value: l.isChecked,
                       onChange: (e) =>
-                        ((e, a) => {
-                          var l;
-                          let c = [...n];
-                          (c[a].isChecked = e),
-                            null === (l = t.getCheckedItems) ||
-                              void 0 === l ||
-                              l.call(t, c);
-                        })(e, l),
-                      checkboxValue: a.isChecked,
+                        ((e, l) => {
+                          var r;
+                          let a = [...i];
+                          (a[l].isChecked = e),
+                            null === (r = t.getCheckedItems) ||
+                              void 0 === r ||
+                              r.call(t, a);
+                        })(e, r),
+                      checkboxValue: l.isChecked,
                     })
                   )
                 )
               : e.createElement(e.Fragment, null),
-            s.map((t, c) =>
+            d.map((t, a) =>
               e.createElement(
                 "td",
                 {
-                  className: "n-row-data " + (d ? "" : "n-table-no-divider"),
-                  "data-testid": `n-row-data-${l}-${c}`,
-                  key: `n-row-data-${l}-${c}`,
+                  className: "n-row-data " + (m ? "" : "n-table-no-divider"),
+                  "data-testid": `n-row-data-${r}-${a}`,
+                  key: `n-row-data-${r}-${a}`,
                 },
-                a[t.name]
+                l[t.name]
               )
             )
           );
-          var c;
+          var a;
         })
       ),
       t.footer
@@ -204,7 +320,7 @@ const n = (t) => {
               e.createElement(
                 "td",
                 {
-                  colSpan: t.checkable ? 1 + s.length : s.length,
+                  colSpan: t.checkable ? 1 + d.length : d.length,
                   "data-testid": "footer-data",
                 },
                 t.footer
@@ -212,11 +328,15 @@ const n = (t) => {
             )
           )
         : null
-    )
+    ),
+    !!t.freezeLeftColumns &&
+      e.createElement("div", { className: "left-freezed-border" }),
+    !!t.freezeRightColumns &&
+      e.createElement("div", { className: "right-freezed-border" })
   );
 };
-n.defaultProps = {
-  id: `nitrozen-dialog-${l()}`,
+i.defaultProps = {
+  id: `nitrozen-dialog-${o()}`,
   tableHeader: [],
   tableRow: [],
   rowStyle: "simple",
@@ -227,7 +347,9 @@ n.defaultProps = {
   getCheckedItems: () => {},
   allCheckClicked: () => {},
   showColumnDivider: !0,
+  freezeLeftColumns: 0,
+  freezeRightColumns: 0,
 };
-var s = t(n);
-export { s as default };
+var d = t(i);
+export { d as default };
 //# sourceMappingURL=Table.js.map

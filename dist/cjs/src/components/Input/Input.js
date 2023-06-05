@@ -25,24 +25,25 @@ const c = (l) => {
       id: v,
       name: b,
       maxLength: g,
-      showPrefix: C,
-      showSuffix: E,
-      prefix: y,
+      showPrefix: y,
+      showSuffix: C,
+      prefix: E,
       suffix: S,
       autofocus: $,
       min: N,
-      max: P,
-      onKeyUp: k,
-      onKeyPress: q,
-      onChange: I,
-      onBlur: j,
-      onFocus: w,
+      max: w,
+      onKeyUp: P,
+      onKeyDown: k,
+      onKeyPress: K,
+      onChange: q,
+      onBlur: I,
+      onFocus: j,
       onClick: T,
-      className: K,
-      style: F,
-      helperText: B,
-      state: L,
-      stateText: U,
+      className: F,
+      style: B,
+      helperText: L,
+      state: U,
+      stateText: D,
       onPrefixClick: _,
       onSuffixClick: z,
       tooltipText: H,
@@ -69,6 +70,7 @@ const c = (l) => {
       "min",
       "max",
       "onKeyUp",
+      "onKeyDown",
       "onKeyPress",
       "onChange",
       "onBlur",
@@ -85,28 +87,28 @@ const c = (l) => {
       "showTooltip",
       "tooltipIcon",
     ]),
-    [A, D] = t.useState(x || ""),
-    G = t.useRef(null),
-    [J, M] = t.useState(""),
-    [Q, W] = t.useState(""),
-    [X, Y] = t.useState("");
-  function Z(e) {
-    D(e.target.value), null == I || I(e);
+    [A, G] = t.useState(x || ""),
+    J = t.useRef(null),
+    [M, Q] = t.useState(""),
+    [W, X] = t.useState(""),
+    [Y, Z] = t.useState("");
+  function ee(e) {
+    G(e.target.value), null == q || q(e);
   }
-  function ee() {
-    M("n-focused-label" + (C || h ? "-prefixed" : "")), W("n-border-focused");
+  function te() {
+    Q("n-focused-label" + (y || h ? "-prefixed" : "")), X("n-border-focused");
   }
   return (
     t.useEffect(() => {
       var e;
       l.autofocus &&
-        (null === (e = null == G ? void 0 : G.current) ||
+        (null === (e = null == J ? void 0 : J.current) ||
           void 0 === e ||
           e.focus()),
-        (x || d) && ee();
+        (x || d) && te();
     }, []),
     t.useEffect(() => {
-      D(x || "");
+      G(x || "");
     }, [x]),
     s.default.createElement(
       "div",
@@ -115,8 +117,8 @@ const c = (l) => {
         "div",
         {
           className: `n-input-label-container ${
-            C || h ? "n-input-label-prefixed" : ""
-          } ${J}`,
+            y || h ? "n-input-label-prefixed" : ""
+          } ${M}`,
         },
         f &&
           s.default.createElement(
@@ -126,7 +128,6 @@ const c = (l) => {
               s.default.Fragment,
               null,
               f,
-              " ",
               m ? "*" : "",
               O &&
                 s.default.createElement(
@@ -166,19 +167,19 @@ const c = (l) => {
         s.default.createElement(
           "div",
           {
-            className: `n-input-container ${Q} ${X} ${
-              l.state && "default" !== l.state ? `n-${L}-border` : ""
+            className: `n-input-container ${W} ${Y} ${
+              l.state && "default" !== l.state ? `n-${U}-border` : ""
             }`,
           },
-          C &&
+          y &&
             "textarea" !== c &&
-            s.default.createElement(n, { prefix: y, onPrefixClick: _ }),
+            s.default.createElement(n, { prefix: E, onPrefixClick: _ }),
           "textarea" !== c &&
             s.default.createElement(
               "input",
               Object.assign(
                 {
-                  ref: G,
+                  ref: J,
                   className: `n-input ${(function () {
                     let e = "";
                     return (
@@ -187,55 +188,56 @@ const c = (l) => {
                           ? "n-search-input-padding input-prefixed"
                           : ""
                       }`),
-                      (e = `${e} ${K || ""}`),
-                      C && E
+                      (e = `${e} ${F || ""}`),
+                      y && C
                         ? (e = `${e} input-contained`)
                         : ((e = `${e} ${
-                            C ? "n-remove-left-border input-prefixed" : ""
+                            y ? "n-remove-left-border input-prefixed" : ""
                           }`),
                           (e = `${e} ${
-                            E ? "n-remove-right-border input-suffixed" : ""
+                            C ? "n-remove-right-border input-suffixed" : ""
                           }`)),
                       e
                     );
                   })()}`,
-                  onKeyUp: k,
-                  onChange: I,
+                  onKeyUp: P,
+                  onKeyDown: k,
+                  onChange: q,
                   onBlur: function (e) {
                     var t;
-                    (null === (t = G.current) || void 0 === t
+                    (null === (t = J.current) || void 0 === t
                       ? void 0
                       : t.value) ||
                       d ||
-                      (M(""), W("")),
-                      Y(""),
-                      null == j || j(e);
+                      (Q(""), X("")),
+                      Z(""),
+                      null == I || I(e);
                   },
                   onFocus: (e) => {
-                    ee(), null == w || w(e);
+                    te(), null == j || j(e);
                   },
                   onClick: (e) => {
-                    Y("n-focused-border"), null == T || T(e);
+                    Z("n-focused-border"), null == T || T(e);
                   },
-                  onKeyPress: q,
+                  onKeyPress: K,
                   value: A,
                 },
                 (function () {
                   const e = {};
                   return (
                     N && (e.min = N),
-                    P && (e.max = P),
+                    w && (e.max = w),
                     void 0 !== g && (e.maxLength = g),
                     r && (e.autoComplete = r),
                     v && (e.id = v),
                     c && (e.type = c),
                     p && (e.disabled = p),
                     d && (e.placeholder = d),
-                    F && (e.style = F),
+                    B && (e.style = B),
                     e
                   );
                 })(),
-                { onInput: Z },
+                { onInput: ee },
                 R
               )
             ),
@@ -244,17 +246,17 @@ const c = (l) => {
               "textarea",
               Object.assign(
                 {
-                  ref: G,
-                  onKeyUp: k,
-                  onChange: I,
-                  onBlur: j,
+                  ref: J,
+                  onKeyUp: P,
+                  onChange: q,
+                  onBlur: I,
                   onFocus: (e) => {
-                    ee(), null == w || w(e);
+                    te(), null == j || j(e);
                   },
                   onClick: (e) => {
-                    Y("n-focused-border"), null == T || T(e);
+                    Z("n-focused-border"), null == T || T(e);
                   },
-                  onKeyPress: q,
+                  onKeyPress: K,
                   className: `n-input input-text ${
                     "textarea" === c && "n-input-textarea"
                   }`,
@@ -265,16 +267,16 @@ const c = (l) => {
                     void 0 !== g && (e.maxLength = g),
                     p && (e.disabled = p),
                     d && (e.placeholder = d),
-                    F && (e.style = F),
+                    B && (e.style = B),
                     e
                   );
                 })(),
-                { onInput: Z, value: A },
+                { onInput: ee, value: A },
                 R
               )
             ),
           "textarea" !== c &&
-            E &&
+            C &&
             s.default.createElement(a, { suffix: S, onSuffixClick: z })
         )
       ),
@@ -284,10 +286,10 @@ const c = (l) => {
         "default" !== l.state &&
           s.default.createElement(i, {
             validationState: l.state,
-            label: U,
+            label: D,
             isHidden: !1,
           }),
-        B && s.default.createElement("span", { className: "n-helper-text" }, B)
+        L && s.default.createElement("span", { className: "n-helper-text" }, L)
       )
     )
   );

@@ -2,158 +2,269 @@
 var e = require("react"),
   t = require("../../utils/uuids.js");
 require("./Table.scss.js");
-var a = require("../../assets/svg-components/Nitrozen/index.js"),
-  l = require("../Checkbox/Checkbox.js");
+var l = require("../../assets/svg-components/Nitrozen/index.js"),
+  a = require("../Checkbox/Checkbox.js");
 function r(e) {
   return e && "object" == typeof e && "default" in e ? e : { default: e };
 }
-var c = r(e);
-const n = (t) => {
+var n = r(e);
+const o = (t) => {
   const {
       id: r,
-      tableRow: n,
-      tableHeader: o,
+      tableRow: o,
+      tableHeader: c,
       showColumnDivider: d,
       customStyle: s,
-      customClassName: u,
+      customClassName: i,
     } = t,
-    [m, i] = e.useState([]),
+    [u, m] = e.useState([]),
+    f = e.useRef(null),
     h = (e) => () => {
-      var a;
-      null === (a = t.onRowClick) || void 0 === a || a.call(t, e);
+      var l;
+      null === (l = t.onRowClick) || void 0 === l || l.call(t, e);
+    },
+    b = (e) => {
+      let t;
+      return () => {
+        cancelAnimationFrame(t), (t = requestAnimationFrame(e));
+      };
+    },
+    v = b(() => {
+      var e;
+      const l = f.current;
+      if (!l) return;
+      const { scrollLeft: a } = l,
+        r =
+          null == l
+            ? void 0
+            : l.querySelectorAll(
+                "th:nth-child(-n+" + t.freezeLeftColumns + ")"
+              );
+      let n = 0;
+      null === (e = Array.from(r)) ||
+        void 0 === e ||
+        e.forEach((e) => {
+          (e.style.position = "sticky"),
+            (e.style.left = n + "px"),
+            (n += e.getBoundingClientRect().width);
+        });
+      const o = null == l ? void 0 : l.querySelectorAll("tbody > tr");
+      null == o ||
+        o.forEach((e) => {
+          var l;
+          const a =
+            null == e
+              ? void 0
+              : e.querySelectorAll(
+                  "td:nth-child(-n+" + t.freezeLeftColumns + ")"
+                );
+          let r = 0;
+          null === (l = Array.from(a)) ||
+            void 0 === l ||
+            l.forEach((e) => {
+              (e.style.position = "sticky"),
+                (e.style.left = r + "px"),
+                (r += e.getBoundingClientRect().width);
+            });
+        });
+      (null == l
+        ? void 0
+        : l.querySelector(".left-freezed-border")
+      ).style.left = n + a + "px";
+    }),
+    k = b(() => {
+      var e;
+      const l = f.current;
+      if (!l) return;
+      const { scrollLeft: a } = l,
+        r =
+          null == l
+            ? void 0
+            : l.querySelectorAll(
+                "th:nth-last-child(-n+" + t.freezeRightColumns + ")"
+              );
+      let n = 0;
+      null === (e = Array.from(r)) ||
+        void 0 === e ||
+        e.reverse().forEach((e) => {
+          (e.style.position = "sticky"),
+            (e.style.right = n + "px"),
+            (n += e.getBoundingClientRect().width);
+        });
+      const o = null == l ? void 0 : l.querySelectorAll("tbody > tr");
+      null == o ||
+        o.forEach((e) => {
+          var l;
+          const a =
+            null == e
+              ? void 0
+              : e.querySelectorAll(
+                  "td:nth-last-child(-n+" + t.freezeRightColumns + ")"
+                );
+          let r = 0;
+          null === (l = Array.from(a)) ||
+            void 0 === l ||
+            l.reverse().forEach((e) => {
+              (e.style.position = "sticky"),
+                (e.style.right = r + "px"),
+                (r += e.getBoundingClientRect().width);
+            });
+        });
+      (null == l
+        ? void 0
+        : l.querySelector(".right-freezed-border")
+      ).style.right = n - a + "px";
+    }),
+    C = () => {
+      t.freezeLeftColumns && Number(t.freezeLeftColumns) > 0 && v(),
+        t.freezeRightColumns && Number(t.freezeRightColumns) > 0 && k();
     };
-  return c.default.createElement(
+  e.useEffect(
+    () => (
+      C(),
+      void 0 !== typeof window && window.addEventListener("resize", C),
+      () => {
+        void 0 !== typeof window && window.removeEventListener("resize", C);
+      }
+    ),
+    [o]
+  );
+  const g = () => !(o.filter((e) => e.isChecked).length < 1);
+  return n.default.createElement(
     "div",
     {
-      className: `n-table ${u || ""}`,
+      className: `n-table ${i || ""}`,
       "data-testid": `table-${r}`,
       style: null != s ? s : {},
+      ref: f,
+      onScroll: C,
     },
-    c.default.createElement(
+    n.default.createElement(
       "table",
       { className: "n-main-table" },
-      c.default.createElement(
+      n.default.createElement(
         "thead",
         null,
-        c.default.createElement(
+        n.default.createElement(
           "tr",
           { className: "n-table-header-tr" },
           t.checkable
-            ? c.default.createElement(
+            ? n.default.createElement(
                 "th",
                 {
                   className: "n-table-header-checkbox",
                   style: { backgroundColor: t.headerBackground },
                 },
-                c.default.createElement(
+                n.default.createElement(
                   "div",
                   { className: "n-table-checkbox-wrapper" },
-                  c.default.createElement(l, {
+                  n.default.createElement(a, {
                     id: "header-checkbox",
-                    value: t.allChecked,
+                    value: g(),
                     onChange: (e) => {
-                      var a;
-                      null === (a = t.allCheckClicked) ||
-                        void 0 === a ||
-                        a.call(t, e);
+                      var l;
+                      null === (l = t.allCheckClicked) ||
+                        void 0 === l ||
+                        l.call(t, e);
                     },
-                    checkboxValue: t.allChecked,
+                    checkboxValue: g(),
+                    isIndeterminate: !t.allChecked,
                   })
                 )
               )
-            : c.default.createElement(c.default.Fragment, null),
-          o.map((e, l) =>
-            c.default.createElement(
+            : n.default.createElement(n.default.Fragment, null),
+          c.map((e, a) =>
+            n.default.createElement(
               "th",
               {
                 className:
                   "n-table-header " + (e.sortable ? "n-cursor-pointer" : ""),
-                "data-testid": `n-table-header-${l}`,
+                "data-testid": `n-table-header-${a}`,
                 style: {
                   width: e.width ? e.width : "auto",
                   backgroundColor: t.headerBackground,
                 },
                 onClick: () =>
                   ((e) => {
-                    let t = o[e],
-                      a = [...m];
-                    if (a.includes(e)) {
-                      let l = a.indexOf(e);
-                      l > -1 &&
-                        (a.splice(l, 1),
+                    let t = c[e],
+                      l = [...u];
+                    if (l.includes(e)) {
+                      let a = l.indexOf(e);
+                      a > -1 &&
+                        (l.splice(a, 1),
                         t.customSort({
                           sort: !1,
                           headerIndex: e,
                           headerName: t.name,
                         }));
                     } else
-                      a.push(e),
+                      l.push(e),
                         t.customSort({
                           sort: !0,
                           headerIndex: e,
                           headerName: t.name,
                         });
-                    i(a);
-                  })(l),
-                key: `n-table-header-${l}`,
+                    m(l);
+                  })(a),
+                key: `n-table-header-${a}`,
               },
-              c.default.createElement(
+              n.default.createElement(
                 "div",
                 { className: "n-th-parent" },
-                c.default.createElement(
+                n.default.createElement(
                   "span",
                   {
                     className: "n-table-header-text",
-                    "data-testid": `header-value-${l}`,
+                    "data-testid": `header-value-${a}`,
                   },
                   " ",
                   e.value
                 ),
                 e.sortable
-                  ? c.default.createElement(
-                      c.default.Fragment,
+                  ? n.default.createElement(
+                      n.default.Fragment,
                       null,
-                      m.includes(l)
+                      u.includes(a)
                         ? t.customSortIcon
                           ? t.customSortIcon
-                          : c.default.createElement(a.SvgIcChevronDown, {
+                          : n.default.createElement(l.SvgIcChevronDown, {
                               className: "n-action-icon",
                             })
                         : t.customSortIcon
                         ? t.customSortIcon
-                        : c.default.createElement(a.SvgIcChevronRight, {
+                        : n.default.createElement(l.SvgIcChevronRight, {
                             className: "n-action-icon",
                           })
                     )
-                  : c.default.createElement(c.default.Fragment, null)
+                  : n.default.createElement(n.default.Fragment, null)
               )
             )
           )
         )
       ),
-      c.default.createElement(
+      n.default.createElement(
         "tbody",
         null,
-        n.map((e, a) =>
-          c.default.createElement(
+        o.map((e, l) =>
+          n.default.createElement(
             "tr",
             Object.assign(
               {
-                "data-testid": `row-${a}`,
+                "data-testid": `row-${l}`,
                 className: `n-table-row-item ${
                   t.footer ? "" : "n-table-row-item-nofooter"
                 } ${"zebra" == t.rowStyle ? "n-table-row-zebra" : ""} ${
                   t.checkable ? "n-table-row-item-checkbox" : ""
                 } ${t.onRowClick ? "n-table-row-item-clickable" : ""}`,
-                key: `row-${a}`,
+                key: `row-${l}`,
               },
-              t.onRowClick ? { onClick: h(a) } : {}
+              t.onRowClick ? { onClick: h(l) } : {}
             ),
             t.checkable
-              ? c.default.createElement(
+              ? n.default.createElement(
                   "td",
                   { className: "n-row-data" },
-                  c.default.createElement(
+                  n.default.createElement(
                     "div",
                     {
                       className: "n-table-checkbox-wrapper",
@@ -161,30 +272,30 @@ const n = (t) => {
                         e.stopPropagation();
                       },
                     },
-                    c.default.createElement(l, {
-                      id: `n-row-checkbox-${a}`,
+                    n.default.createElement(a, {
+                      id: `n-row-checkbox-${l}`,
                       value: e.isChecked,
                       onChange: (e) =>
-                        ((e, a) => {
-                          var l;
-                          let r = [...n];
-                          (r[a].isChecked = e),
-                            null === (l = t.getCheckedItems) ||
-                              void 0 === l ||
-                              l.call(t, r);
-                        })(e, a),
+                        ((e, l) => {
+                          var a;
+                          let r = [...o];
+                          (r[l].isChecked = e),
+                            null === (a = t.getCheckedItems) ||
+                              void 0 === a ||
+                              a.call(t, r);
+                        })(e, l),
                       checkboxValue: e.isChecked,
                     })
                   )
                 )
-              : c.default.createElement(c.default.Fragment, null),
-            o.map((t, l) =>
-              c.default.createElement(
+              : n.default.createElement(n.default.Fragment, null),
+            c.map((t, a) =>
+              n.default.createElement(
                 "td",
                 {
                   className: "n-row-data " + (d ? "" : "n-table-no-divider"),
-                  "data-testid": `n-row-data-${a}-${l}`,
-                  key: `n-row-data-${a}-${l}`,
+                  "data-testid": `n-row-data-${l}-${a}`,
+                  key: `n-row-data-${l}-${a}`,
                 },
                 e[t.name]
               )
@@ -193,16 +304,16 @@ const n = (t) => {
         )
       ),
       t.footer
-        ? c.default.createElement(
+        ? n.default.createElement(
             "tfoot",
             null,
-            c.default.createElement(
+            n.default.createElement(
               "tr",
               { className: "n-table-footer" },
-              c.default.createElement(
+              n.default.createElement(
                 "td",
                 {
-                  colSpan: t.checkable ? 1 + o.length : o.length,
+                  colSpan: t.checkable ? 1 + c.length : c.length,
                   "data-testid": "footer-data",
                 },
                 t.footer
@@ -210,10 +321,14 @@ const n = (t) => {
             )
           )
         : null
-    )
+    ),
+    !!t.freezeLeftColumns &&
+      n.default.createElement("div", { className: "left-freezed-border" }),
+    !!t.freezeRightColumns &&
+      n.default.createElement("div", { className: "right-freezed-border" })
   );
 };
-n.defaultProps = {
+o.defaultProps = {
   id: `nitrozen-dialog-${t()}`,
   tableHeader: [],
   tableRow: [],
@@ -225,7 +340,9 @@ n.defaultProps = {
   getCheckedItems: () => {},
   allCheckClicked: () => {},
   showColumnDivider: !0,
+  freezeLeftColumns: 0,
+  freezeRightColumns: 0,
 };
-var o = e.memo(n);
-module.exports = o;
+var c = e.memo(o);
+module.exports = c;
 //# sourceMappingURL=Table.js.map

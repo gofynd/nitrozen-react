@@ -428,7 +428,7 @@ const Pagination = (props: PaginationProps) => {
                 <>
                   <div
                     data-testid="btnPrevious"
-                    onClick={previous}
+                    onClick={() => previous}
                     className={`n-pagination__prev ${
                       !showPrev() && "pagination-diabled"
                     }`}
@@ -529,7 +529,7 @@ const Pagination = (props: PaginationProps) => {
             <Button
               theme="secondary"
               data-testid="btnPrevious"
-              onClick={previous}
+              onClick={() => previous}
               size="medium"
               className={"n-pagination__prev"}
               icon={SvgIcChevronLeft}

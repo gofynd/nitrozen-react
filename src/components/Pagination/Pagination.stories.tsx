@@ -1,6 +1,6 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
-import Pagination, { ModeEnum } from "./Pagination";
+import Pagination, { ModeEnum, SizeEnum, TypeEnum } from "./Pagination";
 
 export default {
   title: "Components/Pagination",
@@ -45,9 +45,9 @@ BasicPagination.args = {
   },
   pageSizeOptions: [10, 20, 50, 100],
   defaultPageSize: 10,
-  mode: "regular",
-  size: "large",
-  type: "default",
+  mode: ModeEnum.MODE_REGULAR,
+  size: SizeEnum.SIZE_LARGE,
+  type: TypeEnum.TYPE_DEFAULT,
   onChange: (event: any) => {},
   onPreviousClick: () => {},
   onNextClick: () => {},

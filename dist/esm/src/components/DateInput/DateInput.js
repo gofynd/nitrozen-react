@@ -89,7 +89,7 @@ const m = (m) => {
         e.createElement(
           "label",
           { className: "n-input-label", "data-testid": "n-date-label" },
-          e.createElement(e.Fragment, null, s, " ", o ? " *" : "")
+          e.createElement(e.Fragment, null, s, o ? "*" : "")
         )
     ),
     e.createElement(
