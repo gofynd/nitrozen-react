@@ -26,6 +26,9 @@ export interface InputProps {
   min?: Number;
   max?: Number;
   onKeyUp?: React.KeyboardEventHandler<HTMLTextAreaElement | HTMLInputElement>;
+  onKeyDown?: React.KeyboardEventHandler<
+    HTMLTextAreaElement | HTMLInputElement
+  >;
   onKeyPress?: React.KeyboardEventHandler<
     HTMLTextAreaElement | HTMLInputElement
   >;
@@ -70,6 +73,7 @@ const Input = (props: InputProps) => {
     min,
     max,
     onKeyUp,
+    onKeyDown,
     onKeyPress,
     onChange,
     onBlur,
@@ -187,7 +191,8 @@ const Input = (props: InputProps) => {
         {label && (
           <label className="n-input-label">
             <>
-              {label} {required ? "*" : ""}
+              {label}
+              {required ? "*" : ""}
               {showTooltip && (
                 <span className="n-input-tooltip">
                   {tooltipText && (
@@ -235,6 +240,7 @@ const Input = (props: InputProps) => {
               ref={inputRef}
               className={`n-input ${generateClassesForInput()}`}
               onKeyUp={onKeyUp}
+              onKeyDown={onKeyDown}
               onChange={onChange}
               onBlur={handleOnBlur}
               onFocus={(event) => {

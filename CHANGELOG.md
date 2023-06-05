@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 2.0.5(2023-06-05)
+
+### Bugfixes
+
+- Bugfixes for paginaton and dropdown component ([55f865f](https://github.com/gofynd/nitrozen-react/pull/86))
+- Minor bugfixes ([d8631eb](https://github.com/gofynd/nitrozen-react/pull/90))
+
+### Features
+
+- Table component now customizable to allow users to freeze particular columns and make others scrollable ([4e94362](https://github.com/gofynd/nitrozen-react/pull/87))
+- Pagination component now supports a top and bottom type along with configurable sizes ([bb1a8ad](https://github.com/gofynd/nitrozen-react/pull/89))
+
 ## 2.0.4(2023-05-04)
 
 ### Bugfixes

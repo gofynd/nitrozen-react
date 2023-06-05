@@ -194,7 +194,8 @@ const DateInput = (props: DateInputProps) => {
         {label && (
           <label className="n-input-label" data-testid={`n-date-label`}>
             <>
-              {label} {required ? " *" : ""}
+              {label}
+              {required ? "*" : ""}
             </>
           </label>
         )}

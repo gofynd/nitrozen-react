@@ -16,6 +16,8 @@ export interface TableProps {
   showColumnDivider?: boolean;
   customClassName?: string;
   customStyle?: React.CSSProperties;
+  freezeLeftColumns?: number;
+  freezeRightColumns?: number;
 }
 declare const _default: React.NamedExoticComponent<TableProps>;
 export default _default;

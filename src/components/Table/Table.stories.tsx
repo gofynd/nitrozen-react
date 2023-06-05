@@ -76,6 +76,16 @@ export default {
       ],
     },
     footer: { control: "text" },
+    freezeLeftColumns: {
+      control: "number",
+      defaultValue: 0,
+      description: "Number of columns to freeze from the left",
+    },
+    freezeRightColumns: {
+      control: "number",
+      defaultValue: 0,
+      description: "Number of columns to freeze from the left",
+    },
     rowStyle: {
       control: "select",
       options: ["simple", "zebra"],
@@ -173,6 +183,7 @@ export const CheckableTable = (args: any) => {
       <Table
         {...args}
         checkable={true}
+        allChecked={countVal === rowItem.length}
         getCheckedItems={getCheckedItems}
         allCheckClicked={allCheckClicked}
         tableRow={rowItem}

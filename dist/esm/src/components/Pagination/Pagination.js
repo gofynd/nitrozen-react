@@ -5,30 +5,38 @@ import l from "../Dropdown/Dropdown.js";
 import "./Pagination.scss.js";
 import { usePagination as c } from "./usePagination.js";
 import {
-  SvgIcChevronLeft as o,
-  SvgIcSearch as s,
+  SvgIcChevronLeft as s,
+  SvgIcSearch as o,
   SvgIcChevronRight as u,
 } from "../../assets/svg-components/Nitrozen/index.js";
-var m;
+import m from "../Button/Button.js";
+import g from "../Input/Input.js";
+var p, d, _;
 !(function (e) {
   (e.MODE_REGULAR = "regular"), (e.MODE_CURSOR = "cursor");
-})(m || (m = {}));
-const g = (r) => {
+})(p || (p = {})),
+  (function (e) {
+    (e.TYPE_DEFAULT = "default"), (e.TYPE_TOP = "top");
+  })(d || (d = {})),
+  (function (e) {
+    (e.SIZE_LARGE = "large"), (e.SIZE_SMALL = "small");
+  })(_ || (_ = {}));
+const v = (r) => {
   const {
-      id: g,
-      name: p,
-      mode: d,
-      pageSizeOptions: _,
-      defaultPageSize: v,
-      value: f,
-      onChange: b,
-      onPreviousClick: E,
-      onNextClick: O,
-      className: N,
-      style: h,
-      visiblePagesNodeCount: j,
+      id: v,
+      name: f,
+      mode: E,
+      pageSizeOptions: b,
+      defaultPageSize: O,
+      value: N,
+      onChange: h,
+      onPreviousClick: j,
+      onNextClick: P,
+      className: S,
+      style: w,
+      visiblePagesNodeCount: C,
     } = r,
-    P = e(r, [
+    y = e(r, [
       "id",
       "name",
       "mode",
@@ -42,63 +50,131 @@ const g = (r) => {
       "style",
       "visiblePagesNodeCount",
     ]),
-    [w, C] = n(f),
-    [S, x] = n(v || (_ && _.length > 0 ? _[0] : 10)),
-    R = a(null),
-    [$, k] = n([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]),
-    [M, y] = n(!1),
-    [z, D] = n([0]),
-    [U, I] = n(0),
-    [L, T] = n(1);
+    [x, $] = n(N),
+    [R, k] = n(O || (b && b.length > 0 ? b[0] : 10)),
+    z = a(null),
+    [D, M] = n([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]),
+    [T, I] = n(!1),
+    [L, A] = n([0]),
+    [U, B] = n(0),
+    [F, Y] = n(x.current),
+    [G, Z] = n(1);
   n(!1);
-  const A = a(!0);
-  function B() {
-    return w.limit && w.limit > 0 ? w.total && Math.ceil(w.total / w.limit) : 0;
+  const V = a(!0);
+  function K() {
+    if (x.total) {
+      if (1 === x.current) return;
+      const e = x.current ? x.current - 1 : 0;
+      $(Object.assign(Object.assign({}, x), { current: e }));
+    } else if (E === p.MODE_CURSOR) {
+      if (!x.prevPage) return;
+      $(
+        Object.assign(Object.assign({}, x), {
+          nextPage: "",
+          currentPage: x.prevPage,
+        })
+      );
+    }
+    null == j || j();
   }
-  function G(e, t, n) {
+  function W() {
+    if (x.total) {
+      const e = H() || 1;
+      if (x.current && x.current >= e)
+        return void $(Object.assign(Object.assign({}, x), { current: e }));
+      if (0 === e)
+        return void $(Object.assign(Object.assign({}, x), { current: 0 }));
+      const t = x.current ? x.current + 1 : 1;
+      $(Object.assign(Object.assign({}, x), { current: t }));
+    }
+    if (E === p.MODE_CURSOR) {
+      if (!x.nextPage) return;
+      $(
+        Object.assign(Object.assign({}, x), {
+          prevPage: "",
+          currentPage: x.nextPage,
+        })
+      );
+    }
+    null == P || P();
+  }
+  function q(e) {
+    E === p.MODE_CURSOR
+      ? $(
+          Object.assign(Object.assign({}, x), {
+            current: 1,
+            limit: e,
+            nextPage: "",
+            prevPage: "",
+            currentPage: "",
+          })
+        )
+      : $(Object.assign(Object.assign({}, x), { current: 1, limit: e })),
+      k(e);
+  }
+  function H() {
+    return x.limit && x.limit > 0 ? x.total && Math.ceil(x.total / x.limit) : 0;
+  }
+  function J() {
+    const e = b
+      ? b.map((e) => ({ text: e.toString(), value: e.toString() }))
+      : [];
+    return (
+      R || k(Number(x.limit ? x.limit : e.length > 0 ? e[0].value : 1800)), e
+    );
+  }
+  function Q(e, t, n) {
     if ("..." == t) {
-      let e = w.total && w.limit && Math.ceil(w.total / w.limit),
-        t = $[n - 1],
+      let e = x.total && x.limit && Math.ceil(x.total / x.limit),
+        t = D[n - 1],
         a = e;
-      a = $[n + 1] == e ? e : $[n + 1];
+      a = D[n + 1] == e ? e : D[n + 1];
       const i = (function (e, t, n) {
         let a = [e],
           i = e;
         for (; i < t; ) a.push((i += n || 1));
         return a;
       })(t, a, 1);
-      T(n), D(i), document.addEventListener("click", V, !1), y(n != L || !M);
-    } else y(!1), C(Object.assign(Object.assign({}, w), { current: t }));
+      Z(n), A(i), document.addEventListener("click", X, !1), I(n != G || !T);
+    } else I(!1), $(Object.assign(Object.assign({}, x), { current: t }));
   }
-  function V(e) {
-    R.current && !R.current.contains(e.target) && y(!1);
+  function X(e) {
+    z.current && !z.current.contains(e.target) && I(!1);
   }
-  function F() {
-    let e = " ";
+  function ee(e = "default") {
+    let t = " ";
     return (
       !(function () {
-        if (w.total) return !0;
+        if (x.total) return !0;
         return !1;
       })()
-        ? (e = w.currentTotal ? `Showing ${w.currentTotal} ${p}` : "")
-        : ((e = `Showing ${
-            w.limit && w.limit * (w.current ? w.current - 1 : 0) + 1
+        ? (t = x.currentTotal
+            ? `${"default" === e ? "Showing" : ""} ${x.currentTotal} ${f}`
+            : "")
+        : ((t = `${"default" === e ? "Showing " : ""}${
+            x.limit && x.limit * (x.current ? x.current - 1 : 0) + 1
           } - ${
-            w.limit &&
-            w.current &&
-            w.total &&
-            (w.limit * w.current < w.total ? w.limit * w.current : w.total)
+            x.limit &&
+            x.current &&
+            x.total &&
+            (x.limit * x.current < x.total ? x.limit * x.current : x.total)
           }`),
-          (e += ` of ${w.total} results`)),
-      e
+          (t += ` of ${x.total}${"default" === e ? " results" : ""}`)),
+      t
     );
+  }
+  function te() {
+    return !x.total || 1 !== x.current;
+  }
+  function ne() {
+    return !(x.total && x.current && x.current >= (H() || 0));
   }
   return (
     i(() => {
-      C(f);
-    }, [f]),
+      $(N);
+    }, [N]),
     i(() => {
-      w.current || C(Object.assign(Object.assign({}, w), { current: 1 })),
+      x.current || $(Object.assign(Object.assign({}, x), { current: 1 })),
         (function () {
           var e, t;
           const n = [window.innerWidth];
@@ -107,293 +183,319 @@ const g = (r) => {
               null === (t = window.screen) || void 0 === t ? void 0 : t.width
             );
           const a = Math.min(...n);
-          if (j && j > 4) {
-            const e = Math.floor(j / 2) - (j % 2 == 0 ? 3 : 2),
-              t = c(j, w.total, w.limit, e, w.current);
-            return void k([...t]);
+          if (C && C > 4) {
+            const e = Math.floor(C / 2) - (C % 2 == 0 ? 3 : 2),
+              t = c(C, x.total, x.limit, e, x.current);
+            return void M([...t]);
           }
           if (a <= 768) {
-            const e = c(4, w.total, w.limit, 1, w.current);
-            k([...e]);
+            const e = c(4, x.total, x.limit, 1, x.current);
+            M([...e]);
           } else {
-            const e = c(5, w.total, w.limit, 2, w.current);
-            k([...e]);
+            const e = c(5, x.total, x.limit, 2, x.current);
+            M([...e]);
           }
         })(),
-        (null == A ? void 0 : A.current) ? (A.current = !1) : null == b || b(w);
-    }, [w, j]),
+        (null == V ? void 0 : V.current)
+          ? (V.current = !1)
+          : (Y(x.current), null == h || h(x));
+    }, [x, C]),
     t.createElement(
-      "div",
-      Object.assign(
-        {
-          className: `n-pagination-container ${null != N ? N : ""}`,
-          style: null != h ? h : {},
-          id: g,
-        },
-        P
-      ),
-      t.createElement(
-        "div",
-        { className: "n-pagination" },
+      t.Fragment,
+      null,
+      r.type === d.TYPE_DEFAULT &&
         t.createElement(
           "div",
-          { className: "n-pagination__left" },
-          t.createElement(
-            "span",
+          Object.assign(
             {
-              className: "n-pagination__count",
-              "data-testid": "pagination-count",
+              className: `n-pagination-container ${null != S ? S : ""}`,
+              style: null != w ? w : {},
+              id: v,
             },
-            F()
-          )
-        ),
-        t.createElement(
-          "div",
-          { className: "n-pagination__main" },
-          $.length > 1
-            ? t.createElement(
-                t.Fragment,
-                null,
-                t.createElement(
-                  "div",
-                  {
-                    "data-testid": "btnPrevious",
-                    onClick: function () {
-                      if (w.total) {
-                        if (1 === w.current) return;
-                        const e = w.current ? w.current - 1 : 0;
-                        C(Object.assign(Object.assign({}, w), { current: e }));
-                      } else if (d === m.MODE_CURSOR) {
-                        if (!w.prevPage) return;
-                        C(
-                          Object.assign(Object.assign({}, w), {
-                            nextPage: "",
-                            currentPage: w.prevPage,
-                          })
-                        );
-                      }
-                      null == E || E();
-                    },
-                    className: `n-pagination__prev ${
-                      !(!w.total || 1 !== w.current) && "pagination-diabled"
-                    }`,
-                  },
-                  t.createElement(o, null)
-                ),
-                t.createElement(
-                  "div",
-                  { className: "n-pagination__number", ref: R },
-                  null == $
-                    ? void 0
-                    : $.map((e, n) =>
-                        t.createElement(
-                          "div",
-                          {
-                            key: n,
-                            id: n + "node",
-                            onClick: (t) => G(0, e, n),
-                            className: `n-pagination__number_inactive ${
-                              e === w.current && "n-pagination__number_active"
-                            } ${
-                              "..." === e &&
-                              L === n &&
-                              M &&
-                              "n-pagination__dot_active"
-                            }`,
-                          },
-                          e
-                        )
-                      ),
-                  M
-                    ? t.createElement(
-                        "div",
-                        {
-                          className:
-                            "n-pagination__showpopup " +
-                            (1 === L
-                              ? "n-pagination__popup_left"
-                              : "n-pagination__popup_right"),
-                          id: "menu",
-                        },
-                        t.createElement(
-                          "div",
-                          { className: "n-pagination__search_input" },
-                          t.createElement(
-                            "div",
-                            { className: "n-pagination__search_logo" },
-                            t.createElement(s, { className: "search-icon" })
-                          ),
-                          t.createElement(
-                            "div",
-                            { className: "text-input-wrapper" },
-                            t.createElement("input", {
-                              id: "input_box",
-                              type: "number",
-                              className: "n-input",
-                              placeholder: "Search page",
-                              onChange: (e) =>
-                                (function (e) {
-                                  let t =
-                                      w.total &&
-                                      w.limit &&
-                                      Math.ceil(w.total / w.limit),
-                                    n = Number(e.target.value);
-                                  if (n <= (t || 0)) {
-                                    if (!e.target.value) {
-                                      const e = document.getElementById(
-                                        z[0].toString()
-                                      );
-                                      return void (
-                                        null == e || e.scrollIntoView()
-                                      );
-                                    }
-                                    const t = document.getElementById(
-                                      e.target.value
-                                    );
-                                    null == t || t.scrollIntoView();
-                                  } else
-                                    e.target.value = e.target.value.slice(
-                                      0,
-                                      -1
-                                    );
-                                  return I(n);
-                                })(e),
-                            })
-                          )
-                        ),
-                        t.createElement(
-                          "div",
-                          {
-                            className: "n-pagination__search_wrapper",
-                            id: "search_wrapper",
-                          },
-                          z.map((e, n) =>
+            y
+          ),
+          t.createElement(
+            "div",
+            { className: "n-pagination" },
+            t.createElement(
+              "div",
+              { className: "n-pagination__left" },
+              t.createElement(
+                "span",
+                {
+                  className: "n-pagination__count",
+                  "data-testid": "pagination-count",
+                },
+                ee()
+              )
+            ),
+            t.createElement(
+              "div",
+              { className: "n-pagination__main" },
+              D.length > 1
+                ? t.createElement(
+                    t.Fragment,
+                    null,
+                    t.createElement(
+                      "div",
+                      {
+                        "data-testid": "btnPrevious",
+                        onClick: () => K,
+                        className: `n-pagination__prev ${
+                          !te() && "pagination-diabled"
+                        }`,
+                      },
+                      t.createElement(s, null)
+                    ),
+                    t.createElement(
+                      "div",
+                      { className: "n-pagination__number", ref: z },
+                      null == D
+                        ? void 0
+                        : D.map((e, n) =>
                             t.createElement(
                               "div",
                               {
                                 key: n,
-                                id: null == e ? void 0 : e.toString(),
-                                onClick: (t) => G(0, e, n),
-                                className: `n-pagination__search_number_inactive ${
-                                  e === U &&
-                                  "n-pagination__search_number_active"
+                                id: n + "node",
+                                onClick: (t) => Q(0, e, n),
+                                className: `n-pagination__number_inactive ${
+                                  e === x.current &&
+                                  "n-pagination__number_active"
+                                } ${
+                                  "..." === e &&
+                                  G === n &&
+                                  T &&
+                                  "n-pagination__dot_active"
                                 }`,
                               },
                               e
                             )
+                          ),
+                      T
+                        ? t.createElement(
+                            "div",
+                            {
+                              className:
+                                "n-pagination__showpopup " +
+                                (1 === G
+                                  ? "n-pagination__popup_left"
+                                  : "n-pagination__popup_right"),
+                              id: "menu",
+                            },
+                            t.createElement(
+                              "div",
+                              { className: "n-pagination__search_input" },
+                              t.createElement(
+                                "div",
+                                { className: "n-pagination__search_logo" },
+                                t.createElement(o, { className: "search-icon" })
+                              ),
+                              t.createElement(
+                                "div",
+                                { className: "text-input-wrapper" },
+                                t.createElement("input", {
+                                  id: "input_box",
+                                  type: "number",
+                                  className: "n-input",
+                                  placeholder: "Search page",
+                                  onChange: (e) =>
+                                    (function (e) {
+                                      let t =
+                                          x.total &&
+                                          x.limit &&
+                                          Math.ceil(x.total / x.limit),
+                                        n = Number(e.target.value);
+                                      if (n <= (t || 0)) {
+                                        if (!e.target.value) {
+                                          const e = document.getElementById(
+                                            L[0].toString()
+                                          );
+                                          return void (
+                                            null == e || e.scrollIntoView()
+                                          );
+                                        }
+                                        const t = document.getElementById(
+                                          e.target.value
+                                        );
+                                        null == t || t.scrollIntoView();
+                                      } else
+                                        e.target.value = e.target.value.slice(
+                                          0,
+                                          -1
+                                        );
+                                      return B(n);
+                                    })(e),
+                                })
+                              )
+                            ),
+                            t.createElement(
+                              "div",
+                              {
+                                className: "n-pagination__search_wrapper",
+                                id: "search_wrapper",
+                              },
+                              L.map((e, n) =>
+                                t.createElement(
+                                  "div",
+                                  {
+                                    key: n,
+                                    id: null == e ? void 0 : e.toString(),
+                                    onClick: (t) => Q(0, e, n),
+                                    className: `n-pagination__search_number_inactive ${
+                                      e === U &&
+                                      "n-pagination__search_number_active"
+                                    }`,
+                                  },
+                                  e
+                                )
+                              )
+                            )
                           )
-                        )
-                      )
-                    : ""
-                ),
-                t.createElement(
-                  "div",
-                  {
-                    "data-testid": "btnNext",
-                    onClick: function () {
-                      if (w.total) {
-                        const e = B() || 1;
-                        if (w.current && w.current >= e)
-                          return void C(
-                            Object.assign(Object.assign({}, w), { current: e })
-                          );
-                        if (0 === e)
-                          return void C(
-                            Object.assign(Object.assign({}, w), { current: 0 })
-                          );
-                        const t = w.current ? w.current + 1 : 1;
-                        C(Object.assign(Object.assign({}, w), { current: t }));
-                      }
-                      if (d === m.MODE_CURSOR) {
-                        if (!w.nextPage) return;
-                        C(
-                          Object.assign(Object.assign({}, w), {
-                            prevPage: "",
-                            currentPage: w.nextPage,
-                          })
-                        );
-                      }
-                      null == O || O();
-                    },
-                    className: `n-pagination__next ${
-                      !!(w.total && w.current && w.current >= (B() || 0)) &&
-                      "pagination-diabled"
-                    } `,
-                  },
-                  t.createElement(u, null)
-                )
+                        : ""
+                    ),
+                    t.createElement(
+                      "div",
+                      {
+                        "data-testid": "btnNext",
+                        onClick: W,
+                        className: `n-pagination__next ${
+                          !ne() && "pagination-diabled"
+                        } `,
+                      },
+                      t.createElement(u, null)
+                    )
+                  )
+                : null
+            ),
+            t.createElement(
+              "div",
+              { className: "n-pagination__left mobile_view" },
+              t.createElement(
+                "span",
+                {
+                  className: "n-pagination__count",
+                  "data-testid": "pagination-count-mobile-view",
+                },
+                ee()
               )
-            : null
-        ),
-        t.createElement(
-          "div",
-          { className: "n-pagination__left mobile_view" },
-          t.createElement(
-            "span",
-            {
-              className: "n-pagination__count",
-              "data-testid": "pagination-count-mobile-view",
-            },
-            F()
+            ),
+            t.createElement(
+              "div",
+              { className: "n-pagination__right" },
+              t.createElement(
+                "span",
+                { className: "n-pagination__select__label" },
+                "Rows per page"
+              ),
+              t.createElement(
+                "div",
+                { className: "n-pagination__select" },
+                t.createElement(l, {
+                  className: "n-pagination-page-size",
+                  items: J(),
+                  value: R.toString(),
+                  onChange: q,
+                })
+              )
+            )
           )
         ),
+      r.type === d.TYPE_TOP &&
         t.createElement(
           "div",
-          { className: "n-pagination__right" },
-          t.createElement(
-            "span",
-            { className: "n-pagination__select__label" },
-            "Rows per page"
+          Object.assign(
+            {
+              className: `${
+                r.size === _.SIZE_SMALL ? "n-pagination-top__small" : ""
+              } n-pagination-top-container ${null != S ? S : ""}`,
+              style: null != w ? w : {},
+              id: v,
+            },
+            y
           ),
           t.createElement(
             "div",
             { className: "n-pagination__select" },
             t.createElement(l, {
               className: "n-pagination-page-size",
-              items: (function () {
-                const e = _
-                  ? _.map((e) => ({ text: e.toString(), value: e.toString() }))
-                  : [];
-                return (
-                  S ||
-                    x(
-                      Number(
-                        w.limit ? w.limit : e.length > 0 ? e[0].value : 1800
-                      )
-                    ),
-                  e
-                );
-              })(),
-              value: S.toString(),
+              items: J(),
+              value: R.toString(),
+              onChange: q,
+            })
+          ),
+          t.createElement(
+            "span",
+            {
+              className: "n-pagination__count",
+              "data-testid": "pagination-count",
+            },
+            ee("top")
+          ),
+          t.createElement(
+            "div",
+            { className: "n-pagination__main" },
+            t.createElement(m, {
+              theme: "secondary",
+              "data-testid": "btnPrevious",
+              onClick: () => K,
+              size: "medium",
+              className: "n-pagination__prev",
+              icon: s,
+              disabled: !te(),
+            }),
+            t.createElement(g, {
+              type: "number",
+              value: F,
               onChange: function (e) {
-                d === m.MODE_CURSOR
-                  ? C(
-                      Object.assign(Object.assign({}, w), {
-                        current: 1,
-                        limit: e,
-                        nextPage: "",
-                        prevPage: "",
-                        currentPage: "",
-                      })
-                    )
-                  : C(
-                      Object.assign(Object.assign({}, w), {
-                        current: 1,
-                        limit: e,
-                      })
-                    ),
-                  x(e);
+                const t = parseInt(e.target.value),
+                  n = x.total && x.total / R;
+                t < 1
+                  ? (Y(1),
+                    $((e) =>
+                      Object.assign(Object.assign({}, e), { current: 1 })
+                    ))
+                  : n && t > n
+                  ? (Y(n),
+                    $((e) =>
+                      Object.assign(Object.assign({}, e), { current: n })
+                    ))
+                  : (Y(e.target.value),
+                    "" !== e.target.value &&
+                      $((e) =>
+                        Object.assign(Object.assign({}, e), { current: t })
+                      )),
+                  (e.target.style.width = e.target.value.length + 0.5 + "ch");
               },
+              onKeyDown: function (e) {
+                ["+", "-", ".", "e", "E"].includes(e.key) && e.preventDefault();
+              },
+              onBlur: function () {
+                "" === F && Y(x.current);
+              },
+              min: 1,
+              max: x.total && x.total / R,
+              "data-testid": "pageInput",
+            }),
+            t.createElement(m, {
+              theme: "secondary",
+              "data-testid": "btnNext",
+              onClick: W,
+              size: "medium",
+              icon: u,
+              className: "n-pagination__next",
+              disabled: !ne(),
             })
           )
         )
-      )
     )
   );
 };
-g.defaultProps = {
+v.defaultProps = {
   id: `n-pagination-${r()}`,
-  mode: m.MODE_REGULAR,
+  mode: p.MODE_REGULAR,
+  type: d.TYPE_DEFAULT,
+  size: _.SIZE_LARGE,
   pageSizeOptions: [10, 20, 50, 100],
   defaultPageSize: 10,
   value: {
@@ -406,6 +508,6 @@ g.defaultProps = {
     currentTotal: 0,
   },
 };
-var p = t.memo(g);
-export { m as ModeEnum, p as default };
+var f = t.memo(v);
+export { p as ModeEnum, _ as SizeEnum, d as TypeEnum, f as default };
 //# sourceMappingURL=Pagination.js.map

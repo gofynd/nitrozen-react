@@ -1,5 +1,6 @@
 import React from "react";
 import "./Dropdown.scss";
+import { Position } from "../Tooltip/Tooltip";
 interface ItemProps {
   logo?: string;
   text?: string;
@@ -17,6 +18,8 @@ export interface DropdownProps {
   required?: Boolean;
   searchable?: Boolean;
   tooltip?: string;
+  tooltipPosition?: Position;
+  tooltipIcon?: React.ReactNode;
   value?: string | number | boolean | any[];
   addOption?: Boolean;
   addOptionHandler?: Function;
