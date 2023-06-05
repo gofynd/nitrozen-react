@@ -1,4 +1,4 @@
-import React, { memo, useState, useEffect } from "react";
+import React, { memo, useState, useRef, useEffect } from "react";
 import NitrozenId from "../../utils/uuids";
 import "./Table.scss";
 import {
@@ -22,6 +22,8 @@ export interface TableProps {
   showColumnDivider?: boolean;
   customClassName?: string;
   customStyle?: React.CSSProperties;
+  freezeLeftColumns?: number;
+  freezeRightColumns?: number;
 }
 
 const Table: React.FC<TableProps> = (props) => {
@@ -34,6 +36,7 @@ const Table: React.FC<TableProps> = (props) => {
     customClassName,
   } = props;
   const [clickedIds, setClickedIds] = useState<number[]>([]);
+  const tableRef = useRef<any>(null);
 
   /**
    *
@@ -78,6 +81,116 @@ const Table: React.FC<TableProps> = (props) => {
       props.onRowClick?.(index);
     };
   };
+  const throttle = (callback: FrameRequestCallback) => {
+    let rafId: number;
+
+    const throttled = () => {
+      cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(callback);
+    };
+
+    return throttled;
+  };
+
+  const freezeLeft = () => {
+    const table = tableRef.current;
+    if (!table) return;
+
+    const { scrollLeft } = table;
+
+    const frozenColumnsTh = table?.querySelectorAll(
+      "th:nth-child(-n+" + props.freezeLeftColumns + ")"
+    ) as NodeListOf<HTMLElement>;
+    let leftTh = 0;
+    Array.from(frozenColumnsTh)?.forEach((column) => {
+      column.style.position = "sticky";
+      column.style.left = leftTh + "px";
+      leftTh += column.getBoundingClientRect().width;
+    });
+
+    const frozenColumnsTbodyTr = table?.querySelectorAll(
+      "tbody > tr"
+    ) as NodeListOf<HTMLElement>;
+
+    frozenColumnsTbodyTr?.forEach((tr) => {
+      const frozenColumnsTd = tr?.querySelectorAll(
+        "td:nth-child(-n+" + props.freezeLeftColumns + ")"
+      ) as NodeListOf<HTMLElement>;
+      let leftTd = 0;
+      Array.from(frozenColumnsTd)?.forEach((column) => {
+        column.style.position = "sticky";
+        column.style.left = leftTd + "px";
+        leftTd += column.getBoundingClientRect().width;
+      });
+    });
+
+    const afterDiv = table?.querySelector(
+      ".left-freezed-border"
+    ) as HTMLElement;
+    afterDiv.style.left = leftTh + scrollLeft + "px";
+  };
+
+  const freezeRight = () => {
+    const table = tableRef.current;
+    if (!table) return;
+
+    const { scrollLeft } = table;
+
+    const frozenColumnsTh = table?.querySelectorAll(
+      "th:nth-last-child(-n+" + props.freezeRightColumns + ")"
+    ) as NodeListOf<HTMLElement>;
+    let rightTh = 0;
+    Array.from(frozenColumnsTh)
+      ?.reverse()
+      .forEach((column) => {
+        column.style.position = "sticky";
+        column.style.right = rightTh + "px";
+        rightTh += column.getBoundingClientRect().width;
+      });
+
+    const frozenColumnsTbodyTr = table?.querySelectorAll(
+      "tbody > tr"
+    ) as NodeListOf<HTMLElement>;
+
+    frozenColumnsTbodyTr?.forEach((tr) => {
+      const frozenColumnsTd = tr?.querySelectorAll(
+        "td:nth-last-child(-n+" + props.freezeRightColumns + ")"
+      ) as NodeListOf<HTMLElement>;
+      let rightTd = 0;
+      Array.from(frozenColumnsTd)
+        ?.reverse()
+        .forEach((column) => {
+          column.style.position = "sticky";
+          column.style.right = rightTd + "px";
+          rightTd += column.getBoundingClientRect().width;
+        });
+    });
+
+    const afterDiv = table?.querySelector(
+      ".right-freezed-border"
+    ) as HTMLElement;
+    afterDiv.style.right = rightTh - scrollLeft + "px";
+  };
+
+  const throttledFreezeLeft = throttle(freezeLeft);
+  const throttledFreezeRight = throttle(freezeRight);
+
+  const handleScroll = () => {
+    if (props.freezeLeftColumns && Number(props.freezeLeftColumns) > 0)
+      throttledFreezeLeft();
+    if (props.freezeRightColumns && Number(props.freezeRightColumns) > 0)
+      throttledFreezeRight();
+  };
+
+  useEffect(() => {
+    handleScroll();
+    if (typeof window !== undefined)
+      window.addEventListener("resize", handleScroll);
+    return () => {
+      if (typeof window !== undefined)
+        window.removeEventListener("resize", handleScroll);
+    };
+  }, [tableRow]);
 
   const isAllChecked = () => {
     const checkedItemsLength = tableRow.filter((item) => item.isChecked).length;
@@ -90,6 +203,8 @@ const Table: React.FC<TableProps> = (props) => {
       className={`n-table ${customClassName ? customClassName : ""}`}
       data-testid={`table-${id}`}
       style={customStyle ?? {}}
+      ref={tableRef}
+      onScroll={handleScroll}
     >
       <table className="n-main-table">
         <thead>
@@ -235,6 +350,8 @@ const Table: React.FC<TableProps> = (props) => {
           </tfoot>
         ) : null}
       </table>
+      {!!props.freezeLeftColumns && <div className="left-freezed-border" />}
+      {!!props.freezeRightColumns && <div className="right-freezed-border" />}
     </div>
   );
 };
@@ -251,6 +368,8 @@ Table.defaultProps = {
   getCheckedItems: () => {},
   allCheckClicked: () => {},
   showColumnDivider: true,
+  freezeLeftColumns: 0,
+  freezeRightColumns: 0,
 };
 
 export default memo(Table);

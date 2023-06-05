@@ -2,6 +2,21 @@
 
 .n-table {
   width: 100%;
+  overflow: scroll;
+  position: relative;
+}
+
+.left-freezed-border,
+.right-freezed-border {
+  position: absolute;
+  height: 100%;
+  top: 0;
+  z-index: 10;
+  pointer-events: none;
+  width: 4px;
+  background: #f5f5f5;
+  border-radius: 250px;
+  border: 1px solid #e0e0e0;
 }
 
 .n-main-table {
@@ -10,6 +25,7 @@
   border-spacing: 0;
   width: 100%;
   user-select: none;
+  position: relative;
 
   thead {
     color: $ColorPrimaryInverse;
@@ -57,6 +73,7 @@
     padding: 16px;
     border-top: $TableBorderWidth solid $ColorSparkleGrey40;
     font-size: 14px;
+    background: #fff;
   }
 
   td:last-child {

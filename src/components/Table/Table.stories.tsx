@@ -76,6 +76,16 @@ export default {
       ],
     },
     footer: { control: "text" },
+    freezeLeftColumns: {
+      control: "number",
+      defaultValue: 0,
+      description: "Number of columns to freeze from the left",
+    },
+    freezeRightColumns: {
+      control: "number",
+      defaultValue: 0,
+      description: "Number of columns to freeze from the left",
+    },
     rowStyle: {
       control: "select",
       options: ["simple", "zebra"],
