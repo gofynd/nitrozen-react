@@ -5,6 +5,11 @@ import Pagination, { ModeEnum } from "./Pagination";
 export default {
   title: "Components/Pagination",
   component: Pagination,
+  argTypes: {
+    size: {
+      description: "Size variants are available only for Pagination type 'top'",
+    },
+  },
 } as ComponentMeta<typeof Pagination>;
 
 const Template: ComponentStory<typeof Pagination> = (args) => {
@@ -39,7 +44,10 @@ BasicPagination.args = {
     currentTotal: 100,
   },
   pageSizeOptions: [10, 20, 50, 100],
-  defaultPageSize: 50,
+  defaultPageSize: 10,
+  mode: "regular",
+  size: "large",
+  type: "default",
   onChange: (event: any) => {},
   onPreviousClick: () => {},
   onNextClick: () => {},

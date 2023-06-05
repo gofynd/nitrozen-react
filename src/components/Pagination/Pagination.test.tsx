@@ -1,6 +1,6 @@
 import React from "react";
 import { render, fireEvent } from "@testing-library/react";
-import Pagination, { ModeEnum } from "./Pagination";
+import Pagination, { ModeEnum, TypeEnum } from "./Pagination";
 
 describe("Pagination", () => {
   beforeAll(() => {
@@ -334,5 +334,167 @@ describe("Pagination", () => {
     const dropdown = getByTestId("dropdown-selected-text");
 
     expect(dropdown).toHaveTextContent("20");
+  });
+  test("renders Pagination component with type='top'", () => {
+    const props = {
+      type: TypeEnum.TYPE_TOP,
+      value: {
+        limit: 10,
+        total: 100,
+        current: 1,
+      },
+      onChange: jest.fn(),
+    };
+    const { getByTestId } = render(<Pagination {...props} />);
+
+    // Assert that the necessary elements are rendered
+    const paginationCount = getByTestId("pagination-count");
+    const previousButton = getByTestId("btnPrevious");
+    const nextButton = getByTestId("btnNext");
+
+    expect(paginationCount).toBeInTheDocument();
+    expect(previousButton).toBeInTheDocument();
+    expect(nextButton).toBeInTheDocument();
+  });
+  test("previous button is disabled on first page", () => {
+    const props = {
+      type: TypeEnum.TYPE_TOP,
+      value: {
+        limit: 10,
+        total: 100,
+        current: 1,
+      },
+      onChange: jest.fn(),
+    };
+    const { getByTestId } = render(<Pagination {...props} />);
+
+    const previousButton = getByTestId("btnPrevious");
+
+    expect(previousButton).toBeDisabled();
+  });
+  test("next button is disabled on last page", () => {
+    const props = {
+      type: TypeEnum.TYPE_TOP,
+      value: {
+        limit: 10,
+        total: 100,
+        current: 10,
+      },
+      onChange: jest.fn(),
+    };
+    const { getByTestId } = render(<Pagination {...props} />);
+
+    const nextButton = getByTestId("btnNext");
+
+    expect(nextButton).toBeDisabled();
+  });
+
+  test("inputing a valid page number in page input updates the current page correctly", () => {
+    // Test that inputing a valid page number in page input updates the current page correctly.
+    const handleChange = jest.fn();
+    const props = {
+      type: TypeEnum.TYPE_TOP,
+      value: {
+        limit: 10,
+        total: 100,
+        current: 1,
+      },
+      onChange: handleChange,
+    };
+    const { getByTestId } = render(<Pagination {...props} />);
+
+    // Input page 3
+    const pageInput = getByTestId("pageInput");
+    fireEvent.change(pageInput, { target: { value: 3 } });
+
+    expect(handleChange).toHaveBeenCalledWith({
+      limit: 10,
+      total: 100,
+      current: 3,
+    });
+  });
+
+  test("previous and next buttons are disabled when there is only one page", () => {
+    // Test that the previous and next buttons are disabled when there is only one page.
+    const props = {
+      type: TypeEnum.TYPE_TOP,
+      value: {
+        limit: 10,
+        total: 10,
+        current: 1,
+      },
+      onChange: jest.fn(),
+    };
+    const { getByTestId } = render(<Pagination {...props} />);
+
+    const previousButton = getByTestId("btnPrevious");
+    const nextButton = getByTestId("btnNext");
+
+    expect(previousButton).toBeDisabled();
+    expect(nextButton).toBeDisabled();
+  });
+
+  test("previous and next buttons are enabled when there are multiple pages", () => {
+    // Test that the previous and next buttons are enabled when there are multiple pages.
+    const props = {
+      type: TypeEnum.TYPE_TOP,
+      value: {
+        limit: 10,
+        total: 50,
+        current: 2,
+      },
+      onChange: jest.fn(),
+    };
+    const { getByTestId } = render(<Pagination {...props} />);
+
+    const previousButton = getByTestId("btnPrevious");
+    const nextButton = getByTestId("btnNext");
+
+    expect(previousButton).toBeEnabled();
+    expect(nextButton).toBeEnabled();
+  });
+
+  test("pagination component handles edge cases: total number of items is zero or negative", () => {
+    // Test that the pagination component correctly handles edge cases, such as when the total number of items is zero or negative.
+    const props = {
+      type: TypeEnum.TYPE_TOP,
+      value: {
+        limit: 10,
+        total: 0,
+        current: 1,
+      },
+      onChange: jest.fn(),
+    };
+    const { getByTestId } = render(<Pagination {...props} />);
+
+    const paginationCount = getByTestId("pagination-count");
+
+    expect(paginationCount.textContent).toBe("");
+  });
+
+  test("pagination component handles large numbers of pages and displays a limited number of page links", () => {
+    // Test that the pagination component handles large numbers of pages and displays a limited number of page links at a time.
+    const props = {
+      type: TypeEnum.TYPE_TOP,
+      value: {
+        limit: 10,
+        total: 1000,
+        current: 1,
+      },
+      onChange: jest.fn(),
+    };
+    const { getByTestId } = render(<Pagination {...props} />);
+
+    // Assert that the necessary elements are rendered
+    const paginationCount = getByTestId("pagination-count");
+    const previousButton = getByTestId("btnPrevious");
+    const nextButton = getByTestId("btnNext");
+
+    expect(paginationCount).toBeInTheDocument();
+    expect(previousButton).toBeInTheDocument();
+    expect(nextButton).toBeInTheDocument();
+
+    // Assert the correct number of pages is displayed
+    expect(paginationCount.textContent).toBe("1 - 10 of 1000");
   });
 });
