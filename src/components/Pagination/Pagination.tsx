@@ -264,7 +264,7 @@ const Pagination = (props: PaginationProps) => {
   function selectedNode(e: React.MouseEvent, i: number | "...", index: number) {
     if (i == "...") {
       let totalPage =
-        value.total && Math.ceil(value.total / value.limit);
+        value.total && value.limit && Math.ceil(value.total / value.limit);
 
       let rangeStart = paginationRange[index - 1];
       let rangeEnd: number | "..." | undefined = totalPage;
@@ -379,7 +379,7 @@ const Pagination = (props: PaginationProps) => {
     const enteredValue = parseInt(e.target.value);
 
     const min = 1,
-      max = value.total && value.limit && Math.ceil(value.total / selectedPageSize);
+      max = value.total && Math.ceil(value.total / selectedPageSize);
 
     if (enteredValue < min) {
       setInputValue(min);
