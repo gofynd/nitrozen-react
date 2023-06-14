@@ -379,7 +379,7 @@ const Pagination = (props: PaginationProps) => {
     const enteredValue = parseInt(e.target.value);
 
     const min = 1,
-      max = value.total && value.total / selectedPageSize;
+      max = value.total && Math.ceil(value.total / selectedPageSize);
 
     if (enteredValue < min) {
       setInputValue(min);
@@ -428,7 +428,7 @@ const Pagination = (props: PaginationProps) => {
                 <>
                   <div
                     data-testid="btnPrevious"
-                    onClick={() => previous}
+                    onClick={() => previous()}
                     className={`n-pagination__prev ${
                       !showPrev() && "pagination-diabled"
                     }`}
