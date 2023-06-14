@@ -128,17 +128,14 @@ const Dropdown = (props: DropdownProps) => {
         if (JSON.stringify(props.value) !== JSON.stringify(selected?.value)) {
           props.onChange?.(selected?.value);
         }
-        setSelectedText(generateSelectedText());
       } else if (
         JSON.stringify(props.value ?? []) !== JSON.stringify(selectedItems)
       ) {
         props.onChange?.(selectedItems);
-        setSelectedText(generateSelectedText());
       }
       setAllOptions();
-    } else {
-      setSelectedText(generateSelectedText());
     }
+    setSelectedText(generateSelectedText());
     initialRender.current = false;
   }, [selectedItems, selected]);
   useEffect(() => {

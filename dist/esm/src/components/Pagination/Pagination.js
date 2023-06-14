@@ -52,8 +52,8 @@ const v = (r) => {
     ]),
     [x, $] = n(N),
     [R, k] = n(O || (b && b.length > 0 ? b[0] : 10)),
-    z = a(null),
-    [D, M] = n([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]),
+    M = a(null),
+    [z, D] = n([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]),
     [T, I] = n(!1),
     [L, A] = n([0]),
     [U, B] = n(0),
@@ -126,9 +126,9 @@ const v = (r) => {
   function Q(e, t, n) {
     if ("..." == t) {
       let e = x.total && x.limit && Math.ceil(x.total / x.limit),
-        t = D[n - 1],
+        t = z[n - 1],
         a = e;
-      a = D[n + 1] == e ? e : D[n + 1];
+      a = z[n + 1] == e ? e : z[n + 1];
       const i = (function (e, t, n) {
         let a = [e],
           i = e;
@@ -139,7 +139,7 @@ const v = (r) => {
     } else I(!1), $(Object.assign(Object.assign({}, x), { current: t }));
   }
   function X(e) {
-    z.current && !z.current.contains(e.target) && I(!1);
+    M.current && !M.current.contains(e.target) && I(!1);
   }
   function ee(e = "default") {
     let t = " ";
@@ -186,14 +186,14 @@ const v = (r) => {
           if (C && C > 4) {
             const e = Math.floor(C / 2) - (C % 2 == 0 ? 3 : 2),
               t = c(C, x.total, x.limit, e, x.current);
-            return void M([...t]);
+            return void D([...t]);
           }
           if (a <= 768) {
             const e = c(4, x.total, x.limit, 1, x.current);
-            M([...e]);
+            D([...e]);
           } else {
             const e = c(5, x.total, x.limit, 2, x.current);
-            M([...e]);
+            D([...e]);
           }
         })(),
         (null == V ? void 0 : V.current)
@@ -232,7 +232,7 @@ const v = (r) => {
             t.createElement(
               "div",
               { className: "n-pagination__main" },
-              D.length > 1
+              z.length > 1
                 ? t.createElement(
                     t.Fragment,
                     null,
@@ -240,7 +240,7 @@ const v = (r) => {
                       "div",
                       {
                         "data-testid": "btnPrevious",
-                        onClick: () => K,
+                        onClick: () => K(),
                         className: `n-pagination__prev ${
                           !te() && "pagination-diabled"
                         }`,
@@ -249,10 +249,10 @@ const v = (r) => {
                     ),
                     t.createElement(
                       "div",
-                      { className: "n-pagination__number", ref: z },
-                      null == D
+                      { className: "n-pagination__number", ref: M },
+                      null == z
                         ? void 0
-                        : D.map((e, n) =>
+                        : z.map((e, n) =>
                             t.createElement(
                               "div",
                               {
@@ -449,7 +449,7 @@ const v = (r) => {
               value: F,
               onChange: function (e) {
                 const t = parseInt(e.target.value),
-                  n = x.total && x.total / R;
+                  n = x.total && Math.ceil(x.total / R);
                 t < 1
                   ? (Y(1),
                     $((e) =>

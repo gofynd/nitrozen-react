@@ -160,21 +160,19 @@ const u = { text: "Select All", value: "all" },
       }, [l.value, l.items]),
       e.useEffect(() => {
         var e, t, n;
-        m.current
-          ? y(_())
-          : (l.multiple
-              ? JSON.stringify(
-                  null !== (t = l.value) && void 0 !== t ? t : []
-                ) !== JSON.stringify(C) &&
-                (null === (n = l.onChange) || void 0 === n || n.call(l, C),
-                y(_()))
-              : (JSON.stringify(l.value) !==
-                  JSON.stringify(null == I ? void 0 : I.value) &&
-                  (null === (e = l.onChange) ||
-                    void 0 === e ||
-                    e.call(l, null == I ? void 0 : I.value)),
-                y(_())),
-            D()),
+        m.current ||
+          (l.multiple
+            ? JSON.stringify(
+                null !== (t = l.value) && void 0 !== t ? t : []
+              ) !== JSON.stringify(C) &&
+              (null === (n = l.onChange) || void 0 === n || n.call(l, C))
+            : JSON.stringify(l.value) !==
+                JSON.stringify(null == I ? void 0 : I.value) &&
+              (null === (e = l.onChange) ||
+                void 0 === e ||
+                e.call(l, null == I ? void 0 : I.value)),
+          D()),
+          y(_()),
           (m.current = !1);
       }, [C, I]),
       e.useEffect(() => {
