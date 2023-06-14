@@ -159,21 +159,19 @@ const u = { text: "Select All", value: "all" },
       }, [o.value, o.items]),
       n(() => {
         var e, l, t;
-        b.current
-          ? O(M())
-          : (o.multiple
-              ? JSON.stringify(
-                  null !== (l = o.value) && void 0 !== l ? l : []
-                ) !== JSON.stringify(A) &&
-                (null === (t = o.onChange) || void 0 === t || t.call(o, A),
-                O(M()))
-              : (JSON.stringify(o.value) !==
-                  JSON.stringify(null == I ? void 0 : I.value) &&
-                  (null === (e = o.onChange) ||
-                    void 0 === e ||
-                    e.call(o, null == I ? void 0 : I.value)),
-                O(M())),
-            R()),
+        b.current ||
+          (o.multiple
+            ? JSON.stringify(
+                null !== (l = o.value) && void 0 !== l ? l : []
+              ) !== JSON.stringify(A) &&
+              (null === (t = o.onChange) || void 0 === t || t.call(o, A))
+            : JSON.stringify(o.value) !==
+                JSON.stringify(null == I ? void 0 : I.value) &&
+              (null === (e = o.onChange) ||
+                void 0 === e ||
+                e.call(o, null == I ? void 0 : I.value)),
+          R()),
+          O(M()),
           (b.current = !1);
       }, [A, I]),
       n(() => {

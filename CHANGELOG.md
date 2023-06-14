@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 2.0.6(2023-06-14)
+
+### Bugfixes
+
+- Bugfixes ([7725416](https://github.com/gofynd/nitrozen-react/pull/92))
+
 ## 2.0.5(2023-06-05)
 
 ### Bugfixes

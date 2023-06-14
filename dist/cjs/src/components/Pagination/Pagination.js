@@ -244,7 +244,7 @@ const g = (n) => {
                       "div",
                       {
                         "data-testid": "btnPrevious",
-                        onClick: () => A,
+                        onClick: () => A(),
                         className: `n-pagination__prev ${
                           !K() && "pagination-diabled"
                         }`,
@@ -457,7 +457,7 @@ const g = (n) => {
               value: $,
               onChange: function (e) {
                 const t = parseInt(e.target.value),
-                  n = O.total && O.total / j;
+                  n = O.total && Math.ceil(O.total / j);
                 t < 1
                   ? (k(1),
                     N((e) =>
