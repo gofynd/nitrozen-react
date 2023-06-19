@@ -100,7 +100,7 @@ function MyComponent() {
 
 If you're looking for `@gofynd/nitrozen-react` API documentation, check out:
 
-- [Storybook](https://gofynd.io/nitrozen-react/?path=/story/introduction-welcome--welcome)
+- [Storybook](https://opensource.gofynd.io/nitrozen-react/?path=/story/introduction-welcome--welcome)
 
 ## 📝 License
 
