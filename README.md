@@ -1,7 +1,7 @@
 # @gofynd/nitrozen-react
 
 [![npm version](https://badge.fury.io/js/@gofynd%2Fnitrozen-react.svg)](https://www.npmjs.com/package/@gofynd/nitrozen-react)
-[![](https://img.shields.io/badge/Storybook-documentation-brightgreen)](https://gofynd.io/nitrozen-react)
+[![](https://img.shields.io/badge/Storybook-documentation-brightgreen)](https://opensource.gofynd.io/nitrozen-react)
 
 > A React component library inspired from Nitrozen design system
 
@@ -44,35 +44,35 @@ function MyComponent() {
 
 ## 🔥 Components List:
 
-- [Alert](https://gofynd.io/nitrozen-react/?path=/docs/components-alert--button-less-alert)
-- [Autocomplete](https://gofynd.io/nitrozen-react/?path=/docs/components-autocomplete--autocomplete-input)
-- [Badge](https://gofynd.io/nitrozen-react/?path=/docs/components-badge--badge-demo)
-- [Button](https://gofynd.io/nitrozen-react/?path=/docs/components-button--default)
-- [Card](https://gofynd.io/nitrozen-react/?path=/docs/components-card--card-demo)
-- [Checkbox](https://gofynd.io/nitrozen-react/?path=/docs/components-input-checkbox--single-checkbox)
-- [OTP Code Input](https://gofynd.io/nitrozen-react/?path=/docs/components-code--code-playground)
-- [Chip](https://gofynd.io/nitrozen-react/?path=/docs/components-chip--primary-chip)
-- [Checkbox](https://gofynd.io/nitrozen-react/?path=/docs/components-input-checkbox--single-checkbox)
-- [Dialog](https://gofynd.io/nitrozen-react/?path=/docs/components-dialog--dialog)
-- [Dropdown](https://gofynd.io/nitrozen-react/?path=/docs/components-input-dropdown--single-select)
-- [Icon](https://gofynd.io/nitrozen-react/?path=/docs/assets-icons--svg-example)
-- [Input](https://gofynd.io/nitrozen-react/?path=/docs/components-input-textfields--textfield)
-- [Menu](https://gofynd.io/nitrozen-react/?path=/docs/components-menu--primary-menu)
-- [Validation Text](https://gofynd.io/nitrozen-react/?path=/docs/components-validation--validation-message)
-- [Pagination](https://gofynd.io/nitrozen-react/?path=/docs/components-pagination--basic-pagination)
-- [Radio](https://gofynd.io/nitrozen-react/?path=/docs/components-input-radiobutton--radio-playground)
-- [Nudge](https://gofynd.io/nitrozen-react/?path=/docs/components-nudge--show-nudge)
-- [Stepper](https://gofynd.io/nitrozen-react/?path=/docs/components-stepper--horizontal-stepper)
-- [Tab](https://gofynd.io/nitrozen-react/?path=/docs/components-tab--object-tab-items)
-- [ToggleBtn](https://gofynd.io/nitrozen-react/?path=/docs/components-button-togglebutton--toggle-btn)
-- [Tooltip](https://gofynd.io/nitrozen-react/?path=/docs/components-tooltip--tooltip-success)
-- [Toast](https://gofynd.io/nitrozen-react/?path=/docs/components-toast--show-toast)
-- [Table](https://gofynd.io/nitrozen-react/?path=/docs/components-table--template)
-- [Grid](https://gofynd.io/nitrozen-react/?path=/docs/components-grid--custom-grid)
-- [Typography](https://gofynd.io/nitrozen-react/?path=/docs/tokens-typography--typography)
+- [Alert](https://opensource.gofynd.io/nitrozen-react/?path=/docs/components-alert--button-less-alert)
+- [Autocomplete](https://opensource.gofynd.io/nitrozen-react/?path=/docs/components-autocomplete--autocomplete-input)
+- [Badge](https://opensource.gofynd.io/nitrozen-react/?path=/docs/components-badge--badge-demo)
+- [Button](https://opensource.gofynd.io/nitrozen-react/?path=/docs/components-button--default)
+- [Card](https://opensource.gofynd.io/nitrozen-react/?path=/docs/components-card--card-demo)
+- [Checkbox](https://opensource.gofynd.io/nitrozen-react/?path=/docs/components-input-checkbox--single-checkbox)
+- [OTP Code Input](https://opensource.gofynd.io/nitrozen-react/?path=/docs/components-code--code-playground)
+- [Chip](https://opensource.gofynd.io/nitrozen-react/?path=/docs/components-chip--primary-chip)
+- [Checkbox](https://opensource.gofynd.io/nitrozen-react/?path=/docs/components-input-checkbox--single-checkbox)
+- [Dialog](https://opensource.gofynd.io/nitrozen-react/?path=/docs/components-dialog--dialog)
+- [Dropdown](https://opensource.gofynd.io/nitrozen-react/?path=/docs/components-input-dropdown--single-select)
+- [Icon](https://opensource.gofynd.io/nitrozen-react/?path=/docs/assets-icons--svg-example)
+- [Input](https://opensource.gofynd.io/nitrozen-react/?path=/docs/components-input-textfields--textfield)
+- [Menu](https://opensource.gofynd.io/nitrozen-react/?path=/docs/components-menu--primary-menu)
+- [Validation Text](https://opensource.gofynd.io/nitrozen-react/?path=/docs/components-validation--validation-message)
+- [Pagination](https://opensource.gofynd.io/nitrozen-react/?path=/docs/components-pagination--basic-pagination)
+- [Radio](https://opensource.gofynd.io/nitrozen-react/?path=/docs/components-input-radiobutton--radio-playground)
+- [Nudge](https://opensource.gofynd.io/nitrozen-react/?path=/docs/components-nudge--show-nudge)
+- [Stepper](https://opensource.gofynd.io/nitrozen-react/?path=/docs/components-stepper--horizontal-stepper)
+- [Tab](https://opensource.gofynd.io/nitrozen-react/?path=/docs/components-tab--object-tab-items)
+- [ToggleBtn](https://opensource.gofynd.io/nitrozen-react/?path=/docs/components-button-togglebutton--toggle-btn)
+- [Tooltip](https://opensource.gofynd.io/nitrozen-react/?path=/docs/components-tooltip--tooltip-success)
+- [Toast](https://opensource.gofynd.io/nitrozen-react/?path=/docs/components-toast--show-toast)
+- [Table](https://opensource.gofynd.io/nitrozen-react/?path=/docs/components-table--template)
+- [Grid](https://opensource.gofynd.io/nitrozen-react/?path=/docs/components-grid--custom-grid)
+- [Typography](https://opensource.gofynd.io/nitrozen-react/?path=/docs/tokens-typography--typography)
 
 > For a full list of components available & it's detailed documentation, checkout our
-> [Storybook](https://gofynd.io/nitrozen-react/?path=/story/introduction-welcome--welcome).
+> [Storybook](https://opensource.gofynd.io/nitrozen-react/?path=/story/introduction-welcome--welcome).
 
 ## 🏆 Contributors
 
@@ -100,7 +100,7 @@ function MyComponent() {
 
 If you're looking for `@gofynd/nitrozen-react` API documentation, check out:
 
-- [Storybook](https://gofynd.io/nitrozen-react/?path=/story/introduction-welcome--welcome)
+- [Storybook](https://opensource.gofynd.io/nitrozen-react/?path=/story/introduction-welcome--welcome)
 
 ## 📝 License
 
