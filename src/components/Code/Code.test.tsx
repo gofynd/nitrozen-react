@@ -152,4 +152,23 @@ describe("Button", () => {
     fireEvent.change(input, { target: { value: `23` } });
     expect(finalCode).toBe("345673");
   });
+  test("renders the Code component with 6 input fields on change to test the copy paste logic", () => {
+    let finalCode = "";
+    function getChangeResult(val: string) {
+      finalCode = val;
+    }
+    const screen = render(
+      <Code
+        fields={6}
+        label={"OTP"}
+        codeId={"custom-code"}
+        getCode={getChangeResult}
+      />
+    );
+    const inputElement = screen.getByTestId(
+      "code-input-custom-code-0"
+    ) as HTMLInputElement;
+    userEvent.type(inputElement, "123456");
+    expect(finalCode).toBe("123456");
+  });
 });
