@@ -16,7 +16,7 @@ export interface ToggleButtonProps {
   onIconClick?: Function;
 }
 declare const _default: React.MemoExoticComponent<{
-  (props: ToggleButtonProps): JSX.Element;
+  (props: ToggleButtonProps): React.JSX.Element;
   defaultProps: {
     id: string;
     value: boolean;

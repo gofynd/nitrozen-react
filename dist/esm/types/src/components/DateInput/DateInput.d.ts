@@ -25,7 +25,7 @@ export interface DateInputProps {
   defaultValidation?: boolean;
 }
 declare const _default: React.MemoExoticComponent<{
-  (props: DateInputProps): JSX.Element;
+  (props: DateInputProps): React.JSX.Element;
   defaulProps: {
     useDatePicker: boolean;
     required: boolean;

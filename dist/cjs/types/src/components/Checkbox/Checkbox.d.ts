@@ -22,7 +22,7 @@ export interface CheckboxProps {
   isIndeterminate?: Boolean;
 }
 declare const Checkbox: {
-  (props: CheckboxProps): JSX.Element;
+  (props: CheckboxProps): React.JSX.Element;
   defaultProps: {
     disabled: boolean;
     value: string;

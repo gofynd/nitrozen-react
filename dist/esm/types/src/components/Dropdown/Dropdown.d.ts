@@ -34,7 +34,7 @@ export interface DropdownProps {
   prefixIcon?: React.ReactNode;
 }
 declare const Dropdown: {
-  (props: DropdownProps): JSX.Element;
+  (props: DropdownProps): React.JSX.Element;
   defaultProps: {
     id: string;
     items: never[];

@@ -19,7 +19,7 @@ export interface AlertProps {
   style?: React.CSSProperties;
 }
 declare const Alert: {
-  (props: AlertProps): JSX.Element;
+  (props: AlertProps): React.JSX.Element;
   defaultProps: {
     className: string;
     displayButton: boolean;

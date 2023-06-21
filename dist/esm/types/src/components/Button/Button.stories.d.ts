@@ -2,7 +2,7 @@ import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 declare const _default: ComponentMeta<
   React.MemoExoticComponent<{
-    (props: import("./Button").ButtonProps): JSX.Element;
+    (props: import("./Button").ButtonProps): React.JSX.Element;
     defaultProps: {
       href: null;
       disabled: boolean;
@@ -25,7 +25,7 @@ declare const _default: ComponentMeta<
 export default _default;
 export declare const Default: ComponentStory<
   React.MemoExoticComponent<{
-    (props: import("./Button").ButtonProps): JSX.Element;
+    (props: import("./Button").ButtonProps): React.JSX.Element;
     defaultProps: {
       href: null;
       disabled: boolean;
@@ -45,11 +45,11 @@ export declare const Default: ComponentStory<
     };
   }>
 >;
-export declare const AllThemes: () => JSX.Element;
-export declare const AllDisbledThemes: () => JSX.Element;
-export declare const IconButton: () => JSX.Element;
-export declare const ButtonWithIconLeft: () => JSX.Element;
-export declare const ButtonWithIconRight: () => JSX.Element;
-export declare const ButtonWithBothIcon: () => JSX.Element;
-export declare const AllThemesWithPositiveState: () => JSX.Element;
-export declare const AllThemesWithDestructiveState: () => JSX.Element;
+export declare const AllThemes: () => React.JSX.Element;
+export declare const AllDisbledThemes: () => React.JSX.Element;
+export declare const IconButton: () => React.JSX.Element;
+export declare const ButtonWithIconLeft: () => React.JSX.Element;
+export declare const ButtonWithIconRight: () => React.JSX.Element;
+export declare const ButtonWithBothIcon: () => React.JSX.Element;
+export declare const AllThemesWithPositiveState: () => React.JSX.Element;
+export declare const AllThemesWithDestructiveState: () => React.JSX.Element;

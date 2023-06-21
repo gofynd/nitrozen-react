@@ -2,11 +2,11 @@ import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 declare const _default: ComponentMeta<
   React.MemoExoticComponent<{
-    (props: import("./Tooltip").TooltipProps): JSX.Element;
+    (props: import("./Tooltip").TooltipProps): React.JSX.Element;
     defaultProps: {
       contentBgColor: string;
       contentColor: string;
-      icon: JSX.Element;
+      icon: React.JSX.Element;
       position: string;
       tooltipContent: string;
     };
@@ -15,11 +15,11 @@ declare const _default: ComponentMeta<
 export default _default;
 export declare const tooltipSuccess: ComponentStory<
   React.MemoExoticComponent<{
-    (props: import("./Tooltip").TooltipProps): JSX.Element;
+    (props: import("./Tooltip").TooltipProps): React.JSX.Element;
     defaultProps: {
       contentBgColor: string;
       contentColor: string;
-      icon: JSX.Element;
+      icon: React.JSX.Element;
       position: string;
       tooltipContent: string;
     };
@@ -27,11 +27,11 @@ export declare const tooltipSuccess: ComponentStory<
 >;
 export declare const tooltipWithLink: ComponentStory<
   React.MemoExoticComponent<{
-    (props: import("./Tooltip").TooltipProps): JSX.Element;
+    (props: import("./Tooltip").TooltipProps): React.JSX.Element;
     defaultProps: {
       contentBgColor: string;
       contentColor: string;
-      icon: JSX.Element;
+      icon: React.JSX.Element;
       position: string;
       tooltipContent: string;
     };

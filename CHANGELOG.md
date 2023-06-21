@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 2.0.7(2023-06-14)
+
+### Bugfixes
+
+- OTP Copy Paste Support ([341eb39](https://github.com/gofynd/nitrozen-react/pull/96))
+- Storybook and Documentation Link change ([21d74db](https://github.com/gofynd/nitrozen-react/pull/96))
+- Pagination Bugfixes ([4046ee1](https://github.com/gofynd/nitrozen-react/pull/97))
+
 ## 2.0.6(2023-06-14)
 
 ### Bugfixes

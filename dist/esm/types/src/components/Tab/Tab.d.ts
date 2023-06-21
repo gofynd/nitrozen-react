@@ -14,7 +14,7 @@ export interface TabProps {
   tabs?: number;
 }
 declare const _default: React.MemoExoticComponent<{
-  (props: TabProps): JSX.Element;
+  (props: TabProps): React.JSX.Element;
   defaultProps: {
     id: string;
     activeIndex: number;

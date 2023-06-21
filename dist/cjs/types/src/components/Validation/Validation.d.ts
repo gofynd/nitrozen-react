@@ -8,7 +8,7 @@ export interface ValidationProps {
   style?: React.CSSProperties;
 }
 declare const _default: React.MemoExoticComponent<{
-  (props: ValidationProps): JSX.Element;
+  (props: ValidationProps): React.JSX.Element;
   defaultProps: {
     validationState: string;
     label: string;

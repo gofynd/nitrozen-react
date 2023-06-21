@@ -18,7 +18,7 @@ export interface DatePickerProps {
   onConfirmRange?: Function;
 }
 declare const _default: React.MemoExoticComponent<{
-  (props: DatePickerProps): JSX.Element;
+  (props: DatePickerProps): React.JSX.Element;
   defaulProps: {
     dateVal: string;
     isRange: boolean;
