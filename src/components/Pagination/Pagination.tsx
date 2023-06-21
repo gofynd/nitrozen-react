@@ -529,7 +529,7 @@ const Pagination = (props: PaginationProps) => {
             <Button
               theme="secondary"
               data-testid="btnPrevious"
-              onClick={() => previous}
+              onClick={() => previous()}
               size="medium"
               className={"n-pagination__prev"}
               icon={SvgIcChevronLeft}
