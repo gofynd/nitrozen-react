@@ -3,7 +3,7 @@ import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { DateInputProps } from "./DateInput";
 declare const _default: ComponentMeta<
   React.MemoExoticComponent<{
-    (props: DateInputProps): JSX.Element;
+    (props: DateInputProps): React.JSX.Element;
     defaulProps: {
       useDatePicker: boolean;
       required: boolean;
@@ -21,7 +21,7 @@ declare const _default: ComponentMeta<
 export default _default;
 export declare const DateInputPlayground: ComponentStory<
   React.MemoExoticComponent<{
-    (props: DateInputProps): JSX.Element;
+    (props: DateInputProps): React.JSX.Element;
     defaulProps: {
       useDatePicker: boolean;
       required: boolean;
@@ -36,7 +36,9 @@ export declare const DateInputPlayground: ComponentStory<
     };
   }>
 >;
-export declare const DateRangeSample: (args: DateInputProps) => JSX.Element;
+export declare const DateRangeSample: (
+  args: DateInputProps
+) => React.JSX.Element;
 export declare const DateValidationSample: (
   args: DateInputProps
-) => JSX.Element;
+) => React.JSX.Element;

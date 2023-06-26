@@ -438,7 +438,7 @@ const v = (r) => {
             t.createElement(m, {
               theme: "secondary",
               "data-testid": "btnPrevious",
-              onClick: () => K,
+              onClick: () => K(),
               size: "medium",
               className: "n-pagination__prev",
               icon: s,

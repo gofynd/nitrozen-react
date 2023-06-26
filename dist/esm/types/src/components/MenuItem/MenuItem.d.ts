@@ -17,7 +17,7 @@ export interface MenuItemProps {
   index?: number;
 }
 declare const _default: React.MemoExoticComponent<{
-  (props: MenuItemProps): JSX.Element;
+  (props: MenuItemProps): React.JSX.Element;
   defaultProps: {
     id: string;
     key: string;

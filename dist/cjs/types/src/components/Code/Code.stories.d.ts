@@ -3,7 +3,7 @@ import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { CodeProps } from "./Code";
 declare const _default: ComponentMeta<
   React.MemoExoticComponent<{
-    (props: CodeProps): JSX.Element;
+    (props: CodeProps): React.JSX.Element;
     defaulProps: {
       fields: number;
       label: string;
@@ -22,7 +22,7 @@ declare const _default: ComponentMeta<
 export default _default;
 export declare const CodePlayground: ComponentStory<
   React.MemoExoticComponent<{
-    (props: CodeProps): JSX.Element;
+    (props: CodeProps): React.JSX.Element;
     defaulProps: {
       fields: number;
       label: string;
@@ -38,4 +38,4 @@ export declare const CodePlayground: ComponentStory<
     };
   }>
 >;
-export declare const OtpSample: (args: CodeProps) => JSX.Element;
+export declare const OtpSample: (args: CodeProps) => React.JSX.Element;

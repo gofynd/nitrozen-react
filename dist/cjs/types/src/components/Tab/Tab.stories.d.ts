@@ -3,7 +3,7 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import "../Menu/Menu.scss";
 declare const _default: ComponentMeta<
   React.MemoExoticComponent<{
-    (props: import("./Tab").TabProps): JSX.Element;
+    (props: import("./Tab").TabProps): React.JSX.Element;
     defaultProps: {
       id: string;
       activeIndex: number;
@@ -16,7 +16,7 @@ declare const _default: ComponentMeta<
 export default _default;
 export declare const ObjectTabItems: ComponentStory<
   React.MemoExoticComponent<{
-    (props: import("./Tab").TabProps): JSX.Element;
+    (props: import("./Tab").TabProps): React.JSX.Element;
     defaultProps: {
       id: string;
       activeIndex: number;
@@ -28,7 +28,7 @@ export declare const ObjectTabItems: ComponentStory<
 >;
 export declare const StringTabItems: ComponentStory<
   React.MemoExoticComponent<{
-    (props: import("./Tab").TabProps): JSX.Element;
+    (props: import("./Tab").TabProps): React.JSX.Element;
     defaultProps: {
       id: string;
       activeIndex: number;

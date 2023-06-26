@@ -6,7 +6,7 @@ export interface InputPrefixProps {
   >;
 }
 declare const InputPrefix: {
-  (props: InputPrefixProps): JSX.Element;
+  (props: InputPrefixProps): React.JSX.Element;
   defaultProps: {
     onPrefixClick: () => void;
   };

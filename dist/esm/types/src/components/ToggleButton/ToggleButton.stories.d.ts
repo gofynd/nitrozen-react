@@ -2,7 +2,7 @@ import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 declare const _default: ComponentMeta<
   React.MemoExoticComponent<{
-    (props: import("./ToggleButton").ToggleButtonProps): JSX.Element;
+    (props: import("./ToggleButton").ToggleButtonProps): React.JSX.Element;
     defaultProps: {
       id: string;
       value: boolean;
@@ -20,7 +20,7 @@ declare const _default: ComponentMeta<
 export default _default;
 export declare const ToggleBtn: ComponentStory<
   React.MemoExoticComponent<{
-    (props: import("./ToggleButton").ToggleButtonProps): JSX.Element;
+    (props: import("./ToggleButton").ToggleButtonProps): React.JSX.Element;
     defaultProps: {
       id: string;
       value: boolean;
@@ -35,6 +35,6 @@ export declare const ToggleBtn: ComponentStory<
     };
   }>
 >;
-export declare const demo: () => JSX.Element;
-export declare const iconDemo: () => JSX.Element;
-export declare const stateIconDemo: () => JSX.Element;
+export declare const demo: () => React.JSX.Element;
+export declare const iconDemo: () => React.JSX.Element;
+export declare const stateIconDemo: () => React.JSX.Element;

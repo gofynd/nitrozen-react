@@ -20,7 +20,7 @@ export interface AutocompleteProps {
   style?: React.CSSProperties;
 }
 declare const Autocomplete: {
-  (props: AutocompleteProps): JSX.Element;
+  (props: AutocompleteProps): React.JSX.Element;
   defaultProps: {
     debounceDuration: number;
     showSearchIcon: boolean;

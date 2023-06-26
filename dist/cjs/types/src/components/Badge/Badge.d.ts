@@ -12,7 +12,7 @@ export interface BadgeProps {
   onClickHandler?: React.MouseEventHandler<HTMLDivElement>;
 }
 declare const _default: React.MemoExoticComponent<{
-  (props: BadgeProps): JSX.Element;
+  (props: BadgeProps): React.JSX.Element;
   defaultProps: {
     size: string;
     kind: string;

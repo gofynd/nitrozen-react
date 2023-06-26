@@ -15,7 +15,7 @@ export interface NudgeProps {
   position: "top-right" | "top-bottom";
 }
 declare const _default: React.MemoExoticComponent<{
-  (props: NudgeProps): JSX.Element;
+  (props: NudgeProps): React.JSX.Element;
   defaultProps: {
     id: string;
     duration: number;

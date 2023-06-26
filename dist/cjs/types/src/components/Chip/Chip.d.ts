@@ -18,7 +18,7 @@ export interface ChipProps {
   label?: string | number;
 }
 declare const _default: React.MemoExoticComponent<{
-  (props: ChipProps): JSX.Element;
+  (props: ChipProps): React.JSX.Element;
   defaultProps: {
     deletable: boolean;
     disabled: boolean;

@@ -1,7 +1,8 @@
+import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import "../../base/storybook.scss";
 declare const _default: ComponentMeta<{
-  (props: import("./Card").CardProps): JSX.Element;
+  (props: import("./Card").CardProps): React.JSX.Element;
   defaultProps: {
     imageRatio: string;
     imageFocus: string;
@@ -12,7 +13,7 @@ declare const _default: ComponentMeta<{
 }>;
 export default _default;
 export declare const Card_demo: ComponentStory<{
-  (props: import("./Card").CardProps): JSX.Element;
+  (props: import("./Card").CardProps): React.JSX.Element;
   defaultProps: {
     imageRatio: string;
     imageFocus: string;

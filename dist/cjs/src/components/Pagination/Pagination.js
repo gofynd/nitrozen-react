@@ -446,7 +446,7 @@ const g = (n) => {
             m.default.createElement(l, {
               theme: "secondary",
               "data-testid": "btnPrevious",
-              onClick: () => A,
+              onClick: () => A(),
               size: "medium",
               className: "n-pagination__prev",
               icon: r.SvgIcChevronLeft,

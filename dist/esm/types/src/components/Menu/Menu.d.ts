@@ -18,14 +18,14 @@ export interface MenuProps {
   children?: React.ReactNode;
 }
 declare const _default: React.MemoExoticComponent<{
-  (props: MenuProps): JSX.Element;
+  (props: MenuProps): React.JSX.Element;
   defaultProps: {
     id: string;
     className: string;
     mode: string;
     position: string;
     inverted: boolean;
-    icon: JSX.Element;
+    icon: React.JSX.Element;
     maxHeight: undefined;
     open: boolean;
     selectedIndex: number;
@@ -34,7 +34,7 @@ declare const _default: React.MemoExoticComponent<{
     onClose: () => void;
     anchorEl: undefined;
     style: {};
-    children: JSX.Element;
+    children: React.JSX.Element;
   };
 }>;
 export default _default;

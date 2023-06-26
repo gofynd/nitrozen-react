@@ -54,6 +54,10 @@ const Code = (props: CodeProps) => {
     // if the target event is empty then delete and go back
     // Replace the user input to allow only numbers
     let codeInput = event.target.value.replace(/[^0-9]+/g, "");
+    if (codeInput.length == fields) {
+      let tempCodeArr = codeInput.split("");
+      setCodeArr(tempCodeArr);
+    }
     // Case to handle backspace event in case there is a value already in the field
     if (codeInput.length == 2 && index + 1 <= fields - 1) {
       codeInput = codeInput[1];

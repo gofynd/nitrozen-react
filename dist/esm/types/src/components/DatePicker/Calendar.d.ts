@@ -16,7 +16,7 @@ export interface CalendarProps {
   calendarId: string;
 }
 declare const _default: React.MemoExoticComponent<{
-  (props: CalendarProps): JSX.Element;
+  (props: CalendarProps): React.JSX.Element;
   defaulProps: {
     dateVal: string;
     from: string;

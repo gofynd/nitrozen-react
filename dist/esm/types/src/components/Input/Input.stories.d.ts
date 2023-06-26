@@ -2,7 +2,7 @@ import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 declare const _default: ComponentMeta<
   React.MemoExoticComponent<{
-    (props: import("./Input").InputProps): JSX.Element;
+    (props: import("./Input").InputProps): React.JSX.Element;
     defaultProps: {
       autoComplete: string;
       type: string;
@@ -33,7 +33,7 @@ declare const _default: ComponentMeta<
 export default _default;
 export declare const Textfield: ComponentStory<
   React.MemoExoticComponent<{
-    (props: import("./Input").InputProps): JSX.Element;
+    (props: import("./Input").InputProps): React.JSX.Element;
     defaultProps: {
       autoComplete: string;
       type: string;
@@ -63,7 +63,7 @@ export declare const Textfield: ComponentStory<
 >;
 export declare const Textarea: ComponentStory<
   React.MemoExoticComponent<{
-    (props: import("./Input").InputProps): JSX.Element;
+    (props: import("./Input").InputProps): React.JSX.Element;
     defaultProps: {
       autoComplete: string;
       type: string;

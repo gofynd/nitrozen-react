@@ -2,7 +2,7 @@ import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 declare const _default: ComponentMeta<
   React.MemoExoticComponent<{
-    (props: import("./Validation").ValidationProps): JSX.Element;
+    (props: import("./Validation").ValidationProps): React.JSX.Element;
     defaultProps: {
       validationState: string;
       label: string;
@@ -13,7 +13,7 @@ declare const _default: ComponentMeta<
 export default _default;
 export declare const ValidationMessage: ComponentStory<
   React.MemoExoticComponent<{
-    (props: import("./Validation").ValidationProps): JSX.Element;
+    (props: import("./Validation").ValidationProps): React.JSX.Element;
     defaultProps: {
       validationState: string;
       label: string;
@@ -21,4 +21,4 @@ export declare const ValidationMessage: ComponentStory<
     };
   }>
 >;
-export declare const ValidationDemo: () => JSX.Element;
+export declare const ValidationDemo: () => React.JSX.Element;

@@ -26,7 +26,7 @@ export interface DialogProps {
   closeHandle?: Function;
 }
 declare const Dialog: {
-  (props: DialogProps): JSX.Element;
+  (props: DialogProps): React.JSX.Element;
   defaultProps: {
     id: string;
     title: string;

@@ -6,7 +6,7 @@ export interface InputSuffixProps {
   >;
 }
 declare const InputSuffix: {
-  (props: InputSuffixProps): JSX.Element;
+  (props: InputSuffixProps): React.JSX.Element;
   defaultProps: {
     onSuffixClick: () => void;
   };

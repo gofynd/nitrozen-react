@@ -46,7 +46,7 @@ export interface InputProps {
   tooltipIcon?: React.ReactNode;
 }
 declare const _default: React.MemoExoticComponent<{
-  (props: InputProps): JSX.Element;
+  (props: InputProps): React.JSX.Element;
   defaultProps: {
     autoComplete: string;
     type: string;

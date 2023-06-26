@@ -100,6 +100,10 @@ const d = (d) => {
             onChange: (e) =>
               (function (e, t) {
                 let l = e.target.value.replace(/[^0-9]+/g, "");
+                if (l.length == s) {
+                  let e = l.split("");
+                  $(e);
+                }
                 if (2 == l.length && t + 1 <= s - 1) {
                   l = l[1];
                   let e = [...C];
