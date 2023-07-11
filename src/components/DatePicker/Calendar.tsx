@@ -42,8 +42,6 @@ const Calendar = (props: CalendarProps) => {
     calendarId,
   } = props;
 
-  console.log(calendar);
-
   const [days, setDays] = useState([
     { name: "S", enum: 7 },
     { name: "M", enum: 1 },

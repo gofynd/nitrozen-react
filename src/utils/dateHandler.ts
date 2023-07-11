@@ -41,4 +41,13 @@ const getFormattedDate = (dateVal: any) => {
   return `${formatDate.mm}/${formatDate.dd}/${formatDate.yyyy}`;
 };
 
-export { daysInMonth, months, years, getFormattedDate };
+const areDatesSame = (startDate: any, endDate: any) => {
+  if (!startDate || !endDate) return false;
+  return (
+    startDate.getFullYear() === endDate.getFullYear() &&
+    startDate.getMonth() === endDate.getMonth() &&
+    startDate.getDate() === endDate.getDate()
+  );
+};
+
+export { daysInMonth, months, years, getFormattedDate, areDatesSame };
