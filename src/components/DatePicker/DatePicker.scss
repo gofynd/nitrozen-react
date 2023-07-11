@@ -174,7 +174,14 @@
       border-bottom-left-radius: 25em;
       border-top-left-radius: 25em;
     }
-
+    &-rangesame {
+      background-color: $ColorPrimary50;
+      color: $WhiteColor;
+      border-bottom-left-radius: 25em;
+      border-top-left-radius: 25em;
+      border-bottom-right-radius: 25em;
+      border-top-right-radius: 25em;
+    }
     &-rangeend {
       background-color: $ColorPrimary50;
       color: $WhiteColor;
