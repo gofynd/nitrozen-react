@@ -38,10 +38,19 @@ const getFormattedDate = (dateVal: any) => {
       ? "0" + inputDate.getDate().toString()
       : inputDate.getDate().toString();
   formatDate.yyyy = inputDate.getFullYear().toString();
+
+  if (
+    formatDate.mm === "NaN" ||
+    formatDate.dd === "NaN" ||
+    formatDate.yyyy === "NaN"
+  ) {
+    return "--";
+  }
+
   return `${formatDate.mm}/${formatDate.dd}/${formatDate.yyyy}`;
 };
 
-const areDatesSame = (startDate: any, endDate: any) => {
+const areDatesSame = (startDate: Date, endDate: Date) => {
   if (!startDate || !endDate) return false;
   return (
     startDate.getFullYear() === endDate.getFullYear() &&
