@@ -244,7 +244,7 @@ const DatePicker = (props: DatePickerProps) => {
     let convertedDate = new Date(dateValue);
     if (startDate == dateValue) {
       setStartDate("");
-      return getRange?.({
+      getRange?.({
         start: "",
         end: new Date(endDate),
         min: rangeConfig?.min,
@@ -288,6 +288,28 @@ const DatePicker = (props: DatePickerProps) => {
       min: rangeConfig?.min,
       max: rangeConfig?.max,
     });
+
+    // case if end date exists and start date doesn't exists
+    if (!startDate && endDate) {
+      if (new Date(endDate) < convertedDate) {
+        setEndDate(dateValue);
+        setStartDate(endDate);
+        return getRange?.({
+          start: new Date(endDate),
+          end: new Date(dateValue),
+          min: rangeConfig?.min,
+          max: rangeConfig?.max,
+        });
+      } else {
+        setEndDate(dateValue);
+        return getRange?.({
+          start: new Date(startDate),
+          end: new Date(dateValue),
+          min: rangeConfig?.min,
+          max: rangeConfig?.max,
+        });
+      }
+    }
   };
 
   //function specific for non range calendar mode
@@ -398,6 +420,7 @@ const DatePicker = (props: DatePickerProps) => {
       <div className="n-picker-calendar-group">
         {calendars[0].length && (
           <Calendar
+            rangeConfig={rangeConfig}
             calendarId={"c1"}
             onDateClick={
               isRange
@@ -431,6 +454,7 @@ const DatePicker = (props: DatePickerProps) => {
               data-testid="date-picker-divider"
             />{" "}
             <Calendar
+              rangeConfig={rangeConfig}
               calendarId={"c2"}
               onDateClick={(dateVal: string) =>
                 handleCalendarDateItemClicked(dateVal)

@@ -38,7 +38,25 @@ const getFormattedDate = (dateVal: any) => {
       ? "0" + inputDate.getDate().toString()
       : inputDate.getDate().toString();
   formatDate.yyyy = inputDate.getFullYear().toString();
+
+  if (
+    formatDate.mm === "NaN" ||
+    formatDate.dd === "NaN" ||
+    formatDate.yyyy === "NaN"
+  ) {
+    return "--";
+  }
+
   return `${formatDate.mm}/${formatDate.dd}/${formatDate.yyyy}`;
 };
 
-export { daysInMonth, months, years, getFormattedDate };
+const areDatesSame = (startDate: Date, endDate: Date) => {
+  if (!startDate || !endDate) return false;
+  return (
+    startDate.getFullYear() === endDate.getFullYear() &&
+    startDate.getMonth() === endDate.getMonth() &&
+    startDate.getDate() === endDate.getDate()
+  );
+};
+
+export { daysInMonth, months, years, getFormattedDate, areDatesSame };
