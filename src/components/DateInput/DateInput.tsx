@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import Validation from "../Validation";
+import Tooltip from "../Tooltip";
 import {
   SvgIcCloseRemove,
   SvgIcCalendar,
+  SvgIcHelp,
 } from "../../assets/svg-components/Nitrozen";
 import "./DateInput.scss";
 import DatePicker from "../DatePicker/DatePicker";
@@ -30,6 +32,10 @@ export interface DateInputProps {
   rangeConfig?: RangeConfigProps;
   onConfirmRange?: Function;
   defaultValidation?: boolean;
+  disabled?: boolean;
+  tooltipText?: string;
+  showTooltip?: boolean;
+  tooltipIcon?: React.ReactNode;
 }
 
 const DateInput = (props: DateInputProps) => {
@@ -50,6 +56,10 @@ const DateInput = (props: DateInputProps) => {
     rangeConfig,
     onConfirmRange,
     defaultValidation,
+    disabled,
+    tooltipText,
+    showTooltip,
+    tooltipIcon,
   } = props;
   const [date, setDate] = useState<any>({ mm: "", dd: "", yyyy: "" });
   const [dateError, setDateError] = useState("");
@@ -189,13 +199,33 @@ const DateInput = (props: DateInputProps) => {
   };
 
   return (
-    <div className="n-date-wrapper">
+    <div
+      className={`n-date-wrapper ${disabled ? "n-input-group-disabled" : ""}`}
+      data-testid="date-input"
+    >
       <div className={`n-input-label-container`}>
         {label && (
           <label className="n-input-label" data-testid={`n-date-label`}>
             <>
-              {label}
-              {required ? "*" : ""}
+              <p>
+                {label}
+                {required ? "*" : ""}
+              </p>
+              {showTooltip && (
+                <span className="n-input-tooltip">
+                  {tooltipText && (
+                    <Tooltip
+                      tooltipContent={tooltipText}
+                      icon={
+                        tooltipIcon || (
+                          <SvgIcHelp style={{ fontSize: "14px" }} />
+                        )
+                      }
+                      position="top"
+                    />
+                  )}
+                </span>
+              )}
             </>
           </label>
         )}
@@ -233,7 +263,9 @@ const DateInput = (props: DateInputProps) => {
                     key={`date-input-${index}-${id}`}
                     data-testid={`date-input-${index}-${id}`}
                     id={`date-input-${index}-${id}`}
-                    className="n-date-single-field"
+                    className={`n-date-single-field ${
+                      disabled ? "disabled" : ""
+                    }`}
                     value={date[dateKey]}
                     type="text"
                     onChange={(event) => handleDateInput(event, dateKey, index)}
@@ -250,7 +282,7 @@ const DateInput = (props: DateInputProps) => {
                       getDateValue?.(`${date.mm}/${date.dd}/${date.yyyy}`);
                     }}
                     autoComplete={"off"}
-                    disabled={useDatePicker ? true : false}
+                    disabled={disabled}
                   />
                   {index < 3 ? (
                     <span className="n-date-divider">/</span>
@@ -346,6 +378,7 @@ DateInput.defaulProps = {
   rangeConfig: {},
   onConfirmRange: () => {},
   defaultValidation: true,
+  disabled: false,
 };
 
 export default React.memo(DateInput);
