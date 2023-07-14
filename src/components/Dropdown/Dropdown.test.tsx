@@ -331,4 +331,26 @@ describe("Dropdown", () => {
     // Assert
     expect(search).toHaveValue("testing");
   });
+  test("should show No `Label`|Options Found if items passed is an empty array", () => {
+    // Arrange
+    const { getByTestId } = render(
+      <Dropdown
+        value={""}
+        label="States"
+        items={[]}
+        onChange={() => {}}
+        enableSelectAll
+        multiple
+      />
+    );
+    const toggleDiv = document.querySelector(
+      ".n-select-wrapper"
+    ) as HTMLDivElement;
+    fireEvent.click(toggleDiv);
+
+    const noOption = getByTestId("no-option");
+
+    // Assert
+    expect(noOption).toBeInTheDocument();
+  });
 });

@@ -32,6 +32,8 @@ export interface DropdownProps {
   tooltipIcon?: React.ReactNode;
   value?: string | number | boolean | any[];
   addOption?: Boolean;
+  showAddOptionWithItems?: Boolean;
+  removeBorderBetweenItems?: Boolean;
   addOptionHandler?: Function;
   enableSelectAll?: Boolean;
   onChange?: Function;
@@ -110,9 +112,9 @@ const Dropdown = (props: DropdownProps) => {
           setSelectedItems(
             Array.isArray(props.value) ? [...props.value] : [props.value]
           );
-          setAllOptions();
           setSelectedText(generateSelectedText());
         }
+        setAllOptions();
       } else {
         setSelectedItems([]);
         setSearchInput("");
@@ -397,7 +399,9 @@ const Dropdown = (props: DropdownProps) => {
             </div>
           </div>
           <div
-            className={`n-options ${dropUp && "n-dropup"}`}
+            className={`n-options ${dropUp ? "n-dropup" : ""} ${
+              props.removeBorderBetweenItems ? "n-options-no-border" : ""
+            }`}
             ref={nitrozenSelectOptionRef}
             data-testid="dropdown-scroll"
             onScroll={handleScroll}
@@ -494,25 +498,29 @@ const Dropdown = (props: DropdownProps) => {
                   </div>
                 </span>
               ))}
-            {props.searchable && props.items && props.items.length === 0 && (
+            {props.items && (
               <span className="n-option">
-                {props.addOption && (
-                  <div className="n-option-container">
-                    No {props.label} Found
+                {props.items.length === 0 && (
+                  <div className="n-option-container" data-testid="no-option">
+                    No {props.label || "Options"} Found
                   </div>
                 )}
-                {props.addOption && searchInput?.length > 0 && (
-                  <div className="n-option-container">
-                    <div
-                      data-testid="add-option"
-                      className="n-dropdown-empty"
-                      onClick={addOption}
-                    >
-                      <SvgIcAdd />
-                      <p>Add {searchInput}</p>
+                {props.searchable &&
+                  ((props.addOption && props.items.length === 0) ||
+                    (props.showAddOptionWithItems &&
+                      props.items.length !== 0)) &&
+                  searchInput?.length > 0 && (
+                    <div className="n-option-container">
+                      <div
+                        data-testid="add-option"
+                        className="n-dropdown-empty"
+                        onClick={addOption}
+                      >
+                        <SvgIcAdd />
+                        <p>Add {searchInput}</p>
+                      </div>
                     </div>
-                  </div>
-                )}
+                  )}
               </span>
             )}
           </div>
@@ -547,6 +555,8 @@ Dropdown.defaultProps = {
   searchable: false,
   tooltip: null,
   addOption: false,
+  showAddOptionWithItems: false,
+  removeBorderBetweenItems: false,
   enableSelectAll: false,
   helperText: "",
   className: "",
