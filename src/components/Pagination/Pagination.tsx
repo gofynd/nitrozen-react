@@ -343,13 +343,13 @@ const Pagination = (props: PaginationProps) => {
   function countsText(type = "default") {
     let txt = " ";
     if (showTotal()) {
-      txt = `${
-        type === "default" ? "Showing " : ""
-      }${firstRecord()} - ${lastRecord()}`;
-      txt += ` of ${value.total}${type === "default" ? " results" : ""}`;
+      txt = `${type === "default" ? "Showing " : ""}${firstRecord() ?? 0} - ${
+        lastRecord() ?? 0
+      }`;
+      txt += ` of ${value.total ?? 0}${type === "default" ? " results" : ""}`;
     } else if (value.currentTotal) {
       txt = `${type === "default" ? "Showing" : ""} ${
-        value.currentTotal
+        value.currentTotal ?? 0
       } ${name}`;
     } else {
       txt = "";

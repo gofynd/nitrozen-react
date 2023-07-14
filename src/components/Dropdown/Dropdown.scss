@@ -152,6 +152,10 @@
     }
   }
 
+  .n-options-no-border .n-option {
+    border: unset;
+  }
+
   .n-option:hover {
     cursor: pointer;
     background-color: $ColorSecondaryGrey20;
