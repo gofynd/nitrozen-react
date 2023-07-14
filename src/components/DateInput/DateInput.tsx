@@ -304,7 +304,7 @@ const DateInput = (props: DateInputProps) => {
             ) : null}
           </div>
         </div>
-        {date.mm || date.dd || date.yyyy ? (
+        {(date.mm || date.dd || date.yyyy) && !disabled ? (
           <div
             data-testid={`n-date-close-icon`}
             className="n-input-close-btn n-icon-container n-cursor-pointer"
