@@ -125,8 +125,7 @@ const m = (r) => {
             t.createElement(
               t.Fragment,
               null,
-              d,
-              b ? "*" : "",
+              t.createElement("p", null, d, b ? "*" : ""),
               G &&
                 t.createElement(
                   "span",

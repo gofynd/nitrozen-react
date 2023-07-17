@@ -6,22 +6,22 @@ import o from "../Button/Button.js";
 import {
   daysInMonth as i,
   months as d,
-  getFormattedDate as c,
+  getFormattedDate as m,
 } from "../../utils/dateHandler.js";
-const m = (m) => {
+const c = (c) => {
   const {
       dateVal: s,
       isRange: u,
       onDateClick: g,
       onClose: f,
-      minDate: p,
-      maxDate: h,
-      rangeConfig: v,
-      getRange: w,
-      onConfirmRange: D,
-    } = m,
-    [M, Y] = t(""),
-    [k, x] = t(""),
+      minDate: v,
+      maxDate: w,
+      rangeConfig: D,
+      getRange: p,
+      onConfirmRange: h,
+    } = c,
+    [x, M] = t(""),
+    [Y, k] = t(""),
     [E] = t([
       { name: "S", enum: 7 },
       { name: "M", enum: 1 },
@@ -31,8 +31,8 @@ const m = (m) => {
       { name: "F", enum: 5 },
       { name: "S", enum: 6 },
     ]),
-    [F, $] = t(["", ""]),
-    [C, N] = t(["", ""]),
+    [F, C] = t(["", ""]),
+    [$, N] = t(["", ""]),
     [I, R] = t([[], []]),
     [B] = t(new Date()),
     [y, b] = t(""),
@@ -47,12 +47,12 @@ const m = (m) => {
     let n = "",
       a = "";
     if (u) {
-      if (null == v ? void 0 : v.start) {
-        let n = new Date(v.start);
+      if (null == D ? void 0 : D.start) {
+        let n = new Date(D.start);
         (e = n.getMonth() + 1), (t = n.getFullYear());
       }
-      if (null == v ? void 0 : v.end) {
-        let t = new Date(v.end);
+      if (null == D ? void 0 : D.end) {
+        let t = new Date(D.end);
         (n = t.getMonth() + 1),
           (a = t.getFullYear()),
           e == n &&
@@ -79,8 +79,8 @@ const m = (m) => {
     W({ forMonth: e, forYear: t, calendarIndex: 0 }),
       u &&
         (W({ forMonth: n, forYear: a, calendarIndex: 1 }),
-        Y((null == v ? void 0 : v.start) || ""),
-        x((null == v ? void 0 : v.end) || ""));
+        M((null == D ? void 0 : D.start) || ""),
+        k((null == D ? void 0 : D.end) || ""));
   }, []);
   const W = (e) => {
       let { forMonth: t, forYear: n, calendarIndex: a } = e;
@@ -89,106 +89,127 @@ const m = (m) => {
         r = B.getMonth() + 1,
         o = B.getDate();
       r = r < 10 ? `0${r}` : r;
-      let c = i(t, n),
-        m = new Date(`${t}/01/${n}`).getDay(),
-        s = E.findIndex((e) => e.enum == m),
+      let m = i(t, n),
+        c = new Date(`${t}/01/${n}`).getDay(),
+        s = E.findIndex((e) => e.enum == c),
         u = [];
-      for (var g = 1; g <= c; g++) {
+      for (var g = 1; g <= m; g++) {
         let e = new Date(`${t}/${g}/${n}`),
           a = !1,
           i = !1,
           d = !1,
-          c = !1,
-          m = !1;
+          m = !1,
+          c = !1;
         new Date(`${t}/${g}/${n}`).getTime() ==
           new Date(`${r}/${o}/${l}`).getTime() && (a = !0),
-          p && new Date(p) > e && (i = !0),
-          h && new Date(h) < e && (i = !0),
+          v && new Date(v) > e && (i = !0),
+          w && new Date(w) < e && (i = !0),
           u.push({
             value: g,
             isToday: a,
             isDisabled: i,
             inRange: d,
-            rangeEnd: m,
-            rangeStart: c,
+            rangeEnd: c,
+            rangeStart: m,
           });
       }
       let f = Array(-1 == s ? 0 : s).fill({ value: 0 }),
-        v = I;
-      v[a] = [...f, ...u];
-      let w = new Date(`${t}/01/${n}`).getMonth(),
-        D = F;
-      D[a] = d[w];
-      let M = C;
-      (M[a] = n.toString()), $([...D]), N([...M]), R([...v]);
+        D = I;
+      D[a] = [...f, ...u];
+      let p = new Date(`${t}/01/${n}`).getMonth(),
+        h = F;
+      h[a] = d[p];
+      let x = $;
+      (x[a] = n.toString()), C([...h]), N([...x]), R([...D]);
     },
     V = (e, t) => {
       (u && F.includes(d[e - 1])) ||
-        W({ forMonth: e, forYear: C[t], calendarIndex: t });
+        W({ forMonth: e, forYear: $[t], calendarIndex: t });
     },
     z = (e, t) => {
       let n = d.findIndex((e) => e == F[t]);
-      (u && C.includes(e)) ||
+      (u && $.includes(e)) ||
         W({ forMonth: n + 1, forYear: e, calendarIndex: t });
     },
     A = (e) => {
       let t = new Date(e);
-      return M == e
-        ? (Y(""),
-          null == w
-            ? void 0
-            : w({
-                start: "",
-                end: new Date(k),
-                min: null == v ? void 0 : v.min,
-                max: null == v ? void 0 : v.max,
-              }))
-        : k == e
-        ? (x(""),
-          null == w
-            ? void 0
-            : w({
-                start: new Date(M),
+      return (
+        x == e &&
+          (M(""),
+          null == p ||
+            p({
+              start: "",
+              end: new Date(Y),
+              min: null == D ? void 0 : D.min,
+              max: null == D ? void 0 : D.max,
+            })),
+        Y == e
+          ? (k(""),
+            null == p
+              ? void 0
+              : p({
+                  start: new Date(x),
+                  end: "",
+                  min: null == D ? void 0 : D.min,
+                  max: null == D ? void 0 : D.max,
+                }))
+          : x
+          ? new Date(x) > t
+            ? (k(x),
+              M(e),
+              null == p
+                ? void 0
+                : p({
+                    start: new Date(e),
+                    end: new Date(x),
+                    min: null == D ? void 0 : D.min,
+                    max: null == D ? void 0 : D.max,
+                  }))
+            : (k(e),
+              null == p
+                ? void 0
+                : p({
+                    start: new Date(x),
+                    end: new Date(e),
+                    min: null == D ? void 0 : D.min,
+                    max: null == D ? void 0 : D.max,
+                  }))
+          : (M(e),
+            null == p ||
+              p({
+                start: new Date(e),
                 end: "",
-                min: null == v ? void 0 : v.min,
-                max: null == v ? void 0 : v.max,
-              }))
-        : M
-        ? new Date(M) > t
-          ? (x(M),
-            Y(e),
-            null == w
-              ? void 0
-              : w({
-                  start: new Date(e),
-                  end: new Date(M),
-                  min: null == v ? void 0 : v.min,
-                  max: null == v ? void 0 : v.max,
-                }))
-          : (x(e),
-            null == w
-              ? void 0
-              : w({
-                  start: new Date(M),
-                  end: new Date(e),
-                  min: null == v ? void 0 : v.min,
-                  max: null == v ? void 0 : v.max,
-                }))
-        : (Y(e),
-          void (
-            null == w ||
-            w({
-              start: new Date(e),
-              end: "",
-              min: null == v ? void 0 : v.min,
-              max: null == v ? void 0 : v.max,
-            })
-          ));
+                min: null == D ? void 0 : D.min,
+                max: null == D ? void 0 : D.max,
+              }),
+            !x && Y
+              ? new Date(Y) < t
+                ? (k(e),
+                  M(Y),
+                  null == p
+                    ? void 0
+                    : p({
+                        start: new Date(Y),
+                        end: new Date(e),
+                        min: null == D ? void 0 : D.min,
+                        max: null == D ? void 0 : D.max,
+                      }))
+                : (k(e),
+                  null == p
+                    ? void 0
+                    : p({
+                        start: new Date(x),
+                        end: new Date(e),
+                        min: null == D ? void 0 : D.min,
+                        max: null == D ? void 0 : D.max,
+                      }))
+              : void 0)
+      );
     },
     q = (e) => {
       let t = F[e],
         n = d.findIndex((e) => e == t),
-        a = C[e],
+        a = $[e],
         l = J(`${n + 1}/01/${a}`);
       W({
         forMonth: l.getMonth() + 1,
@@ -206,7 +227,7 @@ const m = (m) => {
     G = (e) => {
       let t = F[e],
         n = d.findIndex((e) => e == t),
-        a = C[e],
+        a = $[e],
         l = K(`${n + 1}/01/${a}`);
       W({
         forMonth: l.getMonth() + 1,
@@ -272,6 +293,7 @@ const m = (m) => {
       { className: "n-picker-calendar-group" },
       I[0].length &&
         e.createElement(r, {
+          rangeConfig: D,
           calendarId: "c1",
           onDateClick: u
             ? (e) => A(e)
@@ -279,14 +301,14 @@ const m = (m) => {
                 j ? b(e) : null == g || g(e);
               },
           selectedMonth: F[0],
-          selectedYear: C[0],
+          selectedYear: $[0],
           monthHandler: (e) => V(e, 0),
           yearHandler: (e) => {
             z(e, 0);
           },
           isRange: u,
-          from: M,
-          to: k,
+          from: x,
+          to: Y,
           calendar: I[0],
           handleNextButtonClicked: () => {
             q(0);
@@ -305,13 +327,14 @@ const m = (m) => {
             }),
             " ",
             e.createElement(r, {
+              rangeConfig: D,
               calendarId: "c2",
               onDateClick: (e) => A(e),
               isRange: u,
-              from: M,
-              to: k,
+              from: x,
+              to: Y,
               selectedMonth: F[1],
-              selectedYear: C[1],
+              selectedYear: $[1],
               calendar: I[1],
               monthHandler: (e) => V(e, 1),
               yearHandler: (e) => {
@@ -327,7 +350,7 @@ const m = (m) => {
           )
         : e.createElement(e.Fragment, null)
     ),
-    u && v
+    u && D
       ? e.createElement(
           "div",
           { className: "n-picker-footer" },
@@ -341,7 +364,7 @@ const m = (m) => {
                 "data-testid": "picker-startdate",
               },
               e.createElement("span", null, "Start Date"),
-              e.createElement("span", null, v.start ? c(v.start) : "--")
+              e.createElement("span", null, D.start ? m(D.start) : "--")
             ),
             e.createElement(
               "div",
@@ -350,7 +373,7 @@ const m = (m) => {
                 "data-testid": "picker-enddate",
               },
               e.createElement("span", null, "End Date"),
-              e.createElement("span", null, v.end ? c(v.end) : "--")
+              e.createElement("span", null, D.end ? m(D.end) : "--")
             )
           ),
           e.createElement(
@@ -359,9 +382,9 @@ const m = (m) => {
             e.createElement(
               o,
               {
-                disabled: !v.end || !c(v.start),
+                disabled: !D.end || !m(D.start),
                 onClick: () => {
-                  null == D || D(v);
+                  null == h || h(D);
                 },
               },
               "Confirm"
@@ -383,7 +406,7 @@ const m = (m) => {
                 className: "n-picker-single-footer-date-item",
                 "data-testid": "single-footer-value",
               },
-              e.createElement("span", null, y ? c(y) : "--")
+              e.createElement("span", null, y ? m(y) : "--")
             )
           ),
           e.createElement(
@@ -403,12 +426,12 @@ const m = (m) => {
         )
   );
 };
-m.defaulProps = {
+c.defaulProps = {
   dateVal: "",
   isRange: !1,
   rangeConfig: {},
   getRange: () => {},
 };
-var s = e.memo(m);
+var s = e.memo(c);
 export { s as default };
 //# sourceMappingURL=DatePicker.js.map

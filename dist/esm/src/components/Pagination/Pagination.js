@@ -5,8 +5,8 @@ import l from "../Dropdown/Dropdown.js";
 import "./Pagination.scss.js";
 import { usePagination as c } from "./usePagination.js";
 import {
-  SvgIcChevronLeft as s,
-  SvgIcSearch as o,
+  SvgIcChevronLeft as o,
+  SvgIcSearch as s,
   SvgIcChevronRight as u,
 } from "../../assets/svg-components/Nitrozen/index.js";
 import m from "../Button/Button.js";
@@ -142,25 +142,40 @@ const v = (r) => {
     M.current && !M.current.contains(e.target) && I(!1);
   }
   function ee(e = "default") {
-    let t = " ";
+    var t, n, a, i;
+    let r = " ";
     return (
       !(function () {
         if (x.total) return !0;
         return !1;
       })()
-        ? (t = x.currentTotal
-            ? `${"default" === e ? "Showing" : ""} ${x.currentTotal} ${f}`
+        ? (r = x.currentTotal
+            ? `${"default" === e ? "Showing" : ""} ${
+                null !== (i = x.currentTotal) && void 0 !== i ? i : 0
+              } ${f}`
             : "")
-        : ((t = `${"default" === e ? "Showing " : ""}${
-            x.limit && x.limit * (x.current ? x.current - 1 : 0) + 1
+        : ((r = `${"default" === e ? "Showing " : ""}${
+            null !==
+              (t = x.limit && x.limit * (x.current ? x.current - 1 : 0) + 1) &&
+            void 0 !== t
+              ? t
+              : 0
           } - ${
-            x.limit &&
-            x.current &&
-            x.total &&
-            (x.limit * x.current < x.total ? x.limit * x.current : x.total)
+            null !==
+              (n =
+                x.limit &&
+                x.current &&
+                x.total &&
+                (x.limit * x.current < x.total
+                  ? x.limit * x.current
+                  : x.total)) && void 0 !== n
+              ? n
+              : 0
           }`),
-          (t += ` of ${x.total}${"default" === e ? " results" : ""}`)),
-      t
+          (r += ` of ${null !== (a = x.total) && void 0 !== a ? a : 0}${
+            "default" === e ? " results" : ""
+          }`)),
+      r
     );
   }
   function te() {
@@ -245,7 +260,7 @@ const v = (r) => {
                           !te() && "pagination-diabled"
                         }`,
                       },
-                      t.createElement(s, null)
+                      t.createElement(o, null)
                     ),
                     t.createElement(
                       "div",
@@ -289,7 +304,7 @@ const v = (r) => {
                               t.createElement(
                                 "div",
                                 { className: "n-pagination__search_logo" },
-                                t.createElement(o, { className: "search-icon" })
+                                t.createElement(s, { className: "search-icon" })
                               ),
                               t.createElement(
                                 "div",
@@ -441,7 +456,7 @@ const v = (r) => {
               onClick: () => K(),
               size: "medium",
               className: "n-pagination__prev",
-              icon: s,
+              icon: o,
               disabled: !te(),
             }),
             t.createElement(g, {

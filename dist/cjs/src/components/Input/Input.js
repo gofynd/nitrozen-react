@@ -127,8 +127,7 @@ const c = (l) => {
             s.default.createElement(
               s.default.Fragment,
               null,
-              f,
-              m ? "*" : "",
+              s.default.createElement("p", null, f, m ? "*" : ""),
               O &&
                 s.default.createElement(
                   "span",
