@@ -22,7 +22,7 @@ const e = [
     2027, 2028, 2029, 2030, 2031, 2032, 2033, 2034, 2035, 2036, 2037, 2038,
     2039, 2040, 2041, 2042, 2043, 2044, 2045, 2046, 2047, 2048, 2049, 2050,
   ],
-  n = (t) => {
+  g = (t) => {
     let e = new Date(t),
       r = {};
     return (
@@ -35,8 +35,21 @@ const e = [
           ? "0" + e.getDate().toString()
           : e.getDate().toString()),
       (r.yyyy = e.getFullYear().toString()),
-      `${r.mm}/${r.dd}/${r.yyyy}`
+      "NaN" === r.mm || "NaN" === r.dd || "NaN" === r.yyyy
+        ? "--"
+        : `${r.mm}/${r.dd}/${r.yyyy}`
     );
-  };
-export { t as daysInMonth, n as getFormattedDate, e as months, r as years };
+  },
+  a = (t, e) =>
+    !(!t || !e) &&
+    t.getFullYear() === e.getFullYear() &&
+    t.getMonth() === e.getMonth() &&
+    t.getDate() === e.getDate();
+export {
+  a as areDatesSame,
+  t as daysInMonth,
+  g as getFormattedDate,
+  e as months,
+  r as years,
+};
 //# sourceMappingURL=dateHandler.js.map

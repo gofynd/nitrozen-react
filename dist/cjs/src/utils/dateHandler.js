@@ -1,8 +1,13 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: !0 });
-(exports.daysInMonth = function (e, t) {
-  return new Date(t, e, 0).getDate();
-}),
+(exports.areDatesSame = (e, t) =>
+  !(!e || !t) &&
+  e.getFullYear() === t.getFullYear() &&
+  e.getMonth() === t.getMonth() &&
+  e.getDate() === t.getDate()),
+  (exports.daysInMonth = function (e, t) {
+    return new Date(t, e, 0).getDate();
+  }),
   (exports.getFormattedDate = (e) => {
     let t = new Date(e),
       r = {};
@@ -16,7 +21,9 @@ Object.defineProperty(exports, "__esModule", { value: !0 });
           ? "0" + t.getDate().toString()
           : t.getDate().toString()),
       (r.yyyy = t.getFullYear().toString()),
-      `${r.mm}/${r.dd}/${r.yyyy}`
+      "NaN" === r.mm || "NaN" === r.dd || "NaN" === r.yyyy
+        ? "--"
+        : `${r.mm}/${r.dd}/${r.yyyy}`
     );
   }),
   (exports.months = [

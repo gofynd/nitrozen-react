@@ -6,8 +6,9 @@ import {
   SvgIcChevronUp,
 } from "../../assets/svg-components";
 import "./DatePicker.scss";
-import { months, years } from "../../utils/dateHandler";
+import { months, years, areDatesSame } from "../../utils/dateHandler";
 export interface CalendarProps {
+  rangeConfig?: any;
   dateVal?: string;
   onDateClick: Function;
   isRange?: boolean;
@@ -26,6 +27,7 @@ export interface CalendarProps {
 const Calendar = (props: CalendarProps) => {
   const {
     dateVal,
+    rangeConfig,
     onDateClick,
     isRange,
     from,
@@ -127,6 +129,12 @@ const Calendar = (props: CalendarProps) => {
         new Date(currentItetrationaDate).getTime() == new Date(toDate).getTime()
       ) {
         rangeClass += " n-picker-calendar-griditem-rangeend";
+        classes = classes.replace("n-picker-calendar-griditem-hover", "");
+        classes = classes.replace("n-picker-calendar-griditem-today", "");
+      }
+
+      if (rangeClass && areDatesSame(rangeConfig?.start, rangeConfig?.end)) {
+        rangeClass += " n-picker-calendar-griditem-rangesame";
         classes = classes.replace("n-picker-calendar-griditem-hover", "");
         classes = classes.replace("n-picker-calendar-griditem-today", "");
       }

@@ -6,24 +6,29 @@ import {
   SvgIcChevronRight as r,
 } from "../../assets/svg-components/Nitrozen/index.js";
 import "./DatePicker.scss.js";
-import { months as l, years as c } from "../../utils/dateHandler.js";
-const d = (d) => {
+import {
+  months as l,
+  years as c,
+  areDatesSame as d,
+} from "../../utils/dateHandler.js";
+const m = (m) => {
   const {
-      dateVal: m,
-      onDateClick: s,
-      isRange: o,
-      from: p,
-      to: k,
-      calendar: g,
-      selectedMonth: u,
-      selectedYear: v,
-      monthHandler: h,
-      yearHandler: $,
-      handleNextButtonClicked: E,
-      handlePreviousButtonClicked: w,
-      calendarId: y,
-    } = d,
-    [D, N] = t([
+      dateVal: s,
+      rangeConfig: o,
+      onDateClick: p,
+      isRange: k,
+      from: g,
+      to: u,
+      calendar: v,
+      selectedMonth: h,
+      selectedYear: $,
+      monthHandler: E,
+      yearHandler: w,
+      handleNextButtonClicked: y,
+      handlePreviousButtonClicked: D,
+      calendarId: N,
+    } = m,
+    [f, C] = t([
       { name: "S", enum: 7 },
       { name: "M", enum: 1 },
       { name: "T", enum: 2 },
@@ -32,9 +37,9 @@ const d = (d) => {
       { name: "F", enum: 5 },
       { name: "S", enum: 6 },
     ]),
-    [f, T] = t(!1),
-    [C, b] = t(!1),
-    x = (e) => {
+    [T, b] = t(!1),
+    [x, H] = t(!1),
+    j = (e) => {
       let t,
         a,
         n,
@@ -46,36 +51,41 @@ const d = (d) => {
             : " n-picker-calendar-griditem-hover"),
         (i += e.isDisabled ? " n-picker-calendar-griditem-disabled" : ""),
         (i += e.isToday ? " n-picker-calendar-griditem-today" : ""),
-        m)
+        s)
       ) {
-        let e = new Date(m);
+        let e = new Date(s);
         (t = e.getMonth()), (a = e.getFullYear()), (n = e.getDate());
       }
-      if (u == l[t] && a == v && e.value == n && !o)
+      if (h == l[t] && a == $ && e.value == n && !k)
         return "n-picker-calendar-griditem-selected";
-      if (o) {
+      if (k) {
         let t = "",
-          a = l.findIndex((e) => e == u) + 1;
+          a = l.findIndex((e) => e == h) + 1;
         a = a < 10 ? `0${a}` : a;
-        let n = `${a}/${e.value}/${v}`,
-          r = new Date(p);
+        let n = `${a}/${e.value}/${$}`,
+          r = new Date(g);
         r.setHours(0, 0, 0, 0);
-        let c = new Date(k);
+        let c = new Date(u);
         c.setHours(0, 0, 0, 0),
-          p &&
+          g &&
             new Date(n).getTime() == new Date(r).getTime() &&
             ((t += " n-picker-calendar-griditem-rangestart"),
             (i = i.replace("n-picker-calendar-griditem-hover", "")),
             (i = i.replace("n-picker-calendar-griditem-today", ""))),
           !t &&
-            k &&
+            u &&
             new Date(n).getTime() == new Date(c).getTime() &&
             ((t += " n-picker-calendar-griditem-rangeend"),
             (i = i.replace("n-picker-calendar-griditem-hover", "")),
             (i = i.replace("n-picker-calendar-griditem-today", ""))),
+          t &&
+            d(null == o ? void 0 : o.start, null == o ? void 0 : o.end) &&
+            ((t += " n-picker-calendar-griditem-rangesame"),
+            (i = i.replace("n-picker-calendar-griditem-hover", "")),
+            (i = i.replace("n-picker-calendar-griditem-today", ""))),
           !t &&
-            p &&
-            k &&
+            g &&
+            u &&
             new Date(n).getTime() < new Date(c).getTime() &&
             new Date(n).getTime() > new Date(r).getTime() &&
             ((t += " n-picker-calendar-griditem-range"),
@@ -94,58 +104,58 @@ const d = (d) => {
       e.createElement(
         "div",
         {
-          "data-testid": `previous-click-${y}`,
+          "data-testid": `previous-click-${N}`,
           className: "n-picker-toggle-icon",
           onClick: () => {
-            null == w || w();
+            null == D || D();
           },
         },
         e.createElement(a, null)
       ),
-      u &&
-        v &&
+      h &&
+        $ &&
         e.createElement(
           "div",
           { className: "n-picker-month-year" },
           e.createElement(
             "div",
             {
-              "data-testid": `selected-month-${y}`,
-              className: "n-picker-btn " + (f ? "n-picker-btn-active" : ""),
+              "data-testid": `selected-month-${N}`,
+              className: "n-picker-btn " + (T ? "n-picker-btn-active" : ""),
               onClick: () => {
-                T(!f), b(!1);
+                b(!T), H(!1);
               },
             },
-            u.slice(0, 3),
+            h.slice(0, 3),
             e.createElement(
               "span",
               null,
-              f ? e.createElement(n, null) : e.createElement(i, null)
+              T ? e.createElement(n, null) : e.createElement(i, null)
             )
           ),
           e.createElement(
             "div",
             {
-              "data-testid": `selected-year-${y}`,
-              className: "n-picker-btn " + (C ? "n-picker-btn-active" : ""),
+              "data-testid": `selected-year-${N}`,
+              className: "n-picker-btn " + (x ? "n-picker-btn-active" : ""),
               onClick: () => {
-                b(!C), T(!1);
+                H(!x), b(!1);
               },
             },
-            v,
+            $,
             e.createElement(
               "span",
               null,
-              C ? e.createElement(n, null) : e.createElement(i, null)
+              x ? e.createElement(n, null) : e.createElement(i, null)
             )
           )
         ),
       e.createElement(
         "div",
         {
-          "data-testid": `next-click-${y}`,
+          "data-testid": `next-click-${N}`,
           className: "n-picker-toggle-icon",
-          onClick: () => (null == E ? void 0 : E()),
+          onClick: () => (null == y ? void 0 : y()),
         },
         e.createElement(r, null)
       )
@@ -153,10 +163,10 @@ const d = (d) => {
     e.createElement(
       "div",
       { className: "n-picker-day-row" },
-      D.map((t, a) =>
+      f.map((t, a) =>
         e.createElement(
           "span",
-          { key: `day-${a}`, "data-testid": `day-${a}-${y}` },
+          { key: `day-${a}`, "data-testid": `day-${a}-${N}` },
           t.name
         )
       )
@@ -164,86 +174,86 @@ const d = (d) => {
     e.createElement(
       "div",
       { className: "n-picker-calendar-grid" },
-      g &&
-        g.length &&
-        g.map((t, a) =>
+      v &&
+        v.length &&
+        v.map((t, a) =>
           e.createElement(
             "div",
             {
               className:
                 "n-picker-calendar-griditem " +
                 (t.isDisabled ? "n-picker-calendar-griditem-disabled" : ""),
-              "data-testid": `calendar-griditem-${a}-${y}`,
+              "data-testid": `calendar-griditem-${a}-${N}`,
               key: `calendar-griditem-${a}`,
               onClick: () => {
                 0 === t.value ||
                   t.isDisabled ||
                   ((e) => {
                     const t = e.value < 10 ? "0" + e.value : e.value;
-                    let a = l.findIndex((e) => e == u) + 1;
-                    a < 10 && (a = "0" + a), s(`${a}/${t}/${v}`);
+                    let a = l.findIndex((e) => e == h) + 1;
+                    a < 10 && (a = "0" + a), p(`${a}/${t}/${$}`);
                   })(t);
               },
             },
             e.createElement(
               "div",
-              { className: `${x(t)}`, key: `calendar-griditem-value-${a}` },
+              { className: `${j(t)}`, key: `calendar-griditem-value-${a}` },
               0 !== t.value && t.value
             )
           )
         )
     ),
-    f &&
+    T &&
       e.createElement(
         "div",
         {
-          "data-testid": `month-dropdown-${y}`,
-          id: `month-dropdown-${y}`,
+          "data-testid": `month-dropdown-${N}`,
+          id: `month-dropdown-${N}`,
           className:
             "n-picker-monthlist " +
-            (o ? "n-picker-monthlist-semiwidth" : "n-picker-monthlist-width"),
+            (k ? "n-picker-monthlist-semiwidth" : "n-picker-monthlist-width"),
         },
         l.map((t, a) =>
           e.createElement(
             "div",
             {
-              id: `month-row-${a}-${y}`,
-              "data-testid": `month-item-${a}-${y}`,
+              id: `month-row-${a}-${N}`,
+              "data-testid": `month-item-${a}-${N}`,
               key: `month-item-${a}`,
               className:
                 "n-picker-monthlist-item " +
-                (u == t ? "n-picker-monthlist-selected" : ""),
+                (h == t ? "n-picker-monthlist-selected" : ""),
               onClick: () =>
                 ((e) => {
-                  h(e), T(!1);
+                  E(e), b(!1);
                 })(a + 1),
             },
             t
           )
         )
       ),
-    C &&
+    x &&
       e.createElement(
         "div",
         {
-          "data-testid": `year-dropdown-${y}`,
+          "data-testid": `year-dropdown-${N}`,
           className:
             "n-picker-monthlist " +
-            (o ? "n-picker-monthlist-semiwidth" : "n-picker-monthlist-width"),
+            (k ? "n-picker-monthlist-semiwidth" : "n-picker-monthlist-width"),
         },
         c.map((t, a) =>
           e.createElement(
             "div",
             {
               id: `year-row-${a}`,
-              "data-testid": `year-item-${a}-${y}`,
+              "data-testid": `year-item-${a}-${N}`,
               key: `year-item-${a}`,
               className:
                 "n-picker-monthlist-item " +
-                (v == t ? "n-picker-monthlist-selected" : ""),
+                ($ == t ? "n-picker-monthlist-selected" : ""),
               onClick: () =>
                 ((e) => {
-                  $(e), b(!1);
+                  w(e), H(!1);
                 })(t),
             },
             t
@@ -252,7 +262,7 @@ const d = (d) => {
       )
   );
 };
-d.defaulProps = { dateVal: "", from: "", to: "" };
-var m = e.memo(d);
-export { m as default };
+m.defaulProps = { dateVal: "", from: "", to: "" };
+var s = e.memo(m);
+export { s as default };
 //# sourceMappingURL=Calendar.js.map

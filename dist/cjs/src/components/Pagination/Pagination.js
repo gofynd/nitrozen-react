@@ -6,8 +6,8 @@ var e = require("../../../node_modules/tslib/tslib.es6.js"),
   a = require("../Dropdown/Dropdown.js");
 require("./Pagination.scss.js");
 var i = require("./usePagination.js"),
-  r = require("../../assets/svg-components/Nitrozen/index.js"),
-  l = require("../Button/Button.js"),
+  l = require("../../assets/svg-components/Nitrozen/index.js"),
+  r = require("../Button/Button.js"),
   s = require("../Input/Input.js");
 function u(e) {
   return e && "object" == typeof e && "default" in e ? e : { default: e };
@@ -34,8 +34,8 @@ const g = (n) => {
       defaultPageSize: g,
       value: p,
       onChange: f,
-      onPreviousClick: _,
-      onNextClick: v,
+      onPreviousClick: v,
+      onNextClick: _,
       className: E,
       style: b,
       visiblePagesNodeCount: h,
@@ -79,7 +79,7 @@ const g = (n) => {
         })
       );
     }
-    null == _ || _();
+    null == v || v();
   }
   function U() {
     if (O.total) {
@@ -100,7 +100,7 @@ const g = (n) => {
         })
       );
     }
-    null == v || v();
+    null == _ || _();
   }
   function B(e) {
     c === exports.ModeEnum.MODE_CURSOR
@@ -146,25 +146,40 @@ const g = (n) => {
     x.current && !x.current.contains(e.target) && M(!1);
   }
   function V(e = "default") {
-    let t = " ";
+    var t, n, a, i;
+    let l = " ";
     return (
       !(function () {
         if (O.total) return !0;
         return !1;
       })()
-        ? (t = O.currentTotal
-            ? `${"default" === e ? "Showing" : ""} ${O.currentTotal} ${o}`
+        ? (l = O.currentTotal
+            ? `${"default" === e ? "Showing" : ""} ${
+                null !== (i = O.currentTotal) && void 0 !== i ? i : 0
+              } ${o}`
             : "")
-        : ((t = `${"default" === e ? "Showing " : ""}${
-            O.limit && O.limit * (O.current ? O.current - 1 : 0) + 1
+        : ((l = `${"default" === e ? "Showing " : ""}${
+            null !==
+              (t = O.limit && O.limit * (O.current ? O.current - 1 : 0) + 1) &&
+            void 0 !== t
+              ? t
+              : 0
           } - ${
-            O.limit &&
-            O.current &&
-            O.total &&
-            (O.limit * O.current < O.total ? O.limit * O.current : O.total)
+            null !==
+              (n =
+                O.limit &&
+                O.current &&
+                O.total &&
+                (O.limit * O.current < O.total
+                  ? O.limit * O.current
+                  : O.total)) && void 0 !== n
+              ? n
+              : 0
           }`),
-          (t += ` of ${O.total}${"default" === e ? " results" : ""}`)),
-      t
+          (l += ` of ${null !== (a = O.total) && void 0 !== a ? a : 0}${
+            "default" === e ? " results" : ""
+          }`)),
+      l
     );
   }
   function K() {
@@ -249,7 +264,7 @@ const g = (n) => {
                           !K() && "pagination-diabled"
                         }`,
                       },
-                      m.default.createElement(r.SvgIcChevronLeft, null)
+                      m.default.createElement(l.SvgIcChevronLeft, null)
                     ),
                     m.default.createElement(
                       "div",
@@ -293,7 +308,7 @@ const g = (n) => {
                               m.default.createElement(
                                 "div",
                                 { className: "n-pagination__search_logo" },
-                                m.default.createElement(r.SvgIcSearch, {
+                                m.default.createElement(l.SvgIcSearch, {
                                   className: "search-icon",
                                 })
                               ),
@@ -369,7 +384,7 @@ const g = (n) => {
                           !W() && "pagination-diabled"
                         } `,
                       },
-                      m.default.createElement(r.SvgIcChevronRight, null)
+                      m.default.createElement(l.SvgIcChevronRight, null)
                     )
                   )
                 : null
@@ -443,13 +458,13 @@ const g = (n) => {
           m.default.createElement(
             "div",
             { className: "n-pagination__main" },
-            m.default.createElement(l, {
+            m.default.createElement(r, {
               theme: "secondary",
               "data-testid": "btnPrevious",
               onClick: () => A(),
               size: "medium",
               className: "n-pagination__prev",
-              icon: r.SvgIcChevronLeft,
+              icon: l.SvgIcChevronLeft,
               disabled: !K(),
             }),
             m.default.createElement(s, {
@@ -485,12 +500,12 @@ const g = (n) => {
               max: O.total && O.total / j,
               "data-testid": "pageInput",
             }),
-            m.default.createElement(l, {
+            m.default.createElement(r, {
               theme: "secondary",
               "data-testid": "btnNext",
               onClick: U,
               size: "medium",
-              icon: r.SvgIcChevronRight,
+              icon: l.SvgIcChevronRight,
               className: "n-pagination__next",
               disabled: !W(),
             })

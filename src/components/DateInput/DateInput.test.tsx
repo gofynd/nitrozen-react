@@ -184,4 +184,56 @@ describe("DateInput", () => {
     );
     expect(errorMessage.length).toBe(1);
   });
+  test("renders the DateInput component to check typing on input field with wrong input", () => {
+    const { container } = render(
+      <DateInput
+        label="Birthdate"
+        required={true}
+        helperText={"Enter your birth date"}
+        dateValue={"11/27/1997"}
+        getDateValue={() => {}}
+        id={"birth-field"}
+        defaultValidation={true}
+      />
+    );
+    const Input2 = screen.getByTestId(
+      "date-input-1-birth-field"
+    ) as HTMLInputElement;
+    fireEvent.change(Input2, { target: { value: "44" } });
+    const errorMessage = container.getElementsByClassName(
+      "n-validation-container"
+    );
+    expect(errorMessage.length).toBe(1);
+  });
+  test("should disable the input fields when 'disabled' prop is true", () => {
+    const { getByTestId } = render(
+      <DateInput id="date-input" label="Date" disabled={true} />
+    );
+
+    const dateInputField = getByTestId("date-input");
+
+    expect(dateInputField).toHaveClass("n-input-group-disabled");
+
+    const dateInput = getByTestId("date-input-0-date-input");
+    expect(dateInput).toHaveClass("n-date-single-field");
+    expect(dateInput).toHaveClass("disabled");
+    expect(dateInput).toBeDisabled();
+  });
+
+  test("should render tooltip when 'showTooltip' prop is true", () => {
+    const tooltipText = "This is a tooltip";
+    const { getByTestId } = render(
+      <DateInput
+        id="date-input"
+        label="Date"
+        showTooltip={true}
+        tooltipText={tooltipText}
+      />
+    );
+
+    const tooltip = getByTestId("tooltip-component");
+    expect(tooltip).toBeInTheDocument();
+
+    expect(tooltip.textContent).toBe(tooltipText);
+  });
 });

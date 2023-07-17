@@ -57,9 +57,6 @@
   letter-spacing: 0.00938em;
   padding: 0px;
   // transform-origin: left top;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
   max-width: 100%;
   margin-left: 1.2rem;
 }
@@ -109,6 +106,13 @@
   line-height: 2.1rem;
   display: flex;
   flex: 1;
+  p {
+    margin: unset;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 90%;
+  }
 }
 
 .n-input-maxLength {
