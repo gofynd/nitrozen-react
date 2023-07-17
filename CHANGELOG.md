@@ -6,11 +6,11 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### Features
 
-- Added `No Options found` if items passed is an empty array. ([31b1865](<(https://github.com/gofynd/nitrozen-react/pull/100)>))
-- Added prop `showAddOptionWithItems` which show add option for search input along with items. Default: `false`. ([31b1865](<(https://github.com/gofynd/nitrozen-react/pull/100)>))
-- Added prop `removeBorderBetweenItems` which removes the border present between the each option in the list. Default: `false`. ([31b1865](<(https://github.com/gofynd/nitrozen-react/pull/100)>))
-- Added prop `disabled` which disables the component. Default: `false`. ([31b1865](<(https://github.com/gofynd/nitrozen-react/pull/100)>))
-- Added props `showTooltip`,`tooltipText` and `tooltipIcon`, which enables support for the tooltip in the component label. ([31b1865](<(https://github.com/gofynd/nitrozen-react/pull/100)>))
+- Added `No Options found` if items passed is an empty array. ([31b1865](https://github.com/gofynd/nitrozen-react/pull/100))
+- Added prop `showAddOptionWithItems` which show add option for search input along with items. Default: `false`. ([31b1865](https://github.com/gofynd/nitrozen-react/pull/100))
+- Added prop `removeBorderBetweenItems` which removes the border present between the each option in the list. Default: `false`. ([31b1865](https://github.com/gofynd/nitrozen-react/pull/100))
+- Added prop `disabled` which disables the component. Default: `false`. ([31b1865](https://github.com/gofynd/nitrozen-react/pull/100))
+- Added props `showTooltip`,`tooltipText` and `tooltipIcon`, which enables support for the tooltip in the component label. ([31b1865](https://github.com/gofynd/nitrozen-react/pull/100))
 
 ## 2.0.7(2023-06-14)
 
