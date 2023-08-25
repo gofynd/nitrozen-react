@@ -10,7 +10,7 @@
 .n-stepper {
   margin: 0 auto;
   width: 100%;
-  font-size: $BaseFontSize + 6;
+  font-size: pxToRem(16);
 
   .nitrozen-checkmark {
     display: inline-block;
@@ -186,11 +186,11 @@
         background: $Bubbles;
       }
       .n-text {
-        font-size: $BaseFontSize + 4;
+        font-size: pxToRem(14);
         font-weight: 500;
       }
       .stepper-description {
-        font-size: $BaseFontSize + 2;
+        font-size: pxToRem(12);
         margin-top: 0.4rem;
         line-height: 1.8rem;
       }
@@ -370,11 +370,11 @@
         }
       }
       .n-text {
-        font-size: $BaseFontSize + 4;
+        font-size: pxToRem(14);
         font-weight: 500;
       }
       .stepper-description {
-        font-size: $BaseFontSize;
+        font-size: pxToRem(10);
         line-height: 1.6rem;
         margin-top: 0.2rem;
         max-width: 85%;
@@ -399,7 +399,7 @@
     flex-grow: 1;
     font-family: $PrimaryFont;
     font-weight: 600;
-    font-size: $BaseFontSize + 8;
+    font-size: pxToRem(18);
     color: $TypographyPrimaryColor;
   }
 }
@@ -414,7 +414,7 @@
   }
 
   span {
-    font-size: $BaseFontSize + 2;
+    font-size: pxToRem(12);
     font-family: $PrimaryFont;
     color: $TypographyPrimaryColor;
   }

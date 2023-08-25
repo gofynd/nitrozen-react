@@ -7,7 +7,7 @@
   z-index: $ZIndex3;
   display: flex;
   flex-direction: column;
-  font-size: $BaseFontSize + 6;
+  font-size: pxToRem(16);
 
   .n-toast-wrapper {
     background: $ColorSecondaryGrey80;

@@ -7,7 +7,7 @@
     cursor: pointer;
     list-style: none;
     text-decoration: none;
-    font-size: calc($BaseFontSize + 6px);
+    font-size: pxToRem(16);
     min-width: 100px;
     font-weight: 400;
     color: $TypographyPrimaryColor;
@@ -37,7 +37,7 @@
     color: $ColorPrimaryGrey60;
   }
   &-heading > a {
-    font-size: calc($BaseFontSize + 4px);
+    font-size: pxToRem(14);
     &:hover {
       background-color: $ColorPrimaryBackground;
     }

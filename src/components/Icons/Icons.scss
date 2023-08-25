@@ -18,7 +18,7 @@
   @include d-flex-center;
 }
 .category-heading {
-  font-size: $BaseFontSize + 14;
+  font-size: pxToRem(24);
   font-family: $PrimaryFont;
   text-transform: capitalize;
   color: $TypographyPrimaryColor;
@@ -37,7 +37,7 @@
   font-family: $PrimaryFont;
 
   h1 {
-    font-size: $BaseFontSize + 22;
+    font-size: pxToRem(32);
     margin-block: 2.6rem;
     color: $WhiteColor;
     text-align: center;
@@ -55,7 +55,7 @@
     text-align: left;
     display: flex;
     align-items: center;
-    font-size: $BaseFontSize + 5;
+    font-size: pxToRem(15);
     gap: 0.4rem;
     margin-top: 2rem;
   }
@@ -75,7 +75,7 @@
 
     input,
     input::-webkit-input-placeholder {
-      font-size: $BaseFontSize + 4;
+      font-size: pxToRem(14);
     }
   }
 
@@ -117,7 +117,7 @@
   cursor: pointer;
   display: flex;
   flex-direction: column;
-  font-size: $BaseFontSize;
+  font-size: pxToRem(10);
   align-items: center;
   gap: 1.2rem;
   width: 10rem;
@@ -139,7 +139,7 @@
     justify-content: center;
     transition: 0.1s ease;
     font-weight: 600;
-    font-size: $BaseFontSize + 1;
+    font-size: pxToRem(11);
 
     * {
       color: $WhiteColor;
@@ -165,7 +165,7 @@
     overflow-x: hidden;
     text-overflow: ellipsis;
     max-width: 8rem;
-    font-size: $BaseFontSize;
+    font-size: pxToRem(10);
   }
 
   .svg-edit-cta {

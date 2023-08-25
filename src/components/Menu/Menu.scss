@@ -47,7 +47,7 @@
     }
   }
   svg {
-    font-size: calc($BaseFontSize + 10px);
+    font-size: pxToRem(21);
     color: $ColorPrimary60;
   }
 }

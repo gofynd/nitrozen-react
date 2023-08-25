@@ -50,7 +50,7 @@
     input[type="search"]::-webkit-search-cancel-button {
       position: relative;
       right: 0;
-      font-size: $BaseFontSize + 6;
+      font-size: pxToRem(16);
       cursor: pointer;
     }
 
@@ -78,7 +78,7 @@
     visibility: hidden;
     pointer-events: none;
     z-index: $ZIndex1;
-    border-radius: $BaseFontSize + 6px;
+    border-radius: pxToRem(16);
   }
 
   .n-select.n-dropdown-open .n-options {
@@ -200,7 +200,7 @@
 .n-dropdown-label {
   color: $TypographyPrimaryColor;
   font-family: $PrimaryFont;
-  font-size: $BaseFontSize + 4px;
+  font-size: pxToRem(14);
   font-weight: 500;
   line-height: 2.1rem;
   display: flex;

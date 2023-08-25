@@ -9,7 +9,7 @@
   border-radius: 1.6rem;
   border: 0.1rem solid $LabelColor;
   color: $TypographyPrimaryColor;
-  font-size: $BaseFontSize + 2;
+  font-size: pxToRem(12);
   font-family: $PrimaryFont;
 
   &:focus {
@@ -19,14 +19,14 @@
   &.n-alert-full-width {
     .n-alert-label-text,
     .n-alert-text {
-      font-size: $BaseFontSize + 6;
+      font-size: pxToRem(16);
     }
   }
 
   &.n-alert-link-button-container {
     .n-alert-label-text,
     .n-alert-text {
-      font-size: $BaseFontSize + 4;
+      font-size: pxToRem(14);
     }
   }
 
@@ -82,7 +82,7 @@
     column-gap: 0.4rem;
 
     .n-alert-icon {
-      font-size: $BaseFontSize + 18.8;
+      font-size: pxToRem(28.8);
 
       &.n-alert-icon-info {
         color: $ColorPrimary50;

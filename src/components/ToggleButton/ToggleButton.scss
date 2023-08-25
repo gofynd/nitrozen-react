@@ -190,7 +190,7 @@
 
     span {
       font-family: $PrimaryFont;
-      font-size: $BaseFontSize + 2;
+      font-size: pxToRem(12);
     }
   }
 

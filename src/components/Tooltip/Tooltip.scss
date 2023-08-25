@@ -4,7 +4,7 @@
   position: relative;
   display: flex;
   cursor: pointer;
-  font-size: $BaseFontSize + 6;
+  font-size: pxToRem(16);
 
   .nitrozen-tooltipcontent {
     visibility: hidden;
@@ -17,7 +17,7 @@
     font-family: $PrimaryFont;
     position: absolute;
     z-index: $ZIndex3;
-    font-size: $BaseFontSize + 2;
+    font-size: pxToRem(12);
 
     .nitrozen-tooltip-link {
       color: $WhiteColor;
