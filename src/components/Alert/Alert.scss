@@ -3,11 +3,11 @@
 .n-alert {
   box-sizing: border-box;
   display: flex;
-  padding: 1rem;
-  gap: 0.8rem;
+  padding: pxToRem(10);
+  gap: pxToRem(8);
   cursor: default;
-  border-radius: 1.6rem;
-  border: 0.1rem solid $LabelColor;
+  border-radius: pxToRem(16);
+  border: pxToRem(1) solid $LabelColor;
   color: $TypographyPrimaryColor;
   font-size: pxToRem(12);
   font-family: $PrimaryFont;
@@ -32,34 +32,34 @@
 
   &.n-alert-info {
     background: $ColorPrimary20;
-    border: 0.1rem solid $ColorPrimary50;
+    border: pxToRem(1) solid $ColorPrimary50;
   }
 
   &.n-alert-success {
     background: $Bubbles;
-    border: 0.1rem solid $SuccessColor;
+    border: pxToRem(1) solid $SuccessColor;
   }
 
   &.n-alert-warn {
     background: $ColorFeedbackWarning20;
-    border: 0.1rem solid $ColorFeedbackWarning50;
+    border: pxToRem(1) solid $ColorFeedbackWarning50;
   }
 
   &.n-alert-error {
     background: $ColorFeedbackError20;
-    border: 0.1rem solid $ColorFeedbackError50;
+    border: pxToRem(1) solid $ColorFeedbackError50;
   }
 
   &.n-alert-loader-container {
     background: $ColorPrimary20 !important;
-    border: 0.1rem solid $ColorPrimary50;
+    border: pxToRem(1) solid $ColorPrimary50;
   }
 
   .n-alert-flex {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    column-gap: 8rem;
+    column-gap: pxToRem(80);
     width: 100%;
     align-items: center;
 
@@ -67,7 +67,7 @@
       flex-direction: column;
       align-items: unset;
       justify-content: center;
-      row-gap: 1.2rem;
+      row-gap: pxToRem(12);
 
       .n-alert-button-container {
         display: flex;
@@ -79,7 +79,7 @@
   .n-alert-text-icon-wrapper {
     display: flex;
     align-items: center;
-    column-gap: 0.4rem;
+    column-gap: pxToRem(4);
 
     .n-alert-icon {
       font-size: pxToRem(28.8);
@@ -93,7 +93,7 @@
         color: $WhiteColor;
         border-radius: 100%;
         font-size: medium;
-        padding: 0.5rem;
+        padding: pxToRem(5);
       }
 
       &.n-alert-icon-warn {
@@ -107,7 +107,7 @@
   }
 
   .n-alert-button {
-    padding: 0.4rem 1.2rem;
+    padding: pxToRem(4) pxToRem(12);
 
     &.n-alert-button-success {
       background-color: $SuccessColor;
@@ -158,17 +158,17 @@
 
   .n-alert-loader {
     animation: spin 2s linear infinite;
-    height: 2.4rem;
+    height: pxToRem(24);
   }
 
   .loader {
-    border: 0.4rem solid #f3f3f3;
-    border-top: 0.4rem solid #3535f3;
-    border-right: 0.4rem solid #f7ab20;
-    border-bottom: 0.4rem solid #1eccb0;
+    border: pxToRem(4) solid #f3f3f3;
+    border-top: pxToRem(4) solid #3535f3;
+    border-right: pxToRem(4) solid #f7ab20;
+    border-bottom: pxToRem(4) solid #1eccb0;
     border-radius: 50%;
-    width: 2rem;
-    height: 2rem;
+    width: pxToRem(20);
+    height: pxToRem(20);
     animation: spin 2s linear infinite;
   }
 

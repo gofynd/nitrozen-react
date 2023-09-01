@@ -3,13 +3,13 @@
 .n-grid-container {
   width: 100%;
   display: grid;
-  gap: 1.5rem;
+  gap: pxToRem(15);
   overflow: hidden;
 }
 
 @media screen and (max-width: 768px) {
   .n-grid-container {
-    gap: 1rem;
+    gap: pxToRem(10);
     -ms-overflow-style: none; /* Internet Explorer 10+ */
     scrollbar-width: none; /* Firefox */
   }
@@ -19,7 +19,7 @@
 
   .overflow {
     overflow: scroll;
-    gap: 0.75rem;
+    gap: pxToRem(7.5);
   }
   .overflow > * {
     grid-row: 1;
@@ -30,8 +30,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 2rem;
+  font-size: pxToRem(20);
   color: $TypographyPrimaryColor;
   background-color: rgb(187, 208, 226);
-  padding: 1rem;
+  padding: pxToRem(10);
 }

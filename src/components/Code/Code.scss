@@ -5,20 +5,20 @@
   display: flex;
   width: 100%;
   justify-content: space-between;
-  gap: 1rem;
+  gap: pxToRem(10);
 }
 
 .n-code-input-field {
-  border: 2px solid $ColorPrimaryGrey60;
+  border: pxToRem(2) solid $ColorPrimaryGrey60;
   background: none;
   -webkit-appearance: none;
   display: block;
   -webkit-tap-highlight-color: transparent;
   outline: none;
   text-align: center;
-  border-radius: 1.6rem;
-  height: 4.8rem;
-  width: 4.8rem;
+  border-radius: pxToRem(16);
+  height: pxToRem(48);
+  width: pxToRem(48);
 
   &:focus,
   &:hover {
@@ -26,9 +26,9 @@
   }
 
   @media screen and (max-width: 425px) {
-    height: 3rem;
-    width: 3rem;
-    border-radius: 1rem;
+    height: pxToRem(30);
+    width: pxToRem(30);
+    border-radius: pxToRem(10);
   }
 }
 
@@ -38,15 +38,15 @@
 }
 
 .n-code-input-border-success {
-  border: 2px solid $ColorFeedbackSuccess50;
+  border: pxToRem(2) solid $ColorFeedbackSuccess50;
 }
 
 .n-code-input-border-warning {
-  border: 2px solid $ColorFeedbackWarning50;
+  border: pxToRem(2) solid $ColorFeedbackWarning50;
 }
 
 .n-code-input-border-error {
-  border: 2px solid $ColorFeedbackError50;
+  border: pxToRem(2) solid $ColorFeedbackError50;
 }
 
 .n-code-label {
@@ -55,7 +55,7 @@
   &-container {
     display: flex;
     font-weight: 400;
-    font-size: 1.4rem;
+    font-size: pxToRem(14);
     line-height: 1.4375em;
     letter-spacing: 0.00938em;
     padding: 0px;
@@ -64,11 +64,11 @@
     overflow: hidden;
     text-overflow: ellipsis;
     max-width: 100%;
-    margin: 0 0 4px 4px;
+    margin: 0px 0px pxToRem(4) pxToRem(4);
     color: $TypographyPrimaryColor;
   }
 }
 
 .n-code-underinfo {
-  margin: 0.4rem;
+  margin: pxToRem(4);
 }

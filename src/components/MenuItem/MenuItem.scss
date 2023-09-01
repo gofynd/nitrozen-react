@@ -8,13 +8,13 @@
     list-style: none;
     text-decoration: none;
     font-size: pxToRem(16);
-    min-width: 100px;
+    min-width: pxToRem(100);
     font-weight: 400;
     color: $TypographyPrimaryColor;
     background-color: $ColorPrimaryBackground;
     padding: $SpacingBase;
     box-sizing: border-box;
-    height: 40px;
+    height: pxToRem(40);
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -23,7 +23,7 @@
     }
   }
   &-divider {
-    border-bottom: 1px solid $ColorSecondaryGrey40;
+    border-bottom: pxToRem(1) solid $ColorSecondaryGrey40;
   }
   &-selected > a {
     color: $ColorPrimary60;

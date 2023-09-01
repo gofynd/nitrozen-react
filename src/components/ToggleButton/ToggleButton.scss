@@ -10,19 +10,19 @@
     display: inline-block;
 
     &.small {
-      height: 2rem;
-      width: 4rem;
+      height: pxToRem(20);
+      width: pxToRem(40);
     }
 
     &.medium {
-      height: 2.4rem;
-      width: 4.8rem;
+      height: pxToRem(24);
+      width: pxToRem(48);
     }
 
     //DEFAULT
     &.large {
-      height: 2.8rem;
-      width: 5.6rem;
+      height: pxToRem(28);
+      width: pxToRem(56);
     }
 
     .n-disabled {
@@ -76,25 +76,25 @@
       -ms-transform: translate(100%, 50%);
       transform: translate(100%, 50%);
       background-color: $ColorPrimaryGrey80;
-      box-shadow: 0 0 0.1rem 0 rgb(0 0 0 / 12%),
-        0 0.1rem 0.1rem 0 rgb(0 0 0 / 24%);
+      box-shadow: 0 0 pxToRem(1) 0 rgb(0 0 0 / 12%),
+        0 pxToRem(1) pxToRem(1) 0 rgb(0 0 0 / 24%);
       -webkit-transition: 0.4s;
       transition: 0.4s;
     }
 
     &.small .slider-ball {
-      height: 1.2rem;
-      width: 1.2rem;
+      height: pxToRem(12);
+      width: pxToRem(12);
     }
 
     &.medium .slider-ball {
-      height: 1.6rem;
-      width: 1.6rem;
+      height: pxToRem(16);
+      width: pxToRem(16);
     }
 
     &.large .slider-ball {
-      height: 2rem;
-      width: 2rem;
+      height: pxToRem(20);
+      width: pxToRem(20);
     }
 
     .n-disable .slider-ball {
@@ -116,7 +116,7 @@
     }
 
     // input:focus+.n-slider {
-    //   box-shadow: 0 0 0.1rem $SecondaryColor;
+    //   box-shadow: 0 0 pxToRem(1) $SecondaryColor;
     // }
 
     .n-slider.checked .slider-ball {
@@ -149,27 +149,27 @@
     }
 
     &.small .label-text {
-      left: 4.5rem;
-      font-size: 1.4rem;
-      padding: 0.18rem;
+      left: pxToRem(45);
+      font-size: pxToRem(14);
+      padding: pxToRem(1.8);
     }
 
     &.medium .label-text {
-      left: 6rem;
-      font-size: 1.6rem;
-      padding: 0.25rem;
+      left: pxToRem(60);
+      font-size: pxToRem(16);
+      padding: pxToRem(2.5);
     }
 
     &.large .label-text {
-      left: 7.5rem;
-      font-size: 2rem;
-      padding: 0.35rem;
+      left: pxToRem(75);
+      font-size: pxToRem(20);
+      padding: pxToRem(3.5);
     }
   }
 }
 
 .n-slider.n-round {
-  border-radius: 3rem;
+  border-radius: pxToRem(30);
 }
 
 .n-round .slider-ball {
@@ -180,22 +180,22 @@
 .all-togglebtn-sections {
   @include d-flex-center;
   align-items: flex-start;
-  gap: 3.4rem;
+  gap: pxToRem(34);
 
   .section,
   .section-validation {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: pxToRem(20);
 
     span {
       font-family: $PrimaryFont;
-      font-size: pxToRem(12);
+      font-size: pxToRem(120);
     }
   }
 
   .section-validation {
-    gap: 3.5rem;
+    gap: pxToRem(35);
   }
 }
 
@@ -203,17 +203,17 @@
 .medium .n-toggle-validation,
 .large .n-toggle-validation {
   position: absolute;
-  top: 2.5rem;
+  top: pxToRem(25);
   left: 0;
   width: max-content;
 }
 
 .medium .n-toggle-validation {
-  top: 3rem;
+  top: pxToRem(30);
 }
 
 .large .n-toggle-validation {
-  top: 3.5rem;
+  top: pxToRem(35);
 }
 
 .warning-state {
@@ -305,19 +305,19 @@
 }
 
 .social-icon-small {
-  left: -0.8rem;
-  font-size: 2rem;
+  left: pxToRem(-8);
+  font-size: pxToRem(20);
   display: flex;
 }
 
 .social-icon-medium {
-  left: -1.2rem;
-  font-size: 2.4rem;
+  left: pxToRem(-12);
+  font-size: pxToRem(24);
   display: flex;
 }
 
 .social-icon-large {
-  left: -1.8rem;
-  font-size: 2.8rem;
+  left: pxToRem(-18);
+  font-size: pxToRem(28);
   display: flex;
 }

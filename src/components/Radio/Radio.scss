@@ -1,7 +1,7 @@
 @import "./../../base/base.scss";
 
 .n-radio-group {
-  height: 2.1rem;
+  height: pxToRem(21);
   position: relative;
 
   input[type="radio"]:checked,
@@ -13,9 +13,9 @@
   input[type="radio"]:checked + label,
   input[type="radio"]:not(:checked) + label {
     position: relative;
-    padding-left: 3rem;
+    padding-left: pxToRem(30);
     cursor: pointer;
-    line-height: 1.5rem;
+    line-height: pxToRem(15);
     color: $ColorPrimaryGrey80;
     font-family: $PrimaryFont;
     font-size: pxToRem(15);
@@ -36,9 +36,9 @@
     position: absolute;
     left: 0;
     top: 0;
-    width: 2rem;
-    height: 2rem;
-    border: 1px solid $ColorPrimaryGrey80;
+    width: pxToRem(20);
+    height: pxToRem(20);
+    border: pxToRem(1) solid $ColorPrimaryGrey80;
     border-radius: 100%;
     background: $WhiteColor;
     transition: $TransitionsEaseQuick $TransitionsDurationRapid;
@@ -49,7 +49,7 @@
   }
 
   input[type="radio"]:checked + label:before {
-    border: 1px solid $ColorPrimary50;
+    border: pxToRem(1) solid $ColorPrimary50;
     box-shadow: inset 0 0 0 0.375em $ColorPrimary50;
   }
 
@@ -96,19 +96,19 @@
 
 .radio-story {
   box-sizing: border-box;
-  border-radius: 0.4rem;
+  border-radius: pxToRem(4);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0.8rem;
-  gap: 1rem;
-  width: 14.6rem;
-  height: 4rem;
+  padding: pxToRem(8);
+  gap: pxToRem(10);
+  width: pxToRem(146);
+  height: pxToRem(40);
 }
 
 .n-radio-validation {
   position: absolute;
-  top: 3rem;
+  top: pxToRem(30);
   left: 0;
   width: max-content;
 }
@@ -126,17 +126,17 @@ input[type="radio"]:not(:checked) + label.error-state:hover::before {
 }
 
 input[type="radio"]:checked + label.warning-state:before {
-  border: 1px solid $ColorFeedbackWarning50;
+  border: pxToRem(1) solid $ColorFeedbackWarning50;
   box-shadow: inset 0 0 0 0.375em $ColorFeedbackWarning50;
 }
 
 input[type="radio"]:checked + label.success-state:before {
-  border: 1px solid $ColorFeedbackSuccess50;
+  border: pxToRem(1) solid $ColorFeedbackSuccess50;
   box-shadow: inset 0 0 0 0.375em $ColorFeedbackSuccess50;
 }
 
 input[type="radio"]:checked + label.error-state:before {
-  border: 1px solid $ColorFeedbackError50;
+  border: pxToRem(1) solid $ColorFeedbackError50;
   box-shadow: inset 0 0 0 0.375em $ColorFeedbackError50;
 }
 
@@ -156,12 +156,12 @@ input[type="radio"]:checked + label.error-state:hover::before {
 }
 
 .n-prefix-icon {
-  font-size: 2.4rem;
+  font-size: pxToRem(24);
   justify-content: center;
   align-items: center;
-  margin-right: 1rem;
+  margin-right: pxToRem(10);
   cursor: pointer;
   position: absolute;
   top: 0px;
-  left: -3rem;
+  left: pxToRem(-30);
 }

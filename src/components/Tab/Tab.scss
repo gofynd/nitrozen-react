@@ -2,10 +2,10 @@
 
 .n-tab-container {
   display: flex;
-  height: 4.8rem;
+  height: pxToRem(48);
   position: relative;
   &.n-tab-scroll {
-    padding: 0 6.4rem;
+    padding: 0 pxToRem(64);
     overscroll-behavior-x: none;
     .n-tab {
       overflow: hidden;
@@ -71,14 +71,14 @@
     background: none;
     color: $ColorPrimary60;
     border-radius: 50%;
-    height: 4rem;
-    width: 4rem;
+    height: pxToRem(40);
+    width: pxToRem(40);
     display: flex;
     align-items: center;
     justify-content: center;
     position: absolute;
     z-index: 1;
-    font-size: 3rem;
+    font-size: pxToRem(30);
     top: 50%;
     transform: translateY(-50%);
     cursor: pointer;
@@ -88,14 +88,14 @@
     }
 
     &.n-icon-btn-left {
-      left: 0.5rem;
+      left: pxToRem(5);
       display: none;
       svg {
         color: $ActiveFieldBorder;
       }
     }
     &.n-icon-btn-right {
-      right: 0.5rem;
+      right: pxToRem(5);
       display: none;
       svg {
         color: $ActiveFieldBorder;
@@ -110,16 +110,16 @@
     width: 100%;
     box-sizing: border-box;
     list-style: none;
-    margin: 0 1.6rem;
+    margin: 0 pxToRem(16);
     font-family: $PrimaryFont;
     position: relative;
     & .n-d-scroll {
-      height: 0.4rem;
+      height: pxToRem(4);
       background-color: $ColorPrimary50;
       position: absolute;
       bottom: 0;
       left: 0;
-      border-radius: 0.4rem;
+      border-radius: pxToRem(4);
       transition: 0.3s ease all;
     }
     &::-webkit-scrollbar {

@@ -4,16 +4,16 @@
 .svg-category-container {
   display: flex;
   flex-direction: column;
-  margin-bottom: 4rem;
-  border: 0.08rem solid $Whisper;
-  padding: 2.6rem 1.2rem;
+  margin-bottom: pxToRem(40);
+  border: pxToRem(0.8) solid $Whisper;
+  padding: pxToRem(26) pxToRem(12);
   background: $Snow;
-  border-radius: 0.6rem;
+  border-radius: pxToRem(6);
 }
 
 .storybook-svg-container {
   margin-inline: auto;
-  max-width: 70rem;
+  max-width: pxToRem(700);
   min-height: 70vh;
   @include d-flex-center;
 }
@@ -23,7 +23,7 @@
   text-transform: capitalize;
   color: $TypographyPrimaryColor;
   font-weight: 600;
-  margin-bottom: 2.4rem;
+  margin-bottom: pxToRem(24);
   text-align: center;
 }
 
@@ -31,23 +31,23 @@
   width: 100%;
   @include d-flex-center;
   flex-direction: column;
-  padding-bottom: 3.6rem;
-  border-radius: 0.6rem;
+  padding-bottom: pxToRem(36);
+  border-radius: pxToRem(6);
   background: linear-gradient(90deg, $Spray, $PurpleTaupe);
   font-family: $PrimaryFont;
 
   h1 {
     font-size: pxToRem(32);
-    margin-block: 2.6rem;
+    margin-block: pxToRem(26);
     color: $WhiteColor;
     text-align: center;
   }
 
   img {
-    max-width: 52rem;
+    max-width: pxToRem(520);
     width: 95%;
     display: block;
-    border-radius: 0.6rem;
+    border-radius: pxToRem(6);
   }
 
   .demo-description {
@@ -56,15 +56,15 @@
     display: flex;
     align-items: center;
     font-size: pxToRem(15);
-    gap: 0.4rem;
-    margin-top: 2rem;
+    gap: pxToRem(4);
+    margin-top: pxToRem(20);
   }
 }
 
 .filters-section {
-  padding-block: 2.6rem;
+  padding-block: pxToRem(26);
   display: flex;
-  gap: 2rem;
+  gap: pxToRem(20);
   background: linear-gradient(to bottom, $WhiteColor 90%, transparent);
   z-index: $ZIndex1;
   position: sticky;
@@ -82,15 +82,15 @@
   .filters-cta {
     display: flex;
     align-items: center;
-    padding-inline: 2rem;
+    padding-inline: pxToRem(20);
     font-size: $PrimaryFont + 3;
     cursor: pointer;
     border: none;
-    border-radius: 0.6rem;
-    gap: 0.6rem;
+    border-radius: pxToRem(6);
+    gap: pxToRem(6);
     font-weight: 600;
     color: $TypographySecondaryColor;
-    border: 0.2rem solid transparent;
+    border: pxToRem(2) solid transparent;
     transition: 0.1s ease;
 
     &:active {
@@ -104,23 +104,23 @@
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 1.6rem;
+  gap: pxToRem(16);
 }
 
 .svg-btn {
   background: white;
-  border: 0.1rem solid $Whisper;
-  padding: 2rem 0.6rem 3rem 0.6rem;
+  border: pxToRem(0.1) solid $Whisper;
+  padding: pxToRem(20) pxToRem(6) pxToRem(30) pxToRem(6);
   box-shadow: none;
-  border-radius: 0.6rem;
+  border-radius: pxToRem(6);
   transition: 0.1s ease;
   cursor: pointer;
   display: flex;
   flex-direction: column;
   font-size: pxToRem(10);
   align-items: center;
-  gap: 1.2rem;
-  width: 10rem;
+  gap: pxToRem(12);
+  width: pxToRem(100);
   position: relative;
   overflow: hidden;
   font-family: $PrimaryFont;
@@ -132,10 +132,10 @@
     left: 0;
     right: 0;
     background: $TypographyTertiaryColor;
-    padding-block: 0.2rem;
+    padding-block: pxToRem(2);
     display: flex;
     align-items: center;
-    gap: 0.4rem;
+    gap: pxToRem(4);
     justify-content: center;
     transition: 0.1s ease;
     font-weight: 600;
@@ -164,7 +164,7 @@
     white-space: nowrap;
     overflow-x: hidden;
     text-overflow: ellipsis;
-    max-width: 8rem;
+    max-width: pxToRem(80);
     font-size: pxToRem(10);
   }
 
@@ -172,14 +172,14 @@
     position: absolute;
     top: 0;
     right: 0;
-    font-size: 1.4rem;
+    font-size: pxToRem(14);
     border: none;
-    border-radius: 0.6rem;
+    border-radius: pxToRem(6);
     border-top-left-radius: 0;
     border-bottom-right-radius: 0;
     cursor: pointer;
     background: none;
-    padding: 0.8rem;
+    padding: pxToRem(8);
     transition: 0.2s ease;
     opacity: 0;
     @include d-flex-center;
@@ -191,7 +191,7 @@
   }
 
   &:hover {
-    box-shadow: 0rem 0rem 0.2rem $Spray;
+    box-shadow: 0rem 0rem pxToRem(2) $Spray;
 
     .svg-edit-cta {
       opacity: 0.5;
