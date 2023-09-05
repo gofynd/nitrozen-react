@@ -44,7 +44,7 @@ function MyComponent() {
 
 ### 🚨 Note:
 
-> The library sets default font size as 10px. Hence if you are planning to use 10px as base font size in your app, you need to add the same to your code as well.
+> The library uses default font size as 10px. Hence if you are planning to use 10px as base font size, you need to add the same to your code as well.
 
 ```css
 html,
