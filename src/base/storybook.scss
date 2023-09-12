@@ -44,7 +44,7 @@ $Spray: #8ac5d4;
   p {
     margin: 0.9rem 0;
     padding: 0;
-    font-size: $BaseFontSize + 4;
+    font-size: pxToRem(14);
   }
 }
 

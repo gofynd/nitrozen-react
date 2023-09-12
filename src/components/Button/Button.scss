@@ -1,13 +1,13 @@
 @import "./../../base/base.scss";
 
 .n-button {
-  height: 4rem;
+  height: pxToRem(40);
   cursor: pointer;
   box-shadow: none;
   font-family: $PrimaryFont;
-  font-size: $BaseFontSize + 5;
+  font-size: pxToRem(15);
   font-weight: 700;
-  line-height: 1.8rem;
+  line-height: pxToRem(18);
   text-align: center;
   outline: none;
   border: 0;
@@ -15,9 +15,9 @@
   background: none;
   text-decoration: none;
   box-sizing: border-box;
-  letter-spacing: 0.05rem;
-  padding: 0rem 3rem;
-  border-radius: 0.3rem;
+  letter-spacing: pxToRem(0.5);
+  padding: 0rem pxToRem(30);
+  border-radius: pxToRem(3);
   color: $WhiteColor;
 
   &:disabled {
@@ -204,43 +204,43 @@
 }
 
 .n-button-rounded {
-  border-radius: 3.4rem;
-  padding: 0rem 3.2rem;
+  border-radius: pxToRem(34);
+  padding: 0rem pxToRem(32);
 }
 
 .n-button-large {
-  padding: 1.6rem 2.4rem; // 1.6rem 0.6rem;
-  height: 5.4rem;
+  padding: pxToRem(16) pxToRem(24);
+  height: pxToRem(54);
   font-size: 18px;
-  line-height: 2.5rem;
-  min-width: 5.4rem;
+  line-height: pxToRem(25);
+  min-width: pxToRem(54);
 
   &_only_icon {
-    padding: 1.6rem 0.6rem !important;
+    padding: pxToRem(16) pxToRem(6) !important;
   }
 }
 
 .n-button-mid {
-  padding: 1.2rem 1.6rem; // 1.2rem 1.2rem;
-  height: 4.8rem;
+  padding: pxToRem(12) pxToRem(16);
+  height: pxToRem(48);
   font-size: 15px;
-  line-height: 2.5rem;
-  min-width: 4.8rem;
+  line-height: pxToRem(25);
+  min-width: pxToRem(48);
 
   &_only_icon {
-    padding: 1.2rem 1.2rem !important;
+    padding: pxToRem(12) !important;
   }
 }
 
 .n-button-small {
-  padding: 0.4rem 1.6rem; //0.4rem 0.4rem;
-  height: 3rem;
-  font-size: $BaseFontSize + 2;
-  line-height: 1.9rem;
-  min-width: 3rem;
+  padding: pxToRem(4) pxToRem(16);
+  height: pxToRem(30);
+  font-size: pxToRem(12);
+  line-height: pxToRem(19);
+  min-width: pxToRem(30);
 
   &_only_icon {
-    padding: 0.4rem 0.4rem !important;
+    padding: pxToRem(4) !important;
   }
 }
 
@@ -266,22 +266,22 @@
   display: flex;
   justify-content: center;
   height: 100%;
-  width: 2.4rem;
+  width: pxToRem(24);
   object-fit: contain;
-  margin-left: 0.4rem;
+  margin-left: pxToRem(4);
 }
 
 .n-btn-social-icon {
   // position: absolute;
   // left: -3.2rem;
-  font-size: 2.4rem;
+  font-size: pxToRem(24);
   display: flex;
   justify-content: center;
   align-items: center;
 
   @media screen and (max-width: 425px) {
-    height: 2.6rem;
-    width: 2.6rem;
+    height: pxToRem(26);
+    width: pxToRem(26);
   }
 }
 
@@ -304,18 +304,18 @@
 }
 
 .n-icon-small {
-  height: 2rem;
-  font-size: 2rem;
+  height: pxToRem(20);
+  font-size: pxToRem(20);
 }
 
 .n-icon {
-  height: 2.4rem;
-  font-size: 2.4rem;
+  height: pxToRem(24);
+  font-size: pxToRem(24);
 }
 
 .n-icon-large {
-  height: 3rem;
-  font-size: 3rem;
+  height: pxToRem(30);
+  font-size: pxToRem(30);
 }
 
 .disable-click {
@@ -330,8 +330,8 @@
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-  grid-gap: 1.6rem;
-  padding: 1.6rem;
+  grid-gap: pxToRem(16);
+  padding: pxToRem(16);
 
   @media screen and (max-width: 425px) {
     flex-direction: column;

@@ -7,14 +7,14 @@
     cursor: pointer;
     list-style: none;
     text-decoration: none;
-    font-size: calc($BaseFontSize + 6px);
-    min-width: 100px;
+    font-size: pxToRem(16);
+    min-width: pxToRem(100);
     font-weight: 400;
     color: $TypographyPrimaryColor;
     background-color: $ColorPrimaryBackground;
     padding: $SpacingBase;
     box-sizing: border-box;
-    height: 40px;
+    height: pxToRem(40);
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -23,7 +23,7 @@
     }
   }
   &-divider {
-    border-bottom: 1px solid $ColorSecondaryGrey40;
+    border-bottom: pxToRem(1) solid $ColorSecondaryGrey40;
   }
   &-selected > a {
     color: $ColorPrimary60;
@@ -37,7 +37,7 @@
     color: $ColorPrimaryGrey60;
   }
   &-heading > a {
-    font-size: calc($BaseFontSize + 4px);
+    font-size: pxToRem(14);
     &:hover {
       background-color: $ColorPrimaryBackground;
     }

@@ -2,7 +2,7 @@
 
 .storybook-stepper-container {
   margin-inline: auto;
-  max-width: 70rem;
+  max-width: pxToRem(700);
   min-height: 70vh;
   @include d-flex-center;
 }
@@ -10,13 +10,13 @@
 .n-stepper {
   margin: 0 auto;
   width: 100%;
-  font-size: $BaseFontSize + 6;
+  font-size: pxToRem(16);
 
   .nitrozen-checkmark {
     display: inline-block;
     position: absolute;
     @include absolute-position-center(rotate(45deg));
-    top: calc(50% - 0.2rem);
+    top: calc(50% - pxToRem(2));
   }
   .stepper-description {
     color: $LabelColor;
@@ -86,26 +86,24 @@
     .n-stepper-container {
       display: flex;
       flex-direction: column;
-      gap: 0.8rem;
-    }
-
-    .n-stepper-group {
-      --circle-size: 3.2rem;
-      --spacing: 0.8rem;
+      gap: pxToRem(8);
     }
 
     .n-circle-outer-container {
       display: grid;
       align-items: center;
-      grid-template-columns: 3.4rem auto;
-      grid-template-rows: auto minmax(2rem, auto);
-      grid-row-gap: 0.8rem;
-      grid-column-gap: 1rem;
+      grid-template-columns: pxToRem(34) auto;
+      grid-template-rows: auto minmax(pxToRem(20), auto);
+      grid-row-gap: pxToRem(8);
+      grid-column-gap: pxToRem(10);
       cursor: pointer;
     }
 
     .n-stepper-group {
-      column-gap: 1.6rem;
+      $circleSize: pxToRem(32);
+      $spacing: pxToRem(8);
+
+      column-gap: pxToRem(16);
 
       &.inactive-stepper {
         opacity: 0.3;
@@ -113,15 +111,15 @@
         filter: saturate(0.1);
       }
       .bar-ball-container {
-        gap: 0.8rem;
+        gap: pxToRem(8);
         flex-direction: column;
         justify-content: center;
       }
       .n-bar {
-        width: 0.1rem;
+        width: pxToRem(1);
         background: $SecondaryDisabledColor;
         min-height: 100%;
-        border-radius: 1rem;
+        border-radius: pxToRem(10);
         justify-self: center;
 
         &.completed-bar {
@@ -179,27 +177,27 @@
         }
       }
       .active-stepper {
-        top: 0.1rem;
-        bottom: 0.1rem;
-        left: 0.1rem;
-        right: 0.1rem;
+        top: pxToRem(1);
+        bottom: pxToRem(1);
+        left: pxToRem(1);
+        right: pxToRem(1);
         background: $Bubbles;
       }
       .n-text {
-        font-size: $BaseFontSize + 4;
+        font-size: pxToRem(14);
         font-weight: 500;
       }
       .stepper-description {
-        font-size: $BaseFontSize + 2;
-        margin-top: 0.4rem;
-        line-height: 1.8rem;
+        font-size: pxToRem(12);
+        margin-top: pxToRem(4);
+        line-height: pxToRem(18);
       }
       .n-circle-outer {
-        height: var(--circle-size);
-        width: var(--circle-size);
+        height: #{$circleSize};
+        width: #{$circleSize};
 
         &.nitrozen-circle-border {
-          border: 0.1rem;
+          border: pxToRem(1);
           border-style: solid;
 
           &.current {
@@ -225,13 +223,13 @@
         }
       }
       .nitrozen-cirle-check-container .n-circle-outer {
-        border: 0.1rem solid $Bubbles;
+        border: pxToRem(1) solid $Bubbles;
       }
       .nitrozen-checkmark {
-        height: 1.4rem;
-        width: 0.6rem;
-        border-bottom: 0.2rem solid $SeaGreen;
-        border-right: 0.2rem solid $SeaGreen;
+        height: pxToRem(14);
+        width: pxToRem(6);
+        border-bottom: pxToRem(2) solid $SeaGreen;
+        border-right: pxToRem(2) solid $SeaGreen;
       }
       .stepper-header-description {
         & .header-description {
@@ -239,21 +237,21 @@
         }
 
         & .heading-center {
-          margin-top: 1.2rem;
+          margin-top: pxToRem(12);
         }
         @media screen and (max-width: 768px) {
           flex-direction: column;
           justify-content: flex-start;
-          gap: 1rem;
+          gap: pxToRem(10);
 
           & .heading-center {
-            margin-top: 0.2rem;
+            margin-top: pxToRem(2);
           }
         }
       }
       .stepper-header-description button {
         align-self: center;
-        min-width: 12rem;
+        min-width: pxToRem(120);
         cursor: pointer;
         @media screen and (max-width: 768px) {
           align-self: flex-start;
@@ -264,9 +262,9 @@
 
   //HORIZONTAL STEPPER
   &.horizontal {
+    $circleSize: pxToRem(32);
+    $spacing: pxToRem(8);
     .n-stepper-group {
-      --circle-size: 3.2rem;
-      --spacing: 0.8rem;
       display: flex;
       flex-grow: 10;
       flex-basis: 100%;
@@ -284,57 +282,57 @@
     .n-stepper-group:not(:last-child):after {
       content: "";
       position: relative;
-      top: 1.6rem;
-      height: 1px;
+      top: pxToRem(16);
+      height: pxToRem(1);
       background-color: #e0e0e0;
       order: -1;
-      width: calc(100% - var(--circle-size) - calc(var(--spacing)));
-      left: calc(50% + calc(var(--circle-size) / 2 + var(--spacing)));
+      width: calc(100% - #{$circleSize} - calc(#{$spacing}));
+      left: calc(50% + calc(#{$circleSize} / 2 + #{$spacing}));
     }
 
     .n-stepper-container {
       display: flex;
-      gap: 0.8rem;
+      gap: pxToRem(8);
     }
     .n-stepper-group {
       flex-direction: column;
       text-align: center;
 
       .n-circle-outer {
-        height: var(--circle-size);
-        width: var(--circle-size);
+        height: #{$circleSize};
+        width: #{$circleSize};
         @include d-flex-center;
         border-radius: 100%;
 
         &.current {
           background: $ColorSparkle50;
           color: $ColorSparkle80;
-          border: 0.1rem solid $ColorSparkle50;
+          border: pxToRem(1) solid $ColorSparkle50;
         }
 
         &.upcoming {
           background: none;
           color: $ColorPrimaryGrey60;
-          border: 0.1rem solid $ColorPrimaryGrey60;
+          border: pxToRem(1) solid $ColorPrimaryGrey60;
         }
 
         &.disabled {
           background: none;
           color: $ColorPrimaryGrey60;
           opacity: 0.3;
-          border: 0.1rem solid $ColorPrimaryGrey60;
+          border: pxToRem(1) solid $ColorPrimaryGrey60;
         }
 
         &.issue {
           background: $ColorSparkle20;
           color: $ColorSparkle60;
-          border: 0.1rem solid $ColorSparkle60;
+          border: pxToRem(1) solid $ColorSparkle60;
         }
 
         &.completed {
           background: $ColorSparkle20;
           color: $ColorSparkle50;
-          border: 0.1rem solid $ColorSparkle50;
+          border: pxToRem(1) solid $ColorSparkle50;
         }
       }
       .nitrozen-circle-inner {
@@ -344,20 +342,20 @@
       }
 
       .stepper-header-description {
-        margin-top: 1rem;
+        margin-top: pxToRem(10);
       }
       .bar-ball-container {
-        gap: 0.8rem;
+        gap: pxToRem(8);
       }
       .nitrozen-checkmark {
-        height: 0.6rem;
-        width: 0.3rem;
-        border-bottom: 0.15rem solid $SuccessColor;
-        border-right: 0.15rem solid $SuccessColor;
+        height: pxToRem(6);
+        width: pxToRem(3);
+        border-bottom: pxToRem(1.5) solid $SuccessColor;
+        border-right: pxToRem(1.5) solid $SuccessColor;
       }
       .n-bar {
         flex-grow: 1;
-        height: 0.1rem;
+        height: pxToRem(1);
       }
       .nitrozen-active {
         background-color: $SuccessColor;
@@ -370,13 +368,13 @@
         }
       }
       .n-text {
-        font-size: $BaseFontSize + 4;
+        font-size: pxToRem(14);
         font-weight: 500;
       }
       .stepper-description {
-        font-size: $BaseFontSize;
-        line-height: 1.6rem;
-        margin-top: 0.2rem;
+        font-size: pxToRem(10);
+        line-height: pxToRem(16);
+        margin-top: pxToRem(2);
         max-width: 85%;
         word-wrap: break-word;
       }
@@ -390,16 +388,16 @@
 .heading-progress {
   display: flex;
   align-items: center;
-  margin-bottom: 2.6rem;
-  gap: 2rem;
-  line-height: 2.6rem;
+  margin-bottom: pxToRem(26);
+  gap: pxToRem(20);
+  line-height: pxToRem(26);
 
   .stepper-heading {
     display: inline-block;
     flex-grow: 1;
     font-family: $PrimaryFont;
     font-weight: 600;
-    font-size: $BaseFontSize + 8;
+    font-size: pxToRem(18);
     color: $TypographyPrimaryColor;
   }
 }
@@ -408,13 +406,13 @@
   margin-left: auto;
 
   .svg-circle-container {
-    height: 6rem;
-    width: 6rem;
+    height: pxToRem(60);
+    width: pxToRem(60);
     position: relative;
   }
 
   span {
-    font-size: $BaseFontSize + 2;
+    font-size: pxToRem(12);
     font-family: $PrimaryFont;
     color: $TypographyPrimaryColor;
   }
@@ -426,8 +424,8 @@
     @include d-flex-center;
   }
   svg {
-    height: 5rem;
-    width: 5rem;
+    height: pxToRem(50);
+    width: pxToRem(50);
     fill: none;
     margin-left: auto;
     display: block;

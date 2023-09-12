@@ -13,10 +13,10 @@
   top: 0;
   z-index: 10;
   pointer-events: none;
-  width: 4px;
+  width: pxToRem(4);
   background: #f5f5f5;
-  border-radius: 250px;
-  border: 1px solid #e0e0e0;
+  border-radius: pxToRem(250);
+  border: pxToRem(1) solid #e0e0e0;
 }
 
 .n-main-table {
@@ -49,9 +49,9 @@
   th {
     border-bottom: none;
     background-color: $ColorPrimary50;
-    padding: 16px;
+    padding: pxToRem(16);
     text-align: left;
-    font-size: 16px;
+    font-size: pxToRem(16);
     font-weight: 300;
   }
 
@@ -70,9 +70,9 @@
   td {
     border-radius: 0;
     border-left: $TableBorderWidth solid $ColorSparkleGrey40;
-    padding: 16px;
+    padding: pxToRem(16);
     border-top: $TableBorderWidth solid $ColorSparkleGrey40;
-    font-size: 14px;
+    font-size: pxToRem(14);
     background: #fff;
   }
 
@@ -99,10 +99,10 @@
 
 .n-table-footer {
   td {
-    padding: 16px;
+    padding: pxToRem(16);
     border-left: $TableBorderWidth solid $ColorSparkleGrey40;
     border-top: $TableBorderWidth solid $ColorSparkleGrey40;
-    font-size: 14px;
+    font-size: pxToRem(14);
   }
 
   td:last-child {
@@ -126,7 +126,7 @@
 
 .n-table-header-action {
   cursor: pointer;
-  margin-left: 6px;
+  margin-left: pxToRem(6);
 }
 
 .n-cursor-pointer {
@@ -140,7 +140,7 @@
 }
 
 .n-table-header-text {
-  margin-right: 4px;
+  margin-right: pxToRem(4);
 }
 
 .n-action-icon {
@@ -156,14 +156,14 @@
     padding: 0px;
   }
   .n-checkbox {
-    top: -10px;
+    top: pxToRem(-10);
     @media screen and (max-width: 768px) {
       left: 0;
     }
   }
 }
 .n-table-header-checkbox {
-  width: 10px;
+  width: pxToRem(10);
 }
 .n-table-row-item-checkbox {
   td:first-child {

@@ -1,7 +1,7 @@
 @import "./fonts.scss";
 
-$BaseFontSize: 10px;
 $DefaultColor: #2e31be;
+$BaseFontSize: var(--BaseFontSize, 10); // default is 10
 $PrimaryColor: var(--PrimaryColor, $DefaultColor);
 $PrimaryHoverColor: var(--PrimaryHoverColor, #2e31a1);
 $PrimaryDisabledColor: var(--PrimaryDisabledColor, #b5ffe7);

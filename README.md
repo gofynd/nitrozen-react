@@ -42,6 +42,30 @@ function MyComponent() {
 
 ![button](https://github.com/gofynd/nitrozen-react/blob/main/src/assets/sb-buttons.png)
 
+### 🚨 Note:
+
+> The library uses default font size as 10px. Hence if you are planning to use 10px as base font size, you need to add the same to your code as well.
+
+```css
+html,
+body {
+  font-size: 10px;
+}
+```
+
+If you wish to use any other base font-size apart from 10px, you need to add these following:
+
+```css
+:root {
+  --BaseFontSize: <your font size>; /* number as integer without unit */
+}
+
+html,
+body {
+  font-size: <your font size>; /* number with unit */
+}
+```
+
 ## 🔥 Components List:
 
 - [Alert](https://opensource.gofynd.io/nitrozen-react/?path=/docs/components-alert--button-less-alert)

@@ -6,7 +6,7 @@
   height: 100%;
   top: 0;
   left: 0;
-  backdrop-filter: blur(0.8rem);
+  backdrop-filter: blur(pxToRem(8));
   background-color: $BgColor;
   z-index: 70;
 
@@ -20,9 +20,9 @@
     box-sizing: border-box;
     font-family: $PrimaryFont;
     background: $WhiteColor;
-    border: 0.1rem solid $SecondaryDisabledColor;
-    border-radius: 2.5rem;
-    padding: 2.5rem;
+    border: pxToRem(1) solid $SecondaryDisabledColor;
+    border-radius: pxToRem(25);
+    padding: pxToRem(25);
 
     .n-closebtn-container {
       display: flex;
@@ -52,17 +52,17 @@
   }
 
   .n-dialog-header {
-    margin: 0.6rem 0 0.6rem 0;
+    margin: pxToRem(6) 0 pxToRem(6) 0;
     justify-content: space-between;
     font-weight: 900;
     text-transform: none;
-    font-size: 1.5rem;
+    font-size: pxToRem(15);
     letter-spacing: -0.72px;
     line-height: 1.1666666667;
 
     .n-inline-svg {
-      width: 1.4rem;
-      height: 1.4rem;
+      width: pxToRem(14);
+      height: pxToRem(14);
       cursor: pointer;
     }
   }
@@ -72,17 +72,17 @@
     flex-direction: column;
 
     .n-dialog-footer-btn-spacing {
-      margin-bottom: 0.8rem;
+      margin-bottom: pxToRem(8);
     }
   }
 
   .n-dialog-footer {
-    margin: 2.4rem 0 0;
+    margin: pxToRem(24) 0 0;
     justify-content: flex-end;
     width: 100%;
 
     .n-dialog-footer-btn-spacing {
-      right: 1rem;
+      right: pxToRem(10);
     }
 
     .n-dialog-negative-button {
@@ -91,7 +91,7 @@
 
     .n-dialog-footer-button-margin {
       width: 100%;
-      margin: 1rem;
+      margin: pxToRem(10);
       max-width: 60%;
       margin-bottom: 0;
 
@@ -108,8 +108,8 @@
   .n-dialog-body {
     position: relative;
     font-weight: 400;
-    font-size: 1.5rem;
-    line-height: 2rem;
+    font-size: pxToRem(15);
+    line-height: pxToRem(20);
     letter-spacing: -0.005em;
     word-break: break-word;
     color: $ColorPrimaryGrey80;
@@ -133,8 +133,8 @@
 }
 
 .n-dialog-icon {
-  height: 5rem;
-  width: 5rem;
+  height: pxToRem(50);
+  width: pxToRem(50);
 }
 
 .n-dialog-footer-container {
@@ -156,9 +156,9 @@
   font-weight: 700;
   color: #141414;
   text-transform: none;
-  font-size: 2rem;
+  font-size: pxToRem(20);
   letter-spacing: -0.005em;
-  line-height: 2.5rem;
+  line-height: pxToRem(25);
   font-family: $PrimaryFont;
 }
 .acknowlegdement-header {
@@ -166,12 +166,12 @@
   text-align: center;
 }
 
-@media screen and (max-width: 61.9375rem) {
+@media screen and (max-width: pxToRem(619.375)) {
   .n-wrapper-width-s {
-    width: 46.4rem;
+    width: pxToRem(464);
   }
 
   .n-wrapper-width-m {
-    width: 46.4rem;
+    width: pxToRem(464);
   }
 }

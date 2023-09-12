@@ -2,10 +2,10 @@
 
 .n-checkbox-container {
   position: relative;
-  padding-left: 3rem;
+  padding-left: pxToRem(30);
   cursor: pointer;
-  font-size: 1.5rem;
-  line-height: 1.5rem;
+  font-size: pxToRem(15);
+  line-height: pxToRem(15);
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -15,13 +15,13 @@
   font-weight: 400;
   display: flex;
   align-items: center;
-  padding: 0.45rem 0.45rem 0.45rem 3.2rem;
+  padding: pxToRem(4.5) pxToRem(4.5) pxToRem(4.5) pxToRem(32);
   justify-content: center;
-  gap: 0.8rem;
+  gap: pxToRem(8);
   box-sizing: border-box;
 
   @media screen and (max-width: 768px) {
-    font-size: 1.2rem;
+    font-size: pxToRem(12);
   }
 
   &:hover {
@@ -43,11 +43,11 @@
   position: absolute;
   top: 0;
   left: 0;
-  height: 2.2rem;
-  width: 2.2rem;
+  height: pxToRem(22);
+  width: pxToRem(22);
   background-color: $WhiteColor;
-  border: 1px solid $ColorPrimaryGrey80;
-  border-radius: 0.3rem;
+  border: pxToRem(1) solid $ColorPrimaryGrey80;
+  border-radius: pxToRem(3);
   transition: $TransitionsEaseQuick $TransitionsDurationRapid;
 
   &:hover {
@@ -55,10 +55,10 @@
   }
 
   @media screen and (max-width: 768px) {
-    height: 1.2rem;
-    width: 1.2rem;
-    top: 0.5rem;
-    left: 1rem;
+    height: pxToRem(12);
+    width: pxToRem(12);
+    top: pxToRem(5);
+    left: pxToRem(10);
   }
 }
 
@@ -90,12 +90,12 @@
 
 /* Style the nitrozen-checkbox/indicator */
 .n-checkbox-container .n-checkbox:after {
-  left: 0.8rem;
-  top: 0.35rem;
-  width: 0.4rem;
-  height: 1rem;
-  border: 0.1rem solid $WhiteColor;
-  border-width: 0 0.2rem 0.2rem 0;
+  left: pxToRem(8);
+  top: pxToRem(3.5);
+  width: pxToRem(4);
+  height: pxToRem(10);
+  border: pxToRem(1) solid $WhiteColor;
+  border-width: 0 pxToRem(2) pxToRem(2) 0;
   -webkit-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
@@ -103,10 +103,10 @@
   transition: all 0.2s ease;
 
   @media screen and (max-width: 768px) {
-    width: 0.2rem;
-    height: 0.5rem;
-    left: 0.4rem;
-    top: 0.17rem;
+    width: pxToRem(2);
+    height: pxToRem(5);
+    left: pxToRem(4);
+    top: pxToRem(1.7);
   }
 }
 .n-checkbox-indeterminate:after {
@@ -121,7 +121,7 @@ input[type="checkbox"]:disabled + .n-checkbox {
   pointer-events: none;
 
   &::after {
-    border-width: 0 0.2rem 0.2rem 0;
+    border-width: 0 pxToRem(2) pxToRem(2) 0;
   }
 }
 
@@ -135,12 +135,12 @@ input[type="checkbox"]:disabled + .n-checkbox {
 
 .n-checkbox-validation {
   position: absolute;
-  top: 3rem;
+  top: pxToRem(30);
   left: 0;
   width: max-content;
   @media screen and (max-width: 768px) {
-    top: 2.5rem;
-    left: 1rem;
+    top: pxToRem(25);
+    left: pxToRem(10);
   }
 }
 
@@ -191,15 +191,15 @@ input[type="checkbox"]:disabled + .n-checkbox {
 
 .social-icon {
   position: absolute;
-  left: -3.2rem;
-  font-size: 2.4rem;
+  left: pxToRem(-32);
+  font-size: pxToRem(24);
   display: flex;
   justify-content: center;
   align-items: center;
   @media screen and (max-width: 768px) {
-    height: 1.6rem;
-    width: 1.6rem;
-    top: 0.5rem;
-    left: -1rem;
+    height: pxToRem(16);
+    width: pxToRem(16);
+    top: pxToRem(5);
+    left: pxToRem(-10);
   }
 }
