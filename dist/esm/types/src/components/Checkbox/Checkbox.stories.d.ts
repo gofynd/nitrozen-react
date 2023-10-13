@@ -1,7 +1,6 @@
-import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 declare const _default: ComponentMeta<{
-  (props: import("./Checkbox").CheckboxProps): React.JSX.Element;
+  (props: import("./Checkbox").CheckboxProps): JSX.Element;
   defaultProps: {
     disabled: boolean;
     value: string;
@@ -23,7 +22,7 @@ declare const _default: ComponentMeta<{
 }>;
 export default _default;
 export declare const SingleCheckbox: ComponentStory<{
-  (props: import("./Checkbox").CheckboxProps): React.JSX.Element;
+  (props: import("./Checkbox").CheckboxProps): JSX.Element;
   defaultProps: {
     disabled: boolean;
     value: string;
@@ -43,5 +42,5 @@ export declare const SingleCheckbox: ComponentStory<{
     isIndeterminate: boolean;
   };
 }>;
-export declare const Basic_checkbox: (args: any) => React.JSX.Element;
-export declare const Multiple_checkbox: (args: any) => React.JSX.Element;
+export declare const Basic_checkbox: (args: any) => JSX.Element;
+export declare const Multiple_checkbox: (args: any) => JSX.Element;

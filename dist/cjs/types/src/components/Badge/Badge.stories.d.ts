@@ -3,7 +3,7 @@ import "../../base/storybook.scss";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 declare const _default: ComponentMeta<
   React.MemoExoticComponent<{
-    (props: import("./Badge").BadgeProps): React.JSX.Element;
+    (props: import("./Badge").BadgeProps): JSX.Element;
     defaultProps: {
       size: string;
       kind: string;
@@ -20,7 +20,7 @@ declare const _default: ComponentMeta<
 export default _default;
 export declare const Badge_demo: ComponentStory<
   React.MemoExoticComponent<{
-    (props: import("./Badge").BadgeProps): React.JSX.Element;
+    (props: import("./Badge").BadgeProps): JSX.Element;
     defaultProps: {
       size: string;
       kind: string;
@@ -34,6 +34,6 @@ export declare const Badge_demo: ComponentStory<
     };
   }>
 >;
-export declare const badge_with_alert_strip: (args: any) => React.JSX.Element;
-export declare const text_badges: (args: any) => React.JSX.Element;
-export declare const icon_badges: (args: any) => React.JSX.Element;
+export declare const badge_with_alert_strip: (args: any) => JSX.Element;
+export declare const text_badges: (args: any) => JSX.Element;
+export declare const icon_badges: (args: any) => JSX.Element;

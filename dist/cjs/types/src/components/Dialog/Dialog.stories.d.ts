@@ -1,7 +1,6 @@
-import React from "react";
 import { ComponentMeta } from "@storybook/react";
 declare const _default: ComponentMeta<{
-  (props: import("./Dialog").DialogProps): React.JSX.Element;
+  (props: import("./Dialog").DialogProps): JSX.Element;
   defaultProps: {
     id: string;
     title: string;
@@ -13,6 +12,6 @@ declare const _default: ComponentMeta<{
   };
 }>;
 export default _default;
-export declare const dialog: (args: any) => React.JSX.Element;
-export declare const Acknowledgement: (args: any) => React.JSX.Element;
-export declare const Informational: (args: any) => React.JSX.Element;
+export declare const dialog: (args: any) => JSX.Element;
+export declare const Acknowledgement: (args: any) => JSX.Element;
+export declare const Informational: (args: any) => JSX.Element;

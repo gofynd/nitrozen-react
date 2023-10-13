@@ -30,6 +30,4 @@ declare const _default: {
 };
 export default _default;
 export declare const SvgExample: ComponentStory<typeof SvgIcConfirm>;
-export declare const SvgLists: ComponentStory<
-  (props: IconProp) => React.JSX.Element
->;
+export declare const SvgLists: ComponentStory<(props: IconProp) => JSX.Element>;

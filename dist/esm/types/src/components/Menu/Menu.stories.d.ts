@@ -4,14 +4,14 @@ import { MenuProps } from "./Menu";
 import "./Menu.scss";
 declare const _default: ComponentMeta<
   React.MemoExoticComponent<{
-    (props: MenuProps): React.JSX.Element;
+    (props: MenuProps): JSX.Element;
     defaultProps: {
       id: string;
       className: string;
       mode: string;
       position: string;
       inverted: boolean;
-      icon: React.JSX.Element;
+      icon: JSX.Element;
       maxHeight: undefined;
       open: boolean;
       selectedIndex: number;
@@ -20,20 +20,20 @@ declare const _default: ComponentMeta<
       onClose: () => void;
       anchorEl: undefined;
       style: {};
-      children: React.JSX.Element;
+      children: JSX.Element;
     };
   }>
 >;
 export default _default;
 export declare const PrimaryMenu: {
-  (args: MenuProps): React.JSX.Element;
+  (args: MenuProps): JSX.Element;
   args: {
     id: string;
     className: string;
     mode: string;
     position: string;
     inverted: boolean;
-    icon: React.JSX.Element;
+    icon: JSX.Element;
     maxHeight: undefined;
     open: boolean;
     selectedIndex: number;
@@ -42,7 +42,7 @@ export declare const PrimaryMenu: {
     onOpen: () => void;
     anchorEl: undefined;
     style: {};
-    children: React.JSX.Element;
+    children: JSX.Element;
   };
 };
-export declare const AnchoredMenu: (args: any) => React.JSX.Element;
+export declare const AnchoredMenu: (args: any) => JSX.Element;

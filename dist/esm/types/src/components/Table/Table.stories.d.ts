@@ -10,5 +10,5 @@ export declare const Template: ComponentStory<typeof Table>;
 export declare const ShowTable: ComponentStory<
   React.NamedExoticComponent<import("./Table").TableProps>
 >;
-export declare const CheckableTable: (args: any) => React.JSX.Element;
-export declare const sortableTable: (args: any) => React.JSX.Element;
+export declare const CheckableTable: (args: any) => JSX.Element;
+export declare const sortableTable: (args: any) => JSX.Element;
