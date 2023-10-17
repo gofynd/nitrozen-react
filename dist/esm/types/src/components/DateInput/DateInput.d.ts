@@ -23,9 +23,13 @@ export interface DateInputProps {
   rangeConfig?: RangeConfigProps;
   onConfirmRange?: Function;
   defaultValidation?: boolean;
+  disabled?: boolean;
+  tooltipText?: string;
+  showTooltip?: boolean;
+  tooltipIcon?: React.ReactNode;
 }
 declare const _default: React.MemoExoticComponent<{
-  (props: DateInputProps): React.JSX.Element;
+  (props: DateInputProps): JSX.Element;
   defaulProps: {
     useDatePicker: boolean;
     required: boolean;
@@ -37,6 +41,7 @@ declare const _default: React.MemoExoticComponent<{
     rangeConfig: {};
     onConfirmRange: () => void;
     defaultValidation: boolean;
+    disabled: boolean;
   };
 }>;
 export default _default;

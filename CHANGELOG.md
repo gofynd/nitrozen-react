@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 2.0.9(2023-06-14)
+
+### Features
+
+- Make measurements dynamic based on font-size (Changed base font-size from 10px to 16px) ([341eb39](https://github.com/gofynd/nitrozen-react/pull/102))
+
 ## 2.0.8(2023-07-17)
 
 ### Features

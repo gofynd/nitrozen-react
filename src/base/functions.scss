@@ -1,0 +1,9 @@
+/**
+ * Converts pixel value to rem value based on the base font size.
+ *
+ * @param {number} $pxValue - The pixel value to be converted to rem.
+ * @return {number} - The converted rem value.
+ */
+@function pxToRem($pxValue) {
+  @return calc((#{$pxValue} / #{$BaseFontSize}) * 1rem);
+}

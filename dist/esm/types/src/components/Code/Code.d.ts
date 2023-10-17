@@ -17,7 +17,7 @@ export interface CodeProps {
   tooltipIcon?: React.ReactNode;
 }
 declare const _default: React.MemoExoticComponent<{
-  (props: CodeProps): React.JSX.Element;
+  (props: CodeProps): JSX.Element;
   defaulProps: {
     fields: number;
     label: string;

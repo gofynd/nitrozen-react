@@ -18,16 +18,16 @@
     margin: 0;
     font-weight: bold;
     line-height: 1;
-    font-size: 2.4rem;
+    font-size: pxToRem(24);
     letter-spacing: -1.2px;
     color: inherit;
   }
 
   .n-text-body {
-    margin-top: 0.4rem;
+    margin-top: pxToRem(4);
     font-weight: 500;
     text-transform: none;
-    font-size: 1.6rem;
+    font-size: pxToRem(16);
     letter-spacing: -0.08px;
     line-height: 1.5;
   }
@@ -111,7 +111,7 @@
 .n-heading {
   font-weight: 900;
   text-transform: none;
-  font-size: 2rem;
+  font-size: pxToRem(20);
   letter-spacing: -0.72px;
   line-height: 1.1666666667;
 }
@@ -119,7 +119,7 @@
 .n-text-md {
   font-weight: 500;
   text-transform: none;
-  font-size: 1.6rem;
+  font-size: pxToRem(16);
   letter-spacing: -0.08px;
   line-height: 1.5;
   margin-top: $SpacingXs;
@@ -130,8 +130,8 @@
   justify-content: inherit;
   flex-wrap: wrap;
   align-items: center;
-  margin-top: 1.5rem;
-  gap: 0.5rem;
+  margin-top: pxToRem(15);
+  gap: pxToRem(5);
 }
 
 @media screen and (max-width: 768px) {

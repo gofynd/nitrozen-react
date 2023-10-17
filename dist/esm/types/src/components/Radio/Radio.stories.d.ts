@@ -1,8 +1,7 @@
-import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { RadioProps } from "./Radio";
 declare const _default: ComponentMeta<{
-  (props: RadioProps): React.JSX.Element;
+  (props: RadioProps): JSX.Element;
   defaultProps: {
     disabled: boolean;
     name: string;
@@ -22,7 +21,7 @@ declare const _default: ComponentMeta<{
 }>;
 export default _default;
 export declare const RadioPlayground: ComponentStory<{
-  (props: RadioProps): React.JSX.Element;
+  (props: RadioProps): JSX.Element;
   defaultProps: {
     disabled: boolean;
     name: string;
@@ -40,9 +39,7 @@ export declare const RadioPlayground: ComponentStory<{
     onIconClick: () => void;
   };
 }>;
-export declare const radioSample: (args: RadioProps) => React.JSX.Element;
-export declare const stateSample: (args: RadioProps) => React.JSX.Element;
-export declare const disabledRadioSample: (
-  args: RadioProps
-) => React.JSX.Element;
-export declare const stateVariants: (args: RadioProps) => React.JSX.Element;
+export declare const radioSample: (args: RadioProps) => JSX.Element;
+export declare const stateSample: (args: RadioProps) => JSX.Element;
+export declare const disabledRadioSample: (args: RadioProps) => JSX.Element;
+export declare const stateVariants: (args: RadioProps) => JSX.Element;

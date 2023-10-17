@@ -1,7 +1,6 @@
-import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 declare const _default: ComponentMeta<{
-  (props: import("./Dropdown").DropdownProps): React.JSX.Element;
+  (props: import("./Dropdown").DropdownProps): JSX.Element;
   defaultProps: {
     id: string;
     items: never[];
@@ -13,6 +12,8 @@ declare const _default: ComponentMeta<{
     searchable: boolean;
     tooltip: null;
     addOption: boolean;
+    showAddOptionWithItems: boolean;
+    removeBorderBetweenItems: boolean;
     enableSelectAll: boolean;
     helperText: string;
     className: string;
@@ -23,7 +24,7 @@ declare const _default: ComponentMeta<{
 }>;
 export default _default;
 export declare const SingleSelect: ComponentStory<{
-  (props: import("./Dropdown").DropdownProps): React.JSX.Element;
+  (props: import("./Dropdown").DropdownProps): JSX.Element;
   defaultProps: {
     id: string;
     items: never[];
@@ -35,6 +36,8 @@ export declare const SingleSelect: ComponentStory<{
     searchable: boolean;
     tooltip: null;
     addOption: boolean;
+    showAddOptionWithItems: boolean;
+    removeBorderBetweenItems: boolean;
     enableSelectAll: boolean;
     helperText: string;
     className: string;
@@ -44,7 +47,7 @@ export declare const SingleSelect: ComponentStory<{
   };
 }>;
 export declare const MultiSelect: ComponentStory<{
-  (props: import("./Dropdown").DropdownProps): React.JSX.Element;
+  (props: import("./Dropdown").DropdownProps): JSX.Element;
   defaultProps: {
     id: string;
     items: never[];
@@ -56,6 +59,8 @@ export declare const MultiSelect: ComponentStory<{
     searchable: boolean;
     tooltip: null;
     addOption: boolean;
+    showAddOptionWithItems: boolean;
+    removeBorderBetweenItems: boolean;
     enableSelectAll: boolean;
     helperText: string;
     className: string;
@@ -64,4 +69,4 @@ export declare const MultiSelect: ComponentStory<{
     prefixIcon: string;
   };
 }>;
-export declare const Search: () => React.JSX.Element;
+export declare const Search: () => JSX.Element;

@@ -23,7 +23,7 @@ export interface ButtonProps {
   style?: React.CSSProperties;
 }
 declare const _default: React.MemoExoticComponent<{
-  (props: ButtonProps): React.JSX.Element;
+  (props: ButtonProps): JSX.Element;
   defaultProps: {
     href: null;
     disabled: boolean;

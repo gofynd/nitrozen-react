@@ -34,7 +34,7 @@ export interface ProgressCircleProps {
   color?: string;
 }
 declare const _default: React.MemoExoticComponent<{
-  (props: StepperProps): React.JSX.Element;
+  (props: StepperProps): JSX.Element;
   defaultProps: {
     items: never[];
     isHorizontal: boolean;

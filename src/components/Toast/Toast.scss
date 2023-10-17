@@ -7,22 +7,22 @@
   z-index: $ZIndex3;
   display: flex;
   flex-direction: column;
-  font-size: $BaseFontSize + 6;
+  font-size: pxToRem(16);
 
   .n-toast-wrapper {
     background: $ColorSecondaryGrey80;
     border-radius: 1.4em;
     color: $WhiteColor;
-    width: 25rem;
-    margin-bottom: 1rem;
+    width: pxToRem(250);
+    margin-bottom: pxToRem(10);
     transition: transform 0.6s ease-in-out;
-    min-height: 2.5rem;
+    min-height: pxToRem(25);
     display: flex;
     justify-content: space-between;
-    padding: 1.2rem;
+    padding: pxToRem(12);
     font-family: $PrimaryFont;
     @media screen and (max-width: 425px) {
-      width: 32.8rem !important;
+      width: pxToRem(328) !important;
     }
     .n-toast-left-container {
       display: flex;
@@ -107,15 +107,15 @@
 }
 
 .n-toast-top-right {
-  top: 5rem;
-  right: 5rem;
+  top: pxToRem(50);
+  right: pxToRem(50);
   transition: transform 0.6s ease-in-out;
   animation: toast-in-right 0.7s;
 }
 
 .n-toast-bottom-right {
-  bottom: 5rem;
-  right: 5rem;
+  bottom: pxToRem(50);
+  right: pxToRem(50);
   transition: transform 0.6s ease-in-out;
   animation: toast-in-right 0.7s;
 }
@@ -127,15 +127,15 @@
 }
 
 .n-toast-top-left {
-  top: 5rem;
-  left: 5rem;
+  top: pxToRem(50);
+  left: pxToRem(50);
   transition: transform 0.6s ease-in;
   animation: toast-in-left 0.7s;
 }
 
 .n-toast-bottom-left {
-  bottom: 5rem;
-  left: 5rem;
+  bottom: pxToRem(50);
+  left: pxToRem(50);
   transition: transform 0.6s ease-in;
   animation: toast-in-left 0.7s;
 }

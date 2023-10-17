@@ -44,7 +44,7 @@ export interface paginationInterface {
   currentPage: number;
 }
 declare const _default: React.MemoExoticComponent<{
-  (props: PaginationProps): React.JSX.Element;
+  (props: PaginationProps): JSX.Element;
   defaultProps: {
     id: string;
     mode: ModeEnum;

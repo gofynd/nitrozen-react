@@ -3,19 +3,19 @@
 .n-pagination-container {
   font-family: $PrimaryFont;
   color: $TypographyPrimaryColor;
-  border: 1px solid $ColorPrimaryGrey60;
-  border-radius: 1.2rem;
-  padding: 1.2rem;
+  border: pxToRem(1) solid $ColorPrimaryGrey60;
+  border-radius: pxToRem(12);
+  padding: pxToRem(12);
 
   .n-pagination {
     display: flex;
-    font-size: 1.4rem;
+    font-size: pxToRem(14);
     color: $LabelColor;
-    font-size: 1.4rem;
+    font-size: pxToRem(14);
     font-weight: 400;
     align-items: center;
     flex-wrap: wrap;
-    gap: 1.2rem;
+    gap: pxToRem(12);
     .n-pagination__left {
       flex: 1;
       display: flex;
@@ -27,10 +27,10 @@
       .n-pagination__count {
         color: $ColorPrimaryGrey80;
         font-weight: 500;
-        font-size: 1.4rem;
-        line-height: 2rem;
+        font-size: pxToRem(14);
+        line-height: pxToRem(20);
         @media only screen and (max-width: $sm-min) {
-          font-size: 1.2rem;
+          font-size: pxToRem(12);
         }
       }
     }
@@ -44,52 +44,52 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 2rem;
+      gap: pxToRem(20);
       flex-wrap: wrap;
       @media only screen and (max-width: $sm-min) {
-        gap: 1.8rem;
+        gap: pxToRem(18);
         width: 100%;
       }
       .n-pagination__number {
         display: flex;
-        gap: 0.8rem;
+        gap: pxToRem(8);
         flex-direction: row;
         position: relative;
         flex-wrap: wrap;
         @media only screen and (max-width: $sm-min) {
-          gap: 0.5rem;
+          gap: pxToRem(5);
         }
       }
       .n-pagination__showpopup {
         position: absolute;
-        padding: 1.2rem;
+        padding: pxToRem(12);
         z-index: 1;
         background: $ColorPrimaryBackground;
-        box-shadow: 0px 4px 16px rgb(0 0 0 / 8%);
-        border-radius: 1.6rem;
-        width: 18.5rem;
+        box-shadow: 0px pxToRem(4) pxToRem(16) rgb(0 0 0 / 8%);
+        border-radius: pxToRem(16);
+        width: pxToRem(185);
         height: auto;
         display: flex;
         flex-direction: column;
-        gap: 0.8rem;
-        bottom: 6rem;
+        gap: pxToRem(8);
+        bottom: pxToRem(6);
         .n-pagination__search_input {
-          border: 1px solid $ColorPrimaryGrey60;
-          border-radius: 1.2rem;
-          padding: 1rem;
+          border: pxToRem(1) solid $ColorPrimaryGrey60;
+          border-radius: pxToRem(12);
+          padding: pxToRem(10);
           display: flex;
           justify-content: center;
           align-items: center;
-          gap: 0.8rem;
+          gap: pxToRem(8);
           input::placeholder {
             font-weight: 500;
-            font-size: 1.4rem;
-            line-height: 2rem;
+            font-size: pxToRem(14);
+            line-height: pxToRem(20);
             letter-spacing: -0.005em;
             color: $ColorPrimaryGrey80;
           }
           .n-pagination__search_logo {
-            padding-top: 0.5rem;
+            padding-top: pxToRem(5);
           }
           .n-input {
             border: 0px;
@@ -99,17 +99,17 @@
             position: relative;
             outline: none;
             box-sizing: border-box;
-            font-size: 1.6rem;
+            font-size: pxToRem(16);
             -webkit-appearance: none;
             display: block;
             -webkit-tap-highlight-color: transparent;
           }
         }
         ::-webkit-scrollbar {
-          width: 0.25rem;
-          border-radius: 0px 0px 48px 48px;
-          left: 0.25rem;
-          top: 0.25rem;
+          width: pxToRem(2.5);
+          border-radius: 0px 0px pxToRem(48) pxToRem(48);
+          left: pxToRem(2.5);
+          top: pxToRem(2.5);
         }
         ::-webkit-scrollbar-track {
           background: $ColorPrimaryBackground;
@@ -126,18 +126,18 @@
           grid-template-rows: repeat(4, 1fr);
           flex-wrap: wrap;
           overflow: auto;
-          height: 10.5rem;
+          height: pxToRem(105);
           .n-pagination__search_number_inactive {
-            height: 4rem;
-            width: 4rem;
+            height: pxToRem(40);
+            width: pxToRem(40);
             display: flex;
             justify-content: center;
             align-items: center;
             border-radius: 50%;
             flex: 1 0 21%;
             font-weight: 700;
-            font-size: 1.6rem;
-            line-height: 2.4rem;
+            font-size: pxToRem(16);
+            line-height: pxToRem(24);
             color: $ColorPrimaryGrey60;
             cursor: pointer;
           }
@@ -147,32 +147,32 @@
         }
       }
       .n-pagination__popup_left {
-        right: 20rem;
+        right: pxToRem(200);
         @media only screen and (max-width: $sm-min) {
-          right: 10rem;
+          right: pxToRem(100);
         }
       }
       .n-pagination__popup_right {
-        left: 20rem;
+        left: pxToRem(200);
         @media only screen and (max-width: $sm-min) {
-          left: 10rem;
+          left: pxToRem(100);
         }
       }
       .n-pagination__number_inactive {
-        height: 3.2rem;
-        width: 3.2rem;
+        height: pxToRem(32);
+        width: pxToRem(32);
         display: flex;
         justify-content: center;
         align-items: center;
         border-radius: 50%;
         color: $ColorPrimaryGrey60;
         font-weight: 700;
-        font-size: 1.6rem;
-        line-height: 2.4rem;
+        font-size: pxToRem(16);
+        line-height: pxToRem(24);
         cursor: pointer;
         @media only screen and (max-width: $sm-min) {
-          height: 3.2rem;
-          width: 3.2rem;
+          height: pxToRem(32);
+          width: pxToRem(32);
         }
       }
       .n-pagination__number_active {
@@ -190,20 +190,20 @@
       flex: 1;
       justify-content: flex-end;
       align-items: center;
-      gap: 0.8rem;
+      gap: pxToRem(8);
 
       .n-pagination__select {
         display: flex;
         align-items: center;
-        border: 1px solid $ColorPrimaryGrey60;
-        border-radius: 1.2rem;
+        border: pxToRem(1) solid $ColorPrimaryGrey60;
+        border-radius: pxToRem(12);
         position: relative;
         .n-pagination__select__label {
           font-weight: 400;
-          font-size: 1.2rem;
-          line-height: 1.6rem;
+          font-size: pxToRem(12);
+          line-height: pxToRem(16);
           color: $ColorPrimaryGrey80;
-          padding-left: 1.2rem;
+          padding-left: pxToRem(12);
         }
         .n-pagination-page-size .n-select-wrapper {
           position: unset;
@@ -212,12 +212,12 @@
           position: unset;
         }
         .n-pagination-page-size .n-select-wrapper .n-options {
-          bottom: 1rem;
+          bottom: pxToRem(10);
           top: auto;
         }
         .n-pagination-page-size .n-select-wrapper .n-select__trigger {
           border: 0;
-          padding: 0.8rem;
+          padding: pxToRem(8);
           background: $ColorPrimaryBackground;
           color: var(--TypographyPrimaryColor, $ColorPrimaryGrey80);
         }
@@ -228,8 +228,8 @@
         }
 
         .n-pagination-page-size {
-          width: 7.2rem;
-          margin: 0 1.2rem;
+          width: pxToRem(72);
+          margin: 0 pxToRem(12);
         }
       }
     }
@@ -241,23 +241,23 @@
   align-items: center;
   flex-wrap: nowrap;
   width: max-content;
-  gap: 0.8rem;
+  gap: pxToRem(8);
 
   .n-pagination__select {
     .n-select-wrapper .n-select__trigger {
       background: $ColorPrimaryBackground;
       color: var(--TypographyPrimaryColor, $ColorPrimaryGrey80);
-      border: 0.1rem solid var(--ColorSparkleGrey60, #e0e0e0);
+      border: pxToRem(1) solid var(--ColorSparkleGrey60, #e0e0e0);
       .n-dropdown-input-arrow-wrapper {
-        gap: 1.124rem;
+        gap: pxToRem(11.24);
       }
     }
   }
 
   .n-pagination__count {
     font-weight: 500;
-    font-size: 1.4rem;
-    line-height: 2rem;
+    font-size: pxToRem(14);
+    line-height: pxToRem(20);
     letter-spacing: -0.005em;
     color: rgba(0, 0, 0, 0.65);
     white-space: nowrap;
@@ -267,9 +267,9 @@
 
   .n-pagination__prev,
   .n-pagination__next {
-    width: 3.2rem;
-    height: 3.2rem;
-    min-width: 3.2rem;
+    width: pxToRem(32);
+    height: pxToRem(32);
+    min-width: pxToRem(32);
     border: unset;
     background-color: #fff;
 
@@ -284,17 +284,17 @@
     justify-content: flex-start;
     align-items: center;
     flex-wrap: nowrap;
-    gap: 0.4rem;
+    gap: pxToRem(4);
 
     .n-input-container {
       background-color: #fff;
-      border: 0.1rem solid var(--ColorSparkleGrey60, #e0e0e0);
+      border: pxToRem(1) solid var(--ColorSparkleGrey60, #e0e0e0);
       .n-input {
         text-align: center;
         min-width: 2.5ch;
         width: 2.5ch;
         max-width: 6.5ch;
-        height: 2.2rem;
+        height: pxToRem(22);
       }
     }
   }
@@ -303,21 +303,21 @@
   .n-pagination__select {
     .n-select__trigger {
       min-height: unset;
-      height: 1.4rem;
+      height: pxToRem(14);
     }
   }
   .n-pagination__main {
     .n-input-container {
       .n-input {
-        height: 1.4rem;
+        height: pxToRem(14);
       }
     }
   }
 }
 .n-pagination__prev,
 .n-pagination__next {
-  width: 2.4rem;
-  height: 2.4rem;
+  width: pxToRem(24);
+  height: pxToRem(24);
   cursor: pointer;
 
   svg {

@@ -14,4 +14,4 @@ export interface IconBaseProps extends React.SVGAttributes<SVGElement> {
 }
 export declare function GenIcon(
   data: IconTree
-): (props: IconBaseProps) => React.JSX.Element;
+): (props: IconBaseProps) => JSX.Element;

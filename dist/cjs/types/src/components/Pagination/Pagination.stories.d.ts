@@ -3,7 +3,7 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { ModeEnum, SizeEnum, TypeEnum } from "./Pagination";
 declare const _default: ComponentMeta<
   React.MemoExoticComponent<{
-    (props: import("./Pagination").PaginationProps): React.JSX.Element;
+    (props: import("./Pagination").PaginationProps): JSX.Element;
     defaultProps: {
       id: string;
       mode: ModeEnum;
@@ -26,7 +26,7 @@ declare const _default: ComponentMeta<
 export default _default;
 export declare const BasicPagination: ComponentStory<
   React.MemoExoticComponent<{
-    (props: import("./Pagination").PaginationProps): React.JSX.Element;
+    (props: import("./Pagination").PaginationProps): JSX.Element;
     defaultProps: {
       id: string;
       mode: ModeEnum;
@@ -48,7 +48,7 @@ export declare const BasicPagination: ComponentStory<
 >;
 export declare const Secondary: ComponentStory<
   React.MemoExoticComponent<{
-    (props: import("./Pagination").PaginationProps): React.JSX.Element;
+    (props: import("./Pagination").PaginationProps): JSX.Element;
     defaultProps: {
       id: string;
       mode: ModeEnum;

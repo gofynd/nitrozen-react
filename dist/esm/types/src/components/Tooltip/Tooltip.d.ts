@@ -26,11 +26,11 @@ export interface TooltipProps {
   tooltipContent: JSX.Element | React.ReactNode | string;
 }
 declare const _default: React.MemoExoticComponent<{
-  (props: TooltipProps): React.JSX.Element;
+  (props: TooltipProps): JSX.Element;
   defaultProps: {
     contentBgColor: string;
     contentColor: string;
-    icon: React.JSX.Element;
+    icon: JSX.Element;
     position: string;
     tooltipContent: string;
   };

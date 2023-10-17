@@ -4,20 +4,20 @@
   position: relative;
   display: flex;
   cursor: pointer;
-  font-size: $BaseFontSize + 6;
+  font-size: pxToRem(16);
 
   .nitrozen-tooltipcontent {
     visibility: hidden;
     width: max-content;
     background-color: $EclipseColor;
-    line-height: 2.08rem;
+    line-height: pxToRem(20.8);
     color: $WhiteColor;
-    border-radius: 0.5rem;
-    padding: 1rem;
+    border-radius: pxToRem(5);
+    padding: pxToRem(10);
     font-family: $PrimaryFont;
     position: absolute;
     z-index: $ZIndex3;
-    font-size: $BaseFontSize + 2;
+    font-size: pxToRem(12);
 
     .nitrozen-tooltip-link {
       color: $WhiteColor;
@@ -29,7 +29,7 @@
       position: absolute;
       border-style: solid;
       border-color: $EclipseColor transparent transparent transparent;
-      border-width: 0.7rem;
+      border-width: pxToRem(7);
     }
   }
 
@@ -120,13 +120,13 @@
   right: 100%;
   top: 50%;
   transform: translateX(0) translateY(-50%);
-  margin-right: 0.8rem;
+  margin-right: pxToRem(8);
 
   &::after {
     top: 50%;
     left: 100%;
     /* To the left of the tooltip */
-    margin-top: -0.5rem;
+    margin-top: pxToRem(-5);
     transform: rotate(270deg);
   }
 }
@@ -135,13 +135,13 @@
   right: 100%;
   top: 100%;
   transform: translateX(0) translateY(-50%);
-  margin-right: 0.8rem;
+  margin-right: pxToRem(8);
 
   &::after {
     top: 30%;
     left: 100%;
     /* To the left of the tooltip */
-    margin-top: -0.5rem;
+    margin-top: pxToRem(-5);
     transform: rotate(270deg);
   }
 }
@@ -150,13 +150,13 @@
   right: 100%;
   top: 0%;
   transform: translateX(0) translateY(-50%);
-  margin-right: 0.8rem;
+  margin-right: pxToRem(8);
 
   &::after {
     top: 60%;
     left: 100%;
     /* To the left of the tooltip */
-    margin-top: -0.5rem;
+    margin-top: pxToRem(-5);
     transform: rotate(270deg);
   }
 }
@@ -165,13 +165,13 @@
   left: 100%;
   top: 50%;
   transform: translateX(0) translateY(-50%);
-  margin-left: 0.8rem;
+  margin-left: pxToRem(8);
 
   &::after {
     top: 50%;
     right: 100%;
     /* To the right of the tooltip */
-    margin-top: -0.5rem;
+    margin-top: pxToRem(-5);
     transform: rotate(90deg);
   }
 }
@@ -180,13 +180,13 @@
   left: 100%;
   top: 100%;
   transform: translateX(0) translateY(-50%);
-  margin-left: 0.8rem;
+  margin-left: pxToRem(8);
 
   &::after {
     top: 30%;
     right: 100%;
     /* To the right of the tooltip */
-    margin-top: -0.5rem;
+    margin-top: pxToRem(-5);
     transform: rotate(90deg);
   }
 }
@@ -195,13 +195,13 @@
   left: 100%;
   top: 0%;
   transform: translateX(0) translateY(-50%);
-  margin-left: 0.8rem;
+  margin-left: pxToRem(8);
 
   &::after {
     top: 60%;
     right: 100%;
     /* To the right of the tooltip */
-    margin-top: -0.5rem;
+    margin-top: pxToRem(-5);
     transform: rotate(90deg);
   }
 }

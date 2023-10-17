@@ -1,11 +1,11 @@
 @import "./../../base/base.scss";
 
 @mixin nitrozen-border-primary {
-  border: 0.1rem solid $PrimaryColor;
+  border: pxToRem(1) solid $PrimaryColor;
 }
 
 @mixin nitrozen-border-secondary-disable {
-  border: 0.1rem solid $SecondaryDisabledColor;
+  border: pxToRem(1) solid $SecondaryDisabledColor;
 }
 
 @mixin nitrozen-vertical-horizontal-center {
@@ -17,12 +17,12 @@
 
 .nitrozen-badge {
   @include nitrozen-vertical-horizontal-center;
-  height: 1.6rem;
-  padding: 0.4rem 0.8rem;
+  height: pxToRem(16);
+  padding: pxToRem(4) pxToRem(8);
   cursor: default;
-  border-radius: 0.4rem;
+  border-radius: pxToRem(4);
   color: $WhiteColor;
-  font-size: $BaseFontSize + 2;
+  font-size: pxToRem(12);
   white-space: nowrap;
   font-family: $PrimaryFont;
   line-height: 1.8rem;
@@ -31,7 +31,7 @@
     outline: none;
   }
   &.nitrozen-badge-default {
-    border: 0.1rem solid $Zambezi;
+    border: pxToRem(1) solid $Zambezi;
     color: $Zambezi;
   }
   &.nitrozen-badge-info {
@@ -39,19 +39,19 @@
     color: $PrimaryColor;
   }
   &.nitrozen-badge-success {
-    border: 0.1rem solid $SuccessColor;
+    border: pxToRem(1) solid $SuccessColor;
     color: $SuccessColor;
   }
   &.nitrozen-badge-warn {
-    border: 0.1rem solid $ColorFeedbackWarning20;
+    border: pxToRem(1) solid $ColorFeedbackWarning20;
     color: $ColorFeedbackWarning80;
   }
   &.nitrozen-badge-error {
-    border: 0.1rem solid $ErrorColor;
+    border: pxToRem(1) solid $ErrorColor;
     color: $ErrorColor;
   }
   &.nitrozen-badge-disable {
-    border: 0.1rem solid $LabelColor;
+    border: pxToRem(1) solid $LabelColor;
     color: $LabelColor;
   }
   &.nitrozen-badge-default-fill {
@@ -82,45 +82,45 @@
 .nitrozen-badge-story-table {
   font-family: "Inter";
   font-weight: 500;
-  gap: 1.6rem;
+  gap: pxToRem(16);
   @include nitrozen-border-secondary-disable;
-  font-size: $BaseFontSize + 6;
+  font-size: pxToRem(16);
 }
 .nitrozen-badge-story-table-row {
   display: grid;
   grid-template-columns: 3fr 1fr 1fr 1fr 1fr;
-  gap: 3.2rem;
+  gap: pxToRem(32);
   @include nitrozen-border-secondary-disable;
-  border-radius: 0.4rem;
-  padding: 1rem;
+  border-radius: pxToRem(4);
+  padding: pxToRem(10);
   width: 80vw;
 }
 .nitrozen-badge-story-table-row-header {
   display: grid;
   grid-template-columns: 3fr 1fr 1fr 1fr 1fr;
-  gap: 3.2rem;
-  border-bottom: 0.1rem solid black;
-  padding: 1rem;
+  gap: pxToRem(32);
+  border-bottom: pxToRem(1) solid black;
+  padding: pxToRem(10);
   width: 80vw;
 }
 .nitrozen-badge-small {
-  font-size: $BaseFontSize + 2;
-  line-height: 1.6rem;
+  font-size: pxToRem(12);
+  line-height: pxToRem(16);
   letter-spacing: -0.005em;
 }
 .nitrozen-badge-medium {
-  font-size: $BaseFontSize + 4;
+  font-size: pxToRem(14);
 }
 .nitrozen-badge-large {
-  font-size: $BaseFontSize + 8;
-  padding: 0.4rem 0.8rem;
-  line-height: 2.4rem;
+  font-size: pxToRem(18);
+  padding: pxToRem(4) pxToRem(8);
+  line-height: pxToRem(24);
   letter-spacing: -0.005em;
 }
 .nitrogen-badge-background {
   width: 100%;
   @include nitrozen-vertical-horizontal-center;
-  padding: 0.8rem;
+  padding: pxToRem(8);
 }
 
 .nitrozen-badge-truncate {
@@ -129,20 +129,20 @@
   display: inline-block;
   text-overflow: ellipsis;
   white-space: nowrap;
-  max-width: 400px;
+  max-width: pxToRem(400);
 }
 
 .nitrozen-badge-small-badge-icon {
   @include nitrozen-vertical-horizontal-center;
-  margin-right: 0.5rem;
+  margin-right: pxToRem(5);
 }
 
 .nitrozen-badge-medium-badge-icon {
   @include nitrozen-vertical-horizontal-center;
-  margin-right: 0.6rem;
+  margin-right: pxToRem(6);
 }
 
 .nitrozen-badge-large-badge-icon {
   @include nitrozen-vertical-horizontal-center;
-  margin-right: 0.7rem;
+  margin-right: pxToRem(7);
 }

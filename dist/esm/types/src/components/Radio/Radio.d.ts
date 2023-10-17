@@ -17,7 +17,7 @@ export interface RadioProps {
   onIconClick?: Function;
 }
 declare const Radio: {
-  (props: RadioProps): React.JSX.Element;
+  (props: RadioProps): JSX.Element;
   defaultProps: {
     disabled: boolean;
     name: string;

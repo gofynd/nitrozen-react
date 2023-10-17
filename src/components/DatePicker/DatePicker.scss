@@ -13,8 +13,8 @@
 
   &-calendar-group {
     display: flex;
-    gap: 1.2rem;
-    height: 48.4rem;
+    gap: pxToRem(12);
+    height: pxToRem(484);
     @media screen and (max-width: 425px) {
       display: block;
       height: unset;
@@ -23,22 +23,22 @@
   }
 
   &-divider {
-    border-left: 0.1rem solid $ColorPrimaryGrey40;
+    border-left: pxToRem(1) solid $ColorPrimaryGrey40;
   }
 
   &-wrapper {
     position: absolute;
     background: $WhiteColor;
     box-shadow: $ShadowM;
-    border-radius: 2.4rem;
-    padding: 1.6rem;
+    border-radius: pxToRem(24);
+    padding: pxToRem(16);
     z-index: $ZIndex3;
     @media screen and (max-width: 425px) {
       position: fixed;
       top: 0;
       left: 0;
-      width: calc(100% - 3.2rem);
-      height: calc(100% - 3.2rem);
+      width: calc(100% - pxToRem(32));
+      height: calc(100% - pxToRem(32));
       overflow-y: scroll;
       display: flex;
       flex-direction: column;
@@ -47,8 +47,8 @@
   }
 
   &-wrapper-width {
-    width: calc(100% - 3.2rem);
-    max-width: 38.4rem;
+    width: calc(100% - pxToRem(32));
+    max-width: pxToRem(384);
 
     @media screen and (max-width: 425px) {
       height: 100vh;
@@ -61,21 +61,21 @@
     width: 100%;
     justify-content: center;
     align-items: center;
-    gap: 3.2rem;
-    margin-top: 2.2rem;
+    gap: pxToRem(32);
+    margin-top: pxToRem(22);
   }
 
   &-btn {
-    width: 10.2rem;
-    height: 4.8rem;
-    border: 0.1rem solid $ColorPrimaryGrey40;
+    width: pxToRem(102);
+    height: pxToRem(48);
+    border: pxToRem(1) solid $ColorPrimaryGrey40;
     color: $ColorPrimary60;
     border-radius: 50%;
     display: flex;
-    font-size: 1.6rem;
+    font-size: pxToRem(16);
     align-items: center;
     justify-content: space-around;
-    border-radius: 100rem;
+    border-radius: pxToRem(1000);
     cursor: pointer;
 
     span {
@@ -95,7 +95,7 @@
 
   &-month-year {
     display: flex;
-    gap: 1.2rem;
+    gap: pxToRem(12);
   }
 
   &-toggle-icon {
@@ -105,24 +105,24 @@
     cursor: pointer;
 
     svg {
-      height: 2.4rem;
-      width: 2.4rem;
+      height: pxToRem(24);
+      width: pxToRem(24);
       color: $ColorPrimary60;
     }
   }
 
   &-day-row {
     color: $TypographyPrimaryColor;
-    font-size: 1.6rem;
+    font-size: pxToRem(16);
     display: flex;
     width: 100%;
     align-items: center;
     justify-content: space-between;
-    padding: 2.4rem 0;
+    padding: pxToRem(24) 0;
     position: relative;
 
     span {
-      width: 4.8rem;
+      width: pxToRem(48);
       text-align: center;
     }
   }
@@ -130,23 +130,27 @@
   &-calendar-grid {
     width: 100%;
     display: grid;
-    grid-template-columns: 4.8rem 4.8rem 4.8rem 4.8rem 4.8rem 4.8rem 4.8rem;
+    grid-template-columns: pxToRem(48) pxToRem(48) pxToRem(48) pxToRem(48) pxToRem(
+        48
+      ) pxToRem(48) pxToRem(48);
     justify-content: space-between;
     height: auto;
 
     @media screen and (max-width: 425px) {
-      grid-template-columns: 4.4rem 4.4rem 4.4rem 4.4rem 4.4rem 4.4rem 4.4rem;
+      grid-template-columns: pxToRem(44) pxToRem(44) pxToRem(44) pxToRem(44) pxToRem(
+          44
+        ) pxToRem(44) pxToRem(44);
     }
   }
 
   &-calendar-griditem {
-    font-size: 1.6rem;
+    font-size: pxToRem(16);
     color: $ColorPrimary60;
-    width: 4.8rem;
-    height: 4.8rem;
+    width: pxToRem(48);
+    height: pxToRem(48);
     text-align: center;
     cursor: default;
-    padding-bottom: 0.8rem;
+    padding-bottom: pxToRem(8);
     cursor: pointer;
 
     div {
@@ -165,7 +169,7 @@
       color: $ColorPrimary60;
       opacity: 50%;
       cursor: not-allowed;
-      border-radius: 100rem;
+      border-radius: pxToRem(1000);
     }
 
     &-rangestart {
@@ -192,18 +196,18 @@
     &-selected {
       background-color: $ColorPrimary50;
       color: $WhiteColor;
-      border-radius: 100rem;
+      border-radius: pxToRem(1000);
     }
 
     &-hover {
       &:hover {
         background-color: $ColorPrimaryGrey20;
-        border-radius: 100rem;
+        border-radius: pxToRem(1000);
       }
     }
 
     &-today {
-      border-radius: 100rem;
+      border-radius: pxToRem(1000);
       background-color: $ColorPrimary20;
     }
   }
@@ -215,40 +219,40 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    border-top: 0.1rem solid $ColorPrimaryGrey40;
-    padding-top: 0.8rem;
+    border-top: pxToRem(1) solid $ColorPrimaryGrey40;
+    padding-top: pxToRem(8);
 
     &-width {
-      width: calc(100% - 3.2rem);
-      height: calc(100% - 15rem);
+      width: calc(100% - pxToRem(32));
+      height: calc(100% - pxToRem(150));
       top: 24%;
       @media screen and (max-width: 425px) {
         width: calc(100%);
-        height: calc(100% - 1rem);
+        height: calc(100% - pxToRem(10));
         top: 22%;
       }
     }
 
     &-semiwidth {
-      width: calc(50% - 2.8rem);
-      height: calc(100% - 22rem);
+      width: calc(50% - pxToRem(28));
+      height: calc(100% - pxToRem(220));
       top: 20%;
       @media screen and (max-width: 425px) {
         width: 100%;
-        height: calc(100% - 50rem);
+        height: calc(100% - pxToRem(500));
         top: 10%;
       }
     }
 
     &-item {
       color: $ColorPrimary60;
-      font-size: 1.8rem;
-      padding: 1.2rem;
+      font-size: pxToRem(18);
+      padding: pxToRem(12);
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      border-radius: 25rem;
+      border-radius: pxToRem(250);
     }
 
     &-selected {
@@ -261,11 +265,11 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-top: 0.1rem solid $ColorPrimaryGrey40;
-    padding-top: 1.2rem;
+    border-top: pxToRem(1) solid $ColorPrimaryGrey40;
+    padding-top: pxToRem(12);
     &-date-group {
       display: flex;
-      gap: 2.4rem;
+      gap: pxToRem(24);
       justify-content: space-between;
       align-items: center;
     }
@@ -276,12 +280,12 @@
       align-items: flex-start;
 
       span {
-        font-size: 1.4rem;
+        font-size: pxToRem(14);
         color: $ColorPrimaryGrey80;
 
         &:last-child {
           color: $ColorPrimaryGrey100;
-          font-size: 1.6rem;
+          font-size: pxToRem(16);
         }
       }
     }
@@ -292,17 +296,17 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      width: calc(100% - 3.2rem);
-      border-top: 1px solid $ColorPrimaryGrey40;
+      width: calc(100% - pxToRem(32));
+      border-top: pxToRem(1) solid $ColorPrimaryGrey40;
       position: absolute;
       bottom: 0;
     }
     &-date-item {
-      font-size: 1.6rem;
+      font-size: pxToRem(16);
       color: $TypographyPrimaryColor;
-      line-height: 2.4rem;
+      line-height: pxToRem(24);
       font-weight: 700;
-      padding: 2.4rem 0;
+      padding: pxToRem(24) 0;
       width: 100%;
     }
     &-button {
@@ -323,8 +327,8 @@
   cursor: pointer;
 
   svg {
-    height: 2.4rem;
-    width: 2.4rem;
+    height: pxToRem(24);
+    width: pxToRem(24);
     color: $ColorPrimary60;
   }
 }

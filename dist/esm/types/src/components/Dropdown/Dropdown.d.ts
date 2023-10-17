@@ -22,6 +22,8 @@ export interface DropdownProps {
   tooltipIcon?: React.ReactNode;
   value?: string | number | boolean | any[];
   addOption?: Boolean;
+  showAddOptionWithItems?: Boolean;
+  removeBorderBetweenItems?: Boolean;
   addOptionHandler?: Function;
   enableSelectAll?: Boolean;
   onChange?: Function;
@@ -34,7 +36,7 @@ export interface DropdownProps {
   prefixIcon?: React.ReactNode;
 }
 declare const Dropdown: {
-  (props: DropdownProps): React.JSX.Element;
+  (props: DropdownProps): JSX.Element;
   defaultProps: {
     id: string;
     items: never[];
@@ -46,6 +48,8 @@ declare const Dropdown: {
     searchable: boolean;
     tooltip: null;
     addOption: boolean;
+    showAddOptionWithItems: boolean;
+    removeBorderBetweenItems: boolean;
     enableSelectAll: boolean;
     helperText: string;
     className: string;

@@ -1,15 +1,15 @@
 @import "./../Input/Input.scss";
 
 .n-validation-container {
-  margin-top: 8px;
+  margin-top: pxToRem(8);
 }
 
 .n-state-container {
   display: flex;
   font-weight: 500;
   text-transform: none;
-  font-size: $BaseFontSize + 4px;
-  letter-spacing: -0.07px;
+  font-size: pxToRem(14);
+  letter-spacing: pxToRem(-0.07);
 
   img {
     height: 100%;
@@ -18,7 +18,7 @@
 }
 
 .n-svg-container {
-  height: 16px;
-  width: 16px;
-  margin-right: 6px;
+  height: pxToRem(16);
+  width: pxToRem(16);
+  margin-right: pxToRem(6);
 }

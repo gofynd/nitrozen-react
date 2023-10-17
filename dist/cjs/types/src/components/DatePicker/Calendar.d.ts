@@ -1,6 +1,7 @@
 import React from "react";
 import "./DatePicker.scss";
 export interface CalendarProps {
+  rangeConfig?: any;
   dateVal?: string;
   onDateClick: Function;
   isRange?: boolean;
@@ -16,7 +17,7 @@ export interface CalendarProps {
   calendarId: string;
 }
 declare const _default: React.MemoExoticComponent<{
-  (props: CalendarProps): React.JSX.Element;
+  (props: CalendarProps): JSX.Element;
   defaulProps: {
     dateVal: string;
     from: string;

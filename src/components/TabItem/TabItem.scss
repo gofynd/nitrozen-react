@@ -4,7 +4,7 @@
   display: flex;
   justify-content: center;
   font-family: $PrimaryFont;
-  padding: 1.2rem 0.8rem;
+  padding: pxToRem(12) pxToRem(80);
   flex: 1;
   align-items: center;
   button.n-tab-btn {
@@ -14,11 +14,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 1.6rem;
-    line-height: 2.4rem;
+    font-size: pxToRem(16);
+    line-height: pxToRem(24);
     color: $ColorPrimaryGrey80;
     font-weight: 500;
-    min-width: 2.5rem;
+    min-width: pxToRem(25);
     height: 100%;
     width: 100%;
     white-space: pre;
@@ -30,14 +30,14 @@
     }
     .n-tab-icon {
       display: inline-flex;
-      margin-right: 0.8rem;
+      margin-right: pxToRem(8);
       align-items: center;
       justify-content: center;
     }
   }
 
   .tab-item-icon {
-    margin-top: 0.15rem;
-    margin-right: 0.4rem;
+    margin-top: pxToRem(1.5);
+    margin-right: pxToRem(4);
   }
 }

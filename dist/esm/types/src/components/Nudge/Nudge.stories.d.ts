@@ -4,7 +4,7 @@ import Nudge from "./Nudge";
 import "./Nudge.scss";
 declare const _default: ComponentMeta<
   React.MemoExoticComponent<{
-    (props: import("./Nudge").NudgeProps): React.JSX.Element;
+    (props: import("./Nudge").NudgeProps): JSX.Element;
     defaultProps: {
       id: string;
       duration: number;

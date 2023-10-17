@@ -1,4 +1,3 @@
-import React from "react";
 import "./Card.scss";
 export interface CardProps {
   title?: string;
@@ -14,7 +13,7 @@ export interface CardProps {
   footer?: JSX.Element;
 }
 declare const Card: {
-  (props: CardProps): React.JSX.Element;
+  (props: CardProps): JSX.Element;
   defaultProps: {
     imageRatio: string;
     imageFocus: string;
