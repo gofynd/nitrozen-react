@@ -7,7 +7,7 @@ import NitrozenValidation from "./../Validation";
 export interface ToggleButtonProps {
   disabled?: boolean;
   onToggle?: Function;
-  value: boolean;
+  value?: boolean;
   className?: string;
   style?: React.CSSProperties;
   size?: string;
@@ -44,9 +44,10 @@ const ToggleButton = (props: ToggleButtonProps) => {
   }, [value]);
 
   const changed = useCallback(() => {
+    onToggle && onToggle(!toggleActive);
+
     setToggle(!toggleActive);
-    onToggle?.();
-  }, [toggleActive]);
+  }, [toggleActive, onToggle]);
 
   const Icon = props.icon as React.ElementType;
   return (
