@@ -17,7 +17,7 @@ export interface DialogProps {
   title: string | dialogTitle;
   kind: "dialog" | "acknowledgement" | "informational";
   size: "s" | "m";
-  theme?: string;
+  theme?: string | null;
   children?: React.ReactNode;
   positiveButtonLabel?: string | boolean;
   negativeButtonLabel?: string | boolean;
