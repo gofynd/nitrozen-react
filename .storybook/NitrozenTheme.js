@@ -3,9 +3,9 @@ import nitrozenIcon from "../src/assets/nitrozen.png";
 export default create({
   base: "light",
   brandTitle: "Nitrozen",
-  brandUrl: "https://fyndreact.github.io/nitrozen/",
+  brandUrl: "https://opensource.gofynd.io/nitrozen-react",
   brandImage: nitrozenIcon,
-  brandTarget: "https://fyndreact.github.io/nitrozen/",
+  brandTarget: "https://opensource.gofynd.io/nitrozen-react",
   fontBase: "Inter, Helvetica",
   colorPrimary: "black",
 
